@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /*
- * Entangle design tokens. Calm and monochrome: black and white, hairline borders, Geist type.
- * Colour carries meaning only: status (working, needs you, failed) and the agent roles in timelines.
+ * Entangle design tokens, from the brand kit in design/ (design/brand/tokens.css is the source).
+ * Calm: ink on white, hairline borders, Inter for the interface and Source Serif 4 for proposals. No monospace:
+ * ids use Inter's tabular, slashed-zero figures. Colour carries meaning only: the indigo accent, status, and the agents.
  *
  * Use the Tailwind names (bg-panel, text-ink-muted, border-hairline, bg-primary, bg-role-critic, ...), not raw colours.
  */
@@ -144,8 +145,10 @@
 }
 
 @theme {
-	--font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-	--font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+	--font-sans: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+	--font-serif: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+	/* No monospace anywhere: font-mono is the sans, and ids get fixed-width, slashed-zero figures (below). */
+	--font-mono: var(--font-sans);
 
 	/* Type scale: 14 is body; 13 for secondary UI; titles are semibold with tight tracking */
 	--text-2xs: 11px;
@@ -275,7 +278,7 @@
 		font-family: var(--font-sans);
 		font-size: var(--text-base);
 		line-height: var(--text-base--line-height);
-		font-feature-settings: "ss01", "cv11";
+		font-optical-sizing: auto;
 	}
 	h1,
 	h2,
@@ -291,8 +294,10 @@
 	}
 	code,
 	kbd,
-	pre {
+	pre,
+	.font-mono {
 		font-family: var(--font-mono);
+		font-variant-numeric: tabular-nums slashed-zero;
 	}
 }
 

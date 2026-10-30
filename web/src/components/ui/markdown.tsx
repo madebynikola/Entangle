@@ -39,14 +39,14 @@ function cite(children: React.ReactNode): React.ReactNode {
 }
 
 const components: Components = {
-	h1: ({ children }) => <h1 className="mb-3 mt-6 text-2xl font-medium text-ink first:mt-0">{children}</h1>,
-	h2: ({ children }) => <h2 className="mb-2.5 mt-6 text-xl font-medium text-ink first:mt-0">{children}</h2>,
-	h3: ({ children }) => <h3 className="mb-2 mt-5 text-lg font-medium text-ink first:mt-0">{children}</h3>,
+	h1: ({ children }) => <h1 className="mb-3 mt-6 font-sans text-2xl font-semibold tracking-tight text-ink first:mt-0">{children}</h1>,
+	h2: ({ children }) => <h2 className="mb-2.5 mt-6 font-sans text-xl font-semibold tracking-tight text-ink first:mt-0">{children}</h2>,
+	h3: ({ children }) => <h3 className="mb-2 mt-5 font-sans text-lg font-semibold text-ink first:mt-0">{children}</h3>,
 	p: ({ children }) => <p className="my-2.5 leading-relaxed">{cite(children)}</p>,
 	li: ({ children }) => <li className="my-1 leading-relaxed">{cite(children)}</li>,
 	ul: ({ children }) => <ul className="my-2.5 list-disc pl-5 marker:text-ink-subtle">{children}</ul>,
 	ol: ({ children }) => <ol className="my-2.5 list-decimal pl-5 marker:text-ink-muted">{children}</ol>,
-	strong: ({ children }) => <strong className="font-medium text-ink">{children}</strong>,
+	strong: ({ children }) => <strong className="font-semibold text-ink">{children}</strong>,
 	a: ({ children, href }) => (
 		<a href={href} target="_blank" rel="noreferrer" className="text-link underline-offset-2 hover:underline">
 			{children}
@@ -56,7 +56,7 @@ const components: Components = {
 	blockquote: ({ children }) => <blockquote className="my-3 border-l-2 border-strong pl-4 text-ink-muted">{children}</blockquote>,
 	hr: () => <hr className="my-6 border-hairline" />,
 	table: ({ children }) => (
-		<div className="my-4 overflow-x-auto rounded-md border border-hairline">
+		<div className="my-4 overflow-x-auto rounded-md border border-hairline font-sans">
 			<table className="w-full border-collapse text-sm">{children}</table>
 		</div>
 	),
@@ -64,10 +64,10 @@ const components: Components = {
 	td: ({ children }) => <td className="border-b border-hairline px-3 py-2 align-top last:border-b-0">{cite(children)}</td>,
 }
 
-/** Proposal markdown in the app's type, with cited ids as hoverable source chips. */
+/** Proposal markdown: body in Source Serif 4, so it reads like an academic document; headings and tables in Inter; cited ids as hoverable source chips. */
 export function Markdown({ children, className }: { children: string; className?: string }) {
 	return (
-		<div className={cn("max-w-[72ch] text-base text-ink", className)}>
+		<div className={cn("max-w-[68ch] font-serif text-[16.5px] leading-[1.62] text-ink", className)}>
 			<ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
 				{children}
 			</ReactMarkdown>

@@ -91,12 +91,13 @@ function download(name: string, text: string, type: string): void {
 const PRINT_CSS = `
 @page { size: A4; margin: 18mm 18mm 20mm; }
 html, body { background: #fff !important; color: #171717 !important; }
-body { margin: 0; font: 10.5pt/1.55 "Geist Variable", -apple-system, system-ui, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font: 10.5pt/1.55 "Inter Variable", -apple-system, system-ui, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .doc { max-width: 174mm; margin: 0 auto; }
 .doc h1 { font-size: 19pt; line-height: 1.2; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6pt; }
 .doc h2 { font-size: 13pt; line-height: 1.3; font-weight: 600; margin: 18pt 0 6pt; break-after: avoid; }
 .doc h3 { font-size: 11pt; line-height: 1.3; font-weight: 600; margin: 14pt 0 4pt; break-after: avoid; }
 .doc p, .doc li { margin: 0 0 6pt; orphans: 3; widows: 3; }
+.doc .body p, .doc .body li, .doc .body blockquote { font-family: "Source Serif 4 Variable", Georgia, serif; font-size: 11pt; line-height: 1.55; }
 .doc ul { list-style: disc; padding-left: 15pt; margin: 0 0 8pt; }
 .doc ol { list-style: decimal; padding-left: 15pt; margin: 0 0 8pt; }
 .doc strong { font-weight: 600; }
@@ -104,7 +105,7 @@ body { margin: 0; font: 10.5pt/1.55 "Geist Variable", -apple-system, system-ui, 
 .doc th, .doc td { border: 0.5pt solid #d4d4d4; padding: 4pt 6pt; text-align: left; vertical-align: top; }
 .doc th { background: #f4f4f5; font-weight: 600; }
 .doc tr { break-inside: avoid; }
-.doc code, .doc .cite, .doc .id { font-family: "Geist Mono Variable", ui-monospace, monospace; }
+.doc code, .doc .cite, .doc .id { font-family: "Inter Variable", system-ui, sans-serif; font-variant-numeric: tabular-nums slashed-zero; }
 .doc .cite { font-size: 7.5pt; color: #666; overflow-wrap: anywhere; }
 .doc hr { border: 0; border-top: 0.5pt solid #d4d4d4; margin: 14pt 0; }
 .doc blockquote { border-left: 2pt solid #d4d4d4; padding-left: 8pt; color: #555; margin: 0 0 8pt; }
@@ -156,9 +157,11 @@ function PrintDocument({ ctx, sources }: { ctx: ExportContext; sources: Map<stri
 				</p>
 				<p className="doc-status">{decisionLine(ctx.approval)}</p>
 			</header>
-			<ReactMarkdown remarkPlugins={[remarkGfm]} components={printComponents}>
-				{stripTitle(proposal.markdown, proposal.title)}
-			</ReactMarkdown>
+			<div className="body">
+				<ReactMarkdown remarkPlugins={[remarkGfm]} components={printComponents}>
+					{stripTitle(proposal.markdown, proposal.title)}
+				</ReactMarkdown>
+			</div>
 			<section className="doc-sources">
 				<h2>Sources</h2>
 				<p>Each id in square brackets cites one record in the EINSTEIN dataset.</p>
@@ -194,7 +197,7 @@ async function print(ctx: ExportContext, sources: Map<string, SourceRecord | nul
 	doc.close()
 	doc.title = `${ctx.proposal.id} ${ctx.proposal.title}`
 
-	// The app's stylesheets bring the Geist faces; the print rules come last and win.
+	// The app's stylesheets bring the Inter and Source Serif faces; the print rules come last and win.
 	const loads: Promise<unknown>[] = []
 	for (const node of document.querySelectorAll<HTMLElement>('style, link[rel="stylesheet"]')) {
 		const copy = node.cloneNode(true) as HTMLElement
