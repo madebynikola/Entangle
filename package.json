@@ -13,6 +13,7 @@
     "build": "vite build --config web/vite.config.ts && tsx src/server/export.ts",
     "start": "tsx src/server/main.ts start",
     "match": "tsx src/cli.ts",
+    "critic:eval": "tsx src/critic-eval.ts",
     "typecheck": "tsc --noEmit && tsc --noEmit -p web"
   },
   "dependencies": {
