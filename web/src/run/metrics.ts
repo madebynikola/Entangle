@@ -95,10 +95,10 @@ export function pipeline(records: TraceRecord[], view: RunView, results: RunResu
 	})
 	const noMatch = results?.noMatches.length ?? 0
 	return [
-		stage("need", "Read companies", "challenges understood", Math.max(posted.need.size, results?.needs.length ?? 0)),
-		stage("profile", "Profile researchers", "researchers profiled", Math.max(posted.profile.size, results?.profiles.length ?? 0)),
-		stage("pair", "Find pairs", "pairs proposed", Math.max(posted.pair.size, results?.pairs.length ?? 0), noMatch ? `${noMatch} with no good match` : undefined),
-		stage("proposal", "Write proposals", "proposals written", Math.max(posted.proposal.size, results?.proposals.length ?? 0)),
-		stage("review", "Check claims", "Critic reviews", reviews, reviews ? `${sentBack} sent back · ${format.plural(rejectedClaims, "claim")} rejected` : undefined),
+		stage("need", "Read companies", "challenges", Math.max(posted.need.size, results?.needs.length ?? 0)),
+		stage("profile", "Profile researchers", "profiles", Math.max(posted.profile.size, results?.profiles.length ?? 0)),
+		stage("pair", "Find pairs", "pairs", Math.max(posted.pair.size, results?.pairs.length ?? 0), noMatch ? `${noMatch} with no good match` : undefined),
+		stage("proposal", "Write proposals", "proposals", Math.max(posted.proposal.size, results?.proposals.length ?? 0)),
+		stage("review", "Check claims", "reviews", reviews, reviews ? `${format.plural(rejectedClaims, "claim")} rejected, ${sentBack} sent back` : undefined),
 	]
 }

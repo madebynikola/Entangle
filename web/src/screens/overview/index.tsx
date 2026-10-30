@@ -1,11 +1,11 @@
 import type { Claim } from "@shared/types"
-import { FileText } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 import { useMemo } from "react"
 import { Link } from "react-router"
 import { useShallow } from "zustand/react/shallow"
 import { ClaimText } from "@/components/shell/source"
 import { Button } from "@/components/ui/button"
-import { Card, Section, Stat } from "@/components/ui/card"
+import { Pane } from "@/components/ui/card"
 import { Chip } from "@/components/ui/chip"
 import { EmptyState } from "@/components/ui/empty"
 import { StatusDot, type StatusTone } from "@/components/ui/status"
@@ -14,13 +14,15 @@ import { cn } from "@/lib/utils"
 import { useFullView, useRunStore } from "@/run/hooks"
 import { concurrency, pipeline, type Stage, type StageState } from "@/run/metrics"
 
-/** `/runs/:id/overview`: what the run did, in one screen. Reads the whole run, whatever the replay shows. */
+/**
+ * `/runs/:id/overview`: what the run did, in one screen that fits the window. The run's totals sit in the header.
+ * Reads the whole run, whatever the replay shows.
+ */
 export function OverviewScreen() {
-	const { records, results, info, live, duration } = useRunStore(
+	const { records, results, live, duration } = useRunStore(
 		useShallow((state) => ({
 			records: state.records,
 			results: state.results,
-			info: state.info,
 			live: state.runStatus === "live",
 			duration: state.duration,
 		})),
@@ -29,100 +31,98 @@ export function OverviewScreen() {
 	const load = useMemo(() => concurrency(records, duration), [records, duration])
 	const stages = useMemo(() => pipeline(records, view, results, live), [records, view, results, live])
 	const rejections = useMemo(() => latestRejections(records), [records])
-	const { totals } = view
 
 	if (records.length === 0 && !live) {
-		return <EmptyState title="This run has no events">Its trace is empty. It may have stopped before any agent started.</EmptyState>
+		return (
+			<EmptyState className="h-full" title="This run has no events">
+				Its trace is empty. It may have stopped before any agent started.
+			</EmptyState>
+		)
 	}
 
 	return (
-		<div className="flex flex-col gap-10">
-			<Card className="grid grid-cols-2 gap-x-6 gap-y-5 p-5 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-hairline lg:p-0">
-				<Stat className="lg:p-5" label="Duration" value={format.duration(view.lastMs)} />
-				<Stat className="lg:p-5" label="Agents" value={view.agents.size} hint={`${totals.done} of ${format.plural(totals.tasks, "task")} done`} />
-				<Stat className="lg:p-5" label="Most at once" value={`${load.peak} model calls`} hint={load.peak > 1 ? `at ${format.clock(load.peakMs)}` : undefined} />
-				<Stat className="lg:p-5" label="Tokens" value={format.tokens(totals.tokens)} />
-				<Stat
-					className="lg:p-5"
-					label="Cost"
-					value={totals.costUsd > 0 ? `${format.usd(totals.costUsd)}${totals.costKnown ? "" : "+"}` : "—"}
-					hint={info?.mock ? "simulated, no API calls" : undefined}
-				/>
-			</Card>
+		// Wide screens: three bands that share the height, so the whole story fits without scrolling. Narrow: one column.
+		<div className="flex flex-col gap-4 p-4 sm:p-5 lg:grid lg:h-full lg:min-h-[34rem] lg:grid-cols-2 lg:grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)]">
+			<Pipeline stages={stages} className="lg:col-span-2" />
 
-			<Section title="How the run went" description="Each step starts as soon as its input exists, so they overlap.">
-				<Pipeline stages={stages} />
-			</Section>
-
-			<Section
+			<Pane
+				className="h-64 lg:col-span-2 lg:h-auto"
 				title="Agents at work"
-				description="Model calls in flight over time. Where the area is tall, many agents work at once."
+				description="Model calls in flight over time. Where it is tall, many agents work at once."
 				action={
-					<Button size="sm" asChild>
-						<Link to="../live">Open the timeline</Link>
+					<Button size="sm" variant="ghost" asChild>
+						<Link to="../live">
+							Open the timeline
+							<ArrowRight />
+						</Link>
 					</Button>
 				}
+				bodyClassName="flex flex-col px-4 pb-3 pt-7"
 			>
-				<Card className="p-5">
-					<LoadChart series={load.series} peak={load.peak} peakMs={load.peakMs} duration={duration} />
-				</Card>
-			</Section>
+				<LoadChart series={load.series} peak={load.peak} peakMs={load.peakMs} duration={duration} />
+			</Pane>
 
-			<div className="grid gap-10 lg:grid-cols-2">
-				<Section title="What the Critic caught" description="Every claim needs a source that supports it. Unsupported claims go back to their writer.">
-					<Card className="p-0">
-						{rejections.length === 0 ? (
-							<p className="p-5 text-sm text-ink-muted">{stages[4].count ? "Every claim it checked had support." : "No reviews yet."}</p>
-						) : (
-							rejections.map((item, i) => (
-								<div key={i} className="border-b border-hairline p-5 last:border-b-0">
-									<div className="mb-2 flex items-center gap-2 text-xs text-ink-muted">
-										<StatusDot tone="needs" />
-										<span>
-											{item.kind} <span className="font-mono">{item.id}</span> · at {format.clock(item.ms)}
-										</span>
-									</div>
-									<ClaimText claim={item.claim} struck className="text-sm" />
-									<p className="mt-1.5 line-clamp-3 text-sm text-ink-muted">{item.reason}</p>
-								</div>
-							))
-						)}
-					</Card>
-				</Section>
+			<Pane
+				className="max-h-96 lg:max-h-none"
+				title="What the Critic caught"
+				count={rejections.total || undefined}
+				description="Claims with no source behind them"
+				scroll
+			>
+				{rejections.items.length === 0 ? (
+					<p className="p-4 text-sm text-ink-muted">{stages[4].count ? "Every claim it checked had a source." : "No reviews yet."}</p>
+				) : (
+					rejections.items.map((item, i) => (
+						<div key={i} className="border-b border-hairline px-4 py-3 last:border-b-0">
+							<div className="mb-1.5 flex items-center gap-2 text-xs text-ink-muted">
+								<StatusDot tone="needs" />
+								<span>
+									{item.kind} <span className="font-mono">{item.id}</span> · at {format.clock(item.ms)}
+								</span>
+							</div>
+							<ClaimText claim={item.claim} struck className="text-sm" />
+							<p className="mt-1 line-clamp-2 text-sm text-ink-muted">{item.reason}</p>
+						</div>
+					))
+				)}
+			</Pane>
 
-				<Section
-					title="Proposals"
-					description="What a company and a researcher would sit down over."
-					action={
-						results?.proposals.length ? (
-							<Button size="sm" asChild>
-								<Link to="../results">All results</Link>
-							</Button>
-						) : undefined
-					}
-				>
-					<Card className="p-0">
-						{!results?.proposals.length ? (
-							<p className="p-5 text-sm text-ink-muted">{live ? "Writers post proposals here as pairs are chosen." : "This run wrote no proposals."}</p>
-						) : (
-							results.proposals.slice(0, 5).map((proposal) => (
-								<Link
-									key={proposal.id}
-									to="../results"
-									className="flex items-start gap-3 border-b border-hairline p-5 transition-colors last:border-b-0 hover:bg-hover"
-								>
-									<FileText className="mt-0.5 size-4 shrink-0 text-ink-subtle" />
-									<div className="min-w-0 flex-1">
-										<div className="line-clamp-2 font-medium text-ink">{proposal.title}</div>
-										<div className="mt-1 font-mono text-xs text-ink-subtle">{proposal.pairId || proposal.id}</div>
-									</div>
-									<Chip>{proposal.kind === "industrial-phd" ? "Industrial PhD" : "Joint project"}</Chip>
-								</Link>
-							))
-						)}
-					</Card>
-				</Section>
-			</div>
+			<Pane
+				className="max-h-96 lg:max-h-none"
+				title="Proposals"
+				count={results?.proposals.length || undefined}
+				description="What each pair would work on together"
+				scroll
+				action={
+					results?.proposals.length ? (
+						<Button size="sm" variant="ghost" asChild>
+							<Link to="../results">
+								All results
+								<ArrowRight />
+							</Link>
+						</Button>
+					) : undefined
+				}
+			>
+				{!results?.proposals.length ? (
+					<p className="p-4 text-sm text-ink-muted">{live ? "Writers post proposals here as pairs are chosen." : "This run wrote no proposals."}</p>
+				) : (
+					results.proposals.map((proposal) => (
+						<Link
+							key={proposal.id}
+							to="../results"
+							className="flex items-start gap-3 border-b border-hairline px-4 py-3 transition-colors last:border-b-0 hover:bg-hover"
+						>
+							<FileText className="mt-0.5 size-4 shrink-0 text-ink-subtle" />
+							<div className="min-w-0 flex-1">
+								<div className="line-clamp-2 text-base text-ink">{proposal.title}</div>
+								<div className="mt-0.5 font-mono text-xs text-ink-subtle">{proposal.pairId || proposal.id}</div>
+							</div>
+							<Chip className="shrink-0">{proposal.kind === "industrial-phd" ? "Industrial PhD" : "Joint project"}</Chip>
+						</Link>
+					))
+				)}
+			</Pane>
 		</div>
 	)
 }
@@ -135,29 +135,35 @@ const STAGE_TONE: Record<StageState, { tone: StatusTone; label: string; pulse?: 
 }
 
 /** Five steps in order. Numbers here are a real sequence: each step feeds the next. */
-function Pipeline({ stages }: { stages: Stage[] }) {
+function Pipeline({ stages, className }: { stages: Stage[]; className?: string }) {
 	return (
-		<div className="grid overflow-hidden rounded-lg border border-hairline bg-panel shadow-card sm:grid-cols-2 lg:grid-cols-5 lg:divide-x lg:divide-hairline">
+		<div
+			className={cn(
+				"grid shrink-0 overflow-hidden rounded-lg border border-hairline bg-card shadow-card sm:grid-cols-5 sm:divide-x sm:divide-hairline",
+				className,
+			)}
+		>
 			{stages.map((stage, i) => {
 				const tone = STAGE_TONE[stage.state]
 				const idle = stage.state === "skipped" || stage.state === "waiting"
 				return (
-					<div key={stage.key} className="border-b border-hairline p-5 last:border-b-0 lg:border-b-0">
+					<div key={stage.key} className="min-w-0 border-b border-hairline px-4 py-3.5 last:border-b-0 sm:border-b-0">
 						<div className="flex items-center justify-between gap-2 text-sm">
-							<span className="text-ink-muted">
+							<span className="truncate text-ink-muted">
 								<span className="tabular mr-2 text-ink-subtle">{i + 1}</span>
 								{stage.label}
 							</span>
-							<span className="inline-flex items-center gap-1.5 text-xs text-ink-subtle">
-								<StatusDot tone={stage.state === "done" ? "working" : tone.tone} pulse={tone.pulse} className="size-1.5" />
-								{tone.label}
+							<StatusDot tone={stage.state === "done" ? "working" : tone.tone} pulse={tone.pulse} className="size-1.5" />
+						</div>
+						<div className="mt-2 flex items-baseline gap-1.5">
+							<span className={cn("tabular text-2xl font-semibold tracking-tight", idle ? "text-ink-subtle" : "text-ink")}>
+								{idle && stage.count === 0 ? "—" : stage.count}
 							</span>
+							<span className="truncate text-sm text-ink-muted">{stage.unit}</span>
 						</div>
-						<div className={cn("tabular mt-4 text-3xl font-semibold tracking-tight", idle ? "text-ink-subtle" : "text-ink")}>
-							{idle && stage.count === 0 ? "—" : stage.count}
+						<div className="mt-0.5 truncate text-xs text-ink-subtle" title={stage.detail}>
+							{stage.detail || tone.label}
 						</div>
-						<div className="mt-1 text-sm text-ink-muted">{stage.unit}</div>
-						{stage.detail && <div className="mt-0.5 text-xs text-ink-subtle">{stage.detail}</div>}
 					</div>
 				)
 			})}
@@ -176,8 +182,8 @@ function LoadChart({ series, peak, peakMs, duration }: { series: number[]; peak:
 	const line = `M${points.join(" L")}`
 	const peakX = duration > 0 ? (peakMs / duration) * 100 : 0
 	return (
-		<div>
-			<div className="relative h-44">
+		<div className="flex min-h-0 flex-1 flex-col">
+			<div className="relative min-h-0 flex-1">
 				<svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="absolute inset-0 h-full w-full overflow-visible" aria-hidden>
 					{[0.25, 0.5, 0.75].map((y) => (
 						<line key={y} x1="0" x2={w} y1={h * y} y2={h * y} stroke="var(--hairline)" strokeWidth="0.15" vectorEffect="non-scaling-stroke" />
@@ -212,17 +218,18 @@ interface Rejection {
 	reason: string
 }
 
-/** The last few claims the Critic rejected, newest first. */
-function latestRejections(records: { kind: string; ms: number; data?: unknown }[], limit = 3): Rejection[] {
-	const found: Rejection[] = []
-	for (let i = records.length - 1; i >= 0 && found.length < limit; i--) {
+/** Every claim the Critic rejected (`total`), and the newest of them to list. */
+function latestRejections(records: { kind: string; ms: number; data?: unknown }[], limit = 50): { items: Rejection[]; total: number } {
+	const items: Rejection[] = []
+	let total = 0
+	for (let i = records.length - 1; i >= 0; i--) {
 		const record = records[i]
 		if (record.kind !== "critic.verdict") continue
 		const data = record.data as { kind?: string; id?: string; rejected?: { claim: Claim; reason: string }[] } | undefined
 		for (const item of data?.rejected ?? []) {
-			if (found.length >= limit) break
-			found.push({ kind: data?.kind ?? "", id: data?.id ?? "", ms: record.ms, claim: item.claim, reason: item.reason })
+			total++
+			if (items.length < limit) items.push({ kind: data?.kind ?? "", id: data?.id ?? "", ms: record.ms, claim: item.claim, reason: item.reason })
 		}
 	}
-	return found
+	return { items, total }
 }
