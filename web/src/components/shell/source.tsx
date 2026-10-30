@@ -1,5 +1,5 @@
 import type { Claim, SourceRecord } from "@shared/types"
-import { BookOpen, Building2, FileText, Globe, Lightbulb, Target, User } from "lucide-react"
+import { ArrowUpRight, BookOpen, Building2, FileText, Globe, Library, Lightbulb, Target, User } from "lucide-react"
 import { Fragment, useEffect, useState } from "react"
 import type * as React from "react"
 import { create } from "zustand"
@@ -19,6 +19,7 @@ const KIND: Record<SourceRecord["kind"], { label: string; icon: React.ReactNode 
 	company: { label: "Company", icon: <Building2 /> },
 	challenge: { label: "Challenge", icon: <Target /> },
 	page: { label: "Company page", icon: <Globe /> },
+	work: { label: "Prior work (OpenAlex)", icon: <Library /> },
 }
 
 const cache = new Map<string, Promise<SourceRecord | null>>()
@@ -86,6 +87,12 @@ export function SourceView({ id, className }: { id: string; className?: string }
 			{long && <div className="break-words font-mono text-xs text-ink-muted">{source.id}</div>}
 			<div className="font-medium leading-snug text-ink">{source.title}</div>
 			<p className="line-clamp-[12] whitespace-pre-line text-sm text-ink-muted">{source.text}</p>
+			{source.url && (
+				<a href={source.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm text-link underline-offset-2 hover:underline [&_svg]:size-3.5">
+					Open in OpenAlex
+					<ArrowUpRight />
+				</a>
+			)}
 		</div>
 	)
 }

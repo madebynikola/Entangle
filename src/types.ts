@@ -12,6 +12,7 @@
 /**
  * A dataset id: `R0001`, `C001`, `C001-CH1`, `SYN-PUB-00001`, `SYN-PRJ-0001`, `SYN-PAT-001`.
  * Company pages have no id; cite them as `C001/job/2024-02-05/<title>`.
+ * Real published work from OpenAlex, outside the dataset, is cited by its work id: `W4293154696`.
  * Join on ids only, never on names (see docs/dataset.md, "Name traps").
  */
 export type SourceId = string
@@ -22,7 +23,8 @@ export interface Claim {
 	sourceIds: SourceId[]
 }
 
-export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page"
+/** `work`: a real OpenAlex work, outside the dataset, that links no dataset researcher or company (src/data/openalex.ts). */
+export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page" | "work"
 
 /** One dataset record as a citable source. Built by src/data/. */
 export interface SourceRecord {
@@ -38,6 +40,8 @@ export interface SourceRecord {
 	/** For a company, challenge or page. */
 	companyId?: string
 	year?: number
+	/** For a record outside the dataset: where to read it, e.g. `https://openalex.org/W4293154696`. */
+	url?: string
 }
 
 /** Look up any cited id. The Critic checks every `Claim.sourceIds` entry with it. */
