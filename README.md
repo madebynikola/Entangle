@@ -146,7 +146,8 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
    The producer fixes only those claims (cite a record that says it, narrow the claim, or remove it) and posts the artifact again.
    If it is still rejected after two send-backs, the Critic cuts the claims the fixes could not save from a need, profile or pair
    and keeps the rest (`critic.trimmed`). It drops the artifact only when a core claim failed: a need's restatement, a pair's problem,
-   a profile's availability. A proposal goes to a person (`needs-human/`).
+   a profile's availability. A proposal gets the same cut. It goes to a person (`needs-human/`) when a core claim or a
+   free-text sentence is still rejected; the core claims are its header and its last claim under "The problem" and "Why this pair".
 
 Only accepted artifacts reach the result. A Writer never starts on a pair whose need, profile or pair is still in doubt.
 
