@@ -1,0 +1,20 @@
+{
+ "name": "einstein-fixture-patents",
+ "version": "2.0",
+ "note": "Fixture subset of jigjoy-ai/einstein-matchmaker-data v2.0, built by src/data/make-fixtures.ts. Synthetic data.",
+ "patents": [
+  {
+   "id": "SYN-PAT-043",
+   "title": "Reconfigurable Fault Injection Board for Automotive ECU I/O Lines with Solid-State Relay Matrix and Microcontroller Interface",
+   "year": 2020,
+   "status": "granted",
+   "abstract": "A hardware board comprising a matrix of solid-state relays arranged to selectively connect any of up to 32 ECU I/O lines to open-circuit, battery voltage, or ground conditions under software control. A microcontroller receives fault commands over a standard serial interface and drives the relay gates within a guaranteed 2 ms switching latency. The board includes overcurrent protection on each channel and a watchdog that returns all channels to a safe default state if the host controller fails to send a heartbeat within a configurable timeout. The design targets low-cost laboratory HiL bench applications.",
+   "inventors": [
+    {
+     "researcher_id": "R0356",
+     "name": "Darko Ninkov"
+    }
+   ]
+  }
+ ]
+}

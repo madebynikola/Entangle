@@ -22,6 +22,30 @@ export interface Claim {
 	sourceIds: SourceId[]
 }
 
+export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page"
+
+/** One dataset record as a citable source. Built by src/data/. */
+export interface SourceRecord {
+	/** Canonical id. A merged duplicate's alias (e.g. R0139) resolves to its main profile (R0539). */
+	id: SourceId
+	kind: SourceKind
+	/** Researcher or company name, or the record's title. */
+	title: string
+	/** The text a claim can be checked against: abstract, summary, challenge text + detail, page text, profile. */
+	text: string
+	/** Canonical ids of the dataset researchers linked to the record: authors, participants, inventors, or the researcher. */
+	researcherIds: string[]
+	/** For a company, challenge or page. */
+	companyId?: string
+	year?: number
+}
+
+/** Look up any cited id. The Critic checks every `Claim.sourceIds` entry with it. */
+export interface SourceStore {
+	get(id: SourceId): SourceRecord | undefined
+	has(id: SourceId): boolean
+}
+
 // ---------------------------------------------------------------------------
 // Profiles and needs
 // ---------------------------------------------------------------------------

@@ -1,0 +1,1545 @@
+{
+ "name": "einstein-fixture-projects",
+ "version": "2.0",
+ "note": "Fixture subset of jigjoy-ai/einstein-matchmaker-data v2.0, built by src/data/make-fixtures.ts. Synthetic data.",
+ "projects": [
+  {
+   "id": "SYN-PRJ-0006",
+   "acronym": "",
+   "title": "FRESHROUTE: cold chain for Serbian berries",
+   "programme": "Innovation Fund (synthetic)",
+   "years": "2022–2024",
+   "summary": "FRESHROUTE addressed the systemic cold-chain weaknesses that reduce the competitiveness of Serbian raspberry, blueberry, and strawberry exports in EU markets. As academic partner, Professor Marković's team contributed validated predictive microbial growth models, MAP packaging specifications, and field sensor studies to a consortium that also included fruit exporting companies and a logistics technology provider. The project mapped temperature abuse events across 18 commercial export routes, quantified their microbiological consequences, and translated findings into revised pre-cooling protocols and MAP gas-mix recommendations adopted by partner exporters. A digital dashboard incorporating predictive shelf-life models was prototyped for real-time logistics decision support. FRESHROUTE resulted in three peer-reviewed publications, one conference presentation, and directly influenced cold-chain standard operating procedures at two partner export facilities, contributing to measurable reductions in consignment rejection rates at Western European destinations.",
+   "partners": [],
+   "participants": [
+    {
+     "researcher_id": "R0976",
+     "role": "academic partner"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0017",
+   "acronym": "",
+   "title": "SECURE-ICS: security monitoring for factories",
+   "programme": "Innovation Fund (synthetic)",
+   "years": "2023–2025",
+   "summary": "SECURE-ICS addresses the growing need for robust cybersecurity monitoring in industrial manufacturing environments. The project develops an integrated security monitoring platform tailored specifically to factory automation systems, encompassing network traffic analysis, anomaly detection, and real-time alerting for operational technology networks. As academic partner, the University of Novi Sad team led by Professor Đukić contributes expertise in intrusion detection algorithm design, threat modelling for ICS environments, and evaluation methodology. The platform targets Modbus, PROFINET, and EtherNet/IP protocol stacks commonly found in Serbian manufacturing facilities. Deliverables include a deployable monitoring agent, a validated anomaly detection model trained on representative factory traffic, and a set of security assessment guidelines for small and medium enterprises in the industrial sector. The project runs from 2023 to 2025 under the Innovation Fund programme.",
+   "partners": [],
+   "participants": [
+    {
+     "researcher_id": "R1015",
+     "role": "academic partner"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0019",
+   "acronym": "FORMIGA",
+   "title": "Formal Model-Driven Interface Generation and Adaptation for Heterogeneous Enterprise Systems",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "FORMIGA developed a toolchain for specifying enterprise integration architectures in a formal DSL and automatically generating executable interface adapters from detected mismatches. The project produced three tool components: a metamodel editor built on Eclipse EMF, a mismatch analyser using constraint solving, and an ATL-based code generator targeting Apache Camel. Validation was carried out with two companies in the Vojvodina region operating heterogeneous ERP and MES systems. The project trained two PhD students and produced seven peer-reviewed publications. A public repository containing the toolchain and all benchmark models was released under an open-source licence at project completion.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Mathematical Institute, Serbian Academy of Sciences and Arts"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0341",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0020",
+   "acronym": "INTEDGE",
+   "title": "Integration Middleware for Edge-Cloud Continuum in Smart Manufacturing",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2023–2026",
+   "summary": "INTEDGE addresses the challenge of integrating edge computing nodes with cloud-hosted enterprise systems in small and medium manufacturing enterprises along the Hungarian–Serbian border region. Bošković leads the work package on formal interface specification and automated adapter generation for edge device protocols. The project involves four partners across two countries and targets deployment pilots in two manufacturing SMEs. The formal methods component builds directly on the adapter generation framework from earlier research, extending it with resource-constrained runtime profiles suitable for edge hardware. Expected outputs include a reusable pattern library for edge-cloud integration and two pilot deployments.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Bay Zoltán Nonprofit Ltd. for Applied Research, Miskolc",
+    "Vojvodina ICT Cluster, Novi Sad",
+    "Chamber of Commerce and Industry of Csongrád-Csanád County"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0341",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0022",
+   "acronym": "TESTMIG",
+   "title": "Automated Testing Strategies for Legacy-to-Cloud Migration Pipelines",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "TESTMIG investigates how automated test generation and fuzzing techniques must be adapted when software systems are migrated from monolithic on-premise deployments to cloud-native architectures. The project produces a methodology covering three migration phases: pre-migration characterisation of testability impediments, migration-parallel differential testing, and post-migration regression suite maintenance. Empirical validation is conducted on a testbed of five anonymised legacy applications provided by two industrial partners under non-disclosure agreement. Deliverables include an open-source toolchain integrating the methodology with standard CI/CD platforms, a dataset of annotated migration artefacts, and a training module for practitioners. The project supports two PhD students and multiple master's theses.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Faculty of Electronic Engineering, University of Niš",
+    "DataBridge Solutions d.o.o., Novi Sad (industrial observer)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0233",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0035",
+   "acronym": "ETATRACE",
+   "title": "Probabilistic Real-Time Arrival Estimation for Public Transport Using Heterogeneous Data Sources",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "ETATRACE addresses the gap between deterministic ETA values shown on passenger information displays and the true uncertainty in arrival predictions, which arises from data quality variation across telematics sources, stochastic dwell times, and traffic state uncertainty. The project builds probabilistic ETA models for Novi Sad city bus network and the Novi Sad–Subotica regional bus corridor, using archived GPS data, smart card boardings, and weather records. A prototype passenger application displays calibrated 80 % prediction intervals alongside point estimates. The project supports one postdoctoral researcher and two master's students, and includes a dissemination component targeting the city's transport authority.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "JP Novi Sad Public Transport (fictional public operator)",
+    "Faculty of Transport and Traffic Engineering, University of Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0589",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0048",
+   "acronym": "SEMIFLOWS",
+   "title": "Semantic Middleware for Flexible Industrial Data Flows",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "SEMIFLOWS investigated the design of a semantic middleware layer that sits between heterogeneous industrial data sources and downstream analytics systems, providing automated schema reconciliation, ontology-guided transformation, and continuous data quality monitoring. The project focused on three industrial verticals—food processing, logistics, and energy utilities—and developed a reference architecture validated at one pilot deployment site in Vojvodina. Core contributions include the ontology alignment confidence propagation model, the dynamic streaming schema matching mechanism, and a reusable schema corpus for benchmarking. The project involved researchers from the Faculty of Technical Sciences and the Faculty of Sciences in Novi Sad, with an associated collaboration with the University of Craiova.",
+   "partners": [
+    "Faculty of Sciences, University of Novi Sad",
+    "Faculty of Automation, Computers and Electronics, University of Craiova"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0741",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0058",
+   "acronym": "AIPUBGOV",
+   "title": "Artificial Intelligence in Public Governance: Compliance Frameworks for EU Candidate Countries in the Western Balkans",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "The project develops a legislative and institutional compliance framework enabling Western Balkan EU candidate countries to align their administrative law with the EU Artificial Intelligence Act ahead of accession. Activities include comparative legal analysis of AI governance legislation across EU Member States, empirical surveys of public bodies' readiness in Serbia, and a series of legislative drafting workshops with officials from the Serbian Ministry of Public Administration. The project produces three model legislative instruments: a transparency regulation for AI use in public administration, a fundamental rights impact assessment procedural regulation, and a national competent authority designation law. Partners include law faculties in Sarajevo and Skopje, as well as the Serbian Commissioner for Information of Public Importance and Personal Data Protection.",
+   "partners": [
+    "Faculty of Law, University of Novi Sad",
+    "Faculty of Law, University of Sarajevo",
+    "Iustinianus Primus Faculty of Law, Ss. Cyril and Methodius University, Skopje",
+    "Commissioner for Information of Public Importance and Personal Data Protection of the Republic of Serbia"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0648",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0059",
+   "acronym": "CROSSDIGLAW",
+   "title": "Cross-Border Regulatory Cooperation for Digital Public Services in the Hungary–Serbia Border Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2023–2026",
+   "summary": "This cross-border cooperation project addresses the regulatory and administrative law barriers to delivering digital public services across the Hungary–Serbia border, with particular attention to services that involve automated processing of citizen data. Pásztor leads the work package on legal harmonisation, which maps the differences between Hungarian and Serbian administrative procedure law as they apply to automated decisions, and produces a common compliance guidance document intended for municipal administrations on both sides of the border. The project also includes a practitioner training programme and a pilot digital service in the field of cross-border social benefit coordination. The legal findings are fed into an advocacy report submitted to the Serbian Ministry of Public Administration and the Hungarian Ministry of the Interior.",
+   "partners": [
+    "Faculty of Law, University of Novi Sad",
+    "Faculty of Law, University of Szeged, Hungary",
+    "City of Subotica Administration",
+    "Csongrád-Csanád County Government, Hungary"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0648",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0074",
+   "acronym": "VISATALK",
+   "title": "Visual Speech Animation for Accessible Talking Interfaces in Low-Resource Languages",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "Projekat VISATALK bavio se razvojem sistema za animaciju lica pokretanu govorom prilagođenog jezicima sa ograničenim resursima, pre svega srpskom i albanskim. Osnovna istraživačka pitanja bila su: koliko parnih snimaka govora i animacije je minimalno potrebno za upotrebljiv sistem, i kako tehnike transfera znanja mogu smanjiti tu granicu. U okviru projekta snimljen je novi korpus od 4,8 sati parnih audio i performance-capture snimaka, razvijeni su evaluacioni protokoli, a finalni demonstrator integrisao je sistem u web-zasnovanu aplikaciju za pristupačnost. Projektom su finansirane dve doktorske stipendije.",
+   "partners": [
+    "Filozofski fakultet, Univerzitet u Novom Sadu",
+    "Institut za veštačku inteligenciju Srbije, Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0741",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0094",
+   "acronym": "SIMBED",
+   "title": "Scalable Hierarchical Simulation Methods for Embedded GPU Platforms",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "SIMBED investigated the co-design of spatial data structures and GPU scheduling policies for particle-based simulations on embedded platforms with unified memory and restricted power envelopes. The project produced: a linearised octree layout optimised for unified-memory TLB behaviour; a frame-budget-aware LOD allocation framework for multi-emitter scenes; and a benchmark suite of five standardised particle workloads covering fluid, granular, gaseous, and debris dynamics. Partners contributed expertise in low-power hardware characterisation and perceptual quality assessment. The project supported two Ph.D. students and one postdoctoral researcher, and produced eight peer-reviewed publications.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Institute for Computer Science and Automation, University of Kragujevac",
+    "RT-Sim d.o.o., Novi Sad (industry associate)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0484",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0098",
+   "acronym": "CRISEBA",
+   "title": "Credit Risk Decomposition and Stress Testing for the Serbian Banking Sector",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2020–2023",
+   "summary": "The project developed and validated econometric frameworks for decomposing credit default risk in Serbian commercial bank portfolios into systematic macro-financial and idiosyncratic borrower-level components. A core deliverable was a panel database merging credit registry microdata with macroeconomic series, covering roughly 400,000 corporate and retail borrower observations from 2008 to 2022. The team estimated dynamic factor models, system GMM panel regressions, and scenario-based stress-testing tools calibrated to Serbian supervisory requirements. Results were disseminated through four peer-reviewed articles, two policy briefs submitted to the National Bank of Serbia, and one methodological handbook distributed to participating banks. The project also supported the training of two doctoral students in quantitative credit risk analysis.",
+   "partners": [
+    "Faculty of Economics in Subotica, University of Novi Sad",
+    "Institute for Economic Research Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0513",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0214",
+   "acronym": "CROTIMED",
+   "title": "Cross-Border Telemedicine Data Infrastructure for Cardiac Monitoring",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2021–2023",
+   "summary": "A cross-border infrastructure project aiming to establish shared telemedicine data pipelines between partner hospitals in southern Hungary and the Vojvodina region. Šarić leads the work package on signal compression and transmission standards, contributing ECG and PPG codec implementations compliant with the SCP-ECG data standard. The work package also produces interoperability guidelines for compressed signal exchange between different hospital information systems used on the two sides of the border. Deliverables include a compression middleware component integrated into the project's shared telemedicine platform and a joint training session for clinical IT staff at both partner sites.",
+   "partners": [
+    "Somogy County Health Authority, Kaposvár",
+    "General Hospital Subotica",
+    "Mediconn d.o.o., Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0019",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0319",
+   "acronym": "SUBMAP",
+   "title": "Subsurface Utility Mapping for Safe Urban Excavation in Cross-Border Regions",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2019–2022",
+   "summary": "SUBMAP addressed the lack of harmonised subsurface utility mapping practice across the Hungary–Serbia border region, where cross-border infrastructure projects regularly encounter undocumented buried assets. The project developed joint field survey protocols combining GPR and EMI detection, a shared GIS data model aligned with both Hungarian and Serbian national standards, and a training programme for municipal geodetic services. Jeremić led the work package responsible for Serbian pilot surveys covering 62 km of streets in Subotica and Kanjiža, producing quality-level-attributed cadastre outputs. The project trained 34 municipal surveyors and produced a bilingual Hungarian–Serbian field manual for subsurface utility detection, freely distributed to partner municipalities.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Budapest University of Technology and Economics",
+    "Municipality of Subotica",
+    "Municipality of Kanjiža",
+    "Lechner Non-Profit Ltd., Budapest"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0539",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0320",
+   "acronym": "GEOMREKON",
+   "title": "Geodetic Methods for Reconstruction Planning of Ageing Underground Distribution Infrastructure",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "GEOMREKON investigates whether a combination of GPR surveys, precision GNSS and aerial photogrammetry can generate sufficiently accurate underground asset inventories to support cost estimation and route planning for distribution network reconstruction projects, replacing expensive manual test-hole programmes. The project tests three urban and two peri-urban study areas in the South Bačka and Srem districts. Deliverables include a decision-support GIS tool that flags cable and pipe segments exceeding age or condition thresholds based on as-surveyed depth, material classification and available failure records. The project involves doctoral supervision of two PhD candidates and collaboration with a regional electricity distribution operator providing access to maintenance records and operational data.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Faculty of Civil Engineering, University of Belgrade",
+    "Infravoltaj d.o.o., Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0539",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0325",
+   "acronym": "MAINTAIN-X",
+   "title": "Cross-Border Optimisation of Infrastructure Maintenance Logistics in the Pannonian Basin",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2020–2023",
+   "summary": "The project addressed the planning and coordination of road and utility maintenance fleets operating across the Hungarian–Serbian border region. Đorđe Nikolić led the work package on routing algorithm development, responsible for adapting multi-depot VRP solvers to cross-border regulatory differences in working-time rules and vehicle weight limits. The project produced a shared optimisation toolkit deployed by two regional road authorities and a pilot dataset of cross-border maintenance corridors. Partners from Hungary contributed traffic count data and depot location analysis. The Serbian side provided historical maintenance logs and crew scheduling records. Total budget allocated to the University of Novi Sad component was approximately €180,000.",
+   "partners": [
+    "Regional Road Directorate of South Transdanubia (Hungary) – fictional",
+    "Public Enterprise Roads of Vojvodina (Serbia) – fictional",
+    "University of Pécs, Faculty of Engineering and Information Technology (Hungary)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0589",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0326",
+   "acronym": "OPTMAIN",
+   "title": "Robust Optimisation Models for Maintenance Fleet Scheduling Under Operational Uncertainty",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "OPTMAIN developed robust and stochastic optimisation frameworks for maintenance fleet scheduling where task arrival times, service durations, and road travel times are subject to uncertainty. The project combined scenario-based robust optimisation with data-driven uncertainty set construction using historical maintenance records. A rolling-horizon decision support prototype was built and tested in a simulation environment. The project supported two doctoral students and produced six journal publications. Collaboration with the University of Žilina extended the models to railway track inspection scheduling. The Science Fund grant covered personnel, computing infrastructure, and two international research visits.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "University of Žilina, Department of Transport Networks (Slovakia)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0589",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0399",
+   "acronym": "DANUBEAUTO",
+   "title": "Cross-Border Knowledge Transfer in Automation and Digitalisation for Manufacturing SMEs",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2022–2025",
+   "summary": "A cross-border initiative between Hungarian and Serbian higher education institutions aimed at transferring automation and digitalisation knowledge to manufacturing SMEs along the Danube corridor. Knežević contributed to the technical workstream responsible for developing a shared laboratory module on industrial communication standards, including OPC UA and TSN, which was piloted with SME engineers from both countries in two five-day training workshops in 2023 and 2024. He was also involved in producing a bilingual (Serbian–Hungarian) technical guide on gateway selection criteria for brownfield integration scenarios. The project served approximately 140 SME engineers across both countries by the end of its third year.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "University of Miskolc, Faculty of Mechanical Engineering and Informatics, Hungary",
+    "Regional Development Agency of Bács-Kiskun County, Hungary",
+    "Business Incubator Subotica"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0741",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0416",
+   "acronym": "HILVOP",
+   "title": "Hardware-in-the-Loop Validation on Open Platforms for Regional Automotive Suppliers",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2020–2023",
+   "summary": "The project aimed to develop and validate a complete open-source HiL framework—comprising real-time kernel configurations, FPGA I/O boards, fault injection hardware, and test automation scripts—targeting small and medium-sized automotive ECU suppliers in the Vojvodina region who cannot afford commercial HiL systems. Three reference bench configurations were developed and documented, covering powertrain, body, and chassis domains. The framework was tested in collaboration with two regional suppliers under non-disclosure agreements. Deliverables include hardware design files, kernel build scripts, and a test case library with over 400 parametric test vectors. A graduate-level course module on open-source HiL was developed as a secondary outcome.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Institute for Automotive Engineering Vojvodina (fictional)",
+    "Politehnica University of Timișoara, Romania"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0356",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0417",
+   "acronym": "EMBAUTOCROSS",
+   "title": "Cross-Border Training Network for Embedded Automotive Systems Engineers",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2018–2021",
+   "summary": "A cross-border training initiative involving three universities and two technology parks in the Hungary–Serbia border region. Ninkov led the work package on practical HiL laboratory training, coordinating the design of shared laboratory exercises and the procurement of bench equipment installed at two partner sites. The work package delivered ten hands-on workshop modules, trained 84 engineering students and 12 industry practitioners over three years, and produced a jointly authored laboratory manual released under Creative Commons. The project also established a shared equipment loan scheme between the Novi Sad and Subotica partner sites.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Óbuda University, Hungary",
+    "Subotica Tech – College of Applied Sciences",
+    "Science Technology Park Novi Sad (fictional partner role)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0356",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0448",
+   "acronym": "FORESITE",
+   "title": "Forecasting Support Infrastructure for E-Commerce SMEs in the Danube Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2020–2023",
+   "summary": "FORESITE developed a shared forecasting infrastructure and methodology toolkit targeted at small and medium-sized e-commerce enterprises in the Hungarian–Serbian cross-border region that lack internal data science capacity. The project produced an open-source data preprocessing library, a model selection guide benchmarked on regional retail data, and a short-course training programme for analysts at participating companies. Three SME partners from Subotica and two from Pécs piloted the toolkit over twelve months, with forecast accuracy improvements documented across 140 product lines. The project also produced a comparative analysis of data quality practices across the partner companies and formulated minimum data collection standards for forecasting readiness.",
+   "partners": [
+    "Faculty of Economics in Subotica, University of Novi Sad",
+    "University of Pécs, Faculty of Business and Economics",
+    "Adriatic Commerce d.o.o., Subotica",
+    "Pannónia Digital Kereskedelmi Kft., Pécs",
+    "Regional Development Agency of Bačka, Subotica"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0333",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0511",
+   "acronym": "ICAROS",
+   "title": "Incremental and Calibrated Anomaly Recognition for Operational SCADA Systems",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "ICAROS addressed the calibration and incremental update of unsupervised anomaly detectors deployed on live SCADA networks. The project developed threshold calibration procedures for detectors operating without labelled attack data, incremental Gaussian mixture and autoencoder update algorithms suited to concept drift induced by planned process changes, and a set of evaluation protocols for comparing detectors across different ICS protocol environments. A labelled Modbus/TCP and DNP3 benchmark dataset was produced and released. Partners included a regional energy distributor that provided controlled access to a monitoring mirror port on an operational substation network, enabling validation under real traffic conditions. The project supported two doctoral candidates and produced nine peer-reviewed publications.",
+   "partners": [
+    "Elektrodistribucija Bačka d.o.o., Novi Sad (fictional regional energy distributor)",
+    "Faculty of Electronic Engineering, University of Niš"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R1008",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0512",
+   "acronym": "FEDICS",
+   "title": "Federated Anomaly Detection Across Distributed Industrial Control System Sites",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2022–2025",
+   "summary": "FEDICS developed federated learning protocols enabling anomaly detection models trained at geographically distributed ICS sites to be aggregated without exchanging raw network traffic. The project addressed privacy constraints common in critical infrastructure contexts and evaluated ensemble aggregation strategies for combining site-level one-class classifiers. Pilot deployments were conducted at two water utility control centres and two district heating substations across the Hungarian–Serbian border region. The project also produced a joint curriculum module on ICS cybersecurity delivered at partner universities. Key deliverables included open-source federated aggregation software, two datasets, and six joint publications by the consortium.",
+   "partners": [
+    "Department of Automation and Applied Informatics, Budapest University of Technology",
+    "Faculty of Informatics, University of Debrecen",
+    "Vodovod Vojvodina d.o.o., Novi Sad (fictional regional water utility)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R1008",
+     "role": "coordinator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0513",
+   "acronym": "SAFELINK",
+   "title": "Secure and Authenticated Firmware Lifecycle Management for Low-Power Industrial Wireless Networks",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "Пројекат SAFELINK бави се дизајном, формалном анализом и практичном имплементацијом протокола за управљање животним циклусом фирмвера у индустријским бежичним мрежама са малом потрошњом енергије. Обухвата три главна правца: развој протокола за аутентификовану испоруку фирмвера усклађених са ограничењима LPWAN технологија, процену примењивости пост-квантних потписних схема на уређајима класе 1 и класе 2, и методологију за верификацију усклађености са индустријским безбедносним стандардима. Пројекат укључује лабораторијско тестирање на тестбеду са 40 чворова и сарадњу са два партнерска универзитета из региона. Планирани резултати укључују шест журналских радова, отворени репозиторијум имплементације протокола и нацрт техничке препоруке за индустријске кориснике.",
+   "partners": [
+    "Електротехнички факултет, Универзитет у Београду",
+    "Faculty of Electrical Engineering and Computing, University of Zagreb"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0286",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0514",
+   "acronym": "TRANS-LPWAN",
+   "title": "Cross-Border Deployment of Secure LPWAN Telemetry Infrastructure for Environmental and Industrial Monitoring",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2022–2025",
+   "summary": "TRANS-LPWAN је прекогранични пројекат који развија заједничку инфраструктуру за телеметријски мониторинг животне средине и индустријских постројења у пограничном подручју Србије и Мађарске. Главни технички допринос тима са Факултета техничких наука односи се на безбедносни слој: дефинисање протокола за аутентификовану испоруку фирмвера на уређајима расположеним дуж прекограничних руских обала Тисе, управљање кључевима у административно хетерогеном окружењу са два различита национална оператора мреже, и успостављање процедуре за безбедну даљинску надоградњу уређаја без физичког приступа. Пројекат подразумева пилот-инсталацију на 35 теренских чворова.",
+   "partners": [
+    "University of Pécs, Faculty of Engineering and Information Technology, Hungary",
+    "ЈВП Воде Војводине, Нови Сад",
+    "Tiszamenti Vízügyi Igazgatóság, Szolnok, Hungary"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0286",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0515",
+   "acronym": "CYQUAN",
+   "title": "Quantitative Cyber Risk Models for Financial Institutions in the Western Balkans",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2023",
+   "summary": "The project developed a suite of calibrated frequency–severity models for cyber operational risk specific to the Western Balkans financial sector, where publicly available loss data are scarce and internal bank databases are small. Activities included collection of anonymised loss data from six participating banks under a data-sharing protocol approved by the National Bank of Serbia, development of a Bayesian LDA toolbox implemented in R, and delivery of three training workshops for bank risk managers. The project produced six journal papers, two conference contributions, and an open-access R package (CyLDA) deposited on GitHub. A policy brief was submitted to the National Bank of Serbia recommending adoption of a standardised loss data taxonomy compatible with ORX and the forthcoming DORA framework.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Faculty of Economics, University of Kragujevac",
+    "Vojvođanska bančarska asocijacija (fictional banking association, Novi Sad)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0422",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0516",
+   "acronym": "RISKDATA-HU-RS",
+   "title": "Cross-Border Operational Risk Data Infrastructure for SMEs in the Subotica–Pécs Corridor",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2022–2025",
+   "summary": "This cross-border cooperation project builds a shared operational risk data collection infrastructure for SMEs in the Subotica–Pécs corridor. The project collects standardised cyber and fraud incident reports from approximately 200 SMEs on both sides of the border, develops a joint anonymisation and pooling protocol, and constructs baseline actuarial models for frequency and severity by sector. Bálint leads Work Package 3, responsible for statistical model development and validation. Outputs include a bilingual (Hungarian–Serbian) self-assessment tool for SME cyber risk, a joint academic report, and a prototype data portal accessible to registered SME participants. The project addresses the absence of credible loss data for non-financial SMEs, which is the primary barrier to affordable cyber insurance in the region.",
+   "partners": [
+    "Faculty of Business and Economics, University of Pécs, Hungary",
+    "Regional Chamber of Commerce Subotica (fictional)",
+    "Pécs Innovation and Enterprise Centre (fictional)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0422",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0517",
+   "acronym": "FRMTEST",
+   "title": "Formal Regression Methods for Testing Embedded Control Firmware",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project developed a coherent toolchain for specification-driven regression testing of embedded firmware, covering model authoring in a constrained EFA dialect, automated test case generation, hardware-in-the-loop execution adapters for STM32 and NXP platforms, and mutation-based suite adequacy assessment. Research activities included empirical studies on maintenance cost across firmware release histories and the development of the SpecMutate framework. The project funded two PhD students and one postdoctoral researcher and resulted in six peer-reviewed publications. Dissemination included a publicly released open-source toolchain prototype and a two-day industrial workshop held in Novi Sad attended by engineers from three regional firms.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Faculty of Electronic Engineering, University of Niš"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0233",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0518",
+   "acronym": "HILSPEC",
+   "title": "Hardware-in-the-Loop Test Oracle Synthesis from Temporal Specifications",
+   "programme": "bilateral",
+   "years": "2019–2021",
+   "summary": "A bilateral collaboration with Instituto Superior Técnico, Lisbon, focusing on the automated construction of test oracles for HIL test environments using Signal Temporal Logic. The project combined expertise in temporal logic parameter synthesis from the Lisbon group with embedded testing infrastructure in Novi Sad. Joint work produced the STL oracle mining approach published in a journal article and a shared experimental dataset of motor control and temperature regulation firmware traces. Researcher exchanges included two short-term visits to Lisbon and one visit to Novi Sad by Portuguese collaborators.",
+   "partners": [
+    "INESC-ID, Instituto Superior Técnico, Lisbon, Portugal"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0233",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0531",
+   "acronym": "SOCTIME",
+   "title": "Social-Media Temporal Dynamics and Content Scheduling for SMEs in the Cross-Border Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2020–2022",
+   "summary": "SOCTIME investigated how small and medium enterprises on both sides of the Hungarian-Serbian border could improve organic social-media reach through data-driven scheduling. The project collected longitudinal engagement data from 140 SME accounts, developed a set of open-source Python tools for time-series diagnostics and posting-window recommendation, and ran two cohorts of practitioner training workshops in Novi Sad and Subotica. A cross-border benchmark report comparing engagement norms by sector and account size was produced for public download. The project also generated a shared anonymised dataset made available to academic partners for further research.",
+   "partners": [
+    "Faculty of Economics in Subotica, University of Novi Sad",
+    "Chamber of Commerce and Industry of Vojvodina",
+    "Faculty of Economics, University of Pécs",
+    "Regional Enterprise Development Agency Csongrád-Csanád"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0333",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0544",
+   "acronym": "VoiLaRes",
+   "title": "Vojvodina Language Resources: Computational Infrastructure for Minority Languages in a Multilingual Region",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "VoiLaRes aims to build a coordinated set of computational language resources—lexicons, annotated corpora, and baseline NLP tools—for the four official minority languages of Vojvodina: Hungarian, Slovak, Pannonian Rusyn, and Romanian. The project involves linguists from three Novi Sad institutions and one partner from Timișoara. Core outputs include morphological lexicons for Rusyn and Slovak adapted for computational use, a 250,000-token multi-genre corpus for each language with part-of-speech annotation, and a publicly accessible web interface for corpus search. The project also develops annotation guidelines that are deliberately cross-compatible with those used for Serbian, allowing future cross-lingual experiments. All resources are deposited in the CLARIN infrastructure under open licences.",
+   "partners": [
+    "Faculty of Philosophy, University of Novi Sad",
+    "Department of Rusyn Studies, University of Novi Sad",
+    "Institute for Slovak Language and Culture, Bačský Petrovec",
+    "Faculty of Letters, West University of Timișoara"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0292",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0545",
+   "acronym": "MorphBridge",
+   "title": "Morphology as a Bridge: Transfer Learning Across South Slavic and Finno-Ugric Language Families",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2023–2026",
+   "summary": "MorphBridge is a cross-border research and capacity-building project bringing together linguists and NLP researchers from Novi Sad and Budapest to study whether shared morphological feature spaces can systematically improve transfer learning between Serbian and Hungarian. The project constructs parallel annotated data sets in both languages across three domains (legal, medical, and news), runs a series of controlled transfer learning experiments comparing feature-based and representation-based transfer methods, and organises two joint summer schools for doctoral students from both sides of the border. Đurđica Kuzmanović leads the work package on data collection and annotation methodology. Project outputs include shared model checkpoints, a jointly authored technical report for language policy stakeholders, and course materials for the summer schools.",
+   "partners": [
+    "Faculty of Philosophy, University of Novi Sad",
+    "Research Institute for Linguistics, Budapest",
+    "Eötvös Loránd University, Budapest",
+    "Provincial Secretariat for Higher Education and Scientific Research, Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0292",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0546",
+   "acronym": "MixIR",
+   "title": "Mixed-Script Information Retrieval for South Slavic Administrative and Legal Documents",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "Projekat MixIR bavio se izgradnjom pretražnih sistema prilagođenih srpskim administrativnim i pravnim dokumentima koji sadrže mešovito pismo. Cilj je bio razvoj metodoloških osnova i softverskih alata za normalizaciju pisma, transliteraciju i rangiranje koji se mogu primeniti u javnom sektoru. U okviru projekta izgrađen je anotiran korpus od 150 000 dokumenata, razvijen je open-source modul za normalizaciju pisma kompatibilan s popularnim okvirima za pretragu, i sprovedene su tri pilot implementacije u saradnji s jednom opštinskom upravom i jednim regionalnim sudom. Rezultati su objavljeni u sedam naučnih radova i prezentovani na tri međunarodne konferencije.",
+   "partners": [
+    "Pravni fakultet, Univerzitet u Novom Sadu",
+    "Opštinska uprava Novi Sad — Služba za informatiku",
+    "Viši sud u Novom Sadu"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0349",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0547",
+   "acronym": "SERIR",
+   "title": "Serbian–Romanian Cross-Language Information Retrieval with Script and Morphology Normalization",
+   "programme": "Interreg IPA Romania–Serbia",
+   "years": "2023–2026",
+   "summary": "Projekat SERIR istražuje višejezičnu pretragu između srpskog i rumunskog, s posebnim fokusom na dokumentima pogranične administracije koji se čuvaju u oba jezika i, na srpskoj strani, u oba pisma. Stefan Dragić rukovodi radnim paketom koji pokriva normalizaciju skripte i transliteraciju na srpskoj strani, dok partnerski tim iz Temišvara razvija morfološku normalizaciju za rumunski. Zajednički test korpus sadrži 40 000 dokumenata u četiri žanra. Projektom se finansiraju dva doktoranda i jedno postdoktorsko istraživačko mesto.",
+   "partners": [
+    "Departman za matematiku i informatiku, PMF, Univerzitet u Novom Sadu",
+    "Facultatea de Informatică, Universitatea de Vest din Timișoara",
+    "Regionalna privredna komora Subotica"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0349",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0554",
+   "acronym": "LEXICO",
+   "title": "Legal Text Classification for Under-Resourced Balkan Languages",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2023",
+   "summary": "LEXICO addressed the absence of annotated legal corpora and pretrained language models tailored to Balkan languages with limited digital legal resources. The project assembled a multilingual corpus covering Serbian, Macedonian, and Bosnian court decisions (approximately 18,000 documents in total), established annotation guidelines for outcome and procedural-stage labels, and trained lightweight transformer models suitable for deployment on modest hardware. Deliverables included two publicly released datasets, three peer-reviewed publications, and a prototype web interface for case outcome screening used in a demonstration with a Belgrade-based legal aid organisation. The project was carried out entirely within Serbian institutions, with informal advisory input from collaborators at Masaryk University.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Faculty of Law, University of Novi Sad",
+    "School of Computing, Union University, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0484",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0555",
+   "acronym": "DAJURIS",
+   "title": "Data Augmentation Methods for Judicial Decision Support in Small-Data Regimes",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2023–2025",
+   "summary": "DAJURIS investigates the boundary conditions under which synthetic data generation improves downstream legal classification, focusing on corpora with fewer than 1,000 labelled instances. The project compares rule-based paraphrasing, conditional generative models, and diffusion-based text augmentation on four task types drawn from Serbian administrative and civil law. A secondary objective is the development of an evaluation protocol that incorporates domain expert judgment alongside automatic metrics, addressing the gap between perplexity-based assessment and legal coherence. Results feed into practical guidelines for legal informatics practitioners. The project involves two PhD students at the Faculty of Technical Sciences and a collaboration with the Faculty of Law for expert annotation.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Faculty of Law, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0484",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0556",
+   "acronym": "VERIFAI-RS",
+   "title": "Verification and Explanation of AI-Generated Text in High-Stakes Domains",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project investigated automated fact verification and explanation methods for AI-generated text with a focus on legal, medical, and financial documents in Serbian and English. The team built annotated corpora for hallucination detection, developed lightweight NLI models fine-tuned on domain-specific data, and designed a modular verification pipeline applicable to retrieval-augmented generation architectures. The project funded two PhD students and supported collaboration with the Faculty of Organisational Sciences, University of Belgrade, and the University of Pécs. Outputs include three datasets released under open licences, seven peer-reviewed publications, and a prototype verification module tested with a regional legal information provider.",
+   "partners": [
+    "Faculty of Organisational Sciences, University of Belgrade",
+    "Department of Computer Science, University of Pécs",
+    "Regional Legal Information Centre Novi Sad (observer partner)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0127",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0557",
+   "acronym": "XPLAIN-MED",
+   "title": "Explainability Standards for Machine Learning in Clinical Decision Support",
+   "programme": "Horizon 2020",
+   "years": "2019–2023",
+   "summary": "XPLAIN-MED was a seven-partner European project addressing the gap between regulatory expectations for clinical AI explainability and available technical methods. Tešić led the work package on benchmarking explanation methods across heterogeneous clinical data types, coordinating annotation studies and the development of a shared evaluation toolkit. The University of Novi Sad team contributed expertise in post-hoc explanation methods and organised two cross-site annotation exercises. The project produced an open-source evaluation library, a position paper submitted to the European Medicines Agency, and informed a draft technical standard for explanation reporting in medical device software. Total project budget was approximately €3.2 million; the Novi Sad share was €310 000.",
+   "partners": [
+    "Institute for Biomedical Informatics, Technical University of Vienna",
+    "Centre for Health Data Science, University of Copenhagen",
+    "Clinical Informatics Unit, University Hospital of Ljubljana",
+    "Department of Mathematics and Informatics, University of Novi Sad",
+    "MedSoft Research GmbH (fictional SME), Berlin",
+    "Faculty of Medicine, University of Timișoara",
+    "eHealth Interoperability Consortium, Brussels (fictional NGO)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0127",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0558",
+   "acronym": "VECSEARCH",
+   "title": "Efficient Vector Search Infrastructures for Multilingual Document Repositories",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "The project investigates the co-design of approximate nearest-neighbour index structures and multilingual text encoders for document retrieval in public-sector repositories. Work packages cover: (1) encoder fine-tuning for South Slavic languages with limited supervision, (2) quantisation-aware index construction balancing recall and storage, and (3) a prototype retrieval service validated on a 10-million-document legal and administrative corpus provided by a partner institution. The project funds two PhD students and covers compute costs on the PARADOX-IV HPC cluster. An open benchmark dataset covering Serbian and Croatian legal documents is a planned deliverable.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Institute for Artificial Intelligence Research and Development of Serbia",
+    "Faculty of Law, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0741",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0559",
+   "acronym": "CROSSDOC",
+   "title": "Cross-Lingual Document Discovery in Regional Public Administration Archives",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2023–2026",
+   "summary": "CROSSDOC aims to improve access to administrative documents held by Hungarian and Serbian public bodies by building a shared cross-lingual retrieval layer. The Serbian technical team, led by Todorović, is responsible for the index infrastructure work package, including the design of a federated index architecture that allows each national partner to retain custody of its documents while exposing a unified query interface. The system will be piloted with two municipal archives containing approximately 400,000 documents each. Hungarian-language tokenisation and transliteration components are contributed by the University of Debrecen partner.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "University of Debrecen, Faculty of Informatics, Hungary",
+    "City Archive of Subotica",
+    "Municipal Document Centre of Pécs, Hungary"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0741",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0601",
+   "acronym": "COATMON",
+   "title": "Multivariate Monitoring Tools for Scale-Adaptive Film Coating in Solid Dosage Manufacturing",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project addressed the problem of monitoring model transfer when film-coating processes are scaled from laboratory to pilot and production equipment. Key objectives included developing time-alignment strategies for multi-scale batch trajectory data, constructing cross-scale PLS prediction models for coating end-point parameters, and validating the monitoring framework on aqueous ethylcellulose and HPMC coating of tablets and pellets. The project funded one PhD student and supported access to the 30-litre pan coater and in-line NIR instrumentation at the Faculty of Technology pilot plant. Collaboration with the University of Graz provided access to larger-scale equipment for validation experiments. The project produced four journal publications and one conference contribution.",
+   "partners": [
+    "Faculty of Technology, University of Novi Sad",
+    "Institute of Pharmaceutical Technology, University of Graz"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0701",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0602",
+   "acronym": "PHARM-SRB-AT",
+   "title": "Process Analytical Technologies for Pharmaceutical Coating: Serbia–Austria Research Exchange",
+   "programme": "bilateral",
+   "years": "2020–2022",
+   "summary": "A bilateral mobility project between the Faculty of Technology, University of Novi Sad and the Institute of Pharmaceutical Technology, University of Graz supporting researcher exchange visits and joint experimental work on in-line Raman spectroscopy for coating thickness monitoring. The project funded three reciprocal visits by PhD students and senior researchers, enabling shared instrument access and co-authorship on publications addressing calibration uncertainty and scale-up of spectroscopic monitoring models. The bilateral framework was funded under the Serbia–Austria scientific cooperation programme administered through the Ministry of Science of the Republic of Serbia and the Austrian Agency for International Cooperation in Education and Research.",
+   "partners": [
+    "Faculty of Technology, University of Novi Sad",
+    "Institute of Pharmaceutical Technology, University of Graz"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0701",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0603",
+   "acronym": "MatRelMod",
+   "title": "Механистички модели растварања за QbD дизајн орално примењених система с контролисаним ослобађањем",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "Пројекат се бавио развојем и валидацијом механистичких рачунских модела растварања за два типа формулација с продуженим ослобађањем: хидрофилне матрикс таблете и облоговане пелете у тврдим капсулама. Циљ је био интеграција ових модела у QbD оквир за дефинисање дизајн простора. Израђена је библиотека параметара за десет полимерних система, а модели су валидовани на независним скуповима података добијеним у сарадњи са партнерским институцијама у Љубљани и Сплиту. Пројекат је финансиран у оквиру програма IDEAS Фонда за науку Републике Србије.",
+   "partners": [
+    "Факултет фармације, Универзитет у Љубљани",
+    "Хемијско-технолошки факултет, Универзитет у Сплиту"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0599",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0661",
+   "acronym": "SENSORDB",
+   "title": "Scalable On-Premises Storage and Query Engine for Industrial Sensor Networks",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project addressed the gap between general-purpose columnar databases and the specific write and query patterns of high-frequency industrial sensor deployments. Work packages covered codec selection heuristics, mixed-rate schema design, and cost-model-guided query planning. A prototype engine extension was developed and tested against live data streams from two partner facilities in Vojvodina. The project funded two PhD students and produced seven peer-reviewed publications. Hardware acquired includes a four-node NVMe cluster used for reproducible benchmarks. Collaboration with the Budapest University of Technology and Economics provided access to complementary datasets from Hungarian utility-monitoring infrastructure.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Budapest University of Technology and Economics",
+    "Institute for Artificial Intelligence Research and Development of Serbia"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0019",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0662",
+   "acronym": "AGRISENSE",
+   "title": "Low-Cost Data Infrastructure for Precision Agriculture Sensor Networks in the Cross-Border Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2022–2024",
+   "summary": "AGRISENSE deployed a network of 180 low-cost soil and microclimate sensors across agricultural land in Vojvodina and Csongrád-Csanád County. Hadžić led the data management work package, responsible for the on-premises storage layer, compression pipeline, and a web-based dashboard for agronomists. The irregular-timestamp columnar layout work published in 2024 emerged directly from this project. The storage system runs on a single rack-mounted server provided by the Serbian partner and has been operational since mid-2023, ingesting approximately 2 million records per day.",
+   "partners": [
+    "Faculty of Agriculture, University of Novi Sad",
+    "Csongrád-Csanád County Agricultural Advisory Centre (invented)",
+    "NTP Agro Solutions d.o.o. Novi Sad (invented)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0019",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0954",
+   "acronym": "DRIVLOAD",
+   "title": "Multimodal Driver Workload Monitoring for Safer Road Use in Cross-Border Regions",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2020–2022",
+   "summary": "DRIVLOAD developed and validated a low-cost instrumentation package for measuring driver cognitive workload in naturalistic conditions, intended for deployment in transport safety studies conducted jointly by Serbian and Hungarian research teams. The project equipped two instrumented vehicles—one at the Faculty of Technical Sciences in Novi Sad and one at Széchenyi István University in Győr—with synchronised OBD-II, GPS, wearable ECG, and EDA loggers. A harmonised data collection protocol and shared data repository were established. The project produced a set of open-source signal processing scripts for HRV and EDA feature extraction and delivered training workshops for graduate students at both institutions. Final deliverables included a joint dataset from 90 cross-border route drives and two peer-reviewed publications.",
+   "partners": [
+    "Széchenyi István University, Győr, Hungary",
+    "Faculty of Technical Sciences, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0589",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-0955",
+   "acronym": "SAFEROUTE-AP",
+   "title": "Road Safety Risk Profiling Using Naturalistic Driving and Physiological Data in the Autonomous Province of Vojvodina",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2022–2024",
+   "summary": "This project built a spatially referenced risk atlas for Vojvodina's primary road network by combining naturalistic driving metrics from an extended participant panel with crash records from the Ministry of Interior. Sixty-one volunteer drivers collected trip data over six months; hard-braking events, sharp cornering events, and physiological workload surges were geo-tagged and aggregated to 500 m road segments. Segments with elevated workload-event density were cross-referenced with five-year crash data. The study identified 23 segments where physiological workload clustering preceded crash records by one to three years, suggesting potential early-warning utility. Results were communicated to the Vojvodina Roads Directorate in a technical report. The project also funded one doctoral student position and supported field data collection infrastructure.",
+   "partners": [
+    "Vojvodina Roads Directorate",
+    "Faculty of Technical Sciences, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0589",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1059",
+   "acronym": "COMBCODES",
+   "title": "Combinatorial Methods for Reliable Distributed Storage Codes",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project investigates the systematic use of combinatorial design theory—resolvable designs, transversal designs, partial Steiner systems—as a unifying framework for constructing locally repairable codes with availability and hierarchical locality. Core activities include developing new existence and non-existence results for design families relevant to storage codes, building computational tools in GAP and Magma for exhaustive search and classification, and benchmarking the resulting codes against information-theoretic bounds and existing algebraic constructions. The project also maintains open tables of optimal LRC parameters for short lengths over small fields, which serve as a reference resource for the broader coding-theory community. Three researchers and two Ph.D. students at the University of Novi Sad are involved.",
+   "partners": [
+    "Department of Mathematics and Informatics, Faculty of Sciences, University of Novi Sad",
+    "Mathematical Institute of the Serbian Academy of Sciences and Arts, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0127",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1235",
+   "acronym": "MYCOVIN",
+   "title": "Mycorrhizal Community Monitoring as a Soil Health Indicator in Organic Viticulture of the Pannonian Basin",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2020–2023",
+   "summary": "Projekat je imao za cilj uspostavljanje zajedničkog protokola praćenja AMF zajednica u organskim vinogradima duž mađarsko-srpskog prekograničnog pojasa. Kovács je vodio radni paket koji se bavio standardizacijom metoda uzorkovanja i sekvenciranja između partnerskih laboratorija. U okviru projekta razvijen je zajednički referentni skup od 22 lokaliteta, prikupljeno je više od 500 uzoraka i uspostavljena je zajednička baza podataka o sekvencama dostupna svim partnerskim institucijama. Rezultati su korišćeni za formulisanje preporuka o minimalnim indikatorima zdravlja zemljišta za sertifikaciju organske vinogradarske prakse.",
+   "partners": [
+    "Szegedi Tudományegyetem, Mađarska",
+    "Pécsi Tudományegyetem, Mađarska",
+    "Agencija za ruralni razvoj Vojvodine, Novi Sad",
+    "Udruženje organskih vinara Fruška gora, Sremski Karlovci"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0502",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1236",
+   "acronym": "RHIZODYN",
+   "title": "Dinamika rizosfere vinograda u uslovima klimatskih promena: integracija mikrobiomu, funkcije korena i agrotehnike",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2023–2026",
+   "summary": "Projekat istražuje kako promenjeni režimi padavina i temperatura menjaju funkcionalne osobine rizosferne mikrobiote vinograda u Srbiji. Kovács učestvuje u podprojektu koji se bavi AMF komponentom, konkretno godišnjom varijabilnošću strukture zajednice pod različitim scenarijima navodnjavanja i mulčiranja. U okviru projekta koriste se metagenoske metode zajedno sa izotopskim trasiranjem ugljenika (¹³C-PLFA) kako bi se kvantifikovao tok ugljenika kroz AMF miceliju. Planirano je uzorkovanje na 18 parcela tokom tri vegetacione sezone, sa finalnim modelovanjem odgovora zajednice na projekcije klimatskih scenarija RCP 4.5 i 8.5.",
+   "partners": [
+    "Biosense Institut, Novi Sad",
+    "Institut za zemljišta Srbije, Beograd",
+    "Università degli Studi di Udine, Italija"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0502",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1237",
+   "acronym": "ELDERSPAN",
+   "title": "Polyphenol-enriched elderberry raw materials from Pannonian accessions: phytochemical characterisation and agronomic protocols for sustainable production",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2008–2011",
+   "summary": "The project characterised polyphenol profiles of 18 elderberry accessions from the Vojvodina plain under varying water availability regimes, with the objective of identifying best-performing accessions for commercial cultivation and defining agronomic protocols—particularly irrigation management—that maximise anthocyanin and rutin yields without unacceptable reductions in berry fresh weight. Field trials were conducted at the Rimski Šančevi experimental station; analytical work used HPLC-DAD and spectrophotometric assays. Deliverables included accession ranking tables, irrigation guideline recommendations, and a small handbook for agricultural extension services in Vojvodina. Total funding was approximately 3.2 million RSD.",
+   "partners": [
+    "Institute of Field and Vegetable Crops, Novi Sad",
+    "Provincial Institute for Nature Conservation, Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0881",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1238",
+   "acronym": "BERRYCLIM",
+   "title": "Adaptation of berry crop production systems to projected late-summer drought in the Pannonian Basin",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2013–2015",
+   "summary": "A cross-border project examining how elderberry, blackcurrant, and sea buckthorn respond to drought stress scenarios projected for the Pannonian Basin by 2050. The Novi Sad team led the elderberry work package, contributing controlled-environment drought experiments and field monitoring data from two sites in Serbia, while the Hungarian partner contributed data from two sites in Bács-Kiskun County. The project produced a joint database of physiological and phytochemical drought response indicators and a set of adapted cultivation guidelines. Dissemination included a bilingual Serbian–Hungarian producer brochure and two workshops for growers and extension staff. The Novi Sad team budget was approximately €38,000.",
+   "partners": [
+    "Faculty of Horticultural Science, Hungarian University of Agriculture and Life Sciences, Kecskemét",
+    "Regional Development Agency Vojvodina, Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0881",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1239",
+   "acronym": "ORCHVOJ",
+   "title": "Historical Orchard Landscape Atlas of Vojvodina: Cadastral and Aerial Sources 1880–1980",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2019–2022",
+   "summary": "The project aimed to produce a comprehensive georeferenced dataset of orchard land-use in Vojvodina from late nineteenth-century cadastral maps and mid-twentieth-century aerial photographs. Activities included systematic scanning and georeferencing of cadastral sheets from the Archive of Vojvodina and the Republic Geodetic Authority, digitising of orchard parcels for 88 municipalities, quality control of positional accuracy, and compilation of an open-access vector atlas. A secondary component documented vernacular orchard parcel terminology from cadastral and notarial records. The resulting dataset was deposited in the Vojvodina Open Research Data Repository and published as a data paper. The project employed two research assistants and one GIS technician over three years.",
+   "partners": [
+    "Archive of Vojvodina, Novi Sad",
+    "Republic Geodetic Authority, Regional Office Novi Sad",
+    "Department of Geography, Tourism and Hotel Management, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0502",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1318",
+   "acronym": "CROSSPACK",
+   "title": "Cross-Border Harmonisation of Food Packaging Safety Testing Protocols in the Hungary–Serbia Border Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2019–2022",
+   "summary": "CROSSPACK aimed to harmonise laboratory protocols for food-contact material testing between accredited laboratories in Subotica, Serbia, and Szeged, Hungary. Slobodan Vulin led the work package on fatty food simulant migration testing, coordinating round-robin exercises involving PVC and polyolefin film samples distributed to both partner laboratories. Measurement uncertainty budgets were compared and a joint standard operating procedure was drafted for adoption by both laboratories. The project also supported staff mobility: one early-career researcher from Novi Sad completed a three-month placement at the University of Szeged. A bilingual Serbian–Hungarian technical guidance document was produced as the primary deliverable.",
+   "partners": [
+    "Department of Food Engineering, University of Szeged, Hungary",
+    "Subotica Food Safety Testing Centre (fictional)",
+    "Faculty of Technology, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0128",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1321",
+   "acronym": "HEMPSTAB",
+   "title": "Stability and Bioaccessibility of Encapsulated Bioactive Lipids from Hemp Seed Oil in Functional Food Matrices",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project addressed the formulation of spray-dried hemp seed oil microcapsules intended for incorporation into bakery and dairy products. Research objectives included optimisation of wall material composition (WPI, maltodextrin grades, and lecithin), accelerated shelf-life modelling, and quantification of omega-3 fatty acid bioaccessibility using the standardised static INFOGEST protocol. A secondary objective was evaluating the antioxidant contribution of whey-derived peptides released during simulated digestion. The project employed Rancimat oxidation kinetics, DSC, and confocal microscopy as principal analytical tools. One master's thesis and two doctoral theses were co-supervised under this project. Results generated 4 journal publications and were presented at 3 regional conferences.",
+   "partners": [
+    "Faculty of Technology, University of Novi Sad, Serbia",
+    "Faculty of Agriculture, University of Novi Sad, Serbia",
+    "Faculty of Chemical and Food Technology, Slovak University of Technology in Bratislava, Slovakia"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0128",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1322",
+   "acronym": "FUNCHEMPROD",
+   "title": "Utilisation of Hemp By-Products in Functional Food Development: Oil, Protein and Fibre Fractions",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2019–2021",
+   "summary": "A broader multidisciplinary project coordinated by the Faculty of Agriculture, University of Novi Sad, covering the full valorisation chain of industrial hemp processing residues grown in the Vojvodina region. Vesna Mitrović led the work package on oil extraction, quality characterisation, and microencapsulation, contributing cold-pressing optimisation and baseline fatty acid characterisation for three hemp cultivars. Her team supplied characterised oil fractions to partners working on hemp protein isolates and fibre composites. The encapsulation data from this project fed directly into the subsequent HEMPSTAB application. Deliverables included two joint publications and a regional workshop for food technology practitioners.",
+   "partners": [
+    "Faculty of Agriculture, University of Novi Sad, Serbia",
+    "Institute of Field and Vegetable Crops, Novi Sad, Serbia",
+    "Faculty of Technology, University of Novi Sad, Serbia"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0128",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1376",
+   "acronym": "REGIMPURE",
+   "title": "Regulatory Harmonisation of Genotoxic Impurity Frameworks in South-East European Pharmaceutical Markets",
+   "programme": "Interreg IPA Romania–Serbia",
+   "years": "2023–2026",
+   "summary": "REGIMPURE addresses divergences between Serbian and Romanian pharmaceutical impurity regulations as they relate to the transposition of EMA guidance on genotoxic impurities, including nitrosamines. Petrášová leads the work package on analytical method development and cross-laboratory validation. The project establishes a shared analytical platform between Novi Sad and Cluj-Napoca, conducts a joint ring trial with eight regional quality-control laboratories, and proposes aligned regulatory language for submission dossiers to both national agencies. A stakeholder working group including regulatory authority representatives and manufacturers from both countries meets quarterly to review draft guidance.",
+   "partners": [
+    "Faculty of Technology, University of Novi Sad",
+    "Faculty of Pharmacy, University of Medicine and Pharmacy Cluj-Napoca",
+    "National Agency for Medicines and Medical Devices of Romania",
+    "Medicines and Medical Devices Agency of Serbia",
+    "Alkaloid Farma d.o.o., Beograd"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0599",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1475",
+   "acronym": "FEDIMAGE",
+   "title": "Federated Medical Image Analysis across Heterogeneous Hospital Infrastructures in the Pannonian Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2023–2026",
+   "summary": "FEDIMAGE brings together radiology departments from Serbia, Hungary, and Slovenia to develop privacy-preserving federated learning pipelines for diagnostic imaging tasks, with CT denoising and lesion segmentation as initial use cases. Kristina Pejić leads the work package on CT reconstruction quality harmonisation, responsible for defining shared evaluation protocols, managing the paediatric chest CT data contribution from Novi Sad, and coordinating cross-site validation experiments. The project also includes a training component for radiography and medical physics staff on AI-assisted dose optimisation. Expected outputs include open-source federation code, a harmonised evaluation benchmark, and a joint workshop series hosted rotating between partner institutions.",
+   "partners": [
+    "Faculty of Technical Sciences, University of Novi Sad",
+    "Department of Paediatric Radiology, University of Pécs",
+    "Faculty of Computer and Information Science, University of Ljubljana",
+    "Institute of Medical Physics, University of Erlangen"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0079",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1476",
+   "acronym": "PERMICRO",
+   "title": "Permeability Mapping as a Microstructural Biomarker in Cerebral Small Vessel Disease",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "PERMICRO aimed to establish longitudinal DCE-MRI Ktrans measurements as a validated microstructural biomarker for CSVD progression. The project enrolled 90 patients across two sites (Clinical Centre of Vojvodina, Novi Sad and the University Clinical Centre, Kragujevac) and followed them over 24 months with annual MRI and neuropsychological assessment. Key outputs included the development of the automated WMH segmentation pipeline for DCE-MRI ROI placement, reference Ktrans ranges stratified by CSVD severity, and a machine learning model predicting one-year lesion growth. The project also supported one PhD student and two master's thesis projects. Total budget was approximately 4.8 million RSD.",
+   "partners": [
+    "Clinical Centre of Vojvodina, Novi Sad, Serbia",
+    "University Clinical Centre Kragujevac, Serbia",
+    "Department of Applied Mathematics, Faculty of Sciences, University of Novi Sad, Serbia"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0079",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1479",
+   "acronym": "ELASTINET",
+   "title": "Multicentre Network for Quantitative Elastography in Thyroid and Breast Pathology",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2019–2022",
+   "summary": "ELASTINET was a cross-border collaboration between radiology departments in Vojvodina and southern Hungary focused on building a shared annotated database of elastography cases for thyroid and breast lesions. Danijela Popović led the work package responsible for thyroid data collection, quality control, and harmonisation of reporting standards. The database collected 680 thyroid cases and 540 breast cases across four sites. Common image acquisition protocols and data dictionaries were developed jointly. The project also organised two joint training workshops for radiologists and provided equipment calibration audits at participating centres. Outputs included a shared pseudonymised dataset made available to regional researchers and a joint report on cross-border ultrasound practice variation.",
+   "partners": [
+    "Centre for Radiology, Clinical Centre of Vojvodina, Novi Sad",
+    "Department of Radiology, University of Pécs Clinical Centre, Hungary",
+    "Department of Radiology, General Hospital Subotica",
+    "Department of Medical Imaging, University of Szeged, Hungary"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0079",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1480",
+   "acronym": "RADVOJ",
+   "title": "Radiation Dose Optimisation in Interventional Fluoroscopy Units of Vojvodina",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2010–2013",
+   "summary": "The project aimed to establish baseline occupational and patient dose data across interventional fluoroscopy units in the Autonomous Province of Vojvodina and to develop a set of evidence-based written dose optimisation protocols adaptable to different facility sizes and equipment ages. Activities included on-site dosimetry measurements, structured staff interviews, equipment performance testing, and protocol drafting workshops attended by radiologists, cardiologists, and medical physicists from five institutions. Protocols were piloted at three institutions and evaluated over a 12-month follow-up period. The project produced a publicly available protocol document, a regional dose database, and training materials distributed to all participating units.",
+   "partners": [
+    "Clinical Centre of Vojvodina, Novi Sad",
+    "General Hospital Subotica",
+    "General Hospital Zrenjanin",
+    "Institute of Cardiovascular Diseases, Sremska Kamenica",
+    "Serbian Radiation Protection and Nuclear Safety Agency, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0079",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1566",
+   "acronym": "EULEXALIGN",
+   "title": "Alignment of Serbian Private Law with the EU Digital Acquis: Contract and Liability Dimensions",
+   "programme": "bilateral",
+   "years": "2023–2024",
+   "summary": "A bilateral research cooperation between the Faculty of Law, University of Novi Sad, and the Institute for European and Comparative Law, University of Vienna. The project maps the divergences between Serbian contract and liability law and the EU digital law acquis—including the Digital Services Act, the AI Act, and the Product Liability Directive (revised)—relevant to ongoing Serbian accession negotiations. The collaboration produced two joint publications, a joint workshop held in Vienna in April 2024, and a policy brief submitted to the Serbian Ministry of European Integration in October 2024.",
+   "partners": [
+    "Faculty of Law, University of Novi Sad",
+    "Institute for European and Comparative Law, University of Vienna"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0180",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1567",
+   "acronym": "SUCREF",
+   "title": "Succession Law Reform in Post-Socialist European States: Comparative Foundations and Policy Options",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project conducted a comparative legal analysis of succession law reform trajectories in six post-socialist European states (Serbia, Croatia, Slovenia, Czech Republic, Hungary, Bulgaria), focusing on the tension between testamentary freedom and protected heirship. Research activities included legislative text analysis, a systematic review of published court decisions across the six jurisdictions (approximately 900 decisions coded), 47 semi-structured interviews with notaries and judges in Serbia, and two comparative workshops held in Novi Sad (2022) and Ljubljana (2023). The project produced draft legislative recommendations for reform of the Serbian succession law provisions within the Civil Code drafting process and delivered a publicly accessible bilingual (Serbian/English) database of post-1990 succession legislation in the six target states. Three journal articles and one edited book chapter were submitted from the project.",
+   "partners": [
+    "Faculty of Law, University of Novi Sad",
+    "Faculty of Law, University of Ljubljana",
+    "Institute of Private International Law and Comparative Law, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0180",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1568",
+   "acronym": "CROSSUC",
+   "title": "Cross-Border Succession in the Western Balkans–EU Border Region: Legal Uncertainty and Practical Solutions",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2019–2022",
+   "summary": "This cross-border cooperation project addressed the practical difficulties encountered by families in the Hungary–Serbia border region when dealing with cross-border estates after the entry into force of EU Succession Regulation 650/2012. The Faculty of Law, Novi Sad, led the work package on legal analysis and practitioner training. Activities included mapping of conflict-of-law problems through 60 notary case file reviews in Subotica and Sombor, preparation of a bilingual practitioner guide (Hungarian/Serbian) on cross-border estate procedures, and delivery of five joint training seminars for notaries and court officials on both sides of the border. The project also produced a policy brief addressed to the Serbian Ministry of Justice recommending bilateral treaty negotiations with Hungary and Croatia. The Novi Sad team consisted of three researchers and one doctoral student.",
+   "partners": [
+    "Faculty of Law, University of Pécs",
+    "Notarial Chamber of Vojvodina",
+    "Hungarian Chamber of Notaries, Southern Region"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0180",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1570",
+   "acronym": "URBPROP",
+   "title": "Urban Property Governance: Legal Frameworks for Sustainable Residential Building Management in the Western Balkans",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "The project examines the legal conditions for effective governance of multi-unit residential buildings across six Western Balkan jurisdictions, comparing property rights frameworks, homeowners association rules, and public enforcement mechanisms. The research team collects court decisions, administrative records, and building management data from Serbia, Bosnia and Herzegovina, North Macedonia, and Montenegro. One work package, to which Mladenović contributes, is dedicated to the property law treatment of shared technical infrastructure—heating systems, elevators, and utility risers—and how maintenance costs are allocated when infrastructure serves mixed residential and commercial units. Outputs include comparative country reports, a model legislative commentary, and a policy brief directed at the relevant Serbian ministry.",
+   "partners": [
+    "Faculty of Law, University of Novi Sad",
+    "Faculty of Law, University of Belgrade",
+    "Faculty of Law, University of Sarajevo",
+    "Institute for Comparative Law, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0180",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1574",
+   "acronym": "ADJTRAD",
+   "title": "Administrative Justice Traditions and EU Integration in the Western Balkans: Historical Roots, Present Deficits, Reform Paths",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project examined the relationship between inherited administrative-judicial institutions and the effectiveness of EU-driven administrative justice reforms across Serbia, Bosnia and Herzegovina, North Macedonia, and Montenegro. The research team combined archival and doctrinal legal history with empirical analysis of court statistics and a structured interview programme (n=48 interviews with judges, lawyers, and civil servants). The project produced seven journal articles, two edited book chapters, a policy brief submitted to the Serbian Ministry of Justice, and a comparative database of administrative court legislation in the region covering 1919 to 2023, made publicly available through the Faculty of Law repository.",
+   "partners": [
+    "Faculty of Law, University of Novi Sad",
+    "Faculty of Law, University of Sarajevo",
+    "Iustinianus Primus Faculty of Law, Saints Cyril and Methodius University, Skopje",
+    "Faculty of Law, University of Montenegro, Podgorica"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0648",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1576",
+   "acronym": "DECIDE-SE",
+   "title": "Decision Support Frameworks for Strategic Investment Planning in South-East European Public Institutions",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2023",
+   "summary": "The project developed and validated multi-criteria decision support frameworks specifically adapted to institutional, regulatory, and data-availability constraints of public organisations in South-East Europe. Activities included a cross-country survey of decision practices in 45 public institutions across Serbia, North Macedonia, and Montenegro; development of tailored AHP and fuzzy TOPSIS instruments; and delivery of three stakeholder workshops. The project produced a methodological guide for procurement committees and budget officers, piloted in four Serbian municipalities. Two journal articles and one conference paper were published. The project was hosted at the Faculty of Economics in Subotica, with research collaboration from partner universities in Niš and Skopje.",
+   "partners": [
+    "Faculty of Economics, University of Niš",
+    "Faculty of Economics, Ss. Cyril and Methodius University in Skopje, North Macedonia"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0333",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1579",
+   "acronym": "FINDIG-SR",
+   "title": "Финансијска дигитализација и понашање старијих корисника у Србији: панел студија",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "Пројекат финансира трећу и четврту таласну фазу longitudinalne панел студије започете 2015. године, проширујући узорак испитаника из Војводине на Централну Србију. Поред анкетних метода, уводи се анализа анонимизованих трансакционих података у сарадњи с партнерском штедионицом. Истражују се ефекти политике обавезне дигитализације исплате пензија на понашање корисника и субјективно финансијско благостање. Планирани излазни резултати укључују три научна рада у рецензираним часописима, скуп анонимизованих панел података доступан за поновну употребу и извештај за доносиоце политика на српском језику.",
+   "partners": [
+    "Економски факултет, Универзитет у Београду",
+    "Регионална штедионица Панонија (измишљена организација)"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0333",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1585",
+   "acronym": "SEPROC-ONTO",
+   "title": "Semantic Standards for Interoperable Public Procurement in South-East Europe",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project developed a family of OWL 2 ontology profiles and SHACL validation constraint sets covering the procurement systems of Serbia, Bosnia-Herzegovina, Montenegro, and North Macedonia. Core outputs include a regional procurement ontology registry, a set of SPARQL-based alignment tests, and a bilingual (Serbian/English) ontology documentation portal. The project also produced policy briefs submitted to the national public procurement offices of all four countries and to the Regional Cooperation Council in Sarajevo. Two PhD students completed dissertations within the project.",
+   "partners": [
+    "Faculty of Economics, University of Sarajevo",
+    "Faculty of Economics, University of Montenegro",
+    "Faculty of Computer Science and Engineering, Ss. Cyril and Methodius University Skopje"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0333",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1586",
+   "acronym": "CROSSBUY",
+   "title": "Cross-Border Public Procurement Interoperability Along the Hungary–Serbia Border Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2019–2022",
+   "summary": "CROSSBUY addressed the practical barriers preventing joint cross-border procurement under the Interreg IPA Hungary–Serbia programme. Krstić led the semantic interoperability work package, which delivered a semantic mediation layer connecting the Hungarian EKR and Serbian e-procurement platforms, a shared SKOS qualification vocabulary in Hungarian and Serbian, and a set of RDF mapping rules for bidder registration data exchange. The project involved piloting joint simplified tenders with two contracting authorities (one municipality on each side of the border) and produced a replication guide for other border region programmes.",
+   "partners": [
+    "Pécs Regional Development Agency",
+    "Public Procurement Office of Serbia (Belgrade)",
+    "City of Subotica – Department of Urban Planning and Finance",
+    "University of Pécs, Department of Information Systems"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0333",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1593",
+   "acronym": "BALKANDEBT",
+   "title": "Fiscal Credibility, Debt Market Development, and European Integration Trajectories in the Western Balkans",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project assembled a harmonised quarterly dataset on sovereign borrowing costs, fiscal frameworks, and exchange rate arrangements for six Western Balkan economies covering 1998–2023. It tested competing hypotheses about the drivers of fiscal credibility signals visible in secondary bond market spreads, with particular attention to the interaction between IMF programme anchors, domestic fiscal rules, and currency regime choices. The team produced seven working papers, three journal submissions, and a policy brief series distributed to the Serbian Ministry of Finance and the EU Delegation in Belgrade. A public dataset of cleaned and documented spread series is being prepared for release via the University of Novi Sad data repository.",
+   "partners": [
+    "Faculty of Economics, University of Montenegro, Podgorica",
+    "Faculty of Economics, University of Niš",
+    "School of Economics and Business, University of Sarajevo"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0422",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1595",
+   "acronym": "TAXBASE-CEE",
+   "title": "Corporate Tax Base Erosion Through Transfer Pricing in Central and Eastern Europe: Measurement, Determinants, and Policy Responses",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project constructs a longitudinal database linking Serbian Business Registers Agency financial statements, customs declaration microdata, and Orbis records for approximately 1,200 foreign-owned subsidiaries active in Serbia between 2010 and 2022. The database is used to estimate annual corporate income tax revenue losses attributable to transfer pricing manipulation, to identify the industry sectors and ownership structures where manipulation is most intense, and to evaluate the effectiveness of Serbian legislative responses to OECD BEPS recommendations. The project also includes a comparative module covering Hungary, Romania, and Croatia. A policy brief series targets the Serbian Tax Administration, the Ministry of Finance, and the Secretariat for Finance of the Autonomous Province of Vojvodina.",
+   "partners": [
+    "Faculty of Economics in Subotica, University of Novi Sad",
+    "University of Belgrade, Faculty of Economics",
+    "Institute of Economic Sciences, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0422",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1603",
+   "acronym": "ISLAFREG",
+   "title": "Islamic Finance Regulatory Frameworks for the Western Balkans: Comparative Analysis and Legislative Recommendations",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project produced a systematic comparative analysis of legal and regulatory preconditions for introducing Islamic finance products in Serbia, Bosnia and Herzegovina, and North Macedonia. The team reviewed banking, tax, securities, and insolvency legislation in each jurisdiction, conducted interviews with central bank officials and commercial bankers, and ran two stakeholder workshops with representatives of Muslim community organisations and finance practitioners. The primary output is a set of three jurisdiction-specific legislative reform proposals, each accompanied by a regulatory impact assessment. Secondary outputs include a regional database of Islamic finance legal provisions and a university-level teaching case collection. Total budget approximately RSD 12 million.",
+   "partners": [
+    "Faculty of Economics, University of Sarajevo",
+    "Faculty of Economics, Ss. Cyril and Methodius University, Skopje",
+    "Institute for Comparative Law, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0513",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1604",
+   "acronym": "GREENSUK-EU",
+   "title": "Green Sukuk Market Development and EU Sustainable Finance Integration",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2023–2025",
+   "summary": "This cross-border cooperation project examines the conditions under which green sukuk could be issued by public or private issuers in Hungary and Serbia as a tool for financing environmental infrastructure. Orlović leads the work package on regulatory harmonisation, examining alignment between green sukuk frameworks and the EU Taxonomy Regulation and the European Green Bond Standard. Partner activities cover market demand analysis and investor profiling in both countries. The project includes a joint training programme for financial sector professionals in both jurisdictions delivered through a series of five workshops, and a policy brief addressed to the Hungarian and Serbian ministries of finance.",
+   "partners": [
+    "Department of Finance, Corvinus University of Budapest",
+    "Green Investment Advisory Centre Novi Sad (GIAC NS)",
+    "Hungarian Development Bank Research Institute"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0513",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1605",
+   "acronym": "FRABALK",
+   "title": "Financial Reporting Quality and Capital Market Development in the Western Balkans",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2021–2024",
+   "summary": "The project builds a harmonised, longitudinal database of financial statements and earnings management indicators for all non-financial firms listed on the stock exchanges of Serbia, North Macedonia, and Bosnia and Herzegovina from 2010 to 2022. Key activities include collection and standardisation of raw financial statement data, estimation of accrual-based and real-activities earnings management proxies using multiple benchmark models, and analysis of the relationship between reporting quality and capital market outcomes including liquidity, cost of capital, and institutional investor participation. The project also compares regulatory and enforcement frameworks across the three jurisdictions to identify governance factors associated with higher reporting quality, and produces policy briefs addressed to the relevant securities commissions.",
+   "partners": [
+    "Faculty of Economics in Subotica, University of Novi Sad",
+    "Faculty of Economics, University of East Sarajevo",
+    "Institute of Economic Sciences, Belgrade"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0422",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1720",
+   "acronym": "KMFORA",
+   "title": "Knowledge Management Frameworks for Regional Administration: Comparative Capacity Assessment in Serbia, Romania and Hungary",
+   "programme": "Interreg IPA Romania–Serbia",
+   "years": "2020–2023",
+   "summary": "Projekat je obuhvatao komparativnu procenu zrelosti upravljanja znanjem u 36 regionalnih i lokalnih javnih institucija u Srbiji, Rumuniji i Mađarskoj. Istraživački tim razvio je zajednički dijagnostički protokol koji je primenjen u sva tri nacionalna konteksta, a nalazi su korišćeni za dizajn programa izgradnje kapaciteta namenjenih rukovodiocima u javnom sektoru. Kovačević je bila lider radnog paketa zaduženog za razvoj metodologije i koordinaciju istraživačkih aktivnosti u Srbiji. Projekat je rezultovao zajedničkim priručnikom za samodijagnostiku zrelosti upravljanja znanjem i nizom radionica za javne službenike u pograničnim regionima.",
+   "partners": [
+    "Universitatea de Vest din Timișoara, Facultatea de Științe Economice",
+    "Pécsi Tudományegyetem, Közgazdaságtudományi Kar",
+    "Regionalna razvojna agencija Banat, Zrenjanin",
+    "Asociația pentru Dezvoltare Regională Vest, Timișoara"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0147",
+     "role": "work package leader"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1721",
+   "acronym": "PUBKNOW",
+   "title": "Merenje i unapređenje kapaciteta upravljanja znanjem u organima javne uprave u Vojvodini",
+   "programme": "Provincial Secretariat for Higher Education and Scientific Research",
+   "years": "2022–2024",
+   "summary": "Projekat je finansiran od strane Pokrajinskog sekretarijata za visoko obrazovanje i naučnoistraživačku delatnost i usmeren je na razvoj i validaciju alatki za samodijagnostiku zrelosti upravljanja znanjem prilagođenih specifičnostima pokrajinske i lokalne uprave u Vojvodini. U okviru projekta sproveden je anketni upitnik u 22 opštinske uprave i pet pokrajinskih organa (N = 340), a rezultati su korišćeni za izradu javno dostupnog izveštaja o stanju upravljanja znanjem u Vojvodini. Projekat je takođe podržao izradu doktorske disertacije jednog od članova istraživačkog tima.",
+   "partners": [
+    "Tehnički fakultet „Mihajlo Pupin“, Zrenjanin, Univerzitet u Novom Sadu",
+    "Pokrajinski sekretarijat za regionalnu politiku, međuregionalnu saradnju i lokalnu samoupravu",
+    "Stalna konferencija gradova i opština Srbije – Regionalna kancelarija Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0147",
+     "role": "principal investigator"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1722",
+   "acronym": "LEANFOOD-SRB",
+   "title": "Lean Production Readiness and Performance in the Serbian Food Processing Sector: Diagnostic Tools and Implementation Support",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2020–2023",
+   "summary": "The project aimed to develop and validate diagnostic and implementation support tools for lean adoption in Serbian food processing companies. Activities included large-scale survey data collection from over 100 firms, longitudinal follow-up of kaizen events in selected companies, and the development of a web-based readiness self-assessment instrument piloted with twelve companies. The project produced five peer-reviewed publications, one edited book chapter, and a practitioner guide distributed through the Chamber of Commerce of Vojvodina. A database of baseline operational metrics from participating firms was compiled and is maintained at the Technical Faculty 'Mihajlo Pupin'. The project funded one doctoral student whose dissertation focused on performance measurement in lean food companies.",
+   "partners": [
+    "Technical Faculty 'Mihajlo Pupin', University of Novi Sad",
+    "Faculty of Economics in Subotica, University of Novi Sad",
+    "Chamber of Commerce of Vojvodina, Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0147",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1725",
+   "acronym": "PRIMAT",
+   "title": "Prioritization Maturity and Technology Transfer in Serbian Manufacturing Firms",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2023–2026",
+   "summary": "Projekat istražuje u kojoj meri zrelost procesa prioritizacije R&D portfolija utiče na uspešnost transfera tehnologije u prerađivačkim preduzećima Srbije. Istraživanje obuhvata longitudinalnu studiju na uzorku od 40 preduzeća praćenih tokom tri godine, uz godišnje merenje RPM-MM skor vrednosti i indikatora transfera (broj licenci, spin-off preduzeća, zajedničkih patenata s istraživačkim institucijama). Projektom je predviđena i izrada javno dostupnog priručnika za primenu alata prioritizacije, namenjen preduzećima bez OR stručnjaka, kao i organizovanje godišnje konferencije za praktičare u Zrenjaninu.",
+   "partners": [
+    "Tehnički fakultet „Mihajlo Pupin“, Zrenjanin",
+    "Institut Mihajlo Pupin, Beograd",
+    "Privredna komora Vojvodine"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0147",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1821",
+   "acronym": "AGRIWATCH-IPA",
+   "title": "Cross-border Agricultural Monitoring and Yield Forecasting Using Copernicus Data in the Hungarian–Serbian Border Region",
+   "programme": "Interreg IPA Hungary–Serbia",
+   "years": "2020–2022",
+   "summary": "The project aimed to establish a shared satellite-based monitoring service for agricultural parcels in the cross-border region spanning South Bačka (Serbia) and Csongrád-Csanád (Hungary). The BioSense Institute was responsible for processing Sentinel-2 time series, constructing parcel databases from national LPIS sources, and delivering seasonal yield forecast maps. Branislav Lekić contributed the yield modelling component, adapting and validating regression models trained on Serbian data for application to Hungarian parcels. The project produced a web-based dashboard for regional agricultural authorities and published protocols for harmonising cross-border parcel datasets. Final yield forecast maps for winter wheat and maize were delivered to partner organisations at the end of each growing season.",
+   "partners": [
+    "Department of Geoinformatics, University of Pécs",
+    "South Bačka Regional Development Agency, Novi Sad",
+    "Csongrád-Csanád County Government, Hungary"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0068",
+     "role": "team member"
+    }
+   ]
+  },
+  {
+   "id": "SYN-PRJ-1822",
+   "acronym": "CROPSENSE",
+   "title": "Operational Crop Yield Estimation for the Vojvodina Region Using Fused Optical and SAR Satellite Data",
+   "programme": "Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma)",
+   "years": "2022–2025",
+   "summary": "CROPSENSE addressed the practical deployment of parcel-level yield prediction for five major crops grown in Vojvodina, with particular focus on reducing dependence on cloud-free optical imagery by incorporating Sentinel-1 SAR data. Branislav Lekić led the work package on data fusion and model development, overseeing the assembly of a multi-year parcel dataset from combine-harvester records provided by three agricultural cooperatives, satellite data processing, and the design of a modular prediction pipeline. The project produced open-source Python tooling for time series fusion, a calibrated yield model ensemble, and a set of validation reports for each crop type. Dissemination included two journal articles, one conference paper, and a technical report delivered to the Provincial Secretariat for Agriculture.",
+   "partners": [
+    "BioSense Institute, University of Novi Sad",
+    "Institute of Field and Vegetable Crops, Novi Sad",
+    "Agricultural Cooperative Zlatna Njiva, Sombor",
+    "Faculty of Agriculture, University of Novi Sad"
+   ],
+   "participants": [
+    {
+     "researcher_id": "R0068",
+     "role": "work package leader"
+    }
+   ]
+  }
+ ]
+}

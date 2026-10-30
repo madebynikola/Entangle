@@ -1,0 +1,244 @@
+{
+ "name": "einstein-fixture-companies",
+ "version": "2.0",
+ "note": "Fixture subset of jigjoy-ai/einstein-matchmaker-data v2.0, built by src/data/make-fixtures.ts. Synthetic data.",
+ "companies": [
+  {
+   "id": "C001",
+   "name": "ArmaturaSec d.o.o.",
+   "sector": "Cybersecurity",
+   "employees": 67,
+   "founded": 2008,
+   "location": "Zrenjanin",
+   "about": "ArmaturaSec d.o.o. has been building network security hardware in Zrenjanin since 2008. We started by selling simple firewall appliances to regional electricity distributors who needed to segment their control networks from corporate IT. Over fifteen years that focus narrowed: today every product we ship is designed specifically for operational technology environments — the kind of networks that run pumps, switchgear, and assembly lines, not office computers.\n\nOur customers are energy utilities, water treatment operators, and discrete manufacturers in Serbia, Bosnia and Herzegovina, North Macedonia, and Montenegro. They are not looking for cloud dashboards or vendor lock-in; they need a device that sits in a metal cabinet at a substation or pump station, runs for years without attention, and tells someone when something is wrong.\n\nWe have 67 people in Zrenjanin. About half write firmware or do hardware bring-up; the rest handle sales, installation, and support. Our head of engineering, Radovan Čičić, joined from a SCADA integrator in 2011 and has led every product generation since. We do not resell other vendors' software. Everything that runs on our appliances — the protocol parsers, the access control engine, the alerting logic — is written and maintained by our own team.",
+   "products": [
+    "NetGuard-OT: network access control appliance for industrial Ethernet segments",
+    "NetGuard-OT Mini: DIN-rail form factor variant for smaller substations and pump stations",
+    "ProtoSense: passive protocol inspection module for Modbus TCP and BACnet/IP traffic",
+    "ArmaturaSec Managed Support: annual firmware maintenance and remote monitoring subscription",
+    "SecAudit Report: one-time on-site assessment and written security findings report"
+   ],
+   "tech": [
+    "Embedded Linux (custom Yocto build)",
+    "Modbus TCP and BACnet/IP protocol parsing",
+    "C and Rust for firmware components",
+    "iptables and nftables for packet filtering",
+    "GPRS and LTE-M cellular backhaul",
+    "Python for internal tooling and test scripts",
+    "Hardware-in-the-loop bench testing with physical PLC simulators",
+    "X.509 certificate management for device identity"
+   ],
+   "challenges": [
+    {
+     "id": "C001-CH1",
+     "text": "We need to detect unusual behaviour on Modbus and BACnet networks without labelled attack data — our clients have never been breached (or don't know it), so we have zero examples of malicious traffic and supervised classifiers are useless to us.",
+     "detail": "Our ProtoSense module watches Modbus and BACnet traffic and is supposed to flag anything that looks wrong. The problem is that none of our clients has ever given us a packet capture that contains a confirmed attack. A few of them have been running their networks for twenty years with no security monitoring at all, so if they were compromised they would not know. We have plenty of normal traffic — we have collected several terabytes of captures from consenting clients over the past three years — but we have nothing labelled as malicious. We tried building a supervised classifier once, fed it data from public ICS datasets, and it flagged so many false positives in real deployments that clients started switching the alerts off. What we actually need is something that learns what normal looks like on a specific site and raises a flag when behaviour drifts from that baseline. We have the traffic archives, we have the hardware to run inference on-device, and we have one engineer who has been reading about anomaly detection for six months. We need a method that works with no attack examples and that we can explain to a plant manager in plain language."
+    },
+    {
+     "id": "C001-CH2",
+     "text": "Our appliance firmware update process currently requires a technician on-site at the customer's substation; we want secure over-the-air updates, but every approach we've prototyped either has an unacceptable attack surface or fails when the GPRS link drops mid-transfer.",
+     "detail": "Every time we release a firmware update we have to send someone to the customer site to plug in a USB drive. For a substation forty kilometres outside Novi Sad that is manageable. For a client in a mountain valley in Bosnia it means a full day of travel. We want to push updates over the cellular link the appliance already uses for remote monitoring. We have prototyped three approaches. The first used a plain HTTPS pull with a signature check; a security review inside the team found the key storage on the current hardware was not good enough and an attacker with physical access could extract the signing key. The second used a dual-partition scheme with rollback; it worked fine on a stable connection but when the GPRS link dropped mid-transfer the bootloader left the device in a state we could not recover remotely, which is unacceptable at an unmanned site. The third prototype added a download manager with resume support but the code size pushed us over the flash budget on our older hardware variant. We need a design that tolerates interrupted transfers, does not require hardware we cannot retrofit, and does not introduce a new remote code execution path. We have a draft threat model document we can share."
+    },
+    {
+     "id": "C001-CH3",
+     "text": "Three clients in Serbia and one in Bosnia asked us to provide a risk quantification report in euros — how much financial loss a specific vulnerability exposes them to — and we have no methodology for that; it's becoming a dealbreaker in contract negotiations.",
+     "detail": "Four clients — three in Serbia and one in Bosnia — have asked us to attach a euro figure to each finding in our SecAudit reports. They want to be able to tell their board: this vulnerability could cost us this much. We understand why they ask. They need to justify remediation budgets. The problem is we have never done this and we are not sure our current data supports it. We have records of what the vulnerabilities were, we know roughly what downtime costs for a water utility or an electricity distributor, and we can find published incident cost studies from Western Europe. What we do not have is a repeatable calculation method that holds up when a procurement officer asks how we arrived at the number. We have looked at two published frameworks and found them either too abstract or built for IT environments where data breach costs dominate. Our clients care about production downtime, regulatory fines under Serbian energy law, and emergency response costs. We need a methodology we can apply consistently across different client types, document in a way that survives scrutiny, and run with our existing audit team without hiring a financial analyst."
+    },
+    {
+     "id": "C001-CH4",
+     "text": "Our quality assurance team writes regression tests by hand for every firmware release; with four hardware variants and monthly release cycles that's eating about 35% of total engineering time and we're still shipping bugs that automated tests should catch.",
+     "detail": "We release firmware roughly once a month across four hardware variants: the original NetGuard-OT board, the Mini, and two older boards we still maintain for clients under long-term support contracts. Before each release our QA team runs a regression suite that they have been building by hand since 2015. The suite now has around 1,400 test cases. Writing new cases for a feature, updating old ones when hardware behaviour changes, and running everything on four boards takes about two and a half weeks of engineering time per cycle. That is the 35% figure. We have also shipped three bugs in the past year that the regression suite should have caught but did not because the relevant test cases were out of date. We have tried generating tests from our internal protocol specifications but the tooling we built for that was brittle and the team abandoned it. We want to get to a point where adding a feature automatically produces a skeleton of tests that a junior engineer can complete in an hour rather than a day. We are open to any approach that fits inside our existing Python-based test runner and does not require us to replace the hardware bench we already have."
+    }
+   ],
+   "plans": "ArmaturaSec intends to release a fifth hardware variant in late 2025 with a dedicated security processor to support on-device anomaly detection without affecting packet forwarding latency. We are also evaluating whether to open a small office in Sarajevo to reduce travel time for Bosnian client support.",
+   "rd_capacity": "We can dedicate one to two engineers part-time to a collaborative project, with access to our traffic archives, our hardware bench, and our existing firmware codebase under NDA.",
+   "past_collaborations": "We ran a one-semester student project with a technical faculty in Novi Sad in 2021 that produced a prototype BACnet fuzzer; the code was useful but the collaboration was not continued formally.",
+   "language": "en"
+  },
+  {
+   "id": "C006",
+   "name": "PravniPilot a.d.",
+   "sector": "Legal tech",
+   "employees": 78,
+   "founded": 2012,
+   "location": "Subotica",
+   "about": "PravniPilot a.d. was founded in 2012 in Subotica by a small team of practicing lawyers and software developers who were tired of spending hours manually searching court archives. We started with a simple keyword-search tool for Serbian civil cases and, over twelve years, grew that into a full AI-assisted research and case-prediction platform now used by 230 law firms in Serbia, Croatia and Bosnia-Herzegovina.\n\nOur platform ingests published court decisions, extracts key legal arguments, and gives lawyers a structured view of how similar disputes have been decided. The prediction module estimates probable outcome ranges for commercial, labor, and property disputes. We do not replace legal judgment — we give lawyers faster access to better evidence so their judgment is better informed.\n\nOur development office sits inside NTP Novi Sad, where most of our engineering and data team works. The Subotica headquarters handles commercial, finance and client relations. Across both offices we employ 78 people, roughly half of them with legal backgrounds.\n\nOur current customers range from two-partner boutique firms in Banja Luka to mid-size litigation practices in Zagreb and Belgrade. We have processed over two million court decisions and continue to add new documents daily. We are not the fastest-growing company in legal tech, but our retention rate — 91% of firms renew annually — tells us we are building something genuinely useful.",
+   "products": [
+    "AI-assisted legal research portal with full-text search across three jurisdictions",
+    "Case-outcome prediction module for commercial, labor and property disputes",
+    "Document annotation and summary tool with source citation",
+    "Court-decision bulk data export API for enterprise customers",
+    "Custom legal dataset licensing for insurers and financial institutions"
+   ],
+   "tech": [
+    "Python (data pipelines and ML model training)",
+    "PyTorch for transformer-based text classification",
+    "Elasticsearch for full-text document indexing",
+    "PostgreSQL for structured case metadata",
+    "React front-end with TypeScript",
+    "Docker and Kubernetes on-premises cluster at NTP Novi Sad",
+    "Custom PDF and HTML parser for court-document ingestion",
+    "Internal annotation tool for labeling case outcomes"
+   ],
+   "challenges": [
+    {
+     "id": "C006-CH1",
+     "text": "Our case-outcome prediction model achieves only 61% accuracy on commercial-dispute rulings from Serbian courts, which is barely better than a lawyer's gut feeling; we suspect the problem is that our training set has only 9,000 labelled decisions and courts don't publish enough structured data.",
+     "detail": "Our prediction model was trained on roughly 9,000 labeled commercial-dispute decisions from Serbian courts. At 61% accuracy it is not meaningfully better than what an experienced lawyer estimates from memory. We have tried basic data augmentation and have experimented with pre-trained multilingual models fine-tuned on our corpus, but neither moved the needle past 63% in internal tests. The core problem is data volume: Serbian courts do not publish decisions in a consistent machine-readable format, so each document requires significant cleaning before it can be labeled. We have one full-time data engineer and two part-time annotators working on this. We estimate we need at least 40,000 clean, labeled decisions to reach accuracy worth advertising. We are open to exploring transfer learning from Croatian or Bosnian court data, semi-supervised labeling, or better feature extraction from judgment text. A good outcome would be reaching 75% accuracy on a held-out test set within 12 months, which would let us market the prediction feature with honest confidence intervals rather than quietly downplaying it."
+    },
+    {
+     "id": "C006-CH2",
+     "text": "We are trying to raise a €2.5 million Series A round to fund expansion into the German legal market but all three venture funds we spoke to in Q1 said our cap table structure is too messy from the 2019 convertible note round; we need legal restructuring advice, not technology.",
+     "detail": "In 2019 we issued a convertible note to bridge a funding gap. The terms were set in a hurry and the resulting cap table now shows overlapping anti-dilution provisions that make it hard for a new lead investor to model their ownership cleanly. We have spoken with three regional venture funds this year, all of whom expressed interest in the product but pulled back after reviewing our shareholder agreement. Our target is a €2.5 million Series A to fund a German market entry, including translation of the platform and local business development hiring. We need a corporate lawyer with cross-border experience in Serbian and EU startup financing to help us clean up the note terms, renegotiate with the existing noteholders, and produce a cap table that a German or Austrian fund can read without confusion. This is not a technology problem. We have a moderate budget for legal advisory work and a soft deadline of Q3 this year if we want to start German operations before end of 2025."
+    },
+    {
+     "id": "C006-CH3",
+     "text": "Law firm users copy our AI-generated research summaries directly into briefs without reading them, and twice this year the summaries contained an outdated precedent; we need a way to attach confidence scores and source provenance to every generated sentence.",
+     "detail": "We generate paragraph-level summaries of relevant court decisions and legal arguments. Several law firm users have told us they paste these summaries directly into draft briefs without checking the source. Twice this year a summary referenced a precedent that had been overturned or amended, and in one case a firm submitted a brief containing the outdated citation before catching the error. We take this seriously. What we want to build is a system that attaches a confidence score and a direct source link to every sentence or claim in a generated summary, so a lawyer can see at a glance whether a statement is based on one decision or fifty, and how recent the most recent supporting case is. We have experimented with simple retrieval-augmented generation, but sentence-level provenance tracking in a multilingual legal context is harder than it looks. We have budget for one additional engineer and are willing to explore collaboration with external research groups. The hard requirement is that the solution works inside our existing React interface without requiring a workflow change for the lawyer."
+    },
+    {
+     "id": "C006-CH4",
+     "text": "We store full-text court decisions for three jurisdictions and search response time has degraded from 0.4 seconds to 3.1 seconds since we crossed 2 million documents; our database engineers say we need a fundamentally different indexing architecture.",
+     "detail": "When we crossed two million documents in our Elasticsearch cluster last autumn, average search response time climbed from 0.4 seconds to 3.1 seconds. Our two database engineers have tried index sharding, query caching and hardware upgrades, and we got the time down to 2.4 seconds, but that is still unacceptable for a tool lawyers use dozens of times a day during trial preparation. The problem is that our index was designed for a corpus of a few hundred thousand documents and has not been fundamentally rethought since. We are adding roughly 15,000 new documents per month across three jurisdictions, so the situation will keep getting worse. We are open to replacing Elasticsearch with a different architecture, moving to a vector-based semantic search layer, or a hybrid approach, but any solution must support our existing boolean filter queries, multilingual text and our API contract with enterprise customers. Downtime during migration is a serious concern — we cannot afford more than a four-hour maintenance window. Budget for infrastructure changes is available but we would prefer a phased approach."
+    }
+   ],
+   "plans": "PravniPilot intends to launch a German-language pilot of its research platform with at least five German law firms by mid-2026, contingent on completing the Series A round. In parallel, the company plans to release a public confidence-scoring API for legal summaries that smaller legal-tech vendors in the region can license.",
+   "rd_capacity": "Our development team of 14 engineers and two data scientists can allocate roughly two days per week to collaborative research work, provided any research output can be integrated directly into the production codebase.",
+   "past_collaborations": "PravniPilot ran a six-month data-labeling project with a Novi Sad-based language annotation firm, LinguaNova d.o.o., in 2022 to produce a cleaned subset of Croatian court decisions, but has no current active research partnerships.",
+   "language": "en"
+  },
+  {
+   "id": "C054",
+   "name": "Polje Senzor d.o.o.",
+   "sector": "IoT hardware",
+   "employees": 9,
+   "founded": 2021,
+   "location": "NTP Novi Sad",
+   "about": "Polje Senzor je osnovano 2021. godine u Naučno-tehnološkom parku Novi Sad od strane trojice inženjera koji su prethodno radili na industrijskim mernim sistemima. Primetili smo da voćari u Vojvodini i Šumadiji donose odluke o zaštiti useva na osnovu vremenskih prognoza sa interneta, a ne na osnovu stvarnih uslova u svom voćnjaku. To smo hteli da promenimo. Naša osnovna linija proizvoda je PS-Orchard stanica – kompaktni bežični uređaj koji meri temperaturu vazduha, vlažnost lista i padavine direktno između redova jabuka, krušaka ili bresaka. Podaci idu preko LoRaWAN mreže do naše cloud platforme, a voćar dobija SMS ili push obaveštenje kada postoji rizik od mraza. Danas imamo oko trideset aktivnih korisnika, uglavnom porodična gazdinstva između pet i pedeset hektara, od kojih su neki preporučeni od strane Dragana Milovića iz Savetodavne službe u Sremskoj Mitrovici. Tim čini devet ljudi: dvojica hardverskih inženjera, dva programera, jedna osoba za podršku korisnicima i ostali. Nismo velika firma i ne pretvaramo se da jesmo – svaku stanicu pre isporuke ručno testiramo tri dana.",
+   "products": [
+    "PS-Orchard stanica – bežični senzorski čvor za monitoring voćnjaka",
+    "Aplikacija za upozorenja na mraz – SMS i push notifikacije u realnom vremenu",
+    "PS-Gateway mini – kompaktni LoRaWAN gateway za gazdinstva bez pokrivenosti",
+    "Godišnji plan servisiranja i kalibracije senzora"
+   ],
+   "tech": [
+    "C (firmware za STM32 mikrokontrolere)",
+    "STM32L4 serija mikrokontrolera (ultra-low-power)",
+    "LoRaWAN / The Things Stack",
+    "Node.js (backend i API)",
+    "InfluxDB (čuvanje vremenskih serija merenja)",
+    "React Native (mobilna aplikacija)",
+    "3D štampa kućišta za prototipe"
+   ],
+   "challenges": [
+    {
+     "id": "C054-CH1",
+     "text": "Baterije u stanicama zimi traju upola kraće nego leti, pa voćari moraju da ih menjaju usred sezone.",
+     "detail": "Naše stanice koriste litijumske baterije kapaciteta 3,6 V / 14 Ah. Leti jedna baterija traje između četrnaest i šesnaest meseci, što je sasvim prihvatljivo. Problem nastaje zimi: ispod nule baterija gubi kapacitet brže nego što smo predviđali, pa na nekim lokacijama traje svega šest do sedam meseci. Voćari moraju da idu na parcelu usred januara ili februara, po mrazu i snegu, i menjaju baterije – baš u periodu kada su stanice najpotrebnije za detekciju mraza. Pokušali smo da smanjimo frekvenciju slanja podataka s jednog merenja na petnaest minuta na jedno na trideset minuta, ali voćari su se žalili da gube preciznost upozorenja. Razmatrali smo i mali solarni panel, ali naši testovi su pokazali da u decembru i januaru u Vojvodini panel ne isporučuje dovoljno energije zbog kratkog dana i oblačnosti. Imamo log podatke o naponu baterija sa svih aktivnih stanica u poslednjih dve i po godine, razvrstane po lokaciji i temperaturi. Budžet za ovaj problem je ograničen – ne možemo drastično podići cenu stanice. Dobar ishod bi bio da stanica preživi celu zimsku sezonu, od novembra do marta, bez zamene baterije."
+    },
+    {
+     "id": "C054-CH2",
+     "text": "Voćari ručno broje leptire na feromonskim klopkama; hteli bismo da kamera na klopci to radi sama.",
+     "detail": "Voćari koji koriste feromonske klopke za praćenje štetočina – pre svega jabučnog savijača i breskvine mušice – moraju svake sedmice da fizički dođu do klopke, izvade lepljivu podlogu i prebroje uhvaćene leptire. Taj podatak im govori da li treba da prskaju ili ne. Problem je što je to zamorno, podložno greškama, a neki voćari preskače preglede. Mi bismo hteli da na klopku montiramo malu kameru koja bi snimala podlogu jednom dnevno i automatski prebrojala insekte. Već imamo prototip napajanja za kameru koji se uklapa u naš postojeći sistem baterija i LoRaWAN prenosa, ali prenos slike je skup po pitanju potrošnje energije i zauzima previše propusnog opsega LoRaWAN mreže. Nismo sigurni da li da obradu radimo lokalno na uređaju ili da šaljemo slike u cloud. Nemamo iskustva sa računarskim vidom niti sa optimizacijom modela za male mikrokontrolere. Imamo oko dvesta fotografija lepljivih podloga koje su nam dali voćari tokom ove sezone – to bi moglo da posluži kao početni skup podataka. Rok koji smo sebi postavili je da imamo funkcionalni prototip pre sajma u proleće 2026. godine."
+    }
+   ],
+   "plans": "Nova generacija stanica sa kamerom 2027.",
+   "rd_capacity": "Dva inženjera hardvera.",
+   "past_collaborations": "Diplomski radovi studenata FTN-a.",
+   "language": "sr"
+  },
+  {
+   "id": "C120",
+   "name": "Analitika Petrović preduzetnik",
+   "sector": "AI and data consultancies",
+   "employees": 5,
+   "founded": 1997,
+   "location": "Zrenjanin",
+   "about": "Analitika Petrović osnovana je 1997. godine u Zrenjaninu, kada je Dragan Petrović, tada računovođa sa iskustvom u prerađivačkoj industriji, uvideo da lokalne firme gomilaju podatke koje niko ne čita. Počeli smo sa dva klijenta i jednim računarom; danas smo petočlani tim koji pokriva čitav lanac od prikupljanja podataka do gotovog izveštaja na stolu direktora. Naša kćerka Milica Petrović priključila se firmi 2016. godine i donela sa sobom znanje iz statistike i programiranja koje je gurnulo naše alate korak dalje — od statičnih tabela prema jednostavnim prediktivnim modelima.\n\nRadimo sa prerađivačima hrane i voća iz okoline Zrenjanina, sa regionalnom pivarom, i sa dva javna komunalna preduzeća. Svaki od ovih klijenata ima specifične tokove podataka i specifične ljude koji te podatke moraju razumeti — od tehnologa do komunalnih inspektora. Naš posao je da između tih podataka i tih ljudi stavimo nešto što stvarno funkcioniše, a ne nešto što izgleda lepo na prezentaciji.\n\nNismo konsultantska kuća koja dolazi, uzme novac i ode. Petnaest od naših dvadeset i sedam dosadašnjih klijenata sarađuje sa nama više od tri godine. To nam govori da radimo pravu stvar.",
+   "products": [
+    "Izrada prilagođenih poslovnih izveštaja i kontrolnih tabla",
+    "Integracija i čišćenje podataka iz industrijskih senzora i ERP sistema",
+    "Jednostavni prediktivni modeli za praćenje procesa (fermentacija, skladištenje, potrošnja)",
+    "Periodično održavanje i ažuriranje postojećih analitičkih rešenja",
+    "Obuka zaposlenih za rad sa izveštajnim alatima"
+   ],
+   "tech": [
+    "Python (pandas, scikit-learn, Prophet)",
+    "PostgreSQL i TimescaleDB",
+    "Grafana za vizualizaciju",
+    "Metabase za self-service izveštavanje",
+    "Linux serveri na lokaciji klijenta",
+    "Excel i Power Query za klijente koji to zahtevaju",
+    "Git za verzionisanje koda i konfiguracija"
+   ],
+   "challenges": [
+    {
+     "id": "C120-CH1",
+     "text": "One of our agri-food clients collects temperature, humidity and CO₂ readings every five minutes across 22 storage silos, but the time-series database is growing at 40 GB per month and our queries for monthly reports already take 45 minutes — we can't afford cloud and need a smarter on-premise approach.",
+     "detail": "Jedan naš klijent, prerađivač voća i povrća, ima 22 silosa u kojima senzori mere temperaturu, vlažnost i CO₂ svakih pet minuta, cele godine. Koristimo TimescaleDB na njihovom lokalnom serveru — mašina sa 32 GB RAM-a i 4 TB diska koji je već popunjen skoro do pola. Baza raste oko 40 GB mesečno i sada nam upiti za mesečne izveštaje traju 45 minuta, što znači da ih ne možemo pokretati tokom radnog vremena. Pokušali smo sa boljim indeksima i sa chunk politikom u TimescaleDB, što je malo pomoglo, ali nije dovoljno. Nemaju budžet za cloud rešenje niti za novi server u narednoj godini. Trebalo bi nam da naučimo kako da agresivnije komprimujemo starije podatke, kako da zadržimo samo ono što je statistički korisno za dugoročne izveštaje, a da operativni podaci i dalje budu brzo dostupni. Dobar ishod bi bio da mesečni izveštaj ne traje duže od pet minuta i da baza ne prekorači raspoloživi disk u narednih godinu dana."
+    },
+    {
+     "id": "C120-CH2",
+     "text": "The brewery client wants a dashboard that predicts fermentation completion time within ±2 hours, but fermentation curves shift with each new grain batch and our fixed regression model drifts badly after about three batches without manual recalibration.",
+     "detail": "Pivara sa kojom sarađujemo želi dashboard koji im govori kada će fermentacija biti gotova — sa greškom ne većom od dva sata. Fermentacija traje između četiri i osam dana zavisno od serije. Problem je što svaka nova serija žita menja krivulju fermentacije dovoljno da naš regresioni model počne da greši već posle dve-tri serije i mora ručno da se rekalibrira. Milica je to radila jednom mesečno, ali to znači da između kalibracija ima perioda loših predikcija. Imamo istorijske podatke za oko 180 serija u poslednjih pet godina — temperatura vrenja po satima, specifična gustina, pH, i informacije o seriji žita. Pokušali smo da dodamo batch identifikator kao kategorijsku promenljivu, ali to ne pomaže dovoljno za serije sa novim dobavljačima. Ono što nam treba je pristup koji se sam ažurira kada stignu novi podaci sa vrenja, bez da neko sedne i ponovo trenira model. Nismo sigurni koji je pravi put — da li online učenje, da li nešto drugo — i tu nam treba savet i pomoć u implementaciji."
+    },
+    {
+     "id": "C120-CH3",
+     "text": "We only have two people who can write code and one of them is Milica who is going on maternity leave; we have three active contracts and won't be able to deliver all of them on time — we need to either hire or subcontract within the next six weeks.",
+     "detail": "Milica odlazi na porodiljsko odsustvo u roku od šest nedelja i ona je jedina u timu koja samostalno piše Python kod i održava naše TimescaleDB i Grafana instalacije. Dragan i ostala tri člana tima mogu da rade sa podacima u Excelu i Metabasu, ali ne mogu da preuzmu razvojne zadatke. Trenutno imamo tri aktivna ugovora sa rokovima isporuke: novi moduo za izveštavanje komunalnog preduzeća, ažuriranje pivarske kontrolne table i novi projekat sa prerađivačem šećerne repe koji tek počinje. Bez Milice, realno možemo da isporučimo jedan od tri projekta na vreme. Tražili smo freelancera lokalno, ali nismo našli nikoga raspoloživog u kratkom roku. Budžet za angažovanje nije velik — u pitanju su ugovori srednje vrednosti. Otvoreni smo za podizvođača koji razume TimescaleDB i Python i koji može da uđe u projekat bez dugog uvođenja. Rok je čvrst: sva tri ugovora imaju isporuku pre kraja tekućeg kvartala."
+    }
+   ],
+   "plans": "U naredne dve godine planiramo da proširimo tim za još jednog junior programera i da standardizujemo naša rešenja dovoljno da ih možemo lakše prenositi između klijenata sličnog profila. Razmatramo i proširenje na klijente u prehrambenoj industriji u širem regionu Vojvodine.",
+   "rd_capacity": "Nemamo formalni istraživački program, ali Milica povremeno testira nove biblioteke i pristupe na internim podacima pre nego što ih ponudimo klijentima.",
+   "past_collaborations": "Nismo imali formalnu saradnju sa naučnim institucijama; jedina bliska saradnja bila je neformalna konsultacija sa bivšim profesorom matematike koji nam je pomogao da postavimo statistički model 2019. godine.",
+   "language": "sr"
+  },
+  {
+   "id": "C139",
+   "name": "Farmavita d.o.o.",
+   "sector": "Pharma, cosmetics and chemicals",
+   "employees": 87,
+   "founded": 1994,
+   "location": "Novi Sad",
+   "about": "Farmavita d.o.o. has been manufacturing solid-dose pharmaceuticals and dietary supplements in Novi Sad since 1994. What started as a small compounding operation of twelve people has grown into a GMP-certified contract manufacturer employing 87 staff across production, quality, logistics, and administration. Our 6,400 m² facility sits two kilometres from the Science and Technology Park Novi Sad, and it has been continuously upgraded to meet current EU GMP Annex 1 and Annex 15 requirements.\n\nWe specialise in film-coated tablets, hard-shell capsules, and softgel supplements for pharmacy chains, private-label brands, and regional distributors. Our clients include Apotek Centrala, Medicor Pharma Distribution, and several private-label brands operating across Serbia, Bosnia and Herzegovina, North Macedonia, and Slovenia. We do not own brands of our own — our business is making other people's products reliably and on schedule.\n\nOur team is led by Director Jelena Marković and Production Manager Dragan Popović, supported by a 14-person quality unit and a six-person formulation group. We believe that honest communication with clients, tight process documentation, and consistent batch records are what keep long-term relationships going. We are not the largest contract manufacturer in the region, but repeat business from clients who have been with us for over a decade suggests we are doing something right.",
+   "products": [
+    "Contract manufacturing of film-coated and uncoated tablets",
+    "Hard-shell capsule filling for OTC pharmaceuticals and dietary supplements",
+    "Softgel encapsulation for omega-3 and vitamin supplement lines",
+    "Private-label blister packaging and secondary packaging services",
+    "Stability testing and analytical QC for third-party batch release"
+   ],
+   "tech": [
+    "GMP-certified Glatt GPCG fluid-bed coater and Bohle pan coater",
+    "High-shear wet granulation with Diosna mixers",
+    "In-process NIR moisture and blend uniformity monitoring",
+    "SAP ERP (ECC 6.0) for batch management and inventory",
+    "Empower 3 chromatography data system for HPLC/UV QC",
+    "USP II paddle dissolution apparatus with automated sampling",
+    "Serialisation-ready Zebra label printing hardware (not yet integrated)",
+    "ISO 14644-1 Class D and Class C cleanroom environments"
+   ],
+   "challenges": [
+    {
+     "id": "C139-CH1",
+     "text": "Our tablet coating line produces roughly 4% of batches with uneven film thickness, leading to weight-variation failures at final QC and costing us about 60,000 EUR per year in rejected output and rework labour. We have process logs but can't identify which combination of parameters — inlet air temperature, spray rate, pan speed — is driving the drift.",
+     "detail": "Our pan coater runs about 110 coating batches per month. Roughly four or five of those fail final weight-variation checks because the film builds up unevenly across the tablet bed. When a batch fails we either rework it — which takes eight to ten hours of operator time plus extra coating suspension — or we scrap it outright. Last year we added it up: about 60,000 EUR in lost material and rework hours.\n\nWe have two years of process log data sitting in our batch records: inlet air temperature, outlet temperature, spray rate, atomisation pressure, pan speed, and batch weight. We have looked at each parameter individually and we cannot see a clear pattern. The failures seem to cluster in certain months, which makes us think humidity or seasonal air quality plays a role, but we have not been able to confirm that.\n\nWe tried adjusting the spray rate range based on supplier guidance last spring. It helped for about six weeks and then the failure rate came back. We do not have an in-house statistician or anyone with a design-of-experiments background. If someone could take our existing log data and help us find the real driver — and ideally tell us what process window to lock in — we could reduce failures to under 1% and save most of that 60,000 EUR annually. We are willing to share the full dataset and give site access for anyone who needs to observe a live run."
+    },
+    {
+     "id": "C139-CH2",
+     "text": "We want to add a sustained-release ibuprofen capsule to our portfolio by Q3 next year, but our formulation team lacks experience with polymer matrix excipients and in-vitro dissolution modelling — we'd need at least 18 months to figure it out ourselves and we don't have that runway.",
+     "detail": "One of our main clients, Medicor Pharma Distribution, has asked us to develop a sustained-release ibuprofen 400 mg capsule for their private-label portfolio. They want it on shelves by Q3 next year, which gives us roughly fourteen months from today. The problem is that our formulation team — three experienced pharmacists and two technicians — has mainly worked with immediate-release solid-dose forms. We have never designed a polymer matrix for controlled release, and we do not have solid experience choosing the right grades of HPMC or ethylcellulose, setting up a predictive dissolution model, or running the iterative prototype cycles that this kind of development requires.\n\nIf we try to build that knowledge from scratch internally, our own estimate is eighteen months minimum — and that assumes no dead ends. We do not have eighteen months. We are looking for a partner who already knows polymer matrix formulation and in-vitro dissolution modelling well enough to compress that timeline. We can provide our dissolution equipment, our analytical lab, and our production-scale capsule filling line for prototype work. The budget for external development support is limited, so we would prefer a collaborative arrangement to a full-service contract with a commercial CRO."
+    },
+    {
+     "id": "C139-CH3",
+     "text": "The new EU falsified-medicines serialisation rules require us to integrate a Track & Trace system with our SAP instance before the end of the year, and the integration vendor is quoting 140,000 EUR which is way above our budget. We're stuck between compliance risk and cash-flow constraints.",
+     "detail": "EU Falsified Medicines Directive serialisation requirements apply to us as a contract manufacturer supplying markets in the EU, and we have a hard deadline at the end of this calendar year. What we need is a verified integration between our serialisation hardware — Zebra printers and a camera-based verification unit already installed on Line 2 — and our SAP ECC 6.0 system so that every saleable unit gets a unique identifier and the data flows correctly to the EU Hub repository.\n\nThe integration vendor we approached quoted 140,000 EUR for the full project. That is simply not available to us right now without taking on debt that would create real cash-flow problems in a year where we already have capital commitments on the coater maintenance and cleanroom HVAC upgrade.\n\nWe are not looking for someone to replace the vendor entirely. What we need is technical help scoping a leaner solution — possibly middleware that sits between our existing SAP modules and the serialisation unit — that we could implement ourselves or with lighter vendor involvement. We have one IT staff member on site and the SAP system is standard with no unusual customisations. A working, compliant integration before December is the only acceptable outcome; a partial or delayed one carries regulatory risk we cannot accept."
+    }
+   ],
+   "plans": "Farmavita intends to qualify a second coating line by mid-2026 to increase batch throughput and reduce scheduling bottlenecks for existing clients. We are also evaluating the addition of a sustained-release capsule platform to our service catalogue, which would open a segment of the market we currently cannot serve.",
+   "rd_capacity": "Our formulation group can run early-stage prototype development and dissolution testing in-house but does not have dedicated research staff or capacity for extended development programmes alongside full production schedules.",
+   "past_collaborations": "Farmavita completed a one-year process optimisation project with the Faculty of Technology Novi Sad in 2019 focused on granulation endpoint detection, resulting in revised in-process specifications still used today.",
+   "language": "en"
+  }
+ ]
+}
