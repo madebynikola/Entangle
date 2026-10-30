@@ -1,6 +1,7 @@
 import { existsSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import type { SourceRecord, SourceStore } from "../types"
+import { note } from "./log"
 import { citedIds, readJson, readResults } from "./runs"
 
 let store: Promise<SourceStore | null> | undefined
@@ -17,10 +18,10 @@ export function datasetSources(): Promise<SourceStore | null> {
 			const data = (await import(path)) as { loadDataset?: () => { sources: SourceStore } }
 			const started = Date.now()
 			const sources = data.loadDataset?.().sources ?? null
-			if (sources) console.log(`  dataset loaded in ${Date.now() - started} ms`)
+			if (sources) note(`Dataset loaded in ${Date.now() - started} ms. Source lookups now cover every record.`)
 			return sources
 		} catch (error) {
-			console.log(`  dataset not loaded (${firstLine(error)}); sources come from each run's sources.json`)
+			note(`No dataset here (${firstLine(error)}). Sources come from each run's sources.json.`)
 			return null
 		}
 	})()

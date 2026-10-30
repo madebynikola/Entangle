@@ -17,6 +17,7 @@ import { serveStatic } from "@hono/node-server/serve-static"
 import { Hono } from "hono"
 import { createApi, hasBuild } from "./app"
 import { RunRegistry } from "./runs"
+import { bold, cyan, dim, item } from "./log"
 import { datasetSources } from "./sources"
 
 const ROOT = resolve(import.meta.dirname, "../..")
@@ -75,8 +76,14 @@ async function main(): Promise<void> {
 	}
 
 	const url = `http://localhost:${port}${path}`
-	const mode = prod ? "built app" : command === "replay" ? "replay" : "dev, hot reload"
-	console.log(`\n  Entangle  ${url}  (${mode})\n`)
+	const mode = prod ? "serving web/dist" : command === "replay" ? "replay" : "dev · hot reload"
+	const runs = registry.list()
+	const running = runs.filter((run) => run.status === "live").length
+	console.log(`\n  ${bold("Entangle")}  ${dim(mode)}\n`)
+	item("App", cyan(url))
+	item("Runs", `${runs.length} in out/${running ? ` · ${running} running` : ""}`)
+	item("Dataset", dim("loading in the background…"))
+	console.log("")
 	void datasetSources()
 
 	const open = values["no-open"] ? false : (values.open ?? command === "replay")
