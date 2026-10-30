@@ -47,7 +47,7 @@ type AttemptData = Omit<InferenceAttempt, "taskId" | "loopId" | "model" | "provi
  * Ranked with the analyses, they wait behind every profile, and every company is decided at the end again.
  * Within one rank, calls go in arrival order.
  */
-const RANK: Record<TaskKind, number> = { write: 5, match: 3, profile: 2, screen: 1, analyze: 0, demo: 0, critique: 0 }
+const RANK: Record<TaskKind, number> = { write: 5, scout: 5, match: 3, profile: 2, screen: 1, analyze: 0, demo: 0, critique: 0 }
 const NEED_REVIEW = 4
 
 /**

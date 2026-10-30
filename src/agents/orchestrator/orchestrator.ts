@@ -3,12 +3,13 @@ import type { Dataset } from "../../data"
 import { withWorks, type OpenAlex } from "../../data/openalex"
 import { budgetSpent, failTask, join, modelFor, state } from "../../runtime"
 import { runnerSettings } from "../../runtime/config"
-import type { ArtifactKind, CompanyNeed, NoMatch, PairCandidate, Proposal, ResearcherProfile, SentBack, SourceStore, Task } from "../../types"
+import type { ArtifactKind, CompanyNeed, FundingMatch, NoMatch, PairCandidate, Proposal, ResearcherProfile, SentBack, SourceStore, Task } from "../../types"
 import { analyzeCompanies, createAnalysts } from "../analyst"
 import { CRITIC_SENT_BACK, createCritic, type Critic, type ReviewStatus } from "../critic"
 import { choosePairs, createMatchmaker } from "../matchmaker"
 import { emit } from "../matchmaker/shared"
 import { createProfilerPool } from "../profiler"
+import { createScout } from "../scout"
 import { createWriter, proposalId, type Writer } from "../writer"
 
 export interface OrchestratorOptions {
@@ -43,6 +44,8 @@ export interface RunOutcome {
 	proposals: Proposal[]
 	/** Proposals on the blackboard the Critic did not accept: escalated after the last fix, or unfinished. A person decides. */
 	needsHuman: Proposal[]
+	/** Open EU calls the Funding Scout found for each chosen pair. */
+	funding: FundingMatch[]
 	ms: number
 }
 
@@ -135,6 +138,8 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 	const writers = Array.from({ length: Math.max(1, options.writers ?? 3) }, (_, i) =>
 		createWriter({ name: `writer-${i + 1}`, sources, priorWork, mockPlantFakeClaim: plant && i === 0 }),
 	)
+	// It answers `orchestrator.decided` by itself: each chosen pair's EU calls are found while its Writer writes.
+	const scout = createScout()
 
 	const elapsed = () => `${Math.round((Date.now() - started) / 1000)}s`.padStart(5)
 	const say = (line: string) => log(`${elapsed()}  ${line}`)
@@ -365,6 +370,7 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 			proposals: [...s.proposals.values()].filter((proposal) => accepted("proposal", proposal.id)),
 			// Escalated by the Critic, or left unfinished: its fix or its review could not run.
 			needsHuman: [...s.proposals.values()].filter((proposal) => !accepted("proposal", proposal.id)),
+			funding: scout.results().filter((match) => chosen.includes(match.pairId)),
 			ms: Date.now() - started,
 		}
 		emit(me, "orchestrator.done", {

@@ -24,6 +24,7 @@
 import type {
 	CompanyNeed,
 	CriticVerdict,
+	FundingMatch,
 	NoMatch,
 	PairCandidate,
 	Proposal,
@@ -111,4 +112,6 @@ export interface RunResults {
 	needsHuman?: Proposal[]
 	verdicts: CriticVerdict[]
 	approvals: Approvals
+	/** Open EU calls the Funding Scout found per chosen pair. Absent in runs from before the Scout. */
+	funding?: FundingMatch[]
 }

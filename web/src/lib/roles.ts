@@ -1,7 +1,7 @@
 import type { AgentRole } from "@shared/types"
 import type { FaceId } from "./faces"
 
-export const ROLES: AgentRole[] = ["orchestrator", "analyst", "profiler", "matchmaker", "writer", "critic"]
+export const ROLES: AgentRole[] = ["orchestrator", "analyst", "profiler", "matchmaker", "writer", "critic", "scout"]
 
 export type RoleKey = AgentRole | "other"
 
@@ -16,6 +16,8 @@ export const ROLE_INFO: Record<RoleKey, { label: string; plural: string; job: st
 	matchmaker: { label: "Matchmaker", plural: "Matchmaker", job: "Pairs researchers with company challenges", name: "Amity", face: "amity" },
 	writer: { label: "Proposal Writer", plural: "Writers", job: "Writes a PhD topic or joint project for a pair", name: "Tinta", face: "tinta" },
 	critic: { label: "Critic", plural: "Critic", job: "Checks every claim against its sources", name: "Fides", face: "fides" },
+	// No face in the brand kit yet, so the Stage leaves it out; the Timeline gives it a lane.
+	scout: { label: "Funding Scout", plural: "Funding Scout", job: "Finds open EU calls for each chosen pair", name: "", face: null },
 	other: { label: "Agent", plural: "Other agents", job: "", name: "", face: null },
 }
 
@@ -27,6 +29,7 @@ export const ROLE_CLASS: Record<RoleKey, { bg: string; text: string; border: str
 	matchmaker: { bg: "bg-role-matchmaker", text: "text-role-matchmaker", border: "border-role-matchmaker", soft: "bg-role-matchmaker/12" },
 	writer: { bg: "bg-role-writer", text: "text-role-writer", border: "border-role-writer", soft: "bg-role-writer/12" },
 	critic: { bg: "bg-role-critic", text: "text-role-critic", border: "border-role-critic", soft: "bg-role-critic/12" },
+	scout: { bg: "bg-role-scout", text: "text-role-scout", border: "border-role-scout", soft: "bg-role-scout/12" },
 	other: { bg: "bg-role-other", text: "text-role-other", border: "border-role-other", soft: "bg-role-other/12" },
 }
 

@@ -23,6 +23,8 @@ export const ROUTES: Record<AgentRole, RoleRoute> = {
 	matchmaker: { models: ["claude-sonnet-4-6", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
 	writer: { models: ["claude-sonnet-4-6", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
 	critic: { models: ["claude-sonnet-4-6", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
+	// Two short calls per chosen pair: queries in EU funding vocabulary, then the calls that fit from the portal's answer.
+	scout: { models: ["claude-haiku-4-5", "gpt-5.4-mini", "gemini-3.5-flash"], spread: true },
 }
 
 /** The env var that holds each provider's key, as Mozaik's endpoints read it. */

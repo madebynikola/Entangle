@@ -5,6 +5,7 @@ import type {
 	BudgetLimits,
 	CompanyNeed,
 	CriticVerdict,
+	FundingMatch,
 	NoMatch,
 	PairCandidate,
 	Proposal,
@@ -35,6 +36,8 @@ export class MatchState extends RuntimeState {
 	readonly candidates = new Map<string, PairCandidate>()
 	readonly noMatches = new Map<string, NoMatch>()
 	readonly proposals = new Map<string, Proposal>()
+	/** Open EU calls per chosen pair, from the Funding Scout. Keyed by pair id. */
+	readonly funding = new Map<string, FundingMatch>()
 	readonly verdicts: CriticVerdict[] = []
 	readonly budget: Budget
 

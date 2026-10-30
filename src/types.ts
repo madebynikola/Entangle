@@ -230,6 +230,38 @@ export interface FundingCall {
 	url: string
 }
 
+/** A call the Funding Scout points a pair to. */
+export interface FundingFit {
+	call: FundingCall
+	/** The Scout's reasoning: which part of the pair's problem the call's topic covers. A judgement, not a claim. */
+	reason: string
+	/** What the pair should check on the call page first, e.g. whether the action type suits a two-partner project. */
+	check?: string
+}
+
+/**
+ * The Funding Scout's answer for one chosen pair, keyed by pair id on `MatchState.funding`.
+ * Code checks that each call came from the portal's answer and that its deadline is still ahead.
+ */
+export interface FundingMatch {
+	pairId: string
+	challengeId: string
+	companyId: string
+	researcherId: string
+	/** Up to 3 calls, the best fit first. Empty when none fits. */
+	calls: FundingFit[]
+	/** Why no call fits, when `calls` is empty. */
+	noneReason?: string
+	/** The search strings sent to the portal. */
+	queries: string[]
+	/** Calls with a deadline ahead that the Scout read. */
+	considered: number
+	/** Why the search failed, if it did. */
+	error?: string
+	/** The Scout's task. */
+	taskId?: string
+}
+
 // ---------------------------------------------------------------------------
 // Review protocol (src/agents/critic)
 // ---------------------------------------------------------------------------
@@ -270,9 +302,9 @@ export interface SentBack {
 // Tasks and budget
 // ---------------------------------------------------------------------------
 
-export type AgentRole = "orchestrator" | "profiler" | "analyst" | "matchmaker" | "writer" | "critic"
+export type AgentRole = "orchestrator" | "profiler" | "analyst" | "matchmaker" | "writer" | "critic" | "scout"
 
-export type TaskKind = "screen" | "profile" | "analyze" | "match" | "write" | "critique" | "demo"
+export type TaskKind = "screen" | "profile" | "analyze" | "match" | "write" | "critique" | "demo" | "scout"
 
 export type TaskStatus = "queued" | "running" | "done" | "failed"
 

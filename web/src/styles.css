@@ -49,6 +49,7 @@
 	--role-matchmaker: #8447c2;
 	--role-writer: #13807a;
 	--role-critic: #c8463d;
+	--role-scout: #5f7f1e;
 	--role-other: #aeaeb2;
 
 	/* Floating layers only: menus, the palette, toasts, the replay bar */
@@ -91,6 +92,7 @@
 	--role-matchmaker: #b48ae8;
 	--role-writer: #3cbfb4;
 	--role-critic: #f07a70;
+	--role-scout: #a3c95a;
 	--role-other: #5c5c60;
 
 	--float-shadow: 0 0 0 1px #ffffff1a, 0 16px 40px -8px #000000cc;
@@ -125,6 +127,7 @@
 	--color-role-matchmaker: var(--role-matchmaker);
 	--color-role-writer: var(--role-writer);
 	--color-role-critic: var(--role-critic);
+	--color-role-scout: var(--role-scout);
 	--color-role-other: var(--role-other);
 
 	/* shadcn names, so components pulled from registries pick up the theme.

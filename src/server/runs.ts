@@ -143,6 +143,7 @@ export function readResults(dir: string): RunResults {
 		})(),
 		// approvals.json holds decisions made after the run, so it wins over the copy in results.json.
 		approvals: { ...results?.approvals, ...readApprovals(dir) },
+		...(results?.funding ? { funding: results.funding } : {}),
 	}
 }
 
@@ -185,6 +186,7 @@ export function citedIds(results: RunResults): string[] {
 	}
 	for (const proposal of [...results.proposals, ...(results.needsHuman ?? [])]) claims(proposal.claims)
 	for (const verdict of results.verdicts) claims(verdict.rejected.map((r) => r.claim))
+	for (const match of results.funding ?? []) for (const { call } of match.calls) ids.add(call.id)
 	ids.delete("")
 	return [...ids].sort()
 }

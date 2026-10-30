@@ -3,8 +3,10 @@ import { join } from "node:path"
 import { state } from "../../runtime"
 import type { RunResults } from "../../server/api"
 import { citedIds } from "../../server/runs"
+import { callRecord } from "../../data/eucalls"
 import type { Budget, SourceRecord, SourceStore, Task } from "../../types"
 import type { CriticStats } from "../critic"
+import { fundingMarkdown } from "../scout"
 import type { RunOutcome } from "./orchestrator"
 
 /** `out/<run>/summary.json`. The server reads `runId`, `mock`, `budget` and `tasks`; the rest is for people. */
@@ -24,20 +26,24 @@ export interface RunSummary {
 
 /**
  * Write the run's files into `dir` (`out/<run>/`): `proposals/<id>.md` for accepted proposals,
- * `needs-human/<id>.md`, `pairs.json`, `results.json` (RunResults for the web app), `sources.json`
+ * `needs-human/<id>.md`, each with the Funding Scout's calls at the end, `pairs.json`, `results.json` (RunResults for the web app), `sources.json`
  * (every cited record, so the run replays without the dataset) and `summary.json`. The summary goes last,
  * because the server takes it as the sign that the run has ended.
  */
 export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, store: SourceStore): RunSummary {
 	const s = state()
 	const save = (name: string, value: unknown) => writeFileSync(join(dir, name), JSON.stringify(value, null, 2) + "\n")
+	const funding = new Map(outcome.funding.map((match) => [match.pairId, match]))
 	for (const [folder, proposals] of [
 		["proposals", outcome.proposals],
 		["needs-human", outcome.needsHuman],
 	] as const) {
 		if (!proposals.length) continue
 		mkdirSync(join(dir, folder), { recursive: true })
-		for (const proposal of proposals) writeFileSync(join(dir, folder, `${proposal.id}.md`), proposal.markdown)
+		for (const proposal of proposals) {
+			const match = funding.get(proposal.pairId)
+			writeFileSync(join(dir, folder, `${proposal.id}.md`), proposal.markdown.trimEnd() + "\n" + (match ? `\n${fundingMarkdown(match)}` : ""))
+		}
 	}
 
 	save("pairs.json", { chosen: outcome.chosen, pairs: outcome.pairs, noMatches: outcome.noMatches })
@@ -51,6 +57,7 @@ export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, 
 		needsHuman: outcome.needsHuman,
 		verdicts: s.verdicts,
 		approvals: {},
+		funding: outcome.funding,
 	}
 	save("results.json", results)
 	const sources: Record<string, SourceRecord> = {}
@@ -58,6 +65,8 @@ export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, 
 		const record = store.get(id)
 		if (record) sources[id] = record
 	}
+	// The calls are not in any store: the portal's answer is their source.
+	for (const match of outcome.funding) for (const { call } of match.calls) sources[call.id] = callRecord(call)
 	save("sources.json", sources)
 
 	const tasks = [...s.tasks.values()]
