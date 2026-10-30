@@ -1,0 +1,22 @@
+{
+  "name": "einstein-matchmaker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "EINSTEIN matchmaker: concurrent Mozaik agents that pair researchers with company challenges and write proposals",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "match": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mozaik-ai/core": "4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}

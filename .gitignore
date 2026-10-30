@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+data/raw/
+out/tmp/
+docs/design/
+__pycache__/
+*.pyc
+.DS_Store
+out/*-mock/
+.vscode/
+docs/brief/kickoff-email.pdf
