@@ -1,17 +1,17 @@
 /**
- * STUB from #12. Card #20 owns this folder and replaces this screen with the real live run view.
+ * STUB from #12. Card #20 owns this folder and replaces this screen with the real Timeline.
  * It shows how to read the run: useRunView() for agents, loops, tasks and the feed; useRunClock() for time.
  */
 import type { TraceRecord } from "@shared/types"
-import { AnimatePresence, motion } from "motion/react"
 import { useMemo } from "react"
-import { Card, Lane, Meta } from "@/components/ui/card"
+import { Card, Section } from "@/components/ui/card"
 import { EmptyState } from "@/components/ui/empty"
-import { RoleSquare, RoleTag } from "@/components/ui/role"
-import { Status } from "@/components/ui/status"
+import { RoleSquare } from "@/components/ui/role"
+import { StatusDot, type StatusTone } from "@/components/ui/status"
 import { Tooltip } from "@/components/ui/tooltip"
 import * as format from "@/lib/format"
 import { roleColor, roleOf } from "@/lib/roles"
+import { cn } from "@/lib/utils"
 import { sortAgents, type AgentView, type LoopView } from "@/run/fold"
 import { useRun, useRunClock, useRunView } from "@/run/hooks"
 
@@ -27,109 +27,121 @@ export function LiveScreen() {
 	}, [view.loops])
 
 	if (agents.length === 0) {
-		return <EmptyState title="Waiting for agents" className="py-20">Agents appear here as they join the run.</EmptyState>
+		return (
+			<EmptyState title={clock > 0 ? "No agent has joined yet" : "Press play to watch the run"} className="py-20">
+				Each agent gets a lane. A bar is one model call, so stacked bars are agents working at the same time.
+			</EmptyState>
+		)
 	}
 	const span = Math.max(duration, clock, 1)
+	const working = agents.filter((agent) => agent.activity !== "idle").length
 
 	return (
-		<div className="grid gap-4 px-6 pb-28 pt-5 xl:grid-cols-[minmax(0,1fr)_20rem]">
-			<Lane title="Timeline" count={format.clock(clock)}>
-				<Card className="p-0">
-					{agents.map((agent) => (
-						<Row key={agent.id} agent={agent} loops={loopsByAgent.get(agent.id) ?? []} clock={clock} span={span} />
-					))}
+		<div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_18rem]">
+			<Section
+				title="Agents"
+				description={`${format.plural(agents.length, "agent")} · ${working} working now · a bar is one model call`}
+			>
+				<Card className="overflow-hidden p-0">
+					<div className="relative">
+						{agents.map((agent) => (
+							<Lane key={agent.id} agent={agent} loops={loopsByAgent.get(agent.id) ?? []} clock={clock} span={span} />
+						))}
+						<div
+							className="pointer-events-none absolute inset-y-0 w-px bg-ink/50"
+							style={{ left: `calc(10rem + (100% - 10rem) * ${Math.min(1, clock / span)})` }}
+						/>
+					</div>
+					<div className="tabular flex justify-between border-t border-hairline py-2 pl-40 pr-3 text-xs text-ink-subtle">
+						<span>0:00</span>
+						<span>{format.clock(span / 2)}</span>
+						<span>{format.clock(span)}</span>
+					</div>
 				</Card>
-			</Lane>
-			<Lane title="Blackboard" count={view.feed.length}>
-				<Feed records={view.feed} />
-			</Lane>
+			</Section>
+			<Section title="Events" description="The newest at the top.">
+				<Events records={view.feed} />
+			</Section>
 		</div>
 	)
 }
 
-function Row({ agent, loops, clock, span }: { agent: AgentView; loops: LoopView[]; clock: number; span: number }) {
-	const x = (ms: number) => `${(ms / span) * 100}%`
-	const w = (start: number, end: number | undefined) => `${(Math.max(0, (end ?? clock) - start) / span) * 100}%`
+function Lane({ agent, loops, clock, span }: { agent: AgentView; loops: LoopView[]; clock: number; span: number }) {
+	const pct = (ms: number) => `${(ms / span) * 100}%`
 	const color = roleColor(agent.role)
+	const busy = agent.activity !== "idle"
 	return (
 		<div className="flex h-9 items-center border-b border-hairline last:border-b-0">
-			<div className="flex w-40 shrink-0 items-center gap-2 px-3 text-sm">
-				<RoleTag role={agent.role} className={agent.activity === "idle" ? "text-ink-muted" : "text-ink"}>
-					{agent.name}
-				</RoleTag>
+			<div className="flex w-40 shrink-0 items-center gap-2 px-4 text-sm">
+				<RoleSquare role={agent.role} />
+				<span className={cn("truncate", busy ? "text-ink" : "text-ink-muted")}>{agent.name}</span>
 			</div>
 			<div className="relative h-full min-w-0 flex-1 border-l border-hairline">
-				{loops.map((loop) => (
-					<Tooltip key={loop.id} content={`${loop.taskId ?? "loop"} · ${format.duration((loop.endMs ?? clock) - loop.startMs)}`}>
-						<div
-							className="absolute top-2 h-5 rounded-xs"
-							style={{ left: x(loop.startMs), width: w(loop.startMs, loop.endMs), background: `color-mix(in oklab, ${color} 16%, transparent)` }}
-						>
-							{loop.inferences.map((span, i) => (
+				{loops.flatMap((loop) =>
+					loop.inferences.map((call, i) => {
+						const end = call.endMs ?? clock
+						return (
+							<Tooltip key={`${loop.id}-${i}`} content={`${loop.taskId ?? "loop"} · ${format.duration(end - call.startMs)}`}>
 								<div
-									key={i}
-									className="absolute inset-y-1 rounded-[2px]"
-									style={{ left: `${((span.startMs - loop.startMs) / Math.max(1, (loop.endMs ?? clock) - loop.startMs)) * 100}%`, width: `${((Math.max(0, (span.endMs ?? clock) - span.startMs)) / Math.max(1, (loop.endMs ?? clock) - loop.startMs)) * 100}%`, background: color }}
+									className="absolute top-1/2 h-3.5 -translate-y-1/2 rounded-[3px]"
+									style={{
+										left: pct(call.startMs),
+										width: `max(2px, ${pct(Math.max(0, end - call.startMs))})`,
+										background: color,
+										opacity: call.endMs == null ? 1 : 0.85,
+									}}
 								/>
-							))}
-						</div>
-					</Tooltip>
-				))}
+							</Tooltip>
+						)
+					}),
+				)}
 			</div>
 		</div>
 	)
 }
 
-function Feed({ records }: { records: TraceRecord[] }) {
-	// The feed only grows, so a record's index in it is a stable key.
-	const first = Math.max(0, records.length - 14)
-	const recent = records.slice(first).map((record, i) => ({ record, key: first + i })).reverse()
-	if (!recent.length) return <p className="px-2.5 pb-2 text-sm text-ink-muted">Results land here as agents finish tasks.</p>
+function Events({ records }: { records: TraceRecord[] }) {
+	const recent = records.slice(-12).reverse()
+	if (!recent.length) return <p className="text-sm text-ink-muted">Results and Critic verdicts appear here as they happen.</p>
 	return (
-		<AnimatePresence initial={false} mode="popLayout">
-			{recent.map(({ record, key }) => (
-				<motion.div
-					key={key}
-					layout
-					initial={{ opacity: 0, y: -8 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-				>
-					<Card className="p-3">
-						<div className="flex items-center gap-2 text-sm">
-							<RoleSquare role={roleOf(record.agent)} />
-							<span className="text-ink">{record.agent}</span>
-							<span className="ml-auto tabular text-xs text-ink-subtle">{format.clock(record.ms)}</span>
+		<ol className="flex flex-col">
+			{recent.map((record, i) => {
+				const line = describe(record)
+				return (
+					// The feed only grows, so a record's index in it is a stable key.
+					<li key={records.length - i} className="flex gap-3 border-b border-hairline py-2.5 text-sm last:border-b-0">
+						<StatusDot tone={line.tone} className="mt-1.5" />
+						<div className="min-w-0 flex-1">
+							<div className="truncate text-ink">{line.text}</div>
+							<div className="mt-0.5 flex items-center gap-1.5 text-xs text-ink-subtle">
+								<RoleSquare role={roleOf(record.agent)} className="size-2" />
+								{record.agent} · {format.clock(record.ms)}
+							</div>
 						</div>
-						<FeedLine record={record} />
-					</Card>
-				</motion.div>
-			))}
-		</AnimatePresence>
+					</li>
+				)
+			})}
+		</ol>
 	)
 }
 
-function FeedLine({ record }: { record: TraceRecord }) {
+function describe(record: TraceRecord): { text: string; tone: StatusTone } {
 	const data = record.data as { ok?: boolean; kind?: string; id?: string; error?: string } | undefined
 	const subject = `${data?.kind ?? ""} ${data?.id ?? ""}`.trim()
 	switch (record.kind) {
 		case "task.completed":
-			return <Meta className="mt-1" items={[`finished ${record.taskId}`]} />
+			return { text: `Finished ${record.taskId}`, tone: "idle" }
 		case "task.failed":
-			return <Status tone="failed" className="mt-1 text-sm">{`${record.taskId} failed: ${data?.error ?? ""}`}</Status>
+			return { text: `${record.taskId} failed`, tone: "failed" }
 		case "artifact.posted":
-			return <Meta className="mt-1" items={[`posted ${subject}`]} />
+			return { text: `Posted ${subject}`, tone: "idle" }
 		case "critic.reviewing":
-			return <Meta className="mt-1" items={[`reviewing ${subject}`]} />
+			return { text: `Reviewing ${subject}`, tone: "idle" }
 		case "critic.verdict":
-			return (
-				<Status tone={data?.ok ? "working" : "needs"} className="mt-1 text-sm">
-					{data?.ok ? `${subject} passed review` : `${subject} rejected`}
-				</Status>
-			)
+			return data?.ok ? { text: `${subject} passed review`, tone: "working" } : { text: `${subject} rejected`, tone: "needs" }
 		case "critic.sent_back":
-			return <Status tone="needs" className="mt-1 text-sm">{`${subject} sent back to its writer`}</Status>
+			return { text: `${subject} sent back to its writer`, tone: "needs" }
 		default:
-			return <Meta className="mt-1" items={[record.kind]} />
+			return { text: record.kind, tone: "idle" }
 	}
 }
