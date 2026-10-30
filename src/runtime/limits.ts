@@ -2,10 +2,10 @@ export function sleep(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-/** At most `max` holders at once. Waiters get a slot in arrival order. */
+/** At most `max` holders at once. A freed slot goes to the waiter with the highest rank; within one rank, in arrival order. */
 export class Semaphore {
 	private active = 0
-	private readonly queue: Array<() => void> = []
+	private readonly queue: Array<{ rank: number; resolve: () => void }> = []
 
 	constructor(readonly max: number) {}
 
@@ -13,18 +13,21 @@ export class Semaphore {
 		return this.active
 	}
 
-	async acquire(): Promise<void> {
+	async acquire(rank = 0): Promise<void> {
 		if (this.active < this.max) {
 			this.active++
 			return
 		}
 		// release() hands its slot straight to us, so `active` does not change.
-		await new Promise<void>((resolve) => this.queue.push(resolve))
+		await new Promise<void>((resolve) => {
+			const behind = this.queue.findIndex((waiter) => waiter.rank < rank)
+			this.queue.splice(behind < 0 ? this.queue.length : behind, 0, { rank, resolve })
+		})
 	}
 
 	release(): void {
 		const next = this.queue.shift()
-		if (next) next()
+		if (next) next.resolve()
 		else this.active--
 	}
 }
