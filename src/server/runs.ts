@@ -139,7 +139,8 @@ export function readResults(dir: string): RunResults {
 			const found = pick<CriticVerdict>("verdicts", read("verdicts.json"))
 			return found.length ? found : traceVerdicts(dir)
 		})(),
-		approvals: results?.approvals ?? readApprovals(dir),
+		// approvals.json holds decisions made after the run, so it wins over the copy in results.json.
+		approvals: { ...results?.approvals, ...readApprovals(dir) },
 	}
 }
 
