@@ -6,7 +6,7 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import type { SourceStore } from "../types"
-import { abstractText, createOpenAlex, withWorks, workQueries } from "./openalex"
+import { abstractText, clipAbstract, createOpenAlex, withWorks, workQueries } from "./openalex"
 
 const raw = (id: string, title: string, extra: Record<string, unknown> = {}) => ({
 	id: `https://openalex.org/${id}`,
@@ -32,6 +32,14 @@ describe("openalex", () => {
 	it("rebuilds an abstract from its inverted index", () => {
 		assert.equal(abstractText({ world: [1], Hello: [0], again: [3], "hello,": [2] }), "Hello world hello, again")
 		assert.equal(abstractText(null), "")
+	})
+
+	it("cuts a long abstract after a whole sentence, never between a figure and its scope", () => {
+		// W4293154696: a cut at 900 chars left "6.52, 3." and dropped "for 547 PTBDB ECG records".
+		const text = "It was tested on Physionet. An average CR of 6.52, 3.82 and 2.49 was achieved for 547 PTBDB records, respectively. More."
+		assert.equal(clipAbstract(text, 60), "It was tested on Physionet. …")
+		assert.equal(clipAbstract(text, 200), text)
+		assert.equal(clipAbstract("No sentence end here at all", 10), "No sentenc…")
 	})
 
 	it("sends two search terms per query, lower case, without operator characters", () => {

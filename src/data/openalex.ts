@@ -46,7 +46,7 @@ export interface OpenAlex {
 }
 
 const API = "https://api.openalex.org/works"
-const ABSTRACT_CHARS = 900
+const ABSTRACT_CHARS = 1500
 
 /** Work ids look like `W4293154696`. */
 export const isWorkId = (id: string) => /^W\d+$/.test(id)
@@ -137,6 +137,18 @@ export function withWorks(dataset: SourceStore, works: SourceStore): SourceStore
 	return { get: (id) => store(id).get(id), has: (id) => store(id).has(id) }
 }
 
+/**
+ * An abstract up to `max` chars, cut after a whole sentence. A cut inside a sentence can split a figure from the words
+ * that scope it ("6.52, 3.82 and 2.49 for ... records, respectively"), and the Writer and the Critic read the same cut text.
+ */
+export function clipAbstract(text: string, max = ABSTRACT_CHARS): string {
+	if (text.length <= max) return text
+	// A sentence ends at . ! or ? before a space and a capital, so "6.52" and "e.g. the" do not end one.
+	const ends = [...text.matchAll(/[.!?](?=\s+[A-Z(])/g)].map((match) => match.index + 1).filter((end) => end <= max)
+	const end = ends.at(-1)
+	return end ? `${text.slice(0, end)} …` : `${text.slice(0, max).trimEnd()}…`
+}
+
 /** OpenAlex keeps an abstract as word → positions. */
 export function abstractText(index: Record<string, number[]> | null | undefined): string {
 	if (!index) return ""
@@ -165,7 +177,7 @@ function toWork(raw: RawWork): PriorWork | undefined {
 		year: raw.publication_year,
 		venue: raw.primary_location?.source?.display_name ?? undefined,
 		citedBy: raw.cited_by_count ?? 0,
-		abstract: abstract.length > ABSTRACT_CHARS ? `${abstract.slice(0, ABSTRACT_CHARS).trimEnd()}…` : abstract,
+		abstract: clipAbstract(abstract),
 		url: `https://openalex.org/${id}`,
 	}
 }
