@@ -179,7 +179,7 @@ filter on subq-snap-1.1), each after one more fix. Run 5 also has #33's OpenAlex
   `npm run critic:eval` found (below). One eval before and after: uncited details caught 2 → 1 of 7, wrong claims 8 → 7 of 23,
   false rejects 6 → 3 of 98. That is no gain, so it was reverted. A check without a model looks better on the same labels: names and
   numbers in a claim that its own records do not contain catch 3 of the 7 ("Nordic", "NTP", "AWS"). It flags 6 of 98 good claims,
-  4 of them for dataset ids and "-based" words that are easy to leave out.
+  4 of them for dataset ids and "-based" words that are easy to leave out. A stricter form of it is now a code check (below).
 - **Tried, not kept: each claim's own records listed under it** (id, kind, title), with the rule "check each claim only against the
   records listed with it". Each record's text still came once, under "Sources". Two evals before and two after, Sonnet alone: wrong
   claims caught 10, 11 → 7, 7 of 23, uncited details 2, 2 → 1, 0 of 7, false rejects 2, 2 → 2, 3 of 98. That is no gain, so it was
@@ -190,37 +190,50 @@ filter on subq-snap-1.1), each after one more fix. Run 5 also has #33's OpenAlex
 The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds all 129 claims of
 C001, C005 and C012 from both runs, each with its cited ids, a label and a note on why. The Critic had passed every one of them.
 `npm run critic:eval` runs only the Critic on them, as on a proposal in a match: the code checks, then both reviewers. It sends the
-claims and their records, with no free text. Measured on 30 October in four runs of the same prompt (one at commit 341e81d, three
-later), with the settings in `.env`: Sonnet 4.6, and subq-snap-1.1 as the second reviewer. Each run is 12 calls, 51–72 s and
-$0.32–0.36 at API prices. The table gives the lowest and the highest count of the four runs.
+claims and their records, with no free text. Measured on 30 October in two runs at commit 146d0b3, with the settings in `.env`:
+Sonnet 4.6, and subq-snap-1.1 as the second reviewer. Each run is 12 calls, 49–70 s and $0.32–0.35 at API prices. The table gives
+the lowest and the highest count of the two runs. A claim that a code check rejects does not go to the reviewers.
 
-| Label | Claims | Rejected | Sonnet 4.6 alone | subq-snap-1.1 alone |
-| --- | --- | --- | --- | --- |
-| Judgement added to a fact | 9 | 4–5 | 4–5 | 0 |
-| Detail from an uncited record | 7 | 1–3 | 0–2 | 1 |
-| Widened scope | 7 | 2–4 | 2–4 | 0 |
-| **Wrong, all** | **23** | **8–12 (35–52%)** | 7–11 (30–48%) | 1 (4%) |
-| Ok | 98 | **1–6 (1–6%)** | 1–6 | 0 |
-| Borderline (not scored) | 8 | 1–2 | 1–2 | 0 |
+| Label | Claims | Rejected | By code | Sonnet 4.6 alone | subq-snap-1.1 alone |
+| --- | --- | --- | --- | --- | --- |
+| Judgement added to a fact | 9 | 7–8 | 0 | 7–8 | 0 |
+| Detail from an uncited record | 7 | 5–6 | 4 | 1–2 | 0 |
+| Widened scope | 7 | 5–6 | 1 | 4–5 | 0 |
+| **Wrong, all** | **23** | **18–19 (78–83%)** | 5 (22%) | 13–14 (57–61%) | 0 |
+| Ok | 98 | **5–6 (5–6%)** | 0 | 5–6 | 0 |
+| Borderline (not scored) | 8 | 3 | 0 | 3 | 0 |
 
-Of the 15 wrong claims from the before run, the Critic now rejects 4–7. The old rubric rejected none. Of the 8 from the after run,
-it rejects 4–5, although nearly the same rubric passed all 8 in run 2. The same prompt catches 8 to 12 wrong claims from one run to
-the next, so a change must do better than that spread to show in one or two runs.
+**Until commit 33823c0 the eval reviewed only 102 of the 129 claims.** Two proposals share the id C012-CH1-R0564, the same pair in
+the before and the after run. The second one overwrote the first on the blackboard before its review, so the 27 claims of the before
+C012 proposal passed unread. Every earlier eval, the "Tried, not kept" ones above too, scored 16 wrong and 79 ok claims, not 23 and
+98. On those 102 claims the two runs compare with the four earlier runs of the same prompt (one at commit 341e81d, three later):
+
+| On the 102 claims the old eval reviewed | 4 runs before the code check | 2 runs with it |
+| --- | --- | --- |
+| Wrong claims caught, of 16 | 8–12 | 12–13 |
+| Details from an uncited record caught, of 6 | 1–3 | 4–5 |
+| Ok claims rejected, of 79 | 1–6 | 3–4 |
 
 What the numbers show:
-- **Details from an uncited record are the blind spot: Sonnet caught 0–2 of 7.** The two it catches are always the "data partners"
-  claims of C001-CH1-R1008. subq-snap-1.1 catches "AWS" in every run. The other four pass in every run: "Nordic", "paid" and "NTP",
-  "alerts" with "not a black-box score", and "over 72 hours". In all 7, the record that holds the word is in the same prompt, because
-  another claim of the proposal cites it. Two layouts that tie each claim to its own records did not help (see "Tried, not kept"
-  above). "Nordic" may not even come from the prompt: the cited C005 names the nRF52840 chip, which Nordic makes. The eval keeps no
-  reason for a claim that passes, so why the other three pass is not known.
-- **Judgement and widened scope: 6–9 of 16.** The rubric now catches "directly addressing ArmaturaSec's false positive rate problem"
-  and "would address the clinical constraint". In all four runs it passes "the core engine for change detection between scan
-  snapshots" and "matching the structured output requirement".
-- **subq-snap-1.1 adds one catch in every run** ("AWS", which only the uncited company record names) and no false reject.
-- **False rejects: 1–6 of 98, 2 in a typical run.** Two come back in three of the four runs. The Critic calls "making the automation
-  unreliable" a judgement, where the hand-check took it as following from the blog's "fragile". It also rejects that the Bash scripts
-  "break when Nessus changes its output format": it finds the scripts in CH1 and the format changes in the blog, but no text that
-  ties the two.
+- **A code check now catches 4 of the 7 details from an uncited record, in every run and with no false reject:** "Nordic", "NTP",
+  "over 72 hours" and "AWS". The prompt did not: Sonnet caught 0–2 of 7 in each of four runs, and two layouts that tie each claim to
+  its own records did not help (see "Tried, not kept" above). The check looks at a claim's names (a capital inside a word or a
+  sentence, letters with digits), numbers, and a number with the word after it. One that the claim's own records do not hold but
+  another record of the artifact does is rejected as `uncited-detail`, and the reason names that record:
+  `"AWS" is not in C005-CH2 but is in C005, which the claim does not cite.` The producer can cite C005 or leave the word out.
+- **What the check leaves alone:** the researcher's and the company's own names, an acronym that the cited record spells out ("ICS"
+  for "industrial control systems"), and a clause that says what is missing ("BACnet/IP does not appear in the listed works"). It
+  also rejects one widened claim, for "BACnet/IP" where the cited records say only BACnet.
+- **Plain words do not work as a code check.** A word that only one other record of the artifact holds flags 32 of the 98 ok claims.
+  Two such words in a row flag 18. So the check misses "data partners" (C001-CH1-R1008) and "not a black-box score". Sonnet catches
+  1–2 of those 3.
+- **subq-snap-1.1 now catches nothing.** Its one catch in every earlier run was "AWS", which the code check now rejects first.
+- **The before C012 proposal is reviewed for the first time.** Sonnet catches "the core engine for change detection between scan
+  snapshots" and "matching the structured output requirement" in both runs. The earlier text said it passed them in all four runs, but
+  it never saw them. It passes "which requires reducing the initial engagement phase from four days to one day" in both runs.
+- **False rejects: 5–6 of 98, all by Sonnet, none by code.** Two are in the newly reviewed proposal and come back in both runs. Sonnet
+  calls "the pipeline must replace" and "should be scoped carefully against this constraint" editorial. On the 102 claims of the old
+  eval it rejects 3–4 of 79, in the range of the earlier runs. It also rejects "four days spent on reconnaissance" in both runs: it
+  reads "a few days" in CH1 and misses "from four days to one" further down the same record.
 
 Each run writes every claim with its verdict, and the reason for a reject, to `out/critic-eval/`. Run it again after a rubric change; `--mock` costs nothing.
