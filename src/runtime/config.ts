@@ -7,6 +7,7 @@ import {
 	PROVIDER_LIMITS,
 	ROUTES,
 	RUNNER,
+	SUBQ,
 	type ProviderLimits,
 } from "../../config/models"
 import type { AgentRole, BudgetLimits } from "../types"
@@ -15,13 +16,14 @@ import type { AgentRole, BudgetLimits } from "../types"
 
 const PROVIDERS = new Map(supportedModels.map((model) => [model.specification.name, model.specification.provider]))
 
-/** `anthropic`, `openai`, `google`, ... or `unknown` for a model Mozaik does not list (e.g. a mock name). */
+/** `anthropic`, `openai`, `google`, `subq`, ... or `unknown` for a model Mozaik does not list (e.g. a mock name). */
 export function providerOf(model: string): string {
-	return PROVIDERS.get(model) ?? "unknown"
+	return PROVIDERS.get(model) ?? (model.startsWith("subq-") ? "subq" : "unknown")
 }
 
-/** Providers whose key is set. With LOCAL_CLAUDE on, only Anthropic, through the local Claude login. */
+/** Providers whose key is set. With SUBQ on, only SubQ; with LOCAL_CLAUDE on, only Anthropic, through the local Claude login. */
 export function providersWithKeys(): string[] {
+	if (subq()) return ["subq"]
 	if (localClaude()) return ["anthropic"]
 	return Object.entries(PROVIDER_KEYS)
 		.filter(([, name]) => process.env[name])
@@ -47,15 +49,38 @@ export function localClaudeSettings(): LocalClaudeSettings {
 	}
 }
 
+/** Model calls go to SubQ's Chat Completions with SUBQ_API_KEY. Wins over LOCAL_CLAUDE. */
+export function subq(): boolean {
+	return /^(1|true|yes|on)$/i.test(process.env.SUBQ ?? "")
+}
+
+export interface SubqSettings {
+	baseUrl: string
+	apiKey: string | undefined
+	model: string
+	reasoningEffort: string
+}
+
+export function subqSettings(): SubqSettings {
+	return {
+		baseUrl: process.env.SUBQ_BASE_URL || SUBQ.baseUrl,
+		apiKey: process.env.SUBQ_API_KEY,
+		model: process.env.SUBQ_MODEL || SUBQ.model,
+		reasoningEffort: process.env.SUBQ_REASONING_EFFORT || SUBQ.reasoningEffort,
+	}
+}
+
 const turns = new Map<AgentRole, number>()
 
 /**
  * The model for a role's next task, from config/models.ts.
  * Only models whose provider has a key; with no key at all (a mock run), every listed model.
  * A spread role takes the next usable model in turn, the others always the first.
+ * With SUBQ on, every role runs on SUBQ_MODEL, unless MODEL_<ROLE> pins it to another `subq-` model.
  */
 export function modelFor(role: AgentRole): string {
 	const pinned = process.env[`MODEL_${role.toUpperCase()}`]
+	if (subq()) return pinned?.startsWith("subq-") ? pinned : subqSettings().model
 	if (pinned) return pinned
 	const route = ROUTES[role]
 	const keyed = providersWithKeys()

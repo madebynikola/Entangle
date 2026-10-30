@@ -44,6 +44,8 @@ export const PROVIDER_LIMITS: Record<string, ProviderLimits> = {
 	anthropic: { rpm: 1000, itpm: 400_000 },
 	openai: { rpm: 500, itpm: 500_000 },
 	google: { rpm: 1000, itpm: 1_000_000 },
+	// SubQ publishes no limits: off, and a 429 pauses it.
+	subq: { rpm: 0, itpm: 0 },
 }
 
 export const RUNNER = {
@@ -71,6 +73,20 @@ export const LOCAL_CLAUDE = {
 	timeoutMs: 5 * 60_000,
 	/** The Claude Code executable [CLAUDE_BIN]. */
 	command: "claude",
+}
+
+/**
+ * SubQ instead of the providers above [SUBQ=1, or `--subq`]: every model call goes to SubQ's OpenAI-compatible
+ * Chat Completions with SUBQ_API_KEY, and every role runs on one model. Wins over LOCAL_CLAUDE.
+ * Jev (typesafe.ai) and subq-snap only answer typed decisions (choice, score, yes/no), so they cannot run the agents.
+ */
+export const SUBQ = {
+	/** [SUBQ_BASE_URL] */
+	baseUrl: "https://api.subq.ai/v1",
+	/** The model for every role [SUBQ_MODEL]. MODEL_<ROLE> still pins a role to another `subq-` model. */
+	model: "subq-preview",
+	/** For calls that set no effort. SubQ has no bounded default, and max_tokens covers reasoning [SUBQ_REASONING_EFFORT]. */
+	reasoningEffort: "none",
 }
 
 /** [BUDGET_TOKENS, BUDGET_USD, BUDGET_MINUTES, MAX_ATTEMPTS] */
