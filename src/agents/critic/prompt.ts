@@ -1,4 +1,5 @@
 import type { StructuredOutputFormat } from "@mozaik-ai/core"
+import type { Decision, DecisionQuestion } from "../../runtime"
 import type { ArtifactKind, Claim, RejectedClaim, SourceRecord } from "../../types"
 import type { Subject } from "./checks"
 import { clip } from "./text"
@@ -121,4 +122,43 @@ export function parseReview(output: string | undefined, claims: Claim[]): Reject
 		else if (!check.supported) rejected.push({ claim, reason: check.reason, check: "unsupported" })
 	})
 	return rejected
+}
+
+const SUPPORTED =
+	"Every fact in the claim (topic, skill, method, result, number, year, role, product, tie) is stated in, or follows " +
+	"directly from, the text of the records it cites. Leaving out details of the text is fine."
+const NOT_SUPPORTED =
+	"The claim adds or changes a fact the cited text does not state (a paper, number, tie, stronger result, wider scope, " +
+	"other year or role), gives a record to a person it does not link, says two researchers worked together with no record " +
+	"linking both, gives a private reason for availability, or names someone who cannot lead as principal investigator."
+
+/**
+ * The review as typed questions for a decision model (subq-snap, Jev): one yes/no question per claim, all against
+ * the review message. These models write no reasons, so a rejected claim's reason gives the probability instead.
+ */
+export function reviewDecision(message: string, claims: Claim[], threshold: number): Decision {
+	const name = (i: number) => `claim_${i + 1}`
+	const questions: Record<string, DecisionQuestion> = {}
+	claims.forEach((claim, i) => {
+		questions[name(i)] = {
+			type: "noul",
+			instructions: `Is claim ${i + 1} supported by the text of the records it cites (${claim.sourceIds.join(", ")})? The claim: ${claim.text}`,
+			criteria: { true: SUPPORTED, false: NOT_SUPPORTED },
+		}
+	})
+	return {
+		state: message,
+		questions,
+		answer(answers) {
+			const checks: ReviewCheck[] = []
+			claims.forEach((_, i) => {
+				const yes = answers[name(i)]?.noul
+				if (typeof yes !== "number") return
+				const supported = yes >= threshold
+				const reason = `${Math.round(yes * 100)}% likely that the cited text supports it.`
+				checks.push({ claim: i + 1, reason, supported })
+			})
+			return JSON.stringify({ checks })
+		},
+	}
 }

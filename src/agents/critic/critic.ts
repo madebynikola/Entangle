@@ -8,6 +8,7 @@ import {
 } from "@mozaik-ai/core"
 import {
 	MockInferenceRunner,
+	SnapRunner,
 	createTask,
 	join,
 	providerOf,
@@ -16,7 +17,10 @@ import {
 	runTask,
 	sendEvent,
 	state,
+	subq,
+	subqSettings,
 	whenSettled,
+	type Decider,
 	type MockResponder,
 } from "../../runtime"
 import type {
@@ -34,7 +38,7 @@ import type {
 import { ROUTES } from "../../../config/models"
 import { checkByCode, claimsOf, readArtifact, removeArtifact, type Artifact } from "./checks"
 import { lexicalReview, strictReview } from "./mock"
-import { CRITIC_INSTRUCTION, REVIEW_SCHEMA, parseReview, reviewMessage, type ReviewCheck } from "./prompt"
+import { CRITIC_INSTRUCTION, REVIEW_SCHEMA, parseReview, reviewDecision, reviewMessage, type ReviewCheck } from "./prompt"
 import {
 	ARTIFACT_POSTED,
 	CRITIC_DROPPED,
@@ -59,7 +63,7 @@ export interface CriticOptions {
 	 * being dropped. Default `["proposal"]`; `[]` turns the second reviewer off.
 	 */
 	dualReview?: ArtifactKind[]
-	/** The second reviewer's model. Default: `secondCriticModel()` of the first one's. */
+	/** The second reviewer's model. Default: `secondCriticModel()` of the first one's; a decision model with SUBQ on. */
 	secondModel?: string | (() => string)
 	/** Send-backs per artifact. The next rejection after the last one drops the artifact (or escalates it). Default 2. */
 	maxAttempts?: number
@@ -113,6 +117,8 @@ interface Review {
 }
 
 interface Job {
+	/** The review message the task was run with. */
+	message: string
 	claims: Claim[]
 	sources: Map<string, SourceRecord>
 	subjectLine: string
@@ -306,11 +312,11 @@ export function createCritic(options: CriticOptions): Critic {
 	}
 
 	/** One reviewer's model check, as its own critique task. A failed call or an unusable answer is tried once more. */
-	async function vote(reviewer: Reviewer, id: string, message: string, job: Omit<Job, "mock">, header: object): Promise<Vote> {
+	async function vote(reviewer: Reviewer, id: string, message: string, job: Omit<Job, "mock" | "message">, header: object): Promise<Vote> {
 		const task = createTask("critique", reviewer.agent, id)
 		const model = reviewer.model()
 		emit(CRITIC_REVIEWING, { taskId: task.id, ...header, modelCheck: job.claims.length, reviewer: reviewer.name, model }, reviewer.agent)
-		jobs.set(task.id, { ...job, mock: reviewer.mock })
+		jobs.set(task.id, { ...job, message, mock: reviewer.mock })
 		let rejected: RejectedClaim[] | undefined
 		let error = ""
 		for (let attempt = 0; attempt < MODEL_TRIES && !rejected; attempt++) {
@@ -405,13 +411,23 @@ export function createCritic(options: CriticOptions): Critic {
 		}
 	}
 
+	const jobOf = (contextId: string) => {
+		const taskId = state().contextTasks.get(contextId)
+		return taskId ? jobs.get(taskId) : undefined
+	}
 	const mockResponder: MockResponder = (input) => {
-		const taskId = state().contextTasks.get(input.context.id)
-		const job = taskId ? jobs.get(taskId) : undefined
+		const job = jobOf(input.context.id)
 		if (!job) return undefined
 		return JSON.stringify({ checks: job.mock(job.claims, job.sources, job.subjectLine) })
 	}
-	mockOf(resolveRuntime().getInferenceRunner())?.responders.push(mockResponder)
+	// A reviewer on a decision model (subq-snap, Jev) gets the review as one yes/no question per claim.
+	const decider: Decider = (input) => {
+		const job = jobOf(input.context.id)
+		return job ? reviewDecision(job.message, job.claims, subqSettings().threshold) : undefined
+	}
+	const runner = resolveRuntime().getInferenceRunner()
+	innerOf(runner, MockInferenceRunner)?.responders.push(mockResponder)
+	innerOf(runner, SnapRunner)?.deciders.push(decider)
 
 	return {
 		agent,
@@ -436,10 +452,10 @@ export function createCritic(options: CriticOptions): Critic {
 	}
 }
 
-/** The mock under the runtime's runner, which may wrap it (the ResilientRunner keeps it as `inner`). */
-function mockOf(runner: InferenceRunner | undefined): MockInferenceRunner | undefined {
+/** A runner of this type under the runtime's runner, which may wrap it (the ResilientRunner keeps it as `inner`). */
+function innerOf<T extends InferenceRunner>(runner: InferenceRunner | undefined, type: new (...args: never[]) => T): T | undefined {
 	for (let depth = 0; runner && depth < 4; depth++) {
-		if (runner instanceof MockInferenceRunner) return runner
+		if (runner instanceof type) return runner
 		runner = (runner as { inner?: InferenceRunner }).inner
 	}
 	return undefined
@@ -473,12 +489,14 @@ function mergeVotes(claims: Claim[], votes: Vote[]): RejectedClaim[] {
 const SECOND_FALLBACK = ["claude-haiku-4-5", "gpt-5.5", "gemini-3.5-flash"]
 
 /**
- * The second reviewer's model [MODEL_CRITIC_2]: else the first usable model on the critic route (config/models.ts)
+ * The second reviewer's model [MODEL_CRITIC_2]: else the decision model with SUBQ on [SUBQ_MODEL],
+ * else the first usable model on the critic route (config/models.ts)
  * from another provider than `primary`, else another usable model. Usable: its provider has a key, or no key is set.
  */
 export function secondCriticModel(primary: string): string {
 	const pinned = process.env.MODEL_CRITIC_2
 	if (pinned) return pinned
+	if (subq()) return subqSettings().model
 	const keyed = providersWithKeys()
 	const usable = [...ROUTES.critic.models, ...SECOND_FALLBACK].filter(
 		(model) => model !== primary && (!keyed.length || keyed.includes(providerOf(model))),
