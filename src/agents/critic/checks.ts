@@ -289,6 +289,9 @@ function belongs(record: SourceRecord, subject: Subject): boolean {
 		case "challenge":
 		case "page":
 			return subject.companyId !== undefined && record.companyId === subject.companyId
+		// Published work outside the pair: any artifact may cite it. The model check reads what it reports.
+		case "work":
+			return true
 		default:
 			return false
 	}

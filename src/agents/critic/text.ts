@@ -34,9 +34,9 @@ export function sameName(a: string, b: string): boolean {
 	return x.every((token) => y.includes(token)) || y.every((token) => x.includes(token))
 }
 
-/** Dataset ids written in free text: R0001, C001, C001-CH1, SYN-PUB-00001, SYN-PRJ-0001, SYN-PAT-001. */
+/** Ids written in free text: R0001, C001, C001-CH1, SYN-PUB-00001, SYN-PRJ-0001, SYN-PAT-001, and OpenAlex works (W4293154696). */
 export function idsIn(text: string): string[] {
-	return [...new Set(text.match(/\b(?:R\d{4}|C\d{3}(?:-CH\d+)?|SYN-(?:PUB|PRJ|PAT)-\d+)\b/g) ?? [])]
+	return [...new Set(text.match(/\b(?:R\d{4}|C\d{3}(?:-CH\d+)?|SYN-(?:PUB|PRJ|PAT)-\d+|W\d{6,})\b/g) ?? [])]
 }
 
 export function clip(text: string, max: number): string {
