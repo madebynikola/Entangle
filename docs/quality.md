@@ -146,3 +146,37 @@ fix task, and the producer's fixed artifact as a new `artifact.posted`. Run 2, p
 
 To list a run's interventions: `grep '"kind":"critic.verdict"' out/<run>/trace.jsonl`. The web app shows the same history per
 proposal under Results.
+
+## The Critic on the labelled claims (measured)
+
+The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds all 129 claims of
+C001, C005 and C012 from both runs, each with its cited ids, a label and a note on why. The Critic had passed every one of them.
+`npm run critic:eval` runs only the Critic on them, as on a proposal in a match: the code checks, then both reviewers. It sends the
+claims and their records, with no free text. Measured on 30 October at commit 341e81d, in one run with the settings in `.env`:
+Sonnet 4.6, and subq-snap-1.1 as the second reviewer. 12 calls, 66 s, $0.36 at API prices.
+
+| Label | Claims | Rejected | Sonnet 4.6 alone | subq-snap-1.1 alone |
+| --- | --- | --- | --- | --- |
+| Judgement added to a fact | 9 | 4 | 4 | 0 |
+| Detail from an uncited record | 7 | 1 | 0 | 1 |
+| Widened scope | 7 | 3 | 3 | 0 |
+| **Wrong, all** | **23** | **8 (35%)** | 7 (30%) | 1 (4%) |
+| Ok | 98 | **1 (1%)** | 1 | 0 |
+| Borderline (not scored) | 8 | 2 | 2 | 0 |
+
+Of the 15 wrong claims from the before run, the Critic now rejects 4. The old rubric rejected none. Of the 8 from the after run,
+it rejects 4, although nearly the same rubric passed all 8 in run 2. One run cannot show how much of that is chance.
+
+What the numbers show:
+- **Details from an uncited record are the blind spot: Sonnet caught 0 of 7.** In all 7, the record that holds the word is in the
+  same prompt, because another claim of the proposal cites it. The review lists every record once, under "Sources". So the model
+  finds "Nordic" or "data partners" there, and does not check that this claim cites that record. A possible fix: list each claim's
+  own records with it.
+- **Judgement and widened scope: 7 of 16.** The rubric now catches "directly addressing ArmaturaSec's false positive rate problem"
+  and "would address the clinical constraint". It still passes "the core engine for change detection between scan snapshots" and
+  "matching the structured output requirement".
+- **subq-snap-1.1 adds one catch** ("AWS", which only the uncited company record names) and no false reject.
+- **False rejects are rare: 1 of 98.** The Critic called "making the automation unreliable" a judgement. The hand-check had taken it
+  as following from the blog's "fragile".
+
+Each run writes every claim with its verdict and reason to `out/critic-eval/`. Run it again after a rubric change; `--mock` costs nothing.
