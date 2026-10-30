@@ -44,6 +44,9 @@ Free text may propose new work and new data ("collect", "label", "set up", "meas
 claims. List a sentence only when it:
 - presents as already true a fact about the company or the researcher (data, recordings, a dataset size, history,
   equipment, staff, a skill, what a method does, a past result) that neither the claims nor the sources state;
+- works on data the company is not shown to have: for every archive, dataset, log, set of past scans or recordings the
+  plan uses as existing, find the claim or source that says the company has it, with the properties the text gives it
+  (size, period, format, the device it comes from, its labels). Data the plan says it will collect is fine;
 - says what a side lacks or cannot do, and the claims and sources do not say so, or say the opposite;
 - contradicts a claim or a source;
 - plans work that breaks a limit the company states (a rate it may not go below, hardware it cannot change).
