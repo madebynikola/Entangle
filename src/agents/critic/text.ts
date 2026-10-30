@@ -34,8 +34,11 @@ export function sameName(a: string, b: string): boolean {
 	return x.every((token) => y.includes(token)) || y.every((token) => x.includes(token))
 }
 
-/** Dataset ids, OpenAlex works and page paths in text, whose letters and digits are not names or numbers a claim states. */
-export const IDS_IN_TEXT = /\b(?:R\d{4}|C\d{3}(?:-CH\d+)?|SYN-(?:PUB|PRJ|PAT)-\d+|W\d{6,})\b|\bC\d{3}\/\S+/g
+/**
+ * Dataset ids, OpenAlex works and page paths in text, whose letters and digits are not names or numbers a claim states.
+ * Page paths come first, or "C005" alone matches and leaves "/job/2024-02-05". A full stop after one still ends the sentence.
+ */
+export const IDS_IN_TEXT = /\bC\d{3}\/\S*[^\s.,;:)\]]|\b(?:R\d{4}|C\d{3}(?:-CH\d+)?|SYN-(?:PUB|PRJ|PAT)-\d+|W\d{6,})\b/g
 
 /** Ids written in free text: R0001, C001, C001-CH1, SYN-PUB-00001, SYN-PRJ-0001, SYN-PAT-001, and OpenAlex works (W4293154696). */
 export function idsIn(text: string): string[] {
