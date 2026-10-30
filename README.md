@@ -49,6 +49,9 @@ A mock run plants one invented claim in a need, a profile and a proposal, so you
      [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) instead. `--subq` does the same for one run.
    - Optional, `SCREEN=1`: the same decision model, with the same key, filters each shortlist before profiling. It answers
      one yes/no question per candidate in one call, and only the most likely to fit are profiled. `--screen` does the same for one run.
+   - Optional, `OPENALEX_API_KEY=...` (free, from [openalex.org/settings/api](https://openalex.org/settings/api)): each proposal
+     gets a **Prior work** section. Before a Writer starts, it asks [OpenAlex](https://openalex.org) for recent, cited works on the
+     need's search terms, and the proposal may cite up to two of them by work id (`W4293154696`). Mock runs stay offline.
 3. **Run:**
 
 ```sh
@@ -64,7 +67,7 @@ Everything lands in `out/<run-id>/`:
 | `proposals/<id>.md` | The proposals the Critic accepted |
 | `needs-human/<id>.md` | Proposals the Critic could not clear: a person decides |
 | `pairs.json`, `results.json` | Needs, profiles, pairs, "no match" outcomes, proposals and verdicts |
-| `sources.json` | Every record a claim cites, so the run replays without the dataset |
+| `sources.json` | Every record a claim cites, OpenAlex works included, so the run replays without the dataset or the network |
 | `summary.json` | Counts, Critic statistics, failures, budget, and time, tokens and cost per task |
 
 `npm run replay -- out/<run-id>` opens any run folder. `npm run dev` opens the app with live runs as they happen.
@@ -96,7 +99,7 @@ They read and write one shared blackboard and talk through events on one bus, wh
 | Shortlist | 1 | none (subq-snap with `SCREEN=1`) | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped. With `SCREEN=1`, the decision model rates 8 and only the 4 most likely to fit stay |
 | Research Profiler | 6 | Haiku 4.5 | One shortlisted researcher: profile, publications, projects, patents | A profile: expertise and industry facts, each backed by records, availability as timing only, and whether they can lead |
 | Matchmaker | 1 | Sonnet 4.6 | One need and its candidate profiles | Pairs with a fit to this problem (0–1), why these two, the problem they solve and the risks; or "no good match" with the reason |
-| Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |
+| Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records, and recent OpenAlex works on the need (with `OPENALEX_API_KEY`) | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, prior work, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |
 | Critic, Critic 2 | 2 | Sonnet 4.6, Haiku 4.5 | Every artifact the moment it is posted | Verdicts; rejected claims sent back to their producer |
 
 ### Work starts when its input exists, not in stages
@@ -117,7 +120,8 @@ The Orchestrator hands out work as events arrive. It makes no model calls.
 
 `MatchState` (`src/runtime/state.ts`) holds `needs`, `profiles`, `candidates`, `noMatches`, `proposals`, `verdicts`, `tasks` and `budget`,
 keyed by dataset id. Every fact on it is a `Claim { text, sourceIds }` that cites dataset ids: `R0001`, `C001-CH1`, `SYN-PUB-00001`,
-`SYN-PRJ-0001`, `SYN-PAT-001`, or a company page as `C001/job/2024-02-05/<title>`. Producers announce each artifact with an
+`SYN-PRJ-0001`, `SYN-PAT-001`, or a company page as `C001/job/2024-02-05/<title>`. A proposal's Prior work cites real OpenAlex
+works as `W4293154696`. Producers announce each artifact with an
 `artifact.posted` event. The web app and the trace read the same state.
 
 ### The Critic loop
@@ -126,6 +130,7 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
 
 1. **Code check, no model.** Each claim cites at least one source. Each cited id exists. Each cited record belongs to the artifact's
    researcher or company: by id, never by name. This catches same-name co-authors and company staff who share a researcher's name.
+   An OpenAlex work id exists only if OpenAlex returned it in this run, so an invented paper fails here.
 2. **Model check.** The reviewer reads the cited records and decides, claim by claim, whether the record says what the claim says.
    It gives the reason before the verdict. A re-posted artifact only has its changed claims checked again.
    Proposals get a **second reviewer** at the same time, on another model and in its own context. A claim passes only if both pass it,
@@ -279,8 +284,10 @@ into "here is who at the university works on it":
 
 ## Responsible use of data
 
-- **Only the provided dataset.** Every researcher, company and record is synthetic, but the names look real and the faculties are real,
-  so we treat it as personal data. No agent searches the web or a real API for a person: a synthetic name would match real people.
+- **Only the provided dataset, and published work by topic.** Every researcher, company and record is synthetic, but the names look
+  real and the faculties are real, so we treat it as personal data. No agent searches the web or a real API for a person: a synthetic
+  name would match real people. The one real API, OpenAlex, is searched with a need's search terms only, and its authors are never
+  read or kept. A proposal cites a work for what it reports, and the Critic rejects a claim that gives it to the researcher or the company.
 - **Pairs, not people.** The system ranks researcher–challenge pairs by fit to one stated problem, and compares fit only within a challenge.
   It never outputs a score, a list or a ranking of people. The Matchmaker's prompt forbids seniority, productivity, publication counts
   and prestige as reasons. Search scores a researcher by the mean of their 3 best-matching records, not the sum, so a long publication
@@ -319,7 +326,7 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 - A Funding Scout that points each proposal to an open call (Horizon Europe, the Innovation Fund of Serbia).
 - Multilingual embeddings fused with BM25, for wording and language gaps (26 companies write in Serbian).
 - Approvals and rejections fed back into matching.
-- Adapters for real, public sources by id: OpenAlex, ORCID, CORDIS.
+- Adapters for real profiles by id: ORCID, CORDIS and OpenAlex authors. OpenAlex works by topic are already in, as Prior work.
 
 ## Repository
 
@@ -327,11 +334,11 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 | --- | --- |
 | `src/agents/` | One folder per role: `orchestrator`, `analyst`, `profiler`, `matchmaker`, `writer`, `critic` |
 | `src/runtime/` | The Mozaik runtime, the `MatchState` blackboard, tasks, the `ResilientRunner`, the local Claude Code and mock runners |
-| `src/data/` | Dataset loading, clean-up, duplicate merge, BM25 search and the agents' data tools. No model calls |
+| `src/data/` | Dataset loading, clean-up, duplicate merge, BM25 search, the agents' data tools and the OpenAlex client. No model calls |
 | `src/trace/` | The trace observer that writes `trace.jsonl` |
 | `src/server/`, `web/` | The local server and the web app (see [`web/README.md`](web/README.md)) |
 | `config/models.ts` | Models per role, rate limits, retries and budget |
 | `docs/` | [Dataset notes](docs/dataset.md), the track brief, the architecture diagram |
 | `out/golden/` | The committed reference run |
 
-Checks: `npm run typecheck`, and `node --import tsx --test src/data/data.test.ts test/*.test.ts src/agents/*/*.test.ts`.
+Checks: `npm run typecheck`, and `node --import tsx --test src/data/*.test.ts test/*.test.ts src/agents/*/*.test.ts`.
