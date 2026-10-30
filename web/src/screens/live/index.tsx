@@ -4,7 +4,7 @@
  * rejections flying back to the lane of the agent that has to fix them. Everything follows the playhead.
  */
 import { useReducedMotion } from "motion/react"
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type * as React from "react"
 import { useShallow } from "zustand/react/shallow"
 import { useCommands } from "@/components/shell/command-palette"
@@ -44,7 +44,8 @@ export function LiveScreen() {
 	const hasDispatch = useMemo(() => [...full.loops.values()].some((loop) => loop.inferences.some((call) => call.dispatchedMs != null)), [full.loops])
 	const packing = usePacking(full.loops, hasDispatch)
 	const loopsByAgent = useStableGroups(view.loops, (loop: LoopView) => loop.agentId)
-	const momentsByAgent = useStableGroups(derived.moments, (m: Moment) => m.producerId)
+	// derive() builds new moments on every fold: a lane's list counts as the same while its keys and actions are.
+	const momentsByAgent = useStableGroups(derived.moments, (m: Moment) => m.producerId, (a, b) => a.key === b.key && a.action === b.action)
 	const calls = useMemo(() => callsNow(view.loops, hasDispatch), [view.loops, hasDispatch])
 	const span = useAxisSpan(duration, liveRun)
 	const canFollow = span > FOLLOW_MS * 1.5
@@ -103,19 +104,7 @@ export function LiveScreen() {
 				description="A bar is one model call. Bars at the same time are agents working at once."
 				className="h-[36rem] lg:h-auto"
 				bodyClassName="flex flex-col"
-				action={
-					canFollow && (
-						<Segmented
-							aria-label="Time range"
-							value={following ? "follow" : "run"}
-							onValueChange={(value) => setFollow(value === "follow")}
-							items={[
-								{ value: "run", label: "Whole run", title: "Fit the whole run in the lanes" },
-								{ value: "follow", label: "Follow", title: "Show the two minutes around the playhead" },
-							]}
-						/>
-					)
-				}
+				action={canFollow && <FollowToggle following={following} onChange={setFollow} />}
 			>
 				<Metrics view={view} calls={calls} rejections={derived.moments.length} duration={duration} liveRun={liveRun} active={active} />
 				<Lanes
@@ -148,6 +137,24 @@ export function LiveScreen() {
 		</div>
 	)
 }
+
+/**
+ * Memoized on purpose: Segmented animates with a layout id, and Motion measures layout on every render.
+ * The screen re-renders on each frame of a replay; this must not.
+ */
+const FollowToggle = memo(function FollowToggle({ following, onChange }: { following: boolean; onChange: (follow: boolean) => void }) {
+	return (
+		<Segmented
+			aria-label="Time range"
+			value={following ? "follow" : "run"}
+			onValueChange={(value) => onChange(value === "follow")}
+			items={[
+				{ value: "run", label: "Whole run", title: "Fit the whole run in the lanes" },
+				{ value: "follow", label: "Follow", title: "Show the two minutes around the playhead" },
+			]}
+		/>
+	)
+})
 
 const NONE: never[] = []
 const NO_TRACKS = new Map<string, number>()
@@ -293,7 +300,11 @@ function usePacking(loops: Map<string, LoopView>, hasDispatch: boolean) {
 }
 
 /** Group items by a key. A group's array is reused while its items are the same, so memoized lanes skip work. */
-function useStableGroups<T>(items: Iterable<T> | Map<string, T>, keyOf: (item: T) => string | undefined): Map<string, T[]> {
+function useStableGroups<T>(
+	items: Iterable<T> | Map<string, T>,
+	keyOf: (item: T) => string | undefined,
+	same: (a: T, b: T) => boolean = Object.is,
+): Map<string, T[]> {
 	const cache = useRef(new Map<string, T[]>())
 	return useMemo(() => {
 		const groups = new Map<string, T[]>()
@@ -307,11 +318,11 @@ function useStableGroups<T>(items: Iterable<T> | Map<string, T>, keyOf: (item: T
 		}
 		for (const [key, list] of groups) {
 			const old = cache.current.get(key)
-			if (old && old.length === list.length && old.every((item, i) => item === list[i])) groups.set(key, old)
+			if (old && old.length === list.length && old.every((item, i) => same(item, list[i]))) groups.set(key, old)
 		}
 		cache.current = groups
 		return groups
-		// keyOf is a plain accessor; the items decide.
+		// keyOf and same are plain functions; the items decide.
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [items])
 }

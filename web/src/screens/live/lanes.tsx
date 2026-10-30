@@ -82,7 +82,8 @@ export function Lanes({
 			const from = Number(el.dataset.open)
 			el.style.width = `max(2px, ${(Math.max(0, now - from) / span) * 100}%)`
 		}
-		if (playheadRef.current) playheadRef.current.style.left = `${Math.min(1, Math.max(0, (now - start) / visible)) * 100}%`
+		// A full-width layer moved by transform: the playhead never triggers layout or a repaint of the lanes.
+		if (playheadRef.current) playheadRef.current.style.transform = `translateX(${Math.min(1, Math.max(0, (now - start) / visible)) * 100}%)`
 	}, [span, follow])
 
 	// After each render: find the moving parts again, then paint them once.
@@ -155,7 +156,7 @@ export function Lanes({
 					</Fragment>
 				))}
 				<div className="pointer-events-none absolute inset-y-0 left-[var(--label)] right-[var(--meta)] z-20">
-					<div ref={playheadRef} className="absolute inset-y-0 w-px bg-ink/50" />
+					<div ref={playheadRef} className="absolute inset-0 border-l border-ink/50 will-change-transform" />
 					{flights.items.map((flight) => (
 						<Flight key={flight.key} flight={flight} onDone={flights.remove} />
 					))}
@@ -207,7 +208,7 @@ function Axis({ span, visible, worldWidth }: { span: number; visible: number; wo
 	return (
 		<div className={cn(ROW, "sticky top-0 z-10 h-8 border-b border-hairline bg-card text-xs text-ink-subtle")}>
 			<div className="flex items-center px-4">Agent</div>
-			<div className="relative overflow-hidden border-l border-hairline">
+			<div className="relative overflow-hidden border-l border-hairline [contain:strict]">
 				<div data-world className="absolute inset-y-0 left-0" style={{ width: worldWidth }}>
 					{ticks.map((ms) => (
 						<span
@@ -252,120 +253,220 @@ interface LaneProps {
 	onAgent: (id: string) => void
 }
 
+/**
+ * One agent's lane. Every event of the agent gives it a new AgentView, so the lane itself re-renders often;
+ * its parts are memoized on what they show, and a re-render touches only the part that changed.
+ */
 const Lane = memo(function Lane({ lane, span, worldWidth, dense, pulse, hasDispatch, flying, onAgent }: LaneProps) {
 	const { agent, now, status, loops, track, tracks, moments } = lane
 	const geometry = laneGeometry(tracks, dense)
 	const color = roleColor(agent.role)
-	const pct = (ms: number) => `${(ms / span) * 100}%`
 	const busy = status.tone !== "idle"
 
 	return (
 		<div data-lane={agent.id} className={cn(ROW, "border-b border-hairline last:border-b-0")} style={{ height: geometry.height }}>
-			{dense ? (
-				<button
-					type="button"
-					onClick={() => onAgent(agent.id)}
-					title={status.task ? `${status.label}: ${status.task}` : status.label}
-					className="flex h-6 min-w-0 items-center gap-2 px-4 text-left text-xs outline-none transition-colors duration-150 hover:bg-hover focus-visible:bg-hover"
-				>
-					<RoleSquare role={agent.role} />
-					<span className={cn("min-w-0 flex-1 truncate text-sm", now ? "text-ink" : "text-ink-subtle")}>{agent.name}</span>
-					<StatusDot tone={status.tone} pulse={pulse && busy} className="size-1.5" />
-					<span className="hidden w-16 shrink-0 truncate text-ink-muted sm:block">{status.label}</span>
-				</button>
-			) : (
-				<button
-					type="button"
-					onClick={() => onAgent(agent.id)}
-					className="flex h-11 min-w-0 flex-col justify-center gap-0.5 px-4 text-left outline-none transition-colors duration-150 hover:bg-hover focus-visible:bg-hover"
-				>
-					<span className={cn("truncate text-sm", now ? "text-ink" : "text-ink-subtle")}>{agent.name}</span>
-					<span className="flex min-w-0 items-center gap-1.5 text-xs text-ink-muted">
-						<StatusDot tone={status.tone} pulse={pulse && busy} className="size-1.5" />
-						<span className="shrink-0">{status.label}</span>
-						{status.task && <span className="truncate font-mono text-2xs text-ink-subtle">{status.task}</span>}
-					</span>
-				</button>
-			)}
-
-			<div className="relative overflow-hidden border-l border-hairline">
+			<LaneLabel
+				id={agent.id}
+				name={agent.name}
+				role={agent.role}
+				joined={now != null}
+				status={status.label}
+				tone={status.tone}
+				task={status.task}
+				dense={dense}
+				pulse={pulse && busy}
+				onAgent={onAgent}
+			/>
+			<div className="relative overflow-hidden border-l border-hairline [contain:strict]">
 				<div data-world className="absolute inset-y-0 left-0" style={{ width: worldWidth }}>
-					{hasDispatch &&
-						waits(loops).map(([from, to]) => (
-							<div
-								key={from}
-								data-open={to == null ? from : undefined}
-								className="absolute h-0.5 rounded-full"
-								style={{
-									left: pct(from),
-									bottom: dense ? 1 : 3,
-									width: to == null ? undefined : pct(to - from),
-									background: `color-mix(in oklab, ${color} 40%, transparent)`,
-								}}
-							/>
-						))}
-					{loops.flatMap((loop) => {
-						const top = geometry.top + (track.get(loop.id) ?? 0) * geometry.pitch
-						const mid = top + geometry.bar / 2
-						const parts: React.ReactNode[] = []
-						loop.inferences.forEach((call, i) => {
-							const start = call.dispatchedMs ?? (hasDispatch ? undefined : call.startMs)
-							if (start == null) return
-							const open = call.endMs == null
-							parts.push(
-								<div
-									key={`c${i}`}
-									data-span={`${loop.id}:${i}`}
-									data-open={open ? start : undefined}
-									className="absolute rounded-[2px]"
-									style={{
-										left: pct(start),
-										top,
-										height: geometry.bar,
-										width: open ? undefined : `max(2px, ${pct(call.endMs! - start)})`,
-										background: open ? color : `color-mix(in oklab, ${color} 72%, transparent)`,
-									}}
-								/>,
-							)
-						})
-						loop.calls.forEach((call, i) => {
-							parts.push(
-								<span
-									key={`t${i}`}
-									data-tool={`${loop.id}:${i}`}
-									className="absolute size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-panel"
-									style={{ left: pct(call.startMs), top: mid, boxShadow: `0 0 0 1.5px ${color}` }}
-								/>,
-							)
-						})
-						return <Fragment key={loop.id}>{parts}</Fragment>
-					})}
-					{moments.map((moment) => (
-						<button
-							key={moment.key}
-							type="button"
-							data-moment={moment.key}
-							aria-label={`${actionLabel(moment)}: ${kindLabel(moment.kind)} ${moment.id}`}
-							className={cn(
-								"group/mark absolute top-0 flex h-2.5 w-3 -translate-x-1/2 justify-center outline-none transition-opacity duration-200",
-								moment.action === "send-back" ? "text-needs" : "text-failed",
-								flying.has(moment.key) && "opacity-0",
-							)}
-							style={{ left: pct(moment.ms) }}
-						>
-							<MarkPin className="mt-px transition-transform duration-150 group-hover/mark:scale-125 group-focus-visible/mark:scale-125" />
-						</button>
-					))}
+					{hasDispatch && <WaitBand loops={loops} span={span} bottom={dense ? 1 : 3} color={color} />}
+					<LaneBars loops={loops} track={track} top={geometry.top} pitch={geometry.pitch} bar={geometry.bar} span={span} color={color} hasDispatch={hasDispatch} />
+					<LaneMarks moments={moments} span={span} flying={flying} />
 				</div>
 			</div>
-
-			<div className={cn("tabular hidden flex-col items-end justify-center self-start px-4 text-xs sm:flex", dense ? "h-6" : "h-11")}>
-				<span className={cn(busy ? "text-ink" : "text-ink-muted")}>{now?.tokens ? format.tokens(now.tokens) : "—"}</span>
-				{!dense && now && now.costUsd > 0 && <span className="text-ink-subtle">{format.usd(now.costUsd)}</span>}
-			</div>
+			<LaneTokens tokens={now?.tokens ?? 0} cost={now?.costUsd ?? 0} busy={busy} dense={dense} />
 		</div>
 	)
 }, sameLaneProps)
+
+const LaneLabel = memo(function LaneLabel({
+	id,
+	name,
+	role,
+	joined,
+	status,
+	tone,
+	task,
+	dense,
+	pulse,
+	onAgent,
+}: {
+	id: string
+	name: string
+	role: RoleKey
+	joined: boolean
+	status: string
+	tone: StatusTone
+	task?: string
+	dense: boolean
+	pulse: boolean
+	onAgent: (id: string) => void
+}) {
+	if (dense) {
+		return (
+			<button
+				type="button"
+				onClick={() => onAgent(id)}
+				title={task ? `${status}: ${task}` : status}
+				className="flex h-6 min-w-0 items-center gap-2 px-4 text-left text-xs outline-none transition-colors duration-150 hover:bg-hover focus-visible:bg-hover"
+			>
+				<RoleSquare role={role} />
+				<span className={cn("min-w-0 flex-1 truncate text-sm", joined ? "text-ink" : "text-ink-subtle")}>{name}</span>
+				<StatusDot tone={tone} pulse={pulse} className="size-1.5" />
+				<span className="hidden w-16 shrink-0 truncate text-ink-muted sm:block">{status}</span>
+			</button>
+		)
+	}
+	return (
+		<button
+			type="button"
+			onClick={() => onAgent(id)}
+			className="flex h-11 min-w-0 flex-col justify-center gap-0.5 px-4 text-left outline-none transition-colors duration-150 hover:bg-hover focus-visible:bg-hover"
+		>
+			<span className={cn("truncate text-sm", joined ? "text-ink" : "text-ink-subtle")}>{name}</span>
+			<span className="flex min-w-0 items-center gap-1.5 text-xs text-ink-muted">
+				<StatusDot tone={tone} pulse={pulse} className="size-1.5" />
+				<span className="shrink-0">{status}</span>
+				{task && <span className="truncate font-mono text-2xs text-ink-subtle">{task}</span>}
+			</span>
+		</button>
+	)
+})
+
+const LaneTokens = memo(function LaneTokens({ tokens, cost, busy, dense }: { tokens: number; cost: number; busy: boolean; dense: boolean }) {
+	return (
+		<div className={cn("tabular hidden flex-col items-end justify-center self-start px-4 text-xs sm:flex", dense ? "h-6" : "h-11")}>
+			<span className={cn(busy ? "text-ink" : "text-ink-muted")}>{tokens ? format.tokens(tokens) : "—"}</span>
+			{!dense && cost > 0 && <span className="text-ink-subtle">{format.usd(cost)}</span>}
+		</div>
+	)
+})
+
+/** The rate-limit waits of the lane, as one thin band under its bars. */
+const WaitBand = memo(function WaitBand({ loops, span, bottom, color }: { loops: LoopView[]; span: number; bottom: number; color: string }) {
+	return waits(loops).map(([from, to]) => (
+		<div
+			key={from}
+			data-open={to == null ? from : undefined}
+			className="absolute h-0.5 rounded-full"
+			style={{
+				left: `${(from / span) * 100}%`,
+				bottom,
+				width: to == null ? undefined : `${((to - from) / span) * 100}%`,
+				background: `color-mix(in oklab, ${color} 40%, transparent)`,
+			}}
+		/>
+	))
+})
+
+const LaneBars = memo(function LaneBars({
+	loops,
+	track,
+	top,
+	pitch,
+	bar,
+	span,
+	color,
+	hasDispatch,
+}: {
+	loops: LoopView[]
+	track: Map<string, number>
+	top: number
+	pitch: number
+	bar: number
+	span: number
+	color: string
+	hasDispatch: boolean
+}) {
+	return loops.map((loop) => (
+		<LoopBars key={loop.id} loop={loop} top={top + (track.get(loop.id) ?? 0) * pitch} bar={bar} span={span} color={color} hasDispatch={hasDispatch} />
+	))
+})
+
+/** The Critic's rejections on the producer's lane. A mark stays hidden while its claim is in the air. */
+const LaneMarks = memo(function LaneMarks({ moments, span, flying }: { moments: Moment[]; span: number; flying: Set<number> }) {
+	return moments.map((moment) => (
+		<button
+			key={moment.key}
+			type="button"
+			data-moment={moment.key}
+			aria-label={`${actionLabel(moment)}: ${kindLabel(moment.kind)} ${moment.id}`}
+			className={cn(
+				"group/mark absolute top-0 flex h-2.5 w-3 -translate-x-1/2 justify-center outline-none transition-opacity duration-200",
+				moment.action === "send-back" ? "text-needs" : "text-failed",
+				flying.has(moment.key) && "opacity-0",
+			)}
+			style={{ left: `${(moment.ms / span) * 100}%` }}
+		>
+			<MarkPin className="mt-px transition-transform duration-150 group-hover/mark:scale-125 group-focus-visible/mark:scale-125" />
+		</button>
+	))
+})
+
+/**
+ * The bars and tool dots of one loop. Memoized on the loop: the fold replaces a loop object only when it changes,
+ * so a new event re-renders one loop, not the whole lane.
+ */
+const LoopBars = memo(function LoopBars({
+	loop,
+	top,
+	bar,
+	span,
+	color,
+	hasDispatch,
+}: {
+	loop: LoopView
+	top: number
+	bar: number
+	span: number
+	color: string
+	hasDispatch: boolean
+}) {
+	const pct = (ms: number) => `${(ms / span) * 100}%`
+	const mid = top + bar / 2
+	return (
+		<>
+			{loop.inferences.map((call, i) => {
+				const start = call.dispatchedMs ?? (hasDispatch ? undefined : call.startMs)
+				if (start == null) return null
+				const open = call.endMs == null
+				return (
+					<div
+						key={`c${i}`}
+						data-span={`${loop.id}:${i}`}
+						data-open={open ? start : undefined}
+						className="absolute rounded-[2px]"
+						style={{
+							left: pct(start),
+							top,
+							height: bar,
+							width: open ? undefined : `max(2px, ${pct(call.endMs! - start)})`,
+							background: open ? color : `color-mix(in oklab, ${color} 72%, transparent)`,
+						}}
+					/>
+				)
+			})}
+			{loop.calls.map((call, i) => (
+				<span
+					key={`t${i}`}
+					data-tool={`${loop.id}:${i}`}
+					className="absolute size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-panel"
+					style={{ left: pct(call.startMs), top: mid, boxShadow: `0 0 0 1.5px ${color}` }}
+				/>
+			))}
+		</>
+	)
+})
 
 /**
  * When the agent had calls held back by the rate limits: the waits of all its calls, merged.
