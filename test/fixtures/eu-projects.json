@@ -1,0 +1,572 @@
+[
+	{
+		"id": "CORDIS:101225910",
+		"projectId": "101225910",
+		"acronym": "RESCUE",
+		"title": "Resilient Edge Systems for Critical infrastructure and Urban Environments",
+		"summary": "The RESCUE project aims to strengthen the resilience, security, and adaptability of critical infrastructure systems through advanced edge computing, AI-driven anomaly detection, and robust communication networks. In an era of increasing cyber threats, environmental challenges...",
+		"status": "ongoing",
+		"start": "2025-09-01",
+		"end": "2028-08-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-CL3-2024-INFRA-01-03",
+		"coordinator": {
+			"name": "RISE RESEARCH INSTITUTES OF SWEDEN AB",
+			"country": "SE"
+		},
+		"organisations": 13,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101225910"
+	},
+	{
+		"id": "CORDIS:101225653",
+		"projectId": "101225653",
+		"acronym": "PERUN",
+		"title": "Protecting Sensitive Cyber Ecosystems from Upcoming Next Generation and AI-generated Malware Threats",
+		"summary": "More than ever, Europe needs cybersecurity. With the constant development of new malicious software, cyberattacks have been on the rise. Due to new attack vectors and encryption, novel attacks are undetectable to humans and simple rules and signatures. Without holistic and...",
+		"status": "ongoing",
+		"start": "2025-10-01",
+		"end": "2028-09-30",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-CL3-2024-CS-01-01",
+		"coordinator": {
+			"name": "FERNUNIVERSITAT IN HAGEN",
+			"country": "DE"
+		},
+		"organisations": 18,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101225653"
+	},
+	{
+		"id": "CORDIS:101213783",
+		"projectId": "101213783",
+		"acronym": "ExplainableAD",
+		"title": "Explainable Anomaly Detection for Safeguarding and Enhancing Modern Data Industry",
+		"summary": "In the ExplainableAD project, we address the problem of eXplainable Anomaly Detection (XAD) on data streams with evolving, previously unknown, complex anomaly types. To bridge the gap between growing demands in the data industry and severely limited industry-grade solutions...",
+		"status": "ongoing",
+		"start": "2025-03-01",
+		"end": "2026-08-31",
+		"programme": "Horizon Europe",
+		"topic": "ERC-2024-POC",
+		"coordinator": {
+			"name": "ECOLE POLYTECHNIQUE",
+			"country": "FR"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101213783"
+	},
+	{
+		"id": "CORDIS:833683",
+		"projectId": "833683",
+		"acronym": "CyberSANE",
+		"title": "Cyber Security Incident Handling, Warning and Response System for the European Critical Infrastructures",
+		"summary": "In the digital era, Critical Infrastructures (CIs) are operating under the premise of robust and reliable ICT components, complex ICT infrastructures and emerging technologies and are transforming into Critical Information Infrastructures (CIIs) that can offer a high degree of...",
+		"status": "closed",
+		"start": "2019-09-01",
+		"end": "2022-08-31",
+		"programme": "Horizon 2020",
+		"topic": "SU-ICT-01-2018",
+		"coordinator": {
+			"name": "PDM E FC PROJECTO DESENVOLVIMENTO MANUTENCAO FORMACAO E CONSULTADORIA SA",
+			"country": "PT"
+		},
+		"organisations": 17,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/833683"
+	},
+	{
+		"id": "CORDIS:101286435",
+		"projectId": "101286435",
+		"acronym": "PostQat",
+		"title": "Post-Quantum Secure Communication and Surveillance for Air Traffic Management",
+		"summary": "PostQat addresses critical vulnerabilities in Air Traffic Management (ATM) communication and surveillance systems that remain unauthenticated and insecure, such as ADS-B, CPDLC, ACARS, and TCAS. The emergence of quantum computers will render current cryptography obsolete...",
+		"status": "ongoing",
+		"start": "2026-09-01",
+		"end": "2029-02-28",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-SESAR-2025-DES-ER-03-WA1-3",
+		"coordinator": {
+			"name": "TECHNISCHE UNIVERSITEIT DELFT",
+			"country": "NL"
+		},
+		"organisations": 5,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101286435"
+	},
+	{
+		"id": "CORDIS:101150167",
+		"projectId": "101150167",
+		"acronym": "MESMODI-BCG",
+		"title": "Methods for Stroke Monitoring and Diagnosing based on BCG",
+		"summary": "Clinical monitoring of the heart health of stroke patients is usually done by electrocardiogram (ECG) recording, a non-invasive method that requires electrodes in contact with the patient's skin to obtain the signal. However, since specialists are required to place the...",
+		"status": "ongoing",
+		"start": "2024-11-01",
+		"end": "2026-10-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-MSCA-2023-PF-01-01",
+		"coordinator": {
+			"name": "UNIVERSIDAD DE ZARAGOZA",
+			"country": "ES"
+		},
+		"organisations": 2,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101150167"
+	},
+	{
+		"id": "CORDIS:868586",
+		"projectId": "868586",
+		"acronym": "DynapIP",
+		"title": "Innovative and ultra-low power neuromorphic unit for advanced signal processing in wearable medical devices",
+		"summary": "Nowadays, ~220M of the worldwide population of which over 50M only in EU, currently live with more than one chronic condition. Early and accurate detection of adverse events are fundamental for proper clinical management. To meet this need, the healthcare system is becoming...",
+		"status": "closed",
+		"start": "2019-06-01",
+		"end": "2019-09-30",
+		"programme": "Horizon 2020",
+		"topic": "EIC-SMEInst-2018-2020",
+		"coordinator": {
+			"name": "SYNSENSE AG",
+			"country": "CH"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/868586"
+	},
+	{
+		"id": "CORDIS:101031327",
+		"projectId": "101031327",
+		"acronym": "WEARSENSNANO",
+		"title": "Continuous monitoring of hypothermia in elderly people by the novel integrated wearable sensor system based on cellulose hydrogel and metallic nanowires",
+		"summary": "One common influence of ageing is that it makes the individual susceptible to hypothermia, which is known to be death causing low body temperature (35°C). Hypothermia could be detected at early stages by monitoring various physiological parameters such as ECG signal, skin...",
+		"status": "closed",
+		"start": "2021-06-01",
+		"end": "2023-05-31",
+		"programme": "Horizon 2020",
+		"topic": "MSCA-IF-2020",
+		"coordinator": {
+			"name": "AALTO KORKEAKOULUSAATIO SR",
+			"country": "FI"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101031327"
+	},
+	{
+		"id": "CORDIS:877425",
+		"projectId": "877425",
+		"acronym": "Dryode",
+		"title": "Innovative, preparation-free, bio-electrodes for next-generation wearable devices",
+		"summary": "We at IDUN have developed the Dryode™ - a portfolio of innovative bio-electrodes to enable wearables for future healthcare and Internet of Humans. The Dryode shows skin compliance and self-adhesive properties enabling unobtrusive, long-term, recordings with clinical-grade...",
+		"status": "closed",
+		"start": "2019-08-01",
+		"end": "2019-11-30",
+		"programme": "Horizon 2020",
+		"topic": "EIC-SMEInst-2018-2020",
+		"coordinator": {
+			"name": "IDUN TECHNOLOGIES AG",
+			"country": "CH"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/877425"
+	},
+	{
+		"id": "CORDIS:101108935",
+		"projectId": "101108935",
+		"acronym": "TextrodeMisc",
+		"title": "TextrodeMisc – TEXtile elecTRODE Matrix for Improved Surface eleCtromyography signal quality and usability in applications for people with limb loss",
+		"summary": "Textile-based electrodes are about to be competitive alternatives to traditional electrodes for ECG and EMG. Electrodes integrated into textiles are easier to use which facilitates home-based monitoring, treatment and rehabilitation measures. One potential key application is...",
+		"status": "ongoing",
+		"start": "2023-09-01",
+		"end": "2025-09-30",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-MSCA-2022-PF-01-01",
+		"coordinator": {
+			"name": "HOEGSKOLAN I BORAS",
+			"country": "SE"
+		},
+		"organisations": 3,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101108935"
+	},
+	{
+		"id": "CORDIS:101235387",
+		"projectId": "101235387",
+		"acronym": "I-TEXGEO",
+		"title": "IoT Supported Electronic Geotextiles for Sustainable and Smart Precision Agriculture",
+		"summary": "This project aims to develop an innovative IoT-supported geotextile-based sensor network and control system capable of monitoring key soil parameters such as moisture, temperature, nutrients (N, P, K), and pH level with the goal of enhancing precision agriculture, soil health...",
+		"status": "ongoing",
+		"start": "2026-01-01",
+		"end": "2029-12-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-MSCA-2024-SE-01-01",
+		"coordinator": {
+			"name": "ISTANBUL TEKNIK UNIVERSITESI",
+			"country": "TR"
+		},
+		"organisations": 13,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101235387"
+	},
+	{
+		"id": "CORDIS:101169330",
+		"projectId": "101169330",
+		"acronym": "AIGreenBots",
+		"title": "Artificial Intelligence and sensor-fusion systems in sustainable (Green) robotics for precision agriculture",
+		"summary": "\"AIGreenBots is a MSCA Doctoral Network that will implement inter-and-cross multidisciplinary training, career development and research collaborations for 11 researchers (ie, DCs: Doctoral Candidates), by an international and complementary partnership involving top...",
+		"status": "ongoing",
+		"start": "2024-10-01",
+		"end": "2028-09-30",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-MSCA-2023-DN-01-01",
+		"coordinator": {
+			"name": "UNIVERSIDADE DE COIMBRA",
+			"country": "PT"
+		},
+		"organisations": 17,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101169330"
+	},
+	{
+		"id": "CORDIS:190183494",
+		"projectId": "190183494",
+		"acronym": "xTrap",
+		"title": "Real-time automatic monitoring and ML-based prediction of pest insects",
+		"summary": "xTrap is an innovative smart trap solution that will transform pest management operations in farms, fostering the transition towards the Agriculture 4,0 era. It combines real-time automatic monitoring of pest insects with prediction based on machine-learning models. xTrap is...",
+		"status": "closed",
+		"start": "2023-02-01",
+		"end": "2025-01-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-EIC-2022-ACCELERATOROPEN-01",
+		"coordinator": {
+			"name": "XFARM TECHNOLOGIES ITALIA SRL",
+			"country": "IT"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/190183494"
+	},
+	{
+		"id": "CORDIS:963954",
+		"projectId": "963954",
+		"acronym": "ORGEVINE",
+		"title": "ORganic thermoelectric GEnerators to power precision VIticulture sensor NEtworks",
+		"summary": "ORGEVINE aims to reduce water and phytosanitary chemicals usage as well as enhancing production yield in the wine industry by developing a network of wireless autonomous sensors that will provide real time images of key field parameters such as temperature and humidity. This...",
+		"status": "closed",
+		"start": "2021-02-01",
+		"end": "2022-07-31",
+		"programme": "Horizon 2020",
+		"topic": "ERC-2020-POC",
+		"coordinator": {
+			"name": "AGENCIA ESTATAL CONSEJO SUPERIOR DE INVESTIGACIONES CIENTIFICAS",
+			"country": "ES"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/963954"
+	},
+	{
+		"id": "CORDIS:958827",
+		"projectId": "958827",
+		"acronym": "iPollinate",
+		"title": "Intelligent Pollination for Sustainable Increases in Crop Yields and Global Food Security",
+		"summary": "iPollinate will bring to market a unique IoT sensor that provides real time monitoring of the foraging rate of honeybeecolonies used for pollination services. This data will be correlated with hive strength and health data using Machine Learning (ML) techniques to provide a...",
+		"status": "closed",
+		"start": "2021-01-01",
+		"end": "2023-12-31",
+		"programme": "Horizon 2020",
+		"topic": "EIC-FTI-2018-2020",
+		"coordinator": {
+			"name": "IRIDEON SL",
+			"country": "ES"
+		},
+		"organisations": 3,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/958827"
+	},
+	{
+		"id": "CORDIS:101171968",
+		"projectId": "101171968",
+		"acronym": "CulturAL",
+		"title": "Towards globally accessible language technology and its alignment to cultural contexts",
+		"summary": "My research project focuses on natural language processing (NLP), an area of artificial intelligence concerned with automatic interpretation and generation of human language. NLP is well-known for its widely-used applications, such as machine translation (MT), text mining...",
+		"status": "ongoing",
+		"start": "2025-09-01",
+		"end": "2030-08-31",
+		"programme": "Horizon Europe",
+		"topic": "ERC-2024-COG",
+		"coordinator": {
+			"name": "UNIVERSITEIT VAN AMSTERDAM",
+			"country": "NL"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101171968"
+	},
+	{
+		"id": "CORDIS:845995",
+		"projectId": "845995",
+		"acronym": "MorphIRe",
+		"title": "Morphologically-informed representations for natural language processing",
+		"summary": "The morphological structure of a word plays an important role in determining its function and meaning, yet it is often disregarded by current machine learning models aimed at natural language processing (NLP). State-of-the-art NLP models typically rely on word-level or...",
+		"status": "closed",
+		"start": "2019-04-01",
+		"end": "2021-03-31",
+		"programme": "Horizon 2020",
+		"topic": "MSCA-IF-2018",
+		"coordinator": {
+			"name": "KOBENHAVNS UNIVERSITET",
+			"country": "DK"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/845995"
+	},
+	{
+		"id": "CORDIS:101076246",
+		"projectId": "101076246",
+		"acronym": "FLEXI",
+		"title": "Fluid texts and scholars’ digests: (re)production of law in medieval Ireland",
+		"summary": "FLEXI investigates how the fluid, multifarious law texts were (re)produced and accepted as sources of law in medieval Europe, using four sets of late medieval Irish law texts called the ‘digests’ as its main object of study. The digests contain texts quoted from diverse...",
+		"status": "ongoing",
+		"start": "2023-09-01",
+		"end": "2028-08-31",
+		"programme": "Horizon Europe",
+		"topic": "ERC-2022-STG",
+		"coordinator": {
+			"name": "UNIVERSITY COLLEGE DUBLIN, NATIONAL UNIVERSITY OF IRELAND, DUBLIN",
+			"country": "IE"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101076246"
+	},
+	{
+		"id": "CORDIS:101163126",
+		"projectId": "101163126",
+		"acronym": "PromPrint",
+		"title": "Promiscuous Print: Legal Deposit Libraries, Rejected Texts, and New Methods for Negative Bibliography",
+		"summary": "PROMPRINT will uncover and analyze the rejects of legal deposit: the printed texts excluded from the ostensibly universal archive promised by copyright libraries. Legal deposit works to preserve every text published in a specific group of libraries. While this principle is...",
+		"status": "ongoing",
+		"start": "2025-04-01",
+		"end": "2030-03-31",
+		"programme": "Horizon Europe",
+		"topic": "ERC-2024-STG",
+		"coordinator": {
+			"name": "THE UNIVERSITY OF SUSSEX",
+			"country": "UK"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101163126"
+	},
+	{
+		"id": "CORDIS:101089287",
+		"projectId": "101089287",
+		"acronym": "LifeLU",
+		"title": "Understanding the Language of Life: Identifying and Characterizing the Language Units in Protein Sequences",
+		"summary": "\"Proteins play a key role in biological processes that govern and maintain life. Although they are three-dimensional entities, they can be represented in textual form as sequences of amino acids that largely determine their structures and functions. By analogy with natural...",
+		"status": "ongoing",
+		"start": "2023-11-01",
+		"end": "2028-10-31",
+		"programme": "Horizon Europe",
+		"topic": "ERC-2022-COG",
+		"coordinator": {
+			"name": "BOGAZICI UNIVERSITESI",
+			"country": "TR"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101089287"
+	},
+	{
+		"id": "CORDIS:862583",
+		"projectId": "862583",
+		"acronym": "NanoPAT",
+		"title": "Process Analytical Technologies for Industrial Nanoparticle Production",
+		"summary": "Nano-scaled materials are abundant in different stages of industrial manufacturing. Physical and chemical properties of these materials are strongly dependent on their size. Characterisation of mean size, size distribution, and shape of nano-scaled particles is very critical...",
+		"status": "closed",
+		"start": "2020-06-01",
+		"end": "2024-05-31",
+		"programme": "Horizon 2020",
+		"topic": "DT-NMBP-08-2019",
+		"coordinator": {
+			"name": "IRIS TECHNOLOGY SOLUTIONS, SOCIEDAD LIMITADA",
+			"country": "ES"
+		},
+		"organisations": 18,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/862583"
+	},
+	{
+		"id": "CORDIS:101165889",
+		"projectId": "101165889",
+		"acronym": "PharmEco",
+		"title": "Advancing Safe and Sustainable by design Practices in Pharmaceutical Manufacturing",
+		"summary": "PHARMECO is supported by the Innovative Health Initiative Joint Undertaking (IHI JU). The JU receives support from the European Union’s Horizon Europe research and innovation programme and COCIR, EFPIA, Europa Bío, MedTech Europe, and Vaccines Europe. The project's overall...",
+		"status": "ongoing",
+		"start": "2024-11-01",
+		"end": "2030-10-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-JU-IHI-2023-04-06-two-stage",
+		"coordinator": {
+			"name": "UNIVERSITEIT GENT",
+			"country": "BE"
+		},
+		"organisations": 54,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101165889"
+	},
+	{
+		"id": "CORDIS:841373",
+		"projectId": "841373",
+		"acronym": "PATGlycoPrint",
+		"title": "Development of a new process analytical technology based on an innovative nanoplasmonic detection array for monitoring glycosylation of monoclonal antibodies",
+		"summary": "Glycosylation of therapeutic antibodies is one of the most critical quality attributes (CQAs) in biopharmaceutical manufacturing because of its strong impact to the treatment efficacy. Many parameters in the production process including upstream cell culture and downstream...",
+		"status": "closed",
+		"start": "2019-05-01",
+		"end": "2021-04-30",
+		"programme": "Horizon 2020",
+		"topic": "MSCA-IF-2018",
+		"coordinator": {
+			"name": "LINKOPINGS UNIVERSITET",
+			"country": "SE"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/841373"
+	},
+	{
+		"id": "CORDIS:953110",
+		"projectId": "953110",
+		"acronym": "Phoenix",
+		"title": "Pharmaceutical Open Innovation Test Bed for Enabling Nano-pharmaceutical Innovative Products",
+		"summary": "Nano-pharmaceuticals have the potential to drive the scientific and technological uplift, offering great clinical and socio-economic benefits to the society in general, industry and key stakeholders and patients. Nevertheless, affordable and advanced testing, manufacturing...",
+		"status": "ongoing",
+		"start": "2021-03-01",
+		"end": "2025-08-31",
+		"programme": "Horizon 2020",
+		"topic": "DT-NMBP-06-2020",
+		"coordinator": {
+			"name": "LUXEMBOURG INSTITUTE OF SCIENCE AND TECHNOLOGY",
+			"country": "LU"
+		},
+		"organisations": 13,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/953110"
+	},
+	{
+		"id": "CORDIS:101024374",
+		"projectId": "101024374",
+		"acronym": "PATTENZYME",
+		"title": "Sequential and selective patterning of enzymes in modular electrochemical based biorreactor for continuos production of pharmaceutical materials",
+		"summary": "The pharmaceutical industry is a major industrial sector in the EU (annual sales of €130 billion). In contrast to other manufacturing sectors, the sector faces a significant challenge in its reliance on batch processes, with synthesis of active pharmaceutical ingredients...",
+		"status": "closed",
+		"start": "2022-03-17",
+		"end": "2024-03-16",
+		"programme": "Horizon 2020",
+		"topic": "MSCA-IF-2020",
+		"coordinator": {
+			"name": "UNIVERSITY OF LIMERICK",
+			"country": "IE"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101024374"
+	},
+	{
+		"id": "CORDIS:101004174",
+		"projectId": "101004174",
+		"acronym": "LAND GRIFFON",
+		"title": "Making Food Supply Chains more Sustainable",
+		"summary": "We aim to build digital decision-making tools based on Copernicus data to monitor, forecast, analyse and track tools environmental impacts such as deforestation or water stress all along the supply chains. These new innovative tools will help food and agribusiness companies to...",
+		"status": "closed",
+		"start": "2020-11-01",
+		"end": "2022-10-31",
+		"programme": "Horizon 2020",
+		"topic": "DT-SPACE-01-EO-2018-2020",
+		"coordinator": {
+			"name": "SIMBIOTICA SL",
+			"country": "ES"
+		},
+		"organisations": 3,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101004174"
+	},
+	{
+		"id": "CORDIS:101086115",
+		"projectId": "101086115",
+		"acronym": "FoodMAPP",
+		"title": "Local Food supply communicated through a transactional searchable MAP based APPlication (FoodMAPP) to promote short food supply chains; food security; business development and reduction in food waste.",
+		"summary": "Interconnected challenges of climate change, food supply resilience, food miles, food waste and supporting the next generation of producers and operators with a fair income are all highlighted in the EU Strategic Plan. Foundational redesign of our food supply systems is...",
+		"status": "ongoing",
+		"start": "2023-03-01",
+		"end": "2027-02-28",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-MSCA-2021-SE-01-01",
+		"coordinator": {
+			"name": "SVEUCILISTE U ZAGREBU FAKULTET ELEKTROTEHNIKE I RACUNARSTVA",
+			"country": "HR"
+		},
+		"organisations": 7,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101086115"
+	},
+	{
+		"id": "CORDIS:101218530",
+		"projectId": "101218530",
+		"acronym": "ROLF",
+		"title": "Revolutionary OnLine Fermentation monitoring",
+		"summary": "Holloid will transform food production based on precision fermentation and microalgae cultures with the world’s most advanced real-time bioprocess monitoring and control platform. The current absence of real-time monitoring systems capable of characterizing different...",
+		"status": "ongoing",
+		"start": "2025-07-01",
+		"end": "2027-06-30",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-EIC-2024-ACCELERATORCHALLENGES-04",
+		"coordinator": {
+			"name": "HOLLOID GMBH",
+			"country": "AT"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101218530"
+	},
+	{
+		"id": "CORDIS:101244608",
+		"projectId": "101244608",
+		"acronym": "Supply chain",
+		"title": "Resilient Agri-Food Supply Chains: A Data-Driven Approach",
+		"summary": "The COVID-19 Pandemic, the Russian-Ukrainian War and other global crises have caused significant global disturbances in supply networks, especially in the agri-food industry. These events have greatly changed the traditional supply chain models, making it apparent that...",
+		"status": "ongoing",
+		"start": "2026-04-01",
+		"end": "2028-03-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-WIDERA-2024-TALENTS-02-01",
+		"coordinator": {
+			"name": "VILNIAUS UNIVERSITETAS",
+			"country": "LT"
+		},
+		"organisations": 1,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101244608"
+	},
+	{
+		"id": "CORDIS:101250313",
+		"projectId": "101250313",
+		"acronym": "SCALES",
+		"title": "Agri-food Supply ChAin Leadership for Excellence & Sustainability",
+		"summary": "The SCALES Centre aims to establish Greece’s first interdisciplinary hub for sustainable agri-food supply chains at the Agricultural University of Athens (AUA), in partnership with University College Dublin (UCD), Wageningen University & Research (WUR), and VILABS. Its main...",
+		"status": "ongoing",
+		"start": "2027-01-01",
+		"end": "2032-12-31",
+		"programme": "Horizon Europe",
+		"topic": "HORIZON-WIDERA-2025-ACCESS-01-01-two-stage",
+		"coordinator": {
+			"name": "GEOPONIKO PANEPISTIMION ATHINON",
+			"country": "EL"
+		},
+		"organisations": 4,
+		"serbian": [],
+		"url": "https://cordis.europa.eu/project/id/101250313"
+	}
+]

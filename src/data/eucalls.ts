@@ -164,17 +164,17 @@ export function callQueries(terms: string[], area?: string): string[] {
 	return [...new Set(queries)]
 }
 
-/** Reciprocal rank fusion of the queries' answers: a call ranked high by several queries comes first. */
-export function fuse(lists: FundingCall[][]): FundingCall[] {
-	const scores = new Map<string, { call: FundingCall; score: number }>()
+/** Reciprocal rank fusion of the queries' answers: an item ranked high by several queries comes first. */
+export function fuse<T extends { id: string }>(lists: T[][]): T[] {
+	const scores = new Map<string, { item: T; score: number }>()
 	for (const list of lists) {
-		list.forEach((call, rank) => {
-			const entry = scores.get(call.id) ?? { call, score: 0 }
+		list.forEach((item, rank) => {
+			const entry = scores.get(item.id) ?? { item, score: 0 }
 			entry.score += 1 / (RRF_K + rank)
-			scores.set(call.id, entry)
+			scores.set(item.id, entry)
 		})
 	}
-	return [...scores.values()].sort((a, b) => b.score - a.score).map(({ call }) => call)
+	return [...scores.values()].sort((a, b) => b.score - a.score).map(({ item }) => item)
 }
 
 /**
@@ -193,10 +193,10 @@ export function rerank(calls: FundingCall[], query: string): FundingCall[] {
 		.map(({ call }) => call)
 }
 
-/** Two rankings of the same calls, taken in turns, each call once. */
-export function interleave(a: FundingCall[], b: FundingCall[]): FundingCall[] {
-	const out = new Map<string, FundingCall>()
-	for (let i = 0; i < Math.max(a.length, b.length); i++) for (const call of [a[i], b[i]]) if (call && !out.has(call.id)) out.set(call.id, call)
+/** Two rankings of the same items, taken in turns, each item once. */
+export function interleave<T extends { id: string }>(a: T[], b: T[]): T[] {
+	const out = new Map<string, T>()
+	for (let i = 0; i < Math.max(a.length, b.length); i++) for (const item of [a[i], b[i]]) if (item && !out.has(item.id)) out.set(item.id, item)
 	return [...out.values()]
 }
 

@@ -26,8 +26,9 @@ export interface Claim {
 /**
  * `work`: a real OpenAlex work, outside the dataset, that links no dataset researcher or company (src/data/openalex.ts).
  * `call`: an open or upcoming EU funding call, cited as `CALL:<topic id>` (src/data/eucalls.ts).
+ * `eu-project`: a real EU-funded project from CORDIS, cited as `CORDIS:<project id>` (src/data/cordis.ts).
  */
-export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page" | "work" | "call"
+export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page" | "work" | "call" | "eu-project"
 
 /** One dataset record as a citable source. Built by src/data/. */
 export interface SourceRecord {
@@ -230,6 +231,38 @@ export interface FundingCall {
 	url: string
 }
 
+/** A real EU-funded project from CORDIS. Every field comes from CORDIS; it names organisations, never people. */
+export interface EuProject {
+	/** `CORDIS:` + the project id, e.g. `CORDIS:101225653`. */
+	id: string
+	projectId: string
+	acronym: string
+	title: string
+	/** CORDIS's teaser, clipped. */
+	summary: string
+	status: "ongoing" | "closed"
+	/** YYYY-MM-DD */
+	start: string
+	end: string
+	/** Horizon Europe or Horizon 2020. */
+	programme: string
+	/** The call topic that funded it, e.g. `HORIZON-CL3-2024-CS-01-01`. */
+	topic?: string
+	coordinator?: { name: string; country: string }
+	/** Organisations in the consortium. */
+	organisations: number
+	/** Organisations from Serbia, by legal name. */
+	serbian: string[]
+	url: string
+}
+
+/** A CORDIS project the Funding Scout shows a pair: work already funded on the same problem, and who did it. */
+export interface ProjectFit {
+	project: EuProject
+	/** The Scout's reasoning: what the project shares with the pair's problem. A judgement, not a claim. */
+	reason: string
+}
+
 /** A call the Funding Scout points a pair to. */
 export interface FundingFit {
 	call: FundingCall
@@ -252,6 +285,8 @@ export interface FundingMatch {
 	calls: FundingFit[]
 	/** Why no call fits, when `calls` is empty. */
 	noneReason?: string
+	/** Up to 3 EU-funded projects from CORDIS on the same problem. Absent in runs from before CORDIS. */
+	projects?: ProjectFit[]
 	/** The search strings sent to the portal. */
 	queries: string[]
 	/** Calls with a deadline ahead that the Scout read. */
