@@ -114,16 +114,85 @@ export interface Proposal {
 	revision: number
 }
 
+/**
+ * Which Critic check failed. By code: `no-source` (empty sourceIds), `unknown-source` (id not in the SourceStore),
+ * `wrong-subject` (the record belongs to another researcher or company), `name-mismatch` (name does not fit the id).
+ * By the model: `unsupported` (the source text does not back the claim), `unchecked` (the review gave no answer for it).
+ */
+export type RejectCheck = "no-source" | "unknown-source" | "wrong-subject" | "name-mismatch" | "unsupported" | "unchecked"
+
 export interface RejectedClaim {
 	claim: Claim
 	reason: string
+	check?: RejectCheck
+	/** For a model check by two reviewers: the names of those that rejected the claim. One name means they disagreed. */
+	reviewers?: string[]
+}
+
+/** One reviewer's model check in a two-reviewer verdict. Both reviewers get the same claims, each in its own context. */
+export interface ReviewerVote {
+	/** Participant name: `critic` or `critic-2`. */
+	reviewer: string
+	model: string
+	/** The reviewer's critique task. */
+	taskId: string
+	/** Claims this reviewer rejected. */
+	rejected: number
 }
 
 export interface CriticVerdict {
+	/** The reviewed artifact's id. For kinds other than "proposal", this is the profile, challenge or pair id. */
 	proposalId: string
-	/** The Proposal.revision this verdict is about. */
+	/** The Proposal.revision this verdict is about. For other kinds, the review round: 0 first, +1 per send-back. */
 	revision: number
 	ok: boolean
+	rejected: RejectedClaim[]
+	/** What was reviewed. Absent means a proposal. */
+	kind?: ArtifactKind
+	/** The critique task that ran the model check, if one ran. */
+	taskId?: string
+	/**
+	 * What the Critic did with the artifact. `human-review`: two reviewers checked it, the fixes ran out and
+	 * it still failed, so it stays on the blackboard for a person to decide.
+	 */
+	action?: "accept" | "send-back" | "drop" | "human-review"
+	/** When two reviewers ran the model check: each one's part. The artifact passes only if both pass. */
+	reviewers?: ReviewerVote[]
+}
+
+// ---------------------------------------------------------------------------
+// Review protocol (src/agents/critic)
+// ---------------------------------------------------------------------------
+
+/** An artifact the Critic reviews. Each kind lives in its MatchState map: profiles, needs, candidates, proposals. */
+export type ArtifactKind = "profile" | "need" | "pair" | "proposal"
+
+/**
+ * Payload of `artifact.posted`. A producer sends it (with `postArtifact()`) after it writes or rewrites an
+ * artifact on MatchState. The Critic starts its review at once, while the other agents keep working.
+ */
+export interface ArtifactPosted {
+	kind: ArtifactKind
+	/** The artifact's key in its map: researcherId, challengeId, pair id or proposal id. */
+	id: string
+	/** The producer's task that wrote it. */
+	taskId?: string
+}
+
+/**
+ * Payload of `critic.sent_back`. The Critic rejected claims and created a new task for the producer.
+ * The producer runs that task, fixes only the rejected claims, writes the artifact again and posts it again.
+ */
+export interface SentBack {
+	/** The new task, assigned to the producer. */
+	taskId: string
+	kind: ArtifactKind
+	id: string
+	/** Mozaik participant id of the producer. */
+	producerId: string
+	/** 1 for the first send-back. After `maxAttempts` send-backs, the next rejection drops the artifact. */
+	attempt: number
+	maxAttempts: number
 	rejected: RejectedClaim[]
 }
 
