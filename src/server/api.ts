@@ -92,14 +92,23 @@ export interface ApprovalBody {
 /**
  * Everything the results view needs, in one object.
  * The server reads `out/<run>/results.json` with this shape. Without it, it falls back to
- * `pairs.json`, `proposals.json`, `verdicts.json`, `needs.json`, `profiles.json`, summary.json fields and `proposals/*.md`.
+ * `pairs.json`, `proposals.json`, `verdicts.json`, `needs.json`, `profiles.json`, summary.json fields,
+ * `proposals/*.md` and `needs-human/*.md`.
  */
 export interface RunResults {
 	needs: CompanyNeed[]
 	profiles: ResearcherProfile[]
 	pairs: PairCandidate[]
+	/**
+	 * Pair ids handed to the Writers, in the order they were chosen. A chosen pair with no proposal and no
+	 * held-back draft lost its Writer task (budget, or a failure). Absent when the run did not record it.
+	 */
+	chosen?: string[]
 	noMatches: NoMatch[]
+	/** Proposals the Critics accepted. */
 	proposals: Proposal[]
+	/** Full drafts the Critics did not accept (`needs-human/<id>.md`): a person reads them and decides. */
+	needsHuman?: Proposal[]
 	verdicts: CriticVerdict[]
 	approvals: Approvals
 }

@@ -129,12 +129,14 @@ export function readResults(dir: string): RunResults {
 		needs: pick("needs", read("needs.json")),
 		profiles: pick("profiles", read("profiles.json")),
 		pairs: pick("pairs", pairs, "candidates"),
-		// pairs.json may be a bare PairCandidate[]: then it has no noMatches.
+		// pairs.json may be a bare PairCandidate[]: then it has no chosen ids and no noMatches.
+		chosen: results?.chosen ?? (Array.isArray(pairs) ? undefined : listOf<string>(pairs, "chosen")),
 		noMatches: pick("noMatches", Array.isArray(pairs) ? undefined : pairs),
 		proposals: (() => {
 			const found = pick<Proposal>("proposals", read("proposals.json"))
-			return found.length ? found : markdownProposals(dir)
+			return found.length ? found : markdownProposals(join(dir, "proposals"))
 		})(),
+		needsHuman: results?.needsHuman ?? markdownProposals(join(dir, "needs-human")),
 		verdicts: (() => {
 			const found = pick<CriticVerdict>("verdicts", read("verdicts.json"))
 			return found.length ? found : traceVerdicts(dir)
@@ -181,7 +183,7 @@ export function citedIds(results: RunResults): string[] {
 		ids.add(pair.challengeId).add(pair.researcherId)
 		claims([...pair.why, pair.problem, ...pair.risks])
 	}
-	for (const proposal of results.proposals) claims(proposal.claims)
+	for (const proposal of [...results.proposals, ...(results.needsHuman ?? [])]) claims(proposal.claims)
 	for (const verdict of results.verdicts) claims(verdict.rejected.map((r) => r.claim))
 	ids.delete("")
 	return [...ids].sort()
@@ -240,8 +242,8 @@ function parseRecord(line: string): { kind?: string; data?: unknown } | undefine
 	}
 }
 
-function markdownProposals(dir: string): Proposal[] {
-	const folder = join(dir, "proposals")
+/** Proposals from the Markdown files in `folder` (`proposals/` or `needs-human/`), without their claims. */
+function markdownProposals(folder: string): Proposal[] {
 	if (!existsSync(folder)) return []
 	return readdirSync(folder)
 		.filter((name) => name.endsWith(".md"))
