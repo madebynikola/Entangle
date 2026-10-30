@@ -1,0 +1,1693 @@
+{
+	"about": "The hand-check of 30 Oct (docs/quality.md) as data: every claim of three proposals (C001, C005, C012) from two runs, each with its cited ids and a label from reading the full text of the records it cites. The Critic passed every one. 'before' is run 2026-10-30T13-37-34 (old rubric), 'after' is run 2026-10-30T15-09-14 (new rubric). Score the Critic on it with `npm run critic:eval`.",
+	"labels": {
+		"ok": "Every fact is in the cited records. The Critic should pass it. A note gives a caveat the hand-check accepted.",
+		"judgement": "Adds a judgement on how a record fits the other side, or reasoning stated as fact. The Critic should reject it.",
+		"uncited-detail": "Takes a word or fact from a record it does not cite. The Critic should reject it.",
+		"widened": "Says more than the record: a wider scope or list, a stronger requirement, or two points merged. The Critic should reject it.",
+		"borderline": "A small stretch the hand-check could not call either way. Not scored as a miss or a false reject."
+	},
+	"proposals": [
+		{
+			"id": "C001-CH1-R1008",
+			"pairId": "C001-CH1:R1008",
+			"run": "2026-10-30T13-37-34",
+			"phase": "before",
+			"claims": [
+				{
+					"n": 1,
+					"text": "ArmaturaSec d.o.o. works in cybersecurity.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Krisztina Kiss is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "ArmaturaSec has several terabytes of normal Modbus TCP and BACnet/IP traffic captures collected over three years from consenting clients, and zero confirmed malicious traffic.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001"
+					],
+					"label": "ok",
+					"note": "The protocols (Modbus TCP, BACnet/IP) are inferred from ProtoSense watching Modbus and BACnet traffic."
+				},
+				{
+					"n": 4,
+					"text": "Supervised classifiers trained on public ICS datasets produce false positive rates too high for production deployment at ArmaturaSec's client sites.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "ArmaturaSec requires results to be explainable in plain language to plant managers, not a black box.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok",
+					"note": "\"Not a black box\" paraphrases CH1's \"explain to a plant manager in plain language\"."
+				},
+				{
+					"n": 6,
+					"text": "ArmaturaSec plans a fifth hardware variant with a dedicated security processor to support anomaly detection without affecting packet forwarding latency.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 7,
+					"text": "Several terabytes of normal Modbus TCP and BACnet/IP traffic captures collected over three years from consenting clients.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001"
+					],
+					"label": "ok",
+					"note": "Same protocol inference as claim 3."
+				},
+				{
+					"n": 8,
+					"text": "A hardware bench with physical PLC simulators and an existing firmware codebase, available under NDA.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "One to two engineers available part-time for the collaborative project.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "Expertise in anomaly detection on ICS protocol traffic using one-class SVM, Isolation Forest, autoencoders, and Gaussian mixture models — all unsupervised methods trainable on normal traffic only.",
+					"sourceIds": [
+						"SYN-PUB-10473",
+						"SYN-PUB-10475",
+						"SYN-PUB-10476",
+						"SYN-PUB-00492",
+						"SYN-PUB-10477"
+					],
+					"label": "borderline",
+					"note": "\"All unsupervised methods trainable on normal traffic only\": SYN-PUB-10475 tunes a contamination fraction, and SYN-PUB-00492 does not say it is unsupervised."
+				},
+				{
+					"n": 11,
+					"text": "Threshold calibration methods using beta mixture models to align nominal and actual false positive rates under imbalanced operating conditions.",
+					"sourceIds": [
+						"SYN-PUB-10480"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Lightweight model compression methods through weight quantization and structured pruning for embedding anomaly detectors on resource-constrained ARM gateways with 256 MB RAM.",
+					"sourceIds": [
+						"SYN-PUB-10239"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Multi-protocol anomaly detection using score aggregation strategies for simultaneous Modbus, DNP3, and EtherNet/IP traffic.",
+					"sourceIds": [
+						"SYN-PUB-10482"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Incremental online learning methods that maintain detection performance during concept drift without periodic full retraining.",
+					"sourceIds": [
+						"SYN-PUB-00492"
+					],
+					"label": "borderline",
+					"note": "\"Maintain detection performance during concept drift\": SYN-PUB-00492 detects drift as an anomaly episode and proposes a supervised reset."
+				},
+				{
+					"n": 15,
+					"text": "Protocol-agnostic feature extraction from raw application-layer payload bytes, usable without protocol parsers.",
+					"sourceIds": [
+						"SYN-PUB-10483"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "A dedicated ICS testbed equipped with Siemens-compatible PLCs, Modbus/TCP and DNP3 traffic generators, and packet capture infrastructure, available to industrial partners under a data-sharing agreement.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "Prior practical validation of ICS anomaly detection research through collaboration with a regional energy distributor and water utility as data partners on the FEDICS and ICAROS projects.",
+					"sourceIds": [
+						"SYN-PRJ-0512",
+						"SYN-PRJ-0511"
+					],
+					"label": "uncited-detail",
+					"note": "\"Data partners\" and \"practical validation\" come from R1008, which the claim does not cite. FEDICS never calls the water utility a data partner."
+				},
+				{
+					"n": 18,
+					"text": "ArmaturaSec has several terabytes of normal Modbus TCP and BACnet/IP traffic from consenting clients and zero labelled attack data, requiring unsupervised methods.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001"
+					],
+					"label": "ok",
+					"note": "Same protocol inference as claim 3."
+				},
+				{
+					"n": 19,
+					"text": "Supervised classifiers trained on public ICS datasets produce false positive rates that are unacceptable in ArmaturaSec's production deployments.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 20,
+					"text": "Kiss co-authored publications on anomaly detection in ICS protocol traffic using one-class SVM, Isolation Forest, autoencoders, and Gaussian mixture models — all methods trainable without attack data.",
+					"sourceIds": [
+						"SYN-PUB-10473",
+						"SYN-PUB-10475",
+						"SYN-PUB-10476",
+						"SYN-PUB-00492",
+						"SYN-PUB-10477"
+					],
+					"label": "borderline",
+					"note": "\"All methods trainable without attack data\": same as claim 10."
+				},
+				{
+					"n": 21,
+					"text": "Kiss co-authored a publication on threshold calibration using beta mixture models to align nominal and actual false positive rates, directly addressing ArmaturaSec's false positive rate problem.",
+					"sourceIds": [
+						"SYN-PUB-10480"
+					],
+					"label": "judgement",
+					"note": "\"Directly addressing ArmaturaSec's false positive rate problem\": SYN-PUB-10480 says nothing about ArmaturaSec."
+				},
+				{
+					"n": 22,
+					"text": "Kiss co-authored a publication on lightweight model compression through weight quantization and structured pruning for ARM gateways with 256 MB RAM, addressing ArmaturaSec's on-device latency constraint.",
+					"sourceIds": [
+						"SYN-PUB-10239"
+					],
+					"label": "judgement",
+					"note": "\"Addressing ArmaturaSec's on-device latency constraint\": SYN-PUB-10239 says nothing about ArmaturaSec."
+				},
+				{
+					"n": 23,
+					"text": "Kiss operates a dedicated ICS testbed with Modbus/TCP traffic generators and packet capture infrastructure, available to industrial partners under a data-sharing agreement.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok",
+					"note": "R1008 says \"the group operates\" the testbed, not Kiss."
+				},
+				{
+					"n": 24,
+					"text": "Kiss collaborated with a regional energy distributor and water utility as data partners on the FEDICS and ICAROS projects, providing prior validation on operational infrastructure.",
+					"sourceIds": [
+						"SYN-PRJ-0512",
+						"SYN-PRJ-0511"
+					],
+					"label": "uncited-detail",
+					"note": "\"As data partners\" and \"providing prior validation\" come from R1008, which the claim does not cite."
+				},
+				{
+					"n": 25,
+					"text": "No availability information is provided in the profile.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C005-CH1-R0906",
+			"pairId": "C005-CH1:R0906",
+			"run": "2026-10-30T13-37-34",
+			"phase": "before",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Kardiolink a.d. works in medtech and digital health.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Maja Popović is an Associate Professor in the Department of Biomedical Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0906"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "The KL-Patch 72 runs 250 Hz continuous ECG acquisition and BLE communication on a 54 mAh lithium cell and consumes 18 mAh per day, leaving insufficient margin for active patients who trigger frequent data syncs.",
+					"sourceIds": [
+						"C005-CH1",
+						"C005"
+					],
+					"label": "borderline",
+					"note": "\"Runs 250 Hz\": C005-CH1 gives only a floor of 250 Hz. The exact rate is in an uncited job page."
+				},
+				{
+					"n": 4,
+					"text": "The challenge requires reducing active current draw by at least 35% without lowering the sampling rate below 250 Hz, the threshold below which ECG clinical validity is affected.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "Firmware changes and BLE tuning have already approached their limits; the company needs power reduction from mechanisms beyond advertising intervals and PHY selection.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok",
+					"note": "Drops the company's hedge \"within a few milliamps of what we think we can achieve\"."
+				},
+				{
+					"n": 6,
+					"text": "The device must maintain a 72-hour wear period on a single charge.",
+					"sourceIds": [
+						"C005-CH1",
+						"C005"
+					],
+					"label": "borderline",
+					"note": "\"On a single charge\" is in no record. The patches are single-use, for up to 72 hours."
+				},
+				{
+					"n": 7,
+					"text": "Existing KL-Patch 72 platform running FreeRTOS on ARM Cortex-M4 with Nordic nRF52840 SoC and BLE 5.0.",
+					"sourceIds": [
+						"C005",
+						"C005-CH1"
+					],
+					"label": "uncited-detail",
+					"note": "\"Nordic\" and the tie of this stack to the KL-Patch 72 come from an uncited job page."
+				},
+				{
+					"n": 8,
+					"text": "Keysight N6705C power analyzer and instrumented reference hardware with full current profiles already available.",
+					"sourceIds": [
+						"C005-CH1",
+						"C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "A shared lab equipped for electronics prototyping, signal acquisition testing, and device-level EMC pre-compliance testing.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "A team of twelve people working across hardware, firmware, and algorithm development.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Full current profiles from the instrumented reference hardware, available to anyone working on the power-reduction problem.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Popović co-authored work on signal quality assessment for single-lead wearable ECG including spectral methods and embedded system implementation on ARM Cortex-M4.",
+					"sourceIds": [
+						"SYN-PUB-09645"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Popović co-authored work on QRS detection on ultra-low-power microcontrollers using integer arithmetic.",
+					"sourceIds": [
+						"SYN-PUB-09643"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Popović co-authored work on arrhythmia classification on a microcontroller.",
+					"sourceIds": [
+						"SYN-PUB-09639"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Popović co-authored work on activity recognition from chest-worn accelerometers using machine learning classifiers on time- and frequency-domain features.",
+					"sourceIds": [
+						"SYN-PUB-09640"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "Popović co-authored a book chapter covering signal acquisition, digital processing pipelines, and clinical validation under European Medical Device Regulation (MDR 2017/745).",
+					"sourceIds": [
+						"SYN-PUB-09646"
+					],
+					"label": "widened",
+					"note": "Merges two parts of the chapter: clinical validation methodology, and regulatory considerations under MDR 2017/745."
+				},
+				{
+					"n": 17,
+					"text": "Popović led the HEARTWATCH project, a three-year research initiative on remote cardiac monitoring from 2022 to 2025.",
+					"sourceIds": [
+						"SYN-PRJ-0014"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "Popović is open to industrial PhD co-supervision and joint applied research projects with technology companies.",
+					"sourceIds": [
+						"R0906"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 19,
+					"text": "The challenge requires that no power-saving measure lowers the sampling rate below 250 Hz, because that threshold is where clinical validity of the ECG signal is affected, and the target is to cut active current draw by at least 35%.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 20,
+					"text": "Popović co-authored work on signal quality assessment for single-lead wearable ECG including spectral methods and embedded system implementation on ARM Cortex-M4.",
+					"sourceIds": [
+						"SYN-PUB-09645"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 21,
+					"text": "Popović co-authored work on QRS detection on ultra-low-power microcontrollers using integer arithmetic and co-authored work on arrhythmia classification on a microcontroller.",
+					"sourceIds": [
+						"SYN-PUB-09643",
+						"SYN-PUB-09639"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 22,
+					"text": "Popović co-authored a book chapter covering clinical validation under European Medical Device Regulation (MDR 2017/745).",
+					"sourceIds": [
+						"SYN-PUB-09646"
+					],
+					"label": "widened",
+					"note": "Same merge as claim 16."
+				},
+				{
+					"n": 23,
+					"text": "Firmware changes and BLE tuning have already approached their limits; the company needs power reduction from mechanisms beyond advertising intervals and PHY selection.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 24,
+					"text": "Together, Kardiolink and Maja Popović would work on ensuring that power-reduction measures do not lower ECG signal quality below the 250 Hz clinical validity threshold: Popović's signal quality assessment and embedded ECG processing expertise [SYN-PUB-09645, SYN-PUB-09643, SYN-PUB-09639] would address the clinical constraint the company identifies as the hard boundary on any optimization [C005-CH1].",
+					"sourceIds": [
+						"C005-CH1",
+						"SYN-PUB-09645",
+						"SYN-PUB-09643",
+						"SYN-PUB-09639"
+					],
+					"label": "judgement",
+					"note": "\"Would address the clinical constraint\" is a judgement. It also calls the 250 Hz sampling floor a signal-quality threshold."
+				}
+			]
+		},
+		{
+			"id": "C012-CH1-R0564",
+			"pairId": "C012-CH1:R0564",
+			"run": "2026-10-30T13-37-34",
+			"phase": "before",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Sentinel Byte preduzetnik works in cybersecurity.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Árpád Nagy is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "Clients including two municipalities and a medical supply company are requesting continuous or monthly testing, which the company cannot meet within its current billing model.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "widened",
+					"note": "C012-CH1: the three clients asked to retest after patches, and only one asked for something closer to monthly checks."
+				},
+				{
+					"n": 4,
+					"text": "The current automation consists of Bash scripts wrapping Nmap and other tools that break when tool versions change and were built for single runs, not comparison across time.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The diff step between successive scans produces too much noise and requires manual review before output can be trusted.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok",
+					"note": "Drops the blog's \"it mostly works, but edge cases cause enough noise\"."
+				},
+				{
+					"n": 6,
+					"text": "The company plans to offer continuous monitoring as a service within the next twelve months, which requires reducing the initial engagement phase from four days to one day.",
+					"sourceIds": [
+						"C012",
+						"C012-CH1"
+					],
+					"label": "judgement",
+					"note": "\"Requires reducing the initial engagement phase from four days to one\": CH1 ties that cut to taking on retest work without more staff."
+				},
+				{
+					"n": 7,
+					"text": "Árpád Nagy led vulnerability enumeration work in the SECSME project and conducted paid pilot assessments for two technology companies at NTP Novi Sad under the GRAPHSEC project.",
+					"sourceIds": [
+						"SYN-PRJ-0507",
+						"SYN-PRJ-0508",
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "Sentinel Byte conducts manual penetration tests lasting about two weeks per engagement, with the reconnaissance and enumeration phase taking a few days.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "Existing Bash scripts wrapping Nmap and other tools, representing the current automation baseline the pipeline must replace.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "The company has maintained Bash scripts wrapping Nmap and other tools for the past two years; each run produces a text file organised by host with open ports, detected services, and Nessus findings cross-referenced.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Roughly two days per week of a team member's time for collaborative development.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Nmap, Nessus, Burp Suite, Metasploit Framework, and Kali Linux as the primary testing environment.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "A budget of roughly 3,000 to 5,000 euros for tooling and development collaboration.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Published methods for automated network reconnaissance and topology discovery using agent-based scanning pipelines and passive-active probing fusion.",
+					"sourceIds": [
+						"SYN-PUB-06542",
+						"R0564"
+					],
+					"label": "ok",
+					"note": "\"Agent-based scanning pipelines\" comes from R0564's research description, not a publication."
+				},
+				{
+					"n": 15,
+					"text": "Published incremental update algorithms for recomputing attack graphs after network configuration changes — the core engine for change detection between scan snapshots.",
+					"sourceIds": [
+						"SYN-PUB-06543",
+						"SYN-PUB-06546"
+					],
+					"label": "judgement",
+					"note": "\"The core engine for change detection between scan snapshots\": SYN-PUB-06546 takes a declared configuration delta as input, and SYN-PUB-06543 has no incremental updates."
+				},
+				{
+					"n": 16,
+					"text": "Published vulnerability data normalisation and ontology-driven integration of heterogeneous vulnerability feeds into unified schemas.",
+					"sourceIds": [
+						"SYN-PUB-03796"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "Published scanning detectability measurement and greedy optimisation of scan parameters to minimise IDS alert generation.",
+					"sourceIds": [
+						"SYN-PUB-06549"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "Prior consulting experience with a regional managed security services provider on automated scanning workflows and toolchain integration.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 19,
+					"text": "Prior experience conducting paid pilot assessments for NTP Novi Sad companies under the GRAPHSEC project and leading vulnerability enumeration work in the SECSME project.",
+					"sourceIds": [
+						"SYN-PRJ-0507",
+						"SYN-PRJ-0508"
+					],
+					"label": "uncited-detail",
+					"note": "\"Paid\" and \"NTP Novi Sad companies\" are only in R0564, which the claim does not cite. GRAPHSEC says \"two industry partners\"."
+				},
+				{
+					"n": 20,
+					"text": "Árpád Nagy is open to joint projects with NTP companies on vulnerability scanning pipeline development and contract research on penetration testing automation.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "widened",
+					"note": "Swaps the topics of the collaboration types. R0564: joint projects on internal network security assessment, contract research on scanning pipelines."
+				},
+				{
+					"n": 21,
+					"text": "Sentinel Byte's Bash scripts break on tool version changes and produce noisy diffs requiring manual review, blocking the move to continuous monitoring.",
+					"sourceIds": [
+						"C012-CH1",
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "borderline",
+					"note": "\"Blocking the move to continuous monitoring\" is not stated. The blog says the diff \"mostly works\"."
+				},
+				{
+					"n": 22,
+					"text": "Árpád Nagy has published on automated network reconnaissance and topology discovery using agent-based scanning pipelines and passive-active probing fusion.",
+					"sourceIds": [
+						"SYN-PUB-06542",
+						"R0564"
+					],
+					"label": "ok",
+					"note": "Same as claim 14."
+				},
+				{
+					"n": 23,
+					"text": "Árpád Nagy has published incremental update algorithms that recompute attack graphs after network configuration changes — directly applicable as a change-detection engine between scan snapshots.",
+					"sourceIds": [
+						"SYN-PUB-06543",
+						"SYN-PUB-06546"
+					],
+					"label": "judgement",
+					"note": "\"Directly applicable as a change-detection engine\": same as claim 15."
+				},
+				{
+					"n": 24,
+					"text": "Árpád Nagy has published vulnerability data normalisation and ontology-driven integration of heterogeneous vulnerability feeds into unified schemas, matching the structured output requirement.",
+					"sourceIds": [
+						"SYN-PUB-03796"
+					],
+					"label": "judgement",
+					"note": "\"Matching the structured output requirement\": the requirement is in uncited CH1, and SYN-PUB-03796 normalises vulnerability feeds, not scanner output."
+				},
+				{
+					"n": 25,
+					"text": "Árpád Nagy provided part-time consulting to a regional managed security services provider on automated scanning workflows and toolchain integration.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 26,
+					"text": "Budget for tooling or development collaboration is limited to roughly 3,000 to 5,000 euros; the scope of the pipeline engineering work should be scoped carefully against this constraint.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 27,
+					"text": "Budget for tooling or development collaboration is limited to roughly 3,000 to 5,000 euros.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C001-CH1-R1015",
+			"pairId": "C001-CH1:R1015",
+			"run": "2026-10-30T15-09-14",
+			"phase": "after",
+			"claims": [
+				{
+					"n": 1,
+					"text": "ArmaturaSec d.o.o. works in cybersecurity.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Vuk Đukić is an Associate Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R1015"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "A supervised classifier trained on public ICS datasets produced unacceptable false-positive rates when deployed on real client Modbus and BACnet/IP networks, making supervised detection infeasible for the company's operational environment.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "widened",
+					"note": "\"Modbus and BACnet/IP networks\": no record says the classifier ran on BACnet/IP. The blog ties it to Modbus only."
+				},
+				{
+					"n": 4,
+					"text": "ArmaturaSec has zero confirmed malicious traffic samples from its client sites, so any detection method must learn baseline behaviour from normal traffic alone.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "ArmaturaSec intends to support on-device anomaly detection without affecting packet forwarding latency, and the company states it has the hardware to run inference on-device.",
+					"sourceIds": [
+						"C001",
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "Plant manager customers need alerts explained in plain language, not a black-box score.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "uncited-detail",
+					"note": "\"Alerts\" is only in the uncited blog, and \"not a black-box score\" is in no record. CH1: a method \"we can explain to a plant manager\"."
+				},
+				{
+					"n": 7,
+					"text": "ArmaturaSec has collected several terabytes of packet captures from consenting clients over three years covering Modbus and BACnet traffic.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "ArmaturaSec operates hardware-in-the-loop test benches with physical PLC simulators for on-device evaluation.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "borderline",
+					"note": "\"For on-device evaluation\": C001 gives no purpose for the hardware-in-the-loop bench, and has one bench, not benches."
+				},
+				{
+					"n": 9,
+					"text": "ArmaturaSec can dedicate one to two engineers part-time to the project, with access to the traffic archives, hardware bench, and firmware codebase under NDA.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "Vuk Đukić co-authored a paper on autoencoder-based anomaly detection for Modbus traffic in industrial control systems.",
+					"sourceIds": [
+						"SYN-PUB-10523"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Vuk Đukić co-authored a paper on intrusion detection on resource-constrained IoT devices through quantisation, pruning, and knowledge distillation.",
+					"sourceIds": [
+						"SYN-PUB-10531"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Vuk Đukić co-authored a comparative evaluation of intrusion detection architectures including specification-based and deep learning approaches for SCADA networks.",
+					"sourceIds": [
+						"SYN-PUB-10525"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Vuk Đukić leads an academic partnership in SECURE-ICS, a project developing an integrated security monitoring platform for factory automation systems targeting Modbus and related protocols.",
+					"sourceIds": [
+						"SYN-PRJ-0017"
+					],
+					"label": "ok",
+					"note": "\"Leads\" is present tense, but the project ran 2023-2025."
+				},
+				{
+					"n": 14,
+					"text": "ArmaturaSec has zero labelled attack samples and a prior supervised classifier that failed on real client networks; the company states that unsupervised baseline learning on site-specific traffic is what it actually needs.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Vuk Đukić co-authored a paper on autoencoder anomaly detection for Modbus traffic in ICS and a separate paper on model compression for resource-constrained IoT devices.",
+					"sourceIds": [
+						"SYN-PUB-10523",
+						"SYN-PUB-10531"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "Vuk Đukić leads an academic partnership in SECURE-ICS, a project developing an integrated security monitoring platform for factory automation systems targeting Modbus and related industrial protocols.",
+					"sourceIds": [
+						"SYN-PRJ-0017"
+					],
+					"label": "ok",
+					"note": "Same as claim 13."
+				},
+				{
+					"n": 17,
+					"text": "The published anomaly detection works cover Modbus traffic and SCADA networks; BACnet/IP does not appear in the listed works.",
+					"sourceIds": [
+						"SYN-PUB-10523",
+						"SYN-PUB-10525"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C005-CH2-R0057",
+			"pairId": "C005-CH2:R0057",
+			"run": "2026-10-30T15-09-14",
+			"phase": "after",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Kardiolink a.d. works in medtech and digital health.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Lazar Šarić is an Assistant Professor in the Department of Mathematics and Informatics, Faculty of Sciences.",
+					"sourceIds": [
+						"R0057"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "Kardiolink deploys approximately 2,200 KL-Patch 72 devices per month, each generating 900 MB of 16-bit ECG at 250 Hz across three channels over 72 hours, totalling roughly 2 TB of raw signal per month.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "uncited-detail",
+					"note": "\"Over 72 hours\": C005-CH2 says \"over its wear period\". \"Up to 72 hours\" is only in uncited C005."
+				},
+				{
+					"n": 4,
+					"text": "Current lossless compression achieves only a 3:1 ratio, incurring €7,400 per month in AWS storage costs; at the projected 4,000 devices per month by Q2 next year, this cost becomes unsustainable.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "uncited-detail",
+					"note": "\"AWS\": C005-CH2 says \"our cloud provider\". AWS is only in uncited C005."
+				},
+				{
+					"n": 5,
+					"text": "The regulatory submission is built around lossless compression; switching to lossy methods would require a new clinical validation study and amendments to the technical file.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "A labelled dataset of approximately 140,000 30-minute ECG segments from KL-Patch 72 devices, available for algorithm development and benchmarking under NDA.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "borderline",
+					"note": "\"From KL-Patch 72 devices\": C005-CH2 does not say where the dataset comes from."
+				},
+				{
+					"n": 7,
+					"text": "Python and MATLAB for signal processing algorithm prototyping.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "A clinical team working directly with cardiologists at partner clinics to make sure what the company ships is useful at the bedside.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "Šarić co-authored work on beat-aligned framing and segmentation for ECG signals exploiting quasi-periodic redundancy and inter-beat correlations.",
+					"sourceIds": [
+						"SYN-PUB-00760",
+						"SYN-PUB-00757",
+						"SYN-PUB-00755"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "Šarić co-authored work on learned entropy models for ECG signal compression using GRU-based context prediction for ECG coefficients.",
+					"sourceIds": [
+						"SYN-PUB-00763",
+						"SYN-PUB-00761"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Šarić co-authored work on DCT and wavelet transform coding frameworks covering ECG signals, including rate-distortion analysis using compression ratio and PRD metrics.",
+					"sourceIds": [
+						"SYN-PUB-00762",
+						"SYN-PUB-00760"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Šarić led the signal compression and transmission standards work package in a cross-border telemedicine infrastructure project with hospital and industrial partners.",
+					"sourceIds": [
+						"SYN-PRJ-0214"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Kardiolink's compression problem is structural: 900 MB of quasi-periodic 16-bit ECG per device per recording, with current lossless codecs reaching only 3:1 and storage costs of €7,400 per month already unsustainable at projected growth.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "judgement",
+					"note": "\"The compression problem is structural\" is a judgement, and \"already unsustainable\" blends two statements of C005-CH2."
+				},
+				{
+					"n": 14,
+					"text": "Šarić co-authored work on beat-aligned framing and segmentation for ECG signals exploiting inter-beat correlations, and co-authored work on learned entropy models for ECG signal compression using GRU-based context prediction for ECG coefficients.",
+					"sourceIds": [
+						"SYN-PUB-00760",
+						"SYN-PUB-00757",
+						"SYN-PUB-00755",
+						"SYN-PUB-00763",
+						"SYN-PUB-00761"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Šarić consulted on ECG compression module selection and parameter tuning for a medical device startup, and led the compression standards work package in a telemedicine project with hospital and industrial partners.",
+					"sourceIds": [
+						"R0057",
+						"SYN-PRJ-0214"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "The published work covers ECG compression broadly; evidence of compression specifically tuned to wearable electrode noise and baseline wander profiles of ambulatory patches is not documented in the cited records.",
+					"sourceIds": [
+						"SYN-PUB-00762",
+						"SYN-PUB-00760",
+						"SYN-PUB-00755"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "The codec evaluation work covers rate-distortion metrics including percentage root-mean-square difference; formal verification against an MDR lossless compliance requirement has not been described in the cited records.",
+					"sourceIds": [
+						"SYN-PUB-00762",
+						"SYN-PUB-00760"
+					],
+					"label": "widened",
+					"note": "\"An MDR lossless compliance requirement\": no record says the MDR requires lossless. SYN-PUB-00762 has only \"regulatory considerations for diagnostic-grade reconstruction\"."
+				}
+			]
+		},
+		{
+			"id": "C012-CH1-R0564",
+			"pairId": "C012-CH1:R0564",
+			"run": "2026-10-30T15-09-14",
+			"phase": "after",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Sentinel Byte preduzetnik works in cybersecurity.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Árpád Nagy is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "A manual penetration test engagement takes about two weeks, with four days spent on reconnaissance and vulnerability enumeration before testing can begin.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "One client has asked for something closer to monthly checks on their external attack surface, and the company does not have the hours to bill that work at current rates and stay profitable.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The company's in-house Bash scripts save about two hours per engagement but break when Nessus changes its output format, which has happened twice in recent years.",
+					"sourceIds": [
+						"C012-CH1",
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "Attempts to add a diff step to the scripts produce enough noise that testers must still review everything manually before trusting the output.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 7,
+					"text": "The company runs Nmap and Nessus as part of its current scripted workflow and has real client engagements that could provide scan data for evaluating a diff pipeline.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop",
+						"C012-CH1"
+					],
+					"label": "judgement",
+					"note": "\"Real client engagements that could provide scan data for evaluating a diff pipeline\": no record says the company keeps scan data."
+				},
+				{
+					"n": 8,
+					"text": "A company engineer can dedicate roughly two days per week to collaborative development on tooling and automation.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "The company has real client engagements with municipalities and a regional medical supply company that have requested continuous testing and retesting after patches.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "widened",
+					"note": "\"Requested continuous testing\": C012-CH1 says they asked to retest after patches, and one asked for something closer to monthly checks."
+				},
+				{
+					"n": 10,
+					"text": "The project budget is 3,000 to 5,000 euros for tooling or development collaboration, with the expected output being a working prototype.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Nagy co-authored work on ontology-driven normalisation across heterogeneous vulnerability data sources using OWL 2 and SPARQL mappings.",
+					"sourceIds": [
+						"SYN-PUB-03796"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Nagy co-authored a benchmark study evaluating vulnerability scanner detection rates, false positives, and the impact of credentialed versus unauthenticated scanning across two commercial platforms and three open-source tools.",
+					"sourceIds": [
+						"SYN-PUB-06547"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Nagy co-authored work on automated network reconnaissance and topology discovery using hybrid active and passive probing methods.",
+					"sourceIds": [
+						"SYN-PUB-06542"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Nagy led the GRAPHSEC project, which delivered pilot network assessments for two industry partners from the Novi Sad technology sector and released an open-source toolchain under EUPL licence.",
+					"sourceIds": [
+						"SYN-PRJ-0507",
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Sentinel Byte's scripts break on Nessus format changes and produce noisy diffs that require full manual review, making the automation unreliable.",
+					"sourceIds": [
+						"C012-CH1",
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "Nagy co-authored work on ontology-driven normalisation across heterogeneous vulnerability data sources using OWL 2 and SPARQL mappings.",
+					"sourceIds": [
+						"SYN-PUB-03796"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "Nagy co-authored a scanner benchmark study covering false-positive rates across multiple tools.",
+					"sourceIds": [
+						"SYN-PUB-06547"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "The cited publications cover vulnerability data normalisation across heterogeneous feeds (SYN-PUB-03796), automated network reconnaissance (SYN-PUB-06542), and scanner benchmark evaluation (SYN-PUB-06547); none of them documents Burp Suite web-application scan output integration.",
+					"sourceIds": [
+						"SYN-PUB-03796",
+						"SYN-PUB-06542",
+						"SYN-PUB-06547"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 19,
+					"text": "C012-CH1 states the budget as roughly 3,000 to 5,000 euros for tooling or a development collaboration, with the expected output being a working prototype.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				}
+			]
+		}
+	],
+	"records": {
+		"C001": {
+			"id": "C001",
+			"kind": "company",
+			"title": "ArmaturaSec d.o.o.",
+			"text": "ArmaturaSec d.o.o. (C001): Cybersecurity, Zrenjanin, 67 employees, founded 2008.\nArmaturaSec d.o.o. has been building network security hardware in Zrenjanin since 2008. We started by selling simple firewall appliances to regional electricity distributors who needed to segment their control networks from corporate IT. Over fifteen years that focus narrowed: today every product we ship is designed specifically for operational technology environments — the kind of networks that run pumps, switchgear, and assembly lines, not office computers. Our customers are energy utilities, water treatment operators, and discrete manufacturers in Serbia, Bosnia and Herzegovina, North Macedonia, and Montenegro. They are not looking for cloud dashboards or vendor lock-in; they need a device that sits in a metal cabinet at a substation or pump station, runs for years without attention, and tells someone when something is wrong. We have 67 people in Zrenjanin. About half write firmware or do hardware bring-up; the rest handle sales, installation, and support. Our head of engineering, Radovan Čičić, joined from a SCADA integrator in 2011 and has led every product generation since. We do not resell other vendors' software. Everything that runs on our appliances — the protocol parsers, the access control engine, the alerting logic — is written and maintained by our own team.\nProducts: NetGuard-OT: network access control appliance for industrial Ethernet segments; NetGuard-OT Mini: DIN-rail form factor variant for smaller substations and pump stations; ProtoSense: passive protocol inspection module for Modbus TCP and BACnet/IP traffic; ArmaturaSec Managed Support: annual firmware maintenance and remote monitoring subscription; SecAudit Report: one-time on-site assessment and written security findings report.\nTech: Embedded Linux (custom Yocto build); Modbus TCP and BACnet/IP protocol parsing; C and Rust for firmware components; iptables and nftables for packet filtering; GPRS and LTE-M cellular backhaul; Python for internal tooling and test scripts; Hardware-in-the-loop bench testing with physical PLC simulators; X.509 certificate management for device identity.\nPlans: ArmaturaSec intends to release a fifth hardware variant in late 2025 with a dedicated security processor to support on-device anomaly detection without affecting packet forwarding latency. We are also evaluating whether to open a small office in Sarajevo to reduce travel time for Bosnian client support.\nR&D capacity: We can dedicate one to two engineers part-time to a collaborative project, with access to our traffic archives, our hardware bench, and our existing firmware codebase under NDA.\nPast collaborations: We ran a one-semester student project with a technical faculty in Novi Sad in 2021 that produced a prototype BACnet fuzzer; the code was useful but the collaboration was not continued formally.",
+			"companyId": "C001",
+			"year": 2008,
+			"researcherIds": []
+		},
+		"C001-CH1": {
+			"id": "C001-CH1",
+			"kind": "challenge",
+			"title": "We need to detect unusual behaviour on Modbus and BACnet networks without labelled attack data — our clients have never been breached (or don't know it), so we have zero examples of malicious traffic and supervised classifiers are useless to us.",
+			"text": "We need to detect unusual behaviour on Modbus and BACnet networks without labelled attack data — our clients have never been breached (or don't know it), so we have zero examples of malicious traffic and supervised classifiers are useless to us.\n\nOur ProtoSense module watches Modbus and BACnet traffic and is supposed to flag anything that looks wrong. The problem is that none of our clients has ever given us a packet capture that contains a confirmed attack. A few of them have been running their networks for twenty years with no security monitoring at all, so if they were compromised they would not know. We have plenty of normal traffic — we have collected several terabytes of captures from consenting clients over the past three years — but we have nothing labelled as malicious. We tried building a supervised classifier once, fed it data from public ICS datasets, and it flagged so many false positives in real deployments that clients started switching the alerts off. What we actually need is something that learns what normal looks like on a specific site and raises a flag when behaviour drifts from that baseline. We have the traffic archives, we have the hardware to run inference on-device, and we have one engineer who has been reading about anomaly detection for six months. We need a method that works with no attack examples and that we can explain to a plant manager in plain language.",
+			"companyId": "C001",
+			"researcherIds": []
+		},
+		"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection": {
+			"id": "C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection",
+			"kind": "page",
+			"title": "Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection",
+			"text": "For about eighteen months we tried to build a detection component that could identify unusual Modbus traffic by training on labelled datasets published by research groups. We had four datasets we thought were credible. We spent a significant chunk of time getting them into a format our pipeline could use, training classifiers, and then testing them against real traffic from our own lab bench and from anonymised captures our clients had agreed to share with us. The results were not good. False positive rates that looked acceptable on the test set turned into something much worse when we applied the model to a real site. A water treatment plant runs its Modbus polling on a rhythm that is specific to that plant — the scan rate, the register addresses, the devices on the bus, everything. A model trained on traffic from a research testbed in another country does not know that rhythm. It cannot know it. We also noticed that the labelled datasets we were using represented attack scenarios that were either very obvious (flooding the bus with write commands) or very specific to hardware we do not see in the Balkans. Neither is particularly useful. What we think actually works for our environment is learning what normal looks like on a specific site and flagging deviations from that. No labels, no pre-trained model from somewhere else. This is not a new idea. The challenge is doing it in a way that runs on our hardware, produces alerts that a plant operator can understand without a data science background, and does not require us to collect six months of clean traffic before it is useful. We have not solved this yet. We have a set of traffic archives from our client base and one engineer who has been working on this part-time. If you have relevant experience or want to talk about it, we are interested.",
+			"companyId": "C001",
+			"year": 2024,
+			"researcherIds": []
+		},
+		"C005": {
+			"id": "C005",
+			"kind": "company",
+			"title": "Kardiolink a.d.",
+			"text": "Kardiolink a.d. (C005): Medtech and digital health, Novi Sad, 112 employees, founded 2004.\nKardiolink a.d. has been designing and manufacturing cardiac monitoring devices in Novi Sad since 2004. We started as a small team of electrical engineers and cardiologists who believed that continuous ECG monitoring should not require a hospital stay. Twenty years later, we employ 112 people across hardware design, firmware, clinical affairs, and software, and our patches are used by cardiology clinics and remote patient monitoring programmes in fourteen EU countries. Our core product is the KL-Patch line: single-use, adhesive ECG patches that patients wear for up to 72 hours while going about their normal lives. Clinicians receive processed reports through our cloud-based KardioPortal platform. We handle everything from electrode chemistry and PCB layout to the signal processing algorithms and the regulatory documentation that lets our devices reach patients legally. What keeps us grounded is that we manufacture in-house at our Novi Sad facility. We control tolerances, can trace every component, and can respond to field feedback without waiting on a contract manufacturer. Our clinical team works directly with cardiologists at partner clinics to make sure what we ship is actually useful at the bedside, not just impressive on a datasheet. We are a mid-size company and intend to stay close to the product.\nProducts: KL-Patch 72: 72-hour single-use adhesive ECG monitoring patch; KL-Patch 14: 14-day extended-wear cardiac event recorder; KardioPortal: cloud platform for ECG data management and clinical reporting; KL-Reader: clinic-side docking station and data upload terminal; Custom OEM patch manufacturing for third-party remote monitoring programmes.\nTech: ADS1293 and ADS1298 analog front-end ICs for ECG acquisition; nRF52840 SoC for Bluetooth Low Energy communication and firmware; FreeRTOS on ARM Cortex-M4 for embedded firmware; Lossless ECG compression using modified SZ algorithm; AWS S3 and Glacier tiered storage for signal archives; IEC 62304-compliant software lifecycle toolchain (Jira, Confluence, Polarion); Altium Designer for PCB layout and design verification; Python and MATLAB for signal processing algorithm prototyping.\nPlans: Kardiolink plans to launch the KL-Patch 14 in the German and Dutch markets following CE MDR certification and to expand KardioPortal with a structured reporting module aimed at high-volume cardiology outpatient departments. Over the following two years we intend to grow the device fleet to 6,000 active patches per month and bring cloud infrastructure costs back in line with 2022 levels.\nR&D capacity: We have twelve people working across hardware, firmware, and algorithm development, with a shared lab equipped for electronics prototyping, signal acquisition testing, and device-level EMC pre-compliance testing.\nPast collaborations: Between 2019 and 2021 Kardiolink worked with the engineering faculty in Subotica on a student project to evaluate alternative electrode materials, which informed the adhesive layer redesign in the KL-Patch 72 revision three.",
+			"companyId": "C005",
+			"year": 2004,
+			"researcherIds": []
+		},
+		"C005-CH1": {
+			"id": "C005-CH1",
+			"kind": "challenge",
+			"title": "Our 72-hour ECG patch consumes 18 mAh per day when Bluetooth is on, which means the battery barely lasts the full wear period in patients who move a lot; we need to cut active current draw by at least 35% without reducing sampling rate below 250 Hz.",
+			"text": "Our 72-hour ECG patch consumes 18 mAh per day when Bluetooth is on, which means the battery barely lasts the full wear period in patients who move a lot; we need to cut active current draw by at least 35% without reducing sampling rate below 250 Hz.\n\nThe KL-Patch 72 runs on a 54 mAh lithium cell. At rest, current draw is manageable, but the moment Bluetooth is advertising or streaming, we see peaks that push daily consumption to 18 mAh. For an average patient that leaves about 18 mAh in reserve across three days, which is fine. The problem is active patients — people who trigger more frequent data syncs because they are moving and the device is flagging events. In a cardiology population that is not a small group. We have already tuned BLE advertising intervals and moved to BLE 5.0 long-range PHY for some use cases, and we switched to a lower-power MCU variant last year. We are now within a few milliamps of what we think we can achieve through firmware changes alone. We need someone who understands the full power budget — radio duty cycling, ADC configuration, memory access patterns — and can find where the remaining headroom is. The constraint is hard: sampling rate cannot drop below 250 Hz or the clinical validity of the signal is affected. We have instrumented reference hardware in our lab with a Keysight N6705C power analyzer and can provide full current profiles to anyone working on this.",
+			"companyId": "C005",
+			"researcherIds": []
+		},
+		"C005-CH2": {
+			"id": "C005-CH2",
+			"kind": "challenge",
+			"title": "We generate roughly 2 TB of raw ECG signal per month from field devices; our current lossless compression gives us only 3:1 ratio and storage costs at our cloud provider have reached €7,400 per month, which is unsustainable at the patient volume we are projecting for next year.",
+			"text": "We generate roughly 2 TB of raw ECG signal per month from field devices; our current lossless compression gives us only 3:1 ratio and storage costs at our cloud provider have reached €7,400 per month, which is unsustainable at the patient volume we are projecting for next year.\n\nEach KL-Patch 72 device generates roughly 900 MB of raw 16-bit ECG samples over its wear period at 250 Hz across three channels. We are deploying around 2,200 devices per month and growing. Our current pipeline applies a lossless compression step before upload, and the best we consistently achieve is 3:1, which still leaves us pushing about 2 TB to cloud storage each month. At €7,400 per month that is already a significant operating cost, and if we hit our projected 4,000 devices per month by Q2 next year the bill more than doubles. We looked at moving to lossy compression but our regulatory submission is built around lossless, so changing that requires a new clinical validation study and amendments to the technical file — not something we can do quickly. We also explored cold storage tiering and that saves maybe 15%, not enough. What we actually need is a better lossless algorithm that understands the structure of ECG signals: the quasi-periodic nature, the baseline wander, the noise characteristics of a wearable electrode. We have a labelled dataset of about 140,000 30-minute segments we can share under NDA for algorithm development and benchmarking.",
+			"companyId": "C005",
+			"researcherIds": []
+		},
+		"C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems": {
+			"id": "C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems",
+			"kind": "page",
+			"title": "Embedded Firmware Engineer — Low-Power BLE Systems",
+			"text": "Kardiolink is looking for an embedded firmware engineer to join our device team in Novi Sad. The role sits within a group of five firmware engineers responsible for the software running on our KL-Patch devices. What you will work on: Our patches run FreeRTOS on an ARM Cortex-M4, with a Nordic Semiconductor nRF52840 handling both application logic and BLE communication. The work involves writing and optimising firmware for real-time ECG acquisition at 250 Hz, managing BLE duty cycling to reduce active current draw, and maintaining the IEC 62304-compliant software lifecycle artefacts our notified body requires. We have a specific near-term problem we need help with: our 72-hour patch consumes more current during BLE activity than we want, and we need an engineer who can dig into the power budget at the level of radio scheduler configuration, ADC sampling modes, DMA transfers, and sleep state transitions. We have a Keysight N6705C power analyser set up in the lab and a suite of instrumented reference boards ready to go. What we are looking for:\n- Three or more years writing firmware in C for Cortex-M microcontrollers\n- Direct experience with Nordic nRF52 series and the nRF5 SDK or nRF Connect SDK\n- Demonstrated work on BLE power optimisation: advertising intervals, connection parameters, PHY selection\n- Familiarity with FreeRTOS task scheduling and its interaction with low-power modes\n- Ability to write and maintain IEC 62304 software lifecycle documentation is a significant plus\n- Experience with biosignal acquisition hardware is welcome but not required The position is full-time, on-site in Novi Sad, with some flexibility for remote days after an initial settling-in period. Salary is negotiable based on experience. Send your CV and a short note about a power optimisation problem you have solved to [email removed].",
+			"companyId": "C005",
+			"year": 2024,
+			"researcherIds": []
+		},
+		"C012": {
+			"id": "C012",
+			"kind": "company",
+			"title": "Sentinel Byte preduzetnik",
+			"text": "Sentinel Byte preduzetnik (C012): Cybersecurity, Subotica, 6 employees, founded 2021.\nSentinel Byte was started in 2021 by Dragan Kovačević and his son Nikola Kovačević in Subotica. Dragan spent over twenty years maintaining IT infrastructure for a regional logistics company before deciding to put that experience toward helping smaller organisations understand their actual security exposure. Nikola came in from a computer science background with hands-on experience in network scanning and web application testing. Together they built a six-person team that covers penetration testing, security audits, and basic security consulting for clients across northern Vojvodina. Our clients are mostly small and medium businesses — accountancy firms, medical clinics, small manufacturers — and a handful of local municipalities who have formal obligations under Serbian information security regulations but limited in-house expertise to meet them. We do not sell fear. We run structured tests, document what we find in plain language, and sit with the client until they understand what each finding means for their daily operations. What separates us from larger firms is geography and availability. We are based in Subotica, we know the local regulatory environment, and our clients can call Dragan or Nikola directly. Six people means no account managers and no hand-offs. Every engagement is run by someone who also wrote the test plan.\nProducts: External and internal network penetration testing; Web application security audit; Security posture assessment for small municipalities; Post-audit remediation walkthrough session; Phishing simulation and basic staff awareness workshop.\nTech: Nmap and Nessus for network scanning; Burp Suite for web application testing; Metasploit Framework for exploitation validation; Kali Linux as primary testing environment; Custom Bash and Python scripts for reconnaissance automation; Markdown-based reporting templates converted to PDF; Git for version-controlled test documentation.\nPlans: Over the next twelve months we want to add one junior tester and move at least part of our reconnaissance workflow onto an automated platform so we can offer continuous monitoring as a service. We are also looking to formalise our training offering into a product we can price and repeat.\nR&D capacity: Nikola Kovačević can dedicate roughly two days per week to a collaborative development project, primarily on tooling and automation topics.\nPast collaborations: Informal technical consultation with a Subotica-based IT services firm, Netlogika d.o.o., during a joint client engagement in 2023; no formal research or university collaborations to date.",
+			"companyId": "C012",
+			"year": 2021,
+			"researcherIds": []
+		},
+		"C012-CH1": {
+			"id": "C012-CH1",
+			"kind": "challenge",
+			"title": "We run manual penetration tests that take our team about two weeks per engagement; clients are asking for continuous testing and retest after patches, but at our size we simply can't bill enough hours to make that sustainable — we need a way to automate at least the reconnaissance and vulnerability enumeration phases.",
+			"text": "We run manual penetration tests that take our team about two weeks per engagement; clients are asking for continuous testing and retest after patches, but at our size we simply can't bill enough hours to make that sustainable — we need a way to automate at least the reconnaissance and vulnerability enumeration phases.\n\nA standard engagement for us runs about two weeks: a few days of reconnaissance and enumeration, then active testing, then a reporting phase. That rhythm works when a client wants a point-in-time audit once a year. The problem is that several clients — especially the two municipalities and a regional medical supply company — have started asking us to retest after they apply patches, and one of them mentioned they want something closer to monthly checks on their external attack surface. We simply do not have the hours to bill that at our current rates and stay profitable. We have tried writing Bash scripts to partially automate the initial scanning phase, and that saves maybe two hours per engagement, but it is fragile and hard to maintain. We need a more reliable pipeline that can run scheduled reconnaissance and vulnerability enumeration, flag changes since the last scan, and hand results to our testers in a structured format. If we could cut the first phase from four days to one, we could take on retest work without adding headcount. Budget for tooling or a development collaboration is limited — roughly 3,000 to 5,000 euros — but we are open to a research arrangement where the output is a working prototype.",
+			"companyId": "C012",
+			"researcherIds": []
+		},
+		"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop": {
+			"id": "C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop",
+			"kind": "page",
+			"title": "Why we wrote our own reconnaissance scripts and why we are about to stop",
+			"text": "For the past two years, every penetration test we run has started the same way: Nikola sits down with a target scope, runs a set of Bash scripts that wrap Nmap and a few other tools, and spends most of a working day cleaning the output into something our testers can actually use. The scripts work. They are also held together with more string than we would like to admit. We wrote them because we needed something faster than running tools manually and we could not justify the licensing cost of a commercial continuous scanning platform for a firm our size. The scripts do their job: they take a list of IP ranges or domains, run a structured scan sequence, and produce a text file organised by host with open ports, detected services, and Nessus findings cross-referenced. Nikola knows every line. Nobody else on the team fully does. The problem has two parts. First, clients are starting to ask for something closer to continuous monitoring — not an annual test but a monthly or quarterly scan that shows what changed since last time. Our scripts were built for a single run, not for comparison across time. We have tried adding a diff step and it mostly works, but edge cases cause enough noise that someone still has to review everything manually before we trust the output. Second, the scripts break when tool versions change. Nessus in particular has changed its output format twice since we wrote the parser. Each time, Nikola spends two days fixing things instead of running tests. We are not complaining. We knew what we were building. But we have reached the point where maintaining this ourselves is not the best use of our time, and we are actively looking for a better approach — whether that is a different toolchain, a collaboration that could help us build something more robust, or a combination of the two. If you work on this kind of problem and want to compare notes, reach out.",
+			"companyId": "C012",
+			"year": 2024,
+			"researcherIds": []
+		},
+		"R0057": {
+			"id": "R0057",
+			"kind": "researcher",
+			"title": "Lazar Šarić",
+			"text": "Lazar Šarić (R0057): Assistant Professor, Department of Mathematics and Informatics, Faculty of Sciences, University of Novi Sad.\nFields: Signal Processing; Data Compression and Coding; Biomedical Informatics; Machine Learning.\nKeywords: signal compression; physiological time series; quasi-periodic redundancy; entropy coding; ECG compression; wavelet transform; learned compression; lossless coding; sparse representation; beat segmentation.\nBio: Lazar Šarić completed his undergraduate and master's studies in mathematics and computer science at the Faculty of Sciences, University of Novi Sad, graduating in 2010 and 2012 respectively. He received his PhD from the same faculty in 2017, with a dissertation on adaptive transform coding of quasi-periodic biomedical signals. Following a postdoctoral stay at the Technical University of Graz (2017–2019), he returned to Novi Sad as an assistant professor. His group focuses on lossless and near-lossless compression of physiological time series—ECG, PPG, and EEG—using discrete cosine and wavelet transforms, sparse coding, and, more recently, learned entropy models based on small recurrent networks. Teaching covers data structures, information theory, and signal processing. The group uses a shared Linux cluster in the Faculty computing lab and collaborates with the Clinical Centre of Vojvodina for annotated signal datasets.\nOpen to: joint projects on embedded or real-time biomedical signal compression; contract research on codec design and evaluation for medical device manufacturers; industrial PhD supervision for candidates with a signal processing or machine learning background; consulting on compression standard compliance (SCP-ECG, HL7 FHIR waveforms); student internships for final-year or master's students from partner faculties.\nIndustry experience: Šarić carried out a short consultancy engagement in 2022 with Mediconn d.o.o., a Novi Sad-based medical device startup, advising on the selection and parameter tuning of an ECG compression module for their Holter recorder firmware.\nNotes: Šarić has expressed interest in collaborating with companies at NTP Novi Sad working on wearable health devices or remote patient monitoring platforms, particularly where real-time or near-real-time compression on constrained hardware is a bottleneck. He is not seeking purely data-science or AI engagements unrelated to signal compression.",
+			"researcherIds": [
+				"R0057"
+			]
+		},
+		"R0564": {
+			"id": "R0564",
+			"kind": "researcher",
+			"title": "Árpád Nagy",
+			"text": "Árpád Nagy (R0564): Full Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Network Security; Autonomous and Multi-Agent Systems; Graph Theory and Applied Algorithms; Distributed Systems.\nKeywords: network reconnaissance; vulnerability enumeration; attack surface modelling; agent-based scanning; graph-based security models; software-defined networking; penetration testing automation; cyber-physical systems security; topology discovery; exploit path analysis.\nBio: Árpád Nagy received his B.Sc. and M.Sc. degrees in Computer Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2001 and 2003 respectively, and his Ph.D. in Computer Science from the same institution in 2008, with a dissertation on automated topology discovery in heterogeneous networks. After a postdoctoral period at the University of Ljubljana (2009–2011), he returned to Novi Sad as Assistant Professor and was promoted to Full Professor in 2021. His group investigates automated network reconnaissance, vulnerability enumeration, and attack-surface modelling using intelligent agent-based scanning pipelines and graph-theoretic representations of network state. He teaches courses on network security, distributed systems, and autonomous agents. The group maintains a dedicated network-emulation laboratory equipped with reconfigurable VLAN hardware, a cluster of software-defined networking switches, and licensed vulnerability-management platforms.\nOpen to: joint projects with NTP companies on internal network security assessment; contract research on vulnerability scanning pipeline development; industrial PhD supervision for candidates from NTP companies; consulting on attack surface modelling and penetration testing automation; student internships in the network-emulation laboratory; equipment access for external researchers requiring VLAN testbed or SDN infrastructure.\nIndustry experience: Between 2014 and 2016 Nagy provided part-time consulting to a regional managed security services provider, reviewing their automated scanning workflows and contributing to toolchain integration. He has also conducted paid pilot assessments for two technology companies at NTP Novi Sad under the GRAPHSEC project.\nNotes: Nagy has indicated a preference for collaborations that involve access to real network environments rather than purely synthetic data, as his group's tooling is at a maturity level where production-grade evaluation would be valuable. He has no current sabbatical plans and takes on a moderate teaching load, leaving capacity for one new significant collaboration per year.",
+			"researcherIds": [
+				"R0564"
+			]
+		},
+		"R0906": {
+			"id": "R0906",
+			"kind": "researcher",
+			"title": "Maja Popović",
+			"text": "Maja Popović (R0906): Associate Professor, Department of Biomedical Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: biomedical signal processing; wearables.\nKeywords: ECG; atrial fibrillation; arrhythmia detection; false alarms; accelerometer.\nBio: Maja Popović is an Associate Professor in the Department of Biomedical Engineering at the Faculty of Technical Sciences, University of Novi Sad. Her research focuses on biomedical signal processing and wearable sensing systems, with a particular emphasis on cardiac monitoring, arrhythmia detection, and the reduction of false alarms in ambulatory ECG devices. She develops embedded signal-processing algorithms suitable for deployment on resource-constrained microcontrollers and wearable patch sensors. Professor Popović leads the HEARTWATCH project, which investigates remote cardiac monitoring solutions for long-term atrial fibrillation screening. She has authored multiple peer-reviewed publications on ECG classification, motion-artifact suppression, and accelerometer-based activity recognition. She is actively seeking industrial PhD co-supervision arrangements and joint applied research projects with technology companies.\nOpen to: industrial PhD supervision; joint projects.",
+			"researcherIds": [
+				"R0906"
+			]
+		},
+		"R1008": {
+			"id": "R1008",
+			"kind": "researcher",
+			"title": "Krisztina Kiss",
+			"text": "Krisztina Kiss (R1008): Full Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Industrial cybersecurity; Network traffic analysis; Machine learning and statistical modelling; Industrial control systems.\nKeywords: anomaly detection; one-class classification; industrial control systems; SCADA security; statistical baseline modelling; Modbus; DNP3; unsupervised learning; network intrusion detection; protocol traffic analysis.\nBio: Krisztina Kiss received her Dipl.Ing. degree in computer engineering from the University of Novi Sad in 2001 and her PhD in electrical and computer engineering from the same institution in 2008, with a dissertation on statistical traffic profiling in industrial Ethernet networks. She joined the Department of Computing and Control Engineering as an assistant professor in 2009 and was promoted to full professor in 2020. Her research group focuses on unsupervised anomaly detection and one-class classification for industrial control system protocol traffic, using statistical baseline modelling, kernel methods, and lightweight online learning algorithms suited to constrained embedded environments. She teaches courses on network security, operating systems, and industrial communication protocols. The group operates a dedicated ICS testbed equipped with Siemens-compatible PLCs, Modbus/TCP and DNP3 traffic generators, and packet capture infrastructure for long-term dataset collection.\nOpen to: joint projects with companies deploying ICS monitoring solutions; contract research on protocol traffic analysis and anomaly detection deployment; industrial PhD supervision for candidates from companies in automation and critical infrastructure; student internships on ICS testbed experiments and dataset collection; consulting on detector calibration, evaluation methodology, and deployment architecture for industrial networks; access to ICS testbed and long-term traffic capture infrastructure for collaborative experiments.\nIndustry experience: Kiss has collaborated with a regional energy distributor and a water utility as monitoring data partners on two funded projects, providing practical validation of research methods on operational infrastructure. She has carried out paid consulting for a mid-size automation integrator on specifying anomaly detection requirements for a SCADA upgrade project.\nNotes: Kiss prefers applied collaborations that result in deployment on real infrastructure rather than purely synthetic experiments. Her group's testbed capacity is available to industrial partners under a data-sharing agreement. She is particularly interested in partners dealing with proprietary or undocumented ICS protocols, which represent a gap in her current work.",
+			"researcherIds": [
+				"R1008"
+			]
+		},
+		"R1015": {
+			"id": "R1015",
+			"kind": "researcher",
+			"title": "Vuk Đukić",
+			"text": "Vuk Đukić (R1015): Associate Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: cybersecurity; network security.\nKeywords: intrusion detection; industrial control systems; anomaly detection; IoT security; threat modelling.\nBio: Vuk Đukić is an Associate Professor at the Faculty of Technical Sciences, University of Novi Sad, within the Department of Computing and Control Engineering. His research focuses on cybersecurity and network security, with particular emphasis on intrusion detection, anomaly detection in industrial control systems, IoT security, and threat modelling. He has led and contributed to multiple national and international research initiatives aimed at securing critical infrastructure and smart environments. Professor Đukić has published in reputable journals and conferences and is actively involved in interdisciplinary collaboration with industry. He is open to supervising industrial PhD students and engaging in joint research projects with technology companies seeking expertise in operational technology security and advanced threat analysis.\nOpen to: industrial PhD supervision; joint projects.",
+			"researcherIds": [
+				"R1015"
+			]
+		},
+		"SYN-PRJ-0014": {
+			"id": "SYN-PRJ-0014",
+			"kind": "project",
+			"title": "HEARTWATCH: remote cardiac monitoring",
+			"text": "HEARTWATCH: remote cardiac monitoring (Science Fund of the Republic of Serbia, 2022–2025).\nParticipants: R0906 principal investigator.\nHEARTWATCH is a three-year research project funded by the Science Fund of the Republic of Serbia, running from 2022 to 2025, with Associate Professor Maja Popović serving as principal investigator. The project addresses the clinical need for reliable, long-term remote cardiac monitoring outside hospital settings, targeting particularly the early detection of atrial fibrillation in high-risk populations. The core technical objective is the development of a complete algorithmic stack—spanning signal quality assessment, motion-artifact suppression, real-time arrhythmia classification, and adaptive false-alarm reduction—capable of executing on a low-power wearable ECG patch. A secondary objective is the creation of a clinically annotated benchmark dataset in partnership with the Clinical Centre of Vojvodina. By project completion, HEARTWATCH aims to deliver open-source firmware validated in a prospective pilot study involving at least 120 participants, providing a translational foundation for commercialization through collaboration with medical device companies.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2022
+		},
+		"SYN-PRJ-0017": {
+			"id": "SYN-PRJ-0017",
+			"kind": "project",
+			"title": "SECURE-ICS: security monitoring for factories",
+			"text": "SECURE-ICS: security monitoring for factories (Innovation Fund, 2023–2025).\nParticipants: R1015 academic partner.\nSECURE-ICS addresses the growing need for robust cybersecurity monitoring in industrial manufacturing environments. The project develops an integrated security monitoring platform tailored specifically to factory automation systems, encompassing network traffic analysis, anomaly detection, and real-time alerting for operational technology networks. As academic partner, the University of Novi Sad team led by Professor Đukić contributes expertise in intrusion detection algorithm design, threat modelling for ICS environments, and evaluation methodology. The platform targets Modbus, PROFINET, and EtherNet/IP protocol stacks commonly found in Serbian manufacturing facilities. Deliverables include a deployable monitoring agent, a validated anomaly detection model trained on representative factory traffic, and a set of security assessment guidelines for small and medium enterprises in the industrial sector. The project runs from 2023 to 2025 under the Innovation Fund programme.",
+			"researcherIds": [
+				"R1015"
+			],
+			"year": 2023
+		},
+		"SYN-PRJ-0214": {
+			"id": "SYN-PRJ-0214",
+			"kind": "project",
+			"title": "Cross-Border Telemedicine Data Infrastructure for Cardiac Monitoring",
+			"text": "CROTIMED: Cross-Border Telemedicine Data Infrastructure for Cardiac Monitoring (Interreg IPA Hungary–Serbia, 2021–2023).\nParticipants: R0057 work package leader; R0653 team member; R0019 team member.\nPartners: Somogy County Health Authority, Kaposvár; General Hospital Subotica; Mediconn d.o.o., Novi Sad.\nA cross-border infrastructure project aiming to establish shared telemedicine data pipelines between partner hospitals in southern Hungary and the Vojvodina region. Šarić leads the work package on signal compression and transmission standards, contributing ECG and PPG codec implementations compliant with the SCP-ECG data standard. The work package also produces interoperability guidelines for compressed signal exchange between different hospital information systems used on the two sides of the border. Deliverables include a compression middleware component integrated into the project's shared telemedicine platform and a joint training session for clinical IT staff at both partner sites.",
+			"researcherIds": [
+				"R0057",
+				"R0653",
+				"R0019"
+			],
+			"year": 2021
+		},
+		"SYN-PRJ-0507": {
+			"id": "SYN-PRJ-0507",
+			"kind": "project",
+			"title": "Graph-Based Attack Surface Management for Heterogeneous Enterprise and Industrial Networks",
+			"text": "GRAPHSEC: Graph-Based Attack Surface Management for Heterogeneous Enterprise and Industrial Networks (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0564 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Electronic Engineering, University of Niš; Cerberus Systems d.o.o., Novi Sad.\nGRAPHSEC developed a unified framework for constructing, maintaining, and querying attack surface graphs that span both enterprise IT and operational technology network segments. The project produced an ontology for cross-domain vulnerability data normalisation, incremental graph-update algorithms validated on synthetic benchmarks, and a prototype scanning pipeline with Kubernetes awareness. Research outputs include six journal articles and four conference papers. The project also delivered an open-source toolchain released under the EUPL licence, and provided two industry partners from the Novi Sad technology sector with pilot assessments of their internal networks. Two doctoral students were trained under the project, one of whom defended in 2024.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2021
+		},
+		"SYN-PRJ-0508": {
+			"id": "SYN-PRJ-0508",
+			"kind": "project",
+			"title": "Affordable Security Assessment Tools for Small and Medium Enterprises in the Western Balkans",
+			"text": "SECSME: Affordable Security Assessment Tools for Small and Medium Enterprises in the Western Balkans (Interreg IPA Hungary–Serbia, 2019–2022).\nParticipants: R0564 work package leader; R0363 team member.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Economics, University of Szeged; Regional Development Agency Vojvodina; Chamber of Commerce and Industry of Csongrád-Csanád County.\nSECSME targeted the gap between enterprise-grade security tooling and the resources available to SMEs in the Hungary–Serbia cross-border region. The Novi Sad team led the work package on automated vulnerability enumeration, adapting existing scanning pipelines to operate within the constrained network environments typical of small businesses. A lightweight deployment package was piloted at eight SMEs in Subotica, Szeged, and Novi Sad. The project also produced training materials and hosted two regional workshops attended by 140 participants in total. Assessment of the pilot sites revealed an average of 34 exploitable vulnerabilities per organisation prior to remediation guidance.",
+			"researcherIds": [
+				"R0564",
+				"R0363"
+			],
+			"year": 2019
+		},
+		"SYN-PRJ-0511": {
+			"id": "SYN-PRJ-0511",
+			"kind": "project",
+			"title": "Incremental and Calibrated Anomaly Recognition for Operational SCADA Systems",
+			"text": "ICAROS: Incremental and Calibrated Anomaly Recognition for Operational SCADA Systems (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R1008 principal investigator; R0564 team member; R0043 team member.\nPartners: Elektrodistribucija Bačka d.o.o., Novi Sad (fictional regional energy distributor); Faculty of Electronic Engineering, University of Niš.\nICAROS addressed the calibration and incremental update of unsupervised anomaly detectors deployed on live SCADA networks. The project developed threshold calibration procedures for detectors operating without labelled attack data, incremental Gaussian mixture and autoencoder update algorithms suited to concept drift induced by planned process changes, and a set of evaluation protocols for comparing detectors across different ICS protocol environments. A labelled Modbus/TCP and DNP3 benchmark dataset was produced and released. Partners included a regional energy distributor that provided controlled access to a monitoring mirror port on an operational substation network, enabling validation under real traffic conditions. The project supported two doctoral candidates and produced nine peer-reviewed publications.",
+			"researcherIds": [
+				"R1008",
+				"R0564",
+				"R0043"
+			],
+			"year": 2021
+		},
+		"SYN-PRJ-0512": {
+			"id": "SYN-PRJ-0512",
+			"kind": "project",
+			"title": "Federated Anomaly Detection Across Distributed Industrial Control System Sites",
+			"text": "FEDICS: Federated Anomaly Detection Across Distributed Industrial Control System Sites (Interreg IPA Hungary–Serbia, 2022–2025).\nParticipants: R1008 coordinator.\nPartners: Department of Automation and Applied Informatics, Budapest University of Technology; Faculty of Informatics, University of Debrecen; Vodovod Vojvodina d.o.o., Novi Sad (fictional regional water utility).\nFEDICS developed federated learning protocols enabling anomaly detection models trained at geographically distributed ICS sites to be aggregated without exchanging raw network traffic. The project addressed privacy constraints common in critical infrastructure contexts and evaluated ensemble aggregation strategies for combining site-level one-class classifiers. Pilot deployments were conducted at two water utility control centres and two district heating substations across the Hungarian–Serbian border region. The project also produced a joint curriculum module on ICS cybersecurity delivered at partner universities. Key deliverables included open-source federated aggregation software, two datasets, and six joint publications by the consortium.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2022
+		},
+		"SYN-PUB-00492": {
+			"id": "SYN-PUB-00492",
+			"kind": "publication",
+			"title": "Incremental Gaussian Mixture Models for Online Anomaly Detection in Continuous ICS Traffic Streams",
+			"text": "Incremental Gaussian Mixture Models for Online Anomaly Detection in Continuous ICS Traffic Streams (2018, journal, Control Engineering Practice).\nAuthors: Jelena Kovačević (outside co-author); Aleksandar Ivković (R0039); Péter Horváth (outside co-author); Krisztina Kiss (R1008).\nKeywords: incremental learning; Gaussian mixture model; online detection; concept drift; district heating.\nThis paper proposes an incremental variant of Gaussian mixture modelling (iGMM) for online anomaly detection in ICS traffic without the need for periodic full retraining. The algorithm maintains a fixed number of Gaussian components (K = 5 to 20 evaluated) and uses a Bayesian update rule to adjust component means, covariances, and weights with each arriving window of observations. Feature vectors are 32-dimensional, derived from 10-second traffic windows. The method was evaluated on a 180-day Modbus/TCP capture from a district heating control network and compared with a static GMM retrained every 24 hours. The iGMM maintained an F1 score within 0.03 of the periodically retrained model while reducing retraining compute cost by 94%. Concept drift induced by a planned process reconfiguration was detected as a persistent anomaly episode; a supervised reset mechanism based on operator acknowledgement was proposed and tested. Memory footprint per detector instance was under 120 KB.",
+			"researcherIds": [
+				"R0039",
+				"R1008"
+			],
+			"year": 2018
+		},
+		"SYN-PUB-00755": {
+			"id": "SYN-PUB-00755",
+			"kind": "publication",
+			"title": "Beat-Synchronous DCT Coding of Long-Term ECG Recordings",
+			"text": "Beat-Synchronous DCT Coding of Long-Term ECG Recordings (2015, conference, Proceedings of the International Symposium on Biomedical Engineering and Medical Informatics (SBEMI)).\nAuthors: Milena Vuković (outside co-author); Lazar Šarić (R0057); Ana Nikolić (outside co-author).\nKeywords: Holter ECG; DCT; beat segmentation; compression ratio; PRD.\nLong-term (Holter) ECG recordings present compression challenges because gradual heart-rate drift shifts beat boundaries relative to fixed analysis windows. This work proposes a beat-synchronous discrete cosine transform (DCT) coder in which each beat is individually segmented using a Pan-Tompkins R-peak detector, zero-padded or truncated to a uniform 512-sample frame, and transformed to the DCT domain. Coefficient quantisation thresholds are derived per lead from a short training segment of the same recording, adapting to inter-patient variability. Tested on 18 two-lead 24-hour recordings at 250 Hz sampled at the Clinical Centre of Vojvodina, the coder achieves a mean compression ratio of 9.3:1 at a percentage root-mean-square difference (PRD) of 1.8%, with diagnostic quality preserved as assessed by two cardiologists. The encoding latency per beat averages 0.4 ms on a standard laptop CPU, confirming real-time feasibility.",
+			"researcherIds": [
+				"R0057"
+			],
+			"year": 2015
+		},
+		"SYN-PUB-00757": {
+			"id": "SYN-PUB-00757",
+			"kind": "publication",
+			"title": "Exploiting Inter-Beat Redundancy in ECG Compression via Differential Pulse-Code Modulation of DCT Coefficients",
+			"text": "Exploiting Inter-Beat Redundancy in ECG Compression via Differential Pulse-Code Modulation of DCT Coefficients (2018, journal, IEEE Transactions on Biomedical Coding and Compression).\nAuthors: Klaus Binder (outside co-author); Lazar Šarić (R0057); Dragan Petković (outside co-author).\nKeywords: inter-beat redundancy; DPCM; DCT; arithmetic coding; atrial fibrillation.\nConsecutive cardiac beats in sinus rhythm show high morphological similarity, so their DCT coefficient sequences are strongly correlated across time. This paper models each lead's DCT coefficient track as a first-order autoregressive process and applies differential pulse-code modulation (DPCM) along the beat index rather than within a single beat. A predictor is trained on the first 30 seconds of each record and updated every 60 seconds to track slow morphological drift. Arithmetic coding is applied to the residual with a Laplacian model for the dominant low-frequency coefficients and a Cauchy model for higher-frequency ones. On a corpus of 48 single-lead records at 500 Hz, mean PRD is 1.4% at a compression ratio of 12.7:1, compared to 9.3:1 for independent per-beat DCT coding at matched PRD. The improvement degrades gracefully to 10.1:1 in the presence of atrial fibrillation, where inter-beat morphology is less predictable.",
+			"researcherIds": [
+				"R0057"
+			],
+			"year": 2018
+		},
+		"SYN-PUB-00760": {
+			"id": "SYN-PUB-00760",
+			"kind": "publication",
+			"title": "Rate-Distortion Analysis of Beat-Aligned Versus Free-Running Frames for ECG Entropy Coding",
+			"text": "Rate-Distortion Analysis of Beat-Aligned Versus Free-Running Frames for ECG Entropy Coding (2021, journal, Signal Processing: Biomedical Applications).\nAuthors: Lazar Šarić (R0057); Dragan Petković (outside co-author).\nKeywords: rate-distortion; ECG framing; entropy coding; context-adaptive arithmetic coding.\nA systematic rate-distortion (R-D) comparison is made between two framing strategies for ECG entropy coding: beat-aligned frames that follow R-peak detection and free-running fixed-length frames of equivalent average duration. For each strategy, DCT coefficients are entropy coded with a context-adaptive arithmetic coder using three coefficient-magnitude context classes. R-D curves are computed at PRD values of 0.5%, 1%, 2%, 4%, and 8% across 60 single-lead records spanning normal sinus rhythm, sinus tachycardia, and first-degree AV block. Beat-aligned framing provides lower bit rates at PRD below 2%—a mean advantage of 0.4 bits per sample—while free-running framing is competitive at higher distortion where the frame-synchronisation overhead of beat detection is not amortised. The crossover PRD and its dependence on heart rate are characterised analytically. The results inform codec design choices in constrained implantable device scenarios.",
+			"researcherIds": [
+				"R0057"
+			],
+			"year": 2021
+		},
+		"SYN-PUB-00761": {
+			"id": "SYN-PUB-00761",
+			"kind": "publication",
+			"title": "Learned Entropy Models for ECG Compression Using Recurrent Context Prediction",
+			"text": "Learned Entropy Models for ECG Compression Using Recurrent Context Prediction (2023, conference, Proceedings of the European Conference on Signal and Image Processing (ECSIP), Vienna).\nAuthors: Lazar Šarić (R0057); Valentina Risso (outside co-author); Milena Vuković (outside co-author); Stefan Horvat (outside co-author).\nKeywords: learned compression; entropy model; GRU; ECG; neural codec.\nRecent learned image compression methods use neural networks to model the entropy of quantised latent representations. This paper adapts that paradigm to single-lead ECG by replacing the standard spatial entropy model with a small gated recurrent unit (GRU) that predicts the probability distribution of each DCT coefficient from the previous 16 coefficients in the same beat and from the corresponding coefficient in the preceding beat, capturing both intra-beat spectral structure and inter-beat temporal redundancy. The GRU has 64 hidden units and is trained jointly with a scalar quantiser on 120 hours of ECG drawn from publicly available databases. At a target PRD of 1.5%, the learned model uses 1.6 bits per sample compared to 2.1 bits per sample for a hand-designed Laplacian arithmetic coder, a 24% reduction. Model size is 48 kB, and decoding runs at 180× real time on a laptop CPU. The paper also analyses failure modes on arrhythmic beats.",
+			"researcherIds": [
+				"R0057"
+			],
+			"year": 2023
+		},
+		"SYN-PUB-00762": {
+			"id": "SYN-PUB-00762",
+			"kind": "publication",
+			"title": "Embedded Coding of Physiological Signals: A Survey of Transform, Sparse, and Learned Approaches",
+			"text": "Embedded Coding of Physiological Signals: A Survey of Transform, Sparse, and Learned Approaches (2024, book chapter, Advances in Biomedical Data Processing, Vol. 4 (Springer)).\nAuthors: Klaus Binder (outside co-author); Sorin Moldovan (outside co-author); Lazar Šarić (R0057); Jelena Graovac (outside co-author).\nKeywords: survey; ECG; EEG; PPG; transform coding; sparse representation; learned compression.\nThis chapter surveys compression techniques for ECG, EEG, and PPG signals with emphasis on methods that exploit quasi-periodic structure. The first part covers classical transform-based approaches—DCT, wavelet, and wavelet packet—and their adaptation to beat-aligned or epoch-aligned frames. The second part reviews sparse representation methods, including structured dictionaries and joint multi-channel sparsity. The third part covers learned approaches: variational autoencoders, recurrent entropy models, and hybrid transform-neural architectures published up to early 2024. For each family, representative methods are compared on standardised datasets where available, and compression ratio, PRD, and encoder complexity are tabulated. The chapter also discusses application constraints: energy budgets in implantable devices, latency in real-time telemetry, and regulatory considerations for diagnostic-grade reconstruction. Open problems, including compression under non-stationary arrhythmic conditions and the lack of unified evaluation benchmarks, are identified.",
+			"researcherIds": [
+				"R0057"
+			],
+			"year": 2024
+		},
+		"SYN-PUB-00763": {
+			"id": "SYN-PUB-00763",
+			"kind": "publication",
+			"title": "Variable-Rate Learned ECG Compression with a Single Model via Conditional Quantisation Noise",
+			"text": "Variable-Rate Learned ECG Compression with a Single Model via Conditional Quantisation Noise (2026, preprint, arXiv preprint).\nAuthors: Lazar Šarić (R0057); Stefan Horvat (outside co-author); Valentina Risso (outside co-author).\nKeywords: variable-rate compression; conditional quantisation; learned codec; ECG; single model.\nMost learned compression models are trained at a fixed rate-distortion tradeoff, requiring separate models per operating point. This preprint proposes a single-model variable-rate ECG codec in which the quantisation noise level is fed as a scalar condition to both the GRU entropy model and a lightweight convolutional synthesis network. The condition scalar is drawn from a uniform grid of 16 values covering PRD targets from 0.5% to 8%. Training uses a weighted sum of rate and distortion losses with the condition scalar randomised each mini-batch. On a held-out test set of 48 single-lead records, the single conditioned model matches or slightly exceeds per-target trained models at all 16 operating points, with a maximum PRD deviation of 0.12 percentage points. Total model footprint is 61 kB, only 27% larger than a single fixed-rate model. Ablations confirm that conditioning the synthesis network is necessary; conditioning only the entropy model reduces the gain by roughly half.",
+			"researcherIds": [
+				"R0057"
+			],
+			"year": 2026
+		},
+		"SYN-PUB-03796": {
+			"id": "SYN-PUB-03796",
+			"kind": "publication",
+			"title": "Ontology-Driven Normalisation of Heterogeneous Vulnerability Feed Data",
+			"text": "Ontology-Driven Normalisation of Heterogeneous Vulnerability Feed Data (2021, conference, Proceedings of the Symposium on Applied Network Analysis and Security).\nAuthors: Katarina Lukić (outside co-author); René Dubois (outside co-author); Árpád Nagy (R0564); Slobodan Knežević (R1030); Vukica Grujić (R0305).\nKeywords: vulnerability data; ontology; NVD; data normalisation; attack graph.\nVulnerability intelligence is distributed across NVD, vendor advisories, and commercial feeds whose data models differ in severity scoring, affected-product representation, and remediation guidance. This paper describes an OWL 2 ontology designed to normalise records from five distinct vulnerability data sources into a unified schema suitable for automated ingestion by attack-graph construction pipelines. The ontology contains 84 classes and 47 object properties; a mapping layer implemented in SPARQL handles source-specific identifier schemes. Evaluation on 6,400 vulnerability records shows that the normalisation procedure resolves 93.1% of duplicate entries that span two or more sources and reduces manual curation effort by an estimated 68% in a controlled analyst-time study involving four participants. The ontology and mapping scripts are released under an open licence. Integration with the incremental attack-graph tool described in earlier work is demonstrated on a 300-node test network.",
+			"researcherIds": [
+				"R0564",
+				"R1030",
+				"R0305"
+			],
+			"year": 2021
+		},
+		"SYN-PUB-06542": {
+			"id": "SYN-PUB-06542",
+			"kind": "publication",
+			"title": "Automated Topology Discovery in Heterogeneous Enterprise Networks Using Passive and Active Probing",
+			"text": "Automated Topology Discovery in Heterogeneous Enterprise Networks Using Passive and Active Probing (2010, journal, Journal of Network and Systems Engineering).\nAuthors: Miroslav Krstić (outside co-author); Tamás Varga (outside co-author); Árpád Nagy (R0564).\nKeywords: topology discovery; passive probing; agent-based; network mapping; ARP.\nThis paper presents a hybrid reconnaissance framework that combines passive traffic observation with selective active probing to reconstruct network topology maps in heterogeneous enterprise environments. The system operates as a coordinated set of lightweight agents deployed at strategic vantage points; each agent collects ARP tables, SNMP MIB data, and sampled NetFlow records, which are then fused by a central correlator. Experiments were conducted on an emulated testbed comprising 240 virtual nodes distributed across six subnets with mixed operating systems. The resulting topology graphs achieved 94.3% node-coverage accuracy and 91.7% edge-accuracy compared to ground-truth configurations, while generating less than 1.2% overhead traffic. The approach outperformed three existing tools—Nessus-based scanning, a commercial agent suite, and a passive-only baseline—on both accuracy and stealth metrics. The paper also introduces a confidence-scoring mechanism that flags uncertain link inferences for manual review.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2010
+		},
+		"SYN-PUB-06543": {
+			"id": "SYN-PUB-06543",
+			"kind": "publication",
+			"title": "Graph-Based Representation of Reachability Conditions for Vulnerability Chaining",
+			"text": "Graph-Based Representation of Reachability Conditions for Vulnerability Chaining (2012, conference, Proceedings of the Central European Conference on Information Security).\nAuthors: Dragana Petrov (outside co-author); Zoltán Fehér (outside co-author); Árpád Nagy (R0564).\nKeywords: attack graph; vulnerability chaining; reachability; CVE; penetration testing.\nCombining vulnerability data with network reachability constraints allows analysts to reason about multi-step attack sequences that no single vulnerability would enable alone. This work formalises attack surfaces as directed multigraphs in which nodes represent hosts annotated with CVE entries and edges encode reachability relations derived from firewall rule sets and routing tables. A path-enumeration algorithm based on a modified Dijkstra variant is applied to identify exploit chains of length two through five within graphs of up to 1,800 nodes. The method was validated against twenty synthetic network configurations whose ground-truth attack paths were independently constructed by certified penetration testers. The algorithm recovered 87% of critical paths and produced no false-positive critical chains. Computational experiments show that graph construction and path enumeration complete in under 40 seconds for networks of 1,000 hosts on commodity hardware, making the approach feasible for periodic re-assessment cycles.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2012
+		},
+		"SYN-PUB-06546": {
+			"id": "SYN-PUB-06546",
+			"kind": "publication",
+			"title": "Incremental Attack Graph Updates After Network Configuration Changes",
+			"text": "Incremental Attack Graph Updates After Network Configuration Changes (2017, journal, Journal of Computer Security and Privacy).\nAuthors: Dragana Petrov (outside co-author); Orsolya Molnár (outside co-author); Árpád Nagy (R0564).\nKeywords: attack graph; incremental update; configuration management; graph algorithms; network security.\nMaintaining an up-to-date attack graph after routine configuration changes—such as firewall rule edits, patch deployments, or device additions—without rebuilding the entire graph from scratch is an open efficiency problem. This paper introduces an incremental update algorithm that identifies the subgraph affected by a declared configuration delta and re-evaluates only the relevant node and edge attributes. The algorithm is evaluated on a synthetic benchmark of 500 graphs with between 200 and 2,000 nodes, with configuration deltas of varying size. For deltas affecting fewer than 5% of nodes, incremental update reduces computation time by an average of 74% compared to full recomputation, with identical output. For larger deltas the advantage diminishes, and a threshold heuristic is derived to select between strategies. A plug-in implementation for an existing open-source attack graph tool is released alongside the paper.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2017
+		},
+		"SYN-PUB-06547": {
+			"id": "SYN-PUB-06547",
+			"kind": "publication",
+			"title": "Evaluating the Completeness of Vulnerability Scanners Against a Controlled Benchmark",
+			"text": "Evaluating the Completeness of Vulnerability Scanners Against a Controlled Benchmark (2018, conference, Proceedings of the Central European Conference on Information Security).\nAuthors: Milan Đorđević (outside co-author); Sonja Herak (outside co-author); Tomáš Blaho (outside co-author); Árpád Nagy (R0564).\nKeywords: vulnerability scanning; benchmark; CVE; false positives; tool evaluation.\nPublished comparisons of commercial and open-source vulnerability scanners typically rely on real networks where ground truth is unknown. This paper describes the construction of a reproducible benchmark consisting of 30 virtual machine images with 178 deliberately implanted vulnerabilities spanning seven CVE severity levels. Five scanning tools were evaluated: two commercial platforms and three open-source tools. Detection rates ranged from 61% to 84% across all implanted vulnerabilities; no single tool detected all instances of any given CVE category. False-positive rates varied from 3.1% to 11.7%. The benchmark is described in sufficient detail for independent replication; VM images are distributed as open artefacts. The study also examines how scan-depth configuration and credential availability affect detection, finding that credentialed scans improve detection by an average of 19 percentage points across all tested tools.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2018
+		},
+		"SYN-PUB-06549": {
+			"id": "SYN-PUB-06549",
+			"kind": "publication",
+			"title": "Measuring Scan Footprint Detectability Across IDS Rule Sets",
+			"text": "Measuring Scan Footprint Detectability Across IDS Rule Sets (2022, journal, Journal of Computer Security and Privacy).\nAuthors: Sonja Herak (outside co-author); Tomáš Blaho (outside co-author); Nikola Vujović (outside co-author); Árpád Nagy (R0564).\nKeywords: IDS evasion; scan detectability; Suricata; penetration testing; alert reduction.\nThe extent to which a given scanning configuration is detectable depends on both the scan parameters and the rule set loaded into the intrusion detection system it faces. This paper introduces a detectability metric derived from the fraction of IDS rules that would fire for a given scan packet sequence, weighted by rule confidence scores. The metric is computed for 48 scanning configurations—varying probe rate, packet size, and port selection order—against three representative Suricata rule sets of different strictness levels. Experiments on a physical testbed of 60 hosts confirm a Spearman correlation of 0.81 between the metric and measured alert counts. The paper then uses the metric to guide a greedy optimiser that selects scan parameters minimising detectability for a target coverage level, achieving a 44% alert reduction against the strictest rule set relative to default scan settings.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2022
+		},
+		"SYN-PUB-09639": {
+			"id": "SYN-PUB-09639",
+			"kind": "publication",
+			"title": "Single-lead ECG arrhythmia classification on a microcontroller",
+			"text": "Single-lead ECG arrhythmia classification on a microcontroller (2022, conference, Conference on Medical Devices Engineering).\nAuthors: Nemanja Đorđević (outside co-author); Maja Popović (R0906); Tijana Marković (outside co-author).\nArrhythmia classification in wearable cardiac monitors demands algorithms compact enough to execute entirely on the sensor node, eliminating reliance on continuous cloud connectivity. This paper describes the design and validation of a single-lead ECG arrhythmia classifier implemented on a low-power 32-bit microcontroller (ARM Cortex-M0+, 48 MHz, 32 kB RAM). The classifier distinguishes five rhythm classes—normal sinus rhythm, atrial fibrillation, premature ventricular contractions, supraventricular tachycardia, and noise—using a lightweight feature set comprising RR-interval statistics, QRS morphology descriptors, and a three-stage decision-tree ensemble. Memory-efficient quantization reduces all floating-point parameters to 8-bit fixed-point representations without measurable accuracy loss. Evaluated on a held-out split of 4,200 annotated 30-second segments, the on-device model achieved a macro-averaged F1 score of 0.87 and consumed an average of 1.4 mW during inference, enabling operation for more than 72 hours on a 180 mAh coin cell. The work demonstrates a practical pathway toward fully autonomous, battery-powered cardiac monitors suitable for remote patient monitoring in resource-limited settings.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2022
+		},
+		"SYN-PUB-09640": {
+			"id": "SYN-PUB-09640",
+			"kind": "publication",
+			"title": "Activity recognition from chest-worn accelerometers",
+			"text": "Activity recognition from chest-worn accelerometers (2021, journal, Wearable Sensing Review).\nAuthors: Maja Popović (R0906); Ana Stevanović (outside co-author); Miloš Radović (outside co-author).\nAccurate activity recognition from chest-worn inertial measurement units is a prerequisite for context-aware physiological monitoring, yet most published benchmarks rely on wrist or hip placements. This study investigates the suitability of a single chest-mounted accelerometer for recognizing twelve daily-life activities including rest, walking, jogging, stair ascent and descent, cycling, and six sedentary postures. Features extracted in the time and frequency domains from three-axis acceleration signals were used to train and compare a k-nearest neighbor classifier, a random forest, and a support vector machine with radial basis function kernel. Data were collected from 45 healthy adults across a structured protocol lasting approximately 90 minutes per participant. The random forest achieved the highest overall accuracy of 92.3% in leave-one-subject-out cross-validation. A confusion analysis revealed that the chest location provides particularly strong discrimination between static postures, outperforming wrist placement on that sub-task. The findings support the integration of chest-worn accelerometers into ECG patch monitors for simultaneous cardiac and activity monitoring without additional sensor hardware.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2021
+		},
+		"SYN-PUB-09643": {
+			"id": "SYN-PUB-09643",
+			"kind": "publication",
+			"title": "Energy-efficient QRS detection on ultra-low-power microcontrollers for long-term cardiac patches",
+			"text": "Energy-efficient QRS detection on ultra-low-power microcontrollers for long-term cardiac patches (2022, journal, Biomedical Microdevices and Embedded Systems Journal).\nAuthors: Maja Popović (R0906); Nemanja Đorđević (outside co-author); Marko Tešić (outside co-author).\nKeywords: QRS detection; ultra-low-power; microcontroller; wearable ECG; integer arithmetic; cardiac patch.\nBattery life is the dominant constraint for wearable cardiac patches intended for multi-week arrhythmia screening. This paper presents an ultra-low-power QRS detection algorithm specifically designed for deployment on a 16-bit microcontroller operating at 8 MHz with 4 kB of available SRAM. The algorithm adapts the classical Pan–Tompkins pipeline by replacing floating-point operations with integer arithmetic and replacing the bandpass filter with a computationally cheaper differentiator-squarer cascade whose coefficients are pre-quantized to powers of two, enabling shift-based multiplication. Threshold adaptation is reformulated as a recursive integer update requiring no division. The implementation is benchmarked on five publicly available ECG databases totalling over 120,000 annotated beats, achieving a detection sensitivity of 99.1% and positive predictivity of 98.9%. On the target microcontroller, the algorithm consumes 87 μW at 500 Hz input, extending projected patch lifetime from 9 to 21 days compared with a floating-point baseline at equivalent sampling rate. The source code is released openly to support reproducibility and adoption in resource-constrained medical device development.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2022
+		},
+		"SYN-PUB-09645": {
+			"id": "SYN-PUB-09645",
+			"kind": "publication",
+			"title": "Signal quality assessment for single-lead wearable ECG: a survey and comparative study",
+			"text": "Signal quality assessment for single-lead wearable ECG: a survey and comparative study (2021, journal, Biomedical Signal Processing and Control).\nAuthors: Maja Popović (R0906); Dragan Ilić (outside co-author); Milena Vujović (outside co-author).\nKeywords: signal quality assessment; wearable ECG; single-lead; arrhythmia detection; survey; embedded systems.\nReliable automatic interpretation of single-lead wearable ECG recordings is contingent upon accurate signal quality assessment (SQA), yet no consensus exists on the best methodology for this task. This survey reviews 38 SQA algorithms published between 2010 and 2022, categorizing them by feature type (statistical, spectral, template-based, and learned), classification strategy, and target application domain. We implement and comparatively evaluate nine representative approaches on two independent ECG datasets collected with chest-worn patches under both controlled and free-living conditions. Evaluation metrics include per-segment quality classification accuracy, computational cost on an ARM Cortex-M4 platform, and downstream impact on AF detector performance when SQA-based segment rejection is applied as a pre-processing gate. Results show that lightweight spectral flatness combined with kurtosis achieves the best accuracy-to-cost trade-off for real-time embedded use, while deep-learning approaches yield superior accuracy at much higher computational expense. The survey concludes with a discussion of open challenges including cross-device generalization and labelling inconsistencies across public datasets.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2021
+		},
+		"SYN-PUB-09646": {
+			"id": "SYN-PUB-09646",
+			"kind": "publication",
+			"title": "Wearable biomedical systems: signal acquisition, processing and clinical translation",
+			"text": "Wearable biomedical systems: signal acquisition, processing and clinical translation (2023, book chapter, Advances in Wearable Health Technology (Springer)).\nAuthors: Maja Popović (R0906); Dragan Ilić (outside co-author); Petra Kovač (outside co-author); Sonja Vukić (outside co-author).\nKeywords: wearable systems; biomedical signal processing; ECG; clinical translation; medical device regulation; embedded algorithms.\nThis book chapter provides a comprehensive overview of the engineering challenges involved in translating wearable biomedical sensing systems from laboratory prototypes to clinically validated devices. The chapter covers the full signal chain from electrode–skin interface physics and analog front-end design through digital signal processing pipelines to clinical validation methodology. Particular attention is paid to the interplay between hardware constraints—power budget, memory, communication bandwidth—and algorithm design choices for cardiac and motion signals. The ECG acquisition and arrhythmia detection pipeline is used as a running example throughout, illustrating how design decisions at each layer propagate to end-to-end system performance. A dedicated section addresses regulatory considerations under the European Medical Device Regulation (MDR 2017/745) relevant to software-as-a-medical-device classification of on-device diagnostic algorithms. The chapter concludes with a roadmap for future research directions including personalized adaptive algorithms, multi-sensor fusion, and privacy-preserving distributed learning. It is intended as a graduate-level reference for students and practitioners entering the field of wearable medical technology.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2023
+		},
+		"SYN-PUB-10239": {
+			"id": "SYN-PUB-10239",
+			"kind": "publication",
+			"title": "Lightweight Anomaly Detection for Resource-Constrained ICS Gateways: A Quantisation and Pruning Study",
+			"text": "Lightweight Anomaly Detection for Resource-Constrained ICS Gateways: A Quantisation and Pruning Study (2025, conference, Proceedings of the European Conference on Industrial Automation and Security (ECIAS)).\nAuthors: Mirjana Stošić (outside co-author); Dávid Szabó (outside co-author); Reinhilde Mayer (outside co-author); Krisztina Kiss (R1008); Andrea Jovanović (R0983); Vukica Ognjanov (R0979).\nKeywords: model compression; quantisation; pruning; embedded deployment; autoencoder.\nMany ICS sites route traffic through ARM-based gateways with 256 MB RAM and single-core processors. This paper evaluates the effect of weight quantisation (32-bit to 8-bit and 4-bit floating point) and structured pruning (removing 10%, 25%, 50% of autoencoder units) on detection performance and inference latency for traffic-based anomaly detectors. Experiments used three autoencoder architectures differing in depth (2, 4, 6 hidden layers) trained on Modbus/TCP and DNP3 captures. 8-bit quantisation reduced model size by 3.7× and inference time by 2.1× with an average AUROC reduction of 0.012. 4-bit quantisation introduced a 0.041 AUROC drop. Structured pruning at 25% improved inference speed by 1.4× with negligible performance loss; at 50%, AUROC declined by 0.028. A combined 8-bit quantised, 25%-pruned model achieved inference at 0.9 ms per 10-second window on an ARM Cortex-A7 target, fitting within a 10 ms cycle budget, making real-time deployment feasible without dedicated hardware accelerators.",
+			"researcherIds": [
+				"R1008",
+				"R0983",
+				"R0979"
+			],
+			"year": 2025
+		},
+		"SYN-PUB-10473": {
+			"id": "SYN-PUB-10473",
+			"kind": "publication",
+			"title": "One-Class SVM for Detecting Anomalous DNP3 Command Sequences in Water Treatment Control Systems",
+			"text": "One-Class SVM for Detecting Anomalous DNP3 Command Sequences in Water Treatment Control Systems (2012, conference, Proceedings of the Central European Workshop on Industrial Communication Security (CEWICS)).\nAuthors: Tibor Farkas (outside co-author); Ágnes Varga (outside co-author); Krisztina Kiss (R1008).\nKeywords: DNP3; one-class SVM; SCADA; n-gram features; water treatment.\nOne-class support vector machines (OC-SVM) were applied to detect anomalous DNP3 application-layer command sequences in a water treatment SCADA testbed. Feature vectors were constructed from 15-second sliding windows using n-gram frequency histograms of function code and object group pairs, yielding 128-dimensional vectors after principal component analysis retaining 95% of variance. The OC-SVM used an RBF kernel; the nu hyperparameter was swept from 0.01 to 0.20 and selected via leave-one-out cross-validation on a 90-day normal-operation capture (approximately 4.2 million packets). Attack scenarios—unauthorised control block writes, time-sync spoofing, and application-layer flooding—were injected during a separate 14-day test period. The detector achieved an F1 score of 0.87 for unseen attack types not represented during training. Computational overhead was measured at under 3% CPU utilisation on an ARM Cortex-A9 industrial gateway, supporting inline deployment feasibility.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2012
+		},
+		"SYN-PUB-10475": {
+			"id": "SYN-PUB-10475",
+			"kind": "publication",
+			"title": "Isolation Forest Applied to ICS Protocol Traffic: Sensitivity to Contamination Fraction and Window Length",
+			"text": "Isolation Forest Applied to ICS Protocol Traffic: Sensitivity to Contamination Fraction and Window Length (2015, journal, Journal of Industrial Network Security).\nAuthors: Tibor Farkas (outside co-author); Krisztina Kiss (R1008).\nKeywords: Isolation Forest; hyperparameter sensitivity; Modbus; contamination fraction; window length.\nIsolation Forest was evaluated as a detector for ICS protocol traffic anomalies under controlled variation of two critical hyperparameters: the contamination fraction estimate (ranging from 0.001 to 0.10) and the sliding-window aggregation length (1 s to 300 s). Experiments used a publicly described Modbus/TCP dataset generated on the authors' testbed across five attack classes. Detection rate and false alarm rate were measured at each combination using a 5×2 nested cross-validation design. The contamination fraction had a stronger effect on precision than recall; a mismatch of one order of magnitude reduced average precision from 0.91 to 0.63. Window length affected recall for short-burst attacks more than for persistent anomalies. An empirical calibration procedure based on unlabelled holdout data is proposed and benchmarked. The paper provides a practical guide for practitioners deploying tree-based anomaly detectors in environments where ground-truth labels are unavailable.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2015
+		},
+		"SYN-PUB-10476": {
+			"id": "SYN-PUB-10476",
+			"kind": "publication",
+			"title": "Autoencoder-Based Reconstruction Error for Anomaly Scoring in PROFINET IO Traffic",
+			"text": "Autoencoder-Based Reconstruction Error for Anomaly Scoring in PROFINET IO Traffic (2016, conference, Proceedings of the European Conference on Industrial Automation and Security (ECIAS)).\nAuthors: Dávid Szabó (outside co-author); Jelena Kovačević (outside co-author); Krisztina Kiss (R1008).\nKeywords: autoencoder; PROFINET IO; reconstruction error; anomaly scoring; automotive.\nA shallow fully-connected autoencoder with a 48-32-16-32-48 architecture was trained on PROFINET IO cyclic data exchange traffic captured from an automotive body-assembly line. The encoder compressed 48-dimensional per-cycle feature vectors—including cycle time jitter, alarm status byte distributions, and data record checksum statistics—into a 16-dimensional bottleneck. Reconstruction error was used as an anomaly score. The network was trained on 30 days of normal operation (approximately 2.1 million cycles) using stochastic gradient descent with batch size 256. Anomaly scoring was tested against seven fault conditions introduced by a cooperating maintenance team, including sensor dropout, network congestion injection, and controller firmware substitution. The autoencoder achieved an area under the ROC curve of 0.94 across all fault types, compared with 0.81 for a PCA-based reconstruction baseline. Inference latency was 0.4 ms per cycle on a standard x86 edge server, compatible with 10 ms scan cycle requirements.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2016
+		},
+		"SYN-PUB-10477": {
+			"id": "SYN-PUB-10477",
+			"kind": "publication",
+			"title": "Anomaly Detection in Industrial Control Systems",
+			"text": "Anomaly Detection in Industrial Control Systems (2017, book chapter, Handbook of Industrial Cybersecurity (Edited volume, Springer-Verlag Academic)).\nAuthors: Reinhilde Mayer (outside co-author); Krisztina Kiss (R1008); Goran Milošević (outside co-author).\nKeywords: survey; ICS security; statistical detection; protocol analysis; evaluation methodology.\nThis book chapter surveys statistical and machine-learning approaches to anomaly detection in ICS environments, focusing on network-level traffic analysis rather than host-based or physical-process monitoring. The chapter covers the statistical properties of ICS traffic that distinguish it from enterprise IT traffic—determinism, periodicity, limited state space—and how these properties can be exploited by unsupervised methods. Covered algorithms include univariate control charts, multivariate Gaussian models, kernel density estimators, one-class SVMs, Isolation Forest, and autoencoders, with discussion of their assumptions, computational requirements, and suitability for embedded deployment. Protocol-specific considerations are provided for Modbus, DNP3, EtherNet/IP, and PROFINET. The chapter closes with a discussion of evaluation methodology challenges, including the scarcity of labelled datasets, the difficulty of representative attack injection, and the trade-off between false alarm rate and response latency. Representative results from the published literature are tabulated.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2017
+		},
+		"SYN-PUB-10480": {
+			"id": "SYN-PUB-10480",
+			"kind": "publication",
+			"title": "Threshold Calibration for ICS Anomaly Detectors Under Imbalanced Operating Conditions",
+			"text": "Threshold Calibration for ICS Anomaly Detectors Under Imbalanced Operating Conditions (2021, journal, Computers and Security).\nAuthors: Jelena Kovačević (outside co-author); Reinhilde Mayer (outside co-author); Krisztina Kiss (R1008).\nKeywords: threshold calibration; false positive rate; beta mixture model; detector evaluation; ICS.\nAnomaly detectors for ICS traffic are typically calibrated by fixing the decision threshold to achieve a target false positive rate estimated on a clean training set. This paper investigates the miscalibration that results when the actual false positive rate at deployment differs from the target, and proposes a post-hoc calibration procedure using a small set of unlabelled operational data. The procedure fits a two-component beta mixture model to the empirical score distribution and uses the mixture weight of the anomalous component as a proxy for the contamination fraction. Experiments on four detectors (OC-SVM, Isolation Forest, autoencoder, and kernel density estimator) across three ICS protocol datasets show that the calibration procedure reduces the gap between nominal and actual FPR from a mean of 3.1 percentage points to 0.4 percentage points. The paper also quantifies sensitivity to the choice of beta mixture initialisation and provides practical recommendations for operators setting alert thresholds.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2021
+		},
+		"SYN-PUB-10482": {
+			"id": "SYN-PUB-10482",
+			"kind": "publication",
+			"title": "Comparing Score Aggregation Strategies for Multi-Protocol ICS Anomaly Detection",
+			"text": "Comparing Score Aggregation Strategies for Multi-Protocol ICS Anomaly Detection (2024, journal, Computers and Security).\nAuthors: Jelena Kovačević (outside co-author); Goran Milošević (outside co-author); Krisztina Kiss (R1008).\nKeywords: score aggregation; multi-protocol; Dempster-Shafer; EtherNet/IP; detection pipeline.\nIndustrial sites often run several ICS protocols concurrently; a single anomaly may manifest in traffic from multiple protocols or only one. This paper compares six score aggregation strategies—maximum, mean, product, Dempster-Shafer combination, learned linear combination, and a voting threshold rule—for combining per-protocol anomaly scores from Modbus, DNP3, and EtherNet/IP detectors deployed simultaneously on the same network segment. A testbed with all three protocol stacks was operated for 45 days, and 18 multi-protocol and single-protocol attack scenarios were injected over a 10-day evaluation period. The learned linear combination, trained on a 5-day clean holdout with synthetic contamination, achieved the highest balanced accuracy (0.91) but required labelled data for weight estimation. The Dempster-Shafer rule achieved 0.88 without labelled data. The maximum rule performed consistently below 0.80. Results provide concrete guidance for operators designing multi-sensor detection pipelines.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2024
+		},
+		"SYN-PUB-10483": {
+			"id": "SYN-PUB-10483",
+			"kind": "publication",
+			"title": "Protocol-Agnostic Anomaly Detection Using Byte-Level Feature Extraction from ICS Application Payloads",
+			"text": "Protocol-Agnostic Anomaly Detection Using Byte-Level Feature Extraction from ICS Application Payloads (2026, journal, Journal of Industrial Network Security).\nAuthors: Jelena Kovačević (outside co-author); Péter Horváth (outside co-author); Krisztina Kiss (R1008); Milutin Paunović (R1022).\nKeywords: protocol-agnostic; byte-level features; proprietary protocols; one-class SVM; heterogeneous ICS.\nMost ICS anomaly detectors are designed for a specific protocol and rely on parsed field values. This paper investigates a protocol-agnostic approach in which raw application-layer payload bytes from the first 64 bytes of each PDU are used to construct feature vectors via byte-frequency histograms augmented with bigram entropy and mean absolute deviation of byte values. A one-class SVM and an Isolation Forest were trained on mixed-protocol captures from a testbed running Modbus, DNP3, and a proprietary vendor protocol for which no parser was available. The proprietary protocol represented 31% of traffic. Against seven attack scenarios including vendor-protocol-specific command injection, the protocol-agnostic detectors achieved AUROC values of 0.89 and 0.87 respectively, compared with 0.94 for a protocol-aware Modbus detector applied only to Modbus traffic. The paper discusses cases where protocol-agnostic features are sufficient and where parsed fields remain necessary, providing a decision framework for practitioners deploying detectors on heterogeneous industrial networks.",
+			"researcherIds": [
+				"R1008",
+				"R1022"
+			],
+			"year": 2026
+		},
+		"SYN-PUB-10523": {
+			"id": "SYN-PUB-10523",
+			"kind": "publication",
+			"title": "Unsupervised anomaly detection on Modbus traffic",
+			"text": "Unsupervised anomaly detection on Modbus traffic (2024, journal, Journal of Industrial Security).\nAuthors: Vuk Đukić (R1015); Milena Ostojić (outside co-author); Dragan Kovač (outside co-author).\nIndustrial control systems increasingly rely on Modbus, a legacy serial communication protocol widely deployed in manufacturing and critical infrastructure environments. Despite its prevalence, Modbus lacks built-in security mechanisms, making it highly susceptible to network-based attacks. This paper presents an unsupervised anomaly detection framework specifically designed for Modbus traffic analysis. The proposed approach leverages autoencoder-based neural networks trained exclusively on benign traffic to establish a baseline behavioural profile of legitimate industrial communications. Anomalies are identified by measuring reconstruction error against learned normal patterns, without requiring labelled attack data. The framework is evaluated on a synthetic dataset generated from a real-world programmable logic controller testbed, covering scenarios such as unauthorised function code injection, coil manipulation, and replay attacks. Experimental results demonstrate detection rates exceeding 94% across all attack categories, with a false positive rate below 2%. The paper also analyses the impact of traffic window size and encoding granularity on detection performance, offering practical guidance for deployment in resource-constrained industrial environments.",
+			"researcherIds": [
+				"R1015"
+			],
+			"year": 2024
+		},
+		"SYN-PUB-10525": {
+			"id": "SYN-PUB-10525",
+			"kind": "publication",
+			"title": "A comparative study of intrusion detection architectures for SCADA networks",
+			"text": "A comparative study of intrusion detection architectures for SCADA networks (2023, journal, IEEE Transactions on Industrial Informatics Security).\nAuthors: Milena Ostojić (outside co-author); Vuk Đukić (R1015); Nemanja Filipović (outside co-author).\nKeywords: SCADA security; intrusion detection; industrial control systems; anomaly detection; network security.\nSupervisory Control and Data Acquisition (SCADA) networks form the backbone of critical infrastructure sectors including energy distribution, water treatment, and transportation. Protecting these networks from cyber intrusions requires detection systems capable of operating on highly specialised industrial protocols while maintaining low false-positive rates in continuous operation. This paper conducts a systematic comparative evaluation of five intrusion detection architectures—signature-based, specification-based, statistical anomaly, deep learning, and hybrid approaches—applied to a common SCADA testbed. Each architecture is assessed across four attack categories: reconnaissance, command injection, man-in-the-middle, and denial-of-service. Performance is measured in terms of detection accuracy, latency, resource consumption, and adaptability to concept drift. Results show that hybrid architectures combining specification-based rules with neural anomaly scoring achieve the best overall balance, while purely deep-learning-based systems exhibit higher sensitivity to protocol version variability. The paper concludes with a decision framework to guide practitioners in selecting appropriate detection strategies based on operational constraints.",
+			"researcherIds": [
+				"R1015"
+			],
+			"year": 2023
+		},
+		"SYN-PUB-10531": {
+			"id": "SYN-PUB-10531",
+			"kind": "publication",
+			"title": "Intrusion detection in resource-constrained IoT devices using lightweight recurrent models",
+			"text": "Intrusion detection in resource-constrained IoT devices using lightweight recurrent models (2024, journal, IEEE Internet of Things Journal).\nAuthors: Vuk Đukić (R1015); Milena Ostojić (outside co-author); Rastko Mirković (outside co-author).\nKeywords: IoT security; intrusion detection; recurrent neural networks; resource-constrained devices; anomaly detection.\nDeploying intrusion detection directly on resource-constrained IoT devices such as microcontroller-based sensors and actuators presents fundamental challenges in terms of memory footprint, computational overhead, and energy consumption. This paper investigates the feasibility of implementing lightweight recurrent neural network models—specifically truncated LSTM and GRU variants—on devices with fewer than 256 KB of RAM. A model compression pipeline is developed that combines quantisation, pruning, and knowledge distillation to reduce model size by up to 94% relative to full-precision baselines, while preserving detection accuracy above 90% across standard IoT attack benchmarks. The compressed models are deployed on three representative IoT platforms and evaluated under realistic workload conditions. Power consumption measurements indicate that continuous on-device inference adds less than 4 mW overhead, making deployment feasible even on battery-powered nodes. The paper also proposes an adaptive inference strategy that dynamically reduces model complexity during high-load periods to prevent resource exhaustion. Results suggest that on-device intrusion detection is practically achievable for a broad class of constrained IoT deployments.",
+			"researcherIds": [
+				"R1015"
+			],
+			"year": 2024
+		}
+	}
+}
