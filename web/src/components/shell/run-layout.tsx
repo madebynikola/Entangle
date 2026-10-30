@@ -1,6 +1,6 @@
 import { AlertTriangle, Play } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { Link, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router"
 import { useShallow } from "zustand/react/shallow"
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,9 @@ import { StatusLabel } from "@/components/ui/status"
 import { Meta } from "@/components/ui/card"
 import { RouteTabs } from "@/components/ui/tabs"
 import * as format from "@/lib/format"
+import { cn } from "@/lib/utils"
 import { runClock, useFullView, useRunStore, type Speed } from "@/run/hooks"
+import { FloatInsetsContext, useMeasureInsets } from "./float"
 import { PageHeader } from "./page-header"
 import { ReplayBar } from "./replay-bar"
 import { runLabel, runState } from "./run-label"
@@ -39,6 +41,11 @@ export function RunLayout() {
 	)
 	/** The tabs that follow the playhead, and so get the replay bar. */
 	const onTimeline = /\/(live|stage)(\/|$)/.test(pathname)
+	const onStage = /\/stage(\/|$)/.test(pathname)
+	const stageRef = useRef<HTMLDivElement>(null)
+	const headRef = useRef<HTMLDivElement>(null)
+	const footRef = useRef<HTMLDivElement>(null)
+	const insets = useMeasureInsets(stageRef, headRef, footRef, onStage && !loading)
 
 	useEffect(() => {
 		const speed = params.get("speed")
@@ -58,44 +65,73 @@ export function RunLayout() {
 	}, [onTimeline])
 	usePlayerKeys(onTimeline)
 
+	const header = (
+		<PageHeader
+			title={info ? runLabel(info) : <Skeleton className="h-6 w-40" />}
+			meta={<RunMeta />}
+			actions={<WatchButton />}
+			className={onStage ? FLOATING : undefined}
+			tabs={
+				<RouteTabs
+					items={[
+						{ value: "overview", label: "Overview", to: "overview" },
+						{ value: "live", label: live ? <LiveLabel /> : "Timeline", to: "live" },
+						{ value: "stage", label: "Stage", to: "stage" },
+						{ value: "results", label: "Results", count: proposals || undefined, to: "results" },
+					]}
+				/>
+			}
+		/>
+	)
+	const body = error ? (
+		<EmptyState
+			className="h-full"
+			icon={<AlertTriangle />}
+			title="This run could not be loaded"
+			action={
+				<Button asChild>
+					<Link to="/">See all runs</Link>
+				</Button>
+			}
+		>
+			{error}
+		</EmptyState>
+	) : loading ? (
+		<LoadingBody />
+	) : (
+		<Outlet />
+	)
+
+	// The Stage fills the panel; the header and the replay bar float over it as cards.
+	if (onStage) {
+		return (
+			<FloatInsetsContext.Provider value={insets}>
+				<div ref={stageRef} className="relative min-h-0 flex-1 overflow-hidden">
+					<div className="absolute inset-0">{body}</div>
+					<div ref={headRef} className="pointer-events-none absolute inset-x-3 top-3 z-30 [&>*]:pointer-events-auto">
+						{header}
+					</div>
+					{!loading && !error && (
+						<motion.div
+							ref={footRef}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.25 }}
+							className="absolute inset-x-3 bottom-3 z-30 mx-auto max-w-3xl"
+						>
+							<ReplayBar className={cn(FLOATING, "border-t")} />
+						</motion.div>
+					)}
+				</div>
+			</FloatInsetsContext.Provider>
+		)
+	}
+
 	return (
 		<>
-			<PageHeader
-				title={info ? runLabel(info) : <Skeleton className="h-6 w-40" />}
-				meta={<RunMeta />}
-				actions={<WatchButton />}
-				tabs={
-					<RouteTabs
-						items={[
-							{ value: "overview", label: "Overview", to: "overview" },
-							{ value: "live", label: live ? <LiveLabel /> : "Timeline", to: "live" },
-							{ value: "stage", label: "Stage", to: "stage" },
-							{ value: "results", label: "Results", count: proposals || undefined, to: "results" },
-						]}
-					/>
-				}
-			/>
+			{header}
 			{/* The screen's area: a fixed height. Screens fit it and scroll inside their own lists; this scrolls only as a fallback. */}
-			<div className="scrollbar-thin relative min-h-0 flex-1 overflow-y-auto">
-				{error ? (
-					<EmptyState
-						className="h-full"
-						icon={<AlertTriangle />}
-						title="This run could not be loaded"
-						action={
-							<Button asChild>
-								<Link to="/">See all runs</Link>
-							</Button>
-						}
-					>
-						{error}
-					</EmptyState>
-				) : loading ? (
-					<LoadingBody />
-				) : (
-					<Outlet />
-				)}
-			</div>
+			<div className="scrollbar-thin relative min-h-0 flex-1 overflow-y-auto">{body}</div>
 			<AnimatePresence initial={false}>
 				{onTimeline && !loading && !error && (
 					<motion.div
@@ -113,6 +149,9 @@ export function RunLayout() {
 		</>
 	)
 }
+
+/** A card that floats over a full-bleed screen: frosted panel, hairline, the floating shadow. */
+const FLOATING = "rounded-xl border border-hairline bg-panel/80 shadow-float backdrop-blur-xl"
 
 function LiveLabel() {
 	return (
