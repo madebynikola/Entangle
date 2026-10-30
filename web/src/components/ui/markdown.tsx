@@ -5,12 +5,12 @@ import remarkGfm from "remark-gfm"
 import { SourceChip } from "@/components/shell/source"
 import { cn } from "@/lib/utils"
 
-/** One dataset id. A page id ends in its title, which can hold commas: `C002/news/2024-04-22/<title>`. */
-const ID = String.raw`(?:R\d{3,4}|C\d{3}(?:-CH\d+)?|SYN-[A-Z]{3}-\d+|C\d{3}\/[^\]]+?)`
+/** One dataset id, or an OpenAlex work (`W4293154696`). A page id ends in its title, which can hold commas: `C002/news/2024-04-22/<title>`. */
+const ID = String.raw`(?:R\d{3,4}|C\d{3}(?:-CH\d+)?|SYN-[A-Z]{3}-\d+|W\d{6,}|C\d{3}\/[^\]]+?)`
 /** `[C014-CH1]` or `[SYN-PUB-02211, SYN-PUB-02240]`: dataset ids cited inline. */
 const CITATION = new RegExp(String.raw`\[(${ID}(?:\s*,\s*${ID})*)\]`, "g")
 /** The comma between two ids, not one inside a page title. */
-const BETWEEN = /\s*,\s*(?=R\d{3,4}\b|C\d{3}\b|SYN-)/
+const BETWEEN = /\s*,\s*(?=R\d{3,4}\b|C\d{3}\b|SYN-|W\d{6,}\b)/
 
 /** Replace inline citations in plain-text children with source chips that wrap with the text, one by one. */
 function cite(children: React.ReactNode): React.ReactNode {

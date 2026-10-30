@@ -72,6 +72,7 @@ const RECORD: [RegExp, string][] = [
 	[/\bSYN-PUB-\d+/g, "a paper"],
 	[/\bSYN-PRJ-\d+/g, "a project"],
 	[/\bSYN-PAT-\d+/g, "a patent"],
+	[/\bW\d{6,}\b/g, "published work"],
 ]
 
 /** The first sentence of a Critic reason, with ids as names, short enough for a bubble. */
