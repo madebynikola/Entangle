@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="816" viewBox="0 0 1280 816" role="img" aria-labelledby="title desc">
+  <title id="title">EINSTEIN matchmaker architecture</title>
+  <desc id="desc">An Orchestrator hands work to four Industry Analysts, six Research Profilers, one Matchmaker and three Proposal Writers. They share one blackboard (MatchState) and one Mozaik event bus. A Critic with a second reviewer checks every artifact as it lands and sends rejected claims back to their producer. Every model call goes through a ResilientRunner with rate limits, retries and a budget stop. A trace observer writes every event to trace.jsonl for the web app. A person approves each pair before outreach.</desc>
+  <style>
+    .bg { fill: #fafafa; }
+    .card { fill: #ffffff; stroke: #e5e5e5; stroke-width: 1; }
+    .plate { fill: #ffffff; stroke: #d4d4d4; stroke-width: 1; }
+    .board { fill: #f0f0f0; stroke: #e0e0e0; stroke-width: 1; }
+    .chip { fill: #ffffff; stroke: #dcdcdc; stroke-width: 1; }
+    .t1 { font: 600 17px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #0a0a0a; }
+    .h { font: 600 14px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #0a0a0a; }
+    .h2 { font: 600 12.5px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #0a0a0a; }
+    .b { font: 400 11.5px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #525252; }
+    .s { font: 400 11px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #737373; }
+    .n { font: 400 13px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #737373; }
+    .m { font: 400 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #737373; }
+    .mc { font: 400 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #404040; }
+    .sb { font: 500 11px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e11d48; }
+    .ln { stroke: #a3a3a3; stroke-width: 1.25; fill: none; }
+    .lc { stroke: #e11d48; stroke-width: 1.25; stroke-dasharray: 4 3; fill: none; }
+    .ah { fill: #a3a3a3; }
+    .ahc { fill: #e11d48; }
+    .glyph { fill: none; stroke: #737373; stroke-width: 1.5; }
+    .r-orchestrator { fill: #737373; } .r-analyst { fill: #d97706; } .r-profiler { fill: #0d9488; }
+    .r-matchmaker { fill: #c026d3; } .r-writer { fill: #2563eb; } .r-critic { fill: #e11d48; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0a0a0a; }
+      .card, .plate, .chip { fill: #171717; stroke: #2e2e2e; }
+      .plate { stroke: #3a3a3a; }
+      .board { fill: #111111; stroke: #262626; }
+      .t1, .h, .h2 { fill: #ededed; }
+      .b { fill: #a3a3a3; }
+      .s, .n, .m { fill: #8a8a8a; }
+      .mc { fill: #c4c4c4; }
+      .sb { fill: #fb7185; }
+      .ln { stroke: #5c5c5c; } .ah { fill: #5c5c5c; }
+      .lc { stroke: #fb7185; } .ahc { fill: #fb7185; }
+      .glyph { stroke: #8a8a8a; }
+      .r-orchestrator { fill: #a3a3a3; } .r-analyst { fill: #f5a524; } .r-profiler { fill: #2dd4bf; }
+      .r-matchmaker { fill: #e879f9; } .r-writer { fill: #60a5fa; } .r-critic { fill: #fb7185; }
+    }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+    <marker id="arrc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahc"/></marker>
+  </defs>
+  <rect width="1280" height="816" class="bg"/>
+  <text x="24" y="38" class="t1">EINSTEIN matchmaker · one run</text>
+  <text x="24" y="60" class="b">Each box with a dot is a Mozaik participant. ×N is the number of agents in that role (CLI defaults). Every task runs as its own Mozaik loop with a fresh context, so they all work at once.</text>
+  <rect x="224" y="84" width="832" height="48" rx="10" class="card"/>
+  <circle cx="244" cy="99" r="5" class="r-orchestrator"/>
+  <text x="256" y="104" class="h">Orchestrator</text>
+  <text x="256" y="122" class="b">Hands out each piece of work as soon as its input exists, tracks every task, assembles the result. Makes no model calls.</text>
+  <rect x="224" y="156" width="832" height="462" rx="14" class="board"/>
+  <line x1="276" y1="133" x2="276" y2="184" class="ln" marker-end="url(#arr)"/>
+  <line x1="485" y1="133" x2="485" y2="184" class="ln" marker-end="url(#arr)"/>
+  <line x1="694" y1="133" x2="694" y2="184" class="ln" marker-end="url(#arr)"/>
+  <line x1="903" y1="133" x2="903" y2="184" class="ln" marker-end="url(#arr)"/>
+  <text x="284" y="164" class="s">assigns</text>
+  <rect x="248" y="188" width="173" height="140" rx="10" class="plate"/>
+  <rect x="244" y="192" width="173" height="140" rx="10" class="plate"/>
+  <rect x="240" y="196" width="173" height="140" rx="10" class="card"/>
+  <circle cx="258" cy="217" r="5" class="r-analyst"/>
+  <text x="270" y="222" class="h">Industry Analyst</text>
+  <text x="270" y="240" class="m">Haiku 4.5</text>
+  <text x="401" y="240" class="n" text-anchor="end">×4</text>
+  <text x="254" y="262" class="b">One loop per company,</text>
+  <text x="254" y="277" class="b">every company at once:</text>
+  <text x="254" y="292" class="b">triage, restatement</text>
+  <text x="254" y="307" class="b">and search terms.</text>
+  <line x1="300" y1="338" x2="300" y2="396" class="ln" marker-end="url(#arr)"/>
+  <text x="292" y="372" class="s" text-anchor="end">need</text>
+  <line x1="348" y1="398" x2="348" y2="340" class="lc" marker-end="url(#arrc)"/>
+  <text x="356" y="372" class="sb">send back</text>
+  <rect x="457" y="188" width="173" height="140" rx="10" class="plate"/>
+  <rect x="453" y="192" width="173" height="140" rx="10" class="plate"/>
+  <rect x="449" y="196" width="173" height="140" rx="10" class="card"/>
+  <circle cx="467" cy="217" r="5" class="r-profiler"/>
+  <text x="479" y="222" class="h">Research Profiler</text>
+  <text x="479" y="240" class="m">Haiku 4.5</text>
+  <text x="610" y="240" class="n" text-anchor="end">×6</text>
+  <text x="463" y="262" class="b">BM25 shortlist first, then</text>
+  <text x="463" y="277" class="b">one loop per shortlisted</text>
+  <text x="463" y="292" class="b">researcher, each one</text>
+  <text x="463" y="307" class="b">profiled once.</text>
+  <line x1="509" y1="338" x2="509" y2="396" class="ln" marker-end="url(#arr)"/>
+  <text x="501" y="372" class="s" text-anchor="end">profile</text>
+  <line x1="557" y1="398" x2="557" y2="340" class="lc" marker-end="url(#arrc)"/>
+  <text x="565" y="372" class="sb">send back</text>
+  <rect x="658" y="196" width="173" height="140" rx="10" class="card"/>
+  <circle cx="676" cy="217" r="5" class="r-matchmaker"/>
+  <text x="688" y="222" class="h">Matchmaker</text>
+  <text x="688" y="240" class="m">Sonnet 4.6</text>
+  <text x="819" y="240" class="n" text-anchor="end">×1</text>
+  <text x="672" y="262" class="b">One loop per challenge,</text>
+  <text x="672" y="277" class="b">once its candidates are</text>
+  <text x="672" y="292" class="b">profiled: a pair with</text>
+  <text x="672" y="307" class="b">evidence, or no match.</text>
+  <line x1="718" y1="338" x2="718" y2="396" class="ln" marker-end="url(#arr)"/>
+  <text x="710" y="372" class="s" text-anchor="end">pair</text>
+  <line x1="766" y1="398" x2="766" y2="340" class="lc" marker-end="url(#arrc)"/>
+  <text x="774" y="372" class="sb">send back</text>
+  <rect x="875" y="188" width="173" height="140" rx="10" class="plate"/>
+  <rect x="871" y="192" width="173" height="140" rx="10" class="plate"/>
+  <rect x="867" y="196" width="173" height="140" rx="10" class="card"/>
+  <circle cx="885" cy="217" r="5" class="r-writer"/>
+  <text x="897" y="222" class="h">Proposal Writer</text>
+  <text x="897" y="240" class="m">Sonnet 4.6</text>
+  <text x="1028" y="240" class="n" text-anchor="end">×3</text>
+  <text x="881" y="262" class="b">One proposal per</text>
+  <text x="881" y="277" class="b">company: an industrial</text>
+  <text x="881" y="292" class="b">PhD topic or a one-page</text>
+  <text x="881" y="307" class="b">joint project.</text>
+  <line x1="927" y1="338" x2="927" y2="396" class="ln" marker-end="url(#arr)"/>
+  <text x="919" y="372" class="s" text-anchor="end">proposal</text>
+  <line x1="975" y1="398" x2="975" y2="340" class="lc" marker-end="url(#arrc)"/>
+  <text x="983" y="372" class="sb">send back</text>
+  <line x1="423" y1="266" x2="447" y2="266" class="ln" marker-end="url(#arr)"/>
+  <line x1="632" y1="266" x2="656" y2="266" class="ln" marker-end="url(#arr)"/>
+  <line x1="841" y1="266" x2="865" y2="266" class="ln" marker-end="url(#arr)"/>
+  <rect x="24" y="196" width="180" height="140" rx="10" class="card"/>
+  <rect x="38" y="211" width="11" height="11" rx="2" class="glyph"/>
+  <text x="56" y="222" class="h">Dataset</text>
+  <text x="56" y="240" class="m">~7M tokens</text>
+  <text x="38" y="262" class="b">Data layer, no model:</text>
+  <text x="38" y="277" class="b">fold labels and scripts,</text>
+  <text x="38" y="292" class="b">merge duplicate profiles,</text>
+  <text x="38" y="307" class="b">drop leave reasons and</text>
+  <text x="38" y="322" class="b">emails; build BM25 index.</text>
+  <line x1="206" y1="266" x2="238" y2="266" class="ln" marker-end="url(#arr)"/>
+  <rect x="1076" y="196" width="180" height="140" rx="10" class="card"/>
+  <circle cx="1094" cy="217" r="5" class="glyph"/>
+  <text x="1106" y="222" class="h">A person</text>
+  <text x="1106" y="240" class="m">EINSTEIN coordinator</text>
+  <text x="1090" y="262" class="b">Reads each proposal</text>
+  <text x="1090" y="277" class="b">with its sources, then</text>
+  <text x="1090" y="292" class="b">approves or rejects the</text>
+  <text x="1090" y="307" class="b">pair. Outreach only after</text>
+  <text x="1090" y="322" class="b">that, through EINSTEIN.</text>
+  <line x1="1050" y1="266" x2="1074" y2="266" class="ln" marker-end="url(#arr)"/>
+  <rect x="240" y="400" width="800" height="118" rx="10" class="card"/>
+  <circle cx="258" cy="421" r="5" class="r-critic"/>
+  <text x="270" y="426" class="h">Critic</text>
+  <text x="320" y="426" class="b">+ a second reviewer, on every artifact as it lands, in parallel with the team</text>
+  <text x="1026" y="426" class="m" text-anchor="end">Sonnet 4.6 · second: Haiku 4.5</text>
+  <text x="256" y="452" class="h2">1  Code check, no model</text>
+  <text x="256" y="470" class="b">Every cited id exists and belongs to</text>
+  <text x="256" y="485" class="b">this researcher or company.</text>
+  <text x="256" y="500" class="b">Ids only, never names.</text>
+  <text x="520" y="452" class="h2">2  Model check</text>
+  <text x="520" y="470" class="b">Does the cited record say what the</text>
+  <text x="520" y="485" class="b">claim says? Proposals get a second</text>
+  <text x="520" y="500" class="b">reviewer; both must pass.</text>
+  <text x="784" y="452" class="h2">3  Verdict</text>
+  <text x="784" y="470" class="b">Accept, or send the rejected claims</text>
+  <text x="784" y="485" class="b">back to the producer, at most twice.</text>
+  <text x="784" y="500" class="b">Then drop, or a person decides.</text>
+  <text x="240" y="568" class="h2">Shared blackboard · MatchState</text>
+  <rect x="476" y="552" width="49" height="24" rx="12" class="chip"/>
+  <text x="500.5" y="568" class="mc" text-anchor="middle">needs</text>
+  <rect x="533" y="552" width="69" height="24" rx="12" class="chip"/>
+  <text x="567.5" y="568" class="mc" text-anchor="middle">profiles</text>
+  <rect x="610" y="552" width="49" height="24" rx="12" class="chip"/>
+  <text x="634.5" y="568" class="mc" text-anchor="middle">pairs</text>
+  <rect x="667" y="552" width="75" height="24" rx="12" class="chip"/>
+  <text x="704.5" y="568" class="mc" text-anchor="middle">noMatches</text>
+  <rect x="750" y="552" width="75" height="24" rx="12" class="chip"/>
+  <text x="787.5" y="568" class="mc" text-anchor="middle">proposals</text>
+  <rect x="833" y="552" width="69" height="24" rx="12" class="chip"/>
+  <text x="867.5" y="568" class="mc" text-anchor="middle">verdicts</text>
+  <rect x="910" y="552" width="49" height="24" rx="12" class="chip"/>
+  <text x="934.5" y="568" class="mc" text-anchor="middle">tasks</text>
+  <rect x="967" y="552" width="56" height="24" rx="12" class="chip"/>
+  <text x="995.0" y="568" class="mc" text-anchor="middle">budget</text>
+  <text x="240" y="600" class="b">Every fact is a claim with its source ids (R0001, C001-CH1, SYN-PUB-00001). One Mozaik event bus; agents never call each other.</text>
+  <line x1="330" y1="619" x2="330" y2="650" class="ln" marker-end="url(#arr)"/>
+  <text x="338" y="640" class="s">every model call</text>
+  <line x1="1000" y1="619" x2="1000" y2="650" class="ln" marker-end="url(#arr)"/>
+  <text x="1008" y="640" class="s">every event</text>
+  <rect x="24" y="652" width="496" height="110" rx="10" class="card"/>
+  <text x="40" y="678" class="h">ResilientRunner</text>
+  <text x="156" y="678" class="b">wraps the model backend</text>
+  <text x="40" y="702" class="b">· ≤ 16 calls in flight, one semaphore</text>
+  <text x="40" y="720" class="b">· Per-provider RPM and ITPM limits</text>
+  <text x="40" y="738" class="b">· A 429 pauses that whole provider</text>
+  <text x="284" y="702" class="b">· Retries 429 and 5xx with backoff</text>
+  <text x="284" y="720" class="b">· Budget stop: tokens, dollars, time</text>
+  <text x="284" y="738" class="b">· No call for a task already settled</text>
+  <rect x="544" y="652" width="216" height="110" rx="10" class="card"/>
+  <text x="560" y="678" class="h">Model backends</text>
+  <text x="560" y="702" class="b">Anthropic, OpenAI, Gemini</text>
+  <text x="560" y="720" class="b">local Claude Code: claude -p</text>
+  <text x="560" y="738" class="b">mock: no keys, no cost</text>
+  <line x1="522" y1="707" x2="542" y2="707" class="ln" marker-end="url(#arr)"/>
+  <rect x="784" y="652" width="472" height="110" rx="10" class="card"/>
+  <text x="800" y="678" class="h">Trace and web app</text>
+  <text x="800" y="702" class="b">The trace observer writes every Mozaik event, with its task and loop,</text>
+  <text x="800" y="720" class="b">to out/&lt;run&gt;/trace.jsonl. npm run replay opens any run folder:</text>
+  <text x="800" y="738" class="b">Timeline (one bar per model call), Overview, Results and approval.</text>
+  <line x1="24" y1="788" x2="52" y2="788" class="ln" marker-end="url(#arr)"/>
+  <text x="60" y="792" class="s">work and artifacts</text>
+  <line x1="176" y1="788" x2="204" y2="788" class="lc" marker-end="url(#arrc)"/>
+  <text x="212" y="792" class="s">rejected claims sent back by the Critic</text>
+  <text x="1256" y="792" class="s" text-anchor="end">Haiku 4.5 for the many parallel workers · Sonnet 4.6 for the few calls that decide quality · models per role in config/models.ts</text>
+</svg>
