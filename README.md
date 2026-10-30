@@ -47,9 +47,8 @@ A mock run plants one invented claim in a need, a profile and a proposal, so you
    - Optional, `SUBQ=1` and `SUBQ_API_KEY=...`: the second Critic runs on [SubQ](https://docs.subq.ai/)'s `subq-snap-1.1`,
      a decision model that answers one yes/no question per claim. `SUBQ_MODEL=jev-latest` with `TYPESAFE_API_KEY` uses
      [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) instead. `--subq` does the same for one run.
-   - Optional, `SCREEN=1` and `TYPESAFE_API_KEY=...`: Jev filters each shortlist before profiling. It answers one yes/no
-     question per candidate in one call, and only the most likely to fit are profiled. `SCREEN_MODEL=subq-snap-1.1` uses
-     SubQ instead. `--screen` does the same for one run.
+   - Optional, `SCREEN=1`: the same decision model, with the same key, filters each shortlist before profiling. It answers
+     one yes/no question per candidate in one call, and only the most likely to fit are profiled. `--screen` does the same for one run.
 3. **Run:**
 
 ```sh
@@ -94,7 +93,7 @@ They read and write one shared blackboard and talk through events on one bus, wh
 | --- | --- | --- | --- | --- |
 | Orchestrator | 1 | none | Progress events | Assignments, the pair chosen per company, the result |
 | Industry Analyst | 4 | Haiku 4.5 | One company: profile, challenges, website, job ads, news | One need per challenge: triage (research, engineering service, not research) with the reason, an English academic restatement, 5–10 search terms, what the company brings, constraints |
-| Shortlist | 1 | none (Jev with `SCREEN=1`) | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped. With `SCREEN=1`, Jev rates 8 and only the 4 most likely to fit stay |
+| Shortlist | 1 | none (subq-snap with `SCREEN=1`) | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped. With `SCREEN=1`, the decision model rates 8 and only the 4 most likely to fit stay |
 | Research Profiler | 6 | Haiku 4.5 | One shortlisted researcher: profile, publications, projects, patents | A profile: expertise and industry facts, each backed by records, availability as timing only, and whether they can lead |
 | Matchmaker | 1 | Sonnet 4.6 | One need and its candidate profiles | Pairs with a fit to this problem (0–1), why these two, the problem they solve and the risks; or "no good match" with the reason |
 | Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |

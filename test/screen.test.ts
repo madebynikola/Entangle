@@ -31,7 +31,7 @@ const need: CompanyNeed = {
 
 describe("cut (no model)", () => {
 	const wide = { challengeId: "C001-CH1", researcherIds: ["R1", "R2", "R3", "R4", "R5"], skipped: [{ researcherId: "R9", reason: "has left the university" }] }
-	const settings = { model: "jev-latest", threshold: 0.2 }
+	const settings = { model: "subq-snap-1.1", threshold: 0.2 }
 
 	test("keeps the k most likely, cuts those under the threshold, keeps retrieval's skips", () => {
 		const list = cutShortlist(wide, { R1: 0.1, R2: 0.9, R3: 0.5, R4: 0.7, R5: 0.5 }, 2, settings)
@@ -40,9 +40,9 @@ describe("cut (no model)", () => {
 			list.skipped.map((s) => [s.researcherId, s.reason]),
 			[
 				["R9", "has left the university"],
-				["R3", "jev-latest: 50% likely to fit, below the top 2"],
-				["R5", "jev-latest: 50% likely to fit, below the top 2"],
-				["R1", "jev-latest: 10% likely to fit, under 0.2"],
+				["R3", "subq-snap-1.1: 50% likely to fit, below the top 2"],
+				["R5", "subq-snap-1.1: 50% likely to fit, below the top 2"],
+				["R1", "subq-snap-1.1: 10% likely to fit, under 0.2"],
 			],
 		)
 		assert.equal(list.reason, undefined)
@@ -106,7 +106,9 @@ describe("filter on the Mozaik runtime, through the snap runner", () => {
 	const fitOf = (i: number) => [0.1, 0.9, 0.6, 0.3, 0.05, 0.8, 0.4, 0.7][i % 8]
 
 	before(() => {
-		process.env.TYPESAFE_API_KEY = "test-key"
+		// The default decision model, the same one the second Critic uses.
+		delete process.env.SUBQ_MODEL
+		process.env.SUBQ_API_KEY = "test-key"
 		globalThis.fetch = (async (url: string, init: RequestInit) => {
 			const body = JSON.parse(String(init.body))
 			requests.push({ url: String(url), auth: new Headers(init.headers).get("authorization"), body })
@@ -131,9 +133,9 @@ describe("filter on the Mozaik runtime, through the snap runner", () => {
 
 		assert.equal(requests.length, 1)
 		const [request] = requests
-		assert.equal(request.url, "https://api.typesafe.ai/v1/systemone")
+		assert.equal(request.url, "https://api.subq.ai/v1/systemone")
 		assert.equal(request.auth, "Bearer test-key")
-		assert.equal(request.body.model, "jev-latest")
+		assert.equal(request.body.model, "subq-snap-1.1")
 		assert.deepEqual(request.body.state.researchers.map((r: { id: string }) => r.id), wide)
 		assert.equal(Object.keys(request.body.questions).length, wide.length)
 
@@ -148,7 +150,7 @@ describe("filter on the Mozaik runtime, through the snap runner", () => {
 		const screens = [...s.tasks.values()].filter((t) => t.kind === "screen")
 		assert.equal(screens.length, 1)
 		assert.equal(screens[0].status, "done")
-		assert.equal(screens[0].model, "jev-latest")
+		assert.equal(screens[0].model, "subq-snap-1.1")
 		assert.equal(screens[0].inputTokens, 1200)
 	})
 
@@ -165,12 +167,12 @@ describe("filter on the Mozaik runtime, through the snap runner", () => {
 		await Promise.all([pool.whenProfiled(need.challengeId), pool.whenProfiled(failing.challengeId)])
 		await closeTrace()
 		const records = readFileSync(trace.path, "utf8").trim().split("\n").map((line) => JSON.parse(line) as TraceRecord)
-		const completed = records.find((r) => r.kind === "inference.completed" && r.model === "jev-latest")
-		assert.ok(completed, "an inference.completed record for jev-latest")
+		const completed = records.find((r) => r.kind === "inference.completed" && r.model === "subq-snap-1.1")
+		assert.ok(completed, "an inference.completed record for subq-snap-1.1")
 		assert.equal(completed.agent, "shortlist-filter")
 		assert.match(completed.taskId ?? "", /^screen-/)
 		assert.deepEqual(completed.tokens, { input: 1200, output: 0, total: 1200 })
-		assert.ok(Math.abs((completed.costUsd ?? 0) - (1200 * 0.042) / 1e6) < 1e-12)
+		assert.ok(Math.abs((completed.costUsd ?? 0) - (1200 * 0.04) / 1e6) < 1e-12)
 		const ready = records.find((r) => r.kind === "shortlist.ready")
 		assert.ok((ready?.data as { fit?: object }).fit, "shortlist.ready carries the probabilities")
 	})

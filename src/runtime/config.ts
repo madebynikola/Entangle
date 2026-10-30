@@ -74,7 +74,7 @@ export function subqSettings(): SubqSettings {
 	}
 }
 
-/** A decision model rates each shortlist's candidates before they are profiled (subq-snap, Jev). */
+/** The decision model (SUBQ_MODEL) rates each shortlist's candidates before they are profiled. */
 export function screen(): boolean {
 	return /^(1|true|yes|on)$/i.test(process.env.SCREEN ?? "")
 }
@@ -87,7 +87,7 @@ export interface ScreenSettings {
 
 export function screenSettings(): ScreenSettings {
 	return {
-		model: process.env.SCREEN_MODEL || SCREEN.model,
+		model: subqSettings().model,
 		widen: SCREEN.widen,
 		threshold: envNumber("SCREEN_THRESHOLD", SCREEN.threshold),
 	}

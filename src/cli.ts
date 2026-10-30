@@ -12,9 +12,8 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [-
                   (same as LOCAL_CLAUDE=1 in .env). Needs the \`claude\` CLI, logged in.
   --subq          Run the second Critic on a decision model, subq-snap-1.1 by default (same as SUBQ=1 in .env).
                   Needs SUBQ_API_KEY, or TYPESAFE_API_KEY for SUBQ_MODEL=jev-latest.
-  --screen        Rate each need's candidates on a decision model before profiling, and profile only the most
-                  likely (same as SCREEN=1 in .env). jev-latest by default: needs TYPESAFE_API_KEY, or SUBQ_API_KEY
-                  for SCREEN_MODEL=subq-snap-1.1.
+  --screen        Rate each need's candidates on the same decision model before profiling, and profile only the
+                  most likely (same as SCREEN=1 in .env). Needs the same key as --subq.
   --companies N   How many companies to work on, from the first; \`all\` for every one (default 5).
   --ids LIST      Exactly these companies, comma-separated.
   --analysts N    Industry Analysts (default 4).

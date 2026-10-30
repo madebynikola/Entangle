@@ -23,7 +23,7 @@ import { clip } from "./shared"
 import type { Shortlist } from "./shortlist"
 
 /**
- * The shortlist filter: a decision model (Jev, subq-snap) rates a wide shortlist's candidates in one call, with one
+ * The shortlist filter: the decision model (subq-snap, Jev) rates a wide shortlist's candidates in one call, with one
  * yes/no question per candidate, and only the most likely are profiled. These models write no text, so the answer
  * is the probability of fit per candidate.
  */

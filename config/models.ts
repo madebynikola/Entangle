@@ -80,10 +80,10 @@ export const LOCAL_CLAUDE = {
  * A decision model as the second Critic [SUBQ=1, or `--subq`]: it asks one yes/no question per claim, in one call.
  * Decision models (subq-snap, Jev) answer typed questions only (yes/no, choice, score) and write no text,
  * so every other role stays on the routes above. MODEL_CRITIC=subq-snap-1.1 puts the first Critic on it too;
- * its send-backs then give a probability instead of a reason.
+ * its send-backs then give a probability instead of a reason. The shortlist filter (SCREEN) uses the same model.
  */
 export const SUBQ = {
-	/** subq-snap-1.1 (SubQ, SUBQ_API_KEY) or jev-latest (typesafe.ai, TYPESAFE_API_KEY) [SUBQ_MODEL]. */
+	/** subq-snap-1.1 (SubQ, SUBQ_API_KEY) or jev-latest (typesafe.ai, TYPESAFE_API_KEY), for both uses [SUBQ_MODEL]. */
 	model: "subq-snap-1.1",
 	/** A claim is supported when the model's probability of yes is at least this [SUBQ_THRESHOLD]. */
 	threshold: 0.5,
@@ -92,14 +92,12 @@ export const SUBQ = {
 }
 
 /**
- * A decision model as a cheap filter on each need's shortlist [SCREEN=1, or `--screen`]. Retrieval finds `widen`
- * times k candidates. The model answers one yes/no question per candidate (could their own research help solve this
- * challenge?) in one call, and only the k most likely, at or above the threshold, are profiled. One call costs far
- * less than one profile. If the call fails, the shortlist is retrieval's top k.
+ * The decision model above (SUBQ.model) as a cheap filter on each need's shortlist [SCREEN=1, or `--screen`].
+ * Retrieval finds `widen` times k candidates. The model answers one yes/no question per candidate (could their own
+ * research help solve this challenge?) in one call, and only the k most likely, at or above the threshold, are
+ * profiled. One call costs far less than one profile. If the call fails, the shortlist is retrieval's top k.
  */
 export const SCREEN = {
-	/** jev-latest (typesafe.ai, TYPESAFE_API_KEY) or subq-snap-1.1 (SubQ, SUBQ_API_KEY) [SCREEN_MODEL]. */
-	model: "jev-latest",
 	/** Candidates retrieved per need for the model to rate, as a multiple of k. */
 	widen: 2,
 	/** A candidate is cut under this probability of fit, even with room on the shortlist [SCREEN_THRESHOLD]. */
