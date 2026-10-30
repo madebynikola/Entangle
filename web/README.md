@@ -14,6 +14,8 @@ The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](.
 - `#/runs/:id/stage`: the **Stage**. The seven agent faces sit round the event bus. Each event travels from its author
   through the bus to everyone, the author says it in a bubble, and the Critic stamps what it checks ("Passed", "Sent back").
   Click an event in the log to move the playhead there. The Timeline and the Stage are the tabs with the replay bar.
+  The run clock says what happened; a director (`screens/stage/director.ts`) shows it at a human pace at any speed,
+  merging bursts into one line ("Checked 6 profiles. All sourced."). A seek jumps there still. Wording is in `words.ts`.
 - `#/runs/:id/results`: pairs and proposals, as a list and a detail side by side. Deep links:
   `results/proposals/:id` (add `?tab=review` for the Critic history), `results/pairs/:pairId`, `results/challenges/:id`.
 
