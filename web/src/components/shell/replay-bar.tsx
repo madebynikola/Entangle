@@ -1,4 +1,3 @@
-import type { TraceRecord } from "@shared/types"
 import { Pause, Play, RotateCcw, Zap } from "lucide-react"
 import { Slider } from "radix-ui"
 import { useMemo } from "react"
@@ -10,13 +9,11 @@ import { Tooltip } from "@/components/ui/tooltip"
 import * as format from "@/lib/format"
 import { cn } from "@/lib/utils"
 import { useRunClock, useRunStore, type Speed } from "@/run/hooks"
-
-const BUCKETS = 96
+import { concurrency } from "@/run/metrics"
 
 /**
- * The floating player at the bottom of a run: play or pause, 1× / 4× / instant, and a scrubber.
+ * The floating player on a run's Timeline: play or pause, 1× / 4× / skip to the end, and a scrubber.
  * Behind the scrubber, a histogram of model calls in flight shows where the agents overlapped.
- * The one element with a shadow, like the Kanbix input.
  */
 export function ReplayBar({ className }: { className?: string }) {
 	const { mode, playing, speed, duration, runStatus, records } = useRunStore(
@@ -33,13 +30,17 @@ export function ReplayBar({ className }: { className?: string }) {
 	const live = mode === "live"
 	const total = live ? Math.max(duration, clock) : duration
 	const position = live ? total : Math.min(clock, duration)
-	const histogram = useMemo(() => concurrency(records, Math.max(duration, 1)), [records, duration])
+	const histogram = useMemo(() => {
+		const { series } = concurrency(records, duration, 96)
+		const top = Math.max(...series, 1)
+		return series.map((n) => (n > 0 ? Math.max(0.08, n / top) : 0))
+	}, [records, duration])
 	const store = useRunStore.getState()
 
 	return (
 		<div
 			className={cn(
-				"pointer-events-auto flex h-12 w-full max-w-2xl items-center gap-2 rounded-xl border border-hairline bg-card pl-2 pr-2.5 shadow-float",
+				"pointer-events-auto flex h-12 w-full max-w-2xl items-center gap-2 rounded-xl bg-panel pl-1.5 pr-2 shadow-float",
 				className,
 			)}
 		>
@@ -123,7 +124,7 @@ function Scrubber({
 				<div className="absolute inset-x-0 bottom-1 h-px bg-hairline" />
 				<Slider.Range className="absolute bottom-1 h-px bg-ink-muted" />
 			</Slider.Track>
-			<Slider.Thumb className="block h-6 w-0.5 rounded-full bg-ink outline-none ring-primary/30 transition-shadow focus-visible:ring-4" />
+			<Slider.Thumb className="block h-6 w-0.5 rounded-full bg-ink outline-none ring-link/30 transition-shadow focus-visible:ring-4" />
 		</Slider.Root>
 	)
 }
@@ -137,29 +138,4 @@ function Bars({ histogram, className }: { histogram: number[]; className?: strin
 			)}
 		</svg>
 	)
-}
-
-/** Model calls in flight over time, in BUCKETS slices, scaled 0..1. */
-function concurrency(records: TraceRecord[], duration: number): number[] {
-	const load = new Array<number>(BUCKETS).fill(0)
-	const size = duration / BUCKETS
-	const open = new Map<string, number>()
-	const add = (start: number, end: number) => {
-		for (let i = Math.floor(start / size); i <= Math.min(BUCKETS - 1, Math.floor(end / size)); i++) {
-			const overlap = Math.min(end, (i + 1) * size) - Math.max(start, i * size)
-			if (overlap > 0) load[i] += overlap / size
-		}
-	}
-	for (const record of records) {
-		if (!record.loopId) continue
-		if (record.kind === "inference.started") open.set(record.loopId, record.ms)
-		else if (record.kind === "inference.completed") {
-			const start = open.get(record.loopId)
-			if (start != null) add(start, record.ms)
-			open.delete(record.loopId)
-		}
-	}
-	for (const start of open.values()) add(start, duration)
-	const peak = Math.max(...load, 1)
-	return load.map((n) => (n > 0 ? Math.max(0.08, n / peak) : 0))
 }

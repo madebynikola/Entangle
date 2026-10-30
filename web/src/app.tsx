@@ -10,7 +10,8 @@ import { HomeScreen } from "@/screens/home"
  * Routes. Hash routing, so a static build works on any host (GitHub Pages) with no rewrites.
  *
  *   #/                         all runs
- *   #/runs/:runId/live/*       live run view (#20 owns screens/live)
+ *   #/runs/:runId/overview     what the run did (screens/overview)
+ *   #/runs/:runId/live/*       the Timeline: agents at work, with the replay bar (#20 owns screens/live)
  *   #/runs/:runId/results/*    results view (#21 owns screens/results); nest your own <Routes> under it
  */
 export const router = createHashRouter([
@@ -23,7 +24,8 @@ export const router = createHashRouter([
 				path: "runs/:runId",
 				element: <RunLayout />,
 				children: [
-					{ index: true, element: <Navigate to="live" replace /> },
+					{ index: true, element: <Navigate to="overview" replace /> },
+					{ path: "overview", lazy: async () => ({ Component: (await import("@/screens/overview")).OverviewScreen }) },
 					// Loaded on first visit, so each screen's weight stays out of the first page load.
 					{ path: "live/*", lazy: async () => ({ Component: (await import("@/screens/live")).LiveScreen }) },
 					{ path: "results/*", lazy: async () => ({ Component: (await import("@/screens/results")).ResultsScreen }) },
@@ -37,7 +39,7 @@ export const router = createHashRouter([
 function NotFound() {
 	return (
 		<EmptyState
-			className="flex-1"
+			className="min-h-dvh"
 			icon={<Compass />}
 			title="There is nothing at this address"
 			action={
