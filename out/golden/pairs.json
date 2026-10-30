@@ -1,0 +1,1095 @@
+{
+  "chosen": [
+    "C009-CH1:R0349",
+    "C012-CH1:R0564",
+    "C018-CH1:R0948",
+    "C005-CH1:R0905",
+    "C001-CH1:R1008"
+  ],
+  "pairs": [
+    {
+      "id": "C012-CH1:R0564",
+      "challengeId": "C012-CH1",
+      "companyId": "C012",
+      "researcherId": "R0564",
+      "fit": 0.88,
+      "why": [
+        {
+          "text": "Sentinel Byte needs a pipeline that runs scheduled reconnaissance and detects changes between scans, and has a budget of roughly 3,000 to 5,000 euros for a working prototype (C012-CH1).",
+          "sourceIds": [
+            "C012-CH1"
+          ]
+        },
+        {
+          "text": "Árpád Nagy co-authored work on agent-based scanning pipelines for host discovery and topology mapping in heterogeneous enterprise environments (SYN-PUB-06542) and in IPv6 environments (SYN-PUB-06548), and on attack surface enumeration via an agent-based reconnaissance framework in Kubernetes environments (SYN-PUB-03012).",
+          "sourceIds": [
+            "SYN-PUB-06542",
+            "SYN-PUB-06548",
+            "SYN-PUB-03012"
+          ]
+        },
+        {
+          "text": "Árpád Nagy co-authored work on vulnerability data normalisation from multiple vulnerability data sources using ontology-driven methods and SPARQL integration for unified ingestion pipelines (SYN-PUB-03796).",
+          "sourceIds": [
+            "SYN-PUB-03796"
+          ]
+        },
+        {
+          "text": "Árpád Nagy co-authored work on temporal attack graph construction that tracks vulnerability disclosure timelines and patch deployment lag across network assets (SYN-PUB-06550), and on incremental attack graph updates after configuration changes (SYN-PUB-06546).",
+          "sourceIds": [
+            "SYN-PUB-06550",
+            "SYN-PUB-06546"
+          ]
+        },
+        {
+          "text": "Árpád Nagy co-authored work on LLM-assisted parsing of raw scanner output into structured JSON reports with suggested remediation priorities (SYN-PUB-06551).",
+          "sourceIds": [
+            "SYN-PUB-06551"
+          ]
+        },
+        {
+          "text": "Árpád Nagy is open to joint projects with NTP companies on vulnerability scanning pipeline development and consulting on penetration testing automation (R0564).",
+          "sourceIds": [
+            "R0564"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together, Árpád Nagy and Sentinel Byte would design and prototype a scheduled reconnaissance and vulnerability enumeration pipeline — applying agent-based scanning for host discovery and topology mapping, normalising vulnerability data from multiple sources via ontology-driven methods, applying incremental graph updates to track changes across scans, and emitting structured JSON reports for manual testers — targeting a reduction of the initial engagement phase from four days to one (C012-CH1, SYN-PUB-06542, SYN-PUB-03796, SYN-PUB-06550, SYN-PUB-06551).",
+        "sourceIds": [
+          "C012-CH1",
+          "SYN-PUB-06542",
+          "SYN-PUB-03796",
+          "SYN-PUB-06550",
+          "SYN-PUB-06551"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The budget for tooling or a development collaboration is limited to roughly 3,000 to 5,000 euros for a working prototype (C012-CH1).",
+          "sourceIds": [
+            "C012-CH1"
+          ]
+        },
+        {
+          "text": "Nikola Kovačević can dedicate roughly two days per week to a collaborative development project (C012).",
+          "sourceIds": [
+            "C012"
+          ]
+        },
+        {
+          "text": "SYN-PUB-06550 covers temporal attack graph construction tracking vulnerability disclosure timelines and patch deployment lag; the record does not describe integration into a production scanning toolchain.",
+          "sourceIds": [
+            "SYN-PUB-06550"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C009-CH2:R0265",
+      "challengeId": "C009-CH2",
+      "companyId": "C009",
+      "researcherId": "R0265",
+      "fit": 0.96,
+      "why": [
+        {
+          "text": "LinguaBot has a measured WER baseline above 38% on Serbian call-centre audio and no in-house speech model training expertise, making external research expertise essential.",
+          "sourceIds": [
+            "C009-CH2"
+          ]
+        },
+        {
+          "text": "Kapor co-authored research on transfer learning from Wav2Vec 2.0 for low-resource ASR evaluated on Serbian customer-service telephone speech with varying data volumes and bandwidth conditions.",
+          "sourceIds": [
+            "SYN-PUB-03342"
+          ]
+        },
+        {
+          "text": "Kapor co-authored research on front-end augmentation strategies including multi-condition training and SpecAugment for noise-robust acoustic modelling in call-centre telephone speech recognition.",
+          "sourceIds": [
+            "SYN-PUB-03341"
+          ]
+        },
+        {
+          "text": "Kapor co-authored work on collection and annotation of telephone speech corpora for low-resource languages including protocol design and codec simulation, and took part in the TELSRP project coordinating data collection with call-centre partners in Serbia and Bosnia-Herzegovina.",
+          "sourceIds": [
+            "SYN-PUB-03340",
+            "SYN-PRJ-1818"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Emilija Kapor and LinguaBot would fine-tune a multilingual self-supervised model (Wav2Vec 2.0) on the 1,200-recording Serbian call-centre corpus, apply noise-robust front-end augmentation for telephony codec conditions, evaluate WER reduction against the 38% baseline, and design a data-collection protocol for any subsequent larger corpus — all within the proof-of-concept scope required by C009-CH2.",
+        "sourceIds": [
+          "C009-CH2",
+          "SYN-PUB-03342",
+          "SYN-PUB-03341",
+          "SYN-PUB-03340",
+          "SYN-PRJ-1818"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-03340 covers codec simulation and PSTN versus VoIP degradation in Serbian telephone speech corpora; SYN-PUB-03342 covers Wav2Vec 2.0 fine-tuning evaluated on Serbian customer-service telephone speech with varying bandwidth conditions.",
+          "sourceIds": [
+            "SYN-PUB-03340",
+            "SYN-PUB-03342"
+          ]
+        },
+        {
+          "text": "C009-CH2 states the timeline is firm because of the contract, with one telecom client having written a requirement into a contract renewal that goes up for review in early 2027 and three bank clients having requested voice by end of 2027.",
+          "sourceIds": [
+            "C009-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C009-CH2:R0131",
+      "challengeId": "C009-CH2",
+      "companyId": "C009",
+      "researcherId": "R0131",
+      "fit": 0.55,
+      "why": [
+        {
+          "text": "LinguaBot needs expertise in evaluating and fine-tuning multilingual pre-trained ASR models for a morphologically rich low-resource language under constrained data conditions.",
+          "sourceIds": [
+            "C009-CH2"
+          ]
+        },
+        {
+          "text": "Uzelac co-authored research on zero-shot multilingual speech recognition evaluation on morphologically rich low-resource languages using large pre-trained models such as Whisper.",
+          "sourceIds": [
+            "SYN-PUB-01737"
+          ]
+        },
+        {
+          "text": "Uzelac co-authored research on fine-tuning Wav2Vec 2.0 self-supervised representations for a mismatched-domain low-resource speech scenario (adult pre-training data, child test speakers).",
+          "sourceIds": [
+            "SYN-PUB-01734"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Željko Uzelac and LinguaBot would evaluate zero-shot and fine-tuned multilingual pre-trained ASR models (including Whisper and Wav2Vec 2.0) on the 1,200-recording Serbian call-centre corpus, measure WER reduction against the 38% baseline, and assess what data augmentation would be needed — within the proof-of-concept scope of C009-CH2.",
+        "sourceIds": [
+          "C009-CH2",
+          "SYN-PUB-01737",
+          "SYN-PUB-01731",
+          "SYN-PUB-01734"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The Wav2Vec 2.0 fine-tuning work covers adult-to-child speaker mismatch; the extent to which the approach transfers to telephony channel mismatch is not stated in the record.",
+          "sourceIds": [
+            "SYN-PUB-01731",
+            "SYN-PUB-01734"
+          ]
+        },
+        {
+          "text": "The timeline is firm: one telecom client's contract goes up for review in early 2027, and three bank clients have requested a voice channel by end of 2027.",
+          "sourceIds": [
+            "C009-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C009-CH1:R0349",
+      "challengeId": "C009-CH1",
+      "companyId": "C009",
+      "researcherId": "R0349",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "C009-CH1 identifies script mixing and morphological mismatch as the causes of more than half of missed queries in the Elasticsearch system.",
+          "sourceIds": [
+            "C009-CH1"
+          ]
+        },
+        {
+          "text": "The researcher has publications on script normalization and phoneme-based canonicalization for mixed Cyrillic-Latin Serbian text retrieval.",
+          "sourceIds": [
+            "SYN-PUB-04279",
+            "SYN-PUB-04278",
+            "SYN-PUB-04281"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on query expansion through transliteration variants and morphological analysis for Serbian mixed-script search.",
+          "sourceIds": [
+            "SYN-PUB-04280",
+            "SYN-PUB-00225"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on a real-time streaming indexing architecture for incremental document processing with script normalization at scale.",
+          "sourceIds": [
+            "SYN-PUB-02734"
+          ]
+        },
+        {
+          "text": "The researcher collaborated with a legaltech startup on customizing search modules for Serbian court decisions under an 18-month contract research agreement.",
+          "sourceIds": [
+            "R0349"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Stefan Dragić and LinguaBot would adapt a script-normalizing, morphology-aware query expansion layer for the existing Elasticsearch pipeline—using phoneme-based canonicalization and transliteration-variant expansion drawn from work in SYN-PUB-04279, SYN-PUB-04278, SYN-PUB-04280—and pair it with real-time incremental indexing from SYN-PUB-02734, evaluated against the 85,000-pair annotated dataset from C009-CH1 to drive the miss rate below 5%.",
+        "sourceIds": [
+          "C009-CH1",
+          "SYN-PUB-04279",
+          "SYN-PUB-04278",
+          "SYN-PUB-04280",
+          "SYN-PUB-02734"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The publications cover general Serbian document collections; coverage of financial and telecom support terminology as found in C009-CH1 is not evidenced in the record.",
+          "sourceIds": [
+            "C009-CH1",
+            "SYN-PUB-04279",
+            "SYN-PUB-04278"
+          ]
+        },
+        {
+          "text": "C009-CH1 states the budget for tooling or data work is around 8,000 EUR and that a testable solution is expected within six months.",
+          "sourceIds": [
+            "C009-CH1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C009-CH1:R0925",
+      "challengeId": "C009-CH1",
+      "companyId": "C009",
+      "researcherId": "R0925",
+      "fit": 0.82,
+      "why": [
+        {
+          "text": "C009-CH1 states that morphological mismatch and script confusion account for more than half of the 18% miss rate in the current search system.",
+          "sourceIds": [
+            "C009-CH1"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on dense retrieval for customer-support question answering, including script normalization and bi-encoder fine-tuning.",
+          "sourceIds": [
+            "SYN-PUB-09805"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on cross-script semantic alignment for Latin and Cyrillic text using contrastive fine-tuning and transliteration.",
+          "sourceIds": [
+            "SYN-PUB-09806"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on retrieval-augmented generation adapted to morphologically rich languages, including lemma-expanded dense retrieval.",
+          "sourceIds": [
+            "SYN-PUB-09810"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Milan Petrović and LinguaBot would fine-tune a bi-encoder dense retrieval model with script normalization and lemma expansion—drawing on SYN-PUB-09805 and SYN-PUB-09806 and SYN-PUB-09810—evaluated on the 85,000-pair annotated dataset from C009-CH1, to complement or replace the existing BM25 Elasticsearch layer and reduce the miss rate below 5%.",
+        "sourceIds": [
+          "C009-CH1",
+          "SYN-PUB-09805",
+          "SYN-PUB-09806",
+          "SYN-PUB-09810"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The dense retrieval approach in the record covers retrieval tasks generally; integration with an existing Elasticsearch index without full re-indexing, as required by C009-CH1, is not evidenced.",
+          "sourceIds": [
+            "C009-CH1",
+            "SYN-PUB-09805"
+          ]
+        },
+        {
+          "text": "C009-CH1 states the budget for tooling or data work is modest—around 8,000 EUR—and the solution must be testable within six months.",
+          "sourceIds": [
+            "C009-CH1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C009-CH1:R0288",
+      "challengeId": "C009-CH1",
+      "companyId": "C009",
+      "researcherId": "R0288",
+      "fit": 0.67,
+      "why": [
+        {
+          "text": "C009-CH1 identifies Serbian morphological forms and Latin-Cyrillic script mixing as the primary causes of search misses.",
+          "sourceIds": [
+            "C009-CH1"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on lemmatization of morphologically rich languages with dual-script handling, achieving 94.7% accuracy across Cyrillic and Latin scripts.",
+          "sourceIds": [
+            "SYN-PUB-03588"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on corpus-driven induction of morphological lexicons covering 187,000 lemmas with inflectional paradigm data.",
+          "sourceIds": [
+            "SYN-PUB-03592"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on spelling variant typology in Serbian distinguishing script-switching, norm-competing, and phonetic variants.",
+          "sourceIds": [
+            "SYN-PUB-03591"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Katarina Nikolić and LinguaBot would adapt the morphological lexicon from SYN-PUB-03592 and the dual-script lemmatization method from SYN-PUB-03588 to build a query normalization component for the Elasticsearch pipeline in C009-CH1, covering inflectional forms and script variants, validated against the 85,000-pair annotated dataset with support from the company's two in-house linguists.",
+        "sourceIds": [
+          "C009-CH1",
+          "SYN-PUB-03592",
+          "SYN-PUB-03588"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The researcher's record covers morphological lexicons and lemmatization; integration into a running Elasticsearch retrieval pipeline with incremental indexing as required by C009-CH1 is not evidenced.",
+          "sourceIds": [
+            "C009-CH1",
+            "SYN-PUB-03592",
+            "SYN-PUB-03588"
+          ]
+        },
+        {
+          "text": "The record covers general contemporary Serbian corpora; domain-specific terminology for banking and telecom support as described in C009-CH1 is not evidenced.",
+          "sourceIds": [
+            "C009-CH1",
+            "SYN-PRJ-0013"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C012-CH2:R0386",
+      "challengeId": "C012-CH2",
+      "companyId": "C012",
+      "researcherId": "R0386",
+      "fit": 0.78,
+      "why": [
+        {
+          "text": "Sentinel Byte suspects its informal sessions work but does not know how to formalise them into a repeatable programme with measurable retention (C012-CH2).",
+          "sourceIds": [
+            "C012-CH2"
+          ]
+        },
+        {
+          "text": "Ninkov's research covers instructional design principles including worked examples, spacing effects, microlearning, and cognitive load theory applied to procedural skill training (SYN-PUB-04689, SYN-PUB-04691, SYN-PUB-04686).",
+          "sourceIds": [
+            "SYN-PUB-04689",
+            "SYN-PUB-04691",
+            "SYN-PUB-04686"
+          ]
+        },
+        {
+          "text": "Ninkov's research covers situated learning and informal knowledge transfer in workplace contexts, including how peripheral participation and community of practice mechanisms support competency development (SYN-PUB-04687), and the balance between formal instruction and informal workplace learning in SME onboarding (SYN-PRJ-0050).",
+          "sourceIds": [
+            "SYN-PUB-04687",
+            "SYN-PRJ-0050"
+          ]
+        },
+        {
+          "text": "Ninkov's research covers onboarding programme design and assessment, including development of measurement instruments and evaluation of training delivery formats (SYN-PUB-04688, SYN-PUB-04690).",
+          "sourceIds": [
+            "SYN-PUB-04688",
+            "SYN-PUB-04690"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together, Sentinel Byte and Ognjen Ninkov would translate the company's informal explanation sessions into a structured training programme using instructional design principles—spacing, worked examples, microlearning—and design a measurement study to test whether people retained the material, producing a pilot-ready set of modules for one municipality client by the end of this year (C012-CH2, SYN-PUB-04689, SYN-PUB-04691).",
+        "sourceIds": [
+          "C012-CH2",
+          "SYN-PUB-04689",
+          "SYN-PUB-04691"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-04688 covers onboarding and workplace training across organisations in Serbia and Croatia, and SYN-PRJ-0051 covers technology companies at NTP Novi Sad; none of the cited works cover training for public-sector municipal IT staff, which is Sentinel Byte's target learner group.",
+          "sourceIds": [
+            "SYN-PUB-04688",
+            "SYN-PRJ-0051"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C018-CH1:R0948",
+      "challengeId": "C018-CH1",
+      "companyId": "C018",
+      "researcherId": "R0948",
+      "fit": 0.95,
+      "why": [
+        {
+          "text": "DriveLogic needs to automate the mapping from System Extract to ARXML configuration files using the DaVinci API, reducing a three-week manual task to under one working day.",
+          "sourceIds": [
+            "C018-CH1"
+          ]
+        },
+        {
+          "text": "Vidaković co-authored work on AUTOSAR model transformations using ATL and QVT-O, including SWC flattening, port interface normalisation, and ECU topology migration.",
+          "sourceIds": [
+            "SYN-PUB-09975",
+            "SYN-PUB-09973"
+          ]
+        },
+        {
+          "text": "Vidaković co-authored work on template-based code generation for AUTOSAR artefacts: Xpand-based RTE stub generation, Acceleo-based Adaptive Platform service instance manifests, and a DSL using Xtext and Xtend for communication matrix configuration.",
+          "sourceIds": [
+            "SYN-PUB-09974",
+            "SYN-PUB-09977",
+            "SYN-PUB-03795"
+          ]
+        },
+        {
+          "text": "Vidaković co-authored work on ARXML authoring workflows including consistency checking via OCL constraints, traceability between requirements and ARXML artefacts, and ARXML-aware diffing and merging.",
+          "sourceIds": [
+            "SYN-PUB-06834",
+            "SYN-PUB-05926",
+            "SYN-PUB-09976"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Vidaković and DriveLogic would design and implement a transformation chain that reads a System Extract, applies AUTOSAR model-transformation rules, and generates reviewable ARXML SWC configuration files at the scale required by C018-CH1, drawing on template-based code generation methods from SYN-PUB-09974, SYN-PUB-09977, SYN-PUB-09979, and ARXML workflow tooling from SYN-PUB-06834, SYN-PUB-09976.",
+        "sourceIds": [
+          "C018-CH1",
+          "SYN-PUB-09974",
+          "SYN-PUB-09977",
+          "SYN-PUB-09979",
+          "SYN-PUB-06834",
+          "SYN-PUB-09976"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published record covers transformation chains for SWC descriptors, RTE stubs, and Adaptive Platform service skeletons; coverage of the specific System Extract format used by DriveLogic's customer is not documented in these records.",
+          "sourceIds": [
+            "SYN-PUB-09973",
+            "SYN-PUB-09974",
+            "SYN-PUB-09979"
+          ]
+        },
+        {
+          "text": "The published record covers ATL, QVT-O, Xpand, and Acceleo as transformation engines; integration with the DaVinci Configurator API specifically is not documented in these records.",
+          "sourceIds": [
+            "SYN-PUB-09975",
+            "SYN-PUB-09974",
+            "SYN-PUB-09977",
+            "SYN-PUB-09979"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C018-CH2:R0919",
+      "challengeId": "C018-CH2",
+      "companyId": "C018",
+      "researcherId": "R0919",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "DriveLogic has full access to ARXML descriptions, COM configuration, and CANoe environment, and three of four delivered projects came back with CAN communication faults at component boundaries.",
+          "sourceIds": [
+            "C018-CH2"
+          ]
+        },
+        {
+          "text": "Lačoková co-authored work on specification and verification of interface contracts using assume-guarantee reasoning, extended with real-time guards for multi-supplier CAN node integration.",
+          "sourceIds": [
+            "SYN-PUB-09744"
+          ]
+        },
+        {
+          "text": "Lačoková co-authored work on automated synthesis of runtime contracts from AUTOSAR system descriptions in ARXML format.",
+          "sourceIds": [
+            "SYN-PUB-03011"
+          ]
+        },
+        {
+          "text": "Lačoková co-authored work on benchmark suites and covering arrays for CAN-based configurations, and separately co-authored work on cross-layer fault detection in multi-supplier embedded stacks through taxonomy-based analysis of interaction faults.",
+          "sourceIds": [
+            "SYN-PUB-09747",
+            "SYN-PUB-09749"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using ARXML descriptions and COM configuration from DriveLogic's CAN stack, Lačoková and DriveLogic would develop a method that synthesises test scenarios targeting interface assumptions and interaction contracts between multi-supplier SWCs, validated against the known boundary faults in CANoe, drawing on assume-guarantee reasoning for CAN node integration and automated contract synthesis from AUTOSAR system descriptions.",
+        "sourceIds": [
+          "C018-CH2",
+          "SYN-PUB-09744",
+          "SYN-PUB-03011"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The first-phase budget does not exceed €40,000.",
+          "sourceIds": [
+            "C018-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C018-CH2:R0233",
+      "challengeId": "C018-CH2",
+      "companyId": "C018",
+      "researcherId": "R0233",
+      "fit": 0.56,
+      "why": [
+        {
+          "text": "DriveLogic needs a method that generates test scenarios from component descriptions to target interaction faults that unit tests do not catch.",
+          "sourceIds": [
+            "C018-CH2",
+            "C018/blog/2024-04-18/What we learned from four integration faults in twelve months"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored work on model-based test generation for embedded firmware using extended finite automata and formal specifications.",
+          "sourceIds": [
+            "SYN-PUB-02953",
+            "SYN-PUB-02949"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored work on mutation testing frameworks including specification-level mutation operators for embedded control software.",
+          "sourceIds": [
+            "SYN-PUB-02944",
+            "SYN-PUB-02953"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using DriveLogic's ARXML descriptions and the four documented boundary fault cases as input, Stojanović and DriveLogic would investigate whether model-based test generation from formal specifications and specification-level mutation operators can be adapted to synthesise integration test scenarios targeting SWC interface contracts in the CAN communication stack.",
+        "sourceIds": [
+          "C018-CH2",
+          "SYN-PUB-02953",
+          "SYN-PUB-02949",
+          "SYN-PUB-02944"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The publications cover model-based test generation for embedded firmware broadly; none of the cited records address ARXML parsing, CAN interface-contract analysis, or multi-supplier SWC boundary assumptions specifically.",
+          "sourceIds": [
+            "SYN-PUB-02953",
+            "SYN-PUB-02949",
+            "SYN-PUB-02944"
+          ]
+        },
+        {
+          "text": "Stojanović's profile states a preference for collaborations where research access to real firmware codebases or development histories is possible.",
+          "sourceIds": [
+            "R0233"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C018-CH2:R0193",
+      "challengeId": "C018-CH2",
+      "companyId": "C018",
+      "researcherId": "R0193",
+      "fit": 0.51,
+      "why": [
+        {
+          "text": "DriveLogic's integration faults occur in the CAN communication stack between SWCs from different suppliers, and the company has a CANoe-based network simulation environment available.",
+          "sourceIds": [
+            "C018-CH2",
+            "C018"
+          ]
+        },
+        {
+          "text": "Matić co-authored work on hardware-in-the-loop testing of automotive ECUs including simulation of CAN and LIN bus interfaces.",
+          "sourceIds": [
+            "SYN-PUB-02483"
+          ]
+        },
+        {
+          "text": "Matić co-authored work on model-based testing methodologies for automotive software including automatic generation of ISO 26262-compliant test cases and coverage criteria evaluation.",
+          "sourceIds": [
+            "SYN-PUB-02482",
+            "SYN-PUB-02486"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using DriveLogic's CAN bus assets and the three CAN communication faults found across four delivered projects, Matić and DriveLogic would examine whether automotive model-based test generation and HIL simulation of CAN interfaces can be extended to expose interaction faults at SWC boundaries under AUTOSAR COM configuration, within the CANoe environment.",
+        "sourceIds": [
+          "C018-CH2",
+          "SYN-PUB-02482",
+          "SYN-PUB-02483",
+          "SYN-PUB-02486"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The publications cover model-based test generation from Simulink models and HIL bench design; none of the cited records address systematic generation of test scenarios from ARXML interface-contract or assume-guarantee analysis of multi-supplier SWC boundaries.",
+          "sourceIds": [
+            "SYN-PUB-02482",
+            "SYN-PUB-02483",
+            "SYN-PUB-02486"
+          ]
+        },
+        {
+          "text": "DriveLogic states it would not start something that costs more than €40,000 in the first phase.",
+          "sourceIds": [
+            "C018-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C005-CH1:R0905",
+      "challengeId": "C005-CH1",
+      "companyId": "C005",
+      "researcherId": "R0905",
+      "fit": 0.78,
+      "why": [
+        {
+          "text": "Kardiolink states that firmware-level BLE tuning has reached diminishing returns and is seeking system-level power headroom beyond the software stack (C005-CH1).",
+          "sourceIds": [
+            "C005-CH1"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on wake-up receiver circuits for asynchronous event-driven body-area networks operating at 4.2 µW from a 1.0 V supply (SYN-PUB-07802).",
+          "sourceIds": [
+            "SYN-PUB-07802"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on deadline-aware MAC scheduling for implantable sensor networks using beacon-enabled IEEE 802.15.4 superframe structures, achieving below 0.3% deadline miss rates at 80% utilisation (SYN-PUB-09632).",
+          "sourceIds": [
+            "SYN-PUB-09632"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on ultra-low-power instrumentation amplifiers for multi-modal biopotential acquisition at sub-1 µA average current in ECG and EEG modes (SYN-PUB-09637, SYN-PUB-09629).",
+          "sourceIds": [
+            "SYN-PUB-09637",
+            "SYN-PUB-09629"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together they would profile the radio and analogue front-end power layers of Kardiolink's ECG patch — reviewing event-driven wake-up receiver techniques and MAC-layer duty-cycling methods from the researcher's record against the device's radio power budget, and reviewing the biopotential AFE current budget against the sub-1 µA designs in the researcher's record — using the Keysight N6705C to measure current profiles before and after each intervention, targeting the ≥35% active-current reduction at 250 Hz (C005-CH1, SYN-PUB-07802, SYN-PUB-09632, SYN-PUB-09637).",
+        "sourceIds": [
+          "C005-CH1",
+          "SYN-PUB-07802",
+          "SYN-PUB-09632",
+          "SYN-PUB-09637"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The researcher's radio scheduling work covers IEEE 802.15.4 and 868 MHz wake-up receivers; the records do not cover BLE 5.x or the nRF52840 specifically (SYN-PUB-07802, SYN-PUB-09632).",
+          "sourceIds": [
+            "SYN-PUB-07802",
+            "SYN-PUB-09632"
+          ]
+        },
+        {
+          "text": "The researcher's AFE work targets custom IC design in 65 nm CMOS (SYN-PUB-09637).",
+          "sourceIds": [
+            "SYN-PUB-09637"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C005-CH1:R0206",
+      "challengeId": "C005-CH1",
+      "companyId": "C005",
+      "researcherId": "R0206",
+      "fit": 0.6,
+      "why": [
+        {
+          "text": "Kardiolink has exhausted firmware-only changes and requires investigation of system-level power dynamics, including ADC/DMA modes and radio transfer overhead (C005-CH1).",
+          "sourceIds": [
+            "C005-CH1"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on energy budget analysis and design for coin-cell-powered sensor nodes, balancing sampling rate, compression, and inference duty cycles to extend battery life (SYN-PUB-01739, SYN-PRJ-0427).",
+          "sourceIds": [
+            "SYN-PUB-01739",
+            "SYN-PRJ-0427"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on adaptive and low-power vibration acquisition strategies on ARM Cortex-M microcontrollers, including triggered burst acquisition using comparator thresholds and demand-driven sampling (SYN-PUB-02637, SYN-PAT-044).",
+          "sourceIds": [
+            "SYN-PUB-02637",
+            "SYN-PAT-044"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on over-the-air model update protocols for embedded nodes using delta-transfer techniques and CRC integrity checking over BLE connections (SYN-PUB-02642).",
+          "sourceIds": [
+            "SYN-PUB-02642"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together they would apply energy budget analysis and adaptive ARM Cortex-M acquisition strategies — including triggered burst acquisition and compression to reduce data volume — to the KL-Patch 72 stack, measuring current savings with the Keysight N6705C power analyser and verifying that ECG sampling remains at 250 Hz or above throughout (C005-CH1, SYN-PUB-01739, SYN-PUB-02637, SYN-PAT-044).",
+        "sourceIds": [
+          "C005-CH1",
+          "SYN-PUB-01739",
+          "SYN-PUB-02637",
+          "SYN-PAT-044"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The researcher's energy budget work covers a coin-cell-powered node built on an nRF52833 SoC, and the acquisition work covers an STM32F407 (Cortex-M4) target; neither record covers the nRF52840 or FreeRTOS specifically (SYN-PUB-01739, SYN-PUB-02637).",
+          "sourceIds": [
+            "SYN-PUB-01739",
+            "SYN-PUB-02637"
+          ]
+        },
+        {
+          "text": "Compression techniques in the researcher's record cover vibration signals from rotating machinery and spindle motors; the cited records do not cover ECG signals or clinical signal quality (SYN-PUB-02636, SYN-PUB-02638).",
+          "sourceIds": [
+            "SYN-PUB-02636",
+            "SYN-PUB-02638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C005-CH2:R0057",
+      "challengeId": "C005-CH2",
+      "companyId": "C005",
+      "researcherId": "R0057",
+      "fit": 0.92,
+      "why": [
+        {
+          "text": "Kardiolink requires a lossless algorithm exploiting ECG-specific properties such as quasi-periodicity and baseline wander to improve on its current 3:1 ratio; switching to lossy compression would require a new clinical validation study and amendments to the technical file (C005-CH2).",
+          "sourceIds": [
+            "C005-CH2"
+          ]
+        },
+        {
+          "text": "The researcher co-authored publications on near-lossless compression of ECG signals using discrete cosine transforms and beat-aligned framing, and on DPCM-based ECG coding evaluated with PRD metrics (SYN-PUB-00755, SYN-PUB-00757, SYN-PUB-00760, SYN-PUB-00762).",
+          "sourceIds": [
+            "SYN-PUB-00755",
+            "SYN-PUB-00757",
+            "SYN-PUB-00760",
+            "SYN-PUB-00762"
+          ]
+        },
+        {
+          "text": "The researcher co-authored publications on learned entropy models for ECG compression using small recurrent neural networks to capture intra-beat spectral structure and inter-beat temporal redundancy (SYN-PUB-00761, SYN-PUB-00763).",
+          "sourceIds": [
+            "SYN-PUB-00761",
+            "SYN-PUB-00763"
+          ]
+        },
+        {
+          "text": "The researcher leads a PROMIS-funded project on physiological signal compression for low-power microcontrollers with clinical validation in collaboration with Clinical Centre of Vojvodina, covering practical codec design and evaluation for medical devices (SYN-PRJ-0213, SYN-PUB-00755).",
+          "sourceIds": [
+            "SYN-PRJ-0213",
+            "SYN-PUB-00755"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Lazar Šarić and Kardiolink would develop a lossless ECG compression algorithm — applying beat-synchronous transform coding, DPCM-based coding, and learned entropy models to ECG beat structure — benchmarked against the current 3:1 ratio using Kardiolink's labelled field dataset, targeting a codec for the existing cloud pipeline while satisfying the challenge's lossless requirement (C005-CH2, SYN-PUB-00755, SYN-PUB-00757, SYN-PUB-00760, SYN-PUB-00762, SYN-PUB-00761, SYN-PUB-00763, SYN-PRJ-0213).",
+        "sourceIds": [
+          "C005-CH2",
+          "SYN-PUB-00755",
+          "SYN-PUB-00757",
+          "SYN-PUB-00760",
+          "SYN-PUB-00762",
+          "SYN-PUB-00761",
+          "SYN-PUB-00763",
+          "SYN-PRJ-0213"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PRJ-0213 covers wearable and implantable patient monitoring devices; the Kardiolink challenge specifically describes wearable patch electrode noise characteristics in ambulatory use as a property to exploit for compression, and whether the compression work in SYN-PRJ-0213 targets that specific noise regime is not stated in the cited record (SYN-PRJ-0213, C005-CH2).",
+          "sourceIds": [
+            "SYN-PRJ-0213",
+            "C005-CH2"
+          ]
+        },
+        {
+          "text": "The dictionary-learning and sparse-representation publications cover physiological signals broadly; their compression ratios under a strict lossless constraint (rather than near-lossless or lossy) are not stated in the cited records (SYN-PUB-00758, SYN-PUB-00759).",
+          "sourceIds": [
+            "SYN-PUB-00758",
+            "SYN-PUB-00759"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C001-CH1:R1008",
+      "challengeId": "C001-CH1",
+      "companyId": "C001",
+      "researcherId": "R1008",
+      "fit": 0.96,
+      "why": [
+        {
+          "text": "ArmaturaSec has terabytes of unlabelled normal Modbus TCP and BACnet/IP traffic and zero confirmed attack examples, making supervised classifiers unusable and requiring a purely unsupervised baseline approach.",
+          "sourceIds": [
+            "C001-CH1",
+            "C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+          ]
+        },
+        {
+          "text": "Krisztina Kiss co-authored work on unsupervised anomaly detection in ICS network traffic using one-class classification and statistical baseline modelling on Modbus/TCP, and one-class SVM on DNP3.",
+          "sourceIds": [
+            "SYN-PUB-10472",
+            "SYN-PUB-10473"
+          ]
+        },
+        {
+          "text": "Krisztina Kiss co-authored work on threshold calibration for anomaly detectors under imbalanced operating conditions using beta mixture models to estimate contamination fraction from unlabelled operational data.",
+          "sourceIds": [
+            "SYN-PUB-10480"
+          ]
+        },
+        {
+          "text": "Krisztina Kiss co-authored work on lightweight model compression through quantisation and pruning for deploying traffic-based anomaly detectors on resource-constrained embedded gateways with 256 MB RAM.",
+          "sourceIds": [
+            "SYN-PUB-10239"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using ArmaturaSec's Modbus TCP and BACnet traffic archives (C001-CH1), apply one-class classification and statistical baseline modelling (SYN-PUB-10472, SYN-PUB-10473) with threshold calibration from unlabelled data (SYN-PUB-10480) and quantisation-based compression for on-device deployment (SYN-PUB-10239) to produce a site-adaptive anomaly detector.",
+        "sourceIds": [
+          "C001-CH1",
+          "SYN-PUB-10472",
+          "SYN-PUB-10473",
+          "SYN-PUB-10480",
+          "SYN-PUB-10239"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The records on long-term traffic characterisation and baseline construction cover discrete manufacturing, water utility, and district heating sites (SYN-PUB-10474) and substation automation networks (SYN-PUB-10472); coverage of BACnet/IP-specific baseline behaviour at building-automation sites is not documented in those records.",
+          "sourceIds": [
+            "SYN-PUB-10474",
+            "SYN-PUB-10472"
+          ]
+        },
+        {
+          "text": "C001-CH1 requires a method that can be explained to a plant manager in plain language; the records on one-class classification and score aggregation do not document plain-language explanation methods.",
+          "sourceIds": [
+            "C001-CH1",
+            "SYN-PUB-10482"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C001-CH1:R1015",
+      "challengeId": "C001-CH1",
+      "companyId": "C001",
+      "researcherId": "R1015",
+      "fit": 0.77,
+      "why": [
+        {
+          "text": "ArmaturaSec needs a method that works with no labelled attack examples and that can run inference on-device on their existing hardware.",
+          "sourceIds": [
+            "C001-CH1"
+          ]
+        },
+        {
+          "text": "Vuk Đukić co-authored work on unsupervised anomaly detection in industrial control systems using autoencoders trained on benign Modbus traffic.",
+          "sourceIds": [
+            "SYN-PUB-10523"
+          ]
+        },
+        {
+          "text": "Vuk Đukić co-authored work on lightweight intrusion detection models with quantisation, pruning, and knowledge distillation to reduce memory footprint on resource-constrained devices.",
+          "sourceIds": [
+            "SYN-PUB-10531"
+          ]
+        },
+        {
+          "text": "Vuk Đukić led the academic partner contribution to SECURE-ICS, a project developing security monitoring for factory automation systems covering Modbus, PROFINET, and EtherNet/IP protocol stacks.",
+          "sourceIds": [
+            "SYN-PRJ-0017"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using ArmaturaSec's unlabelled Modbus TCP traffic archives (C001-CH1), design and compress an autoencoder-based anomaly detector trained on benign traffic only (SYN-PUB-10523, SYN-PUB-10531) deployable on ArmaturaSec's on-device hardware without degrading packet forwarding latency.",
+        "sourceIds": [
+          "C001-CH1",
+          "SYN-PUB-10523",
+          "SYN-PUB-10531"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The records on unsupervised autoencoder detection cover Modbus environments (SYN-PUB-10523); BACnet/IP-specific detection is not documented in those records.",
+          "sourceIds": [
+            "SYN-PUB-10523"
+          ]
+        },
+        {
+          "text": "ArmaturaSec requires that the solution can be explained to a plant manager in plain language.",
+          "sourceIds": [
+            "C001-CH1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C001-CH4:R0983",
+      "challengeId": "C001-CH4",
+      "companyId": "C001",
+      "researcherId": "R0983",
+      "fit": 0.58,
+      "why": [
+        {
+          "text": "The challenge requires keeping regression tests current across frequent firmware releases; the researcher's publication covers regression test selection under continuous deployment, comparing static change-impact analysis and dynamic coverage-matrix matching strategies.",
+          "sourceIds": [
+            "C001-CH4",
+            "SYN-PUB-10274"
+          ]
+        },
+        {
+          "text": "The challenge requires reducing the time a junior engineer spends producing test cases for a new feature; the researcher's work covers search-based test generation using multi-objective optimisation for endpoint coverage and schema validity.",
+          "sourceIds": [
+            "C001-CH4",
+            "SYN-PUB-10273"
+          ]
+        },
+        {
+          "text": "The researcher is open to contract research on test automation tooling and methodology.",
+          "sourceIds": [
+            "R0983"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Adapt regression test selection and search-based test generation methods (SYN-PUB-10274, SYN-PUB-10273) to ArmaturaSec's Python-based test runner and hardware bench (C001-CH4), evaluating coverage-matrix matching for selecting which of the 1,400 test cases to re-run after each firmware change and prototyping a generation scaffold for new feature tests.",
+        "sourceIds": [
+          "C001-CH4",
+          "SYN-PUB-10274",
+          "SYN-PUB-10273"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The regression test selection and test generation publications cover REST APIs, microservices, and Java EE components; they do not document application to embedded firmware running on physical hardware benches.",
+          "sourceIds": [
+            "SYN-PUB-10274",
+            "SYN-PUB-10273",
+            "SYN-PUB-10270"
+          ]
+        },
+        {
+          "text": "The challenge requires that the solution not replace physical testing on the hardware bench; the researcher's coverage-guided instrumentation methods are evaluated in containerised software environments, and adaptation to physical hardware bench constraints is not documented.",
+          "sourceIds": [
+            "C001-CH4",
+            "SYN-PUB-10272"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C001-CH4:R0356",
+      "challengeId": "C001-CH4",
+      "companyId": "C001",
+      "researcherId": "R0356",
+      "fit": 0.55,
+      "why": [
+        {
+          "text": "The challenge requires automated test case generation from internal protocol specifications; the researcher co-authored a publication on automated test case generation from CAN signal databases using boundary-value analysis for ECU firmware validation.",
+          "sourceIds": [
+            "C001-CH4",
+            "SYN-PUB-04378"
+          ]
+        },
+        {
+          "text": "The challenge requires integration with a physical hardware-in-the-loop bench; the researcher's work covers hardware-in-the-loop simulation for ECU validation on open-source real-time platforms.",
+          "sourceIds": [
+            "C001-CH4",
+            "SYN-PUB-02251",
+            "SYN-PUB-04373"
+          ]
+        },
+        {
+          "text": "The researcher collaborated with two regional automotive ECU suppliers on bench design and test case development under the HILVOP project.",
+          "sourceIds": [
+            "SYN-PRJ-0416"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Apply automated test case generation from signal or protocol databases using boundary-value analysis (SYN-PUB-04378) to ArmaturaSec's internal protocol specifications (C001-CH4), integrating generated test skeletons with the existing Python hardware-in-the-loop runner and physical bench across four hardware variants.",
+        "sourceIds": [
+          "C001-CH4",
+          "SYN-PUB-04378"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The automated generation publication covers CAN signal databases for automotive ECU firmware; it does not document generation from the kind of protocol specifications ArmaturaSec uses for cybersecurity firmware.",
+          "sourceIds": [
+            "SYN-PUB-04378"
+          ]
+        },
+        {
+          "text": "The hardware-in-the-loop and bench design work covers automotive ECU platforms with CAN, FlexRay, and FPGA interfaces; the publications do not document integration with a Python-based test runner of the type ArmaturaSec operates.",
+          "sourceIds": [
+            "SYN-PUB-04373",
+            "SYN-PUB-04377",
+            "SYN-PRJ-0416"
+          ]
+        },
+        {
+          "text": "The researcher prefers projects where at least part of the results can be published and is willing to negotiate publication embargoes of up to 18 months for industry contracts.",
+          "sourceIds": [
+            "R0356"
+          ]
+        }
+      ]
+    }
+  ],
+  "noMatches": [
+    {
+      "challengeId": "C012-CH3",
+      "reason": "Not a research problem: This is a regulatory compliance and administrative documentation problem; research cannot solve it."
+    },
+    {
+      "challengeId": "C018-CH3",
+      "reason": "Not a research problem: This is a staff training and retention problem; the need is for structured educational content and training delivery, which is a curriculum and instructional design task, not a research question."
+    },
+    {
+      "challengeId": "C005-CH3",
+      "reason": "Not a research problem: This is regulatory documentation and compliance work under EU MDR; while it requires expertise, it is not a technical or scientific research question and cannot be solved by a research group."
+    },
+    {
+      "challengeId": "C001-CH3",
+      "reason": "Not a research problem: This is a methodology and reporting framework problem tied to financial valuation and client negotiation, not a technical or scientific research question."
+    }
+  ]
+}
