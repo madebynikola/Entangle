@@ -3,6 +3,7 @@ import {
 	FlaskConical,
 	Gauge,
 	Home,
+	LayoutDashboard,
 	ListChecks,
 	Moon,
 	Pause,
@@ -25,7 +26,7 @@ import * as format from "@/lib/format"
 import { useBackend, useRuns, useRunStore } from "@/run/hooks"
 import { openSource } from "./source"
 import { useTheme } from "./theme"
-import { runLabel } from "./run-label"
+import { runGroup, runLabel } from "./run-label"
 
 /** A command a screen adds to the palette while it is mounted. */
 export interface PaletteCommand {
@@ -128,20 +129,24 @@ export function CommandPalette() {
 
 						{runId && (
 							<CommandGroup heading="This run">
-								<CommandItem value="live view" onSelect={run(() => navigate(`/runs/${runId}/live`))}>
+								<CommandItem value="overview summary" onSelect={run(() => navigate(`/runs/${runId}/overview`))}>
+									<LayoutDashboard />
+									Overview
+								</CommandItem>
+								<CommandItem value="timeline live agents" onSelect={run(() => navigate(`/runs/${runId}/live`))}>
 									<Radio />
-									Live view
+									Timeline
 								</CommandItem>
 								<CommandItem value="results pairs proposals" onSelect={run(() => navigate(`/runs/${runId}/results`))}>
 									<ListChecks />
 									Results
 								</CommandItem>
-								<CommandItem value="play pause" onSelect={run(player.toggle)}>
+								<CommandItem value="play pause" onSelect={run(() => { navigate(`/runs/${runId}/live`); player.toggle() })}>
 									{playing && mode === "replay" ? <Pause /> : <Play />}
 									{playing || mode === "live" ? "Pause" : "Play"}
 									<CommandShortcut>Space</CommandShortcut>
 								</CommandItem>
-								<CommandItem value="replay from the start restart" onSelect={run(player.restart)}>
+								<CommandItem value="replay from the start restart watch" onSelect={run(() => { navigate(`/runs/${runId}/live`); player.restart() })}>
 									<RotateCcw />
 									Replay from the start
 								</CommandItem>
@@ -187,8 +192,8 @@ export function CommandPalette() {
 								<Home />
 								All runs
 							</CommandItem>
-							{runs?.map((info) => (
-								<CommandItem key={info.id} value={`run ${info.id} ${runLabel(info)}`} onSelect={run(() => navigate(`/runs/${info.id}/live`))}>
+							{runs?.filter((info) => runGroup(info) !== "incomplete").slice(0, 12).map((info) => (
+								<CommandItem key={info.id} value={`run ${info.id} ${runLabel(info)}`} onSelect={run(() => navigate(`/runs/${info.id}`))}>
 									<StatusDot tone={info.status === "live" ? "working" : "idle"} pulse={info.status === "live"} className="mx-1" />
 									{runLabel(info)}
 									<CommandShortcut>{info.sample ? "sample" : format.duration(info.durationMs)}</CommandShortcut>
