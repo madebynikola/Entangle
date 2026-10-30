@@ -180,37 +180,47 @@ filter on subq-snap-1.1), each after one more fix. Run 5 also has #33's OpenAlex
   false rejects 6 → 3 of 98. That is no gain, so it was reverted. A check without a model looks better on the same labels: names and
   numbers in a claim that its own records do not contain catch 3 of the 7 ("Nordic", "NTP", "AWS"). It flags 6 of 98 good claims,
   4 of them for dataset ids and "-based" words that are easy to leave out.
+- **Tried, not kept: each claim's own records listed under it** (id, kind, title), with the rule "check each claim only against the
+  records listed with it". Each record's text still came once, under "Sources". Two evals before and two after, Sonnet alone: wrong
+  claims caught 10, 11 → 7, 7 of 23, uncited details 2, 2 → 1, 0 of 7, false rejects 2, 2 → 2, 3 of 98. That is no gain, so it was
+  reverted too.
 
 ## The Critic on the labelled claims (measured)
 
 The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds all 129 claims of
 C001, C005 and C012 from both runs, each with its cited ids, a label and a note on why. The Critic had passed every one of them.
 `npm run critic:eval` runs only the Critic on them, as on a proposal in a match: the code checks, then both reviewers. It sends the
-claims and their records, with no free text. Measured on 30 October at commit 341e81d, in one run with the settings in `.env`:
-Sonnet 4.6, and subq-snap-1.1 as the second reviewer. 12 calls, 66 s, $0.36 at API prices.
+claims and their records, with no free text. Measured on 30 October in four runs of the same prompt (one at commit 341e81d, three
+later), with the settings in `.env`: Sonnet 4.6, and subq-snap-1.1 as the second reviewer. Each run is 12 calls, 51–72 s and
+$0.32–0.36 at API prices. The table gives the lowest and the highest count of the four runs.
 
 | Label | Claims | Rejected | Sonnet 4.6 alone | subq-snap-1.1 alone |
 | --- | --- | --- | --- | --- |
-| Judgement added to a fact | 9 | 4 | 4 | 0 |
-| Detail from an uncited record | 7 | 1 | 0 | 1 |
-| Widened scope | 7 | 3 | 3 | 0 |
-| **Wrong, all** | **23** | **8 (35%)** | 7 (30%) | 1 (4%) |
-| Ok | 98 | **1 (1%)** | 1 | 0 |
-| Borderline (not scored) | 8 | 2 | 2 | 0 |
+| Judgement added to a fact | 9 | 4–5 | 4–5 | 0 |
+| Detail from an uncited record | 7 | 1–3 | 0–2 | 1 |
+| Widened scope | 7 | 2–4 | 2–4 | 0 |
+| **Wrong, all** | **23** | **8–12 (35–52%)** | 7–11 (30–48%) | 1 (4%) |
+| Ok | 98 | **1–6 (1–6%)** | 1–6 | 0 |
+| Borderline (not scored) | 8 | 1–2 | 1–2 | 0 |
 
-Of the 15 wrong claims from the before run, the Critic now rejects 4. The old rubric rejected none. Of the 8 from the after run,
-it rejects 4, although nearly the same rubric passed all 8 in run 2. One run cannot show how much of that is chance.
+Of the 15 wrong claims from the before run, the Critic now rejects 4–7. The old rubric rejected none. Of the 8 from the after run,
+it rejects 4–5, although nearly the same rubric passed all 8 in run 2. The same prompt catches 8 to 12 wrong claims from one run to
+the next, so a change must do better than that spread to show in one or two runs.
 
 What the numbers show:
-- **Details from an uncited record are the blind spot: Sonnet caught 0 of 7.** In all 7, the record that holds the word is in the
-  same prompt, because another claim of the proposal cites it. The review lists every record once, under "Sources". So the model
-  finds "Nordic" or "data partners" there, and does not check that this claim cites that record. A possible fix: list each claim's
-  own records with it.
-- **Judgement and widened scope: 7 of 16.** The rubric now catches "directly addressing ArmaturaSec's false positive rate problem"
-  and "would address the clinical constraint". It still passes "the core engine for change detection between scan snapshots" and
-  "matching the structured output requirement".
-- **subq-snap-1.1 adds one catch** ("AWS", which only the uncited company record names) and no false reject.
-- **False rejects are rare: 1 of 98.** The Critic called "making the automation unreliable" a judgement. The hand-check had taken it
-  as following from the blog's "fragile".
+- **Details from an uncited record are the blind spot: Sonnet caught 0–2 of 7.** The two it catches are always the "data partners"
+  claims of C001-CH1-R1008. subq-snap-1.1 catches "AWS" in every run. The other four pass in every run: "Nordic", "paid" and "NTP",
+  "alerts" with "not a black-box score", and "over 72 hours". In all 7, the record that holds the word is in the same prompt, because
+  another claim of the proposal cites it. Two layouts that tie each claim to its own records did not help (see "Tried, not kept"
+  above). "Nordic" may not even come from the prompt: the cited C005 names the nRF52840 chip, which Nordic makes. The eval keeps no
+  reason for a claim that passes, so why the other three pass is not known.
+- **Judgement and widened scope: 6–9 of 16.** The rubric now catches "directly addressing ArmaturaSec's false positive rate problem"
+  and "would address the clinical constraint". In all four runs it passes "the core engine for change detection between scan
+  snapshots" and "matching the structured output requirement".
+- **subq-snap-1.1 adds one catch in every run** ("AWS", which only the uncited company record names) and no false reject.
+- **False rejects: 1–6 of 98, 2 in a typical run.** Two come back in three of the four runs. The Critic calls "making the automation
+  unreliable" a judgement, where the hand-check took it as following from the blog's "fragile". It also rejects that the Bash scripts
+  "break when Nessus changes its output format": it finds the scripts in CH1 and the format changes in the blog, but no text that
+  ties the two.
 
-Each run writes every claim with its verdict and reason to `out/critic-eval/`. Run it again after a rubric change; `--mock` costs nothing.
+Each run writes every claim with its verdict, and the reason for a reject, to `out/critic-eval/`. Run it again after a rubric change; `--mock` costs nothing.
