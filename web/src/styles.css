@@ -11,8 +11,8 @@
 
 :root {
 	/* Surfaces, from back to front */
-	--canvas: #fafafa; /* page background */
-	--panel: #ffffff; /* cards, tables, the top bar */
+	--canvas: #f4f4f4; /* the window: the sidebar sits on it */
+	--panel: #ffffff; /* the inset panel, cards, tables */
 	--sunken: #f4f4f5; /* wells inside a card: chart backgrounds, code */
 	--card: #ffffff;
 	--hover: #0000000a;
@@ -185,6 +185,8 @@
 	--animate-pop-out: pop-out 120ms ease-in forwards;
 	--animate-sheet-in: sheet-in 220ms var(--ease-out);
 	--animate-sheet-out: sheet-out 160ms ease-in forwards;
+	--animate-drawer-in: drawer-in 220ms var(--ease-out);
+	--animate-drawer-out: drawer-out 160ms ease-in forwards;
 }
 
 @keyframes pulse-dot {
@@ -236,6 +238,16 @@
 	to {
 		transform: translateX(24px);
 		opacity: 0;
+	}
+}
+@keyframes drawer-in {
+	from {
+		transform: translateX(-100%);
+	}
+}
+@keyframes drawer-out {
+	to {
+		transform: translateX(-100%);
 	}
 }
 

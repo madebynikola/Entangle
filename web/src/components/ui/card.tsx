@@ -58,6 +58,50 @@ export function Section({
 	)
 }
 
+/**
+ * A titled tile that shares the screen's height with others: a header row, then a body that fills the rest.
+ * `scroll` lets the body scroll on its own, for lists. The screen itself does not scroll.
+ */
+export function Pane({
+	title,
+	description,
+	count,
+	action,
+	scroll,
+	className,
+	bodyClassName,
+	children,
+}: {
+	title: React.ReactNode
+	/** One short line; it is cut to fit, and shows whole on hover. */
+	description?: string
+	count?: React.ReactNode
+	action?: React.ReactNode
+	scroll?: boolean
+	className?: string
+	bodyClassName?: string
+	children: React.ReactNode
+}) {
+	return (
+		<section
+			data-slot="pane"
+			className={cn("flex min-h-0 min-w-0 flex-col overflow-hidden rounded-lg border border-hairline bg-card shadow-card", className)}
+		>
+			<header className="flex h-11 shrink-0 items-center gap-2 border-b border-hairline pl-4 pr-2">
+				<h2 className="shrink-0 text-base font-medium text-ink">{title}</h2>
+				{count != null && <span className="tabular text-sm text-ink-subtle">{count}</span>}
+				{description && (
+					<p title={description} className="ml-1 min-w-0 truncate text-sm text-ink-subtle">
+						{description}
+					</p>
+				)}
+				{action && <div className="ml-auto flex shrink-0 items-center gap-1">{action}</div>}
+			</header>
+			<div className={cn("relative min-h-0 flex-1", scroll && "scrollbar-thin overflow-y-auto", bodyClassName)}>{children}</div>
+		</section>
+	)
+}
+
 /** A titled container that holds cards or rows: a column, a group of swimlanes. */
 export function Lane({
 	title,
