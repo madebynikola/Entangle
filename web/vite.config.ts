@@ -14,6 +14,8 @@ export default defineConfig({
 		alias: {
 			"@": here("./src"),
 			"@shared": here("../src"),
+			// The brand kit (logo, tokens, agent faces), kept as the designer handed it over.
+			"@design": here("../design"),
 		},
 	},
 	build: {

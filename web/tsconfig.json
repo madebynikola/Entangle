@@ -13,7 +13,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"paths": {
 			"@/*": ["./src/*"],
-			"@shared/*": ["../src/*"]
+			"@shared/*": ["../src/*"],
+			"@design/*": ["../design/*"]
 		}
 	},
 	"include": ["src"]
