@@ -12,7 +12,8 @@ import you from "@design/agents/you.svg?raw"
  */
 
 export type FaceId = "deneb" | "spica" | "tycho" | "amity" | "tinta" | "fides" | "you"
-export type FaceState = "idle" | "working" | "reject" | "done"
+/** `happy` is the smiling eyes without the done props: for greetings and the boot animation. */
+export type FaceState = "idle" | "working" | "reject" | "done" | "happy"
 
 export const FACE_NAME: Record<FaceId, string> = {
 	deneb: "Deneb",
