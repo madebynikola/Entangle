@@ -1,6 +1,9 @@
+import { List as ListIcon, X } from "lucide-react"
 import { AnimatePresence, motion, useAnimate, useReducedMotion } from "motion/react"
 import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { useShallow } from "zustand/react/shallow"
+import { useFloatInsets } from "@/components/shell/float"
+import { Button } from "@/components/ui/button"
 import { Pane } from "@/components/ui/card"
 import { AgentFace } from "@/components/ui/face"
 import { FACE_NAME, type FaceId, type FaceState } from "@/lib/faces"
@@ -85,15 +88,61 @@ export function StageScreen() {
 	const finished = (!live && clock >= duration) || lines.slice(0, upTo).some((line) => line.act === "done")
 	const faces = cast(view, finished, finished && waiting > 0)
 
+	// The stage fills the panel. The run's header and replay bar float over it (see run-layout), and so does the log.
+	const float = useFloatInsets()
+	const [logOpen, setLogOpen] = useState(() => window.matchMedia("(min-width: 1024px)").matches)
+	const top = float.top + GAP
+	const bottom = float.bottom + GAP
+	const safe = { top, bottom, left: GAP, right: logOpen ? LOG_WIDTH + GAP * 2 : GAP }
+
 	return (
-		<div className="grid h-full min-h-0 gap-4 p-5 max-lg:h-auto lg:grid-cols-[minmax(0,1fr)_340px]">
-			<Pane title="Stage" description="Every event goes through the bus to every agent. The Critic stamps what it checks." className="max-lg:h-[640px]">
-				<Arena faces={faces} beats={beats} waiting={finished ? waiting : 0} />
-			</Pane>
-			<Log lines={lines} upTo={upTo} names={names} />
+		<div className="relative h-full overflow-hidden bg-sunken">
+			<div
+				aria-hidden
+				className="absolute inset-0 opacity-70 [background-image:radial-gradient(var(--strong)_1px,transparent_1.2px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]"
+			/>
+			<Arena faces={faces} beats={beats} waiting={finished ? waiting : 0} safe={safe} />
+			<AnimatePresence initial={false}>
+				{logOpen ? (
+					<motion.div
+						key="log"
+						className="absolute right-3 z-20 flex"
+						style={{ top, bottom, width: `min(${LOG_WIDTH}px, calc(100% - 24px))` }}
+						initial={{ opacity: 0, x: 24 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: 24 }}
+						transition={{ type: "spring", stiffness: 380, damping: 34 }}
+					>
+						<Log lines={lines} upTo={upTo} names={names} onClose={() => setLogOpen(false)} />
+					</motion.div>
+				) : (
+					<motion.div
+						key="open"
+						className="absolute right-3 z-20"
+						style={{ top }}
+						initial={{ opacity: 0, scale: 0.9 }}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.9 }}
+						transition={{ type: "spring", stiffness: 420, damping: 30 }}
+					>
+						<Button variant="outline" size="sm" onClick={() => setLogOpen(true)} className="bg-panel/80 shadow-float backdrop-blur-xl">
+							<ListIcon />
+							Events
+							{upTo > 0 && <span className="tabular text-ink-subtle">{upTo}</span>}
+						</Button>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	)
 }
+
+/** Space between the floating cards, and between them and the panel's edge. */
+const GAP = 12
+const LOG_WIDTH = 320
+
+/** The open space the faces sit in: px kept clear at each edge, for the floating cards. */
+type Safe = { top: number; bottom: number; left: number; right: number }
 
 type Point = [number, number]
 type Wire = { out: string; back: string }
@@ -105,7 +154,7 @@ function wire([bx, by]: Point, [sx, sy]: Point, bow = 0.16): Wire {
 	return { out: `M${bx} ${by}Q${cx} ${cy} ${sx} ${sy}`, back: `M${sx} ${sy}Q${cx} ${cy} ${bx} ${by}` }
 }
 
-function Arena({ faces, beats, waiting }: { faces: Map<FaceId, Cast>; beats: Beat[]; waiting: number }) {
+function Arena({ faces, beats, waiting, safe }: { faces: Map<FaceId, Cast>; beats: Beat[]; waiting: number; safe: Safe }) {
 	const ref = useRef<HTMLDivElement>(null)
 	const [size, setSize] = useState({ width: 0, height: 0 })
 	useLayoutEffect(() => {
@@ -116,20 +165,24 @@ function Arena({ faces, beats, waiting }: { faces: Map<FaceId, Cast>; beats: Bea
 		return () => observer.disconnect()
 	}, [])
 	const still = useReducedMotion() ?? false
-	const small = size.width < 640
+	const width = Math.max(0, size.width - safe.left - safe.right)
+	const height = Math.max(0, size.height - safe.top - safe.bottom)
+	const small = width < 640
 	const { bus, seats, wires } = useMemo(() => {
-		const bus: Point = [size.width / 2, size.height / 2]
-		const seats = Object.fromEntries(ORDER.map((face) => [face, [SEAT[face][0] * size.width, SEAT[face][1] * size.height]])) as Record<FaceId, Point>
+		const bus: Point = [safe.left + width / 2, safe.top + height / 2]
+		const seats = Object.fromEntries(
+			ORDER.map((face) => [face, [safe.left + SEAT[face][0] * width, safe.top + SEAT[face][1] * height]]),
+		) as Record<FaceId, Point>
 		const wires = Object.fromEntries(ORDER.map((face) => [face, wire(bus, seats[face])])) as Record<FaceId, Wire>
 		return { bus, seats, wires }
-	}, [size.width, size.height])
+	}, [safe.left, safe.top, width, height])
 
 	const now = performance.now()
 	const speaker = beats.at(-1)?.from ?? null
 	const link = beats.findLast((beat) => beat.link)
 
 	return (
-		<div ref={ref} className="absolute inset-0 overflow-hidden bg-sunken">
+		<div ref={ref} className="absolute inset-0 overflow-hidden">
 			{size.width > 0 && (
 				<>
 					<svg className="pointer-events-none absolute inset-0 size-full" aria-hidden>
@@ -157,7 +210,7 @@ function Arena({ faces, beats, waiting }: { faces: Map<FaceId, Cast>; beats: Bea
 								gaze={speaker && speaker !== face ? toward(seats[face], seats[speaker]) : null}
 								beat={beats.findLast((beat) => beat.from === face)}
 								place={PLACE[face]}
-								shift={Math.min(Math.max(x, BUBBLE_HALF + 8), size.width - BUBBLE_HALF - 8) - x}
+								shift={Math.min(Math.max(x, safe.left + BUBBLE_HALF), safe.left + width - BUBBLE_HALF) - x}
 								waiting={face === "you" ? waiting : 0}
 							/>
 						)
@@ -537,14 +590,24 @@ function Stamp({ ok, x, y }: { ok: boolean; x: number; y: number }) {
 }
 
 /** The events so far, newest first, in words. A click moves the playhead to that moment. */
-const Log = memo(function Log({ lines, upTo, names }: { lines: Line[]; upTo: number; names: Names }) {
+const Log = memo(function Log({ lines, upTo, names, onClose }: { lines: Line[]; upTo: number; names: Names; onClose: () => void }) {
 	const shown = useMemo(() => lines.slice(Math.max(0, upTo - LOG_MAX), upTo).reverse(), [lines, upTo])
 	const list = useRef<HTMLOListElement>(null)
 	useEffect(() => {
 		list.current?.parentElement?.scrollTo({ top: 0, behavior: "smooth" })
 	}, [shown[0]?.key])
 	return (
-		<Pane title="Events" count={upTo || undefined} scroll className="max-lg:h-[480px]">
+		<Pane
+			title="Events"
+			count={upTo || undefined}
+			scroll
+			className="w-full rounded-xl bg-panel/80 shadow-float backdrop-blur-xl"
+			action={
+				<Button variant="quiet" size="icon-sm" onClick={onClose} aria-label="Hide the events">
+					<X />
+				</Button>
+			}
+		>
 			{shown.length === 0 ? (
 				<p className="px-4 py-3 text-sm text-ink-subtle">Events appear here as the agents publish them.</p>
 			) : (
