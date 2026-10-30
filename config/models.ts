@@ -44,8 +44,9 @@ export const PROVIDER_LIMITS: Record<string, ProviderLimits> = {
 	anthropic: { rpm: 1000, itpm: 400_000 },
 	openai: { rpm: 500, itpm: 500_000 },
 	google: { rpm: 1000, itpm: 1_000_000 },
-	// SubQ publishes no limits: off, and a 429 pauses it.
+	// The decision models' providers publish no limits: off, and a 429 pauses the provider.
 	subq: { rpm: 0, itpm: 0 },
+	typesafe: { rpm: 0, itpm: 0 },
 }
 
 export const RUNNER = {
@@ -76,17 +77,24 @@ export const LOCAL_CLAUDE = {
 }
 
 /**
- * SubQ instead of the providers above [SUBQ=1, or `--subq`]: every model call goes to SubQ's OpenAI-compatible
- * Chat Completions with SUBQ_API_KEY, and every role runs on one model. Wins over LOCAL_CLAUDE.
- * Jev (typesafe.ai) and subq-snap only answer typed decisions (choice, score, yes/no), so they cannot run the agents.
+ * A decision model as the second Critic [SUBQ=1, or `--subq`]: it asks one yes/no question per claim, in one call.
+ * Decision models (subq-snap, Jev) answer typed questions only (yes/no, choice, score) and write no text,
+ * so every other role stays on the routes above. MODEL_CRITIC=subq-snap-1.1 puts the first Critic on it too;
+ * its send-backs then give a probability instead of a reason.
  */
 export const SUBQ = {
-	/** [SUBQ_BASE_URL] */
-	baseUrl: "https://api.subq.ai/v1",
-	/** The model for every role [SUBQ_MODEL]. MODEL_<ROLE> still pins a role to another `subq-` model. */
-	model: "subq-preview",
-	/** For calls that set no effort. SubQ has no bounded default, and max_tokens covers reasoning [SUBQ_REASONING_EFFORT]. */
-	reasoningEffort: "none",
+	/** subq-snap-1.1 (SubQ, SUBQ_API_KEY) or jev-latest (typesafe.ai, TYPESAFE_API_KEY) [SUBQ_MODEL]. */
+	model: "subq-snap-1.1",
+	/** A claim is supported when the model's probability of yes is at least this [SUBQ_THRESHOLD]. */
+	threshold: 0.5,
+	/** A call that runs longer is stopped and retried. */
+	timeoutMs: 60_000,
+}
+
+/** Where each decision model's provider answers (`POST <baseUrl>/systemone`), and the env var that holds its key. */
+export const DECISION_PROVIDERS: Record<string, { prefix: string; baseUrl: string; key: string }> = {
+	subq: { prefix: "subq-", baseUrl: "https://api.subq.ai/v1", key: "SUBQ_API_KEY" },
+	typesafe: { prefix: "jev-", baseUrl: "https://api.typesafe.ai/v1", key: "TYPESAFE_API_KEY" },
 }
 
 /** [BUDGET_TOKENS, BUDGET_USD, BUDGET_MINUTES, MAX_ATTEMPTS] */

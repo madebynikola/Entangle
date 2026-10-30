@@ -2,6 +2,7 @@
  * USD per million tokens, for every model in config/models.ts and a few more.
  * Anthropic: first-party list prices, checked 30 Oct 2026.
  * OpenAI and Google: from price aggregators on 30 Oct 2026 (not the providers' own pages); Gemini Pro at ≤200k context.
+ * Decision models: docs.subq.ai models page and the typesafe.ai Jev post, 30 Oct 2026. Their output is free.
  * A model missing here has cost null: it adds tokens to the budget, but no cost.
  */
 const PRICES: Record<string, { input: number; output: number }> = {
@@ -14,6 +15,8 @@ const PRICES: Record<string, { input: number; output: number }> = {
 	"gpt-5.5": { input: 5, output: 30 },
 	"gemini-3.5-flash": { input: 1.5, output: 9 },
 	"gemini-3.1-pro-preview": { input: 2, output: 12 },
+	"subq-snap-1.1": { input: 0.04, output: 0 },
+	"jev-latest": { input: 0.042, output: 0 },
 }
 
 export function costUsd(model: string | undefined, inputTokens: number, outputTokens: number): number | null {
