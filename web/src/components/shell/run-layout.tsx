@@ -1,8 +1,9 @@
 import { AlertTriangle, Play } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router"
 import { useShallow } from "zustand/react/shallow"
+import { BootMark } from "@/components/ui/boot"
 import { Button } from "@/components/ui/button"
 import { Chip } from "@/components/ui/chip"
 import { EmptyState } from "@/components/ui/empty"
@@ -208,11 +209,16 @@ function WatchButton() {
 	)
 }
 
+/** The boot animation, looping, while the run loads. It waits a moment first, so a quick load does not flash it. */
 function LoadingBody() {
+	const [shown, setShown] = useState(false)
+	useEffect(() => {
+		const timer = setTimeout(() => setShown(true), 300)
+		return () => clearTimeout(timer)
+	}, [])
 	return (
-		<div className="grid gap-4 p-5">
-			<Skeleton className="h-28 rounded-lg" />
-			<Skeleton className="h-64 rounded-lg" />
+		<div role="status" aria-label="Loading the run" className="grid h-full place-items-center p-5">
+			{shown && <BootMark loop word={false} className="w-[min(160px,40vw)]" />}
 		</div>
 	)
 }
