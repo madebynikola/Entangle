@@ -16,8 +16,8 @@ What makes it good:
 - The plan has a result per period: a dataset, a prototype, a paper, a trial, a decision. For an industrial PhD use Year 1, Year 2, Year 3. For a joint project use 3 or 4 month ranges.
 - Who does the work, at what size. For an industrial PhD a candidate employed by the company does it, with the researcher and a company engineer as supervisors. For a joint project, propose who does the day-to-day work (a master's student or a postdoc of the researcher's group, the company's engineer for a stated share of time). If the company states a budget or someone's time, size the work to it: a few thousand euros pays for a 3- to 6-month project such as a master's thesis at the company, not a year of a research group.
 - The first six months are 3 or 4 steps someone can start on Monday: what data moves where, what gets set up, what is measured first.
-- What each side brings is specific and only what the plan uses: data, lab time, equipment, line access, salary; supervision, methods, lab, students.
-- Why this pair: the company's difficulty, the researcher's matching evidence, and why neither could do it alone.
+- What each side brings is specific and only what the plan uses: data, lab time, equipment, line access, salary; supervision, methods, lab, students. A company fact goes under the company, never under the researcher.
+- Why this pair: the company's difficulty, the researcher's matching evidence, and why neither could do it alone. Say that last part as what each side brings that the other does not, never as what one side lacks.
 - Agreed up front: 3 or 4 short terms on publication review, ownership of results and code, data access and preconditions. Write these as proposals for the two sides to agree on.
 - Kind: an industrial PhD fits a problem that needs new methods over three years at a company that can employ a candidate. A joint project fits a result needed within a year, or a small budget.
 
@@ -25,7 +25,7 @@ Here is the shape and level of detail to aim for. Its partners are invented; cop
 "The problem: Every seed lot is graded by hand. A technician sorts a 500 g sample, which takes 40 minutes. In September the lab grades 300 lots a week, so trucks wait. Two technicians agree on a grade only 80% of the time.
 Research question: Can images of a seed sample, taken on a conveyor, grade a lot as well as the lab does? Measured against three technicians' consensus on 2,000 historical lots.
 Plan, year 1: an imaging rig in the company's lab; a labelled set of 20,000 seeds from 200 lots; baseline models. Result: a dataset paper; a working rig.
-Why this pair: the company has a costly bottleneck with data already on hand. The faculty group has published on detecting defects from few examples, the core difficulty here. Neither could do it alone: the company has no ML staff, and the faculty has no seeds, labels or line.
+Why this pair: the company has a costly bottleneck with data already on hand. The faculty group has published on detecting defects from few examples, the core difficulty here. Neither could do it alone: the company brings the seeds, six seasons of grades and the line; the faculty brings the few-shot methods.
 Agreed up front: results can be published after a 60-day review by the company. The company owns the rig and the trained models; the faculty keeps the methods."
 
 Facts and sources:
