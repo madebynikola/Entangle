@@ -1,5 +1,5 @@
 import { createAgent, type Agent } from "@mozaik-ai/core"
-import { createTask, join, modelFor, runTask, state } from "../../runtime"
+import { createTask, failTask, join, modelFor, runTask, state } from "../../runtime"
 import type { CompanyNeed, NoMatch, PairCandidate, RejectedClaim, ResearcherProfile, SentBack, Task } from "../../types"
 import { SentBackToMe, describeRejections, postArtifact, sentBackTask } from "../critic/protocol"
 import { matchmakerResponder } from "./mock"
@@ -133,9 +133,9 @@ export function createMatchmaker(options: MatchmakerOptions): Matchmaker {
 			run(task, job, `\n\nYour previous answer could not be used (${error}). Answer again with valid JSON for the schema.`)
 			return
 		}
-		task.status = "failed"
-		task.error = error
-		emit(agent.getId(), "task.failed", { taskId: task.id, error })
+		// The tracker marked the task done on the model's answer. Reopen it so failTask settles it and wakes whenSettled.
+		task.status = "running"
+		failTask(task, error)
 	}
 
 	function applyMatch(task: Task, input: MatchInput, answer: MatchAnswer): void {
