@@ -17,6 +17,8 @@ export interface MockOptions {
 	latencyMs?: [number, number]
 	/** Agents can register canned answers here; the first one that answers wins. */
 	responders?: MockResponder[]
+	/** Share of calls (0..1) that fail like a provider under load (429 or 529), so the retries show with no keys. */
+	errorRate?: number
 }
 
 /**
@@ -26,16 +28,19 @@ export interface MockOptions {
  */
 export class MockInferenceRunner implements InferenceRunner {
 	private readonly latency: [number, number]
+	private readonly errorRate: number
 	readonly responders: MockResponder[]
 
 	constructor(options: MockOptions = {}) {
 		this.latency = options.latencyMs ?? [400, 1500]
+		this.errorRate = options.errorRate ?? 0
 		this.responders = options.responders ?? []
 	}
 
 	async run(input: InferenceInput): Promise<InferenceOutput> {
 		const [min, max] = this.latency
 		await new Promise((resolve) => setTimeout(resolve, min + Math.random() * (max - min)))
+		if (Math.random() < this.errorRate) throw providerError()
 		return this.answer(input)
 	}
 
@@ -73,6 +78,13 @@ export class MockInferenceRunner implements InferenceRunner {
 			rowResponse: { mock: true },
 		}
 	}
+}
+
+/** Shaped like a provider SDK's API error: `status` and `headers`. */
+function providerError(): Error {
+	const status = Math.random() < 0.5 ? 429 : 529
+	const message = status === 429 ? "mock: rate limit exceeded" : "mock: overloaded"
+	return Object.assign(new Error(message), { status, headers: { "retry-after": "1" } })
 }
 
 export function lastUserText(input: InferenceInput): string {

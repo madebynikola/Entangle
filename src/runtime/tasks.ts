@@ -12,7 +12,7 @@ import {
 	type StructuredOutputFormat,
 	type Tool,
 } from "@mozaik-ai/core"
-import type { Task, TaskKind } from "../types"
+import type { Task, TaskKind, TaskStats } from "../types"
 import { costUsd } from "./pricing"
 import { resolveParticipant, runLoop, sendEvent, state } from "./mozaik"
 import type { LoopInfo, MatchState } from "./state"
@@ -38,6 +38,10 @@ export function createTask(kind: TaskKind, assignee: Agent | string, subjectId?:
 		createdAt: Date.now(),
 		tokens: 0,
 		costUsd: 0,
+		inputTokens: 0,
+		outputTokens: 0,
+		inferences: 0,
+		retries: 0,
 	}
 	s.tasks.set(task.id, task)
 	return task
@@ -47,20 +51,35 @@ export function createTask(kind: TaskKind, assignee: Agent | string, subjectId?:
  * Start one attempt of a task as its own Mozaik loop. Fire-and-forget like runLoop:
  * the task tracker marks it done on `model.answer`; await whenSettled() for the result.
  * Each attempt gets a fresh context (instruction + this message), so parallel tasks on one agent never share memory.
+ * With the budget spent or the task's attempts used up, the task fails at once and no loop starts.
  */
 export function runTask(task: Task, message: string, run: TaskRun): void {
 	const s = state()
 	const agent = resolveParticipant(task.assignee)
 	if (!(agent instanceof Agent)) throw new Error(`Task ${task.id}: ${task.assignee} is not an agent`)
 
+	const refused =
+		budgetSpent() ?? (task.attempts >= s.budget.maxAttempts ? `attempts: all ${s.budget.maxAttempts} used` : null)
+	if (refused) {
+		settleFailed(task, refused)
+		return
+	}
+
 	const context = ModelContext.create().addContextItem(DeveloperMessageItem.create(agent.getDeveloperMessage()))
 	s.contextTasks.set(context.id, task.id)
 	task.status = "running"
 	task.attempts++
 	task.startedAt = Date.now()
+	task.finishedAt = undefined
 	task.error = undefined
+	task.model = run.model
 	sendEvent(
-		SemanticEvent.create("task.started", agent.getId(), { taskId: task.id, kind: task.kind, attempt: task.attempts }),
+		SemanticEvent.create("task.started", agent.getId(), {
+			taskId: task.id,
+			kind: task.kind,
+			attempt: task.attempts,
+			model: run.model,
+		}),
 		agent.getId(),
 	)
 	runLoop(
@@ -80,11 +99,52 @@ export function runTask(task: Task, message: string, run: TaskRun): void {
 /** Mark a task failed (e.g. by the orchestrator, or on timeout) and tell everyone. */
 export function failTask(task: Task, error: string): void {
 	if (task.status === "done" || task.status === "failed") return
+	settleFailed(task, error)
+}
+
+function settleFailed(task: Task, error: string): void {
 	task.status = "failed"
 	task.error = error
 	task.finishedAt = Date.now()
-	sendEvent(SemanticEvent.create("task.failed", task.assignee, { taskId: task.id, error }), task.assignee)
+	sendEvent(SemanticEvent.create("task.failed", task.assignee, { ...taskStats(task), error }), task.assignee)
 	notify()
+}
+
+/** What a task cost and took so far, summed from `inference.completed` by the task tracker. */
+export function taskStats(task: Task): TaskStats {
+	return {
+		taskId: task.id,
+		kind: task.kind,
+		attempts: task.attempts,
+		model: task.model,
+		ms: (task.finishedAt ?? Date.now()) - (task.startedAt ?? task.createdAt),
+		tokens: task.tokens,
+		inputTokens: task.inputTokens ?? 0,
+		outputTokens: task.outputTokens ?? 0,
+		costUsd: task.costUsd,
+		inferences: task.inferences ?? 0,
+		retries: task.retries ?? 0,
+	}
+}
+
+/**
+ * The budget limit the run has passed, or null. The first time, tells everyone with `budget.exhausted`.
+ * Check it before creating more work: runTask refuses new tasks from then on.
+ */
+export function budgetSpent(): string | null {
+	const s = state()
+	const reason = s.budgetExceeded()
+	if (reason && !s.budget.exhausted) {
+		s.budget.exhausted = reason
+		const { tokensUsed, costUsd } = s.budget
+		const ms = Date.now() - s.budget.startedAt
+		// After the current fan-out (often the inference.completed that crossed the limit), so the trace stays in order.
+		queueMicrotask(() => {
+			if (!s.trackerId) return
+			sendEvent(SemanticEvent.create("budget.exhausted", s.trackerId, { reason, tokensUsed, costUsd, ms }), s.trackerId)
+		})
+	}
+	return reason
 }
 
 const waiters = new Set<() => void>()
@@ -135,6 +195,7 @@ export function loopOf(s: MatchState, event: SemanticEvent): LoopInfo | undefine
 			taskId: contextId ? s.contextTasks.get(contextId) : undefined,
 		}
 		s.loops.set(loop.loopId, loop)
+		if (contextId) s.contextLoops.set(contextId, loop.loopId)
 	}
 	return loop
 }
@@ -148,7 +209,7 @@ class AnyEvent extends SituationSpecification {
 /**
  * Observer that keeps tasks, loops and the budget in step with Mozaik events.
  * Join it first, so every later participant sees the updated state.
- * Emits `task.completed` with `{ taskId, kind, output }` when a task's loop answers.
+ * Emits `task.completed` with TaskStats and `output` when a task's loop answers.
  */
 export function createTaskTracker(): Human {
 	return createHuman({
@@ -167,6 +228,7 @@ function track(event: SemanticEvent): void {
 	if (event.type === "inference.started") {
 		loop.model = (event.payload as { model: string }).model
 	} else if (event.type === "inference.completed") {
+		if (task) task.inferences = (task.inferences ?? 0) + 1
 		const usage = (event.payload as InferenceOutput).tokenUsage
 		if (!usage) return
 		const cost = costUsd(loop.model, usage.inputTokens, usage.outputTokens) ?? 0
@@ -174,8 +236,11 @@ function track(event: SemanticEvent): void {
 		s.budget.costUsd += cost
 		if (task) {
 			task.tokens += usage.totalTokens
+			task.inputTokens = (task.inputTokens ?? 0) + usage.inputTokens
+			task.outputTokens = (task.outputTokens ?? 0) + usage.outputTokens
 			task.costUsd += cost
 		}
+		budgetSpent()
 	} else if (event.type === "model.answer" && task && task.status === "running") {
 		task.status = "done"
 		task.output = (event.payload as { answer: ModelMessageItem }).answer.content.text
@@ -183,7 +248,7 @@ function track(event: SemanticEvent): void {
 		// After the model.answer fan-out, so every participant sees the answer first.
 		queueMicrotask(() => {
 			sendEvent(
-				SemanticEvent.create("task.completed", task.assignee, { taskId: task.id, kind: task.kind, output: task.output }),
+				SemanticEvent.create("task.completed", task.assignee, { ...taskStats(task), output: task.output }),
 				task.assignee,
 			)
 			notify()

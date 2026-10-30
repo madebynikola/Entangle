@@ -250,6 +250,56 @@ export interface Task {
 	finishedAt?: number
 	tokens: number
 	costUsd: number
+	/** The model of the latest attempt. */
+	model?: string
+	inputTokens?: number
+	outputTokens?: number
+	/** Model calls over all attempts. */
+	inferences?: number
+	/** Model calls retried after a 429, 5xx or network error, over all attempts. */
+	retries?: number
+}
+
+/** Payload of `task.completed` (plus `output`) and `task.failed` (plus `error`): what one task cost and took. */
+export interface TaskStats {
+	taskId: string
+	kind: TaskKind
+	attempts: number
+	model?: string
+	/** From the start of the latest attempt to the end. */
+	ms: number
+	tokens: number
+	inputTokens: number
+	outputTokens: number
+	costUsd: number
+	inferences: number
+	retries: number
+}
+
+/**
+ * Payload of the runner's events, one per model call attempt:
+ * `inference.dispatched` (the call left the rate limits and went out), `inference.retry`,
+ * `inference.failed` (no retry left, or not retryable) and `inference.refused` (not sent: task settled or budget spent).
+ * Mozaik's own `inference.started` comes before the rate-limit wait; draw a call's bar from `inference.dispatched`.
+ */
+export interface InferenceAttempt {
+	taskId?: string
+	loopId?: string
+	model: string
+	provider: string
+	/** 1 for the first try of a call. */
+	attempt: number
+	/** dispatched: ms the call waited for rate-limit tokens and a free slot. */
+	waitMs?: number
+	/** dispatched: calls in flight now, this one included. */
+	inFlight?: number
+	/** retry, failed: the provider's HTTP status, if it sent one. */
+	status?: number
+	error?: string
+	/** retry: ms until the next attempt. */
+	delayMs?: number
+	/** refused: why the call was not made. */
+	reason?: string
 }
 
 export interface BudgetLimits {
@@ -266,6 +316,10 @@ export interface Budget extends BudgetLimits {
 	costUsd: number
 	/** Epoch ms. */
 	startedAt: number
+	/** Model calls retried in the run. */
+	retries?: number
+	/** The limit the run passed, once it did (see the `budget.exhausted` event). From then on new tasks are refused. */
+	exhausted?: string
 }
 
 // ---------------------------------------------------------------------------
