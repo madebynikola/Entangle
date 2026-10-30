@@ -1,8 +1,9 @@
 import { SituationSpecification, createHuman, type Human } from "@mozaik-ai/core"
 import type { Dataset } from "../../data"
+import { withWorks, type OpenAlex } from "../../data/openalex"
 import { budgetSpent, failTask, join, modelFor, state } from "../../runtime"
 import { runnerSettings } from "../../runtime/config"
-import type { ArtifactKind, CompanyNeed, NoMatch, PairCandidate, Proposal, ResearcherProfile, SentBack, Task } from "../../types"
+import type { ArtifactKind, CompanyNeed, NoMatch, PairCandidate, Proposal, ResearcherProfile, SentBack, SourceStore, Task } from "../../types"
 import { analyzeCompanies, createAnalysts } from "../analyst"
 import { CRITIC_SENT_BACK, createCritic, type Critic, type ReviewStatus } from "../critic"
 import { choosePairs, createMatchmaker } from "../matchmaker"
@@ -24,6 +25,8 @@ export interface OrchestratorOptions {
 	maxProposals?: number
 	/** Mock runs only: plant one invented claim in a need, a profile and a proposal, so the trace shows the Critic send them back. */
 	mockPlantFakeClaims?: boolean
+	/** Gives each proposal a Prior work section of real OpenAlex works, which the Critic checks too. */
+	openAlex?: OpenAlex
 	/** One line per milestone, for the CLI. */
 	log?: (line: string) => void
 }
@@ -47,6 +50,8 @@ export interface Orchestrator {
 	/** The `orchestrator` participant. It hands out work and tracks it; it makes no model calls. */
 	participant: Human
 	critic: Critic
+	/** Every citable source: the dataset, plus the OpenAlex works found in this run. */
+	sources: SourceStore
 	/** Run the whole team on these companies. Resolves when no task runs and no review is left. */
 	run(companyIds: string[]): Promise<RunOutcome>
 }
@@ -119,13 +124,16 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 	const me = participant.getId()
 	join(participant)
 
-	const critic = createCritic({ store: data.sources, model: () => modelFor("critic") })
+	const { openAlex } = options
+	const sources = openAlex ? withWorks(data.sources, openAlex.works) : data.sources
+	const priorWork = openAlex && ((need: CompanyNeed) => openAlex.priorWork(need.searchTerms))
+	const critic = createCritic({ store: sources, model: () => modelFor("critic") })
 	join(critic.agent)
 	const analysts = createAnalysts(options.analysts ?? 4, { data, mockPlantFakeClaim: plant })
 	const pool = createProfilerPool({ data, size: options.profilers ?? 6, k, mockPlantFakeClaim: plant })
 	const matchmaker = createMatchmaker({})
 	const writers = Array.from({ length: Math.max(1, options.writers ?? 3) }, (_, i) =>
-		createWriter({ name: `writer-${i + 1}`, sources: data.sources, mockPlantFakeClaim: plant && i === 0 }),
+		createWriter({ name: `writer-${i + 1}`, sources, priorWork, mockPlantFakeClaim: plant && i === 0 }),
 	)
 
 	const elapsed = () => `${Math.round((Date.now() - started) / 1000)}s`.padStart(5)
@@ -371,5 +379,5 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 		return outcome
 	}
 
-	return { participant, critic, run }
+	return { participant, critic, sources, run }
 }

@@ -2,6 +2,7 @@ import { existsSync } from "node:fs"
 import { parseArgs } from "node:util"
 import { createOrchestrator, writeRun, type RunSummary } from "./agents/orchestrator"
 import { DATA_DIR, FIXTURE_DIR, loadDataset, type Dataset } from "./data"
+import { createOpenAlex } from "./data/openalex"
 import { decisionEndpoint, join, localClaude, screen, screenSettings, startRuntime, subq, subqSettings } from "./runtime"
 import { createTraceObserver } from "./trace"
 
@@ -23,7 +24,8 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [-
   --proposals N   Most proposals in the run (default: one per company).
 
 Models per role are in config/models.ts; MODEL_<ROLE> in .env pins one, e.g. MODEL_CRITIC=claude-haiku-4-5.
-Limits: BUDGET_USD, BUDGET_MINUTES and BUDGET_TOKENS in .env.`
+Limits: BUDGET_USD, BUDGET_MINUTES and BUDGET_TOKENS in .env.
+With OPENALEX_API_KEY in .env, each proposal gets a Prior work section of real works from OpenAlex (not in --mock).`
 
 const KEY_VARS = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY"]
 
@@ -77,6 +79,9 @@ async function main(): Promise<void> {
 	process.on("unhandledRejection", (error) => console.error("[loop error]", error))
 	quietRepeatedNotices()
 
+	// Real works on each need's topic, never a person's name. A mock run stays offline.
+	const openAlexKey = process.env.OPENALEX_API_KEY
+	const openAlex = !state.mock && openAlexKey ? createOpenAlex({ apiKey: openAlexKey }) : undefined
 	const orchestrator = createOrchestrator({
 		data,
 		analysts: count("--analysts", values.analysts),
@@ -85,17 +90,19 @@ async function main(): Promise<void> {
 		k: count("--k", values.k),
 		maxProposals: values.proposals ? count("--proposals", values.proposals) : undefined,
 		mockPlantFakeClaims: state.mock,
+		openAlex,
 		log: (line) => console.log(line),
 	})
 
 	const backend =
 		(state.mock ? "mock" : localClaude() ? "local Claude Code" : "API") +
 		(subq() ? ` · critic-2 on ${subqSettings().model}` : "") +
-		(screen() ? ` · shortlist filter on ${screenSettings().model}` : "")
+		(screen() ? ` · shortlist filter on ${screenSettings().model}` : "") +
+		(openAlex ? " · prior work from OpenAlex" : "")
 	console.log(`run ${runId} · ${backend} · ${companyIds.length} companies`)
 	if (dataDir === FIXTURE_DIR) console.log(`  no data/raw/: using the test fixtures`)
 	const outcome = await orchestrator.run(companyIds)
-	const summary = writeRun(trace.dir, outcome, orchestrator.critic.stats(), data.sources)
+	const summary = writeRun(trace.dir, outcome, orchestrator.critic.stats(), orchestrator.sources)
 	await trace.close()
 	report(summary, trace.dir)
 }

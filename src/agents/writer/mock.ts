@@ -32,13 +32,14 @@ export function writerResponder(options: { plantFakeClaim?: boolean } = {}): Moc
 	}
 }
 
-function mockDraft({ pair, need, researcher, allowedKinds }: WriteInput): ProposalDraft {
+function mockDraft({ pair, need, researcher, allowedKinds, priorWork = [] }: WriteInput): ProposalDraft {
 	const phd = allowedKinds[0] === "industrial-phd"
 	const topic = need.searchTerms[0] ?? "the method"
 	return {
 		kind: allowedKinds[0],
 		title: `${capitalize(topic)} for ${need.companyName}`,
 		problem: [need.restatement, ...need.constraints.slice(0, 2)],
+		priorWork: priorWork.slice(0, 1).map((work) => ({ text: `A ${work.year} study reports: ${work.title}.`, sourceIds: [work.id] })),
 		researchQuestions: need.searchTerms.slice(0, 3).map((term) => `How far does ${term} close the gap on the company's own data? Measured against today's baseline.`),
 		approach: [
 			`Start from the researcher's published methods on ${topic}.`,

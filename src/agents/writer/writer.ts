@@ -1,6 +1,7 @@
 import { createAgent, type Agent } from "@mozaik-ai/core"
+import type { PriorWorkResult } from "../../data/openalex"
 import { createTask, failTask, join, modelFor, runTask, state } from "../../runtime"
-import type { Claim, PairCandidate, Proposal, ProposalKind, RejectedClaim, SentBack, SourceStore, Task } from "../../types"
+import type { Claim, CompanyNeed, PairCandidate, Proposal, ProposalKind, RejectedClaim, SentBack, SourceStore, Task } from "../../types"
 import { SentBackToMe, describeRejections, postArtifact, sentBackTask } from "../critic/protocol"
 import { EventOfType, applyClaimFixes, assignFixes, emit, parseJson, registerMockResponder, type ClaimFix } from "../matchmaker/shared"
 import { writerResponder } from "./mock"
@@ -10,6 +11,7 @@ import {
 	WRITER_INSTRUCTION,
 	proposalFixMessage,
 	writeMessage,
+	type PriorWorkInput,
 	type ProposalDraft,
 	type ProposalFixInput,
 	type WriteInput,
@@ -21,8 +23,10 @@ export interface WriterOptions {
 	model?: string
 	/** Participant name; give each writer its own (`writer-1`, `writer-2`, ...). */
 	name?: string
-	/** Adds source titles to each proposal's Sources list. */
+	/** Adds source titles to each proposal's Sources list. Must hold the works `priorWork` finds, for their titles. */
 	sources?: SourceStore
+	/** Published work on a need, for the proposal's Prior work (OpenAlex). Without it, proposals have no Prior work. */
+	priorWork?: (need: CompanyNeed) => Promise<PriorWorkResult>
 	/** Default: 10000 for a proposal, 3000 for a fix. Anthropic needs a value. */
 	maxOutputTokens?: number
 	/** Mock runs only: plant one invented claim in the first draft, so a mock trace shows the Critic loop. */
@@ -45,6 +49,8 @@ type Job = { type: "write"; input: WriteInput; message: string } | { type: "fix"
 interface Entry {
 	draft: ProposalDraft
 	context: RenderContext
+	/** The works the draft could cite, for a fix. */
+	priorWork: PriorWorkInput[]
 }
 
 export const proposalId = (pair: Pick<PairCandidate, "challengeId" | "researcherId">) => `${pair.challengeId}-${pair.researcherId}`
@@ -89,7 +95,20 @@ export function createWriter(options: WriterOptions): Writer {
 			researcher.canLead && need.triage === "research" ? ["industrial-phd", "joint-project"] : ["joint-project"]
 		const input: WriteInput = { pair, need, researcher, allowedKinds }
 		const task = createTask("write", agent, proposalId(pair))
-		run(task, { type: "write", input, message: writeMessage(input) })
+		const start = (ready: WriteInput) => run(task, { type: "write", input: ready, message: writeMessage(ready) })
+		if (!options.priorWork) {
+			start(input)
+			return task
+		}
+		// The task waits, queued, for OpenAlex. The lookup never throws and times out on its own.
+		const asked = Date.now()
+		void options
+			.priorWork(need)
+			.catch((error): PriorWorkResult => ({ queries: [], works: [], error: error instanceof Error ? error.message : String(error) }))
+			.then(({ queries, works, error }) => {
+				emit(agent.getId(), "prior_work.found", { taskId: task.id, challengeId: need.challengeId, queries, works: works.map((work) => work.id), ms: Date.now() - asked, error })
+				start({ ...input, priorWork: works.map(({ id, title, year, venue, abstract }) => ({ id, title, year, venue, abstract })) })
+			})
 		return task
 	}
 
@@ -105,12 +124,12 @@ export function createWriter(options: WriterOptions): Writer {
 	function startFix(task: Task, id: string, rejected: RejectedClaim[], critique = ""): Task | null {
 		const entry = entries.get(id)
 		if (!entry) return null
-		const { draft, context } = entry
+		const { draft, context, priorWork } = entry
 		const input: ProposalFixInput = {
 			proposalId: id,
-			draft: { problem: draft.problem, companyBrings: draft.companyBrings, researcherBrings: draft.researcherBrings, whyThisPair: draft.whyThisPair },
+			draft: { problem: draft.problem, priorWork: draft.priorWork, companyBrings: draft.companyBrings, researcherBrings: draft.researcherBrings, whyThisPair: draft.whyThisPair },
 			rejected,
-			evidence: { need: context.need, researcher: context.researcher, pair: context.pair },
+			evidence: { need: context.need, researcher: context.researcher, pair: context.pair, ...(priorWork.length ? { priorWork } : {}) },
 		}
 		run(task, { type: "fix", input, message: proposalFixMessage(input) + (critique && `\n\n${critique}`) })
 		return task
@@ -150,7 +169,7 @@ export function createWriter(options: WriterOptions): Writer {
 		const context: RenderContext = { pair: { ...input.pair, risks: [...input.pair.risks] }, need: input.need, researcher: input.researcher, sources: options.sources }
 		const id = proposalId(input.pair)
 		const previous = state().proposals.get(id)
-		publish(task, id, { draft, context }, previous ? previous.revision + 1 : 0)
+		publish(task, id, { draft, context, priorWork: input.priorWork ?? [] }, previous ? previous.revision + 1 : 0)
 	}
 
 	function applyFix(task: Task, input: ProposalFixInput, answer: ClaimFix[]): void {
@@ -161,7 +180,8 @@ export function createWriter(options: WriterOptions): Writer {
 		if (!entry || !current) return
 		const draft = structuredClone(entry.draft)
 		const context: RenderContext = { ...entry.context, pair: { ...entry.context.pair, risks: [...entry.context.pair.risks] } }
-		const missing = applyClaimFixes([draft.problem, draft.companyBrings, draft.researcherBrings, draft.whyThisPair, context.pair.risks], input.rejected, answer)
+		draft.priorWork ??= []
+		const missing = applyClaimFixes([draft.problem, draft.priorWork, draft.companyBrings, draft.researcherBrings, draft.whyThisPair, context.pair.risks], input.rejected, answer)
 
 		// A free-text sentence the Critic quoted is replaced by its fix, or removed.
 		// An id the Critic found only in free text ("The proposal text cites X.") is removed from it.
@@ -185,7 +205,7 @@ export function createWriter(options: WriterOptions): Writer {
 			emit(agent.getId(), "proposal.dropped", { taskId: task.id, proposalId: input.proposalId, reason: "no supported problem or reason left after the fix" })
 			return
 		}
-		publish(task, input.proposalId, { draft, context }, current.revision + 1)
+		publish(task, input.proposalId, { draft, context, priorWork: entry.priorWork }, current.revision + 1)
 	}
 
 	function publish(task: Task, id: string, entry: Entry, revision: number): void {
@@ -219,6 +239,7 @@ function normalize(answer: ProposalDraft, allowedKinds: ProposalKind[]): Proposa
 		kind: allowedKinds.includes(answer.kind) ? answer.kind : allowedKinds[0],
 		title: String(answer.title ?? "").trim(),
 		problem: claims(answer.problem),
+		priorWork: claims(answer.priorWork),
 		researchQuestions: list(answer.researchQuestions),
 		approach: list(answer.approach),
 		plan: list(answer.plan).filter((row) => row?.period && row.work),

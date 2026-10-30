@@ -23,7 +23,7 @@ export function headerClaims({ need, researcher }: RenderContext): { company: Cl
 /** Every claim of a proposal, in the order the Critic reads them. */
 export function draftClaims(draft: ProposalDraft, context: RenderContext): Claim[] {
 	const header = headerClaims(context)
-	return [header.company, header.researcher, ...draft.problem, ...draft.companyBrings, ...draft.researcherBrings, ...draft.whyThisPair, ...context.pair.risks]
+	return [header.company, header.researcher, ...draft.problem, ...(draft.priorWork ?? []), ...draft.companyBrings, ...draft.researcherBrings, ...draft.whyThisPair, ...context.pair.risks]
 }
 
 /** Markdown in the shape of docs/brief/example-industrial-phd-topic.md, every fact followed by its ids. */
@@ -43,6 +43,7 @@ export function renderProposal(draft: ProposalDraft, context: RenderContext): st
 		"### The problem",
 		paragraph(draft.problem),
 		"",
+		...(draft.priorWork?.length ? ["### Prior work", ...draft.priorWork.map((claim) => `- ${cite(claim)}`), ""] : []),
 		"### Research questions",
 		...draft.researchQuestions.map((question, i) => `${i + 1}. ${question}`),
 		"",
@@ -84,8 +85,8 @@ function sourceList(claims: Claim[], store?: SourceStore): string[] {
 		const record = store?.get(id)
 		if (!record) return `- ${id}`
 		const title = record.title.length > 120 ? `${record.title.slice(0, 117).trimEnd()}...` : record.title
-		const dated = record.kind === "publication" || record.kind === "project" || record.kind === "patent"
-		return `- ${id}: ${title}${dated && record.year ? ` (${record.year})` : ""}`
+		const dated = record.kind === "publication" || record.kind === "project" || record.kind === "patent" || record.kind === "work"
+		return `- ${id}: ${title}${dated && record.year ? ` (${record.year})` : ""}${record.url ? ` ${record.url}` : ""}`
 	})
 }
 

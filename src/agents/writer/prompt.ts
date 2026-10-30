@@ -11,6 +11,7 @@ What makes it good:
 - Keep every hard limit. No research question, method step or plan row may break a constraint the company states: if the sampling rate cannot drop below 250 Hz, do not test or propose lower rates. Aim at the target the company gives ("under one working day", "at least 35% less current").
 - Aim at the core difficulty, not at a side issue or at the researcher's favourite topic next to it.
 - The problem is concrete and has the company's own numbers: volumes, costs, error rates, deadlines. Say what happens today and why it hurts. Only the company's situation goes here, nothing about the researcher.
+- Prior work: "priorWork" in the input lists recent published works found in OpenAlex for this challenge. If one reports a result on the core difficulty, state that result in a priorWork claim, so both sides see where the field stands. Use at most 2, and none when no work is about the core difficulty.
 - Research questions are few (2 or 3) and each one can be answered with a measurement on named data ("measured against ...").
 - The approach names methods from the researcher's own work and says how they meet the company's data. Pick the methods the problem needs; no menu of everything the researcher has done, and no generic "use AI". A survey the researcher wrote covers other people's methods: the researcher reviewed them, not invented them.
 - The plan has a result per period: a dataset, a prototype, a paper, a trial, a decision. For an industrial PhD use Year 1, Year 2, Year 3. For a joint project use 3 or 4 month ranges.
@@ -29,8 +30,9 @@ Why this pair: the company has a costly bottleneck with data already on hand. Th
 Agreed up front: results can be published after a 60-day review by the company. The company owns the rig and the trained models; the faculty keeps the methods."
 
 Facts and sources:
-- Every factual statement goes in a claim field (problem, companyBrings, researcherBrings, whyThisPair) as one short sentence with the ids that support it. Use only ids from the input: the challenge and company ids, the researcher id, and the publication, project and patent ids in the input. Never invent an id, a paper, a skill, a number or a piece of equipment.
-- Claims are few and strong: problem 2 to 4, companyBrings 2 to 4, researcherBrings 2 to 4 (the works the approach uses), whyThisPair 2 or 3. One sentence each, under 30 words.
+- Every factual statement goes in a claim field (problem, priorWork, companyBrings, researcherBrings, whyThisPair) as one short sentence with the ids that support it. Use only ids from the input: the challenge and company ids, the researcher id, the publication, project and patent ids, and the work ids (W...) in priorWork. Never invent an id, a paper, a skill, a number or a piece of equipment.
+- Claims are few and strong: problem 2 to 4, priorWork 0 to 2, companyBrings 2 to 4, researcherBrings 2 to 4 (the works the approach uses), whyThisPair 2 or 3. One sentence each, under 30 words.
+- A priorWork claim cites one work id and states only what that work's abstract reports ("A 2022 study reports lossless ECG compression in real time on embedded hardware."). The work is by other people, outside this pair: never say the researcher or the company did it, never name its authors, and never cite a work id in another field.
 - Free-text fields (title, research questions, approach, plan, first six months, pairReasoning, agreed up front) hold proposals and reasoning, not facts. They may only rely on facts that appear in a claim. Write no ids in free text.
 - Free text may propose new work and new data ("label 2,000 seeds from 200 lots in year 1"). It may never present as existing any data, recordings, dataset size, history, equipment, staff, skill or past result that no claim states. If no claim says how much data the company has, give no number for it. If no claim says the patch has an accelerometer, it has none. Plan only on data a claim says the company has; if the work needs more (past scans, labelled cases), the first step collects it.
 - Never say what a side lacks or cannot do ("the company has no signal-processing know-how", "the researcher has no access to real traffic") unless a claim states it. Say instead what each side brings.
@@ -53,7 +55,7 @@ export const PROPOSAL_SCHEMA = {
 	schema: {
 		type: "object",
 		additionalProperties: false,
-		required: ["brief", "kind", "title", "problem", "researchQuestions", "approach", "plan", "firstSixMonths", "companyBrings", "researcherBrings", "pairReasoning", "whyThisPair", "agreedUpFront"],
+		required: ["brief", "kind", "title", "problem", "priorWork", "researchQuestions", "approach", "plan", "firstSixMonths", "companyBrings", "researcherBrings", "pairReasoning", "whyThisPair", "agreedUpFront"],
 		properties: {
 			brief: {
 				type: "string",
@@ -62,6 +64,7 @@ export const PROPOSAL_SCHEMA = {
 			kind: { type: "string", enum: ["industrial-phd", "joint-project"] },
 			title: { type: "string", description: "Specific: the method and the company's problem, under 15 words." },
 			problem: claims("2 to 4 claims: the company's problem today, with its numbers. Nothing about the researcher."),
+			priorWork: claims("0 to 2 claims: what a published work in priorWork reports on the core difficulty, each citing its one work id. Empty when none fits."),
 			researchQuestions: texts("2 or 3 questions, each with how it is measured. None may break a hard limit."),
 			approach: texts("3 or 4 method steps of one or two sentences, using the researcher's methods on the company's data."),
 			plan: {
@@ -119,6 +122,8 @@ export interface ProposalDraft {
 	kind: ProposalKind
 	title: string
 	problem: Claim[]
+	/** What published work outside the pair reports, each citing an OpenAlex work id. */
+	priorWork: Claim[]
 	researchQuestions: string[]
 	approach: string[]
 	plan: Array<{ period: string; work: string; result: string }>
@@ -130,11 +135,22 @@ export interface ProposalDraft {
 	agreedUpFront: string[]
 }
 
+/** A published work as the Writer reads it: no authors, no citation count. */
+export interface PriorWorkInput {
+	id: string
+	title: string
+	year: number
+	venue?: string
+	abstract: string
+}
+
 export interface WriteInput {
 	pair: PairCandidate
 	need: CompanyNeed
 	researcher: ResearcherProfile
 	allowedKinds: ProposalKind[]
+	/** Recent works from OpenAlex on the need's search terms. Absent when OpenAlex is off. */
+	priorWork?: PriorWorkInput[]
 }
 
 export function writeMessage(input: WriteInput): string {
@@ -146,9 +162,9 @@ ${jsonBlock(input)}`
 export interface ProposalFixInput {
 	proposalId: string
 	/** The claim fields of the current draft. */
-	draft: Pick<ProposalDraft, "problem" | "companyBrings" | "researcherBrings" | "whyThisPair">
+	draft: Pick<ProposalDraft, "problem" | "priorWork" | "companyBrings" | "researcherBrings" | "whyThisPair">
 	rejected: RejectedClaim[]
-	evidence: { need?: CompanyNeed; researcher?: ResearcherProfile; pair?: PairCandidate }
+	evidence: { need?: CompanyNeed; researcher?: ResearcherProfile; pair?: PairCandidate; priorWork?: PriorWorkInput[] }
 }
 
 export function proposalFixMessage(input: ProposalFixInput): string {
