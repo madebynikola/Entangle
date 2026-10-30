@@ -1,0 +1,768 @@
+[
+	{
+		"id": "CALL:HORIZON-CL3-2027-02-CS-ECCC-02",
+		"identifier": "HORIZON-CL3-2027-02-CS-ECCC-02",
+		"title": "Secure Computing Continuum (IoT, Edge, Cloud, Data spaces)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL3-2027-02-CS-ECCC",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-15",
+		"opens": "2027-03-02",
+		"grant": {
+			"min": 4000000,
+			"max": 4000000,
+			"expected": 1
+		},
+		"keywords": [
+			"Cloud Computing models",
+			"Computing Technologies",
+			"Computing for servers, data centres",
+			"Cybersecurity Domains",
+			"Data Security and Privacy",
+			"Software and Hardware Security Engineering"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-02-CS-ECCC-02"
+	},
+	{
+		"id": "CALL:DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH",
+		"identifier": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH",
+		"title": "Regional Cable Hubs",
+		"programme": "Digital Europe",
+		"call": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11",
+		"action": "JU Simple Grants",
+		"status": "open",
+		"deadline": "2027-01-14",
+		"grant": {
+			"min": 2500000,
+			"max": 2500000,
+			"expected": 2
+		},
+		"keywords": [
+			"Communication engineering and systems telecommunications",
+			"Communication network",
+			"Cybersecurity",
+			"Cybersecurity Domains",
+			"Defence",
+			"Geo-information and spatial data analysis",
+			"Managerial, procedural and technical aspects of network security",
+			"Maritime"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/DIGITAL-ECCC-2027-DEPLOY-CYBER-11-REGCABH"
+	},
+	{
+		"id": "CALL:HORIZON-CL5-2027-02-D3-07",
+		"identifier": "HORIZON-CL5-2027-02-D3-07",
+		"title": "Concentrated solar thermal systems for decarbonising industrial processes",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL5-2027-02",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-03-31",
+		"opens": "2026-12-03",
+		"grant": {
+			"min": 4500000,
+			"max": 4500000,
+			"expected": 2
+		},
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-02-D3-07"
+	},
+	{
+		"id": "CALL:DIGITAL-ECCC-2027-DEPLOY-CYBER-11-CYBERAI",
+		"identifier": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11-CYBERAI",
+		"title": "Cybersecure tools, technologies and services relying on AI",
+		"programme": "Digital Europe",
+		"call": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11",
+		"action": "JU Simple Grants",
+		"status": "open",
+		"deadline": "2027-01-14",
+		"grant": {
+			"min": 2500000,
+			"max": 2500000,
+			"expected": 2
+		},
+		"keywords": [
+			"Algorithmic auditability and accountability (e.g. explainable AI).",
+			"Analytics tools",
+			"Artificial Intelligence & Decision support",
+			"Artificial intelligence",
+			"Cybersecurity",
+			"Cybersecurity Domains",
+			"Data Security and Privacy",
+			"Data protection"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/DIGITAL-ECCC-2027-DEPLOY-CYBER-11-CYBERAI"
+	},
+	{
+		"id": "CALL:HORIZON-EIT-2025-KIC-IBA-HEI",
+		"identifier": "HORIZON-EIT-2025-KIC-IBA-HEI",
+		"title": "Higher Education Initiative Business Plan 2026",
+		"programme": "Horizon Europe",
+		"call": "Call for Proposals 2026",
+		"openCallBy": "EIT HEI",
+		"status": "open",
+		"deadline": "2027-01-13",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48939733"
+	},
+	{
+		"id": "CALL:DIGITAL-ECCC-2027-DEPLOY-CYBER-11-DUALUSE",
+		"identifier": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11-DUALUSE",
+		"title": "Dual-use technologies",
+		"programme": "Digital Europe",
+		"call": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11",
+		"action": "JU Simple Grants",
+		"status": "open",
+		"deadline": "2027-01-14",
+		"grant": {
+			"min": 2500000,
+			"max": 2500000,
+			"expected": 2
+		},
+		"keywords": [
+			"Artificial intelligence",
+			"Artificial intelligence, intelligent systems, multi agent systems",
+			"Cybersecurity",
+			"Cybersecurity Domains",
+			"Defence",
+			"Digital twins",
+			"Quantum Technologies (e.g. computing and communication)"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/DIGITAL-ECCC-2027-DEPLOY-CYBER-11-DUALUSE"
+	},
+	{
+		"id": "CALL:DIGITAL-2023-SKILLS-04-SEMICONDUCTORS",
+		"identifier": "DIGITAL-2023-SKILLS-04-SEMICONDUCTORS",
+		"title": "Reinforcing skills in semiconductors",
+		"programme": "Digital Europe",
+		"call": "Recruitment Cycle Cohort 2027",
+		"openCallBy": "RESCHIP4EU",
+		"status": "forthcoming",
+		"deadline": "2027-06-30",
+		"opens": "2026-10-31",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46014314"
+	},
+	{
+		"id": "CALL:DIGITAL-ECCC-2027-DEPLOY-CYBER-11-COORDPREP",
+		"identifier": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11-COORDPREP",
+		"title": "Coordinated preparedness testing and other preparedness actions",
+		"programme": "Digital Europe",
+		"call": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11",
+		"action": "JU Simple Grants",
+		"status": "open",
+		"deadline": "2027-01-14",
+		"grant": {
+			"min": 2500000,
+			"max": 2500000,
+			"expected": 2
+		},
+		"keywords": [
+			"Analytics tools",
+			"Communication network",
+			"Communities of practices",
+			"Cybersecurity",
+			"Cybersecurity Domains",
+			"Data Security and Privacy",
+			"Data protection",
+			"Education and Training"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/DIGITAL-ECCC-2027-DEPLOY-CYBER-11-COORDPREP"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2025-01-CIRCBIO-15",
+		"identifier": "HORIZON-CL6-2025-01-CIRCBIO-15",
+		"title": "European partnership: Forests and Forestry for a Sustainable Future",
+		"programme": "Horizon Europe",
+		"call": "ForestPathways – Building Knowledge and Solutions for Resilient Forests and Sustainable Forest-Based Futures",
+		"openCallBy": "FOREST",
+		"status": "open",
+		"deadline": "2026-12-02",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48213468"
+	},
+	{
+		"id": "CALL:DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME",
+		"identifier": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME",
+		"title": "Strengthening cybersecurity capacities of European SMEs with cybersecure AI-powered solutions",
+		"programme": "Digital Europe",
+		"call": "DIGITAL-ECCC-2027-DEPLOY-CYBER-11",
+		"action": "JU SME Support Actions",
+		"status": "open",
+		"deadline": "2027-01-14",
+		"grant": {
+			"min": 2500000,
+			"max": 2500000,
+			"expected": 2
+		},
+		"keywords": [
+			"Analytics tools",
+			"Artificial Intelligence & Decision support",
+			"Artificial intelligence",
+			"Assessment",
+			"Capacity building",
+			"Continuing professional training",
+			"Cybersecurity",
+			"Cybersecurity-aware culture (e.g. including children education)"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/DIGITAL-ECCC-2027-DEPLOY-CYBER-11-AI4SME"
+	},
+	{
+		"id": "CALL:EDF-EDIP-USI-2027-LS-IRA-CUXS",
+		"identifier": "EDF-EDIP-USI-2027-LS-IRA-CUXS",
+		"title": "Unmanned systems and counter-unmanned systems",
+		"programme": "European Defence Fund",
+		"call": "EDF-EDIP-USI-2027-LS-IRA",
+		"action": "Lump Sum Grants",
+		"status": "open",
+		"deadline": "2027-02-16",
+		"grant": {},
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/EDF-EDIP-USI-2027-LS-IRA-CUXS"
+	},
+	{
+		"id": "CALL:HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+		"identifier": "HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+		"title": "Tools and technologies to support health adaptation to climate change",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-HLTH-2027-01",
+		"action": "Pre-commercial Procurement",
+		"status": "open",
+		"deadline": "2027-02-17",
+		"grant": {
+			"min": 8000000,
+			"max": 10000000,
+			"expected": 5
+		},
+		"keywords": [
+			"Early warning systems",
+			"Environmental health",
+			"Environmental risk measurement",
+			"Environmental stressors",
+			"Epidemiology",
+			"Healthcare system",
+			"Preparedness",
+			"Public and environmental health"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-2027-04-HUMAN-01",
+		"identifier": "HORIZON-CL4-2027-04-HUMAN-01",
+		"title": "Advanced and Innovative hardware components for Virtual Worlds (RIA) (Virtual Worlds Partnership)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL4-2027-04",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-03-18",
+		"opens": "2026-11-17",
+		"grant": {
+			"min": 9000000,
+			"max": 10000000,
+			"expected": 4
+		},
+		"keywords": [
+			"Computer graphics, computer vision, multi media, computer games",
+			"Human computer interaction and interface, visualization and natural language processing",
+			"Wearable technologies"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-04-HUMAN-01"
+	},
+	{
+		"id": "CALL:EDF-2024-RA-SIMTRAIN-BRG-STEP",
+		"identifier": "EDF-2024-RA-SIMTRAIN-BRG-STEP",
+		"title": "Methods for bridging reality gaps",
+		"programme": "European Defence Fund",
+		"call": "Open Call for Cutting-Edge Defence Solutions",
+		"openCallBy": "BATTLEVERSE",
+		"status": "open",
+		"deadline": "2026-11-16",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46905650"
+	},
+	{
+		"id": "CALL:SMP-COSME-2024-CLUSTER-01",
+		"identifier": "SMP-COSME-2024-CLUSTER-01",
+		"title": "Joint Cluster Initiatives (EUROCLUSTERS) for Europe’s recovery",
+		"programme": "Single Market Programme",
+		"call": "RESIST II PROCESS INNOVATION OPEN CALL",
+		"openCallBy": "RESIST II",
+		"status": "open",
+		"deadline": "2027-07-13",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/47108154"
+	},
+	{
+		"id": "CALL:HORIZON-CL3-2027-02-CS-ECCC-01",
+		"identifier": "HORIZON-CL3-2027-02-CS-ECCC-01",
+		"title": "Artificial Intelligence for Cybersecurity applications",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL3-2027-02-CS-ECCC",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-15",
+		"opens": "2027-03-02",
+		"grant": {
+			"min": 4000000,
+			"max": 4000000,
+			"expected": 1
+		},
+		"keywords": [
+			"Artificial Intelligence & Decision support",
+			"Artificial intelligence",
+			"Artificial intelligence, intelligent systems, multi agent systems",
+			"Cybersecurity Domains",
+			"Security Management and Governance",
+			"Threats and vulnerabilities modelling"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-02-CS-ECCC-01"
+	},
+	{
+		"id": "CALL:DIGITAL-2024-ADVANCED-DIGITAL-07-KEYCAPACITY",
+		"identifier": "DIGITAL-2024-ADVANCED-DIGITAL-07-KEYCAPACITY",
+		"title": "Specialised Education Programmes in Key Capacity Areas",
+		"programme": "Digital Europe",
+		"call": "UPRAISE: Financial Support to Third Parties (FSTP) call for International Mobility, Type of financial support: Students Incoming, Cycle 1 – Academic Year 2026/2027",
+		"openCallBy": "UPRAISE",
+		"status": "open",
+		"deadline": "2026-12-10",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46813062"
+	},
+	{
+		"id": "CALL:DIGITAL-2021-SKILLS-01-SPECIALISED",
+		"identifier": "DIGITAL-2021-SKILLS-01-SPECIALISED",
+		"title": "Specialised education programmes in key capacity areas",
+		"programme": "Digital Europe",
+		"call": "AMU Scholarships for the internship of the Master 2 « Biology & Health », study-track « AI and biomarkers » within the European Project « Advanced Digital Skills AI and Health ».",
+		"openCallBy": "AI and Health",
+		"status": "open",
+		"deadline": "2027-07-07",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/43977648"
+	},
+	{
+		"id": "CALL:CERV-2024-CITIZENS-VALUES",
+		"identifier": "CERV-2024-CITIZENS-VALUES",
+		"title": "Call for proposals for civil society organisations active on protecting and promoting Union values: call to intermediaries (giving financial support to third parties)",
+		"programme": "Citizens, Equality, Rights and Values",
+		"call": "Social Power - Convocatoria 2",
+		"openCallBy": "SocialPower",
+		"status": "open",
+		"deadline": "2026-11-02",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46357639"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2023-GOVERNANCE-01-13",
+		"identifier": "HORIZON-CL6-2023-GOVERNANCE-01-13",
+		"title": "Open source solutions for edge, cloud and mixed model applications to strengthen production and administrative capacities in agriculture",
+		"programme": "Horizon Europe",
+		"call": "NOSTRADAMUS - Open Call #1: Funding Digital Applications for Sustainable and Efficient Agriculture",
+		"openCallBy": "Nostradamus",
+		"status": "open",
+		"deadline": "2026-12-02",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/45657640"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-2027-05-DIGITAL-EMERGING-03",
+		"identifier": "HORIZON-CL4-2027-05-DIGITAL-EMERGING-03",
+		"title": "Advanced integrated photonic devices for extended features and ultra-low power consumption (RIA) (Photonics Partnership)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL4-2027-05",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-03-18",
+		"opens": "2026-11-17",
+		"grant": {
+			"min": 3000000,
+			"max": 5000000,
+			"expected": 6
+		},
+		"keywords": [
+			"Nanophysics: nanoelectronics, nanophotonics, nanomagnetism, nanoelectromechanics, etc.",
+			"Optical engineering, photonics, lasers"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-05-DIGITAL-EMERGING-03"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2027-01-BIODIV-08",
+		"identifier": "HORIZON-CL6-2027-01-BIODIV-08",
+		"title": "Fostering common farmland birds and mammals for resilient food production systems",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL6-2027-01",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-22",
+		"opens": "2027-04-20",
+		"grant": {
+			"min": 6000000,
+			"max": 6000000,
+			"expected": 2
+		},
+		"keywords": [
+			"Agriculture",
+			"Agriculture related to crop production, applied plant biology",
+			"Agriculture related to crop production, soil biology and cultivation, applied plant biology",
+			"Agronomy",
+			"Biological sciences",
+			"Biology",
+			"Life sciences",
+			"Precision agriculture machinery"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-01-BIODIV-08"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2027-02-FARM2FORK-01",
+		"identifier": "HORIZON-CL6-2027-02-FARM2FORK-01",
+		"title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL6-2027-02",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-23",
+		"opens": "2027-04-20",
+		"grant": {
+			"min": 6000000,
+			"max": 6000000,
+			"expected": 2
+		},
+		"keywords": [
+			"Area 3 from Work Programme",
+			"Artificial intelligence, intelligent systems, multi agent systems",
+			"Big data",
+			"Biophysics",
+			"Cell biology, Microbiology",
+			"Computer and information sciences",
+			"Environmental biology",
+			"Farm economics"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-01"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-2027-04-DATA-03",
+		"identifier": "HORIZON-CL4-2027-04-DATA-03",
+		"title": "New approaches for decentralized, federated and sustainable AI data processing (RIA)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL4-2027-04",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-03-18",
+		"opens": "2026-11-17",
+		"grant": {
+			"min": 9000000,
+			"max": 10000000,
+			"expected": 4
+		},
+		"keywords": [
+			"Computer sciences, information science and bioinformatics"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-04-DATA-03"
+	},
+	{
+		"id": "CALL:HORIZON-MISS-2024-SOIL-01-01",
+		"identifier": "HORIZON-MISS-2024-SOIL-01-01",
+		"title": "Co-creating solutions for soil health in Living Labs",
+		"programme": "Horizon Europe",
+		"call": "GroundWork Open Call",
+		"openCallBy": "GroundWork",
+		"status": "open",
+		"deadline": "2026-11-19",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/46597762"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-2027-04-DATA-09",
+		"identifier": "HORIZON-CL4-2027-04-DATA-09",
+		"title": "Energy efficiency and sustainability of AI data processing in Data Centres (IA)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL4-2027-04",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-03-18",
+		"opens": "2026-11-17",
+		"grant": {
+			"min": 9000000,
+			"max": 10000000,
+			"expected": 4
+		},
+		"keywords": [
+			"Computer sciences, information science and bioinformatics"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-04-DATA-09"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2026-04-GOVERNANCE-01",
+		"identifier": "HORIZON-CL6-2026-04-GOVERNANCE-01",
+		"title": "Additional activities for the European Partnership of Agriculture of Data",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL6-2026-04",
+		"action": "Programme Cofund Actions",
+		"status": "open",
+		"deadline": "2026-11-26",
+		"grant": {
+			"min": 60000000,
+			"max": 60000000,
+			"expected": 1
+		},
+		"keywords": [
+			"Data protection and privacy",
+			"Data value chains",
+			"Digital data",
+			"Digital services",
+			"Digital skills",
+			"Earth Observation / Services and applications",
+			"Technologies and Use Cases Dimension",
+			"Web and information systems, database systems, information retrieval and digital libraries, data fusion"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2026-04-GOVERNANCE-01"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-2027-04-HUMAN-02",
+		"identifier": "HORIZON-CL4-2027-04-HUMAN-02",
+		"title": "Create a thriving and competitive Virtual Worlds and Web 4.0 ecosystem (CSA) (Virtual Worlds Partnership)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL4-2027-04",
+		"action": "Coordination and Support Actions",
+		"status": "forthcoming",
+		"deadline": "2027-03-18",
+		"opens": "2026-11-17",
+		"grant": {
+			"min": 9000000,
+			"max": 10000000,
+			"expected": 4
+		},
+		"keywords": [
+			"Computer graphics, computer vision, multi media, computer games"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-04-HUMAN-02"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2027-02-FARM2FORK-02-two-stage",
+		"identifier": "HORIZON-CL6-2027-02-FARM2FORK-02-two-stage",
+		"title": "Optimising the water-nutrient-energy nexus for sustainable and climate smart agriculture in Africa (FNSSA)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL6-2027-02-two-stage",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-04-08",
+		"opens": "2027-02-04",
+		"grant": {
+			"min": 6000000,
+			"max": 6000000,
+			"expected": 2
+		},
+		"keywords": [
+			"Agricultural engineering",
+			"Agricultural products",
+			"Agriculture, Rural Development, Fisheries",
+			"Agrobiodiversity",
+			"Agroecology",
+			"Agronomy",
+			"Animal watering equipment",
+			"Farm economics"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-02-two-stage"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-INDUSTRY-2025-01-MATERIALS-64",
+		"identifier": "HORIZON-CL4-INDUSTRY-2025-01-MATERIALS-64",
+		"title": "EU Co-funded Partnership on raw materials for the green and digital transition (Co-funded partnership Raw Materials for the Green and Digital Transition)",
+		"programme": "Horizon Europe",
+		"call": "RAMP Joint Transnational Call 2026",
+		"openCallBy": "RAMP",
+		"status": "open",
+		"deadline": "2027-02-15",
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/48400564"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2027-02-CLIMATE-02",
+		"identifier": "HORIZON-CL6-2027-02-CLIMATE-02",
+		"title": "Strengthening evidence-based policies for the resilience of European agriculture and forestry and related supply chains against crises and systemic risks",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL6-2027-02",
+		"action": "Research and Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-23",
+		"opens": "2027-04-20",
+		"grant": {
+			"min": 6000000,
+			"max": 6000000,
+			"expected": 2
+		},
+		"keywords": [
+			"Agricultural economics",
+			"Climate change adaptation",
+			"Cost-benefit analysis",
+			"Disaster resilience and crisis management",
+			"Forest resilience",
+			"International trade",
+			"Risk management, including modelling, assessment, analysis and mitigations",
+			"Supply chain management"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-02"
+	},
+	{
+		"id": "CALL:HORIZON-CL6-2027-02-FARM2FORK-07",
+		"identifier": "HORIZON-CL6-2027-02-FARM2FORK-07",
+		"title": "Towards commercialization of food systems microbiome solutions",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL6-2027-02",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-23",
+		"opens": "2027-04-20",
+		"grant": {
+			"min": 6000000,
+			"max": 6000000,
+			"expected": 2
+		},
+		"keywords": [
+			"Agricultural biotechnology and food biotechnology",
+			"Agriculture",
+			"Agronomy",
+			"Bio-based products (products that are manufactured using biological material as feedstock) bio-based materials, bio-based plastics, biofuels, bio-based and bio-derived bulk and fine chemicals, bio-based and bio-derived novel materials",
+			"Bioprocessing technologies (industrial processes relying on biological agents to drive the process) biocatalysis, fermentation",
+			"Bioremediation, diagnostic biotechnologies (DNA chips and biosensing devices) in environmental management",
+			"Environmental and geological engineering, geotechnics",
+			"Environmental biotechnology"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-07"
+	},
+	{
+		"id": "CALL:HORIZON-MISS-2027-03-OCEAN-02",
+		"identifier": "HORIZON-MISS-2027-03-OCEAN-02",
+		"title": "Circularity of seafood supply chain",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-MISS-2027-03",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-09-21",
+		"opens": "2027-02-09",
+		"grant": {
+			"min": 8000000,
+			"max": 8925000,
+			"expected": 4
+		},
+		"keywords": [
+			"Agriculture, Forestry, and Fisheries",
+			"Bioproducts (products that are manufactured using biological material as feedstock) biomaterials, bioplastics, biofuels, bioderived bulk and fine chemicals, bio-derived novel materials",
+			"Industrial sectoral change"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-03-OCEAN-02"
+	},
+	{
+		"id": "CALL:HORIZON-NATURE-2027-02-05",
+		"identifier": "HORIZON-NATURE-2027-02-05",
+		"title": "Cost-effective biodiversity monitoring for EU policies",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-NATURE-2027-02",
+		"action": "Research and Innovation Actions",
+		"status": "open",
+		"deadline": "2027-01-14",
+		"grant": {
+			"min": 10000000,
+			"max": 10000000,
+			"expected": 6
+		},
+		"keywords": [
+			"Biodiversity indicators",
+			"Biodiversity inventory: systematics phylogeny taxonomy",
+			"Biodiversity monitoring",
+			"Bioremediation, diagnostic biotechnologies (DNA chips and biosensing devices) in environmental management",
+			"DNA analysis",
+			"Environmental monitoring systems",
+			"Fresh water biodiversity",
+			"Long-term monitoring"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-NATURE-2027-02-05"
+	},
+	{
+		"id": "CALL:HORIZON-CL4-2027-01-MAT-PROD-08",
+		"identifier": "HORIZON-CL4-2027-01-MAT-PROD-08",
+		"title": "Textile circularity through advanced processing and manufacturing technologies and system approaches (IA) (Textiles for the Future partnership)",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL4-2027-01",
+		"action": "Innovation Actions",
+		"status": "open",
+		"deadline": "2027-02-02",
+		"grant": {
+			"min": 3000000,
+			"max": 3000000,
+			"expected": 1
+		},
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL4-2027-01-MAT-PROD-08"
+	},
+	{
+		"id": "CALL:HORIZON-CL3-2027-01-FCT-05",
+		"identifier": "HORIZON-CL3-2027-01-FCT-05",
+		"title": "Effective and evidence-based responses to the increased availability and use of synthetic drugs and stimulants in Europe",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL3-2027-01",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-11-04",
+		"opens": "2027-05-05",
+		"grant": {
+			"min": 1500000,
+			"max": 1500000,
+			"expected": 3
+		},
+		"keywords": [
+			"Drugs trafficking",
+			"Fight against crime and terrorism",
+			"Organised crime",
+			"Police authorities",
+			"Security"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL3-2027-01-FCT-05"
+	},
+	{
+		"id": "CALL:HORIZON-HLTH-2027-01-CARE-02",
+		"identifier": "HORIZON-HLTH-2027-01-CARE-02",
+		"title": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-HLTH-2027-01",
+		"action": "Research and Innovation Actions",
+		"status": "open",
+		"deadline": "2027-02-17",
+		"grant": {
+			"min": 8000000,
+			"max": 10000000,
+			"expected": 5
+		},
+		"keywords": [
+			"Biobanks",
+			"Clinical Pharmacology",
+			"Co-morbidity",
+			"Health data",
+			"Personalised services",
+			"Personalised treatment",
+			"Pharmacovigilance",
+			"Tertiary prevention"
+		],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-CARE-02"
+	},
+	{
+		"id": "CALL:HORIZON-CL5-2027-07-D3-32",
+		"identifier": "HORIZON-CL5-2027-07-D3-32",
+		"title": "Delivery of industrial CCUS clusters – Societal Readiness pilot",
+		"programme": "Horizon Europe",
+		"call": "HORIZON-CL5-2027-07",
+		"action": "Innovation Actions",
+		"status": "forthcoming",
+		"deadline": "2027-12-01",
+		"opens": "2027-08-04",
+		"grant": {
+			"min": 6000000,
+			"max": 6000000,
+			"expected": 1
+		},
+		"keywords": [],
+		"url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-32"
+	}
+]

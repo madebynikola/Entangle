@@ -23,8 +23,11 @@ export interface Claim {
 	sourceIds: SourceId[]
 }
 
-/** `work`: a real OpenAlex work, outside the dataset, that links no dataset researcher or company (src/data/openalex.ts). */
-export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page" | "work"
+/**
+ * `work`: a real OpenAlex work, outside the dataset, that links no dataset researcher or company (src/data/openalex.ts).
+ * `call`: an open or upcoming EU funding call, cited as `CALL:<topic id>` (src/data/eucalls.ts).
+ */
+export type SourceKind = "researcher" | "publication" | "project" | "patent" | "company" | "challenge" | "page" | "work" | "call"
 
 /** One dataset record as a citable source. Built by src/data/. */
 export interface SourceRecord {
@@ -192,6 +195,39 @@ export interface CriticVerdict {
 	 * (`action` is then `accept`). Without the cut the whole artifact would have been dropped.
 	 */
 	trimmed?: RejectedClaim[]
+}
+
+// ---------------------------------------------------------------------------
+// Funding (src/agents/scout)
+// ---------------------------------------------------------------------------
+
+/**
+ * One open or upcoming EU call from the Funding & Tenders portal (src/data/eucalls.ts).
+ * Every field comes from the portal's API, none from a model.
+ */
+export interface FundingCall {
+	/** `CALL:` + the portal's topic identifier, e.g. `CALL:HORIZON-CL4-2027-05-DIGITAL-EMERGING-03`. */
+	id: string
+	/** The portal's topic identifier. */
+	identifier: string
+	title: string
+	/** Horizon Europe, Digital Europe, ... From the identifier's prefix. */
+	programme: string
+	/** The call it belongs to, e.g. `HORIZON-CL4-2027-05`, or a cascade call's own name. */
+	call?: string
+	/** "Research and Innovation Actions", ... */
+	action?: string
+	/** A cascade call: an EU project that funds third parties with its own open call, e.g. I3FLOAT. */
+	openCallBy?: string
+	status: "open" | "forthcoming"
+	/** The next deadline still ahead, YYYY-MM-DD. */
+	deadline: string
+	/** When a forthcoming call opens, YYYY-MM-DD. */
+	opens?: string
+	/** EU contribution per grant in euros, when the portal gives it. */
+	grant?: { min?: number; max?: number; expected?: number }
+	keywords: string[]
+	url: string
 }
 
 // ---------------------------------------------------------------------------

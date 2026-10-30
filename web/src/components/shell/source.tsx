@@ -1,5 +1,5 @@
 import type { Claim, SourceRecord } from "@shared/types"
-import { ArrowUpRight, BookOpen, Building2, FileText, Globe, Library, Lightbulb, Target, User } from "lucide-react"
+import { ArrowUpRight, BookOpen, Building2, FileText, Globe, Landmark, Library, Lightbulb, Target, User } from "lucide-react"
 import { Fragment, useEffect, useState } from "react"
 import type * as React from "react"
 import { create } from "zustand"
@@ -20,6 +20,7 @@ const KIND: Record<SourceRecord["kind"], { label: string; icon: React.ReactNode 
 	challenge: { label: "Challenge", icon: <Target /> },
 	page: { label: "Company page", icon: <Globe /> },
 	work: { label: "Prior work (OpenAlex)", icon: <Library /> },
+	call: { label: "EU call", icon: <Landmark /> },
 }
 
 const cache = new Map<string, Promise<SourceRecord | null>>()
