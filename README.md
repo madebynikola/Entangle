@@ -52,6 +52,8 @@ A mock run plants one invented claim in a need, a profile and a proposal, so you
    - Optional, `OPENALEX_API_KEY=...` (free, from [openalex.org/settings/api](https://openalex.org/settings/api)): each proposal
      gets a **Prior work** section. Before a Writer starts, it asks [OpenAlex](https://openalex.org) for recent, cited works on the
      need's search terms, and the proposal may cite up to two of them by work id (`W4293154696`). Mock runs stay offline.
+   - Nothing to set for the **Funding Scout**: the EU Funding & Tenders portal's search API is public (`apiKey=SEDIA`).
+     Each proposal ends with up to three open or upcoming EU calls that fit the pair. Mock runs use calls saved in `test/fixtures/eu-calls.json`.
 3. **Run:**
 
 ```sh
@@ -64,10 +66,10 @@ Everything lands in `out/<run-id>/`:
 | File | What is in it |
 | --- | --- |
 | `trace.jsonl` | Every Mozaik event of the run, one JSON line each, tied to its agent, task and loop |
-| `proposals/<id>.md` | The proposals the Critic accepted |
+| `proposals/<id>.md` | The proposals the Critic accepted, each with the Funding Scout's EU calls at the end |
 | `needs-human/<id>.md` | Proposals the Critic could not clear: a person decides |
-| `pairs.json`, `results.json` | Needs, profiles, pairs, "no match" outcomes, proposals and verdicts |
-| `sources.json` | Every record a claim cites, OpenAlex works included, so the run replays without the dataset or the network |
+| `pairs.json`, `results.json` | Needs, profiles, pairs, "no match" outcomes, proposals, verdicts and the EU calls per chosen pair |
+| `sources.json` | Every record a claim cites, OpenAlex works and EU calls included, so the run replays without the dataset or the network |
 | `summary.json` | Counts, Critic statistics, failures, budget, and time, tokens and cost per task |
 
 `npm run replay -- out/<run-id>` opens any run folder. `npm run dev` opens the app with live runs as they happen.
@@ -101,6 +103,7 @@ They read and write one shared blackboard and talk through events on one bus, wh
 | Matchmaker | 1 | Sonnet 4.6 | One need and its candidate profiles | Pairs with a fit to this problem (0–1), why these two, the problem they solve and the risks; or "no good match" with the reason |
 | Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records, and recent OpenAlex works on the need (with `OPENALEX_API_KEY`) | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, prior work, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |
 | Critic, Critic 2 | 2 | Sonnet 4.6, Haiku 4.5 | Every artifact the moment it is posted | Verdicts; rejected claims sent back to their producer |
+| Funding Scout | 1 | Haiku 4.5 | Each chosen pair, while its Writer writes, and the [EU Funding & Tenders](https://ec.europa.eu/info/funding-tenders/opportunities/portal/) portal | Up to 3 open or upcoming EU calls that fit the pair, each with why and what to check first; or "no call fits" with the reason |
 
 ### Work starts when its input exists, not in stages
 
@@ -114,6 +117,8 @@ The Orchestrator hands out work as events arrive. It makes no model calls.
 4. When every review of a company has ended, the Orchestrator picks that company's pair: its need, profile and pair must all have passed the Critic.
    The pair goes to the Writer with the fewest open tasks, while other companies are still in matching.
    Each company gets one proposal and each researcher one proposal per run, so the result covers many different people.
+   The Funding Scout hears the same `orchestrator.decided` event and works on the pair beside the Writer. Its model writes a few
+   queries in the EU's own words, the code searches the portal with them and the need's terms, and the model picks the calls that fit.
 5. The Critic reviews every need, profile, pair and proposal as it lands, beside all of this.
 
 ### The shared blackboard
@@ -290,6 +295,9 @@ into "here is who at the university works on it":
   real and the faculties are real, so we treat it as personal data. No agent searches the web or a real API for a person: a synthetic
   name would match real people. The one real API, OpenAlex, is searched with a need's search terms only, and its authors are never
   read or kept. A proposal cites a work for what it reports, and the Critic rejects a claim that gives it to the researcher or the company.
+  The Funding Scout searches the EU Funding & Tenders portal with topic words only (its own queries, the need's search terms and the
+  sector), never a name. Every call fact it shows (title, programme, deadline, grant, link) is the portal's own: code keeps only calls
+  the portal returned with a deadline still ahead. The model only picks among them and says why, and that text is marked as not reviewed.
 - **Pairs, not people.** The system ranks researcher–challenge pairs by fit to one stated problem, and compares fit only within a challenge.
   It never outputs a score, a list or a ranking of people. The Matchmaker's prompt forbids seniority, productivity, publication counts
   and prestige as reasons. Search scores a researcher by the mean of their 3 best-matching records, not the sum, so a long publication
@@ -325,18 +333,19 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 **Next steps**
 
 - Reverse search: a company describes a problem and the system finds researchers.
-- A Funding Scout that points each proposal to an open call (Horizon Europe, the Innovation Fund of Serbia).
+- The Innovation Fund of Serbia in the Funding Scout. It has no API, so proposals only link to its calls page for now.
 - Multilingual embeddings fused with BM25, for wording and language gaps (26 companies write in Serbian).
 - Approvals and rejections fed back into matching.
-- Adapters for real profiles by id: ORCID, CORDIS and OpenAlex authors. OpenAlex works by topic are already in, as Prior work.
+- Adapters for real profiles by id: ORCID, CORDIS and OpenAlex authors. OpenAlex works by topic are already in, as Prior work,
+  and open EU calls, through the Funding Scout. Lens and Espacenet (patents) need a registered token.
 
 ## Repository
 
 | Path | What is there |
 | --- | --- |
-| `src/agents/` | One folder per role: `orchestrator`, `analyst`, `profiler`, `matchmaker`, `writer`, `critic` |
+| `src/agents/` | One folder per role: `orchestrator`, `analyst`, `profiler`, `matchmaker`, `writer`, `critic`, `scout` |
 | `src/runtime/` | The Mozaik runtime, the `MatchState` blackboard, tasks, the `ResilientRunner`, the local Claude Code and mock runners |
-| `src/data/` | Dataset loading, clean-up, duplicate merge, BM25 search, the agents' data tools and the OpenAlex client. No model calls |
+| `src/data/` | Dataset loading, clean-up, duplicate merge, BM25 search, the agents' data tools, the OpenAlex client and the EU calls client. No model calls |
 | `src/trace/` | The trace observer that writes `trace.jsonl` |
 | `src/server/`, `web/` | The local server and the web app (see [`web/README.md`](web/README.md)) |
 | `config/models.ts` | Models per role, rate limits, retries and budget |
