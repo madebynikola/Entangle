@@ -91,6 +91,21 @@ export const SUBQ = {
 	timeoutMs: 60_000,
 }
 
+/**
+ * A decision model as a cheap filter on each need's shortlist [SCREEN=1, or `--screen`]. Retrieval finds `widen`
+ * times k candidates. The model answers one yes/no question per candidate (could their own research help solve this
+ * challenge?) in one call, and only the k most likely, at or above the threshold, are profiled. One call costs far
+ * less than one profile. If the call fails, the shortlist is retrieval's top k.
+ */
+export const SCREEN = {
+	/** jev-latest (typesafe.ai, TYPESAFE_API_KEY) or subq-snap-1.1 (SubQ, SUBQ_API_KEY) [SCREEN_MODEL]. */
+	model: "jev-latest",
+	/** Candidates retrieved per need for the model to rate, as a multiple of k. */
+	widen: 2,
+	/** A candidate is cut under this probability of fit, even with room on the shortlist [SCREEN_THRESHOLD]. */
+	threshold: 0.2,
+}
+
 /** Where each decision model's provider answers (`POST <baseUrl>/systemone`), and the env var that holds its key. */
 export const DECISION_PROVIDERS: Record<string, { prefix: string; baseUrl: string; key: string }> = {
 	subq: { prefix: "subq-", baseUrl: "https://api.subq.ai/v1", key: "SUBQ_API_KEY" },

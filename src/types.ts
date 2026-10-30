@@ -226,7 +226,7 @@ export interface SentBack {
 
 export type AgentRole = "orchestrator" | "profiler" | "analyst" | "matchmaker" | "writer" | "critic"
 
-export type TaskKind = "profile" | "analyze" | "match" | "write" | "critique" | "demo"
+export type TaskKind = "screen" | "profile" | "analyze" | "match" | "write" | "critique" | "demo"
 
 export type TaskStatus = "queued" | "running" | "done" | "failed"
 

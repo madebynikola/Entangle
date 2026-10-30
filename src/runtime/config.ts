@@ -8,6 +8,7 @@ import {
 	PROVIDER_LIMITS,
 	ROUTES,
 	RUNNER,
+	SCREEN,
 	SUBQ,
 	type ProviderLimits,
 } from "../../config/models"
@@ -70,6 +71,25 @@ export function subqSettings(): SubqSettings {
 		model: process.env.SUBQ_MODEL || SUBQ.model,
 		threshold: envNumber("SUBQ_THRESHOLD", SUBQ.threshold),
 		timeoutMs: SUBQ.timeoutMs,
+	}
+}
+
+/** A decision model rates each shortlist's candidates before they are profiled (subq-snap, Jev). */
+export function screen(): boolean {
+	return /^(1|true|yes|on)$/i.test(process.env.SCREEN ?? "")
+}
+
+export interface ScreenSettings {
+	model: string
+	widen: number
+	threshold: number
+}
+
+export function screenSettings(): ScreenSettings {
+	return {
+		model: process.env.SCREEN_MODEL || SCREEN.model,
+		widen: SCREEN.widen,
+		threshold: envNumber("SCREEN_THRESHOLD", SCREEN.threshold),
 	}
 }
 

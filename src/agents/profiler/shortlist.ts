@@ -11,6 +11,8 @@ export interface Shortlist {
 	skipped: Array<{ researcherId: string; reason: string }>
 	/** Why the need gets no candidates at all, e.g. it is not a research problem. */
 	reason?: string
+	/** With the shortlist filter on (SCREEN): the decision model's probability of fit per rated candidate. */
+	fit?: Record<string, number>
 }
 
 export interface ShortlistOptions {
