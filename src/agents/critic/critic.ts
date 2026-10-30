@@ -36,7 +36,7 @@ import type {
 	SourceStore,
 } from "../../types"
 import { ROUTES } from "../../../config/models"
-import { checkByCode, claimsOf, freeTextOf, proposalText, readArtifact, removeArtifact, type Artifact } from "./checks"
+import { checkByCode, claimsOf, freeTextOf, maskedText, readArtifact, removeArtifact, type Artifact } from "./checks"
 import { lexicalReview, strictReview } from "./mock"
 import {
 	CRITIC_INSTRUCTION,
@@ -301,7 +301,7 @@ export function createCritic(options: CriticOptions): Critic {
 				? vote(
 						primary,
 						id,
-						textReviewMessage(id, code.subject, proposalText(artifact as Proposal), code.sources),
+						textReviewMessage(id, code.subject, maskedText(artifact as Proposal), claimsOf(kind, artifact), code.sources),
 						{ claims: [], sources: code.sources, subjectLine: code.subject.line, text: true },
 						header,
 					)

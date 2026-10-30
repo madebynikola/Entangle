@@ -75,6 +75,15 @@ export function proposalText(proposal: Proposal): string {
 	return (end >= 0 ? markdown.slice(0, end) : markdown).trim()
 }
 
+/** A proposal's text for the free-text check: each rendered claim shows as `⟨claim N⟩`, numbered as in `claims`. */
+export function maskedText(proposal: Proposal): string {
+	let text = proposalText(proposal)
+	;(proposal.claims ?? []).forEach((claim, i) => {
+		text = text.split(`${claim.text.trim()} [${claim.sourceIds.join(", ")}]`).join(`⟨claim ${i + 1}⟩`)
+	})
+	return text
+}
+
 /** A proposal's free text only, with every rendered claim cut out, so a fix to a claim does not count as a change. */
 export function freeTextOf(proposal: Proposal): string {
 	let text = proposalText(proposal)

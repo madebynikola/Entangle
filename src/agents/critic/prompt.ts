@@ -36,8 +36,9 @@ Answer for every claim, by its number. Keep each reason to one sentence and name
  * states as true what no claim or source states. The hand-check of three proposals on 30 Oct found 20 such sentences
  * (an invented recording set, equipment the device does not have, "the researcher has no access to real traffic").
  */
-const TEXT_RULES = `The sentences followed by [ids] are claims; they are checked one by one elsewhere. Here, check only the other text:
-the research questions, approach, plan, first steps, the reasoning under "Why this pair" and the terms agreed up front.
+const TEXT_RULES = `The claims are checked one by one elsewhere: take them as given. In the proposal each one shows as ⟨claim N⟩.
+Check only the other text: the research questions, approach, plan, first steps, the reasoning under "Why this pair" and
+the terms agreed up front.
 
 Free text may propose new work and new data ("collect", "label", "set up", "measure", "aim for"), and may reason from the
 claims. List a sentence only when it:
@@ -133,11 +134,15 @@ export function reviewMessage(
 	].join("\n")
 }
 
-/** The free-text check of a proposal: its text without the Sources list, every record it cites, and the rubric. */
+/**
+ * The free-text check of a proposal: the rubric, its claims as a numbered list, its text with each claim as `⟨claim N⟩`
+ * (see `maskedText`), and every record it cites. The reviewer cannot quote a claim, so it cannot reject one by this path.
+ */
 export function textReviewMessage(
 	id: string,
 	subject: Subject,
 	text: string,
+	claims: Claim[],
 	sources: Map<string, SourceRecord>,
 	totalChars = TOTAL_CHARS,
 ): string {
@@ -146,6 +151,9 @@ export function textReviewMessage(
 		`It is about: ${subject.line}.`,
 		"",
 		TEXT_RULES,
+		"",
+		"Claims:",
+		...claims.map((claim, i) => `${i + 1}. ${claim.text} [${claim.sourceIds.join(", ")}]`),
 		"",
 		"Proposal:",
 		text,

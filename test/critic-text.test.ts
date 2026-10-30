@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { before, describe, test } from "node:test"
 import type { InferenceInput } from "@mozaik-ai/core"
 import { createCritic, type Critic } from "../src/agents/critic"
-import { freeTextOf } from "../src/agents/critic/checks"
+import { freeTextOf, maskedText } from "../src/agents/critic/checks"
 import { parseTextReview, textReviewMessage } from "../src/agents/critic/prompt"
 import { createWriter, replaceFreeText, type ProposalDraft, type Writer } from "../src/agents/writer"
 import { MockInferenceRunner, join, lastUserText, startRuntime, state, whenSettled } from "../src/runtime"
@@ -59,11 +59,15 @@ describe("free text of a proposal (no model)", () => {
 		assert.throws(() => parseTextReview(JSON.stringify({ checks: [] })))
 	})
 
-	test("the prompt has the rubric, the proposal and its sources", () => {
+	test("the prompt has the rubric, the claims as a list, the proposal with each claim masked, and its sources", () => {
+		const markdown = `### The problem\n${TRUE_CLAIMS.firmware.text} [C001-CH1]\n\n### Approach\n- Write the rules down.\n\n### Sources\n- C001-CH1`
+		const doc = proposal([TRUE_CLAIMS.firmware], markdown)
 		const sources = new Map([["C001-CH1", store.get("C001-CH1")!]])
-		const message = textReviewMessage("P-1", { line: "company ArmaturaSec d.o.o. (C001)" }, "### Approach\n- Write the rules down.", sources)
+		const message = textReviewMessage("P-1", { line: "company ArmaturaSec d.o.o. (C001)" }, maskedText(doc), doc.claims, sources)
 		assert.match(message, /presents as already true a fact/)
-		assert.match(message, /### Approach\n- Write the rules down\./)
+		assert.match(message, /Claims:\n1\. The company needs guarantees beyond testing .+ \[C001-CH1\]/)
+		assert.match(message, /### The problem\n⟨claim 1⟩\n\n### Approach\n- Write the rules down\./)
+		assert.doesNotMatch(message, /### Sources/)
 		assert.match(message, /\[C001-CH1\] challenge · Firmware correctness/)
 	})
 })
