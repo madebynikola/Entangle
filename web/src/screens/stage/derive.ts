@@ -2,131 +2,113 @@ import type { TraceRecord } from "@shared/types"
 import { useRef } from "react"
 import type { FaceId, FaceState } from "@/lib/faces"
 import { ROLE_INFO, roleOf } from "@/lib/roles"
-import type { AgentView, RunView } from "@/run/fold"
+import type { RunView } from "@/run/fold"
 
 /**
- * What the Stage reads from the trace: the feed as lines the faces say to each other, and each face's state at the
- * playhead. Pure functions of the view and the clock, so the Stage follows seeking, pausing and speed like the Timeline.
+ * What the Stage reads from the trace: each feed record as a Line (who did what to which item), and each face's
+ * base state at the playhead. The director (director.ts) decides when and how the lines are shown; words.ts says them.
  */
 
 /** The seven faces round the bus, clockwise from the top (as in design/agents/simulation.html). */
 export const ORDER: FaceId[] = ["deneb", "tycho", "fides", "you", "tinta", "amity", "spica"]
 
-/** One published event, as a line one face says to the others. */
+/** What happened, in the Stage's own terms. */
+export type Act =
+	| "plan"
+	| "assign"
+	| "shortlist"
+	| "post"
+	| "pass"
+	| "send-back"
+	| "escalate"
+	| "drop"
+	| "no-match"
+	| "pair-dropped"
+	| "decide"
+	| "done"
+	| "fail"
+
+export type Artifact = "need" | "profile" | "pair" | "proposal"
+
+/** One feed record the Stage voices. */
 export interface Line {
 	key: string
 	ms: number
 	from: FaceId
 	/** The faces it is addressed to; the others still see it on the bus. */
 	to: FaceId[] | "all"
+	act: Act
 	kind: string
-	text: string
-	/** The Critic's verdict lands on this face as a stamp. */
-	stamp?: { on: FaceId; ok: boolean }
-	/** Amity's match line between the company side (Spica) and the researcher side (Tycho). */
-	link?: boolean
-	/** A face that reacts for a moment: a sweat drop on reject, a cheer on done. */
-	mood?: { face: FaceId; state: FaceState }
-	/** The end of the run: everyone is done. */
-	finale?: boolean
+	artifact?: Artifact
+	/** The item: a challenge, researcher, pair or proposal id. */
+	id?: string
+	/** Who gets an assignment (`analyst-2`), and what kind of task it is. */
+	assignee?: string
+	task?: string
+	reason?: string
+	count?: number
+	/** Numbers for the plan and the end. */
+	totals?: { companies?: number; challenges?: number; proposals?: number; pairs?: number }
 }
 
-/** How long a reaction lasts on the run clock, in ms. */
-export const SAY_MS = 2800
-export const STAMP_MS = 2200
-export const MOOD_MS = 2400
-export const LINK_MS = 3200
-export const PULSE_MS = 1300
-
 /** Whose artifact each kind is. */
-const AUTHOR: Record<string, FaceId> = { need: "spica", profile: "tycho", pair: "amity", proposal: "tinta" }
-
-const VERB: Record<string, string> = { analyze: "read", profile: "profile", match: "match", write: "write", critique: "check" }
+export const AUTHOR: Record<Artifact, FaceId> = { need: "spica", profile: "tycho", pair: "amity", proposal: "tinta" }
 
 function faceOf(agent: string | undefined): FaceId {
 	return ROLE_INFO[roleOf(agent)].face ?? "deneb"
-}
-
-function cut(text: string, max = 96): string {
-	const flat = text.replace(/\s+/g, " ").trim()
-	return flat.length > max ? `${flat.slice(0, max - 1).trimEnd()}…` : flat
 }
 
 type Data = Record<string, unknown>
 const str = (value: unknown) => (typeof value === "string" ? value : "")
 const num = (value: unknown) => (typeof value === "number" ? value : 0)
 const list = (value: unknown) => (Array.isArray(value) ? value : [])
+const artifactOf = (value: unknown): Artifact | undefined =>
+	value === "need" || value === "profile" || value === "pair" || value === "proposal" ? value : undefined
 
 /** One feed record as a line, or null for events the Stage does not voice. */
 export function lineOf(record: TraceRecord, index: number): Line | null {
 	const data = (record.data ?? {}) as Data
 	const base = { key: `${index}`, ms: record.ms, kind: record.kind }
 	switch (record.kind) {
-		case "orchestrator.plan": {
-			const companies = list(data.companies).length
-			return { ...base, from: "deneb", to: "all", text: `${companies} companies, ${num(data.challenges)} challenges. Let's find pairs.` }
-		}
-		case "orchestrator.assigned": {
-			const assignee = str(data.assignee)
-			const verb = VERB[str(data.kind)] ?? "take"
-			return { ...base, from: "deneb", to: [faceOf(assignee)], text: `${assignee}, ${verb} ${str(data.subjectId)}.` }
-		}
-		case "shortlist.ready":
+		case "orchestrator.plan":
 			return {
 				...base,
 				from: "deneb",
-				to: ["tycho"],
-				text: `Search found ${list(data.researcherIds).length} researchers for ${str(data.challengeId)}. Tycho, profile them.`,
+				to: "all",
+				act: "plan",
+				totals: { companies: list(data.companies).length, challenges: num(data.challenges) },
 			}
+		case "orchestrator.assigned": {
+			const assignee = str(data.assignee)
+			return { ...base, from: "deneb", to: [faceOf(assignee)], act: "assign", assignee, task: str(data.kind), id: str(data.subjectId) }
+		}
+		case "shortlist.ready":
+			return { ...base, from: "deneb", to: ["tycho"], act: "shortlist", id: str(data.challengeId), count: list(data.researcherIds).length }
 		case "artifact.posted": {
-			const kind = str(data.kind)
-			const id = str(data.id)
-			const from = AUTHOR[kind] ?? faceOf(record.agent)
-			const text =
-				kind === "need"
-					? `Posted the need ${id}.`
-					: kind === "profile"
-						? `${id} is profiled.`
-						: kind === "pair"
-							? `Paired ${id.replace(":", " with ")}.`
-							: kind === "proposal"
-								? `Drafted the proposal ${id}.`
-								: `Posted ${id}.`
-			return { ...base, from, to: ["fides"], text, link: kind === "pair" }
+			const artifact = artifactOf(data.kind)
+			return { ...base, from: artifact ? AUTHOR[artifact] : faceOf(record.agent), to: ["fides"], act: "post", artifact, id: str(data.id) }
 		}
 		case "critic.verdict": {
-			const author = AUTHOR[str(data.kind)] ?? "deneb"
+			const artifact = artifactOf(data.kind)
+			const author = artifact ? AUTHOR[artifact] : "deneb"
 			const id = str(data.id)
-			if (data.ok) return { ...base, from: "fides", to: [author], text: `${id} checks out.`, stamp: { on: author, ok: true }, mood: { face: author, state: "done" } }
+			if (data.ok) return { ...base, from: "fides", to: [author], act: "pass", artifact, id }
 			const first = list(data.rejected)[0] as { reason?: string } | undefined
 			const action = str(data.action)
-			const text =
-				action === "human-review"
-					? `${id} needs a person to decide.`
-					: action === "drop"
-						? `Dropped ${id}: it cannot be fixed.`
-						: `Sent back ${id}. ${first?.reason ? cut(first.reason) : "A claim has no source."}`
-			return {
-				...base,
-				from: "fides",
-				to: action === "human-review" ? ["you", author] : [author],
-				text,
-				stamp: { on: author, ok: false },
-				mood: action === "human-review" ? { face: "you", state: "working" } : { face: author, state: "reject" },
-			}
+			if (action === "human-review") return { ...base, from: "fides", to: ["you", author], act: "escalate", artifact, id }
+			if (action === "drop") return { ...base, from: "fides", to: [author], act: "drop", artifact, id }
+			return { ...base, from: "fides", to: [author], act: "send-back", artifact, id, reason: first?.reason, count: list(data.rejected).length }
 		}
 		case "match.none":
-			return { ...base, from: "amity", to: "all", text: `No good match for ${str(data.challengeId)}. ${cut(str(data.reason), 72)}`, mood: { face: "amity", state: "reject" } }
+			return { ...base, from: "amity", to: "all", act: "no-match", id: str(data.challengeId), reason: str(data.reason) }
 		case "pair.dropped":
-			return { ...base, from: "amity", to: "all", text: `Dropped ${str(data.pairId).replace(":", " with ")}.` }
+			return { ...base, from: "amity", to: "all", act: "pair-dropped", artifact: "pair", id: str(data.pairId) }
 		case "orchestrator.decided":
-			return { ...base, from: "deneb", to: ["tinta"], text: `${str(data.companyId)}: write ${str(data.pairId).replace(":", " with ")}.` }
-		case "orchestrator.done": {
-			const proposals = list(data.proposals).length
-			return { ...base, from: "deneb", to: "all", text: `Done. ${proposals} proposals from ${num(data.pairs)} pairs.`, finale: true }
-		}
+			return { ...base, from: "deneb", to: ["tinta"], act: "decide", artifact: "pair", id: str(data.pairId) }
+		case "orchestrator.done":
+			return { ...base, from: "deneb", to: "all", act: "done", totals: { proposals: list(data.proposals).length, pairs: num(data.pairs) } }
 		case "task.failed":
-			return { ...base, from: faceOf(record.agent), to: ["deneb"], text: `${record.taskId ?? "A task"} failed.`, mood: { face: faceOf(record.agent), state: "reject" } }
+			return { ...base, from: faceOf(record.agent), to: ["deneb"], act: "fail", id: record.taskId }
 		default:
 			return null
 	}
@@ -150,27 +132,18 @@ export function useLines(feed: TraceRecord[]): Line[] {
 	return lines
 }
 
-/** The lines whose effect is still on screen at `clock`, newest last. Lines are in ms order. */
-export function recent(lines: Line[], clock: number, windowMs: number): Line[] {
-	const out: Line[] = []
-	for (let i = lines.length - 1; i >= 0 && clock - lines[i].ms <= windowMs; i--) if (lines[i].ms <= clock) out.unshift(lines[i])
-	return out
-}
-
 export interface Cast {
 	face: FaceId
 	total: number
 	working: number
+	/** From the run: working while any agent of the role is in a model call, done once the run has ended. */
 	state: FaceState
 }
 
-/**
- * Each face's state at `clock`. A fresh mood (a send-back, a pass) wins for a moment; then working while any agent of
- * the role is in a model call; then done once the run has ended; else idle. Deneb conducts while anyone works.
- */
-export function cast(view: RunView, lines: Line[], clock: number, ended: boolean, waitingOnYou: boolean): Map<FaceId, Cast> {
+/** Each face's base state at the playhead. Deneb conducts while anyone works. Reactions are the director's. */
+export function cast(view: RunView, finished: boolean, waitingOnYou: boolean): Map<FaceId, Cast> {
 	const out = new Map<FaceId, Cast>(ORDER.map((face) => [face, { face, total: 0, working: 0, state: "idle" }]))
-	for (const agent of view.agents.values() as Iterable<AgentView>) {
+	for (const agent of view.agents.values()) {
 		const face = ROLE_INFO[agent.role].face
 		const entry = face && out.get(face)
 		if (!entry || agent.leftMs != null) continue
@@ -178,19 +151,10 @@ export function cast(view: RunView, lines: Line[], clock: number, ended: boolean
 		if (agent.activity !== "idle") entry.working++
 	}
 	const busy = [...out.values()].some((entry) => entry.working > 0)
-	const moods = new Map<FaceId, FaceState>()
-	let finale = false
-	for (const line of recent(lines, clock, MOOD_MS)) {
-		if (line.mood) moods.set(line.mood.face, line.mood.state)
-		if (line.stamp && line.from === "fides") moods.set("fides", line.stamp.ok ? "done" : "reject")
-	}
-	for (const line of lines) if (line.finale && line.ms <= clock) finale = true
 	for (const entry of out.values()) {
-		const mood = moods.get(entry.face)
-		if (mood) entry.state = mood
-		else if (entry.working > 0 || (entry.face === "deneb" && busy && !finale)) entry.state = "working"
-		else if (entry.face === "you") entry.state = waitingOnYou ? "working" : finale || ended ? "done" : "idle"
-		else if (finale || ended) entry.state = "done"
+		if (entry.working > 0 || (entry.face === "deneb" && busy && !finished)) entry.state = "working"
+		else if (entry.face === "you") entry.state = waitingOnYou ? "working" : finished ? "done" : "idle"
+		else if (finished) entry.state = "done"
 	}
 	return out
 }
