@@ -35,11 +35,12 @@ export const REVIEW_SCHEMA: StructuredOutputFormat = {
 				items: {
 					type: "object",
 					additionalProperties: false,
-					required: ["claim", "supported", "reason"],
+					// The reason comes before the verdict, so the model weighs the text before it decides.
+					required: ["claim", "reason", "supported"],
 					properties: {
 						claim: { type: "integer", description: "The claim number." },
-						supported: { type: "boolean" },
-						reason: { type: "string" },
+						reason: { type: "string", description: "What the cited text says about the claim, in one sentence." },
+						supported: { type: "boolean", description: "True when the reason finds every fact of the claim in the cited text." },
 					},
 				},
 			},
