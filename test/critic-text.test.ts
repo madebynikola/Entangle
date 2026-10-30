@@ -2,9 +2,10 @@ import assert from "node:assert/strict"
 import { before, describe, test } from "node:test"
 import type { InferenceInput } from "@mozaik-ai/core"
 import { createCritic, type Critic } from "../src/agents/critic"
-import { freeTextOf, maskedText } from "../src/agents/critic/checks"
+import { freeSentences, maskedText, quotes } from "../src/agents/critic/checks"
 import { parseTextReview, textReviewMessage } from "../src/agents/critic/prompt"
 import { createWriter, replaceFreeText, type ProposalDraft, type Writer } from "../src/agents/writer"
+import { readJsonBlock } from "../src/agents/matchmaker/shared"
 import { MockInferenceRunner, join, lastUserText, startRuntime, state, whenSettled } from "../src/runtime"
 import { TRUE_CLAIMS, need, pair, profile, proposal, store } from "./critic-fixtures"
 
@@ -57,13 +58,16 @@ describe("free text of a proposal (no model)", () => {
 		assert.equal(replaceFreeText(d, "A sentence that is not there.", ""), false)
 	})
 
-	test("the free text leaves out the claims, so fixing a claim is not a change", () => {
-		const markdown = (claim: string) => `## Verified packet filtering\n\n### The problem\n${claim} [C001-CH1]\n\n### Approach\n- Write the rules down in Coq.\n\n### Sources\n- C001-CH1`
+	test("the free-text sentences leave out the claims, so fixing a claim changes none of them", () => {
+		const markdown = (claim: string) =>
+			`## Verified packet filtering\n\n### The problem\n${claim} [C001-CH1]\n\n### Approach\n- Write the rules down in Coq. Then prove the filter.\n\n` +
+			`| Months 1–3 | Port the filter rules to Coq. | A first proof of one rule. |\n\n### Sources\n- C001-CH1`
 		const before = proposal([TRUE_CLAIMS.firmware], markdown(TRUE_CLAIMS.firmware.text))
 		const fixed = proposal([{ ...TRUE_CLAIMS.firmware, text: "The company wants proofs." }], markdown("The company wants proofs."))
-		assert.equal(freeTextOf(before), freeTextOf(fixed))
-		assert.match(freeTextOf(before), /Write the rules down in Coq/)
-		assert.doesNotMatch(freeTextOf(before), /Sources|guarantees beyond testing/)
+		assert.deepEqual(freeSentences(before), freeSentences(fixed))
+		assert.deepEqual(freeSentences(before), ["Write the rules down in Coq.", "Then prove the filter.", "Port the filter rules to Coq.", "A first proof of one rule."])
+		assert.equal(quotes("then prove  the filter", "Then prove the filter."), true)
+		assert.equal(quotes("Port the filter rules to Coq.", "Then prove the filter."), false)
 	})
 
 	test("the answer becomes free-text rejects, one per sentence", () => {
@@ -90,20 +94,34 @@ describe("free text of a proposal (no model)", () => {
 describe("free-text check on the Mozaik runtime", () => {
 	/** The sentence the stand-in reviewer finds invented: the Writer's mock puts it in every approach. */
 	const INVENTED = "Build a baseline on the company's data and measure it."
+	/** What the stand-in Writer puts in its place. */
+	const REWRITE = "Collect a baseline sample from the company's bench in month 1 and measure it."
+	/** A sentence that passed the first check, which the stand-in reviewer flags on the second. */
+	const OLD = "Adapt the method to the company's constraints and compare."
 	const textReviews: string[] = []
 	let critic: Critic
 	let writer: Writer
 
 	before(() => {
-		// Stands in for the model on the free-text check: it flags INVENTED while the text has it.
+		// Stands in for the model on the free-text check: it flags INVENTED while the text has it, and on a re-check
+		// it also flags OLD, which passed before, as a model that changes its mind would.
 		const textReviewer = (input: InferenceInput) => {
 			if (input.structuredOutput?.name !== "critic_text_review") return undefined
 			const message = lastUserText(input)
 			textReviews.push(message)
-			const statements = message.includes(INVENTED) ? [{ quote: INVENTED, reason: "No claim says the company has a baseline dataset." }] : []
+			const statements = message.includes(INVENTED)
+				? [{ quote: INVENTED, reason: "No claim says the company has a baseline dataset." }]
+				: [{ quote: OLD, reason: "Changed its mind." }]
 			return JSON.stringify({ statements })
 		}
-		startRuntime({ runId: "critic-text-test", mock: true, runner: new MockInferenceRunner({ latencyMs: [10, 30], responders: [textReviewer] }) })
+		// Stands in for the Writer's fix: every rejected item is rewritten as REWRITE.
+		const fixer = (input: InferenceInput) => {
+			if (input.structuredOutput?.name !== "proposal_fix") return undefined
+			const data = readJsonBlock<{ rejected: unknown[] }>(lastUserText(input))
+			const fixes = (data?.rejected ?? []).map((_, index) => ({ index, action: "rewrite", text: REWRITE, sourceIds: [] }))
+			return JSON.stringify({ fixes })
+		}
+		startRuntime({ runId: "critic-text-test", mock: true, runner: new MockInferenceRunner({ latencyMs: [10, 30], responders: [textReviewer, fixer] }) })
 		critic = createCritic({ store, model: "claude-sonnet-4-6", dualReview: [] })
 		join(critic.agent)
 		writer = createWriter({ name: "writer-text", sources: store })
@@ -113,7 +131,7 @@ describe("free-text check on the Mozaik runtime", () => {
 		s.candidates.set("C001-CH1:R0001", pair([TRUE_CLAIMS.coq, TRUE_CLAIMS.firmware]))
 	})
 
-	test("an invented sentence goes back to the Writer, is removed, and the fixed proposal passes", async () => {
+	test("an invented sentence goes back to the Writer, is rewritten, and only the rewrite is checked again", async () => {
 		writer.write("C001-CH1:R0001")
 		await settle(critic)
 
@@ -125,10 +143,12 @@ describe("free-text check on the Mozaik runtime", () => {
 
 		const markdown = state().proposals.get(id)!.markdown
 		assert.doesNotMatch(markdown, /Build a baseline/)
+		assert.match(markdown, /Collect a baseline sample/)
 		assert.match(markdown, /Adapt the method to the company's constraints/)
 
-		// One free-text check per version of the free text; the claims passed in the first round.
+		// The second check lists only the rewritten sentence, and its flag on OLD, which passed before, is ignored.
 		assert.equal(textReviews.length, 2)
+		assert.match(textReviews[1], /Check only these new or changed ones:\n- Collect a baseline sample/)
 		const critiques = [...state().tasks.values()].filter((t) => t.kind === "critique" && t.subjectId === id)
 		assert.equal(critiques.length, 3, "claims and free text in round one, free text alone in round two")
 	})

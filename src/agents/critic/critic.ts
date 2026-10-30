@@ -36,7 +36,7 @@ import type {
 	SourceStore,
 } from "../../types"
 import { ROUTES } from "../../../config/models"
-import { checkByCode, claimsOf, freeTextOf, maskedText, readArtifact, removeArtifact, trimArtifact, type Artifact } from "./checks"
+import { checkByCode, claimsOf, freeSentences, maskedText, quotes, readArtifact, removeArtifact, trimArtifact, type Artifact } from "./checks"
 import { lexicalReview, strictReview } from "./mock"
 import {
 	CRITIC_INSTRUCTION,
@@ -127,8 +127,8 @@ interface Review {
 	sendBacks: number
 	/** Bumped on every post. A review that ends on an older version is stale. */
 	version: number
-	/** A proposal's free text as it last passed the free-text check; unchanged text is not checked again. */
-	checkedText?: string
+	/** A proposal's free-text sentences that passed the free-text check. Only new or changed ones are checked again. */
+	passedSentences?: Set<string>
 }
 
 interface Job {
@@ -284,9 +284,13 @@ export function createCritic(options: CriticOptions): Critic {
 			producerTaskId: review.producerTaskId,
 		}
 
-		// A proposal's free text gets its own check by the first reviewer, whenever it changed since it last passed.
-		const freeText = kind === "proposal" ? freeTextOf(artifact as Proposal) : undefined
-		const checkText = freeText !== undefined && freeText !== review.checkedText
+		// A proposal's free text gets its own check by the first reviewer: all of it first, then only the sentences that
+		// are new or changed, as for claims. A sentence that passed once is not judged again.
+		const sentences = kind === "proposal" ? freeSentences(artifact as Proposal) : []
+		const passed = review.passedSentences
+		const changed = passed ? sentences.filter((sentence) => !passed.has(sentence)) : sentences
+		const checkText = kind === "proposal" && changed.length > 0
+		let textFlags: RejectedClaim[] = []
 
 		let votes: Vote[] = []
 		let textVote: Vote | undefined
@@ -305,7 +309,7 @@ export function createCritic(options: CriticOptions): Critic {
 				? vote(
 						primary,
 						id,
-						textReviewMessage(id, code.subject, maskedText(artifact as Proposal), claimsOf(kind, artifact), code.sources),
+						textReviewMessage(id, code.subject, maskedText(artifact as Proposal), claimsOf(kind, artifact), code.sources, passed && changed),
 						{ claims: [], sources: code.sources, subjectLine: code.subject.line, text: true },
 						header,
 					)
@@ -323,7 +327,10 @@ export function createCritic(options: CriticOptions): Critic {
 				}
 			})
 			rejected.push(...mergeVotes(fresh, votes))
-			if (textVote) rejected.push(...textVote.rejected!)
+			if (textVote) {
+				textFlags = passed ? textVote.rejected!.filter((r) => changed.some((s) => quotes(r.claim.text, s))) : textVote.rejected!
+				rejected.push(...textFlags)
+			}
 		}
 
 		const ran = votes.length ? votes : textVote ? [textVote] : []
@@ -332,7 +339,7 @@ export function createCritic(options: CriticOptions): Critic {
 			emit(CRITIC_STALE, { taskId, kind, id, reason: "a newer version was posted during the review" })
 			return
 		}
-		if (textVote?.rejected?.length === 0) review.checkedText = freeText
+		if (textVote) review.passedSentences = new Set(sentences.filter((s) => !textFlags.some((r) => quotes(r.claim.text, s))))
 		const split = rejected.filter((r) => r.reviewers && r.reviewers.length < votes.length)
 		if (split.length) {
 			splits++

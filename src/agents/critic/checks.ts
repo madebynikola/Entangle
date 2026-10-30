@@ -124,11 +124,23 @@ export function maskedText(proposal: Proposal): string {
 	return text
 }
 
-/** A proposal's free text only, with every rendered claim cut out, so a fix to a claim does not count as a change. */
-export function freeTextOf(proposal: Proposal): string {
-	let text = proposalText(proposal)
-	for (const claim of proposal.claims ?? []) text = text.split(`${claim.text.trim()} [${claim.sourceIds.join(", ")}]`).join("")
-	return text.replace(/\s+/g, " ").trim()
+/**
+ * A proposal's free-text sentences, with the claims, Markdown marks and table bars cut out, so a fix to a claim
+ * changes none of them. Lines of fewer than four words (headings, labels) are left out.
+ */
+export function freeSentences(proposal: Proposal): string[] {
+	return maskedText(proposal)
+		.split(/\n+/)
+		.flatMap((line) => line.replace(/^\s*(#+|[-*]|\d+\.)\s+/, "").split(/\s*\|\s*|(?<=[.!?])\s+(?=[A-Z"“(])/))
+		.map((sentence) => sentence.replace(/⟨claim \d+⟩|\*\*/g, "").replace(/\s+/g, " ").trim())
+		.filter((sentence) => sentence.split(" ").length >= 4)
+}
+
+/** Whether a quoted sentence is (part of) this sentence, ignoring case, spaces, quote marks and claim markers. */
+export function quotes(quote: string, sentence: string): boolean {
+	const plain = (text: string) => text.replace(/⟨claim \d+⟩|["“”'‘’*]/g, "").replace(/\s+/g, " ").trim().toLowerCase()
+	const [q, s] = [plain(quote), plain(sentence)]
+	return q.length > 0 && (s.includes(q.slice(0, 60)) || q.includes(s.slice(0, 60)))
 }
 
 /**

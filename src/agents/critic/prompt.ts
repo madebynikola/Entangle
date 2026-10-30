@@ -147,8 +147,13 @@ export function textReviewMessage(
 	text: string,
 	claims: Claim[],
 	sources: Map<string, SourceRecord>,
+	/** On a re-check: the sentences that are new or changed since the last one. Only these are checked. */
+	changed?: string[],
 	totalChars = TOTAL_CHARS,
 ): string {
+	const recheck = changed
+		? ["", "The other sentences passed an earlier check. Check only these new or changed ones:", ...changed.map((s) => `- ${s}`)]
+		: []
 	return [
 		`Review the free text of proposal ${id}.`,
 		`It is about: ${subject.line}.`,
@@ -160,6 +165,7 @@ export function textReviewMessage(
 		"",
 		"Proposal:",
 		text,
+		...recheck,
 		"",
 		"Sources:",
 		sourceBlocks(sources, totalChars),
