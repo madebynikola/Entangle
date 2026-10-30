@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/entangle-lockup-animated-dark.svg">
+    <img src="docs/brand/entangle-lockup-animated-light.svg" alt="Entangle" width="360">
+  </picture>
+</p>
+
 # Entangle: the EINSTEIN matchmaker
 
 **See it with no install:** [madebynikola.github.io/Entangle](https://madebynikola.github.io/Entangle/) opens the web app on the
@@ -9,6 +16,15 @@ an industrial PhD topic or a one-page joint project for each chosen pair. A Crit
 and a person approves each pair before anyone is contacted.
 
 Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Novi Sad, 30–31 October 2026.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/entangle-stage-dark.gif">
+    <img src="docs/brand/entangle-stage-light.gif" alt="The Stage tab replaying the reference run: the role faces sit round the event bus, each event travels from its speaker through the bus, and the Critic's verdicts land on the work it checked. The run ends with three proposals for a person to approve." width="760">
+  </picture>
+</p>
+
+<sub>The Stage tab replaying the reference run (<code>out/golden/</code>) in real time: its first half minute, then its last. Each face is a role, each bubble an event on the Mozaik bus.</sub>
 
 ![The Timeline of a real run: one row per agent, one bar per model call. Overlapping bars are agents working at the same time.](docs/screenshots/timeline.png)
 
@@ -94,7 +110,7 @@ about $20 at API prices. It reached the default $20 budget during the last propo
 
 ## Architecture
 
-![Architecture: an Orchestrator, Industry Analysts, Research Profilers, a Matchmaker and Proposal Writers share one blackboard; a Critic reviews every artifact and sends rejected claims back](docs/architecture.svg)
+![Architecture: an Orchestrator, Industry Analysts, Research Profilers, a Matchmaker and Proposal Writers share one blackboard; a Critic reviews every artifact and sends rejected claims back; a Funding Scout finds EU calls and projects for each chosen pair](docs/brand/architecture.svg)
 
 Every box with a dot is a Mozaik participant in one runtime (`@mozaik-ai/core` 4.1.0). Agents never call each other.
 They read and write one shared blackboard and talk through events on one bus, where every participant sees every event.
@@ -109,6 +125,20 @@ They read and write one shared blackboard and talk through events on one bus, wh
 | Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records, and recent OpenAlex works on the need (with `OPENALEX_API_KEY`) | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, prior work, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |
 | Critic, Critic 2 | 2 | Sonnet 4.6, Haiku 4.5 | Every artifact the moment it is posted | Verdicts; rejected claims sent back to their producer |
 | Funding Scout | 1 | Haiku 4.5 | Each chosen pair, while its Writer writes, the [EU Funding & Tenders](https://ec.europa.eu/info/funding-tenders/opportunities/portal/) portal and [CORDIS](https://cordis.europa.eu/projects) | Up to 3 open or upcoming EU calls that fit the pair, each with why and what to check first, or "no call fits" with the reason; up to 3 EU projects on the same problem, with their coordinator and any partner from Serbia |
+
+<table align="center">
+  <tr>
+    <td align="center"><img src="design/agents/deneb.svg" width="56" alt=""><br><b>Deneb</b><br><sub>Orchestrator</sub></td>
+    <td align="center"><img src="design/agents/spica.svg" width="56" alt=""><br><b>Spica</b><br><sub>Industry Analyst</sub></td>
+    <td align="center"><img src="design/agents/tycho.svg" width="56" alt=""><br><b>Tycho</b><br><sub>Research Profiler</sub></td>
+    <td align="center"><img src="design/agents/amity.svg" width="56" alt=""><br><b>Amity</b><br><sub>Matchmaker</sub></td>
+    <td align="center"><img src="design/agents/tinta.svg" width="56" alt=""><br><b>Tinta</b><br><sub>Proposal Writer</sub></td>
+    <td align="center"><img src="design/agents/fides.svg" width="56" alt=""><br><b>Fides</b><br><sub>Critic</sub></td>
+    <td align="center"><img src="design/agents/you.svg" width="56" alt=""><br><b>You</b><br><sub>Human approver</sub></td>
+  </tr>
+</table>
+
+<p align="center"><sub>The faces the web app gives each role, from the brand kit in <a href="design/"><code>design/</code></a>.</sub></p>
 
 ### Work starts when its input exists, not in stages
 
