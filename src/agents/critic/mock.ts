@@ -1,6 +1,6 @@
 import type { Claim, SourceRecord } from "../../types"
 import type { ReviewCheck } from "./prompt"
-import { fold } from "./text"
+import { IDS_IN_TEXT, fold } from "./text"
 
 const STOP_WORDS = new Set(
 	`about above after also among and are based been being both but can could does each from has have having her his
@@ -51,9 +51,6 @@ export function lexicalReview(
 	})
 }
 
-/** Dataset ids and page paths, whose digits are not numbers a claim states. */
-const IDS = /\b(?:R\d{4}|C\d{3}(?:-CH\d+)?|SYN-(?:PUB|PRJ|PAT)-\d+)\b|\bC\d{3}\/\S+/g
-
 /**
  * The second reviewer's stand-in for mock runs, stricter than lexicalReview the way another model would be:
  * it wants 80% of the claim's words in the cited records, not 60%, and every number in the claim (a year,
@@ -69,7 +66,7 @@ export function strictReview(claims: Claim[], sources: Map<string, SourceRecord>
 			return record ? [`${record.title} ${record.year ?? ""} ${record.text}`] : []
 		})
 		const text = [...cited, subjectLine].join(" ")
-		const numbers = claim.text.replace(IDS, " ").match(/\b\d+(?:[.,]\d+)?\b/g) ?? []
+		const numbers = claim.text.replace(IDS_IN_TEXT, " ").match(/\b\d+(?:[.,]\d+)?\b/g) ?? []
 		const missing = [...new Set(numbers)].filter((n) => !text.includes(n))
 		if (!missing.length) return check
 		const verb = claim.sourceIds.length > 1 ? "do" : "does"

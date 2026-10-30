@@ -10,6 +10,7 @@ import {
 	CRITIC_SENT_BACK,
 	CRITIC_TRIMMED,
 	CRITIC_VERDICT,
+	FakeSourceStore,
 	SentBackToMe,
 	checkByCode,
 	createCritic,
@@ -24,7 +25,7 @@ import { createTraceObserver, type TraceObserver } from "../src/trace"
 import { trimArtifact } from "../src/agents/critic/checks"
 import { reviewMessage } from "../src/agents/critic/prompt"
 import type { ArtifactKind, Claim, CriticVerdict, SentBack, SourceRecord, TraceRecord } from "../src/types"
-import { FAKE_CLAIMS, TRUE_CLAIMS, need, pair, profile, proposal, store } from "./critic-fixtures"
+import { FAKE_CLAIMS, RECORDS, TRUE_CLAIMS, need, pair, profile, proposal, store } from "./critic-fixtures"
 
 // Run: npx tsx --test test/critic.test.ts
 
@@ -101,6 +102,36 @@ describe("code checks (no model)", () => {
 			result.rejected.map((r) => [r.claim.sourceIds[0], r.check]),
 			[["SYN-PUB-77777", "unknown-source"]],
 		)
+	})
+
+	test("reject a name or number that only a record the claim does not cite holds", () => {
+		const page = (id: string, text: string): SourceRecord => ({ id, kind: "page", title: "ArmaturaSec", text, researcherIds: [], companyId: "C001", year: 2024 })
+		const bench = page("C001/blog/2024-05-20/Bench", "Every build runs for 72 hours on the bench against six PLC models.")
+		const job = page("C001/job/2024-06-01/Test Engineer", "You will test our firmware on programmable logic controllers from several vendors.")
+		const pages = new FakeSourceStore([...RECORDS, bench, job])
+		const claim = (text: string, id = "C001-CH1"): Claim => ({ text, sourceIds: [id] })
+		const yocto = claim("The NetGuard-OT packet filter runs on a custom Yocto build.")
+		const hours = claim("The packet filter firmware is tested for 72 hours on a hardware test bench.")
+		const fine = [
+			claim("Every build runs on the bench against six PLC models.", bench.id),
+			// "PLCs" is spelled out in the job page, although only the bench page writes "PLC".
+			claim("The company tests its firmware on PLCs from several vendors.", job.id),
+			// A clause on what is missing, the company's own name, and a name that no record holds (the model's part).
+			claim("The challenge does not say whether the firmware runs on Yocto."),
+			claim("ArmaturaSec needs stronger guarantees than testing."),
+			claim("The filter must run on Siemens hardware."),
+		]
+
+		const result = checkByCode("need", need({ assets: [yocto, hours, ...fine] }), s, pages)
+		assert.deepEqual(checksByText(result.rejected), { [yocto.text]: "uncited-detail", [hours.text]: "uncited-detail" })
+		assert.deepEqual(
+			result.rejected.map((r) => r.reason),
+			[
+				`"Yocto" is not in C001-CH1 but is in C001, which the claim does not cite.`,
+				`"72 hours" is not in C001-CH1 but is in ${bench.id}, which the claim does not cite.`,
+			],
+		)
+		assert.deepEqual(result.passed, [TRUE_CLAIMS.firmware, ...fine])
 	})
 })
 

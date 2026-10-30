@@ -174,8 +174,9 @@ class WhenArtifactPosted extends SituationSpecification {
 
 /**
  * The Critic: reviews every artifact as soon as a producer posts it, in parallel with the rest of the team.
- * Per claim it checks by code that every source id exists and belongs to the artifact's researcher or company,
- * then asks the model whether the source text supports the claim. On a reject it writes a CriticVerdict and
+ * Per claim it checks by code that every source id exists and belongs to the artifact's researcher or company, and
+ * that no name or number comes from a record of the artifact the claim does not cite, then asks the model whether
+ * the source text supports the claim. On a reject it writes a CriticVerdict and
  * sends the artifact back to its producer as a new task; after `maxAttempts` send-backs it drops the artifact.
  *
  * For the kinds in `dualReview` (proposals by default) a second reviewer runs the same model check at the
