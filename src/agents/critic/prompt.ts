@@ -27,8 +27,10 @@ A claim is not supported when:
   published by other people, outside the dataset: a claim that cites it may state only what that work reports.
 
 Read every qualifier as a fact: "paid", "licensed", "all", "unsupervised", "real-world", "led", "data partner" each must be
-in the cited text. A claim about what the pair could do together is supported when the skills and needs it rests on are in
-the cited text, and it cites records of both sides.
+in the cited text. A claim about what the pair could do together ("X and the company would build ...") is a proposal: the
+planned work (design, build, validate, measure, a pilot) is not a fact to find in the text. It is supported when the
+company's need and every fact it gives about either side (data, numbers, tools, people, the researcher's methods) are in
+the cited text.
 Judge only what a claim states. A claim may leave out details of the text (a date, a count, a side remark) and still be
 supported: reject what it adds or changes, never what it omits. If the text states the claim, mark it supported.
 Answer for every claim, by its number. Keep each reason to one sentence and name the source id it rests on.`

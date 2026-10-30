@@ -21,7 +21,7 @@ Return up to 3 pairs, best fit first, only those with real evidence (fit 0.5 or 
 
 Claims:
 - Every claim is one short factual sentence with the ids that support it. Use only ids that appear in the input: the challenge id, the company id, the researcher id, and the publication, project and patent ids in the profiles. Never invent an id, a paper, a skill or a number.
-- "problem" cites the challenge id. Each pair needs two to four "why" claims: at least one on the company side (challenge or company id) and one on the researcher side (publication, project or patent ids). Cite the works that meet the core difficulty, not every work on the topic.
+- "problem" is one sentence on what the two would do together. It cites the challenge id, and the researcher's record ids if it names their methods. It adds no fact about either side: no data property, tool or number the records do not give. Each pair needs two to four "why" claims: at least one on the company side (challenge or company id) and one on the researcher side (publication, project or patent ids). Cite the works that meet the core difficulty, not every work on the topic.
 - Write in plain English, short sentences.
 
 ${CLAIM_RULES}`
