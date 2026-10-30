@@ -12,82 +12,84 @@
 
 :root {
 	/* Surfaces, from back to front */
-	--canvas: #f4f4f4; /* the window: the sidebar sits on it */
+	--canvas: #f5f5f7; /* the window (kit: Mist): the sidebar sits on it */
 	--panel: #ffffff; /* the inset panel, cards, tables */
-	--sunken: #f4f4f5; /* wells inside a card: chart backgrounds, code */
+	--sunken: #f5f5f7; /* wells inside a card: chart backgrounds, code */
 	--card: #ffffff;
-	--hover: #0000000a;
-	--selected: #0000000f;
+	--hover: #1d1d1f0a;
+	--selected: #1d1d1f0f;
 
 	/* Lines */
-	--hairline: #ebebeb;
-	--strong: #d4d4d4;
+	--hairline: #e8e8ed;
+	--strong: #d2d2d7;
 
 	/* Text */
-	--ink: #171717;
-	--muted: #666666;
-	--subtle: #8f8f8f;
+	--ink: #1d1d1f;
+	--muted: #6e6e73;
+	--subtle: #86868b;
 
-	/* Primary actions are ink on paper; links and focus are blue */
-	--primary: #171717;
-	--primary-soft: #1717170d;
+	/* Primary actions are ink on paper; links, focus and accents are the logo's indigo */
+	--primary: #1d1d1f;
+	--primary-soft: #1d1d1f0d;
 	--on-primary: #ffffff;
-	--link: #0068d6;
+	--link: #4c5bd4;
 
-	/* Status: a dot plus text in the same colour */
-	--working: #16a34a;
-	--needs: #d97706; /* needs you, sent back */
-	--info: #0068d6;
-	--idle: #a3a3a3;
-	--failed: #dc2626;
+	/* Status: a dot plus text in the same colour (the kit's Critic verdicts: accepted, revise, rejected) */
+	--working: #1d8557;
+	--needs: #a86500; /* needs you, sent back */
+	--info: #4c5bd4;
+	--idle: #aeaeb2;
+	--failed: #c8463d;
 
-	/* Agent roles: one colour each, used in timelines and as small squares */
-	--role-orchestrator: #737373;
-	--role-analyst: #d97706;
-	--role-profiler: #0d9488;
-	--role-matchmaker: #c026d3;
-	--role-writer: #2563eb;
-	--role-critic: #e11d48;
-	--role-other: #a3a3a3;
+	/* Agent roles: each agent's face colour. Deneb (orchestrator) is ink, Spica (analyst) amber, Tycho (profiler)
+	   indigo, Amity (matchmaker) violet, Tinta (writer) teal, Fides (critic) red. */
+	--role-orchestrator: #1d1d1f;
+	--role-analyst: #a46719;
+	--role-profiler: #4c5bd4;
+	--role-matchmaker: #8447c2;
+	--role-writer: #13807a;
+	--role-critic: #c8463d;
+	--role-other: #aeaeb2;
 
 	/* Floating layers only: menus, the palette, toasts, the replay bar */
-	--float-shadow: 0 0 0 1px #00000014, 0 4px 8px -2px #0000000f, 0 16px 32px -8px #0000001a;
-	--card-shadow: 0 1px 2px #0000000a;
+	--float-shadow: 0 0 0 1px #1d1d1f14, 0 4px 8px -2px #1d1d1f0f, 0 16px 32px -8px #1d1d1f1a;
+	--card-shadow: 0 1px 2px #1d1d1f0a;
 }
 
+/* Dark: the kit's Night. Colours are lighter steps of the same hues, each 4.5:1 or more on the panel. */
 .dark {
-	--canvas: #000000;
-	--panel: #0a0a0a;
-	--sunken: #141414;
-	--card: #0a0a0a;
+	--canvas: #0b0b0c;
+	--panel: #111113;
+	--sunken: #1c1c1f;
+	--card: #111113;
 	--hover: #ffffff0f;
 	--selected: #ffffff17;
 
-	--hairline: #232323;
-	--strong: #3a3a3a;
+	--hairline: #2c2c30;
+	--strong: #3a3a3c;
 
-	--ink: #ededed;
-	--muted: #a1a1a1;
-	--subtle: #707070;
+	--ink: #f5f5f7;
+	--muted: #a1a1a6;
+	--subtle: #7c7c82;
 
-	--primary: #ededed;
-	--primary-soft: #ededed14;
-	--on-primary: #0a0a0a;
-	--link: #52a8ff;
+	--primary: #f5f5f7;
+	--primary-soft: #f5f5f714;
+	--on-primary: #111113;
+	--link: #8b97f2;
 
-	--working: #3dd68c;
-	--needs: #f5a524;
-	--info: #52a8ff;
-	--idle: #5c5c5c;
-	--failed: #ff6166;
+	--working: #4cc38a;
+	--needs: #e7a33e;
+	--info: #8b97f2;
+	--idle: #5c5c60;
+	--failed: #f07a70;
 
-	--role-orchestrator: #a3a3a3;
-	--role-analyst: #f5a524;
-	--role-profiler: #2dd4bf;
-	--role-matchmaker: #e879f9;
-	--role-writer: #60a5fa;
-	--role-critic: #fb7185;
-	--role-other: #707070;
+	--role-orchestrator: #a1a1a6;
+	--role-analyst: #d9954a;
+	--role-profiler: #8b97f2;
+	--role-matchmaker: #b48ae8;
+	--role-writer: #3cbfb4;
+	--role-critic: #f07a70;
+	--role-other: #5c5c60;
 
 	--float-shadow: 0 0 0 1px #ffffff1a, 0 16px 40px -8px #000000cc;
 	--card-shadow: none;
