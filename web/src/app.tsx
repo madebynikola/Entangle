@@ -39,7 +39,7 @@ export const router = createHashRouter([
 function NotFound() {
 	return (
 		<EmptyState
-			className="min-h-dvh"
+			className="h-full"
 			icon={<Compass />}
 			title="There is nothing at this address"
 			action={

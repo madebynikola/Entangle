@@ -6,6 +6,7 @@ import {
 	LayoutDashboard,
 	ListChecks,
 	Moon,
+	PanelLeft,
 	Pause,
 	Play,
 	Radio,
@@ -24,6 +25,7 @@ import { StatusDot } from "@/components/ui/status"
 import { toast } from "@/components/ui/toaster"
 import * as format from "@/lib/format"
 import { useBackend, useRuns, useRunStore } from "@/run/hooks"
+import { useSidebar } from "./sidebar"
 import { openSource } from "./source"
 import { useTheme } from "./theme"
 import { runGroup, runLabel } from "./run-label"
@@ -219,6 +221,11 @@ export function CommandPalette() {
 						</CommandGroup>
 
 						<CommandGroup heading="Appearance">
+							<CommandItem value="sidebar show hide toggle" onSelect={run(() => useSidebar.getState().toggle())}>
+								<PanelLeft />
+								Show or hide the sidebar
+								<CommandShortcut>⌘B</CommandShortcut>
+							</CommandItem>
 							<CommandItem value="theme light" onSelect={run(() => theme.setTheme("light"))}>
 								<Sun />
 								Light theme
