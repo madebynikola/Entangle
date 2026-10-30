@@ -1,0 +1,33 @@
+/* The Stage's own motion, from design/agents/simulation.html. The faces have no mouths, so a face that talks bobs its eyes. */
+.face-talk .eyes {
+	animation: stage-talk 0.24s ease-in-out infinite alternate !important;
+}
+@keyframes stage-talk {
+	from {
+		transform: translateY(0) scaleY(1);
+	}
+	to {
+		transform: translateY(-1.6px) scaleY(0.9);
+	}
+}
+.stage-dot {
+	animation: stage-dot 1s infinite;
+}
+@keyframes stage-dot {
+	0%,
+	60%,
+	100% {
+		opacity: 0.3;
+		transform: translateY(0);
+	}
+	30% {
+		opacity: 1;
+		transform: translateY(-2px);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.face-talk .eyes,
+	.stage-dot {
+		animation: none !important;
+	}
+}

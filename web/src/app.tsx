@@ -28,6 +28,7 @@ export const router = createHashRouter([
 					{ path: "overview", lazy: async () => ({ Component: (await import("@/screens/overview")).OverviewScreen }) },
 					// Loaded on first visit, so each screen's weight stays out of the first page load.
 					{ path: "live/*", lazy: async () => ({ Component: (await import("@/screens/live")).LiveScreen }) },
+					{ path: "stage", lazy: async () => ({ Component: (await import("@/screens/stage")).StageScreen }) },
 					{ path: "results/*", lazy: async () => ({ Component: (await import("@/screens/results")).ResultsScreen }) },
 				],
 			},
