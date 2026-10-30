@@ -16,6 +16,8 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p web"
   },
   "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
     "@hono/node-server": "2.1.5",
     "@mozaik-ai/core": "4.1.0",
     "class-variance-authority": "0.7.1",

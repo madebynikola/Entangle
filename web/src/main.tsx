@@ -3,6 +3,8 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { RouterProvider } from "react-router"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import "@fontsource-variable/geist"
+import "@fontsource-variable/geist-mono"
 import { router } from "./app"
 import "./styles.css"
 
