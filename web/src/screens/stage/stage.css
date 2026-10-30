@@ -1,3 +1,12 @@
+/* The Stage's canvas. --stage-bg is also the ring that cuts a verdict badge out of the face behind it. */
+.stage-canvas {
+	--stage-bg: var(--sunken);
+	background: var(--stage-bg);
+}
+.dark .stage-canvas {
+	--stage-bg: color-mix(in oklab, var(--sunken) 50%, var(--panel));
+}
+
 /* The Stage's own motion, from design/agents/simulation.html. The faces have no mouths, so a face that talks bobs its eyes. */
 .face-talk .eyes {
 	animation: stage-talk 0.24s ease-in-out infinite alternate !important;

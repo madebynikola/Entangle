@@ -1,4 +1,4 @@
-import { List as ListIcon, X } from "lucide-react"
+import { Check, List as ListIcon, Undo2, X } from "lucide-react"
 import { AnimatePresence, motion, useAnimate, useReducedMotion } from "motion/react"
 import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from "react"
 import { useShallow } from "zustand/react/shallow"
@@ -20,7 +20,8 @@ import { namesOf, sayOne, VERB, type Names } from "./words"
  * /runs/:runId/stage: the run as a conversation. The seven faces from the brand kit sit round the event bus, which is
  * the Entangle mark. The run clock says what has happened; the director (director.ts) paces it into beats at a human
  * speed. Each beat travels from its speaker along a curved wire into the bus (the indigo tile hops one slot) and out
- * to everyone; the speaker says it in a bubble, the Critic stamps what it checks, and the faces nod, flinch and cheer.
+ * to everyone; the speaker says it in a bubble, the Critic's verdict lands as a badge on the face whose work it checked,
+ * and the faces nod, flinch and cheer.
  */
 
 /** Each face's role, for its label. You is the person who approves pairs. */
@@ -100,7 +101,7 @@ export function StageScreen() {
 	const logTop = float.headRight + GAP + LOG_WIDTH + GAP <= size.width ? GAP : top
 
 	return (
-		<div ref={ref} className="relative h-full overflow-hidden bg-sunken dark:bg-[color-mix(in_oklab,var(--sunken)_50%,var(--panel))]">
+		<div ref={ref} className="stage-canvas relative h-full overflow-hidden">
 			<div
 				aria-hidden
 				className="absolute inset-0 opacity-70 [background-image:radial-gradient(var(--strong)_1px,transparent_1.2px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]"
@@ -247,18 +248,11 @@ function Arena({ size, faces, beats, waiting, safe }: { size: Size; faces: Map<F
 								place={PLACE[face]}
 								shift={Math.min(Math.max(x, safe.left + BUBBLE_HALF), safe.left + width - BUBBLE_HALF) - x}
 								waiting={face === "you" ? waiting : 0}
+								verdict={verdictOf(face, beats)}
 								glide={glide}
 							/>
 						)
 					})}
-					<AnimatePresence>
-						{beats
-							.filter((beat) => beat.stamp)
-							.slice(-2)
-							.map((beat) => (
-								<Stamp key={beat.id} ok={beat.stamp!.ok} x={seats[beat.stamp!.on][0]} y={seats[beat.stamp!.on][1]} />
-							))}
-					</AnimatePresence>
 				</>
 			)}
 		</div>
@@ -276,6 +270,14 @@ function moodOf(face: FaceId, beats: Beat[], now: number): FaceState | null {
 	}
 	return null
 }
+
+/** The Critic's latest verdict on this face's work, while its beat is on stage. */
+function verdictOf(face: FaceId, beats: Beat[]): Verdict | null {
+	const beat = beats.findLast((candidate) => candidate.stamp?.on === face)
+	return beat ? { id: beat.id, ok: beat.stamp!.ok } : null
+}
+
+type Verdict = { id: number; ok: boolean }
 
 type Kick = { id: number; type: "nod" | "flinch" | "squash"; delay: number }
 
@@ -494,6 +496,7 @@ function Seat({
 	place,
 	shift,
 	waiting,
+	verdict,
 	glide,
 }: {
 	face: FaceId
@@ -510,6 +513,8 @@ function Seat({
 	/** Moves the bubble sideways (px) so the stage edge does not cut it. */
 	shift: number
 	waiting: number
+	/** The Critic's verdict on this face's work: a badge on its shoulder and the word under its role. */
+	verdict: Verdict | null
 	/** Slide to a new seat instead of jumping. */
 	glide: boolean
 }) {
@@ -545,7 +550,24 @@ function Seat({
 					/>
 				</div>
 				<AnimatePresence>
-					{state === "working" && face !== "you" && face !== "deneb" && (
+					{verdict && (
+						<motion.span
+							key={verdict.id}
+							aria-hidden
+							className={cn(
+								"absolute -right-1 -top-1 z-10 grid size-6 place-items-center rounded-full text-white shadow-[0_0_0_3px_var(--stage-bg)] [&_svg]:size-3.5",
+								verdict.ok ? "bg-working" : "bg-needs",
+							)}
+							initial={{ opacity: 0, scale: 0.4 }}
+							animate={{ opacity: 1, scale: 1, transition: { ...SPRING, stiffness: 520, damping: 18, delay: STAMP_AT / 1000 } }}
+							exit={{ opacity: 0, scale: 0.6, transition: { duration: 0.25 } }}
+						>
+							{verdict.ok ? <Check strokeWidth={3} /> : <Undo2 strokeWidth={2.6} />}
+						</motion.span>
+					)}
+				</AnimatePresence>
+				<AnimatePresence>
+					{state === "working" && !verdict && face !== "you" && face !== "deneb" && (
 						<motion.span
 							className="absolute -right-2 top-0 flex gap-[3px] rounded-full bg-panel px-1.5 py-1 shadow-[0_0_0_1px_var(--hairline)]"
 							initial={{ opacity: 0, scale: 0.6 }}
@@ -566,7 +588,28 @@ function Seat({
 				{count && <span className="tabular text-xs text-ink-subtle">{count}</span>}
 			</div>
 			<span className="text-2xs text-ink-muted">{label}</span>
-			{(working || waiting > 0) && <span className="tabular text-2xs text-working">{waiting > 0 ? `${waiting} to approve` : working}</span>}
+			{/* One line that is always there, so a verdict or a count never shifts the face. */}
+			<span className="relative h-3.5 text-2xs leading-3.5">
+				<AnimatePresence mode="popLayout" initial={false}>
+					{verdict ? (
+						<motion.span
+							key={`v${verdict.id}`}
+							className={cn("block font-medium", verdict.ok ? "text-working" : "text-needs")}
+							initial={{ opacity: 0, y: -3 }}
+							animate={{ opacity: 1, y: 0, transition: { duration: 0.25, delay: STAMP_AT / 1000 } }}
+							exit={{ opacity: 0, transition: { duration: 0.2 } }}
+						>
+							{verdict.ok ? "Passed" : "Sent back"}
+						</motion.span>
+					) : (
+						(working || waiting > 0) && (
+							<motion.span key="count" className="tabular block text-working" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+								{waiting > 0 ? `${waiting} to approve` : working}
+							</motion.span>
+						)
+					)}
+				</AnimatePresence>
+			</span>
 		</div>
 	)
 }
@@ -621,24 +664,6 @@ function Ids({ text }: { text: string }) {
 				),
 			)}
 		</>
-	)
-}
-
-/** The Critic's verdict, slammed onto the face it judged: it drops in large, overshoots, settles, then fades. */
-function Stamp({ ok, x, y }: { ok: boolean; x: number; y: number }) {
-	return (
-		<motion.div
-			className={cn(
-				"pointer-events-none absolute z-20 rounded-md border-[2.5px] bg-panel/90 px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.08em]",
-				ok ? "border-working text-working" : "border-failed text-failed",
-			)}
-			style={{ left: x + 6, top: y - 50 }}
-			initial={{ opacity: 0, scale: 1.9, rotate: -16 }}
-			animate={{ opacity: 1, scale: 1, rotate: -10, transition: { type: "spring", stiffness: 560, damping: 16, delay: STAMP_AT / 1000 } }}
-			exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.35 } }}
-		>
-			{ok ? "Passed" : "Sent back"}
-		</motion.div>
 	)
 }
 
