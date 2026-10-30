@@ -233,8 +233,11 @@ const SUPPORTED =
 	"directly from, the text of the records it cites. Leaving out details of the text is fine."
 const NOT_SUPPORTED =
 	"The claim adds or changes a fact the cited text does not state (a paper, number, tie, stronger result, wider scope, " +
-	"other year or role), gives a record to a person it does not link, says two researchers worked together with no record " +
-	"linking both, gives a private reason for availability, or names someone who cannot lead as principal investigator."
+	"other year or role), widens a list or a count, merges two separate points of a record, takes a word from a record it " +
+	"does not cite, adds a judgement on how a record fits the other side (\"directly addresses the company's problem\", " +
+	"\"the core method the project needs\"), gives a record to a person it does not link, says two researchers worked " +
+	"together with no record linking both, gives a private reason for availability, or names someone who cannot lead as " +
+	"principal investigator."
 
 /**
  * The review as typed questions for a decision model (subq-snap, Jev): one yes/no question per claim, all against
