@@ -758,7 +758,7 @@
 						"C001-CH1"
 					],
 					"label": "uncited-detail",
-					"note": "\"Alerts\" is only in the uncited blog, and \"not a black-box score\" is in no record. CH1: a method \"we can explain to a plant manager\"."
+					"note": "CH1 asks for a method \"we can explain to a plant manager in plain language\". Explained alerts are the uncited blog's point (\"alerts that a plant operator can understand\"), and \"not a black-box score\" is in no record."
 				},
 				{
 					"n": 7,
