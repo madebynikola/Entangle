@@ -36,7 +36,8 @@ const FITS =
 	"methods it needs, so they could do research on it with the company."
 const NOT_FIT =
 	"The records share only broad words with the challenge (data, systems, optimisation, the sector's name), or work on " +
-	"another problem or field, so the researcher could not work on its core problem."
+	"another problem or field, so the researcher could not work on its core problem. Sharing only the application area is " +
+	"not a fit: a researcher of ECG signal quality does not fit a challenge about the battery budget of an ECG patch."
 
 /** What the model reads about one candidate: the topics of their records, not the full texts. */
 export interface ScreenCandidate {
