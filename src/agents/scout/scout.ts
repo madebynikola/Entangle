@@ -1,8 +1,9 @@
 import { readFileSync } from "node:fs"
 import { createAgent, type Agent } from "@mozaik-ai/core"
+import { createCordis, savedCordis, SAVED_PROJECTS, type Cordis } from "../../data/cordis"
 import { createEuCalls, savedEuCalls, SAVED_CALLS, type EuCalls } from "../../data/eucalls"
 import { budgetSpent, createTask, failTask, join, modelFor, runTask, state } from "../../runtime"
-import type { CompanyNeed, FundingCall, FundingFit, FundingMatch, PairCandidate, ResearcherProfile, Task } from "../../types"
+import type { CompanyNeed, EuProject, FundingCall, FundingFit, FundingMatch, PairCandidate, ProjectFit, ResearcherProfile, Task } from "../../types"
 import { EventOfType, emit, parseJson, registerMockResponder } from "../matchmaker/shared"
 import { scoutResponder } from "./mock"
 import { FUNDING_SCHEMA, QUERIES_SCHEMA, SCOUT_INSTRUCTION, queriesMessage, scoutInput, scoutMessage, type FundingAnswer, type QueriesInput, type ScoutInput } from "./prompt"
@@ -10,6 +11,8 @@ import { FUNDING_SCHEMA, QUERIES_SCHEMA, SCOUT_INSTRUCTION, queriesMessage, scou
 export interface ScoutOptions {
 	/** Default: the live portal, or the saved calls in a mock run (no network). */
 	calls?: EuCalls
+	/** Default: CORDIS, or the saved projects in a mock run. */
+	cordis?: Cordis
 	/** Default: the role's model from config/models.ts. */
 	model?: string
 	name?: string
@@ -19,6 +22,7 @@ export interface Scout {
 	agent: Agent
 	/** The portal client, so the run can save each call it cites. */
 	calls: EuCalls
+	cordis: Cordis
 	/** Start on a chosen pair: write the queries, search the portal, pick the calls. Returns the first task, or null. */
 	scout(pairId: string): Task | null
 	/** Every pair's answer so far. */
@@ -27,6 +31,8 @@ export interface Scout {
 
 /** Calls the Scout reads per pair: the portal's best matches with a deadline ahead. */
 const MAX_CALLS = 24
+/** CORDIS projects the Scout reads per pair. */
+const MAX_PROJECTS = 12
 const MAX_FITS = 3
 const MAX_QUERIES = 4
 
@@ -38,7 +44,7 @@ interface Subject {
 
 type Job =
 	| { type: "queries"; subject: Subject; input: QueriesInput }
-	| { type: "pick"; base: Omit<FundingMatch, "calls">; input: ScoutInput; calls: FundingCall[] }
+	| { type: "pick"; base: Omit<FundingMatch, "calls">; input: ScoutInput; calls: FundingCall[]; projects: EuProject[] }
 
 /**
  * Create the Funding Scout and join it. It reacts to `orchestrator.decided` by itself: when a company's pair goes
@@ -50,7 +56,9 @@ type Job =
 export function createScout(options: ScoutOptions = {}): Scout {
 	const jobs = new Map<string, Job>()
 	const started = new Set<string>()
-	const calls = options.calls ?? (state().mock ? savedEuCalls(JSON.parse(readFileSync(SAVED_CALLS, "utf8")) as FundingCall[]) : createEuCalls())
+	const saved = <T>(path: string) => JSON.parse(readFileSync(path, "utf8")) as T
+	const calls = options.calls ?? (state().mock ? savedEuCalls(saved<FundingCall[]>(SAVED_CALLS)) : createEuCalls())
+	const cordis = options.cordis ?? (state().mock ? savedCordis(saved<EuProject[]>(SAVED_PROJECTS)) : createCordis())
 	const agent = createAgent({
 		name: options.name ?? "scout",
 		capabilities: ["inference", "scout"],
@@ -102,8 +110,10 @@ export function createScout(options: ScoutOptions = {}): Scout {
 	async function search({ pair, need, researcher }: Subject, queries: string[]): Promise<void> {
 		const task = createTask("scout", agent, pair.id)
 		const terms = [...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 4)]
-		const found = await calls.search(terms, need.sector)
+		// CORDIS needs every word of a query in a project, so the short EU-vocabulary queries and two search terms.
+		const [found, related] = await Promise.all([calls.search(terms, need.sector), cordis.search([...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 2)])])
 		const list = found.calls.slice(0, MAX_CALLS)
+		const projects = related.projects.slice(0, MAX_PROJECTS)
 		const base: Omit<FundingMatch, "calls"> = {
 			pairId: pair.id,
 			challengeId: pair.challengeId,
@@ -111,15 +121,15 @@ export function createScout(options: ScoutOptions = {}): Scout {
 			researcherId: pair.researcherId,
 			queries: found.queries,
 			considered: list.length,
-			...(found.error ? { error: found.error } : {}),
+			...(found.error || related.error ? { error: [found.error, related.error].filter(Boolean).join("; ") } : {}),
 		}
-		emit(agent.getId(), "funding.searched", { taskId: task.id, pairId: pair.id, queries: found.queries, calls: list.length, error: found.error })
-		if (!list.length) {
+		emit(agent.getId(), "funding.searched", { taskId: task.id, pairId: pair.id, queries: found.queries, calls: list.length, projects: projects.length, error: base.error })
+		if (!list.length && !projects.length) {
 			post({ ...base, calls: [], noneReason: found.error ? "The EU portal did not answer." : "The EU portal has no open or upcoming call for these queries." })
 			failTask(task, found.error ?? "no open or upcoming EU call found")
 			return
 		}
-		run(task, { type: "pick", base, input: scoutInput(pair, need, researcher, list), calls: list })
+		run(task, { type: "pick", base, input: scoutInput(pair, need, researcher, list, projects), calls: list, projects })
 	}
 
 	function completed(taskId: string): void {
@@ -129,7 +139,7 @@ export function createScout(options: ScoutOptions = {}): Scout {
 		jobs.delete(taskId)
 		try {
 			if (job.type === "queries") void search(job.subject, queryList(parseJson<{ queries: string[] }>(task.output).queries))
-			else post({ ...job.base, taskId, ...fits(parseJson<FundingAnswer>(task.output), job.calls) })
+			else post({ ...job.base, taskId, ...fits(parseJson<FundingAnswer>(task.output), job.calls, job.projects) })
 		} catch (error) {
 			retryOrFail(task, job, error instanceof Error ? error.message : String(error))
 		}
@@ -152,11 +162,12 @@ export function createScout(options: ScoutOptions = {}): Scout {
 			taskId: match.taskId,
 			pairId: match.pairId,
 			calls: match.calls.map((fit) => fit.call.id),
+			projects: match.projects?.map((fit) => fit.project.id),
 			none: match.noneReason,
 		})
 	}
 
-	return { agent, calls, scout, results: () => [...state().funding.values()] }
+	return { agent, calls, cordis, scout, results: () => [...state().funding.values()] }
 }
 
 /** The model's queries, trimmed, without repeats, at most 4. A list with none is no answer. */
@@ -168,10 +179,10 @@ export function queryList(queries: unknown): string[] {
 }
 
 /**
- * The model's picks, checked by code: each call must be one the portal returned for this pair (so its title,
- * deadline and link are the portal's own, never the model's), at most once, and at most 3.
+ * The model's picks, checked by code: each call and project must be one the search returned for this pair (so its
+ * title, dates and link are the source's own, never the model's), at most once, and at most 3 of each.
  */
-export function fits(answer: FundingAnswer, calls: FundingCall[]): Pick<FundingMatch, "calls" | "noneReason"> {
+export function fits(answer: FundingAnswer, calls: FundingCall[], projects: EuProject[] = []): Pick<FundingMatch, "calls" | "noneReason" | "projects"> {
 	if (!answer || !Array.isArray(answer.calls)) throw new Error("calls is not a list")
 	const byId = new Map(calls.map((call) => [call.id, call]))
 	const picked: FundingFit[] = []
@@ -182,7 +193,18 @@ export function fits(answer: FundingAnswer, calls: FundingCall[]): Pick<FundingM
 		picked.push({ call, reason: reason.trim(), ...(check?.trim() ? { check: check.trim() } : {}) })
 		if (picked.length === MAX_FITS) break
 	}
-	if (picked.length) return { calls: picked }
-	if (answer.calls.length) throw new Error(`none of the picked calls is in the list: ${answer.calls.map((c) => c.callId).join(", ")}`)
-	return { calls: [], noneReason: answer.noneReason?.trim() || "No call in the list covers this problem." }
+	if (!picked.length && answer.calls.length) throw new Error(`none of the picked calls is in the list: ${answer.calls.map((c) => c.callId).join(", ")}`)
+
+	const projectById = new Map(projects.map((project) => [project.id, project]))
+	const related: ProjectFit[] = []
+	for (const { projectId, reason } of Array.isArray(answer.projects) ? answer.projects : []) {
+		const id = projectId?.trim().startsWith("CORDIS:") ? projectId.trim() : `CORDIS:${projectId?.trim()}`
+		const project = projectById.get(id)
+		if (!project || !reason?.trim() || related.some((fit) => fit.project.id === id)) continue
+		related.push({ project, reason: reason.trim() })
+		if (related.length === MAX_FITS) break
+	}
+	const withProjects = related.length ? { projects: related } : {}
+	if (picked.length) return { calls: picked, ...withProjects }
+	return { calls: [], noneReason: answer.noneReason?.trim() || "No call in the list covers this problem.", ...withProjects }
 }

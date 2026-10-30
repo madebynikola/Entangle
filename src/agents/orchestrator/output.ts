@@ -3,6 +3,7 @@ import { join } from "node:path"
 import { state } from "../../runtime"
 import type { RunResults } from "../../server/api"
 import { citedIds } from "../../server/runs"
+import { projectRecord } from "../../data/cordis"
 import { callRecord } from "../../data/eucalls"
 import type { Budget, SourceRecord, SourceStore, Task } from "../../types"
 import type { CriticStats } from "../critic"
@@ -65,8 +66,11 @@ export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, 
 		const record = store.get(id)
 		if (record) sources[id] = record
 	}
-	// The calls are not in any store: the portal's answer is their source.
-	for (const match of outcome.funding) for (const { call } of match.calls) sources[call.id] = callRecord(call)
+	// The calls and EU projects are not in any store: the portal's and CORDIS's answers are their source.
+	for (const match of outcome.funding) {
+		for (const { call } of match.calls) sources[call.id] = callRecord(call)
+		for (const { project } of match.projects ?? []) sources[project.id] = projectRecord(project)
+	}
 	save("sources.json", sources)
 
 	const tasks = [...s.tasks.values()]

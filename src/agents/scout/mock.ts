@@ -20,6 +20,7 @@ export function scoutResponder(): MockResponder {
 				check: call.status === "forthcoming" ? `Check the topic text when the call opens on ${call.opens ?? "its opening date"}.` : "Check the consortium rules on the call page.",
 			})),
 			noneReason: data.calls.length ? "" : "The portal returned no call for this problem.",
+			projects: data.projects.slice(0, 1).map((project) => ({ projectId: project.id, reason: `${project.acronym} works on a related problem.` })),
 		}
 		return JSON.stringify(answer)
 	}

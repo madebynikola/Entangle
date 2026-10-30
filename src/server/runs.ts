@@ -186,7 +186,10 @@ export function citedIds(results: RunResults): string[] {
 	}
 	for (const proposal of [...results.proposals, ...(results.needsHuman ?? [])]) claims(proposal.claims)
 	for (const verdict of results.verdicts) claims(verdict.rejected.map((r) => r.claim))
-	for (const match of results.funding ?? []) for (const { call } of match.calls) ids.add(call.id)
+	for (const match of results.funding ?? []) {
+		for (const { call } of match.calls) ids.add(call.id)
+		for (const { project } of match.projects ?? []) ids.add(project.id)
+	}
 	ids.delete("")
 	return [...ids].sort()
 }

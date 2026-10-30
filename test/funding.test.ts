@@ -3,8 +3,9 @@ import { readFileSync } from "node:fs"
 import { describe, test } from "node:test"
 import { fits, queryList } from "../src/agents/scout/scout"
 import { fundingMarkdown } from "../src/agents/scout/render"
+import { SAVED_PROJECTS, cordisQuery, createCordis, projectRecord, toProject } from "../src/data/cordis"
 import { SAVED_CALLS, callQueries, callRecord, createEuCalls, fuse, savedEuCalls, toCall } from "../src/data/eucalls"
-import type { FundingCall } from "../src/types"
+import type { EuProject, FundingCall } from "../src/types"
 
 // Run: npx tsx --test test/funding.test.ts
 
@@ -181,5 +182,101 @@ describe("the Funding Scout's answer", () => {
 	test("saved calls answer a mock search without the network", async () => {
 		const result = await savedEuCalls([call, other]).search(["photonics lasers"])
 		assert.equal(result.calls[0].id, call.id)
+	})
+})
+
+/** A CORDIS search hit (30 Oct 2026), trimmed. */
+const HIT = {
+	project: {
+		id: "101225910",
+		acronym: "RESCUE",
+		title: "Resilient Edge Systems for Critical infrastructure and Urban Environments",
+		teaser: "Critical infrastructures face cyber and physical threats.",
+		status: "SIGNED",
+		startDate: "2025-09-01",
+		endDate: "2028-08-31",
+		relations: {
+			associations: {
+				programme: [
+					{ "@attributes": { type: "relatedTopic" }, code: "HORIZON-CL3-2024-INFRA-01-03", frameworkProgramme: "HORIZON" },
+					{ "@attributes": { type: "relatedLegalBasis" }, code: "HORIZON.2.3.2", frameworkProgramme: "HORIZON" },
+				],
+				organization: [
+					{ "@attributes": { type: "coordinator" }, legalName: "RISE RESEARCH INSTITUTES OF SWEDEN AB", address: { country: "SE" } },
+					{ "@attributes": { type: "participant" }, legalName: "UNIVERZITET U NOVOM SADU", address: { country: "RS" } },
+				],
+			},
+		},
+	},
+}
+
+describe("EU projects from CORDIS", () => {
+	test("each word is its own required term, with the start date", () => {
+		assert.equal(
+			cordisQuery("Anomaly detection for 'OT' networks", "2019-01-01"),
+			"contenttype='project' AND 'anomaly' AND 'detection' AND 'networks' AND startDate>='2019-01-01'",
+		)
+		assert.equal(cordisQuery("AI", "2019-01-01"), undefined)
+	})
+
+	test("a hit becomes a project with organisations, never people", () => {
+		const project = toProject(HIT)!
+		assert.equal(project.id, "CORDIS:101225910")
+		assert.equal(project.programme, "Horizon Europe")
+		assert.equal(project.topic, "HORIZON-CL3-2024-INFRA-01-03")
+		assert.equal(project.status, "ongoing")
+		assert.deepEqual(project.coordinator, { name: "RISE RESEARCH INSTITUTES OF SWEDEN AB", country: "SE" })
+		assert.equal(project.organisations, 2)
+		assert.deepEqual(project.serbian, ["UNIVERZITET U NOVOM SADU"])
+		assert.equal(project.url, "https://cordis.europa.eu/project/id/101225910")
+		const record = projectRecord(project)
+		assert.equal(record.kind, "eu-project")
+		assert.match(record.text, /from Serbia: UNIVERZITET U NOVOM SADU/)
+	})
+
+	test("the client searches each term and keeps each project once", async () => {
+		const sent: string[] = []
+		const fetch = (async (url: string | URL | Request) => {
+			sent.push(decodeURIComponent(String(url).replace(/\+/g, " ")))
+			return new Response(JSON.stringify({ hits: { hit: HIT } }))
+		}) as typeof globalThis.fetch
+		const cordis = createCordis({ fetch })
+		const result = await cordis.search(["critical infrastructure resilience", "edge systems"])
+		assert.equal(sent.length, 2)
+		assert.match(sent[0], /'critical' AND 'infrastructure' AND 'resilience'/)
+		assert.deepEqual(result.projects.map((p) => p.acronym), ["RESCUE"])
+		assert.equal(cordis.projects.get("CORDIS:101225910")?.kind, "eu-project")
+	})
+
+	test("an empty answer and a failed request never throw", async () => {
+		const empty = (async () => new Response(JSON.stringify({ hits: "" }))) as typeof globalThis.fetch
+		assert.deepEqual((await createCordis({ fetch: empty }).search(["x ray"])).projects, [])
+		const down = (async () => new Response("", { status: 502 })) as typeof globalThis.fetch
+		assert.match((await createCordis({ fetch: down }).search(["x ray"])).error ?? "", /502/)
+	})
+
+	test("the saved projects are valid projects", () => {
+		const saved = JSON.parse(readFileSync(SAVED_PROJECTS, "utf8")) as EuProject[]
+		assert.ok(saved.length >= 10)
+		for (const project of saved) assert.ok(project.id.startsWith("CORDIS:") && project.title && project.url)
+	})
+
+	test("the Scout keeps only projects the search returned", () => {
+		const project = toProject(HIT)!
+		const call = toCall(TOPIC, TODAY)!
+		const picked = fits(
+			{
+				calls: [],
+				noneReason: "No call fits.",
+				projects: [
+					{ projectId: "101225910", reason: "Edge resilience for critical infrastructure." },
+					{ projectId: "CORDIS:999", reason: "Invented." },
+				],
+			},
+			[call],
+			[project],
+		)
+		assert.deepEqual(picked.projects?.map((fit) => fit.project), [project])
+		assert.equal(picked.noneReason, "No call fits.")
 	})
 })
