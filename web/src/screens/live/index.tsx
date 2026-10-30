@@ -17,7 +17,7 @@ import { sortAgents, type AgentView, type LoopView, type RunView } from "@/run/f
 import { runClock, useFullView, useResults, useRunClock, useRunStore, useRunView } from "@/run/hooks"
 import { Blackboard } from "./blackboard"
 import { AgentSheet, MomentDialog } from "./details"
-import { axisSpan, derive, FOLLOW_MS, nameLookup, pack, type Moment } from "./derive"
+import { axisSpan, derive, FOLLOW_MS, nameLookup, pack, type Moment, type Note } from "./derive"
 import { Lanes, MarkPin, type LaneAgent, type LaneStatus } from "./lanes"
 
 export function LiveScreen() {
@@ -47,6 +47,7 @@ export function LiveScreen() {
 	// derive() builds new moments on every fold: a lane's list counts as the same while its keys and actions are.
 	const momentsByAgent = useStableGroups(derived.moments, (m: Moment) => m.producerId, (a, b) => a.key === b.key && a.action === b.action)
 	const calls = useMemo(() => callsNow(view.loops, hasDispatch), [view.loops, hasDispatch])
+	const notesByAgent = useStableGroups(derived.notes, (n: Note) => n.agentId, (a, b) => a.key === b.key)
 	const span = useAxisSpan(duration, liveRun)
 	const canFollow = span > FOLLOW_MS * 1.5
 	const following = follow && canFollow
@@ -65,9 +66,10 @@ export function LiveScreen() {
 					track: pack?.track ?? NO_TRACKS,
 					tracks: pack?.tracks ?? 1,
 					moments: momentsByAgent.get(agent.id) ?? NONE,
+					notes: notesByAgent.get(agent.id) ?? NONE,
 				}
 			}),
-		[agents, loopsByAgent, view.agents, packing, derived.fixTasks, hasDispatch, momentsByAgent],
+		[agents, loopsByAgent, view.agents, packing, derived.fixTasks, hasDispatch, momentsByAgent, notesByAgent],
 	)
 	const selected = agentId ? lanes.find((lane) => lane.agent.id === agentId) : undefined
 	const openMoment = useCallback((m: Moment) => setMoment(m), [])
@@ -235,11 +237,15 @@ function Legend() {
 				<span className="size-1.5 rounded-full bg-panel ring-[1.5px] ring-ink-subtle" />
 				Tool call
 			</span>
+			<span className="inline-flex items-center gap-1.5">
+				<span className="h-2.5 w-0.5 rounded-full bg-ink-subtle" />
+				Event
+			</span>
 			<span className="inline-flex items-center gap-1.5 text-ink-subtle">
 				<MarkPin className="text-needs" />
 				Sent back by the Critic
 			</span>
-			<span className="ml-auto hidden sm:inline">Click a lane or a mark for details</span>
+			<span className="ml-auto hidden xl:inline">Click for details</span>
 		</div>
 	)
 }

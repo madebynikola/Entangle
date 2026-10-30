@@ -58,9 +58,19 @@ export interface Posting {
 	moment?: Moment
 }
 
+/** A step an agent took without a model call: the Orchestrator handing out work, a shortlist landing. */
+export interface Note {
+	/** Index in the feed. */
+	key: number
+	ms: number
+	agentId: string
+	text: string
+}
+
 export interface Derived {
 	postings: Posting[]
 	moments: Moment[]
+	notes: Note[]
 	/** Tasks that fix sent-back claims: their agents show "Fixing". */
 	fixTasks: Set<string>
 }
@@ -79,6 +89,7 @@ interface VerdictData {
 export function derive(feed: TraceRecord[]): Derived {
 	const postings: Posting[] = []
 	const moments: Moment[] = []
+	const notes: Note[] = []
 	const fixTasks = new Set<string>()
 	const latestPost = new Map<string, Posting>()
 	const latestMoment = new Map<string, Moment>()
@@ -89,6 +100,8 @@ export function derive(feed: TraceRecord[]): Derived {
 		const kind = String(data.kind ?? "")
 		const id = String(data.id ?? "")
 		const key = `${kind}:${id}`
+		const note = noteText(record.kind, data)
+		if (note) notes.push({ key: index, ms: record.ms, agentId: record.agentId, text: note })
 		switch (record.kind) {
 			case "artifact.posted": {
 				const previous = latestPost.get(key)
@@ -169,7 +182,25 @@ export function derive(feed: TraceRecord[]): Derived {
 			}
 		}
 	})
-	return { postings, moments, fixTasks }
+	return { postings, moments, notes, fixTasks }
+}
+
+function noteText(kind: string, data: Record<string, unknown>): string | undefined {
+	const count = (value: unknown) => (Array.isArray(value) ? value.length : 0)
+	switch (kind) {
+		case "orchestrator.plan":
+			return `Planned the run: ${count(data.companies)} companies, ${data.challenges ?? 0} challenges`
+		case "orchestrator.assigned":
+			return `Gave ${data.taskId} to ${data.assignee}`
+		case "orchestrator.decided":
+			return data.pairId ? `Chose pair ${data.pairId} for ${data.companyId}` : `Decided for ${data.companyId}`
+		case "orchestrator.done":
+			return "Assembled the result"
+		case "shortlist.ready":
+			return `Shortlisted ${count(data.researcherIds)} researchers for ${data.challengeId}`
+		default:
+			return undefined
+	}
 }
 
 const STATE: Record<MomentAction, ReviewState> = { "send-back": "sent-back", drop: "dropped", "human-review": "human-review" }

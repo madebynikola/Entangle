@@ -8,7 +8,7 @@ import { ROLE_INFO, roleColor, type RoleKey } from "@/lib/roles"
 import { cn } from "@/lib/utils"
 import type { AgentView, LoopView, RunView } from "@/run/fold"
 import { runClock, useRunStore } from "@/run/hooks"
-import { kindLabel, laneGeometry, tickStep, viewWindow, type Moment } from "./derive"
+import { kindLabel, laneGeometry, tickStep, viewWindow, type Moment, type Note } from "./derive"
 
 /**
  * The swimlanes: one lane per agent, grouped by role. A bar is one model call; a lane splits into tracks when
@@ -33,6 +33,7 @@ export interface LaneAgent {
 	track: Map<string, number>
 	tracks: number
 	moments: Moment[]
+	notes: Note[]
 }
 
 interface Group {
@@ -261,7 +262,7 @@ interface LaneProps {
  * its parts are memoized on what they show, and a re-render touches only the part that changed.
  */
 const Lane = memo(function Lane({ lane, span, worldWidth, dense, pulse, hasDispatch, flying, onAgent }: LaneProps) {
-	const { agent, now, status, loops, track, tracks, moments } = lane
+	const { agent, now, status, loops, track, tracks, moments, notes } = lane
 	const geometry = laneGeometry(tracks, dense)
 	const color = roleColor(agent.role)
 	const busy = status.tone !== "idle"
@@ -284,6 +285,7 @@ const Lane = memo(function Lane({ lane, span, worldWidth, dense, pulse, hasDispa
 				<div data-world className="absolute inset-y-0 left-0" style={{ width: worldWidth }}>
 					{hasDispatch && <WaitBand loops={loops} span={span} bottom={dense ? 1 : 3} color={color} />}
 					<LaneBars loops={loops} track={track} top={geometry.top} pitch={geometry.pitch} bar={geometry.bar} span={span} color={color} hasDispatch={hasDispatch} />
+					<LaneNotes notes={notes} span={span} />
 					<LaneMarks moments={moments} span={span} flying={flying} />
 				</div>
 			</div>
@@ -393,6 +395,18 @@ const LaneBars = memo(function LaneBars({
 }) {
 	return loops.map((loop) => (
 		<LoopBars key={loop.id} loop={loop} top={top + (track.get(loop.id) ?? 0) * pitch} bar={bar} span={span} color={color} hasDispatch={hasDispatch} />
+	))
+})
+
+/** Steps without a model call, as small ticks: the Orchestrator handing out work, a shortlist landing. */
+const LaneNotes = memo(function LaneNotes({ notes, span }: { notes: Note[]; span: number }) {
+	return notes.map((note) => (
+		<span
+			key={note.key}
+			data-note={note.text}
+			className="absolute top-1/2 h-2.5 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-subtle"
+			style={{ left: `${(note.ms / span) * 100}%` }}
+		/>
 	))
 })
 
@@ -511,6 +525,7 @@ function sameLaneProps(a: LaneProps, b: LaneProps): boolean {
 		x.track === y.track &&
 		x.tracks === y.tracks &&
 		x.moments === y.moments &&
+		x.notes === y.notes &&
 		x.status.tone === y.status.tone &&
 		x.status.label === y.status.label &&
 		x.status.task === y.status.task
@@ -628,7 +643,7 @@ function Flight({ flight, onDone }: { flight: FlightItem; onDone: (key: number) 
 // ---------------------------------------------------------------------------
 
 interface HoverTarget {
-	kind: "span" | "tool" | "moment"
+	kind: "span" | "tool" | "moment" | "note"
 	ref: string
 	x: number
 	y: number
@@ -637,11 +652,11 @@ interface HoverTarget {
 function useHover(rootRef: React.RefObject<HTMLDivElement | null>) {
 	const [target, setTarget] = useState<HoverTarget | null>(null)
 	const onPointerOver = useCallback((event: React.PointerEvent) => {
-		const el = (event.target as HTMLElement).closest<HTMLElement>("[data-span],[data-tool],[data-moment]")
+		const el = (event.target as HTMLElement).closest<HTMLElement>("[data-span],[data-tool],[data-moment],[data-note]")
 		if (!el || !rootRef.current?.contains(el)) return setTarget(null)
 		const box = el.getBoundingClientRect()
-		const kind = el.dataset.moment != null ? "moment" : el.dataset.tool != null ? "tool" : "span"
-		const ref = el.dataset.moment ?? el.dataset.tool ?? el.dataset.span ?? ""
+		const kind = el.dataset.moment != null ? "moment" : el.dataset.note != null ? "note" : el.dataset.tool != null ? "tool" : "span"
+		const ref = el.dataset.moment ?? el.dataset.note ?? el.dataset.tool ?? el.dataset.span ?? ""
 		setTarget((prev) => (prev?.ref === ref && prev.kind === kind ? prev : { kind, ref, x: event.clientX, y: box.top }))
 	}, [rootRef])
 	const clear = useCallback(() => setTarget(null), [])
@@ -651,7 +666,9 @@ function useHover(rootRef: React.RefObject<HTMLDivElement | null>) {
 function HoverInfo({ target, view, moments }: { target: HoverTarget; view: RunView; moments: Moment[] }) {
 	let title: React.ReactNode = null
 	let lines: React.ReactNode[] = []
-	if (target.kind === "moment") {
+	if (target.kind === "note") {
+		title = target.ref
+	} else if (target.kind === "moment") {
 		const moment = moments.find((m) => String(m.key) === target.ref)
 		if (!moment) return null
 		title = `${actionLabel(moment)} by the Critic`
