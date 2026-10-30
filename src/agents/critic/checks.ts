@@ -70,11 +70,11 @@ export function claimsOf(kind: ArtifactKind, artifact: Artifact): Claim[] {
 
 /**
  * Cut rejected claims out of an artifact on the blackboard, when what is left still does its job: a need keeps its
- * restatement, a profile its availability and one expertise claim, a pair its problem and one reason. False, with
- * nothing changed, when a core claim is rejected, a reject is about the artifact's own ids, or it is a proposal.
+ * restatement, a profile its availability and one expertise claim, a pair its problem and one reason, a proposal its
+ * header and one claim each under "The problem" and "Why this pair". False, with nothing changed, when a core claim
+ * is rejected, or a reject is not one of the artifact's claims (its own ids, a free-text sentence).
  */
 export function trimArtifact(s: MatchState, kind: ArtifactKind, id: string, artifact: Artifact, rejected: RejectedClaim[]): boolean {
-	if (kind === "proposal") return false
 	const own = claimsOf(kind, artifact)
 	const cut = new Set<Claim>()
 	for (const { claim } of rejected) {
@@ -85,6 +85,13 @@ export function trimArtifact(s: MatchState, kind: ArtifactKind, id: string, arti
 	const keep = (claims: Claim[] = []) => claims.filter((claim) => !cut.has(claim))
 	const map = s[MAPS[kind]] as Map<string, Artifact>
 	switch (kind) {
+		case "proposal": {
+			const p = artifact as Proposal
+			const markdown = trimMarkdown(p, cut)
+			if (markdown === undefined) return false
+			map.set(id, { ...p, claims: keep(p.claims), markdown })
+			return true
+		}
 		case "need": {
 			const n = artifact as CompanyNeed
 			if (n.restatement && cut.has(n.restatement)) return false
@@ -106,6 +113,31 @@ export function trimArtifact(s: MatchState, kind: ArtifactKind, id: string, arti
 			return true
 		}
 	}
+}
+
+/**
+ * A proposal's Markdown without the cut claims, or undefined when one is core: in the header, or the last claim under
+ * "The problem" or "Why this pair". A list item or "**Company:**" line left empty goes.
+ */
+function trimMarkdown(p: Proposal, cut: Set<Claim>): string | undefined {
+	const rendered = (claim: Claim) => `${claim.text.trim()} [${claim.sourceIds.join(", ")}]`
+	const sections = (p.markdown ?? "").split(/(?=^### )/m)
+	for (const claim of cut) {
+		const at = sections.findIndex((section) => section.includes(rendered(claim)))
+		if (at <= 0) return undefined
+		if (/^### (The problem|Why this pair)/.test(sections[at])) {
+			const left = (p.claims ?? []).filter((c) => !cut.has(c) && sections[at].includes(rendered(c)))
+			if (!left.length) return undefined
+		}
+		sections[at] = sections[at]
+			.split(rendered(claim))
+			.join("")
+			.replace(/(\S) {2,}(?=\S)/g, "$1 ")
+			// One trailing space is what the cut left; two are a Markdown line break and stay.
+			.replace(/(\S) $/gm, "$1")
+			.replace(/^(- \*\*(Company|Faculty):\*\*|-)[ \t]*\n/gm, "")
+	}
+	return sections.join("").replace(/\n{3,}/g, "\n\n")
 }
 
 /** A proposal's Markdown without its Sources list: what the free-text check reads. */

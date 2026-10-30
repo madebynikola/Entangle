@@ -401,8 +401,9 @@ export function createCritic(options: CriticOptions): Critic {
 
 		// When the fixes run out, a claim the producer could not save no longer costs the whole artifact:
 		// the Critic cuts it and accepts the rest, unless it was a core claim. Every drop in the runs of
-		// 30 Oct (42 of them) had exactly one claim left.
-		const trimmed = action === "drop" && trimArtifact(s, kind, id, artifact, rejected) ? rejected : undefined
+		// 30 Oct (42 of them) had exactly one claim left, and so had every proposal sent to a person in the last two.
+		const giveUp = action === "drop" || action === "human-review"
+		const trimmed = giveUp && trimArtifact(s, kind, id, artifact, rejected) ? rejected : undefined
 		if (trimmed) {
 			action = "accept"
 			trims++

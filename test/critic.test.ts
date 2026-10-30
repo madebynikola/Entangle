@@ -21,6 +21,7 @@ import {
 } from "../src/agents/critic"
 import { MatchState, MockInferenceRunner, join, runTask, startRuntime, state, whenSettled } from "../src/runtime"
 import { createTraceObserver, type TraceObserver } from "../src/trace"
+import { trimArtifact } from "../src/agents/critic/checks"
 import { reviewMessage } from "../src/agents/critic/prompt"
 import type { ArtifactKind, Claim, CriticVerdict, SentBack, SourceRecord, TraceRecord } from "../src/types"
 import { FAKE_CLAIMS, TRUE_CLAIMS, need, pair, profile, proposal, store } from "./critic-fixtures"
@@ -29,6 +30,31 @@ import { FAKE_CLAIMS, TRUE_CLAIMS, need, pair, profile, proposal, store } from "
 
 describe("code checks (no model)", () => {
 	const s = new MatchState("unit", true)
+
+	test("cuts a leftover claim from a proposal's claims and Markdown, but never its last problem claim", () => {
+		const cite = (c: Claim) => `${c.text} [${c.sourceIds.join(", ")}]`
+		const markdown =
+			`## Verified packet filtering\n\n**Company:** ${cite(TRUE_CLAIMS.hiring)}  \n\n### The problem\n${cite(TRUE_CLAIMS.firmware)}\n\n` +
+			`### What each side brings\n- **Company:** ${cite(TRUE_CLAIMS.testBench)} ${cite(FAKE_CLAIMS.inventedPatent)}\n` +
+			`- **Faculty:** ${cite(FAKE_CLAIMS.someoneElsesPaper)}\n\n### Why this pair\n- ${cite(TRUE_CLAIMS.coq)}\n\n### Sources\n- C001-CH1`
+		const claims = [TRUE_CLAIMS.hiring, TRUE_CLAIMS.firmware, TRUE_CLAIMS.testBench, FAKE_CLAIMS.inventedPatent, FAKE_CLAIMS.someoneElsesPaper, TRUE_CLAIMS.coq]
+		const reject = (c: Claim) => ({ claim: { ...c }, reason: "not in the source", check: "unsupported" as const })
+		const doc = { ...proposal(claims, markdown), id: "P-trim" }
+
+		assert.equal(trimArtifact(s, "proposal", doc.id, doc, [reject(FAKE_CLAIMS.inventedPatent), reject(FAKE_CLAIMS.someoneElsesPaper)]), true)
+		const trimmed = s.proposals.get(doc.id)!
+		assert.deepEqual(trimmed.claims, [TRUE_CLAIMS.hiring, TRUE_CLAIMS.firmware, TRUE_CLAIMS.testBench, TRUE_CLAIMS.coq])
+		assert.match(trimmed.markdown, /- \*\*Company:\*\* The company has the full firmware source and a hardware test bench\. \[C001-CH1\]\n\n### Why/)
+		assert.doesNotMatch(trimmed.markdown, /solid-state|LoRaWAN|\*\*Faculty:\*\*/)
+
+		for (const core of [TRUE_CLAIMS.firmware, TRUE_CLAIMS.hiring, TRUE_CLAIMS.coq]) {
+			s.proposals.set(doc.id, doc)
+			assert.equal(trimArtifact(s, "proposal", doc.id, doc, [reject(core)]), false, core.text)
+			assert.equal(s.proposals.get(doc.id), doc, "nothing changed")
+		}
+		const freeText = { claim: { text: "The company has an accelerometer.", sourceIds: [] }, reason: "no", check: "free-text" as const }
+		assert.equal(trimArtifact(s, "proposal", doc.id, doc, [freeText]), false)
+	})
 
 	test("reject an invented paper, someone else's paper and a claim with no source", () => {
 		const result = checkByCode(
