@@ -139,7 +139,9 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
    See [docs/quality.md](docs/quality.md) for what a hand-check found and what this changed.
 3. **Verdict.** Accept, or send the rejected claims back to the producer as a new task, with the reason for each.
    The producer fixes only those claims (cite a record that says it, narrow the claim, or remove it) and posts the artifact again.
-   If it is still rejected after two send-backs, a need, profile or pair is dropped, and a proposal goes to a person (`needs-human/`).
+   If it is still rejected after two send-backs, the Critic cuts the claims the fixes could not save from a need, profile or pair
+   and keeps the rest (`critic.trimmed`). It drops the artifact only when a core claim failed: a need's restatement, a pair's problem,
+   a profile's availability. A proposal goes to a person (`needs-human/`).
 
 Only accepted artifacts reach the result. A Writer never starts on a pair whose need, profile or pair is still in doubt.
 
