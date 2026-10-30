@@ -66,8 +66,8 @@
 .ag-deneb .happy,.ag-deneb .eyes,.ag-deneb .tilt{transition:opacity .25s,transform .35s cubic-bezier(.45,0,.2,1)}
 .ag-deneb .eye{animation:ag-blink 5.2s 0.4s infinite}
 .ag-deneb[data-state=idle] .eyes{animation:ag-glance 7.5s 0.68s infinite}
-.ag-deneb[data-state=done] .eyes{opacity:0}
-.ag-deneb[data-state=done] .happy{opacity:1}
+.ag-deneb[data-state=done] .eyes,.ag-deneb[data-state=happy] .eyes{opacity:0}
+.ag-deneb[data-state=done] .happy,.ag-deneb[data-state=happy] .happy{opacity:1}
 .ag-deneb[data-state=done] .head{animation:ag-bob 2.4s infinite}
 .ag-deneb[data-state=reject] .eyes{transform:translateY(3px) scaleY(.55)}
 .ag-deneb .baton{transform-box:view-box;transform-origin:72px 74px}

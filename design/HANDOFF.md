@@ -1,13 +1,21 @@
 # Entangle: brand and agent handoff
 
+## What changed in v2
+
+- **New: `agents/boot.html`**, the app's loading or boot animation; see "Boot animation" below.
+- **New face state `happy`:** happy eyes without any done props (no stamps, books or planes). Use it for greetings.
+- **Generator:** `tools/agents.mjs` now also writes `agents/boot.html` from the new template `tools/boot.html`.
+- Everything else is unchanged from v1.
+
 Entangle is our entry for the EINSTEIN track (science-to-business matchmaking) of the JigJoy Mozaik hackathon: a team of Mozaik agents that reads a researcher and company dataset, pairs researchers with company problems, and writes a sourced industrial PhD proposal for each pair, with a Critic checking every claim.
 
 This folder is the visual layer: logo, brand tokens, seven animated agent characters, and a scripted simulation showing them working together. It is self-contained, needs no build step and has no dependencies beyond Node (for regenerating) and a browser.
 
 Open these first:
 1. `agents/simulation.html`: a full run, live (about 50 s, loops; Pause, Restart, 2×).
-2. `agents/preview.html`: every agent in every state (buttons per agent and for all).
-3. `brand/brand.html`: palette, type and usage.
+2. `agents/boot.html`: the boot animation, where the logo's tiles wake up as the agents.
+3. `agents/preview.html`: every agent in every state (buttons per agent and for all).
+4. `brand/brand.html`: palette, type and usage.
 
 Use Chrome or Safari, opened straight from disk. All pages are single files.
 
@@ -24,6 +32,7 @@ Use Chrome or Safari, opened straight from disk. All pages are single files.
 | `agents/*.svg` | One file per agent, with all states inside. |
 | `agents/preview.html` | All agents and states side by side. Generated. |
 | `agents/simulation.html` | The live run. Generated from `tools/simulation.html`. |
+| `agents/boot.html` | Boot or loading animation. Generated from `tools/boot.html`. |
 | `naming/naming.html` | Naming research: 542 scored candidates, the chosen set, the Serbian variant. Generated. |
 | `tools/` | Generators (plain Node, no packages). See "Regenerating". |
 
@@ -64,8 +73,10 @@ Shared behaviour:
 States are switched with one attribute on the root `<svg>`:
 
 ```html
-<svg class="ag ag-fides" data-state="idle" ...>   <!-- idle | working | reject | done -->
+<svg class="ag ag-fides" data-state="idle" ...>   <!-- idle | working | reject | done | happy -->
 ```
+
+`happy` shows the smiling eyes with none of the done props; use it for greetings and the boot animation.
 
 - **Inline the SVG markup** (or fetch it and inject it) to control the state from code: `el.setAttribute("data-state", "reject")`. As an `<img>` it plays only its idle state.
 - Each SVG's CSS is scoped by its class (`.ag-fides`), so all seven can sit on one page. Keyframe names are shared (`ag-…`) and identical across files, so inlining several is safe.
@@ -100,12 +111,27 @@ The run is the `SCRIPT` array in `tools/simulation.html`. Every step has `t` (se
 
 with optional `stamp`, `flinch`, `mood`, `link`, `finale`. To replay a real run, generate that array from the run's `trace.jsonl`. Effects run on the simulation's own clock, so Pause freezes everything.
 
+### Boot animation
+
+`agents/boot.html` is the app's loading screen, about 6.5 s:
+1. **The logo builds:** its 8 tiles pop in clockwise.
+2. **Roll call:** each ink tile wakes up as its agent. Clockwise from the top left: Deneb, Spica, *indigo tile*, Tycho, Amity, Tinta, Fides, You. The indigo tile stays the Entangle tile, so the grid always settles into the exact brand mark.
+3. **The agents look at the empty centre,** then smile in a wave (the `happy` state).
+4. **They shrink back into ink tiles,** and the wordmark fades in.
+
+Behaviour:
+- **Loop while loading** repeats until the app is ready. In the app, stop looping when loading finishes; the current pass then ends on the logo.
+- **Reduced motion** shows the final frame.
+- **Dark mode:** a `dark` class on the stage switches the tiles to the logo's dark colours.
+
+The timeline is the `play()` function in `tools/boot.html`. The slot order is `BOOT` in `tools/agents.mjs`.
+
 ## Regenerating
 
 From this folder, with any recent Node:
 
 ```sh
-node tools/agents.mjs agents     # rewrites agents/*.svg, agents/preview.html, agents/simulation.html
+node tools/agents.mjs agents     # rewrites agents/*.svg, preview.html, simulation.html, boot.html
 node tools/names.mjs naming      # rewrites naming/naming.html
 node tools/names.mjs             # prints the top-scored names per role
 node tools/matrix-lap.mjs <dir>  # writes all 10 logo-motion variants to <dir>; copy hop/nudge into logo/

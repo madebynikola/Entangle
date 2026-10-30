@@ -66,8 +66,8 @@
 .ag-tycho .happy,.ag-tycho .eyes,.ag-tycho .tilt{transition:opacity .25s,transform .35s cubic-bezier(.45,0,.2,1)}
 .ag-tycho .eye{animation:ag-blink 5.8s 2.1s infinite}
 .ag-tycho[data-state=idle] .eyes{animation:ag-glance 7.5s 3.57s infinite}
-.ag-tycho[data-state=done] .eyes{opacity:0}
-.ag-tycho[data-state=done] .happy{opacity:1}
+.ag-tycho[data-state=done] .eyes,.ag-tycho[data-state=happy] .eyes{opacity:0}
+.ag-tycho[data-state=done] .happy,.ag-tycho[data-state=happy] .happy{opacity:1}
 .ag-tycho[data-state=done] .head{animation:ag-bob 2.4s infinite}
 .ag-tycho[data-state=reject] .eyes{transform:translateY(3px) scaleY(.55)}
 .ag-tycho .leaf,.ag-tycho .pageL{transform-box:view-box;transform-origin:50px 78px}

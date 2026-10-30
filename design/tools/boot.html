@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entangle: boot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1D1D1F; --accent: #4C5BD4; --bg: #F5F5F7; --muted: #6E6E73; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: var(--ink); background: #fff; }
+  .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; max-width: 760px; margin: 0 auto; padding: 18px 16px 0; }
+  button { font: 500 13px "Inter", sans-serif; border: 1px solid #D2D2D7; background: #fff; color: var(--ink); border-radius: 999px; padding: 7px 13px; cursor: pointer; }
+  button[aria-pressed=true] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .stage { max-width: 760px; margin: 14px auto 0; aspect-ratio: 4 / 3; background: var(--bg); border-radius: 26px; display: grid; place-items: center; transition: background .4s; }
+  .stage.dark { --ink: #F5F5F7; --accent: #8B97F2; --bg: #111113; }
+  .wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .logo { width: min(300px, 60vw); height: auto; overflow: visible; }
+  .tile { fill: var(--ink); transform-box: fill-box; transform-origin: center; transition: fill .4s; }
+  .tile.accent { fill: var(--accent); }
+  .face { transform-box: fill-box; transform-origin: center; opacity: 0; }
+  .word { font-size: clamp(28px, 6vw, 44px); font-weight: 600; letter-spacing: -0.035em; color: var(--ink); opacity: 0; transition: color .4s; }
+</style>
+<style>/*KEYFRAMES*/</style>
+<div class="bar">
+  <button id="replay">Replay</button>
+  <button id="loop" aria-pressed="false">Loop while loading</button>
+  <button id="dark" aria-pressed="false">Dark</button>
+</div>
+<div class="stage" id="stage">
+  <div class="wrap">
+    <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Entangle">
+<!--SLOTS-->
+    </svg>
+    <div class="word" id="word">Entangle</div>
+  </div>
+</div>
+<script>
+const SOFT = /*SOFT*/null, EASE = /*EASE*/null;
+const slots = [...document.querySelectorAll(".slot")];
+const agents = slots.filter((s) => s.dataset.agent);
+const word = document.getElementById("word");
+let run = 0, looping = false;
+
+const wait = (ms, token) => new Promise((ok, stop) => setTimeout(() => token === run ? ok() : stop("cancelled"), ms));
+const face = (s) => s.querySelector("svg.ag");
+const state = (s, v) => face(s).setAttribute("data-state", v);
+
+// Each agent looks at the empty centre of the grid: its slot's direction to (50, 50), in face units.
+function lookAtCentre(s, on) {
+  const g = face(s).querySelector(".gaze"), dx = 50 - s.dataset.cx, dy = 50 - s.dataset.cy, L = Math.hypot(dx, dy);
+  g.style.transform = on ? `translate(${(dx / L * 5).toFixed(2)}px, ${(dy / L * 4).toFixed(2)}px)` : "";
+}
+
+function reset() {
+  document.getAnimations().filter((a) => !(a instanceof CSSAnimation)).forEach((a) => a.cancel());
+  slots.forEach((s) => { s.querySelector(".tile").style.opacity = 0; });
+  agents.forEach((s) => { s.querySelector(".face").style.opacity = 0; state(s, "idle"); lookAtCentre(s, false); });
+  word.style.opacity = 0;
+}
+
+function finalFrame() {
+  reset();
+  slots.forEach((s) => { s.querySelector(".tile").style.opacity = 1; });
+  word.style.opacity = 1;
+}
+
+async function play() {
+  const token = ++run;
+  reset();
+  try {
+    // 1. The logo builds: tiles pop in clockwise, the indigo tile among them.
+    slots.forEach((s, i) => s.querySelector(".tile").animate(
+      [{ transform: "scale(0)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+      { duration: 650, delay: i * 90, easing: SOFT, fill: "forwards" }));
+    await wait(1150, token);
+
+    // 2. Roll call: each ink tile wakes up as its agent.
+    agents.forEach((s, k) => {
+      const delay = k * 150;
+      s.querySelector(".tile").animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(.45)", opacity: 0 }],
+        { duration: 320, delay, easing: EASE, fill: "forwards" });
+      s.querySelector(".face").animate([{ transform: "scale(.3)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+        { duration: 700, delay: delay + 60, easing: SOFT, fill: "forwards" });
+    });
+    await wait(agents.length * 150 + 750, token);
+
+    // 3. They all look at the empty centre, then smile in a wave.
+    agents.forEach((s) => lookAtCentre(s, true));
+    await wait(700, token);
+    for (const s of agents) { state(s, "happy"); lookAtCentre(s, false); await wait(80, token); }
+    await wait(700, token);
+    agents.forEach((s) => state(s, "idle"));
+    await wait(250, token);
+
+    // 4. They settle back into ink tiles: the still logo, and the name.
+    agents.forEach((s, k) => {
+      const delay = k * 80;
+      s.querySelector(".face").animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(.35)", opacity: 0 }],
+        { duration: 300, delay, easing: EASE, fill: "forwards" });
+      s.querySelector(".tile").animate([{ transform: "scale(.45)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+        { duration: 600, delay: delay + 120, easing: SOFT, fill: "forwards" });
+    });
+    await wait(agents.length * 80 + 650, token);
+
+    if (looping) { await wait(500, token); play(); return; }
+    word.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 500, easing: EASE, fill: "forwards" });
+  } catch (e) {
+    if (e !== "cancelled") throw e;
+  }
+}
+
+document.getElementById("replay").onclick = play;
+document.getElementById("loop").onclick = (e) => { looping = !looping; e.target.setAttribute("aria-pressed", looping); if (looping) play(); };
+document.getElementById("dark").onclick = (e) => { const on = document.getElementById("stage").classList.toggle("dark"); e.target.setAttribute("aria-pressed", on); };
+
+if (matchMedia("(prefers-reduced-motion: reduce)").matches) finalFrame(); else play();
+</script>
+</html>

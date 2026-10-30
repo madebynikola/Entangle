@@ -66,8 +66,8 @@
 .ag-amity .happy,.ag-amity .eyes,.ag-amity .tilt{transition:opacity .25s,transform .35s cubic-bezier(.45,0,.2,1)}
 .ag-amity .eye{animation:ag-blink 4.9s 0.9s infinite}
 .ag-amity[data-state=idle] .eyes{animation:ag-glance 7.5s 1.53s infinite}
-.ag-amity[data-state=done] .eyes{opacity:0}
-.ag-amity[data-state=done] .happy{opacity:1}
+.ag-amity[data-state=done] .eyes,.ag-amity[data-state=happy] .eyes{opacity:0}
+.ag-amity[data-state=done] .happy,.ag-amity[data-state=happy] .happy{opacity:1}
 .ag-amity[data-state=done] .head{animation:ag-bob 2.4s infinite}
 .ag-amity[data-state=reject] .eyes{transform:translateY(3px) scaleY(.55)}
 .ag-amity .knot,.ag-amity .note,.ag-amity .pL,.ag-amity .pR{transform-box:fill-box;transform-origin:center}

@@ -302,8 +302,8 @@ ${R} .happy,${R} .prop{opacity:0}
 ${R} .happy,${R} .eyes,${R} .tilt{transition:opacity .25s,transform .35s ${EASE}}
 ${R} .eye{animation:ag-blink ${a.blink[0]}s ${a.blink[1]}s infinite}
 ${R}[data-state=idle] .eyes{animation:ag-glance 7.5s ${a.blink[1] * 1.7}s infinite}
-${R}[data-state=done] .eyes{opacity:0}
-${R}[data-state=done] .happy{opacity:1}
+${R}[data-state=done] .eyes,${R}[data-state=happy] .eyes{opacity:0}
+${R}[data-state=done] .happy,${R}[data-state=happy] .happy{opacity:1}
 ${R}[data-state=done] .head{animation:ag-bob 2.4s infinite}
 ${R}[data-state=reject] .eyes{transform:translateY(3px) scaleY(.55)}
 ${a.motion(R)}${a.sweat ? `
@@ -385,5 +385,17 @@ const stageAgents = AGENTS.map((a) => `<div class="agent" data-id="${a.id}"><div
 fs.writeFileSync(path.join(out, "simulation.html"), fs.readFileSync(new URL("./simulation.html", import.meta.url), "utf8")
   .replace("/*KEYFRAMES*/", KEYFRAMES).replace("<!--AGENTS-->", stageAgents)
   .replace("/*NAMES*/{}", JSON.stringify(Object.fromEntries(AGENTS.map((a) => [a.id, a.name])))));
+
+// Boot animation: the logo's tiles wake up as the agents. Slots run clockwise from top-left; the indigo tile
+// (top-right) stays the Entangle tile, so the logo it settles into is exactly the brand mark.
+const BOOT = [["deneb", 19, 19], ["spica", 41, 19], [null, 63, 19], ["tycho", 63, 41], ["amity", 63, 63], ["tinta", 41, 63], ["fides", 19, 63], ["you", 19, 41]];
+const bootSlots = BOOT.map(([id, x, y], i) => {
+  const a = id && AGENTS.find((g) => g.id === id), cx = x + 9, cy = y + 9;
+  return `<g class="slot" data-i="${i}" data-agent="${id ?? ""}" data-cx="${cx}" data-cy="${cy}">
+<rect class="tile${id ? "" : " accent"}" x="${x}" y="${y}" width="18" height="18" rx="4"/>
+${a ? `<g class="face">${svg(a, `x="${cx - 12}" y="${cy - 12}" width="24" height="24"`, false)}</g>` : ""}</g>`;
+}).join("\n");
+fs.writeFileSync(path.join(out, "boot.html"), fs.readFileSync(new URL("./boot.html", import.meta.url), "utf8")
+  .replace("/*KEYFRAMES*/", KEYFRAMES).replace("<!--SLOTS-->", bootSlots).replace("/*SOFT*/null", JSON.stringify(SOFT)).replace("/*EASE*/null", JSON.stringify(EASE)));
 
 console.log("wrote", AGENTS.length, "agents");

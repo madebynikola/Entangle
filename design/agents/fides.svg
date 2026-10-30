@@ -66,8 +66,8 @@
 .ag-fides .happy,.ag-fides .eyes,.ag-fides .tilt{transition:opacity .25s,transform .35s cubic-bezier(.45,0,.2,1)}
 .ag-fides .eye{animation:ag-blink 6.2s 2.6s infinite}
 .ag-fides[data-state=idle] .eyes{animation:ag-glance 7.5s 4.42s infinite}
-.ag-fides[data-state=done] .eyes{opacity:0}
-.ag-fides[data-state=done] .happy{opacity:1}
+.ag-fides[data-state=done] .eyes,.ag-fides[data-state=happy] .eyes{opacity:0}
+.ag-fides[data-state=done] .happy,.ag-fides[data-state=happy] .happy{opacity:1}
 .ag-fides[data-state=done] .head{animation:ag-bob 2.4s infinite}
 .ag-fides[data-state=reject] .eyes{transform:translateY(3px) scaleY(.55)}
 .ag-fides .paper,.ag-fides .mark,.ag-fides .stamp{transform-box:fill-box;transform-origin:center}

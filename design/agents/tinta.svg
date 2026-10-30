@@ -66,8 +66,8 @@
 .ag-tinta .happy,.ag-tinta .eyes,.ag-tinta .tilt{transition:opacity .25s,transform .35s cubic-bezier(.45,0,.2,1)}
 .ag-tinta .eye{animation:ag-blink 5.4s 1.7s infinite}
 .ag-tinta[data-state=idle] .eyes{animation:ag-glance 7.5s 2.8899999999999997s infinite}
-.ag-tinta[data-state=done] .eyes{opacity:0}
-.ag-tinta[data-state=done] .happy{opacity:1}
+.ag-tinta[data-state=done] .eyes,.ag-tinta[data-state=happy] .eyes{opacity:0}
+.ag-tinta[data-state=done] .happy,.ag-tinta[data-state=happy] .happy{opacity:1}
 .ag-tinta[data-state=done] .head{animation:ag-bob 2.4s infinite}
 .ag-tinta[data-state=reject] .eyes{transform:translateY(3px) scaleY(.55)}
 .ag-tinta .ln{fill:none;stroke:#13807A;stroke-width:1.8;stroke-linecap:round}
