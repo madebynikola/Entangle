@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { CommandPalette } from "./command-palette"
 import { Sidebar, SidebarDrawer, useSidebar, useSidebarKeys } from "./sidebar"
 import { SourceSheet } from "./source"
+import { SessionSplash } from "./splash"
 import { ThemeSync } from "./theme"
 
 /**
@@ -44,6 +45,7 @@ export function AppShell() {
 			<CommandPalette />
 			<SourceSheet />
 			<Toaster />
+			<SessionSplash />
 		</div>
 	)
 }
