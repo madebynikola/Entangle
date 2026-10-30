@@ -3,15 +3,12 @@ import { useEffect, useState } from "react"
 import { BootMark } from "@/components/ui/boot"
 import { useRunStore, useRunsStore } from "@/run/hooks"
 
-const KEY = "entangle.booted"
-
 /**
- * The first screen of a browser session: the boot animation over the whole window. It loops until the list of runs
+ * The first screen of every page load: the boot animation over the whole window. It loops until the list of runs
  * (and a run opened by its link) has loaded, ends its pass on the logo, then fades out. A click or any key skips it.
- * Later page loads in the same session go straight to the app.
  */
-export function SessionSplash() {
-	const [show, setShow] = useState(() => !booted())
+export function BootSplash() {
+	const [show, setShow] = useState(true)
 	const [ended, setEnded] = useState(false)
 	const [timedOut, setTimedOut] = useState(false)
 	const settled = useRunsStore((state) => state.runs !== null || state.error !== null)
@@ -19,12 +16,7 @@ export function SessionSplash() {
 	// A backend that never answers must not keep the app hidden: the screens show their own errors.
 	const ready = (settled && !runLoading) || timedOut
 
-	const dismiss = () => {
-		try {
-			sessionStorage.setItem(KEY, "1")
-		} catch {}
-		setShow(false)
-	}
+	const dismiss = () => setShow(false)
 
 	useEffect(() => {
 		if (!show) return
@@ -61,12 +53,4 @@ export function SessionSplash() {
 			)}
 		</AnimatePresence>
 	)
-}
-
-function booted(): boolean {
-	try {
-		return sessionStorage.getItem(KEY) === "1"
-	} catch {
-		return false
-	}
 }
