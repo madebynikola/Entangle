@@ -213,7 +213,10 @@ function Axis({ span, visible, worldWidth }: { span: number; visible: number; wo
 					{ticks.map((ms) => (
 						<span
 							key={ms}
-							className={cn("tabular absolute top-1/2 -translate-y-1/2 whitespace-nowrap", ms === 0 ? "pl-2" : "-translate-x-1/2")}
+							className={cn(
+								"tabular absolute top-1/2 -translate-y-1/2 whitespace-nowrap",
+								ms === 0 ? "pl-2" : ms / span > 0.96 ? "-translate-x-full pr-2" : "-translate-x-1/2",
+							)}
 							style={{ left: `${(ms / span) * 100}%` }}
 						>
 							{format.clock(ms)}
