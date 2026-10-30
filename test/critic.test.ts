@@ -149,7 +149,7 @@ describe("review loop on the Mozaik runtime", () => {
 				],
 			}),
 		)
-		critic = createCritic({ store, model: "claude-sonnet-5-5" })
+		critic = createCritic({ store, model: "claude-sonnet-4-6" })
 		join(critic.agent)
 		// A producer that fixes a sent-back profile by removing the rejected claims, and one that never fixes anything.
 		fixer = producer("profiler-test", (rejected, claims) => claims.filter((claim) => !rejected.has(claim.text)))

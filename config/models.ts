@@ -12,16 +12,17 @@ export interface RoleRoute {
 	spread: boolean
 }
 
-/** [MODEL_<ROLE>] pins one role to one model, e.g. MODEL_WRITER=claude-sonnet-5-5. */
+/** [MODEL_<ROLE>] pins one role to one model, e.g. MODEL_CRITIC=claude-haiku-4-5. */
 export const ROUTES: Record<AgentRole, RoleRoute> = {
 	// Many parallel workers: cheap tier, spread over every provider with a key.
 	profiler: { models: ["claude-haiku-4-5", "gpt-5.4-mini", "gemini-3.5-flash"], spread: true },
 	analyst: { models: ["claude-haiku-4-5", "gpt-5.4-mini", "gemini-3.5-flash"], spread: true },
 	orchestrator: { models: ["claude-haiku-4-5", "gpt-5.4-mini", "gemini-3.5-flash"], spread: false },
 	// Few calls that decide quality: one strong model, so all pairs, proposals and reviews read the same way.
-	matchmaker: { models: ["claude-sonnet-5-5", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
-	writer: { models: ["claude-opus-5-5", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
-	critic: { models: ["claude-sonnet-5-5", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
+	// The Anthropic models are the ones the hackathon expects: Sonnet 4.6 here, Haiku 4.5 for the workers.
+	matchmaker: { models: ["claude-sonnet-4-6", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
+	writer: { models: ["claude-sonnet-4-6", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
+	critic: { models: ["claude-sonnet-4-6", "gpt-5.5", "gemini-3.1-pro-preview"], spread: false },
 }
 
 /** The env var that holds each provider's key, as Mozaik's endpoints read it. */

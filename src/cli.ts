@@ -18,7 +18,7 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--companies N | all] 
   --k N           Researchers shortlisted per challenge (default 4).
   --proposals N   Most proposals in the run (default: one per company).
 
-Models per role are in config/models.ts; MODEL_<ROLE> in .env pins one, e.g. MODEL_WRITER=claude-sonnet-5-5.
+Models per role are in config/models.ts; MODEL_<ROLE> in .env pins one, e.g. MODEL_CRITIC=claude-haiku-4-5.
 Limits: BUDGET_USD, BUDGET_MINUTES and BUDGET_TOKENS in .env.`
 
 const KEY_VARS = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY"]

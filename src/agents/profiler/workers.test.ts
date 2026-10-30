@@ -100,7 +100,7 @@ describe("analysts and profilers on the Mozaik runtime", () => {
 
 	before(async () => {
 		const s = startRuntime({ runId: "workers-test", mock: true, runner: new MockInferenceRunner({ latencyMs: [10, 40], responders: [flaky] }) })
-		critic = createCritic({ store: data.sources, model: "claude-sonnet-5-5" })
+		critic = createCritic({ store: data.sources, model: "claude-sonnet-4-6" })
 		join(critic.agent)
 		const analysts = createAnalysts(2, { data, mockPlantFakeClaim: true })
 		pool = createProfilerPool({ data, size: 3, k: 3, mockPlantFakeClaim: true })

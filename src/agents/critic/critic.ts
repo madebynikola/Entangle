@@ -470,7 +470,7 @@ function mergeVotes(claims: Claim[], votes: Vote[]): RejectedClaim[] {
 }
 
 /** Models for the second reviewer after the critic route's own, so one key is enough. */
-const SECOND_FALLBACK = ["claude-opus-5-5", "gpt-5.5", "gemini-3.5-flash"]
+const SECOND_FALLBACK = ["claude-haiku-4-5", "gpt-5.5", "gemini-3.5-flash"]
 
 /**
  * The second reviewer's model [MODEL_CRITIC_2]: else the first usable model on the critic route (config/models.ts)

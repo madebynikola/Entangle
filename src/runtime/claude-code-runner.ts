@@ -189,7 +189,7 @@ function statusOf(result: ClaudeResult): number {
 /** Claude Code takes Claude model names. Another provider's model gets the Claude model of its tier. */
 function claudeModel(model: string): string {
 	if (model.startsWith("claude-")) return model
-	return /mini|flash|lite|haiku|small/i.test(model) ? "claude-haiku-4-5" : "claude-sonnet-5-5"
+	return /mini|flash|lite|haiku|small/i.test(model) ? "claude-haiku-4-5" : "claude-sonnet-4-6"
 }
 
 type Item = { type: string; role?: string; content?: { text?: string }; name?: string; args?: string; callId?: string; output?: { text?: string } }

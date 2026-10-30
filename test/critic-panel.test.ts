@@ -53,13 +53,13 @@ describe("the two reviewers' mocks", () => {
 	test("the second model comes from another provider when it can", () => {
 		try {
 			clearEnv()
-			assert.equal(secondCriticModel("claude-sonnet-5-5"), "gpt-5.5", "no key: any listed model")
+			assert.equal(secondCriticModel("claude-sonnet-4-6"), "gpt-5.5", "no key: any listed model")
 			process.env.ANTHROPIC_API_KEY = "test"
-			assert.equal(secondCriticModel("claude-sonnet-5-5"), "claude-opus-5-5", "one provider: another of its models")
+			assert.equal(secondCriticModel("claude-sonnet-4-6"), "claude-haiku-4-5", "one provider: another of its models")
 			process.env.GEMINI_API_KEY = "test"
-			assert.equal(secondCriticModel("claude-sonnet-5-5"), "gemini-3.1-pro-preview")
+			assert.equal(secondCriticModel("claude-sonnet-4-6"), "gemini-3.1-pro-preview")
 			process.env.MODEL_CRITIC_2 = "gemini-3.5-flash"
-			assert.equal(secondCriticModel("claude-sonnet-5-5"), "gemini-3.5-flash", "pinned")
+			assert.equal(secondCriticModel("claude-sonnet-4-6"), "gemini-3.5-flash", "pinned")
 		} finally {
 			restoreEnv()
 		}
@@ -98,7 +98,7 @@ describe("two reviewers on the Mozaik runtime", () => {
 				],
 			}),
 		)
-		critic = createCritic({ store, model: "claude-sonnet-5-5" })
+		critic = createCritic({ store, model: "claude-sonnet-4-6" })
 		join(critic.agent)
 		// A writer that drops every rejected claim, and one that never changes anything.
 		fixer = writer("writer-fix", (rejected, claims) => claims.filter((claim) => !rejected.has(claim.text)))
@@ -126,7 +126,7 @@ describe("two reviewers on the Mozaik runtime", () => {
 		assert.deepEqual(
 			first.reviewers?.map((r) => [r.reviewer, r.model, r.rejected]),
 			[
-				["critic", "claude-sonnet-5-5", 1],
+				["critic", "claude-sonnet-4-6", 1],
 				["critic-2", "gpt-5.5", 2],
 			],
 		)
