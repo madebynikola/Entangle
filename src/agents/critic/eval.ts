@@ -36,7 +36,10 @@ export async function reviewLabels(labels: CriticLabels, options: Omit<CriticOpt
 	const writer = createAgent({ name: "labels", capabilities: ["inference"], instruction: "Posts labelled claims.", tools: [], handlers: [] })
 	join(writer)
 
-	const pending = new Set(labels.proposals.map((proposal) => proposal.id))
+	// The same pair can come from two runs under one proposal id. Each needs its own place on the blackboard, or the
+	// second overwrites the first before its review.
+	const boardIds = labels.proposals.map(({ id, run }, i) => (labels.proposals.findIndex((p) => p.id === id) === i ? id : `${id}@${run}`))
+	const pending = new Set(boardIds)
 	const errors: string[] = []
 	const done = new Promise<void>((resolve) => {
 		join(
@@ -61,17 +64,18 @@ export async function reviewLabels(labels: CriticLabels, options: Omit<CriticOpt
 	})
 
 	const s = state()
-	const posted = labels.proposals.map((proposal) => {
+	const posted = labels.proposals.map((proposal, i) => {
+		const id = boardIds[i]
 		const claims: Claim[] = proposal.claims.map(({ text, sourceIds }) => ({ text, sourceIds }))
-		s.proposals.set(proposal.id, { id: proposal.id, pairId: proposal.pairId, kind: "joint-project", title: proposal.id, markdown: "", claims, revision: 0 })
-		postArtifact("proposal", proposal.id, writer.getId())
-		return { proposal, claims }
+		s.proposals.set(id, { id, pairId: proposal.pairId, kind: "joint-project", title: proposal.id, markdown: "", claims, revision: 0 })
+		postArtifact("proposal", id, writer.getId())
+		return { id, proposal, claims }
 	})
 	await done
 	if (errors.length) throw new Error(`The Critic failed: ${errors.join("; ")}`)
 
-	const claims = posted.flatMap(({ proposal, claims }) => {
-		const verdict = s.verdicts.find((v) => v.kind === "proposal" && v.proposalId === proposal.id)
+	const claims = posted.flatMap(({ id, proposal, claims }) => {
+		const verdict = s.verdicts.find((v) => v.kind === "proposal" && v.proposalId === id)
 		return proposal.claims.map((labelled, i): ReviewedClaim => {
 			const rejected = verdict?.rejected.find((r) => r.claim === claims[i])
 			const by = rejected ? rejectedBy(rejected, critic.agent.getManifest().name) : []

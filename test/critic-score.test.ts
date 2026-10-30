@@ -84,14 +84,17 @@ describe("scoreCritic", () => {
 })
 
 describe("reviewLabels on the mock Critic", () => {
-	test("reviews every labelled claim with both reviewers", async () => {
+	test("reviews every labelled claim with both reviewers, also of two proposals with one id", async () => {
 		startRuntime({ runId: "critic-score-test", mock: true, runner: new MockInferenceRunner({ latencyMs: [5, 20] }) })
 		const review = await reviewLabels(labels, { model: "claude-sonnet-4-6", secondModel: "claude-haiku-4-5" })
 		assert.equal(review.claims.length, claims.length)
 		assert.deepEqual(review.reviewers.map((r) => r.name), ["critic", "critic-2"])
 		for (const claim of review.claims) {
-			for (const by of claim.rejectedBy) assert.ok(["critic", "critic-2"].includes(by), by)
+			for (const by of claim.rejectedBy) assert.ok(["critic", "critic-2", "code"].includes(by), by)
 		}
-		assert.ok(review.claims.some((claim) => claim.rejectedBy.length > 0))
+		for (const phase of ["before", "after"]) {
+			const rejected = review.claims.filter((c) => c.proposalId === "C012-CH1-R0564" && c.phase === phase && c.rejectedBy.length)
+			assert.ok(rejected.length > 0, `C012-CH1-R0564 from the ${phase} run was reviewed`)
+		}
 	})
 })

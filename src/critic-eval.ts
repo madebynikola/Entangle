@@ -50,11 +50,13 @@ async function main(): Promise<void> {
 	console.log(`Critic on ${review.claims.length} labelled claims (${models}): ${(review.ms / 1000).toFixed(0)} s, ${cost}.\n`)
 	const scores: Record<string, CriticScore> = { panel: scoreCritic(review.claims) }
 	for (const { name } of review.reviewers) scores[name] = scoreCritic(review.claims, name)
+	scores.code = scoreCritic(review.claims, "code")
 	console.log(formatScore(scores.panel, "Both reviewers (a claim fails when either rejects it):"))
 	for (const { name, model } of review.reviewers) {
 		const { recall, caught, bad, falseRejects, good } = scores[name]
 		console.log(`\n${name} (${model}) alone: caught ${caught} of ${bad} (${Math.round(recall * 100)}%), rejected ${falseRejects} of ${good} ok.`)
 	}
+	console.log(`\nCode checks alone: caught ${scores.code.caught} of ${scores.code.bad}, rejected ${scores.code.falseRejects} of ${scores.code.good} ok.`)
 	for (const phase of new Set(review.claims.map((claim) => claim.phase))) {
 		const { caught, bad, falseRejects, good } = scoreCritic(review.claims.filter((claim) => claim.phase === phase))
 		console.log(`Claims from the ${phase} run: caught ${caught} of ${bad}, rejected ${falseRejects} of ${good} ok.`)
