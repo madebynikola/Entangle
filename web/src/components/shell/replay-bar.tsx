@@ -1,6 +1,6 @@
 import { Pause, Play, RotateCcw, Zap } from "lucide-react"
 import { Slider } from "radix-ui"
-import { useMemo } from "react"
+import { memo, useMemo } from "react"
 import { useShallow } from "zustand/react/shallow"
 import { Button } from "@/components/ui/button"
 import { Segmented } from "@/components/ui/segmented"
@@ -14,22 +14,20 @@ import { concurrency } from "@/run/metrics"
 /**
  * The player docked at the bottom of a run's Timeline: play or pause, 1× / 4× / skip to the end, and a scrubber.
  * Behind the scrubber, a histogram of model calls in flight shows where the agents overlapped.
+ *
+ * Only `Time` and `Scrubber` read the clock, so only they re-render on each frame of a replay. The rest (the speed
+ * control has a Motion layoutId, which measures layout when it renders) re-renders only when the player state changes.
  */
 export function ReplayBar({ className }: { className?: string }) {
-	const { mode, playing, speed, duration, runStatus, records } = useRunStore(
+	const { live, playing, runStatus, records, duration } = useRunStore(
 		useShallow((state) => ({
-			mode: state.mode,
+			live: state.mode === "live",
 			playing: state.playing,
-			speed: state.speed,
-			duration: state.duration,
 			runStatus: state.runStatus,
 			records: state.records,
+			duration: state.duration,
 		})),
 	)
-	const clock = useRunClock()
-	const live = mode === "live"
-	const total = live ? Math.max(duration, clock) : duration
-	const position = live ? total : Math.min(clock, duration)
 	const histogram = useMemo(() => {
 		const { series } = concurrency(records, duration, 96)
 		const top = Math.max(...series, 1)
@@ -50,12 +48,8 @@ export function ReplayBar({ className }: { className?: string }) {
 				</Button>
 			</Tooltip>
 
-			<span className="tabular w-[5.5rem] shrink-0 text-sm text-ink-muted">
-				{format.clock(position)}
-				<span className="text-ink-subtle"> / {format.clock(total)}</span>
-			</span>
-
-			<Scrubber value={position} max={total} histogram={histogram} onSeek={store.seek} />
+			<Time />
+			<Scrubber histogram={histogram} />
 
 			{runStatus === "live" &&
 				(live ? (
@@ -72,17 +66,7 @@ export function ReplayBar({ className }: { className?: string }) {
 					</Tooltip>
 				))}
 
-			<Segmented<SpeedValue>
-				aria-label="Replay speed"
-				className="hidden shrink-0 sm:inline-flex"
-				value={String(speed) as SpeedValue}
-				onValueChange={(value) => store.setSpeed(value === "instant" ? "instant" : (Number(value) as Speed))}
-				items={[
-					{ value: "1", label: "1×", title: "Real time" },
-					{ value: "4", label: "4×", title: "Four times faster" },
-					{ value: "instant", label: <Zap />, title: "Skip to the end" },
-				]}
-			/>
+			<SpeedControl />
 
 			<Tooltip content="Replay from the start">
 				<Button variant="quiet" size="icon-sm" onClick={store.restart} aria-label="Replay from the start" className="hidden sm:inline-flex">
@@ -93,19 +77,51 @@ export function ReplayBar({ className }: { className?: string }) {
 	)
 }
 
+/** Where the playhead is and how long the run is. Live, the end moves with the clock. */
+function usePlayhead(): { position: number; total: number } {
+	const clock = useRunClock()
+	const live = useRunStore((state) => state.mode === "live")
+	const duration = useRunStore((state) => state.duration)
+	const total = live ? Math.max(duration, clock) : duration
+	return { position: live ? total : Math.min(clock, duration), total }
+}
+
+function Time() {
+	const { position, total } = usePlayhead()
+	return (
+		<span className="tabular w-[5.5rem] shrink-0 text-sm text-ink-muted">
+			{format.clock(position)}
+			<span className="text-ink-subtle"> / {format.clock(total)}</span>
+		</span>
+	)
+}
+
 type SpeedValue = "1" | "4" | "instant"
 
-function Scrubber({
-	value,
-	max,
-	histogram,
-	onSeek,
-}: {
-	value: number
-	max: number
-	histogram: number[]
-	onSeek: (ms: number) => void
-}) {
+const SPEEDS = [
+	{ value: "1" as const, label: "1×", title: "Real time" },
+	{ value: "4" as const, label: "4×", title: "Four times faster" },
+	{ value: "instant" as const, label: <Zap />, title: "Skip to the end" },
+]
+
+const setSpeed = (value: SpeedValue) => useRunStore.getState().setSpeed(value === "instant" ? "instant" : (Number(value) as Speed))
+
+/** Its own subscription, so it renders only when the speed changes. */
+function SpeedControl() {
+	const speed = useRunStore((state) => state.speed)
+	return (
+		<Segmented<SpeedValue>
+			aria-label="Replay speed"
+			className="hidden shrink-0 sm:inline-flex"
+			value={String(speed) as SpeedValue}
+			onValueChange={setSpeed}
+			items={SPEEDS}
+		/>
+	)
+}
+
+function Scrubber({ histogram }: { histogram: number[] }) {
+	const { position: value, total: max } = usePlayhead()
 	const played = max > 0 ? (value / max) * 100 : 0
 	return (
 		<Slider.Root
@@ -113,7 +129,7 @@ function Scrubber({
 			value={[value]}
 			max={Math.max(max, 1)}
 			step={10}
-			onValueChange={([ms]) => onSeek(ms)}
+			onValueChange={([ms]) => useRunStore.getState().seek(ms)}
 			aria-label="Playhead"
 		>
 			<Slider.Track className="relative h-full grow">
@@ -129,7 +145,8 @@ function Scrubber({
 	)
 }
 
-function Bars({ histogram, className }: { histogram: number[]; className?: string }) {
+/** 96 rects; memoised, so a frame of the replay does not redraw them. */
+const Bars = memo(function Bars({ histogram, className }: { histogram: number[]; className?: string }) {
 	const width = 100 / histogram.length
 	return (
 		<svg viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden className={cn("absolute inset-x-0 bottom-1.5 h-5 w-full", className)}>
@@ -138,4 +155,4 @@ function Bars({ histogram, className }: { histogram: number[]; className?: strin
 			)}
 		</svg>
 	)
-}
+})
