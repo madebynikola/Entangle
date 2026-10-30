@@ -8,12 +8,23 @@ The look is calm and monochrome, in the spirit of Vercel: one question per scree
 
 - `#/`: the runs, as one table. Real runs by default; mock runs and unfinished dev runs are a click away.
   With no real runs, an intro points at the sample run.
-- `#/runs/:id/overview`: what happened. Stats, the five steps, model calls in flight over time, what the Critic caught, the proposals.
+- `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
 - `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running). It is the only tab with the replay bar.
 - `#/runs/:id/results`: pairs and proposals.
 
-Each screen sits under a sticky top bar: the mark, a run switcher, search (⌘K) and the theme. A run's tabs are its second row.
-Content is centred, `max-w-6xl`, on the grey canvas, with white bordered cards.
+**The frame.** A sidebar on the grey canvas, and one white panel inset beside it (the Kanbix frame).
+The sidebar has search (⌘K), the runs worth opening (live, finished real runs, the sample; "All runs" for the rest),
+the open run's agents by role (a pip per agent lights up while it works), and the server state and theme.
+⌘B hides it. Below 1024 px it is a drawer, and the panel fills the window.
+
+**The window never scrolls.** Inside the panel, `PageHeader` (shell/page-header) draws the title, one line of facts,
+actions and tabs. A run's header holds its totals: state, time, agents, tokens, cost. The screen gets the rest of the
+panel: a box with a fixed height, edge to edge, no padding. So:
+
+- Make the screen's root `h-full` (`flex h-full min-h-0 flex-col`, or a grid with `minmax(0,1fr)` rows) and add your own padding (`p-5`).
+- Put `overflow-y-auto scrollbar-thin` only on the parts that hold lists or long text. Use `Pane` for tiles that share the height.
+- On the Timeline the replay bar docks at the bottom of the panel, below your screen. It covers nothing.
+- The box scrolls only as a fallback, and below 1024 px, where panes stack into one column (`lg:` for the fitted layout).
 
 **Nothing moves unless asked.** A finished run opens at its end, still. "Watch the replay" (or `?replay`) plays it from the start.
 Leaving the Timeline pauses a replay, so Overview and Results never change under the reader.
@@ -75,7 +86,7 @@ Tokens are in `src/styles.css`, with light and dark values. Use the Tailwind nam
 
 | Use | Classes |
 | --- | --- |
-| Surfaces | `bg-canvas` (page), `bg-panel` / `bg-card` (cards, tables, top bar), `bg-sunken` (wells: charts, code), `bg-hover` |
+| Surfaces | `bg-canvas` (window, sidebar), `bg-panel` / `bg-card` (the panel, cards, tables), `bg-sunken` (wells: charts, code), `bg-hover` |
 | Text | `text-ink`, `text-ink-muted`, `text-ink-subtle` |
 | Lines | `border-hairline`, `border-strong`; `shadow-card` (a whisper, light mode only), `shadow-float` (floating layers) |
 | Actions | `bg-primary` is ink: the one primary button per view. `text-link` is blue: links and focus rings |
@@ -90,7 +101,8 @@ Type: Geist and Geist Mono (self-hosted). Body is `text-base` (14 px). Steps: `t
 headings get tight tracking. Use `font-mono` only for ids, traces and code. Use `tabular` on numbers that change in place.
 
 Radii: buttons and inputs `rounded-md`, cards and tables `rounded-lg`, floating layers `rounded-xl`, chips `rounded-full`.
-A screen is a stack of `Section`s (title, one line of description, optional action) with `gap-10` between them.
+A screen is a few `Pane`s that share the panel's height (title, one short line, optional action, then a body that can scroll).
+`Section` (a titled block with no frame) is for content that sits in a scrolling pane.
 
 Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layout does not jump.
 `MotionConfig reducedMotion="user"` is set, and CSS animations stop under `prefers-reduced-motion`.
@@ -103,7 +115,7 @@ Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layo
 | `ui/chip` | `Chip`: small pill with an icon and a `count`; tones; `asChild` for a clickable chip; `mono` for ids |
 | `ui/status` | `Status` (dot plus coloured text), `StatusLabel` (dot plus ink text: a run's state), `StatusDot`; `pulse` for now |
 | `ui/role` | `RoleSquare`, `RoleTag` (square plus name) |
-| `ui/card` | `Card`, `Section` (titled block), `Stat` (label over value), `CardId`, `CardTitle`, `CardMeta`, `Lane`, `Meta` |
+| `ui/card` | `Pane` (titled tile that fills and scrolls), `Card`, `Section` (titled block), `Stat`, `CardId`, `CardTitle`, `CardMeta`, `Lane`, `Meta` |
 | `ui/tabs` | `Tabs` (state) and `RouteTabs` (links): underlined, with counts |
 | `ui/segmented` | `Segmented` control |
 | `ui/empty`, `ui/skeleton` | `EmptyState`, `Skeleton`, `Spinner`, `LoadingState` |
@@ -111,8 +123,9 @@ Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layo
 | `ui/toaster` | `toast.success("Approved", { description })`: say what happened, in the button's words |
 | `ui/markdown` | `Markdown`: proposal markdown, with `[SYN-PUB-…]` citations shown as source chips |
 | `ui/switch`, `ui/input`, `ui/kbd`, `ui/command` | the rest |
-| `shell/source` | `SourceChip` (hover shows the record), `ClaimText` (claim plus its sources), `SourceView`, `openSource(id)` |
+| `shell/source` | `SourceChip` (hover shows the record, click opens it), `ClaimText` (claim plus its sources), `SourceView`, `openSource(id)` |
 | `shell/command-palette` | `useCommands(owner, commands)`: add your screen's commands to ⌘K while it is mounted |
+| `shell/page-header` | `PageHeader`: title, `meta` line, `actions`, `tabs`. Routes outside a run use it; RunLayout draws the run's one |
 | `run/metrics` | `concurrency(records, duration)` (calls in flight over time, and the peak) and `pipeline(...)` (the five steps) |
 
 ### Wording
