@@ -1,7 +1,7 @@
 import type { StructuredOutputFormat } from "@mozaik-ai/core"
 import type { Dataset } from "../../data"
 import type { Claim, RejectedClaim, ResearcherProfile } from "../../types"
-import { CLAIM_FIXES_SCHEMA } from "../matchmaker/shared"
+import { CLAIM_FIXES_SCHEMA, numbered } from "../matchmaker/shared"
 import { clip, dataBlock } from "./shared"
 
 export const PROFILER_INSTRUCTION = `You are a Research Profiler of EINSTEIN, a programme that pairs researchers of the University of Novi Sad with companies around NTP Novi Sad.
@@ -129,10 +129,10 @@ export interface ProfileFixInput {
 }
 
 export function profileFixMessage(input: ProfileFixInput): string {
-	return `The Critic sent back the profile of ${input.profile.researcherId}. Fix only the rejected claims, listed by index in "rejected". For each one:
+	return `The Critic sent back the profile of ${input.profile.researcherId}. Fix only the rejected claims in "rejected", each by its "index". For each one:
 - "rewrite" it so the cited ids really show it: narrow the wording, or cite the publication, project or patent in "records" that does show it; or
 - "drop" it when nothing in the records shows it.
 Do not touch any other claim. Use only ids that appear in "records". Never give a reason for limited availability.
 
-${dataBlock(input)}`
+${dataBlock({ ...input, rejected: numbered(input.rejected) })}`
 }

@@ -1,5 +1,5 @@
 import type { CompanyNeed, PairCandidate, RejectedClaim, ResearcherProfile } from "../../types"
-import { CLAIM_FIXES_SCHEMA, CLAIM_RULES, jsonBlock } from "./shared"
+import { CLAIM_FIXES_SCHEMA, CLAIM_RULES, jsonBlock, numbered } from "./shared"
 
 export const MATCHMAKER_INSTRUCTION = `You are the Matchmaker of EINSTEIN, a programme that pairs researchers of the University of Novi Sad with companies around NTP Novi Sad.
 
@@ -104,10 +104,10 @@ export interface PairFixInput {
 }
 
 export function pairFixMessage(input: PairFixInput): string {
-	return `The Critic sent back pair ${input.pair.id}. Fix only the rejected claims, listed by index in "rejected". For each one:
+	return `The Critic sent back pair ${input.pair.id}. Fix only the rejected claims in "rejected", each by its "index". For each one:
 - "rewrite" it so the cited ids really support it: narrow the wording, or cite other ids from the evidence that do support it; or
 - "drop" it when nothing in the evidence supports it.
 Do not touch any other claim. Use only ids that appear in the evidence.
 
-${jsonBlock(input)}`
+${jsonBlock({ ...input, rejected: numbered(input.rejected) })}`
 }

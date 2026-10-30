@@ -2,7 +2,7 @@ import { createAgent, type Agent } from "@mozaik-ai/core"
 import { createTask, failTask, join, modelFor, runTask, state } from "../../runtime"
 import type { Claim, PairCandidate, Proposal, ProposalKind, RejectedClaim, SentBack, SourceStore, Task } from "../../types"
 import { SentBackToMe, describeRejections, postArtifact, sentBackTask } from "../critic/protocol"
-import { EventOfType, applyClaimFixes, emit, parseJson, registerMockResponder, type ClaimFix } from "../matchmaker/shared"
+import { EventOfType, applyClaimFixes, assignFixes, emit, parseJson, registerMockResponder, type ClaimFix } from "../matchmaker/shared"
 import { writerResponder } from "./mock"
 import {
 	PROPOSAL_FIX_SCHEMA,
@@ -165,10 +165,11 @@ export function createWriter(options: WriterOptions): Writer {
 
 		// A free-text sentence the Critic quoted is replaced by its fix, or removed.
 		// An id the Critic found only in free text ("The proposal text cites X.") is removed from it.
+		const assigned = assignFixes(input.rejected, answer)
 		const unmatched = missing.filter((index) => {
 			const rejected = input.rejected[index]
 			if (rejected.check === "free-text") {
-				const fix = answer.find((f) => f.index === index)
+				const fix = assigned.get(index)
 				return !replaceFreeText(draft, rejected.claim.text, fix?.action === "rewrite" ? fix.text.trim() : "")
 			}
 			const cited = rejected.claim.text.match(/^The proposal text cites (.+)\.$/)

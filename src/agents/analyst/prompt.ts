@@ -1,7 +1,7 @@
 import type { StructuredOutputFormat } from "@mozaik-ai/core"
 import type { Dataset } from "../../data"
 import type { ChallengeTriage, Claim, CompanyNeed, RejectedClaim } from "../../types"
-import { CLAIM_FIXES_SCHEMA } from "../matchmaker/shared"
+import { CLAIM_FIXES_SCHEMA, numbered } from "../matchmaker/shared"
 import { clip, dataBlock } from "../profiler/shared"
 
 export const ANALYST_INSTRUCTION = `You are an Industry Analyst of EINSTEIN, a programme that pairs researchers of the University of Novi Sad with companies around NTP Novi Sad.
@@ -150,10 +150,10 @@ export interface NeedFixInput {
 }
 
 export function needFixMessage(input: NeedFixInput): string {
-	return `The Critic sent back need ${input.need.challengeId}. Fix only the rejected claims, listed by index in "rejected". For each one:
+	return `The Critic sent back need ${input.need.challengeId}. Fix only the rejected claims in "rejected", each by its "index". For each one:
 - "rewrite" it so the cited ids really state it: narrow the wording, or cite the challenge, company profile or page that does state it; or
 - "drop" it when nothing in the company's records states it.
 Do not touch any other claim. Use only ids that appear in "company".
 
-${dataBlock(input)}`
+${dataBlock({ ...input, rejected: numbered(input.rejected) })}`
 }

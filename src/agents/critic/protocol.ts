@@ -58,13 +58,14 @@ export function sentBackTask(sentBack: SentBack): Task {
 /** The part of a revise prompt that lists what the Critic rejected and why. */
 export function describeRejections(sentBack: SentBack): string {
 	const lines = sentBack.rejected.map(
-		({ claim, reason }, i) => `${i + 1}. "${claim.text}" [${claim.sourceIds.join(", ") || "no sources"}]\n   Rejected: ${reason}`,
+		({ claim, reason }, i) => `index ${i}: "${claim.text}" [${claim.sourceIds.join(", ") || "no sources"}]\n   Rejected: ${reason}`,
 	)
 	return [
 		`The Critic rejected ${sentBack.rejected.length} claim(s) of ${sentBack.kind} ${sentBack.id} ` +
 			`(attempt ${sentBack.attempt} of ${sentBack.maxAttempts}; after that it is not sent back again).`,
 		...lines,
 		"Fix only these claims: cite a record that states the fact, narrow the claim to what the source says, or remove it. " +
-			"Keep every other claim as it is. Never invent a source id.",
+			"Keep every other claim as it is. Never invent a source id. " +
+			"Each fix gives the index shown here, not the claim's place in the artifact.",
 	].join("\n")
 }

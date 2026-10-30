@@ -1,5 +1,5 @@
 import type { Claim, CompanyNeed, PairCandidate, ProposalKind, RejectedClaim, ResearcherProfile } from "../../types"
-import { CLAIM_FIXES_SCHEMA, CLAIM_RULES, jsonBlock } from "../matchmaker/shared"
+import { CLAIM_FIXES_SCHEMA, CLAIM_RULES, jsonBlock, numbered } from "../matchmaker/shared"
 
 export const WRITER_INSTRUCTION = `You are the Proposal Writer of EINSTEIN, a programme that pairs researchers of the University of Novi Sad with companies around NTP Novi Sad.
 
@@ -152,13 +152,14 @@ export interface ProposalFixInput {
 }
 
 export function proposalFixMessage(input: ProposalFixInput): string {
-	return `The Critic sent back proposal ${input.proposalId}. Fix only the rejected items, listed by index in "rejected". For each rejected claim:
+	return `The Critic sent back proposal ${input.proposalId}. Fix only the rejected items in "rejected", each by its "index". For each rejected claim:
 - "rewrite" it so the cited ids really support it: narrow the wording, or cite other ids from the evidence that do support it; or
 - "drop" it when nothing in the evidence supports it.
+A claim rejected for an added judgement ("directly applicable to", "the core method the generator requires", "exactly this problem") keeps its fact and loses those words.
 An item with check "free-text" is a sentence quoted from the free text (research questions, approach, plan, first steps, reasoning, terms). For it:
 - "rewrite": give the sentence that takes the quote's place, with empty sourceIds. Make it a proposal ("collect", "measure", "set up") or reasoning that rests only on the claims, and keep every hard limit of the company; or
 - "drop" it when the text reads fine without it.
 Do not touch any other claim or sentence. Use only ids that appear in the evidence.
 
-${jsonBlock(input)}`
+${jsonBlock({ ...input, rejected: numbered(input.rejected) })}`
 }

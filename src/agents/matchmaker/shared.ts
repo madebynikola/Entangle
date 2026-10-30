@@ -105,7 +105,7 @@ export const CLAIM_FIXES_SCHEMA = {
 		additionalProperties: false,
 		required: ["index", "action", "text", "sourceIds"],
 		properties: {
-			index: { type: "integer", description: "Index of the rejected claim this fix is for." },
+			index: { type: "integer", description: "The \"index\" of the rejected claim this fix is for, as the input gives it." },
 			action: { type: "string", enum: ["rewrite", "drop"] },
 			text: { type: "string", description: "The corrected claim. Empty when dropped." },
 			sourceIds: { type: "array", items: { type: "string" }, description: "Ids that support the corrected claim. Empty when dropped." },
@@ -120,6 +120,7 @@ export const CLAIM_FIXES_SCHEMA = {
 export function applyClaimFixes(lists: Claim[][], rejected: RejectedClaim[], fixes: ClaimFix[]): number[] {
 	const missing: number[] = []
 	const drops: Array<[Claim[], Claim]> = []
+	const assigned = assignFixes(rejected, fixes)
 	rejected.forEach((r, index) => {
 		const list = lists.find((claims) => findClaim(claims, r.claim) >= 0)
 		if (!list) {
@@ -127,10 +128,60 @@ export function applyClaimFixes(lists: Claim[][], rejected: RejectedClaim[], fix
 			return
 		}
 		const at = findClaim(list, r.claim)
-		const fix = fixes.find((f) => f.index === index)
+		const fix = assigned.get(index)
 		if (!fix || fix.action === "drop" || !fix.text.trim() || fix.sourceIds.length === 0) drops.push([list, list[at]])
 		else list[at] = { text: fix.text.trim(), sourceIds: fix.sourceIds }
 	})
 	for (const [list, claim] of drops) list.splice(list.indexOf(claim), 1)
 	return missing
+}
+
+/**
+ * Which rejected claim each fix is for, by index into `rejected`. Models often give the claim's place in the artifact
+ * instead of its index in the rejected list (31% of fix answers in the 20-company run of 30 Oct), so a rewrite goes to
+ * the rejected claim it reads like: its own index when the words fit, else the closest one not taken, else its index.
+ */
+export function assignFixes(rejected: RejectedClaim[], fixes: ClaimFix[]): Map<number, ClaimFix> {
+	const assigned = new Map<number, ClaimFix>()
+	const inRange = (fix: ClaimFix) => Number.isInteger(fix.index) && fix.index >= 0 && fix.index < rejected.length
+	const isRewrite = (fix: ClaimFix) => fix.action === "rewrite" && fix.text.trim() !== ""
+	const fits = (fix: ClaimFix, index: number) => !isRewrite(fix) || likeness(fix.text, rejected[index].claim.text) >= LIKE
+	const left: ClaimFix[] = []
+	for (const fix of fixes) {
+		if (inRange(fix) && !assigned.has(fix.index) && fits(fix, fix.index)) assigned.set(fix.index, fix)
+		else left.push(fix)
+	}
+	const unplaced: ClaimFix[] = []
+	for (const fix of left) {
+		let best = -1
+		let score = LIKE
+		if (isRewrite(fix)) {
+			rejected.forEach((r, index) => {
+				const s = assigned.has(index) ? 0 : likeness(fix.text, r.claim.text)
+				if (s >= score) [best, score] = [index, s]
+			})
+		}
+		if (best >= 0) assigned.set(best, fix)
+		else unplaced.push(fix)
+	}
+	for (const fix of unplaced) if (inRange(fix) && !assigned.has(fix.index)) assigned.set(fix.index, fix)
+	return assigned
+}
+
+/** Below this share of shared words, a rewrite is not about that claim. */
+const LIKE = 0.25
+
+/** Shared words of two texts (3+ letters), as a share of the shorter one's words. */
+function likeness(a: string, b: string): number {
+	const words = (text: string) => new Set(norm(text).match(/[\p{L}\p{N}]{3,}/gu) ?? [])
+	const [x, y] = [words(a), words(b)]
+	if (!x.size || !y.size) return 0
+	let shared = 0
+	for (const word of x) if (y.has(word)) shared++
+	return shared / Math.min(x.size, y.size)
+}
+
+/** The rejected claims as a fix prompt shows them, each with the index its fix must give. */
+export function numbered(rejected: RejectedClaim[]): Array<RejectedClaim & { index: number }> {
+	return rejected.map((r, index) => ({ index, ...r }))
 }
