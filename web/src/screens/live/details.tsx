@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Stat } from "@/components/ui/card"
 import { Chip } from "@/components/ui/chip"
 import { Dialog, DialogContent, DialogDescription, DialogTitle, SheetContent } from "@/components/ui/dialog"
+import { RoleFace } from "@/components/ui/face"
 import { RoleTag } from "@/components/ui/role"
 import { Status, StatusDot, type StatusTone } from "@/components/ui/status"
 import * as format from "@/lib/format"
@@ -165,9 +166,16 @@ function AgentBody({
 	return (
 		<>
 			<div className="border-b border-hairline px-5 py-4">
-				<RoleTag role={agent.role} className="text-xs text-ink-muted" />
-				<DialogTitle className="mt-1.5 text-lg">{agent.name}</DialogTitle>
-				<DialogDescription>{ROLE_INFO[agent.role].job || "An agent in this run."}</DialogDescription>
+				<div className="flex items-start gap-3">
+					<RoleFace role={agent.role} state={now && now.activity !== "idle" ? "working" : "idle"} className="size-12" />
+					<div className="min-w-0 flex-1">
+						<RoleTag role={agent.role} className="text-xs text-ink-muted">
+							{ROLE_INFO[agent.role].name ? `${ROLE_INFO[agent.role].name}, ${ROLE_INFO[agent.role].label}` : undefined}
+						</RoleTag>
+						<DialogTitle className="mt-1.5 text-lg">{agent.name}</DialogTitle>
+					</div>
+				</div>
+				<DialogDescription className="mt-2">{ROLE_INFO[agent.role].job || "An agent in this run."}</DialogDescription>
 				{status && (
 					<div className="mt-3 flex min-w-0 items-center gap-2 text-sm">
 						<Status tone={status.tone}>{status.label}</Status>

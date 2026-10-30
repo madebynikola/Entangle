@@ -1,6 +1,7 @@
 import { motion } from "motion/react"
 import { Fragment, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import type * as React from "react"
+import { RoleFace } from "@/components/ui/face"
 import { RoleSquare } from "@/components/ui/role"
 import { StatusDot, type StatusTone } from "@/components/ui/status"
 import * as format from "@/lib/format"
@@ -245,9 +246,10 @@ function GroupHeader({ role, lanes }: { role: RoleKey; lanes: LaneAgent[] }) {
 	const working = lanes.filter((lane) => lane.now && lane.now.activity !== "idle").length
 	const info = ROLE_INFO[role]
 	return (
-		<div className="flex h-8 items-center gap-2 border-b border-hairline bg-sunken/60 px-4 text-xs">
-			<RoleSquare role={role} />
-			<span className="font-medium text-ink">{lanes.length > 1 ? info.plural : info.label}</span>
+		<div className="flex h-8 items-center gap-2 border-b border-hairline bg-sunken/60 pl-3 pr-4 text-xs">
+			<RoleFace role={role} state={working > 0 ? "working" : "idle"} className="size-5" />
+			{info.name && <span className="font-semibold text-ink">{info.name}</span>}
+			<span className={info.name ? "text-ink-muted" : "font-medium text-ink"}>{lanes.length > 1 ? info.plural : info.label}</span>
 			{lanes.length > 1 && <span className="tabular text-ink-subtle">{lanes.length}</span>}
 			{working > 0 && <span className="tabular text-ink-muted">{working} working</span>}
 			{info.job && <span className="ml-auto hidden truncate text-ink-subtle md:block">{info.job}</span>}

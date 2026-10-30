@@ -6,6 +6,7 @@ import type * as React from "react"
 import { Link, NavLink, useMatch } from "react-router"
 import { create } from "zustand"
 import { Button } from "@/components/ui/button"
+import { RoleFace } from "@/components/ui/face"
 import { Kbd } from "@/components/ui/kbd"
 import { StatusDot } from "@/components/ui/status"
 import { Tooltip } from "@/components/ui/tooltip"
@@ -231,7 +232,8 @@ function RunRow({ run, onNavigate }: { run: RunInfo; onNavigate?: () => void }) 
 const MAX_PIPS = 14
 
 /**
- * The open run's team, one row per role. Each agent is a pip that lights up while it works,
+ * The open run's team, one row per role, with the role's face (it works while any of them works).
+ * Each agent is a pip that lights up while it works,
  * so a glance shows how many agents run at the same time. It follows the replay.
  */
 function AgentsSection() {
@@ -262,10 +264,18 @@ function AgentsSection() {
 					<p className="px-2 py-1 text-sm text-ink-subtle">Agents appear here as they join.</p>
 				) : (
 					roles.map(([role, row]) => (
-						<Tooltip key={role} side="right" content={`${row.busy} of ${row.total} working. ${ROLE_INFO[role].job}`}>
-							<div className="flex h-8 shrink-0 items-center gap-2.5 rounded-md px-2 text-base">
-								<span className={cn("min-w-0 flex-1 truncate transition-colors", row.busy ? "text-ink" : "text-ink-muted")}>
-									{ROLE_INFO[role].plural}
+						<Tooltip
+							key={role}
+							side="right"
+							content={`${ROLE_INFO[role].name ? `${ROLE_INFO[role].name}, ${ROLE_INFO[role].label}. ` : ""}${row.busy} of ${row.total} working. ${ROLE_INFO[role].job}`}
+						>
+							<div className="flex h-8 shrink-0 items-center gap-2 rounded-md pl-1 pr-2 text-base">
+								<RoleFace role={role} state={row.busy ? "working" : "idle"} className="size-6" />
+								<span className="flex min-w-0 flex-1 items-baseline gap-1.5">
+									{ROLE_INFO[role].name && <span className="shrink-0 font-medium text-ink">{ROLE_INFO[role].name}</span>}
+									<span className={cn("truncate text-sm transition-colors", row.busy ? "text-ink-muted" : "text-ink-subtle")}>
+										{ROLE_INFO[role].plural}
+									</span>
 								</span>
 								<Pips role={role} total={row.total} busy={row.busy} />
 							</div>
