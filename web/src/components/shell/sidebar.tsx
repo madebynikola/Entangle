@@ -121,12 +121,23 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
 	)
 }
 
-/** Two linked rings: a researcher (profiler teal) and a company (analyst amber). */
+/** The Entangle mark (design/logo): a 3×3 grid with an empty centre and one indigo tile, in the theme's ink and accent. */
 export function Mark({ className }: { className?: string }) {
+	const tiles = [
+		[19, 19],
+		[41, 19],
+		[19, 41],
+		[63, 41],
+		[19, 63],
+		[41, 63],
+		[63, 63],
+	]
 	return (
-		<svg viewBox="0 0 28 28" aria-hidden className={cn("size-6 shrink-0", className)}>
-			<circle cx="11" cy="14" r="6" fill="none" stroke="var(--role-profiler)" strokeWidth="2.5" />
-			<circle cx="17" cy="14" r="6" fill="none" stroke="var(--role-analyst)" strokeWidth="2.5" />
+		<svg viewBox="17 17 66 66" aria-hidden className={cn("size-5 shrink-0", className)}>
+			{tiles.map(([x, y]) => (
+				<rect key={`${x}-${y}`} x={x} y={y} width="18" height="18" rx="4" fill="var(--ink)" />
+			))}
+			<rect x="63" y="19" width="18" height="18" rx="4" fill="var(--link)" />
 		</svg>
 	)
 }
