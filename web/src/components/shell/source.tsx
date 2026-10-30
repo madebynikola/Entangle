@@ -1,6 +1,6 @@
 import type { Claim, SourceRecord } from "@shared/types"
 import { BookOpen, Building2, FileText, Globe, Lightbulb, Target, User } from "lucide-react"
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import type * as React from "react"
 import { create } from "zustand"
 import { Chip } from "@/components/ui/chip"
@@ -63,13 +63,19 @@ export function SourceView({ id, className }: { id: string; className?: string }
 		)
 	}
 	const kind = KIND[source.kind] ?? KIND.page
+	// A page id holds the page title, so it gets a line of its own.
+	const long = source.id.includes("/")
 	return (
 		<div className={cn("flex flex-col gap-1.5", className)}>
 			<div className="flex items-center gap-1.5 text-xs text-ink-muted [&_svg]:size-3.5">
 				{kind.icon}
 				<span>{kind.label}</span>
-				<span className="text-ink-subtle">·</span>
-				<span className="font-mono">{source.id}</span>
+				{!long && (
+					<>
+						<span className="text-ink-subtle">·</span>
+						<span className="font-mono">{source.id}</span>
+					</>
+				)}
 				{source.year && (
 					<>
 						<span className="text-ink-subtle">·</span>
@@ -77,20 +83,26 @@ export function SourceView({ id, className }: { id: string; className?: string }
 					</>
 				)}
 			</div>
+			{long && <div className="break-words font-mono text-xs text-ink-muted">{source.id}</div>}
 			<div className="font-medium leading-snug text-ink">{source.title}</div>
 			<p className="line-clamp-[12] whitespace-pre-line text-sm text-ink-muted">{source.text}</p>
 		</div>
 	)
 }
 
-/** A cited id as a mono chip. Hover (or focus) shows the source record; a click opens it in the side panel. */
+/** `C002/job/2024-06-01/<title>` as `C002/job/2024-06-01`: company, kind and date. Other ids stay whole. */
+function chipLabel(id: string): string {
+	return /^(C\d{3}\/[^/]+\/\d{4}-\d{2}-\d{2})\/./.exec(id)?.[1] ?? id
+}
+
+/** A cited id as a mono chip, a page id cut to its date. Hover (or focus) shows the source record; a click opens it in the side panel. */
 export function SourceChip({ id, className }: { id: string; className?: string }) {
 	return (
 		<HoverCard openDelay={180} closeDelay={80}>
 			<HoverCardTrigger asChild>
 				<Chip asChild mono className={className}>
-					<button type="button" onClick={() => openSource(id)}>
-						{id}
+					<button type="button" aria-label={id} onClick={() => openSource(id)}>
+						{chipLabel(id)}
 					</button>
 				</Chip>
 			</HoverCardTrigger>
@@ -106,13 +118,12 @@ export function ClaimText({ claim, className, struck }: { claim: Claim; classNam
 	return (
 		<span className={cn("inline", className)}>
 			<span className={cn(struck && "text-ink-muted line-through decoration-failed/70")}>{claim.text}</span>
-			{claim.sourceIds.length > 0 && (
-				<span className="ml-1.5 inline-flex flex-wrap gap-1 align-middle">
-					{claim.sourceIds.map((id) => (
-						<SourceChip key={id} id={id} />
-					))}
-				</span>
-			)}
+			{claim.sourceIds.map((id) => (
+				<Fragment key={id}>
+					{" "}
+					<SourceChip id={id} className="align-middle" />
+				</Fragment>
+			))}
 		</span>
 	)
 }

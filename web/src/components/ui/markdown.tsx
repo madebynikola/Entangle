@@ -1,14 +1,18 @@
-import { Children, isValidElement } from "react"
+import { Children, Fragment, isValidElement } from "react"
 import type * as React from "react"
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { SourceChip } from "@/components/shell/source"
 import { cn } from "@/lib/utils"
 
+/** One dataset id. A page id ends in its title, which can hold commas: `C002/news/2024-04-22/<title>`. */
+const ID = String.raw`(?:R\d{3,4}|C\d{3}(?:-CH\d+)?|SYN-[A-Z]{3}-\d+|C\d{3}\/[^\]]+?)`
 /** `[C014-CH1]` or `[SYN-PUB-02211, SYN-PUB-02240]`: dataset ids cited inline. */
-const CITATION = /\[((?:R\d{3,4}|C\d{3}(?:-CH\d+)?|SYN-[A-Z]{3}-\d+|C\d{3}\/[^\]]+?)(?:\s*,\s*(?:R\d{3,4}|C\d{3}(?:-CH\d+)?|SYN-[A-Z]{3}-\d+|C\d{3}\/[^\],]+?))*)\]/g
+const CITATION = new RegExp(String.raw`\[(${ID}(?:\s*,\s*${ID})*)\]`, "g")
+/** The comma between two ids, not one inside a page title. */
+const BETWEEN = /\s*,\s*(?=R\d{3,4}\b|C\d{3}\b|SYN-)/
 
-/** Replace inline citations in plain-text children with source chips. */
+/** Replace inline citations in plain-text children with source chips that wrap with the text, one by one. */
 function cite(children: React.ReactNode): React.ReactNode {
 	return Children.map(children, (child) => {
 		if (typeof child !== "string") return isValidElement(child) ? child : child
@@ -16,11 +20,14 @@ function cite(children: React.ReactNode): React.ReactNode {
 		let last = 0
 		for (const match of child.matchAll(CITATION)) {
 			parts.push(child.slice(last, match.index))
-			const ids = match[1].split(/\s*,\s*/)
+			const ids = match[1].split(BETWEEN)
 			parts.push(
-				<span key={match.index} className="mx-0.5 inline-flex flex-wrap gap-1 align-[1px]">
-					{ids.map((id) => (
-						<SourceChip key={id} id={id} className="h-5" />
+				<span key={match.index} className="mx-0.5">
+					{ids.map((id, i) => (
+						<Fragment key={id}>
+							{i > 0 && " "}
+							<SourceChip id={id} className="h-5 align-[1px]" />
+						</Fragment>
 					))}
 				</span>,
 			)
