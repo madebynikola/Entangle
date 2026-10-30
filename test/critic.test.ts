@@ -133,6 +133,44 @@ describe("code checks (no model)", () => {
 		)
 		assert.deepEqual(result.passed, [TRUE_CLAIMS.firmware, ...fine])
 	})
+
+	test("pass another form of a name in a cited record; blame no record for a page path or a work's small number", () => {
+		const page = (id: string, text: string): SourceRecord => ({ id, kind: "page", title: "ArmaturaSec", text, researcherIds: [], companyId: "C001", year: 2023 })
+		const news = page(
+			"C001/news/2023-03-28/Contract",
+			"ArmaturaSec signed with partners in Vojvodini and Hungary for 1.200 units. The units run on STM32H7 boards and give text-to-speech alerts.",
+		)
+		const blog = page(
+			"C001/blog/2023-05-20/Installers",
+			"Installers in Vojvodina and Hungarian partners set up 1,200 units on 28 sites, all on STM32 boards with TTS alerts. They report to a team of 20 that manages delivery.",
+		)
+		const paper: SourceRecord = { id: "SYN-PUB-00003", kind: "publication", title: "Testing a Verified Register Allocator", text: "We test the verified pass on 12 embedded programs.", researcherIds: ["R0001"], year: 2014 }
+		const records = new FakeSourceStore([...RECORDS, news, blog, paper])
+		const claim = (text: string, id: string): Claim => ({ text, sourceIds: [id] })
+		const fine = [
+			// The news page writes the Serbian "Vojvodini", "Hungary" and "1.200".
+			claim("The company has partners in Vojvodina and Hungarian sites for 1,200 units.", news.id),
+			// A model family, an acronym with "to" in it, and a page path that leaves no "28" and still ends its sentence.
+			claim(`The units run on STM32 boards (${news.id}). They give TTS alerts.`, news.id),
+			// The blog "manages", which is not "Manager".
+			claim("A Manager signs every contract.", news.id),
+			claim("Installers set up units on 28 sites.", blog.id),
+		]
+		const team = claim("The company has a team of 20 firmware engineers.", "C001-CH1")
+
+		const result = checkByCode("need", need({ assets: [...fine, team] }), s, records)
+		assert.deepEqual(result.passed, [TRUE_CLAIMS.firmware, ...fine])
+		// A number under 100 that a company page holds still counts.
+		assert.deepEqual(
+			result.rejected.map((r) => r.reason),
+			[`"20" is not in C001-CH1 but is in ${blog.id}, which the claim does not cite.`],
+		)
+
+		// Another paper by the researcher holds "12" by chance.
+		const programs = claim("Formalized a register allocation pass in Coq and tested it on 12 programs.", "SYN-PUB-00001")
+		const tested = claim("Tested a verified register allocator on embedded programs.", paper.id)
+		assert.deepEqual(checkByCode("profile", profile([programs, tested]), s, records).rejected, [])
+	})
 })
 
 describe("mock model check", () => {

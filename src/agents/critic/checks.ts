@@ -383,11 +383,16 @@ interface Detail {
 	words: string[]
 	/** For a name in capitals (3 letters or more, maybe a plural s): its letters, so its expansion counts too. */
 	acronym?: string
+	/** A number under 100 on its own: in so many works that only a company, page or researcher record holding it counts. */
+	small?: boolean
 }
 
-/** Folded, with thousands commas dropped, so "7,400" and "7400" meet. */
+/** Published work: dozens per researcher, so most small numbers are in one of them by chance. */
+const WORK_KINDS = new Set(["publication", "project", "patent", "work"])
+
+/** Folded, with thousands separators dropped, so "7,400", "7400" and the Serbian "7.400" meet. */
 function norm(token: string): string {
-	return fold(token).replace(/(?<=\d),(?=\d{3}\b)/g, "")
+	return fold(token).replace(/(?<=\d)[,.](?=\d{3}\b)/g, "")
 }
 
 /** A text's words and numbers, normalised, with ids left out. */
@@ -413,7 +418,7 @@ function detailsOf(text: string, skip: Set<string>): Detail[] {
 				first = false
 				if (negated) return
 				if (/^\p{N}/u.test(token)) {
-					add({ text: token, words: [norm(token)] })
+					add({ text: token, words: [norm(token)], small: /^\p{N}{1,2}$/u.test(token) })
 					const next = tokens[i + 1]
 					if (next && /^\p{Ll}+$/u.test(next[0]) && /^[ -]$/.test(clause.slice(index + token.length, next.index))) {
 						add({ text: `${token} ${next[0]}`, words: [norm(token), norm(next[0])] })
@@ -433,26 +438,51 @@ interface Indexed {
 	set: Set<string>
 }
 
-/** Whether a record's words hold the detail: as written, with or without a plural s, or an acronym as its words' initials. */
-function holds({ words, set }: Indexed, detail: Detail): boolean {
+/**
+ * Whether a record's words hold the detail: as written, with or without a plural s, or an acronym as its words'
+ * initials. `loose` also takes another form of the same name, for the claim's own records: it may clear a claim,
+ * never blame another record ("Manager" is not "manages").
+ */
+function holds({ words, set }: Indexed, detail: Detail, loose = false): boolean {
 	const forms = (word: string) => [word, `${word}s`, word.replace(/s$/, "")]
 	const [head, ...tail] = detail.words
-	if (!tail.length) return forms(head).some((form) => set.has(form)) || (detail.acronym !== undefined && spells(detail.acronym, words))
+	if (!tail.length) {
+		return (
+			forms(head).some((form) => set.has(form)) ||
+			(detail.acronym !== undefined && spells(detail.acronym, words, loose)) ||
+			(loose && words.some((word) => sameStem(head, word)))
+		)
+	}
 	return words.some((word, i) => word === head && tail.every((next, k) => forms(next).includes(words[i + 1 + k])))
 }
 
-/** Whether consecutive words start with the acronym's letters, with small link words between them. */
-function spells(acronym: string, words: string[]): boolean {
-	for (let start = 0; start < words.length; start++) {
-		let k = 0
-		for (let i = start; i < words.length && k < acronym.length; i++) {
-			const word = words[i]
-			if (word.length >= 3 && word[0] === acronym[k] && !LINK_WORDS.has(word)) k++
-			else if (k === 0 || !LINK_WORDS.has(word)) break
-		}
+/**
+ * Whether two words are forms of one name. A model name with digits is its family's ("STM32" in "STM32H7"). Other
+ * names share all but their last three letters, and at least five: "Hungarian" and "Hungary", "Vojvodina" and the
+ * Serbian "Vojvodini".
+ */
+function sameStem(detail: string, word: string): boolean {
+	if (/\p{N}/u.test(detail)) return detail.length >= 4 && /\p{L}/u.test(detail) && word.startsWith(detail)
+	let k = 0
+	while (k < detail.length && detail[k] === word[k]) k++
+	return k >= 5 && k >= Math.max(detail.length, word.length) - 3
+}
+
+/**
+ * Whether consecutive words start with the acronym's letters, with small link words between them. `loose` lets a link
+ * word inside the acronym give a letter of its own: "TTS" for "text-to-speech".
+ */
+function spells(acronym: string, words: string[], loose: boolean): boolean {
+	const from = (i: number, k: number): boolean => {
 		if (k === acronym.length) return true
+		const word = words[i]
+		if (word === undefined) return false
+		const link = LINK_WORDS.has(word)
+		const letter = link ? loose && k > 0 && k < acronym.length - 1 : word.length >= 3
+		if (letter && word[0] === acronym[k] && from(i + 1, k + 1)) return true
+		return k > 0 && link && from(i + 1, k)
 	}
-	return false
+	return words.some((_, start) => from(start, 0))
 }
 
 /**
@@ -461,20 +491,20 @@ function spells(acronym: string, words: string[]): boolean {
  * Such a detail came from a record the claim does not cite ("AWS" in a claim on C005-CH2, from C005).
  */
 function uncitedLookup(store: SourceStore, ids: string[]): (claim: Claim, skip: Set<string>) => Array<{ detail: string; ids: string[] }> {
-	const records = new Map<string, Indexed>()
+	const records = new Map<string, Indexed & { work: boolean }>()
 	for (const id of ids) {
 		const record = store.get(id)
 		if (!record || records.has(record.id)) continue
 		const words = wordsOf(`${record.title} ${record.year ?? ""} ${record.text}`)
-		records.set(record.id, { words, set: new Set(words) })
+		records.set(record.id, { words, set: new Set(words), work: WORK_KINDS.has(record.kind) })
 	}
 	return (claim, skip) => {
 		const own = new Set(claim.sourceIds.map((id) => store.get(id)?.id))
 		const cited = [...records].filter(([id]) => own.has(id)).map(([, record]) => record)
 		const others = [...records].filter(([id]) => !own.has(id))
 		const found = detailsOf(claim.text, skip).flatMap((detail) => {
-			if (cited.some((record) => holds(record, detail))) return []
-			const ids = others.filter(([, record]) => holds(record, detail)).map(([id]) => id)
+			if (cited.some((record) => holds(record, detail, true))) return []
+			const ids = others.filter(([, record]) => !(detail.small && record.work) && holds(record, detail)).map(([id]) => id)
 			return ids.length ? [{ detail: detail.text, ids }] : []
 		})
 		// "72 hours" says it all: no "72" beside it.
