@@ -113,28 +113,47 @@ export function ProposalDetail({ index, proposal }: { index: ResultsIndex; propo
 	)
 }
 
-/** A proposal the two Critics held back: it is not accepted, so a person reads the draft and decides. */
+/**
+ * A proposal the Critics held back: it is not accepted, so a person reads the draft and decides.
+ * With the draft stored in the run, it reads like a proposal; without it, only the Critic review is shown.
+ */
 export function HeldBackDetail({ index, held }: { index: ResultsIndex; held: HeldBack }) {
+	const [tab, setTab] = useTab(READER_TABS, "proposal")
 	const paths = useResultsPath()
 	const runId = useRunStore((state) => state.runId)
 	const { pair, company, researcher } = sides(index, held.pairId)
 	const verdicts = reviewsOf(index.results, "proposal", held.id)
+	const draft = held.draft
+	const note = (
+		<div className="max-w-[80ch] rounded-lg bg-sunken p-4 text-sm leading-relaxed text-ink-muted">
+			The Critics did not accept this proposal: they still rejected claims after the last fix, or the fix could not run. Nothing was
+			dropped: a person reads the draft and decides.
+			{!draft && (
+				<>
+					{" "}
+					The draft is in <span className="font-mono text-ink">out/{runId}/needs-human/{held.id}.md</span>.
+				</>
+			)}
+		</div>
+	)
 	return (
 		<DetailFrame
-			bodyKey={held.id}
+			bodyKey={draft ? `${held.id}:${tab}` : held.id}
 			header={
 				<>
-					<h2 className="text-lg font-semibold leading-snug tracking-tight text-ink">
-						{company.name} and {researcher}
+					<h2 className="text-balance text-lg font-semibold leading-snug tracking-tight text-ink">
+						{draft?.title ?? `${company.name} and ${researcher}`}
 					</h2>
 					<Meta
 						className="mt-1.5"
 						items={[
-							<span className="font-mono text-xs">{held.id}</span>,
-							pair && (
+							draft ? kindLabel(draft.kind) : <span className="font-mono text-xs">{held.id}</span>,
+							pair ? (
 								<Link to={paths.pair(pair.id)} className="text-ink underline-offset-2 hover:underline">
-									Open the pair
+									{draft ? `${company.name} and ${researcher}` : "Open the pair"}
 								</Link>
+							) : (
+								draft && `${company.name} and ${researcher}`
 							),
 							<StatusLabel tone="needs" className="text-ink-muted">
 								Needs human review
@@ -144,17 +163,53 @@ export function HeldBackDetail({ index, held }: { index: ResultsIndex; held: Hel
 				</>
 			}
 			actions={<DecisionBar pairId={held.pairId} />}
+			tabs={
+				draft && (
+					<Tabs<ReaderTab>
+						aria-label="Held-back proposal"
+						className="border-b-0"
+						value={tab}
+						onValueChange={setTab}
+						items={[
+							{ value: "proposal", label: "Draft" },
+							{ value: "claims", label: "Claims", count: draft.claims.length || undefined },
+							{ value: "review", label: "Critic review", count: verdicts.length || undefined },
+						]}
+					/>
+				)
+			}
 		>
-			<div className="flex max-w-[80ch] flex-col gap-8">
-				<DecisionNote pairId={held.pairId} />
-				<div className="rounded-lg bg-sunken p-4 text-sm leading-relaxed text-ink-muted">
-					Both Critics still rejected claims after the last fix, so this proposal was not accepted. Nothing was dropped: a person reads the
-					draft and decides. The draft is in <span className="font-mono text-ink">out/{runId}/needs-human/{held.id}.md</span>.
+			{draft ? (
+				<>
+					<DecisionNote pairId={held.pairId} className="mb-6 max-w-[72ch]" />
+					{tab === "proposal" && (
+						<div className="flex flex-col gap-8">
+							{note}
+							<Markdown>{stripTitle(draft.markdown, draft.title)}</Markdown>
+						</div>
+					)}
+					{tab === "claims" && (
+						<Block
+							title="Every claim and its sources"
+							description="Each factual statement in the draft, with the dataset records it cites. Hover an id to see the record. Click it to open it."
+						>
+							<ClaimRows
+								claims={draft.claims}
+								empty="This draft was read from a Markdown file, so its claims are not stored one by one. The citations in the text still open their sources."
+							/>
+						</Block>
+					)}
+					{tab === "review" && <ReviewHistory className="max-w-[80ch]" verdicts={verdicts} final={draft.claims} />}
+				</>
+			) : (
+				<div className="flex max-w-[80ch] flex-col gap-8">
+					<DecisionNote pairId={held.pairId} />
+					{note}
+					<Block title="Critic review">
+						<ReviewHistory verdicts={verdicts} />
+					</Block>
 				</div>
-				<Block title="Critic review">
-					<ReviewHistory verdicts={verdicts} />
-				</Block>
-			</div>
+			)}
 		</DetailFrame>
 	)
 }

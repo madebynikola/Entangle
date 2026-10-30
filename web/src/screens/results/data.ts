@@ -1,5 +1,5 @@
 import type { RunResults } from "@shared/server/api"
-import type { ArtifactKind, Claim, CompanyNeed, CriticVerdict, NoMatch, PairCandidate, Proposal, ResearcherProfile } from "@shared/types"
+import type { ArtifactKind, Claim, CompanyNeed, CriticVerdict, NoMatch, PairCandidate, Proposal, ResearcherProfile, TraceRecord } from "@shared/types"
 import { useMemo } from "react"
 import { useParams } from "react-router"
 import { useResults } from "@/run/hooks"
@@ -15,11 +15,17 @@ export interface Company {
 	sector: string
 }
 
-/** A proposal the two Critics still rejected after its last fix. It is not among the accepted proposals. */
+/**
+ * A proposal the Critics did not accept: they still rejected it after its last fix, or the fix could not run.
+ * It is not among the accepted proposals. A person reads the draft and decides.
+ */
 export interface HeldBack {
 	id: string
 	pairId: string
-	verdict: CriticVerdict
+	/** The full draft, when the run stored it. */
+	draft?: Proposal
+	/** The latest Critic verdict on it, if a review ran. */
+	verdict?: CriticVerdict
 }
 
 export interface ResultsIndex {
@@ -37,6 +43,9 @@ export interface ResultsIndex {
 	/** Pairs of each challenge, best fit first. Fit compares pairs within one challenge only. */
 	pairsByChallenge: Map<string, PairCandidate[]>
 	heldBack: HeldBack[]
+	heldBackByPair: Map<string, HeldBack>
+	/** Pair ids handed to the Writers. Null when the run did not record them. */
+	chosen: Set<string> | null
 }
 
 export function buildIndex(results: RunResults): ResultsIndex {
@@ -61,14 +70,36 @@ export function buildIndex(results: RunResults): ResultsIndex {
 
 	const challengeIds = [...new Set([...needs.keys(), ...pairsByChallenge.keys(), ...noMatches.keys()])].sort(byDatasetId)
 
-	// The latest proposal verdict per id; held back when it asks for a person and the proposal was not accepted.
+	// Held back: every stored draft that was not accepted, then any proposal whose latest verdict asks for a person.
 	const latest = new Map<string, CriticVerdict>()
 	for (const verdict of results.verdicts) if (kindOf(verdict) === "proposal") latest.set(verdict.proposalId, verdict)
-	const heldBack = [...latest.values()]
-		.filter((verdict) => verdict.action === "human-review" && !proposals.has(verdict.proposalId))
-		.map((verdict) => ({ id: verdict.proposalId, pairId: pairIdOf(verdict.proposalId), verdict }))
+	const held = new Map<string, HeldBack>()
+	for (const draft of results.needsHuman ?? []) {
+		if (!proposals.has(draft.id)) held.set(draft.id, { id: draft.id, pairId: draft.pairId || pairIdOf(draft.id), draft, verdict: latest.get(draft.id) })
+	}
+	for (const verdict of latest.values()) {
+		const id = verdict.proposalId
+		if (verdict.action === "human-review" && !proposals.has(id) && !held.has(id)) held.set(id, { id, pairId: pairIdOf(id), verdict })
+	}
+	const heldBack = [...held.values()]
+	const heldBackByPair = new Map(heldBack.map((item) => [item.pairId, item]))
+	const chosen = results.chosen ? new Set(results.chosen) : null
 
-	return { results, needs, companies, profiles, pairs, proposals, proposalByPair, noMatches, challengeIds, pairsByChallenge, heldBack }
+	return {
+		results,
+		needs,
+		companies,
+		profiles,
+		pairs,
+		proposals,
+		proposalByPair,
+		noMatches,
+		challengeIds,
+		pairsByChallenge,
+		heldBack,
+		heldBackByPair,
+		chosen,
+	}
 }
 
 /** The open run's results with their lookups, or null while loading. */
@@ -112,6 +143,11 @@ export function pairIdOf(proposalId: string): string {
 	return proposalId.replace(/^(C\d+-CH\d+)-(R\d+)$/, "$1:$2")
 }
 
+/** The proposal id a Writer gives a pair: `C001-CH1:R0416` → `C001-CH1-R0416`. */
+export function proposalIdOf(pairId: string): string {
+	return pairId.replace(":", "-")
+}
+
 export function researcherIdOf(pairId: string): string {
 	return pairId.match(/(R\d+)$/)?.[1] ?? pairId
 }
@@ -151,6 +187,54 @@ export function noPair(index: ResultsIndex, challengeId: string): { label: strin
 	const need = index.needs.get(challengeId)
 	if (need && need.triage !== "research") return { label: "No pair", reason: `${TRIAGE_LABEL[need.triage]}: ${need.triageReason}` }
 	return { label: "No pair", reason: "The Matchmaker proposed no pair for this challenge." }
+}
+
+/**
+ * What became of a pair after matching. `not-written`: it was chosen, but no proposal and no draft came back.
+ * `unknown`: the run did not record which pairs were chosen.
+ */
+export type PairOutcome =
+	| { kind: "proposal"; proposal: Proposal }
+	| { kind: "held-back"; held: HeldBack }
+	| { kind: "not-written" }
+	| { kind: "not-chosen" }
+	| { kind: "unknown" }
+
+export function pairOutcome(index: ResultsIndex, pairId: string): PairOutcome {
+	const proposal = index.proposalByPair.get(pairId)
+	if (proposal) return { kind: "proposal", proposal }
+	const held = index.heldBackByPair.get(pairId)
+	if (held) return { kind: "held-back", held }
+	if (!index.chosen) return { kind: "unknown" }
+	return index.chosen.has(pairId) ? { kind: "not-written" } : { kind: "not-chosen" }
+}
+
+/**
+ * Why a proposal was not written: the error of the last write task for it that failed, from the trace.
+ * The first draft's task is named in `orchestrator.assigned`, each fix's task in `critic.sent_back`.
+ */
+export function writeFailure(records: TraceRecord[], proposalId: string): string | undefined {
+	const tasks = new Set<string>()
+	let error: string | undefined
+	for (const record of records) {
+		const data = record.data as { taskId?: string; subjectId?: string; id?: string; error?: string } | undefined
+		if (!data?.taskId) continue
+		if ((record.kind === "orchestrator.assigned" && data.subjectId === proposalId) || (record.kind === "critic.sent_back" && data.id === proposalId)) {
+			tasks.add(data.taskId)
+		} else if (tasks.has(data.taskId)) {
+			if (record.kind === "task.failed") error = data.error ?? "failed"
+			else if (record.kind === "task.completed") error = undefined
+		}
+	}
+	return error
+}
+
+/** A task error in a few words: the budget limit it hit (see budgetExceeded in src/runtime/state.ts), or that it failed. */
+export function failureLabel(error: string): string {
+	if (/^(tokens|cost) /.test(error)) return "budget"
+	if (error.startsWith("wall clock")) return "time limit"
+	if (error.startsWith("attempts")) return "attempts used"
+	return "task failed"
 }
 
 /** Dataset order: C001-CH2 before C001-CH10, R0099 before R0100. */

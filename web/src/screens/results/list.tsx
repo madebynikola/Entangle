@@ -126,12 +126,21 @@ function ProposalList({ index, selected }: { index: ResultsIndex; selected?: str
 				<>
 					<GroupLabel>
 						<div className="text-xs font-medium text-ink">Held back for a person</div>
-						<div className="text-xs text-ink-subtle">The Critics still rejected claims after the last fix.</div>
+						<div className="text-xs text-ink-subtle">The Critics did not accept them. A person decides.</div>
 					</GroupLabel>
 					{index.heldBack.map((held) => (
 						<Row key={held.id} to={paths.proposal(held.id)} active={selected === held.id} className="border-b border-hairline px-4 py-3.5">
-							<div className="truncate text-sm font-medium text-ink">{names(held.pairId)}</div>
-							<div className="mt-1 font-mono text-xs text-ink-subtle">{held.id}</div>
+							{held.draft ? (
+								<>
+									<div className="line-clamp-2 text-sm font-medium leading-snug text-ink">{held.draft.title}</div>
+									<div className="mt-1 truncate text-xs text-ink-muted">{names(held.pairId)}</div>
+								</>
+							) : (
+								<>
+									<div className="truncate text-sm font-medium text-ink">{names(held.pairId)}</div>
+									<div className="mt-1 font-mono text-xs text-ink-subtle">{held.id}</div>
+								</>
+							)}
 							<div className="mt-2.5 flex items-center justify-between gap-3 text-xs">
 								<DecisionStatus pairId={held.pairId} className="text-xs" />
 								<StatusLabel tone="needs" className="text-ink-muted">
