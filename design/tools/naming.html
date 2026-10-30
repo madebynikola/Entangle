@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entangle agent names</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #fff; color: #1D1D1F; font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; }
+  h2 { font-size: 13px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #6E6E73; margin: 36px 0 12px; }
+  p { color: #3A3A3C; line-height: 1.55; max-width: 780px; margin: 0 0 10px; font-size: 15px; }
+  .muted { color: #6E6E73; }
+  .sets { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .set { background: #F5F5F7; border-radius: 20px; padding: 18px; }
+  .set.pick { box-shadow: inset 0 0 0 2px #4C5BD4; }
+  .set h3 { margin: 0 0 4px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+  .set .tag { font-size: 11px; font-weight: 600; color: #3E4BB8; background: #EEF0FC; border-radius: 999px; padding: 2px 8px; margin-left: 6px; vertical-align: middle; }
+  .set table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+  .set td { padding: 6px 4px; border-top: 1px solid #E8E8ED; vertical-align: top; }
+  .set td:first-child { color: #6E6E73; width: 120px; }
+  .set td b { font-weight: 600; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+  button { font: 500 13px "Inter", sans-serif; border: 1px solid #D2D2D7; background: #fff; color: #1D1D1F; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+  button[aria-pressed=true] { border-color: #1D1D1F; box-shadow: inset 0 0 0 1px #1D1D1F; }
+  .count { margin-left: auto; color: #6E6E73; font-size: 13px; }
+  .pool { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .pool th { text-align: left; font-weight: 600; color: #6E6E73; font-size: 12px; padding: 8px; border-bottom: 1px solid #E8E8ED; position: sticky; top: 0; background: #fff; }
+  .pool td { padding: 7px 8px; border-bottom: 1px solid #F5F5F7; vertical-align: top; }
+  .pool td.w { font-weight: 600; }
+  .pool td.s { font-variant-numeric: tabular-nums; }
+  .chip { display: inline-block; font-size: 11px; border-radius: 999px; padding: 1px 7px; margin: 1px 3px 1px 0; }
+  .bad { background: #FBEAE9; color: #A3362E; } .ok { background: #E7F4EE; color: #166B45; } .info { background: #F5F5F7; color: #6E6E73; }
+  .wrap { overflow-x: auto; }
+</style>
+<main>
+  <h1>Agent names</h1>
+  <p id="summary"></p>
+  <p class="muted">Score (out of 80): length, syllables, and how easily a word is said and spelled in both English and Serbian, plus a bonus for words that mean the same in several languages. Names taken by AI products and words with odd meanings are pushed down. A web search was run for the finalists only; the rest of the "taken" list is from general knowledge and needs a trademark check before any real launch.</p>
+
+  <h2>Complete sets</h2>
+  <div class="sets" id="sets"></div>
+
+  <h2>The pool</h2>
+  <div class="filters" id="filters"></div>
+  <div class="wrap"><table class="pool"><thead><tr><th>Word</th><th>Score</th><th>Origin</th><th>Meaning</th><th>Fits</th><th>Notes</th></tr></thead><tbody id="rows"></tbody></table></div>
+</main>
+<script>
+const D = /*DATA*/null;
+const R = D.roles, roleName = (r) => r === "g" ? "any role" : R[r];
+const uni = D.pool.filter((w) => w.set === "universal").length, sr = D.pool.length - uni;
+document.getElementById("summary").innerHTML = `${D.pool.length} candidate words: ${uni} international (star, music, writing, light and plain given names) and ${sr} everyday Serbian words. The main finding: short international names are saturated in AI. Of 27 names searched, 20 are already AI products, often doing the same job as our agent (Vela, Rondo and Baton orchestrate; Vera, Plumb and Assay verify; Lyra, Folio, Penna, Pluma and Calliope write). The seven that came back clear made the final set.`;
+
+document.getElementById("sets").innerHTML = D.sets.map((s) => `<div class="set${s.pick ? " pick" : ""}"><h3>${s.name}${s.pick ? '<span class="tag">recommended</span>' : ""}</h3>
+  <p class="muted" style="font-size:13.5px">${s.note}</p><table>${Object.keys(R).map((r) => `<tr><td>${R[r]}</td><td><b>${s.names[r][0]}</b> <span class="muted">${s.names[r][1]}</span></td></tr>`).join("")}</table></div>`).join("");
+
+let role = "all", set = "all", hideFlagged = false;
+const chips = (w) => [
+  w.clear ? '<span class="chip ok">searched: clear</span>' : "",
+  ...w.why.map((y) => `<span class="chip ${/taken|lazy|English|plain|slang|Bond|cliche|meanings|station|hacek|TikTok|unpronounce|drain|prostitute/.test(y) ? "bad" : "info"}">${y}</span>`),
+].join("");
+function draw() {
+  const rows = D.pool.filter((w) => (role === "all" || w.roles.includes(role)) && (set === "all" || w.set === set) && (!hideFlagged || w.score >= 60))
+    .sort((a, b) => b.score - a.score || a.word.localeCompare(b.word));
+  document.getElementById("rows").innerHTML = rows.map((w) => `<tr><td class="w">${w.word}</td><td class="s">${w.score}</td><td class="muted">${w.origin}</td><td>${w.meaning}</td><td class="muted">${[...w.roles].map(roleName).join(", ")}</td><td>${chips(w)}</td></tr>`).join("");
+  document.getElementById("count").textContent = `${rows.length} words`;
+  document.querySelectorAll("[data-role]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.role === role));
+  document.querySelectorAll("[data-set]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.set === set));
+  document.getElementById("hide").setAttribute("aria-pressed", hideFlagged);
+}
+document.getElementById("filters").innerHTML =
+  `<button data-role="all">All roles</button>${Object.keys(R).map((r) => `<button data-role="${r}">${R[r]}</button>`).join("")}
+   <button data-set="all">Both</button><button data-set="universal">International</button><button data-set="serbian">Serbian</button>
+   <button id="hide">Hide flagged</button><span class="count" id="count"></span>`;
+document.querySelectorAll("[data-role]").forEach((b) => b.onclick = () => { role = b.dataset.role; draw(); });
+document.querySelectorAll("[data-set]").forEach((b) => b.onclick = () => { set = b.dataset.set; draw(); });
+document.getElementById("hide").onclick = () => { hideFlagged = !hideFlagged; draw(); };
+draw();
+</script>
+</html>

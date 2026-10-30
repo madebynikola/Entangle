@@ -1,0 +1,49 @@
+/* Entangle design tokens. Source of truth for colours and type; brand.html shows them in use.
+   Fonts: load Inter and Source Serif 4 from Google Fonts, e.g.
+   https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap */
+
+:root {
+  /* Brand: the logo is ink with one indigo tile. */
+  --ink: #1D1D1F;
+  --indigo-50: #EEF0FC; --indigo-100: #DDE1F9; --indigo-200: #BCC3F3; --indigo-300: #9AA5EC;
+  --indigo-400: #7480E2; --indigo-500: #4C5BD4; --indigo-600: #3E4BB8; --indigo-700: #333E96;
+  --indigo-800: #283073; --indigo-900: #1C2150;
+
+  /* Neutrals (cool greys). Mist is the card background, Night the dark background and trace view. */
+  --white: #FFFFFF; --mist: #F5F5F7; --gray-100: #E8E8ED; --gray-200: #D2D2D7; --gray-400: #86868B;
+  --gray-600: #6E6E73; --gray-800: #3A3A3C; --night: #111113;
+
+  /* The two sides of every match. Complementary, so they stay distinct for colour-blind viewers. */
+  --science: #4C5BD4;
+  --industry: #A46719;
+
+  /* Critic verdicts. Each is the lightest shade that passes WCAG AA (4.5:1) as text on white. */
+  --accepted: #1D8557;
+  --revise: #A86500;
+  --rejected: #C8463D;
+
+  /* Agent colours (faces). Text colour on these is white, except You (ink). */
+  --agent-deneb: #1D1D1F;   /* dark mode: #48484A */
+  --agent-spica: #A46719;
+  --agent-tycho: #4C5BD4;
+  --agent-amity: #8447C2;
+  --agent-tinta: #13807A;
+  --agent-fides: #C8463D;
+  --agent-you: #C7C7CC;     /* dark mode: #3A3A3C */
+
+  /* Type. Inter for UI and headings, Source Serif 4 for proposal body text. No monospace anywhere. */
+  --sans: "Inter", system-ui, sans-serif;
+  --serif: "Source Serif 4", Georgia, serif;
+  --display: 600 44px/1.05 var(--sans);   /* letter-spacing: -0.03em */
+  --h1: 600 28px/1.2 var(--sans);         /* letter-spacing: -0.02em */
+  --h2: 600 20px/1.3 var(--sans);         /* letter-spacing: -0.01em */
+  --body: 400 16px/1.6 var(--sans);
+  --proposal: 400 16.5px/1.62 var(--serif);
+  --caption: 400 13px/1.4 var(--sans);
+
+  --radius-card: 18px;
+  --radius-control: 999px;
+}
+
+/* Dataset ids (R0139, SYN-PUB-00412) use the sans with fixed-width digits and a slashed zero, so 0 and O never mix. */
+.id { font-family: var(--sans); font-variant-numeric: tabular-nums slashed-zero; }

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entangle: a run, live</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1D1D1F; --mist: #F5F5F7; --line: #E8E8ED; --muted: #6E6E73; --ok: #1D8557; --bad: #C8463D; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  main { max-width: 1180px; margin: 0 auto; padding: 20px 16px 40px; display: grid; grid-template-columns: 1fr 300px; gap: 16px; }
+  @media (max-width: 1000px) { main { grid-template-columns: 1fr; } }
+  .bar { grid-column: 1 / -1; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .bar h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin: 0 12px 0 0; }
+  button { font: 500 13px "Inter", sans-serif; border: 1px solid #D2D2D7; background: #fff; color: var(--ink); border-radius: 999px; padding: 7px 13px; cursor: pointer; }
+  button[aria-pressed=true] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .clock { margin-left: auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .stage { position: relative; background: var(--mist); border-radius: 26px; aspect-ratio: 4 / 3; min-width: 0; overflow: hidden; }
+  .wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .bus { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 144px; height: 144px; border-radius: 50%;
+         background: #fff; box-shadow: 0 0 0 1px var(--line); display: grid; place-items: center; text-align: center; }
+  .bus small { display: block; font-size: 11px; color: var(--muted); letter-spacing: .02em; }
+  .bus b { display: block; font-size: 12.5px; font-weight: 600; margin-top: 4px; max-width: 128px; }
+  .bus.ping { animation: ping .6s ease-out; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 1px var(--line), 0 0 0 0 rgba(76,91,212,.35); } 100% { box-shadow: 0 0 0 1px var(--line), 0 0 0 18px rgba(76,91,212,0); } }
+
+  .agent { position: absolute; width: 120px; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; }
+  .breathe { animation: breathe 4.2s ease-in-out infinite; }
+  @keyframes breathe { 50% { transform: scale(1.018); } }
+  .agent svg { display: block; }
+  .label { text-align: center; margin-top: 2px; }
+  .label b { display: block; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+  .label span { font-size: 11.5px; color: var(--muted); }
+
+  .bubble { position: absolute; bottom: calc(100% - 6px); left: 50%; transform: translate(-50%, 6px) scale(.96); opacity: 0;
+            background: #fff; border-radius: 14px; padding: 7px 11px; font-size: 12.5px; line-height: 1.35; width: max-content; max-width: 210px;
+            box-shadow: 0 6px 20px rgba(0,0,0,.08), 0 0 0 1px var(--line); transition: opacity .25s, transform .35s cubic-bezier(.3,1.4,.5,1); z-index: 3; }
+  .bubble.on { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  .bubble { border-radius: 18px; }
+  /* The tail points at the speaker: a rotated square continuing the bubble's fill and hairline. */
+  .bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; background: #fff;
+                   transform: translateX(-50%) rotate(45deg); border-radius: 0 0 3px 0; box-shadow: 1px 1px 0 var(--line); }
+  /* Agents near the top edge speak below themselves, or the stage would clip the bubble. */
+  .agent.low .bubble { bottom: auto; top: calc(100% + 8px); transform: translate(-50%, -6px) scale(.96); }
+  .agent.low .bubble.on { transform: translate(-50%, 0) scale(1); }
+  .agent.low .bubble::after { bottom: auto; top: -6px; border-radius: 3px 0 0 0; box-shadow: -1px -1px 0 var(--line); }
+  .bubble code { font: inherit; font-variant-numeric: tabular-nums slashed-zero; color: #3E4BB8; background: #EEF0FC; border-radius: 4px; padding: 0 4px; }
+
+  .dots { position: absolute; top: 4px; right: 4px; display: flex; gap: 3px; background: #fff; border-radius: 999px; padding: 5px 7px;
+          box-shadow: 0 0 0 1px var(--line); opacity: 0; transform: scale(.7); transition: opacity .2s, transform .3s; }
+  .dots.on { opacity: 1; transform: scale(1); }
+  .dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); animation: dot 1s infinite; }
+  .dots i:nth-child(2) { animation-delay: .15s; } .dots i:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot { 0%, 60%, 100% { opacity: .3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-2px); } }
+
+  /* Talking: the faces have no mouths, so the eyes bob gently while a message is being said. */
+  .talk .eyes { animation: talk .24s ease-in-out infinite alternate !important; }
+  @keyframes talk { from { transform: translateY(0) scaleY(1); } to { transform: translateY(-1.6px) scaleY(.9); } }
+  .flinch { animation: flinch .55s cubic-bezier(.3,0,.2,1); }
+  @keyframes flinch { 20% { transform: translate(-50%, -50%) translateX(-6px) rotate(-5deg) scale(.95); } 45% { transform: translate(-50%, -50%) translateX(4px) rotate(2deg); } }
+  .nod .breathe { animation: nod .5s ease-in-out; }
+  @keyframes nod { 40% { transform: translateY(4px) scale(.98); } }
+
+  .stamp { position: absolute; transform: translate(-50%, -50%) rotate(-10deg); font-weight: 700; font-size: 13px; letter-spacing: .08em;
+           padding: 4px 10px; border-radius: 8px; border: 2.5px solid currentColor; background: rgba(255,255,255,.92); pointer-events: none; z-index: 4; }
+
+
+  aside { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 14px; max-height: 760px; overflow: auto; }
+  aside h2 { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 2px 4px 10px; }
+  .log { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .log li { display: grid; grid-template-columns: 42px 10px 1fr; gap: 8px; align-items: baseline; padding: 6px 4px; border-radius: 10px; font-size: 12.5px; line-height: 1.4; animation: in .35s ease-out; }
+  .log li:first-child { background: var(--mist); }
+  .log .t { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .log .c { width: 8px; height: 8px; border-radius: 50%; align-self: center; }
+  .log .e { color: var(--muted); }
+  .log code { font: inherit; font-variant-numeric: tabular-nums slashed-zero; color: #3E4BB8; }
+  @keyframes in { from { opacity: 0; transform: translateY(-4px); } }
+
+  @media (prefers-reduced-motion: reduce) { .breathe, .dots i, .talk .eyes { animation: none !important; } }
+</style>
+<style>/*KEYFRAMES*/</style>
+<main>
+  <div class="bar">
+    <h1>A run, live</h1>
+    <button id="play" aria-pressed="true">Pause</button>
+    <button id="restart">Restart</button>
+    <button data-speed="1" aria-pressed="true">1×</button><button data-speed="2">2×</button>
+    <span class="clock" id="clock">0.0 s</span>
+  </div>
+  <div class="stage" id="stage">
+    <svg class="wires" id="wires"></svg>
+    <div class="bus" id="bus"><div><small>event bus</small><b id="busEv">waiting</b></div></div>
+    <!--AGENTS-->
+  </div>
+  <aside><h2>Events</h2><ol class="log" id="log"></ol></aside>
+</main>
+<script>
+// Agents sit on an ellipse round the event bus, clockwise from the top.
+const ORDER = ["deneb", "tycho", "fides", "you", "tinta", "amity", "spica"];
+const COLOR = { deneb: "#1D1D1F", spica: "#A46719", tycho: "#4C5BD4", amity: "#8447C2", tinta: "#13807A", fides: "#C8463D", you: "#8E8E93" };
+const NAME = /*NAMES*/{};
+
+// One scripted run. `work` = an agent's model call is running; everything else is a published event.
+const SCRIPT = [
+  { t: 0.4, from: "deneb", ev: "run.started", to: "all", say: "Six companies today. Let's find pairs." },
+  { t: 2.6, from: "deneb", ev: "company.assigned", to: ["spica"], say: "Spica, take ArmaturaSec." },
+  { t: 3.8, work: "spica", dur: 3.2 },
+  { t: 7.2, from: "spica", ev: "needs.ready", to: "all", say: "They need anomaly detection on Modbus with no labelled attacks. <code>C001-CH1</code>" },
+  { t: 9.6, from: "deneb", ev: "shortlist.ready", to: ["tycho"], say: "Search found 5 researchers. Tycho, profile them." },
+  { t: 10.8, work: "tycho", dur: 3.4 },
+  { t: 14.4, from: "tycho", ev: "profile.ready", to: "all", say: "<code>R0412</code> works on one-class learning for industrial protocols." },
+  { t: 15.8, work: "fides", dur: 2.0 },
+  { t: 18.0, from: "fides", ev: "claim.rejected", to: ["tycho"], say: "\"Deployed IDS at substations\" has no source.", stamp: ["tycho", false], flinch: "tycho", mood: ["fides", "reject", 2.4] },
+  { t: 20.6, work: "tycho", dur: 2.4 },
+  { t: 23.2, from: "tycho", ev: "profile.revised", to: ["fides"], say: "Removed. Every claim now cites an id." },
+  { t: 24.6, from: "fides", ev: "claim.accepted", to: ["tycho"], say: "Sourced. Accepted.", stamp: ["tycho", true], mood: ["tycho", "done", 2.2] },
+  { t: 26.6, work: "amity", dur: 3.2 },
+  { t: 30.0, from: "amity", ev: "pairs.ready", to: "all", say: "ArmaturaSec × <code>R0412</code>: their unlabelled traffic is exactly what these methods need.", link: ["spica", "tycho"] },
+  { t: 32.6, from: "deneb", ev: "approval.requested", to: ["you"], say: "Approve this pair?" },
+  { t: 33.8, typing: "you", dur: 2.6 },
+  { t: 36.6, from: "you", ev: "approval.granted", to: "all", say: "Looks right. Go ahead.", mood: ["you", "done", 2] },
+  { t: 38.4, work: "tinta", dur: 4.0 },
+  { t: 42.6, from: "tinta", ev: "proposal.draft", to: ["fides"], say: "Drafted: \"Anomaly detection on Modbus traffic without labelled attacks\"." },
+  { t: 44.2, work: "fides", dur: 1.8 },
+  { t: 46.2, from: "fides", ev: "proposal.accepted", to: ["tinta"], say: "Every claim checks out.", stamp: ["tinta", true], mood: ["tinta", "done", 2.4] },
+  { t: 48.4, from: "deneb", ev: "run.done", to: "all", say: "One proposal ready, two claims fixed. Done.", finale: true },
+];
+const END = 53;
+
+const stage = document.getElementById("stage"), wires = document.getElementById("wires");
+const el = {}, svgOf = {};
+document.querySelectorAll(".agent").forEach((a) => { el[a.dataset.id] = a; svgOf[a.dataset.id] = a.querySelector("svg.ag"); });
+
+
+function layout() {
+  ORDER.forEach((id, i) => {
+    const a = -Math.PI / 2 + i * 2 * Math.PI / ORDER.length;
+    el[id].style.left = `${50 + 37 * Math.cos(a)}%`;
+    el[id].style.top = `${50 + 35 * Math.sin(a)}%`;
+    el[id].classList.toggle("low", Math.sin(a) < -0.3);
+  });
+}
+layout();
+const centre = (id) => {
+  const s = stage.getBoundingClientRect(), r = (id === "bus" ? document.getElementById("bus") : svgOf[id]).getBoundingClientRect();
+  return [r.left + r.width / 2 - s.left, r.top + r.height / 2 - s.top];
+};
+const sync = () => { const s = stage.getBoundingClientRect(); wires.setAttribute("viewBox", `0 0 ${s.width} ${s.height}`); };
+new ResizeObserver(sync).observe(stage); sync();
+
+let speed = 1;
+const wait = (s) => s * 1000 / speed;
+// Delayed effects run on the simulated clock, not setTimeout, so Pause freezes them too.
+const later = [];
+const after = (s, fn) => later.push({ at: t + s, fn });
+const setState = (id, s) => svgOf[id].setAttribute("data-state", s);
+
+function look(id, target) {
+  const g = svgOf[id].querySelector(".gaze");
+  if (!target) { g.style.transform = ""; return; }
+  const [x1, y1] = centre(id), [x2, y2] = centre(target), L = Math.hypot(x2 - x1, y2 - y1) || 1;
+  g.style.transform = `translate(${(x2 - x1) / L * 4.5}px, ${(y2 - y1) / L * 3.5}px)`;
+}
+
+function say(id, html, secs = 2.8) {
+  const b = el[id].querySelector(".bubble");
+  b.innerHTML = html; b.classList.add("on"); svgOf[id].classList.add("talk");
+  after(Math.min(1.4, secs), () => svgOf[id].classList.remove("talk"));
+  after(secs, () => b.classList.remove("on"));
+}
+
+// An event travels producer -> bus -> each receiver, the way Mozaik publishes to every joined participant.
+function pulse(from, to) {
+  const ns = "http://www.w3.org/2000/svg", [fx, fy] = centre(from), [bx, by] = centre("bus"), color = COLOR[from];
+  const seg = (x1, y1, x2, y2, delay, strong) => {
+    const line = document.createElementNS(ns, "line");
+    Object.entries({ x1, y1, x2, y2, stroke: color, "stroke-width": strong ? 2.5 : 1.2, "stroke-linecap": "round" }).forEach(([k, v]) => line.setAttribute(k, v));
+    line.style.opacity = 0; wires.append(line);
+    line.animate([{ opacity: 0 }, { opacity: strong ? .55 : .2 }, { opacity: 0 }], { duration: wait(1.3), delay: wait(delay), fill: "forwards" }).onfinish = () => line.remove();
+    const dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("r", strong ? 5.5 : 3.5); dot.setAttribute("fill", color); dot.style.opacity = 0; wires.append(dot);
+    dot.animate([{ transform: `translate(${x1}px,${y1}px)`, opacity: 1 }, { transform: `translate(${x2}px,${y2}px)`, opacity: 1 }],
+      { duration: wait(.55), delay: wait(delay), easing: "cubic-bezier(.45,0,.2,1)", fill: "forwards" }).onfinish = () => dot.remove();
+  };
+  seg(fx, fy, bx, by, 0, true);
+  ORDER.filter((id) => id !== from).forEach((id) => {
+    const [tx, ty] = centre(id), strong = to === "all" || to.includes(id);
+    seg(bx, by, tx, ty, .5, strong);
+  });
+  const bus = document.getElementById("bus");
+  bus.classList.remove("ping"); void bus.offsetWidth; bus.classList.add("ping");
+}
+
+function stamp(on, ok) {
+  const [x, y] = centre(on), s = document.createElement("div");
+  s.className = "stamp"; s.textContent = ok ? "Approved" : "Rejected"; s.style.color = ok ? "var(--ok)" : "var(--bad)";
+  s.style.left = `${x + 34}px`; s.style.top = `${y + 22}px`; stage.append(s);
+  s.animate([{ transform: "translate(-50%,-50%) rotate(-10deg) scale(1.9)", opacity: 0 }, { transform: "translate(-50%,-50%) rotate(-10deg) scale(.95)", opacity: 1, offset: .55 }, { transform: "translate(-50%,-50%) rotate(-10deg) scale(1)", opacity: 1 }],
+    { duration: wait(.38), easing: "cubic-bezier(.2,0,.2,1)", fill: "forwards" });
+  after(2.2, () => s.animate([{ opacity: 1 }, { opacity: 0 }], { duration: wait(.4), fill: "forwards" }).onfinish = () => s.remove());
+}
+
+function link(a, b) {
+  const [x1, y1] = centre(a), [x2, y2] = centre(b), ns = "http://www.w3.org/2000/svg", l = document.createElementNS(ns, "path");
+  // Bow the line towards the bus, away from whoever sits between the two.
+  const [bx, by] = centre("bus"), mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+  l.setAttribute("d", `M${x1} ${y1}Q${mx + (bx - mx) * .45} ${my + (by - my) * .45} ${x2} ${y2}`);
+  Object.entries({ fill: "none", stroke: COLOR.amity, "stroke-width": 3, "stroke-linecap": "round", pathLength: 100, "stroke-dasharray": 100, "stroke-dashoffset": 100, class: "match" }).forEach(([k, v]) => l.setAttribute(k, v));
+  wires.prepend(l);
+  l.animate([{ strokeDashoffset: 100 }, { strokeDashoffset: 0 }], { duration: wait(1.1), easing: "cubic-bezier(.45,0,.2,1)", fill: "forwards" });
+}
+
+function logEvent(t, from, ev, note) {
+  const li = document.createElement("li");
+  li.innerHTML = `<span class="t">${t.toFixed(1)}s</span><span class="c" style="background:${COLOR[from]}"></span><span><b>${NAME[from]}</b> <span class="e">${ev}</span><br>${note}</span>`;
+  document.getElementById("log").prepend(li);
+}
+
+function run(step) {
+  if (step.work) {
+    const id = step.work;
+    setState(id, "working"); el[id].querySelector(".dots").classList.add("on"); look(id, null);
+    after(step.dur, () => { setState(id, "idle"); el[id].querySelector(".dots").classList.remove("on"); });
+    return;
+  }
+  if (step.typing) {
+    // You's own face has the keyboard: the working state is typing.
+    setState("you", "working");
+    after(step.dur, () => setState("you", "idle"));
+    return;
+  }
+  const { from, to, ev } = step;
+  document.getElementById("busEv").textContent = ev;
+  pulse(from, to);
+  say(from, step.say);
+  logEvent(step.t, from, ev, step.say);
+  const single = Array.isArray(to) && to.length === 1 ? to[0] : null;
+  look(from, single);
+  ORDER.filter((id) => id !== from).forEach((id) => look(id, from));
+  if (single) { el[single].classList.add("nod"); after(.6, () => el[single].classList.remove("nod")); }
+  after(1.8, () => ORDER.forEach((id) => look(id, null)));
+  if (step.stamp) after(.5, () => stamp(...step.stamp));
+  if (step.flinch) after(.65, () => { const f = el[step.flinch]; f.classList.remove("flinch"); void f.offsetWidth; f.classList.add("flinch"); setState(step.flinch, "reject"); after(1.6, () => setState(step.flinch, "idle")); });
+  if (step.mood) { const [id, s, secs] = step.mood; after(.4, () => setState(id, s)); after(.4 + secs, () => setState(id, "idle")); }
+  if (step.link) after(.5, () => link(...step.link));
+  if (step.finale) after(.8, () => { ORDER.forEach((id) => setState(id, "done")); wires.querySelectorAll(".match").forEach((m) => m.animate([{ opacity: 1 }, { opacity: 0 }], { duration: wait(2), delay: wait(2), fill: "forwards" })); });
+}
+
+// Simulated clock: pausing stops it; steps fire as it passes their time.
+let t = 0, last = null, playing = true, next = 0;
+function frame(now) {
+  if (playing) {
+    if (last != null) t += (now - last) / 1000 * speed;
+    while (next < SCRIPT.length && SCRIPT[next].t <= t) run(SCRIPT[next++]);
+    for (let i = 0; i < later.length; ) later[i].at <= t ? later.splice(i, 1)[0].fn() : i++;
+    if (t >= END) restart();
+    document.getElementById("clock").textContent = `${Math.min(t, END).toFixed(1)} s`;
+  }
+  last = now;
+  requestAnimationFrame(frame);
+}
+function restart() {
+  later.length = 0;
+  wires.innerHTML = ""; stage.querySelectorAll(".stamp").forEach((s) => s.remove());
+  document.getElementById("log").innerHTML = ""; document.getElementById("busEv").textContent = "waiting";
+  ORDER.forEach((id) => { setState(id, "idle"); look(id, null); svgOf[id].classList.remove("talk"); el[id].querySelector(".bubble").classList.remove("on"); el[id].querySelector(".dots").classList.remove("on"); });
+  t = 0; next = 0;
+}
+document.getElementById("play").onclick = (e) => { playing = !playing; e.target.textContent = playing ? "Pause" : "Play"; e.target.setAttribute("aria-pressed", playing);
+  document.getAnimations().forEach((a) => playing ? a.play() : a.pause()); };
+document.getElementById("restart").onclick = restart;
+document.querySelectorAll("[data-speed]").forEach((b) => b.onclick = () => {
+  speed = +b.dataset.speed; document.querySelectorAll("[data-speed]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+});
+requestAnimationFrame(frame);
+</script>
+</html>
