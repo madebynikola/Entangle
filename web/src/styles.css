@@ -54,6 +54,8 @@
 	/* Floating layers only: menus, the palette, toasts, the replay bar */
 	--float-shadow: 0 0 0 1px #1d1d1f14, 0 4px 8px -2px #1d1d1f0f, 0 16px 32px -8px #1d1d1f1a;
 	--card-shadow: 0 1px 2px #1d1d1f0a;
+	/* Cards that float over a full-bleed canvas (the Stage): barely lifted. */
+	--soft-shadow: 0 1px 2px #1d1d1f0a, 0 2px 6px -2px #1d1d1f0f;
 }
 
 /* Dark: the kit's Night. Colours are lighter steps of the same hues, each 4.5:1 or more on the panel. */
@@ -93,6 +95,7 @@
 
 	--float-shadow: 0 0 0 1px #ffffff1a, 0 16px 40px -8px #000000cc;
 	--card-shadow: none;
+	--soft-shadow: 0 1px 2px #00000033;
 }
 
 @theme inline {
@@ -144,6 +147,7 @@
 
 	--shadow-float: var(--float-shadow);
 	--shadow-card: var(--card-shadow);
+	--shadow-soft: var(--soft-shadow);
 }
 
 @theme {
