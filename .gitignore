@@ -11,3 +11,4 @@ __pycache__/
 out/*-mock/
 .vscode/
 docs/brief/kickoff-email.pdf
+web/dist/
