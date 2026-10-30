@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+/*
+ * Entangle design tokens. The feel follows Kanbix (docs/design/README.md):
+ * grey canvas, sidebar on the grey, one white panel inset with a large radius,
+ * hairline borders, almost no shadows, status as a dot plus coloured text.
+ *
+ * Use the Tailwind names (bg-panel, text-ink-muted, border-hairline, text-primary, bg-role-critic, ...), not raw colours.
+ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+	/* Surfaces, from back to front */
+	--canvas: #f2f2f3;
+	--panel: #ffffff;
+	--sunken: #f6f6f7; /* Kanbix columns: soft grey containers inside the panel */
+	--card: #ffffff;
+	--hover: #0000000a;
+	--selected: #ffffff; /* sidebar item on the canvas */
+
+	/* Lines */
+	--hairline: #e6e6e8;
+	--strong: #d2d2d6;
+
+	/* Text */
+	--ink: #1d1d1f;
+	--muted: #6e6e73;
+	--subtle: #a1a1a6;
+
+	/* One interactive colour: tabs, links, focus, selection, primary buttons */
+	--primary: #5856d6;
+	--primary-soft: #5856d614;
+	--on-primary: #ffffff;
+
+	/* Status: always a dot plus text in the same colour */
+	--working: #1e9e4a;
+	--needs: #f2600c; /* needs you, alerts, sent back */
+	--info: #2f6feb;
+	--idle: #a1a1a6;
+	--failed: #d92d20;
+
+	/* Agent roles: one colour each, shown as a small square (status uses round dots) */
+	--role-orchestrator: #64748b;
+	--role-analyst: #c27c0e;
+	--role-profiler: #0e9384;
+	--role-matchmaker: #c026d3;
+	--role-writer: #2563eb;
+	--role-critic: #dc2626;
+	--role-other: #8e8e93;
+
+	/* The one floating layer (replay bar, palette, toasts, popovers) */
+	--float-shadow: 0 1px 2px #0000000f, 0 8px 28px #00000014;
+}
+
+.dark {
+	--canvas: #1b1b1d;
+	--panel: #202022;
+	--sunken: #262628;
+	--card: #2b2b2e;
+	--hover: #ffffff0d;
+	--selected: #2b2b2e;
+
+	--hairline: #333336;
+	--strong: #47474b;
+
+	--ink: #f2f2f3;
+	--muted: #a1a1a6;
+	--subtle: #6e6e73;
+
+	--primary: #7d7aff;
+	--primary-soft: #7d7aff1f;
+	--on-primary: #ffffff;
+
+	--working: #30d158;
+	--needs: #ff9f0a;
+	--info: #409cff;
+	--idle: #6e6e73;
+	--failed: #ff6961;
+
+	--role-orchestrator: #94a3b8;
+	--role-analyst: #e9b949;
+	--role-profiler: #2dd4bf;
+	--role-matchmaker: #e879f9;
+	--role-writer: #60a5fa;
+	--role-critic: #f87171;
+	--role-other: #8e8e93;
+
+	--float-shadow: 0 1px 2px #00000066, 0 12px 32px #00000080;
+}
+
+@theme inline {
+	--color-canvas: var(--canvas);
+	--color-panel: var(--panel);
+	--color-sunken: var(--sunken);
+	--color-card: var(--card);
+	--color-hover: var(--hover);
+	--color-selected: var(--selected);
+	--color-hairline: var(--hairline);
+	--color-strong: var(--strong);
+	--color-ink: var(--ink);
+	--color-ink-muted: var(--muted);
+	--color-ink-subtle: var(--subtle);
+	--color-primary: var(--primary);
+	--color-primary-soft: var(--primary-soft);
+	--color-primary-foreground: var(--on-primary);
+	--color-working: var(--working);
+	--color-needs: var(--needs);
+	--color-info: var(--info);
+	--color-idle: var(--idle);
+	--color-failed: var(--failed);
+	--color-role-orchestrator: var(--role-orchestrator);
+	--color-role-analyst: var(--role-analyst);
+	--color-role-profiler: var(--role-profiler);
+	--color-role-matchmaker: var(--role-matchmaker);
+	--color-role-writer: var(--role-writer);
+	--color-role-critic: var(--role-critic);
+	--color-role-other: var(--role-other);
+
+	/* shadcn names, so components pulled from registries pick up the theme.
+	   In shadcn, muted and accent are quiet backgrounds; our one colour is primary. */
+	--color-background: var(--panel);
+	--color-foreground: var(--ink);
+	--color-card-foreground: var(--ink);
+	--color-popover: var(--card);
+	--color-popover-foreground: var(--ink);
+	--color-secondary: var(--sunken);
+	--color-secondary-foreground: var(--ink);
+	--color-muted: var(--sunken);
+	--color-muted-foreground: var(--muted);
+	--color-accent: var(--hover);
+	--color-accent-foreground: var(--ink);
+	--color-destructive: var(--failed);
+	--color-border: var(--hairline);
+	--color-input: var(--hairline);
+	--color-ring: var(--primary);
+
+	--shadow-float: var(--float-shadow);
+}
+
+@theme {
+	--font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
+	--font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+	/* Type scale: 14 is body. Titles are regular-to-medium weight, never heavy. */
+	--text-2xs: 11px;
+	--text-2xs--line-height: 14px;
+	--text-xs: 12px;
+	--text-xs--line-height: 16px;
+	--text-sm: 13px;
+	--text-sm--line-height: 18px;
+	--text-base: 14px;
+	--text-base--line-height: 20px;
+	--text-md: 15px;
+	--text-md--line-height: 22px;
+	--text-lg: 17px;
+	--text-lg--line-height: 24px;
+	--text-xl: 20px;
+	--text-xl--line-height: 26px;
+	--text-2xl: 24px;
+	--text-2xl--line-height: 30px;
+
+	/* Radii by hierarchy: chips < cards < lanes < the panel */
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+
+	--ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+	--animate-pulse-dot: pulse-dot 1.6s var(--ease-out) infinite;
+	--animate-shimmer: shimmer 1.4s linear infinite;
+	/* Enter and exit for Radix layers (data-state=open|closed). Quick and small. */
+	--animate-fade-in: fade-in 140ms var(--ease-out);
+	--animate-fade-out: fade-out 120ms ease-in forwards;
+	--animate-pop-in: pop-in 160ms var(--ease-out);
+	--animate-pop-out: pop-out 120ms ease-in forwards;
+	--animate-sheet-in: sheet-in 220ms var(--ease-out);
+	--animate-sheet-out: sheet-out 160ms ease-in forwards;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+}
+@keyframes fade-out {
+	to {
+		opacity: 0;
+	}
+}
+@keyframes pop-in {
+	from {
+		opacity: 0;
+		transform: translateY(4px) scale(0.98);
+	}
+}
+@keyframes pop-out {
+	to {
+		opacity: 0;
+		transform: scale(0.98);
+	}
+}
+@keyframes sheet-in {
+	from {
+		transform: translateX(24px);
+		opacity: 0;
+	}
+}
+@keyframes sheet-out {
+	to {
+		transform: translateX(24px);
+		opacity: 0;
+	}
+}
+
+@keyframes pulse-dot {
+	0% {
+		box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 45%, transparent);
+	}
+	70%,
+	100% {
+		box-shadow: 0 0 0 5px color-mix(in oklab, currentColor 0%, transparent);
+	}
+}
+
+@keyframes shimmer {
+	from {
+		background-position: 200% 0;
+	}
+	to {
+		background-position: -200% 0;
+	}
+}
+
+@layer base {
+	* {
+		border-color: var(--hairline);
+	}
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+	html,
+	body,
+	#root {
+		height: 100%;
+	}
+	body {
+		background: var(--canvas);
+		color: var(--ink);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		line-height: var(--text-base--line-height);
+		font-feature-settings: "tnum" 0;
+	}
+	:focus-visible {
+		outline: 2px solid var(--primary);
+		outline-offset: 2px;
+	}
+	::selection {
+		background: var(--primary-soft);
+	}
+	code,
+	kbd,
+	pre {
+		font-family: var(--font-mono);
+	}
+}
+
+@layer utilities {
+	/* Numbers that change in place (tokens, cost, time) should not jitter. */
+	.tabular {
+		font-variant-numeric: tabular-nums;
+	}
+	.scrollbar-thin {
+		scrollbar-width: thin;
+		scrollbar-color: var(--strong) transparent;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
