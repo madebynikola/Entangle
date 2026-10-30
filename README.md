@@ -1,5 +1,8 @@
 # Entangle: the EINSTEIN matchmaker
 
+**See it with no install:** [madebynikola.github.io/Entangle](https://madebynikola.github.io/Entangle/) opens the web app on the
+committed reference run (`out/golden/`): the agents' Timeline, the pairs and the proposals with every source.
+
 A team of Mozaik agents splits the EINSTEIN dataset (1,047 researchers, 153 companies, about 7 million tokens) and works on it
 in parallel. It finds researcher–challenge pairs that fit a company's stated problem, says so when a challenge has no good match, and writes
 an industrial PhD topic or a one-page joint project for each chosen pair. A Critic checks every claim against the record it cites,
