@@ -11,7 +11,8 @@ The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](.
   With no real runs, an intro points at the sample run.
 - `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
 - `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running).
-- `#/runs/:id/stage`: the **Stage**. The seven agent faces sit round the event bus. Each event travels from its author
+- `#/runs/:id/stage`: the **Stage**. It fills the panel edge to edge; the run's header, the replay bar and the
+  events log float over it as frosted cards (`shell/float.ts` shares how much they cover). The seven agent faces sit round the event bus. Each event travels from its author
   through the bus to everyone, the author says it in a bubble, and the Critic stamps what it checks ("Passed", "Sent back").
   Click an event in the log to move the playhead there. The Timeline and the Stage are the tabs with the replay bar.
   The run clock says what happened; a director (`screens/stage/director.ts`) shows it at a human pace at any speed,
