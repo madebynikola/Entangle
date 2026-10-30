@@ -100,7 +100,7 @@ export function StageScreen() {
 	const logTop = float.headRight + GAP + LOG_WIDTH + GAP <= size.width ? GAP : top
 
 	return (
-		<div ref={ref} className="relative h-full overflow-hidden bg-sunken">
+		<div ref={ref} className="relative h-full overflow-hidden bg-sunken dark:bg-[color-mix(in_oklab,var(--sunken)_50%,var(--panel))]">
 			<div
 				aria-hidden
 				className="absolute inset-0 opacity-70 [background-image:radial-gradient(var(--strong)_1px,transparent_1.2px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]"
