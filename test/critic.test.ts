@@ -8,6 +8,7 @@ import {
 	CRITIC_DROPPED,
 	CRITIC_REVIEWING,
 	CRITIC_SENT_BACK,
+	CRITIC_TRIMMED,
 	CRITIC_VERDICT,
 	SentBackToMe,
 	checkByCode,
@@ -197,24 +198,38 @@ describe("review loop on the Mozaik runtime", () => {
 		)
 	})
 
-	test("drops an artifact after two send-backs that fix nothing", async () => {
+	test("after two send-backs that fix nothing, cuts the claim and keeps the rest", async () => {
 		const s = state()
 		const fake: Claim = { text: "The company runs a private 5G test network in Novi Sad.", sourceIds: ["C001-CH1"] }
 		s.needs.set("C001-CH1", need({ assets: [TRUE_CLAIMS.testBench, fake] }))
 		postArtifact("need", "C001-CH1", stubborn.getId(), "analyze-test")
 
-		const dropped = await waitFor((e) => e.type === CRITIC_DROPPED && is(e, "need", "C001-CH1"))
-		assert.equal((dropped.payload as { sendBacks: number }).sendBacks, 2)
-		assert.deepEqual(
-			verdictsFor("need", "C001-CH1").map((v) => v.action),
-			["send-back", "send-back", "drop"],
-		)
+		const trimmed = await waitFor((e) => e.type === CRITIC_TRIMMED && is(e, "need", "C001-CH1"))
+		assert.equal((trimmed.payload as { sendBacks: number }).sendBacks, 2)
+		assert.deepEqual((trimmed.payload as { claims: { claim: Claim }[] }).claims.map((c) => c.claim.text), [fake.text])
+		const verdicts = verdictsFor("need", "C001-CH1")
+		assert.deepEqual(verdicts.map((v) => v.action), ["send-back", "send-back", "accept"])
+		assert.deepEqual(verdicts[2].trimmed?.map((r) => r.claim.text), [fake.text])
 		assert.deepEqual(
 			events.filter((e) => e.type === CRITIC_SENT_BACK && is(e, "need", "C001-CH1")).map((e) => (e.payload as SentBack).attempt),
 			[1, 2],
 		)
-		assert.equal(s.needs.has("C001-CH1"), false)
-		assert.equal(critic.status("need", "C001-CH1"), "dropped")
+		assert.deepEqual(s.needs.get("C001-CH1")?.assets, [TRUE_CLAIMS.testBench])
+		assert.equal(critic.status("need", "C001-CH1"), "accepted")
+		assert.equal(critic.stats().trimmed, 1)
+	})
+
+	test("drops an artifact when the claim its fixes could not save is a core one", async () => {
+		const s = state()
+		const fake: Claim = { text: "The company needs a verified TLS stack for its satellite modems.", sourceIds: ["C001-CH1"] }
+		s.needs.set("C001-CH2", need({ challengeId: "C001-CH2", restatement: fake }))
+		postArtifact("need", "C001-CH2", stubborn.getId(), "analyze-test-2")
+
+		const dropped = await waitFor((e) => e.type === CRITIC_DROPPED && is(e, "need", "C001-CH2"))
+		assert.equal((dropped.payload as { sendBacks: number }).sendBacks, 2)
+		assert.deepEqual(verdictsFor("need", "C001-CH2").map((v) => v.action), ["send-back", "send-back", "drop"])
+		assert.equal(s.needs.has("C001-CH2"), false)
+		assert.equal(critic.status("need", "C001-CH2"), "dropped")
 	})
 
 	test("reviews artifacts in parallel as they land", async () => {

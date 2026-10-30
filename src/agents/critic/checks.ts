@@ -68,6 +68,46 @@ export function claimsOf(kind: ArtifactKind, artifact: Artifact): Claim[] {
 	}
 }
 
+/**
+ * Cut rejected claims out of an artifact on the blackboard, when what is left still does its job: a need keeps its
+ * restatement, a profile its availability and one expertise claim, a pair its problem and one reason. False, with
+ * nothing changed, when a core claim is rejected, a reject is about the artifact's own ids, or it is a proposal.
+ */
+export function trimArtifact(s: MatchState, kind: ArtifactKind, id: string, artifact: Artifact, rejected: RejectedClaim[]): boolean {
+	if (kind === "proposal") return false
+	const own = claimsOf(kind, artifact)
+	const cut = new Set<Claim>()
+	for (const { claim } of rejected) {
+		const found = own.find((c) => c === claim) ?? own.find((c) => c.text === claim.text && c.sourceIds.join() === claim.sourceIds.join())
+		if (!found) return false
+		cut.add(found)
+	}
+	const keep = (claims: Claim[] = []) => claims.filter((claim) => !cut.has(claim))
+	const map = s[MAPS[kind]] as Map<string, Artifact>
+	switch (kind) {
+		case "need": {
+			const n = artifact as CompanyNeed
+			if (n.restatement && cut.has(n.restatement)) return false
+			map.set(id, { ...n, assets: keep(n.assets), constraints: keep(n.constraints) })
+			return true
+		}
+		case "profile": {
+			const p = artifact as ResearcherProfile
+			const expertise = keep(p.expertise)
+			if ((p.availability && cut.has(p.availability)) || !expertise.length) return false
+			map.set(id, { ...p, expertise, industryFit: keep(p.industryFit) })
+			return true
+		}
+		case "pair": {
+			const p = artifact as PairCandidate
+			const why = keep(p.why)
+			if ((p.problem && cut.has(p.problem)) || !why.length) return false
+			map.set(id, { ...p, why, risks: keep(p.risks) })
+			return true
+		}
+	}
+}
+
 /** A proposal's Markdown without its Sources list: what the free-text check reads. */
 export function proposalText(proposal: Proposal): string {
 	const markdown = proposal.markdown ?? ""

@@ -183,6 +183,11 @@ export interface CriticVerdict {
 	action?: "accept" | "send-back" | "drop" | "human-review"
 	/** When two reviewers ran the model check: each one's part. The artifact passes only if both pass. */
 	reviewers?: ReviewerVote[]
+	/**
+	 * Claims the Critic cut out when the fixes ran out, so the rest of a need, profile or pair could pass
+	 * (`action` is then `accept`). Without the cut the whole artifact would have been dropped.
+	 */
+	trimmed?: RejectedClaim[]
 }
 
 // ---------------------------------------------------------------------------

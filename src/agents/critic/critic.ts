@@ -36,7 +36,7 @@ import type {
 	SourceStore,
 } from "../../types"
 import { ROUTES } from "../../../config/models"
-import { checkByCode, claimsOf, freeTextOf, maskedText, readArtifact, removeArtifact, type Artifact } from "./checks"
+import { checkByCode, claimsOf, freeTextOf, maskedText, readArtifact, removeArtifact, trimArtifact, type Artifact } from "./checks"
 import { lexicalReview, strictReview } from "./mock"
 import {
 	CRITIC_INSTRUCTION,
@@ -58,6 +58,7 @@ import {
 	CRITIC_SENT_BACK,
 	CRITIC_SPLIT,
 	CRITIC_STALE,
+	CRITIC_TRIMMED,
 	CRITIC_VERDICT,
 	PRODUCER_TASK,
 } from "./protocol"
@@ -92,6 +93,8 @@ export interface CriticStats {
 	escalated: number
 	/** Reviews where the two reviewers disagreed on a claim. */
 	splits: number
+	/** Needs, profiles and pairs accepted after the Critic cut the claims their fixes could not save. */
+	trimmed: number
 	errors: number
 	rejectedClaims: number
 }
@@ -198,6 +201,7 @@ export function createCritic(options: CriticOptions): Critic {
 	const reviews = new Map<string, Review>()
 	const jobs = new Map<string, Job>()
 	let splits = 0
+	let trims = 0
 	let inFlight = 0
 	let idleWaiters: Array<() => void> = []
 
@@ -376,19 +380,36 @@ export function createCritic(options: CriticOptions): Critic {
 	function decide(review: Review, artifact: Artifact, rejected: RejectedClaim[], votes: Vote[]): void {
 		const s = state()
 		const { kind, id } = review
-		const ok = rejected.length === 0
-		const action: CriticVerdict["action"] = ok
-			? "accept"
-			: review.sendBacks < maxAttempts
-				? "send-back"
-				: dualKinds.has(kind)
-					? "human-review"
-					: "drop"
+		let action: CriticVerdict["action"] =
+			rejected.length === 0
+				? "accept"
+				: review.sendBacks < maxAttempts
+					? "send-back"
+					: dualKinds.has(kind)
+						? "human-review"
+						: "drop"
 		const revision = kind === "proposal" ? ((artifact as Proposal).revision ?? 0) : review.round
 		const taskId = votes[0]?.taskId
 		review.round++
 
-		const verdict: CriticVerdict = { proposalId: id, revision, ok, rejected, kind, taskId, action }
+		// When the fixes run out, a claim the producer could not save no longer costs the whole artifact:
+		// the Critic cuts it and accepts the rest, unless it was a core claim. Every drop in the runs of
+		// 30 Oct (42 of them) had exactly one claim left.
+		const trimmed = action === "drop" && trimArtifact(s, kind, id, artifact, rejected) ? rejected : undefined
+		if (trimmed) {
+			action = "accept"
+			trims++
+			emit(CRITIC_TRIMMED, {
+				taskId,
+				kind,
+				id,
+				sendBacks: review.sendBacks,
+				claims: trimmed.map(({ claim, reason }) => ({ claim: { text: clip(claim.text, 300), sourceIds: claim.sourceIds }, reason: clip(reason, 300) })),
+			})
+		}
+		const ok = action === "accept"
+		const verdict: CriticVerdict = { proposalId: id, revision, ok, rejected: trimmed ? [] : rejected, kind, taskId, action }
+		if (trimmed) verdict.trimmed = trimmed
 		if (votes.length > 1) {
 			verdict.reviewers = votes.map(
 				({ reviewer, model, taskId, rejected }): ReviewerVote => ({ reviewer, model, taskId, rejected: rejected!.length }),
@@ -405,12 +426,13 @@ export function createCritic(options: CriticOptions): Critic {
 			producerId: review.producerId,
 			producerTaskId: review.producerTaskId,
 			reviewers: verdict.reviewers,
-			rejected: rejected.map(({ claim, reason, check, reviewers }) => ({
+			rejected: verdict.rejected.map(({ claim, reason, check, reviewers }) => ({
 				claim: { text: clip(claim.text, 300), sourceIds: claim.sourceIds },
 				reason: clip(reason, 300),
 				check,
 				reviewers,
 			})),
+			...(trimmed && { trimmed: trimmed.length }),
 		})
 
 		if (action === "accept") {
@@ -487,6 +509,7 @@ export function createCritic(options: CriticOptions): Critic {
 				dropped: all.filter((r) => r.status === "dropped").length,
 				escalated: all.filter((r) => r.status === "needs-human").length,
 				splits,
+				trimmed: trims,
 				errors: all.filter((r) => r.status === "error").length,
 				rejectedClaims: mine.reduce((sum, v) => sum + v.rejected.length, 0),
 			}

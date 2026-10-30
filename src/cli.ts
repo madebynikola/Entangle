@@ -134,7 +134,8 @@ function report(summary: RunSummary, dir: string): void {
 	)
 	console.log(
 		`critic: ${critic.reviews} reviews · ${critic.sentBack} sent back · ${critic.dropped} dropped · ${critic.escalated} escalated · ` +
-			`${critic.splits} splits · ${critic.rejectedClaims} claims rejected`,
+			`${critic.splits} splits · ${critic.rejectedClaims} claims rejected` +
+			(critic.trimmed ? ` · ${critic.trimmed} kept after cutting a claim` : ""),
 	)
 	if (summary.needsHuman.length) console.log(`needs human review: ${summary.needsHuman.join(", ")}`)
 	if (failures.length) {

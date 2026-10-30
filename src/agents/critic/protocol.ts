@@ -18,6 +18,8 @@ export const CRITIC_SPLIT = "critic.split"
 export const CRITIC_VERDICT = "critic.verdict"
 export const CRITIC_SENT_BACK = "critic.sent_back"
 export const CRITIC_DROPPED = "critic.dropped"
+/** The fixes ran out, but the rejected claims were not core: the Critic cut them and accepted the rest. */
+export const CRITIC_TRIMMED = "critic.trimmed"
 /** The fixes ran out on a two-reviewer artifact. It stays on the blackboard and waits for a person. */
 export const CRITIC_ESCALATED = "critic.escalated"
 export const CRITIC_ERROR = "critic.error"
