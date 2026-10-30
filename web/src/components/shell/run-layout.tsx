@@ -17,8 +17,10 @@ import { ReplayBar } from "./replay-bar"
 import { runLabel, runState } from "./run-label"
 
 /**
- * /runs/:runId: opens the run in the store, then fills the panel: the header (title, facts, tabs), the screen, and on the Timeline the replay bar.
- * Tabs: Overview (what happened), Timeline (agents at work, with the replay bar) and Results (pairs and proposals).
+ * /runs/:runId: opens the run in the store, then fills the panel: the header (title, facts, tabs), the screen, and on the
+ * Timeline and the Stage the replay bar.
+ * Tabs: Overview (what happened), Timeline (agents at work), Stage (the agents' faces talking over the event bus; both
+ * with the replay bar) and Results (pairs and proposals).
  * Query: `?replay` plays a finished run from the start; `?speed=1|4|instant`.
  */
 export function RunLayout() {
@@ -35,7 +37,8 @@ export function RunLayout() {
 			live: state.runStatus === "live",
 		})),
 	)
-	const onTimeline = pathname.includes("/live")
+	/** The tabs that follow the playhead, and so get the replay bar. */
+	const onTimeline = /\/(live|stage)(\/|$)/.test(pathname)
 
 	useEffect(() => {
 		const speed = params.get("speed")
@@ -48,7 +51,7 @@ export function RunLayout() {
 	}, [runId, open])
 	useEffect(() => () => useRunStore.getState().close(), [])
 
-	// A replay belongs to the Timeline: leaving it pauses, so the other tabs stay still.
+	// A replay belongs to the Timeline and the Stage: leaving them pauses, so the other tabs stay still.
 	useEffect(() => {
 		const store = useRunStore.getState()
 		if (!onTimeline && store.mode === "replay" && store.playing) store.pause()
@@ -66,6 +69,7 @@ export function RunLayout() {
 						items={[
 							{ value: "overview", label: "Overview", to: "overview" },
 							{ value: "live", label: live ? <LiveLabel /> : "Timeline", to: "live" },
+							{ value: "stage", label: "Stage", to: "stage" },
 							{ value: "results", label: "Results", count: proposals || undefined, to: "results" },
 						]}
 					/>
@@ -143,18 +147,19 @@ function RunMeta() {
 	)
 }
 
-/** A finished run opens still. This plays it on the Timeline from the start. */
+/** A finished run opens still. This plays it from the start: on the Stage where it is, else on the Timeline. */
 function WatchButton() {
 	const info = useRunStore((state) => state.info)
 	const view = useFullView()
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
+	const onStage = /\/stage(\/|$)/.test(pathname)
 	if (!info || info.status === "live" || pathname.includes("/live") || view.loops.size === 0) return null
 	return (
 		<Button
 			variant="primary"
 			onClick={() => {
-				navigate("live")
+				if (!onStage) navigate("live")
 				useRunStore.getState().restart()
 			}}
 		>
@@ -173,7 +178,7 @@ function LoadingBody() {
 	)
 }
 
-/** On the Timeline: Space plays or pauses, ← → step 5 s, L follows live. Not while typing or in a dialog. */
+/** On the Timeline and the Stage: Space plays or pauses, ← → step 5 s, L follows live. Not while typing or in a dialog. */
 function usePlayerKeys(enabled: boolean) {
 	useEffect(() => {
 		if (!enabled) return
