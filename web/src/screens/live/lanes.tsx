@@ -124,7 +124,8 @@ export function Lanes({
 		>
 			<div
 				ref={rootRef}
-				className="relative [--label:9.5rem] [--meta:0px] sm:[--label:13.5rem] sm:[--meta:5rem]"
+				// Column widths follow the pane, not the window: the sidebar and the blackboard take their share.
+				className="relative [--label:8.5rem] [--meta:0px] @lg:[--label:10.5rem] @2xl:[--label:12rem] @2xl:[--meta:4.5rem] @3xl:[--label:13.5rem] @3xl:[--meta:5rem]"
 				onPointerOver={hover.onPointerOver}
 				onPointerLeave={hover.clear}
 				onClick={(event) => {
@@ -203,13 +204,23 @@ function groupLanes(lanes: LaneAgent[]): Group[] {
 const ROW = "grid grid-cols-[var(--label)_minmax(0,1fr)_var(--meta)]"
 
 function Axis({ span, visible, worldWidth }: { span: number; visible: number; worldWidth: string }) {
-	const step = tickStep(visible)
+	// One label per 72 px of track, so labels never run into each other.
+	const [width, setWidth] = useState(600)
+	const trackRef = useRef<HTMLDivElement>(null)
+	useLayoutEffect(() => {
+		const el = trackRef.current
+		if (!el) return
+		const observer = new ResizeObserver(() => setWidth(el.clientWidth))
+		observer.observe(el)
+		return () => observer.disconnect()
+	}, [])
+	const step = tickStep(visible, Math.max(2, Math.floor(width / 72)))
 	const ticks: number[] = []
 	for (let ms = 0; ms <= span; ms += step) ticks.push(ms)
 	return (
 		<div className={cn(ROW, "sticky top-0 z-10 h-8 border-b border-hairline bg-card text-xs text-ink-subtle")}>
 			<div className="flex items-center px-4">Agent</div>
-			<div className="relative overflow-hidden border-l border-hairline [contain:strict]">
+			<div ref={trackRef} className="relative overflow-hidden border-l border-hairline [contain:strict]">
 				<div data-world className="absolute inset-y-0 left-0" style={{ width: worldWidth }}>
 					{ticks.map((ms) => (
 						<span
@@ -225,7 +236,7 @@ function Axis({ span, visible, worldWidth }: { span: number; visible: number; wo
 					))}
 				</div>
 			</div>
-			<div className="hidden items-center justify-end px-4 sm:flex">Tokens</div>
+			<div className="hidden items-center justify-end px-4 @2xl:flex">Tokens</div>
 		</div>
 	)
 }
@@ -328,7 +339,7 @@ const LaneLabel = memo(function LaneLabel({
 				<RoleSquare role={role} />
 				<span className={cn("min-w-0 flex-1 truncate text-sm", joined ? "text-ink" : "text-ink-subtle")}>{name}</span>
 				<StatusDot tone={tone} pulse={pulse} className="size-1.5" />
-				<span className="hidden w-16 shrink-0 truncate text-ink-muted sm:block">{status}</span>
+				<span className="hidden w-16 shrink-0 truncate text-ink-muted @lg:block">{status}</span>
 			</button>
 		)
 	}
@@ -350,7 +361,7 @@ const LaneLabel = memo(function LaneLabel({
 
 const LaneTokens = memo(function LaneTokens({ tokens, cost, busy, dense }: { tokens: number; cost: number; busy: boolean; dense: boolean }) {
 	return (
-		<div className={cn("tabular hidden flex-col items-end justify-center self-start px-4 text-xs sm:flex", dense ? "h-6" : "h-11")}>
+		<div className={cn("tabular hidden flex-col items-end justify-center self-start px-4 text-xs @2xl:flex", dense ? "h-6" : "h-11")}>
 			<span className={cn(busy ? "text-ink" : "text-ink-muted")}>{tokens ? format.tokens(tokens) : "—"}</span>
 			{!dense && cost > 0 && <span className="text-ink-subtle">{format.usd(cost)}</span>}
 		</div>

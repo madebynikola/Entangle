@@ -290,9 +290,9 @@ export function laneGeometry(tracks: number, dense = false): LaneGeometry {
 
 const STEPS = [5, 10, 15, 30, 60, 120, 300, 600, 900, 1800, 3600].map((s) => s * 1000)
 
-/** Ticks for an axis that shows `visible` ms at once: about six labels across. */
-export function tickStep(visible: number): number {
-	return STEPS.find((step) => visible / step <= 6) ?? STEPS.at(-1)!
+/** Ticks for an axis that shows `visible` ms at once: at most `labels` labels across (six by default). */
+export function tickStep(visible: number, labels = 6): number {
+	return STEPS.find((step) => visible / step <= labels) ?? STEPS.at(-1)!
 }
 
 /**

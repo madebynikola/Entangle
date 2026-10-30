@@ -58,11 +58,11 @@ export function Blackboard({
 							aria-pressed={active}
 							onClick={() => setKind(active ? null : k)}
 							className={cn(
-								"flex flex-col items-start gap-0.5 border-r border-hairline px-3 py-2.5 text-left transition-colors duration-150 last:border-r-0 hover:bg-hover",
+								"flex min-w-0 flex-col items-start gap-0.5 border-r border-hairline px-3 py-2.5 text-left transition-colors duration-150 last:border-r-0 hover:bg-hover",
 								active && "bg-selected",
 							)}
 						>
-							<span className={cn("text-xs", active ? "text-ink" : "text-ink-muted")}>{kindLabel(k)}s</span>
+							<span className={cn("max-w-full truncate text-xs", active ? "text-ink" : "text-ink-muted")}>{kindLabel(k)}s</span>
 							<span className="tabular text-md font-medium text-ink">{counts.get(k)?.size ?? 0}</span>
 						</button>
 					)
