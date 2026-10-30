@@ -10,9 +10,11 @@ export interface FloatInsets {
 	top: number
 	/** px from the panel's bottom to just above the floating replay bar. */
 	bottom: number
+	/** px from the panel's left to the floating header's right edge: it is only as wide as its content. */
+	headRight: number
 }
 
-export const FloatInsetsContext = createContext<FloatInsets>({ top: 0, bottom: 0 })
+export const FloatInsetsContext = createContext<FloatInsets>({ top: 0, bottom: 0, headRight: 0 })
 
 export function useFloatInsets(): FloatInsets {
 	return useContext(FloatInsetsContext)
@@ -25,7 +27,7 @@ export function useMeasureInsets(
 	bottom: RefObject<HTMLElement | null>,
 	enabled: boolean,
 ): FloatInsets {
-	const [insets, setInsets] = useState<FloatInsets>({ top: 0, bottom: 0 })
+	const [insets, setInsets] = useState<FloatInsets>({ top: 0, bottom: 0, headRight: 0 })
 	useLayoutEffect(() => {
 		if (!enabled) return
 		const measure = () => {
@@ -33,8 +35,12 @@ export function useMeasureInsets(
 			if (!box) return
 			const head = top.current?.getBoundingClientRect()
 			const foot = bottom.current?.getBoundingClientRect()
-			const next = { top: head ? Math.round(head.bottom - box.top) : 0, bottom: foot ? Math.round(box.bottom - foot.top) : 0 }
-			setInsets((prev) => (prev.top === next.top && prev.bottom === next.bottom ? prev : next))
+			const next = {
+				top: head ? Math.round(head.bottom - box.top) : 0,
+				bottom: foot ? Math.round(box.bottom - foot.top) : 0,
+				headRight: head ? Math.round(head.right - box.left) : 0,
+			}
+			setInsets((prev) => (prev.top === next.top && prev.bottom === next.bottom && prev.headRight === next.headRight ? prev : next))
 		}
 		measure()
 		const observer = new ResizeObserver(measure)

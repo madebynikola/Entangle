@@ -108,7 +108,7 @@ export function RunLayout() {
 			<FloatInsetsContext.Provider value={insets}>
 				<div ref={stageRef} className="relative min-h-0 flex-1 overflow-hidden">
 					<div className="absolute inset-0">{body}</div>
-					<div ref={headRef} className="pointer-events-none absolute inset-x-3 top-3 z-30 [&>*]:pointer-events-auto">
+					<div ref={headRef} className="absolute left-3 top-3 z-30 w-fit max-w-[calc(100%-24px)]">
 						{header}
 					</div>
 					{!loading && !error && (
@@ -150,8 +150,8 @@ export function RunLayout() {
 	)
 }
 
-/** A card that floats over a full-bleed screen: frosted panel, hairline, the floating shadow. */
-const FLOATING = "rounded-xl border border-hairline bg-panel/80 shadow-float backdrop-blur-xl"
+/** A card that floats over a full-bleed screen: frosted panel, hairline, a barely-there shadow. */
+const FLOATING = "rounded-xl border border-hairline bg-panel/80 shadow-soft backdrop-blur-xl"
 
 function LiveLabel() {
 	return (
