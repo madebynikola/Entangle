@@ -2,7 +2,7 @@ import { existsSync } from "node:fs"
 import { parseArgs } from "node:util"
 import { createOrchestrator, writeRun, type RunSummary } from "./agents/orchestrator"
 import { DATA_DIR, FIXTURE_DIR, loadDataset, type Dataset } from "./data"
-import { join, localClaude, startRuntime, subq } from "./runtime"
+import { decisionEndpoint, join, localClaude, startRuntime, subq, subqSettings } from "./runtime"
 import { createTraceObserver } from "./trace"
 
 const USAGE = `Usage: npm run match -- [--mock | --local | --subq] [--companies N | all] [--ids C006,C054] [options]
@@ -10,7 +10,8 @@ const USAGE = `Usage: npm run match -- [--mock | --local | --subq] [--companies 
   --mock          Run on the mock model: fake latency, no API keys, no cost.
   --local         Run every model call as a local Claude Code session on your own login, no API key
                   (same as LOCAL_CLAUDE=1 in .env). Needs the \`claude\` CLI, logged in.
-  --subq          Run every model call on SubQ's Chat Completions (same as SUBQ=1 in .env). Needs SUBQ_API_KEY.
+  --subq          Run the second Critic on a decision model, subq-snap-1.1 by default (same as SUBQ=1 in .env).
+                  Needs SUBQ_API_KEY, or TYPESAFE_API_KEY for SUBQ_MODEL=jev-latest.
   --companies N   How many companies to work on, from the first; \`all\` for every one (default 5).
   --ids LIST      Exactly these companies, comma-separated.
   --analysts N    Industry Analysts (default 4).
@@ -52,10 +53,12 @@ async function main(): Promise<void> {
 	}
 	if (values.local) process.env.LOCAL_CLAUDE = "1"
 	if (values.subq) process.env.SUBQ = "1"
-	if (!values.mock && subq() && !process.env.SUBQ_API_KEY) {
-		throw new Error("SUBQ is on but SUBQ_API_KEY is not set. Add it to .env, or run with --mock.")
+	const decision = subq() ? decisionEndpoint(subqSettings().model) : undefined
+	if (!values.mock && subq() && !decision?.apiKey) {
+		const need = decision ? `${decision.keyVar} is not set` : `${subqSettings().model} is not a decision model (subq-snap-*, jev-*)`
+		throw new Error(`SUBQ is on but ${need}. Fix .env, or run with --mock.`)
 	}
-	if (!values.mock && !subq() && !localClaude() && !KEY_VARS.some((name) => process.env[name])) {
+	if (!values.mock && !localClaude() && !KEY_VARS.some((name) => process.env[name])) {
 		throw new Error(`No API key set (${KEY_VARS.join(", ")}). Add one to .env, run with --local to use your Claude login, or run with --mock.`)
 	}
 
@@ -84,7 +87,7 @@ async function main(): Promise<void> {
 		log: (line) => console.log(line),
 	})
 
-	const backend = state.mock ? "mock" : subq() ? "SubQ" : localClaude() ? "local Claude Code" : "API"
+	const backend = (state.mock ? "mock" : localClaude() ? "local Claude Code" : "API") + (subq() ? ` · critic-2 on ${subqSettings().model}` : "")
 	console.log(`run ${runId} · ${backend} · ${companyIds.length} companies`)
 	if (dataDir === FIXTURE_DIR) console.log(`  no data/raw/: using the test fixtures`)
 	const outcome = await orchestrator.run(companyIds)
@@ -111,7 +114,7 @@ function count(flag: string, raw: string): number {
 
 function report(summary: RunSummary, dir: string): void {
 	const { budget, counts, critic, failures } = summary
-	const price = summary.mock ? " (simulated)" : subq() ? " (SubQ lists no price)" : localClaude() ? " at API prices" : ""
+	const price = summary.mock ? " (simulated)" : localClaude() ? " at API prices" : ""
 	console.log(`\ndone in ${duration(summary.durationMs)} · ${budget.tokensUsed.toLocaleString("en")} tokens · $${budget.costUsd.toFixed(2)}${price}`)
 	console.log(
 		`${summary.companies.length} companies · ${counts.needs} needs · ${counts.profiles} profiles · ${counts.pairs} pairs · ` +
