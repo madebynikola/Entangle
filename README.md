@@ -47,6 +47,9 @@ A mock run plants one invented claim in a need, a profile and a proposal, so you
    - Optional, `SUBQ=1` and `SUBQ_API_KEY=...`: the second Critic runs on [SubQ](https://docs.subq.ai/)'s `subq-snap-1.1`,
      a decision model that answers one yes/no question per claim. `SUBQ_MODEL=jev-latest` with `TYPESAFE_API_KEY` uses
      [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) instead. `--subq` does the same for one run.
+   - Optional, `SCREEN=1` and `TYPESAFE_API_KEY=...`: Jev filters each shortlist before profiling. It answers one yes/no
+     question per candidate in one call, and only the most likely to fit are profiled. `SCREEN_MODEL=subq-snap-1.1` uses
+     SubQ instead. `--screen` does the same for one run.
 3. **Run:**
 
 ```sh
@@ -74,6 +77,7 @@ Everything lands in `out/<run-id>/`:
 | `--k N` | 4 | Researchers shortlisted per challenge |
 | `--proposals N` | one per company | Most proposals in the run |
 | `--mock`, `--local` | | Mock model, or local Claude Code sessions |
+| `--subq`, `--screen` | | The second Critic, or the shortlist filter, on a decision model |
 
 **Time and cost.** Our 5-company run on Sonnet 4.6 and Haiku 4.5 took 40 minutes on local Claude Code and used 3.5M tokens,
 about $20 at API prices. It reached the default $20 budget during the last proposal reviews, so raise `BUDGET_USD` (and
@@ -90,7 +94,7 @@ They read and write one shared blackboard and talk through events on one bus, wh
 | --- | --- | --- | --- | --- |
 | Orchestrator | 1 | none | Progress events | Assignments, the pair chosen per company, the result |
 | Industry Analyst | 4 | Haiku 4.5 | One company: profile, challenges, website, job ads, news | One need per challenge: triage (research, engineering service, not research) with the reason, an English academic restatement, 5–10 search terms, what the company brings, constraints |
-| Shortlist | 1 | none | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped |
+| Shortlist | 1 | none (Jev with `SCREEN=1`) | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped. With `SCREEN=1`, Jev rates 8 and only the 4 most likely to fit stay |
 | Research Profiler | 6 | Haiku 4.5 | One shortlisted researcher: profile, publications, projects, patents | A profile: expertise and industry facts, each backed by records, availability as timing only, and whether they can lead |
 | Matchmaker | 1 | Sonnet 4.6 | One need and its candidate profiles | Pairs with a fit to this problem (0–1), why these two, the problem they solve and the risks; or "no good match" with the reason |
 | Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |
@@ -148,7 +152,8 @@ run on Haiku 4.5, and the few calls that decide quality (Matchmaker, Writer, Cri
 provider when a key for one is set, else Haiku 4.5. With keys for more providers, the workers spread over all of them to share
 the rate limits. `MODEL_<ROLE>` in `.env` pins one role, for example `MODEL_CRITIC=claude-haiku-4-5`. The backends are Mozaik's
 own (Anthropic, OpenAI, Gemini), local Claude Code (`LOCAL_CLAUDE=1`, 6 sessions at once by default), and the mock. Calls to a
-decision model (subq-snap, Jev) go to its own API; they write no text, so only the Critic uses one (`SUBQ=1`).
+decision model (subq-snap, Jev) go to its own API; they write no text, so only the second Critic (`SUBQ=1`) and the shortlist
+filter (`SCREEN=1`) use one.
 
 ## How the agents run concurrently
 
@@ -275,7 +280,8 @@ into "here is who at the university works on it":
 - **Pairs, not people.** The system ranks researcher–challenge pairs by fit to one stated problem, and compares fit only within a challenge.
   It never outputs a score, a list or a ranking of people. The Matchmaker's prompt forbids seniority, productivity, publication counts
   and prestige as reasons. Search scores a researcher by the mean of their 3 best-matching records, not the sum, so a long publication
-  list adds nothing by itself. A shortlist means "candidates for this problem".
+  list adds nothing by itself. A shortlist means "candidates for this problem". The shortlist filter (`SCREEN=1`) asks the same
+  question: do this researcher's records fit this challenge.
 - **Every claim has a source.** Each claim cites dataset ids, and the Critic checks by code that each cited record exists and belongs to
   that researcher or company. Identity is by id only. The four duplicate profiles are merged on load, and two people with one name stay two.
 - **Personal details stay out.** Reasons for limited availability (parental leave, children, health) are removed when the data loads;
