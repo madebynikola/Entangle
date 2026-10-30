@@ -1,15 +1,19 @@
 # Entangle web app
 
 The web app for the EINSTEIN matchmaker: what a run did, the agents at work, and the results they produce.
-Vite + React 19 + TypeScript + Tailwind 4 + shadcn/ui (restyled) + Motion, set in Geist.
-The look is calm and monochrome, in the spirit of Vercel: one question per screen, colour only where it means something.
+Vite + React 19 + TypeScript + Tailwind 4 + shadcn/ui (restyled) + Motion, set in Inter, with proposals in Source Serif 4.
+The look is calm, in the spirit of Vercel: one question per screen, colour only where it means something.
+The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](../design/HANDOFF.md).
 
 ## Layout
 
 - `#/`: the runs, as one table. Real runs by default; mock runs and unfinished dev runs are a click away.
   With no real runs, an intro points at the sample run.
 - `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
-- `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running). It is the only tab with the replay bar.
+- `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running).
+- `#/runs/:id/stage`: the **Stage**. The seven agent faces sit round the event bus. Each event travels from its author
+  through the bus to everyone, the author says it in a bubble, and the Critic stamps what it checks ("Passed", "Sent back").
+  Click an event in the log to move the playhead there. The Timeline and the Stage are the tabs with the replay bar.
 - `#/runs/:id/results`: pairs and proposals, as a list and a detail side by side. Deep links:
   `results/proposals/:id` (add `?tab=review` for the Critic history), `results/pairs/:pairId`, `results/challenges/:id`.
 
@@ -42,6 +46,8 @@ npm start                         # serve web/dist plus the API
 | Path | Owner |
 | --- | --- |
 | `web/src/screens/live/` | #20: the Timeline |
+| `web/src/screens/stage/` | #30: the Stage |
+| `design/` | The brand kit, as handed over. Regenerate with its `tools/` (see `design/HANDOFF.md`); do not edit the SVGs by hand |
 | `web/src/screens/results/` | #21: the results view |
 | everything else in `web/` (incl. `screens/overview`, `screens/home`), and `src/server/` | #12: shell, design system, routing, run data, server |
 
@@ -90,14 +96,18 @@ Tokens are in `src/styles.css`, with light and dark values. Use the Tailwind nam
 | Surfaces | `bg-canvas` (window, sidebar), `bg-panel` / `bg-card` (the panel, cards, tables), `bg-sunken` (wells: charts, code), `bg-hover` |
 | Text | `text-ink`, `text-ink-muted`, `text-ink-subtle` |
 | Lines | `border-hairline`, `border-strong`; `shadow-card` (a whisper, light mode only), `shadow-float` (floating layers) |
-| Actions | `bg-primary` is ink: the one primary button per view. `text-link` is blue: links and focus rings |
+| Actions | `bg-primary` is ink: the one primary button per view. `text-link` is the logo's indigo: links, focus rings, ids |
 | Status (dot plus text) | `working` green, `needs` amber (needs you, sent back), `info` blue, `idle` grey, `failed` red |
 | Agent roles | `role-orchestrator`, `role-analyst`, `role-profiler`, `role-matchmaker`, `role-writer`, `role-critic` |
 
 Round dots mean status; small squares mean roles. `ROLE_CLASS`, `roleColor(role)` and `ROLE_INFO` are in `lib/roles.ts`.
+Each role is a character from the kit, with its colour, name and face: Deneb (orchestrator, ink), Spica (analyst, amber),
+Tycho (profiler, indigo), Amity (matchmaker, violet), Tinta (writer, teal), Fides (critic, red). You, the approver, is grey.
+`ROLE_INFO[role].name` and `.face` give them. Status uses the kit's Critic verdict colours.
 For SVG, use `var(--role-critic)` and `color-mix(in oklab, var(--role-critic) 16%, transparent)` for soft fills.
 
-Type: Geist and Geist Mono (self-hosted). Body is `text-base` (14 px). Steps: `text-xs` 12, `text-sm` 13, `text-md` 15,
+Type: Inter for the interface, Source Serif 4 for proposal text (`Markdown`, the PDF export), both self-hosted.
+There is no monospace: `font-mono` is Inter with tabular, slashed-zero figures, for ids. Body is `text-base` (14 px). Steps: `text-xs` 12, `text-sm` 13, `text-md` 15,
 `text-lg` 16, `text-xl` 20, `text-2xl` 24 (page titles), `text-3xl` 32 (big numbers). Page and section titles are `font-semibold`;
 headings get tight tracking. Use `font-mono` only for ids, traces and code. Use `tabular` on numbers that change in place.
 
@@ -106,6 +116,7 @@ A screen is a few `Pane`s that share the panel's height (title, one short line, 
 `Section` (a titled block with no frame) is for content that sits in a scrolling pane.
 
 Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layout does not jump.
+The faces are the one exception: they blink and glance while idle, as the kit designs them.
 `MotionConfig reducedMotion="user"` is set, and CSS animations stop under `prefers-reduced-motion`.
 
 ### Components
@@ -116,6 +127,7 @@ Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layo
 | `ui/chip` | `Chip`: small pill with an icon and a `count`; tones; `asChild` for a clickable chip; `mono` for ids |
 | `ui/status` | `Status` (dot plus coloured text), `StatusLabel` (dot plus ink text: a run's state), `StatusDot`; `pulse` for now |
 | `ui/role` | `RoleSquare`, `RoleTag` (square plus name) |
+| `ui/face` | `AgentFace` (a face from `design/agents`: `state` idle, working, reject or done; `gaze` turns the eyes), `RoleFace` |
 | `ui/card` | `Pane` (titled tile that fills and scrolls), `Card`, `Section` (titled block), `Stat`, `CardId`, `CardTitle`, `CardMeta`, `Lane`, `Meta` |
 | `ui/tabs` | `Tabs` (state) and `RouteTabs` (links): underlined, with counts |
 | `ui/segmented` | `Segmented` control |
