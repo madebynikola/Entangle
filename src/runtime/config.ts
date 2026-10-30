@@ -2,6 +2,7 @@ import { supportedModels } from "@mozaik-ai/core"
 import {
 	BUDGET,
 	BUDGET_SLACK,
+	LOCAL_CLAUDE,
 	PROVIDER_KEYS,
 	PROVIDER_LIMITS,
 	ROUTES,
@@ -19,11 +20,31 @@ export function providerOf(model: string): string {
 	return PROVIDERS.get(model) ?? "unknown"
 }
 
-/** Providers whose key is set. */
+/** Providers whose key is set. With LOCAL_CLAUDE on, only Anthropic, through the local Claude login. */
 export function providersWithKeys(): string[] {
+	if (localClaude()) return ["anthropic"]
 	return Object.entries(PROVIDER_KEYS)
 		.filter(([, name]) => process.env[name])
 		.map(([provider]) => provider)
+}
+
+/** Model calls run as local Claude Code sessions (`claude -p`) on the user's login, not through API keys. */
+export function localClaude(): boolean {
+	return /^(1|true|yes|on)$/i.test(process.env.LOCAL_CLAUDE ?? "")
+}
+
+export interface LocalClaudeSettings {
+	sessions: number
+	timeoutMs: number
+	command: string
+}
+
+export function localClaudeSettings(): LocalClaudeSettings {
+	return {
+		sessions: Math.max(1, envNumber("LOCAL_CLAUDE_SESSIONS", LOCAL_CLAUDE.sessions)),
+		timeoutMs: envNumber("LOCAL_CLAUDE_TIMEOUT_MS", LOCAL_CLAUDE.timeoutMs),
+		command: process.env.CLAUDE_BIN || LOCAL_CLAUDE.command,
+	}
 }
 
 const turns = new Map<AgentRole, number>()

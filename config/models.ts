@@ -59,6 +59,19 @@ export const RUNNER = {
 	mockErrorRate: 0,
 }
 
+/**
+ * Local Claude Code sessions instead of API keys [LOCAL_CLAUDE=1, or `--local`]: every model call runs as
+ * `claude -p` on your own Claude login, the way Kanbix starts sessions. Only Claude models are used.
+ */
+export const LOCAL_CLAUDE = {
+	/** `claude -p` processes at once, under MAX_IN_FLIGHT [LOCAL_CLAUDE_SESSIONS]. Each is a Node process of about 200 MB. */
+	sessions: 6,
+	/** A session that runs longer is stopped and retried [LOCAL_CLAUDE_TIMEOUT_MS]. */
+	timeoutMs: 5 * 60_000,
+	/** The Claude Code executable [CLAUDE_BIN]. */
+	command: "claude",
+}
+
 /** [BUDGET_TOKENS, BUDGET_USD, BUDGET_MINUTES, MAX_ATTEMPTS] */
 export const BUDGET: BudgetLimits = {
 	maxTokens: 3_000_000,

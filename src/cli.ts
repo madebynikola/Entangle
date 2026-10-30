@@ -1,13 +1,15 @@
 import { writeFileSync } from "node:fs"
 import { join as joinPath } from "node:path"
 import { parseArgs } from "node:util"
-import { join, startRuntime } from "./runtime"
+import { join, localClaude, startRuntime } from "./runtime"
 import { runDemo } from "./runtime/demo"
 import { createTraceObserver } from "./trace"
 
-const USAGE = `Usage: npm run match -- [--mock] [--companies N] [--model NAME]
+const USAGE = `Usage: npm run match -- [--mock | --local] [--companies N] [--model NAME]
 
   --mock          Run on the mock model: fake latency, no API keys, no cost.
+  --local         Run every model call as a local Claude Code session on your own login, no API key
+                  (same as LOCAL_CLAUDE=1 in .env). Needs the \`claude\` CLI, logged in.
   --companies N   How many companies to work on (default 3).
   --model NAME    Model for the agents (default claude-haiku-4-5).`
 
@@ -23,6 +25,7 @@ async function main(): Promise<void> {
 	const { values } = parseArgs({
 		options: {
 			mock: { type: "boolean", default: false },
+			local: { type: "boolean", default: false },
 			companies: { type: "string", default: "3" },
 			model: { type: "string", default: "claude-haiku-4-5" },
 			help: { type: "boolean", short: "h", default: false },
@@ -34,8 +37,9 @@ async function main(): Promise<void> {
 	}
 	const companies = Number(values.companies)
 	if (!Number.isInteger(companies) || companies < 1) throw new Error(`--companies must be a positive integer`)
-	if (!values.mock && !KEY_VARS.some((name) => process.env[name])) {
-		throw new Error(`No API key set (${KEY_VARS.join(", ")}). Add one to .env, or run with --mock.`)
+	if (values.local) process.env.LOCAL_CLAUDE = "1"
+	if (!values.mock && !localClaude() && !KEY_VARS.some((name) => process.env[name])) {
+		throw new Error(`No API key set (${KEY_VARS.join(", ")}). Add one to .env, run with --local to use your Claude login, or run with --mock.`)
 	}
 
 	const runId = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19) + (values.mock ? "-mock" : "")
@@ -47,7 +51,8 @@ async function main(): Promise<void> {
 	process.on("unhandledRejection", (error) => console.error("[loop error]", error))
 	quietRepeatedWarnings()
 
-	console.log(`run ${runId} · ${values.mock ? "mock" : values.model} · ${companies} companies`)
+	const backend = values.mock ? "mock" : localClaude() ? `${values.model} via local Claude Code` : values.model
+	console.log(`run ${runId} · ${backend} · ${companies} companies`)
 	const tasks = await runDemo(companies, values.model)
 
 	for (const task of tasks) {
