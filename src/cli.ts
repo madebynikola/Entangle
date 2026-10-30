@@ -2,16 +2,19 @@ import { existsSync } from "node:fs"
 import { parseArgs } from "node:util"
 import { createOrchestrator, writeRun, type RunSummary } from "./agents/orchestrator"
 import { DATA_DIR, FIXTURE_DIR, loadDataset, type Dataset } from "./data"
-import { decisionEndpoint, join, localClaude, startRuntime, subq, subqSettings } from "./runtime"
+import { decisionEndpoint, join, localClaude, screen, screenSettings, startRuntime, subq, subqSettings } from "./runtime"
 import { createTraceObserver } from "./trace"
 
-const USAGE = `Usage: npm run match -- [--mock | --local | --subq] [--companies N | all] [--ids C006,C054] [options]
+const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [--companies N | all] [--ids C006,C054] [options]
 
   --mock          Run on the mock model: fake latency, no API keys, no cost.
   --local         Run every model call as a local Claude Code session on your own login, no API key
                   (same as LOCAL_CLAUDE=1 in .env). Needs the \`claude\` CLI, logged in.
   --subq          Run the second Critic on a decision model, subq-snap-1.1 by default (same as SUBQ=1 in .env).
                   Needs SUBQ_API_KEY, or TYPESAFE_API_KEY for SUBQ_MODEL=jev-latest.
+  --screen        Rate each need's candidates on a decision model before profiling, and profile only the most
+                  likely (same as SCREEN=1 in .env). jev-latest by default: needs TYPESAFE_API_KEY, or SUBQ_API_KEY
+                  for SCREEN_MODEL=subq-snap-1.1.
   --companies N   How many companies to work on, from the first; \`all\` for every one (default 5).
   --ids LIST      Exactly these companies, comma-separated.
   --analysts N    Industry Analysts (default 4).
@@ -37,6 +40,7 @@ async function main(): Promise<void> {
 			mock: { type: "boolean", default: false },
 			local: { type: "boolean", default: false },
 			subq: { type: "boolean", default: false },
+			screen: { type: "boolean", default: false },
 			companies: { type: "string", default: "5" },
 			ids: { type: "string" },
 			analysts: { type: "string", default: "4" },
@@ -53,11 +57,9 @@ async function main(): Promise<void> {
 	}
 	if (values.local) process.env.LOCAL_CLAUDE = "1"
 	if (values.subq) process.env.SUBQ = "1"
-	const decision = subq() ? decisionEndpoint(subqSettings().model) : undefined
-	if (!values.mock && subq() && !decision?.apiKey) {
-		const need = decision ? `${decision.keyVar} is not set` : `${subqSettings().model} is not a decision model (subq-snap-*, jev-*)`
-		throw new Error(`SUBQ is on but ${need}. Fix .env, or run with --mock.`)
-	}
+	if (values.screen) process.env.SCREEN = "1"
+	if (!values.mock && subq()) checkDecisionModel("SUBQ", subqSettings().model)
+	if (!values.mock && screen()) checkDecisionModel("SCREEN", screenSettings().model)
 	if (!values.mock && !localClaude() && !KEY_VARS.some((name) => process.env[name])) {
 		throw new Error(`No API key set (${KEY_VARS.join(", ")}). Add one to .env, run with --local to use your Claude login, or run with --mock.`)
 	}
@@ -87,13 +89,24 @@ async function main(): Promise<void> {
 		log: (line) => console.log(line),
 	})
 
-	const backend = (state.mock ? "mock" : localClaude() ? "local Claude Code" : "API") + (subq() ? ` · critic-2 on ${subqSettings().model}` : "")
+	const backend =
+		(state.mock ? "mock" : localClaude() ? "local Claude Code" : "API") +
+		(subq() ? ` · critic-2 on ${subqSettings().model}` : "") +
+		(screen() ? ` · shortlist filter on ${screenSettings().model}` : "")
 	console.log(`run ${runId} · ${backend} · ${companyIds.length} companies`)
 	if (dataDir === FIXTURE_DIR) console.log(`  no data/raw/: using the test fixtures`)
 	const outcome = await orchestrator.run(companyIds)
 	const summary = writeRun(trace.dir, outcome, orchestrator.critic.stats(), data.sources)
 	await trace.close()
 	report(summary, trace.dir)
+}
+
+/** A switch that puts a role on a decision model needs that model's key. */
+function checkDecisionModel(name: string, model: string): void {
+	const decision = decisionEndpoint(model)
+	if (decision?.apiKey) return
+	const need = decision ? `${decision.keyVar} is not set` : `${model} is not a decision model (subq-snap-*, jev-*)`
+	throw new Error(`${name} is on but ${need}. Fix .env, or run with --mock.`)
 }
 
 function pickCompanies(data: Dataset, companies: string, ids: string | undefined): string[] {
