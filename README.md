@@ -44,6 +44,8 @@ A mock run plants one invented claim in a need, a profile and a proposal, so you
    - `ANTHROPIC_API_KEY=...` (OpenAI and Gemini keys work too, see [models](#models-budget-and-rate-limits)), or
    - `LOCAL_CLAUDE=1`: each model call runs as a headless Claude Code session (`claude -p`) on your own Claude login. No API key.
      Needs the `claude` CLI, logged in. `--local` does the same for one run.
+   - `SUBQ=1` and `SUBQ_API_KEY=...`: each model call goes to [SubQ](https://docs.subq.ai/)'s OpenAI-compatible Chat Completions,
+     every role on `subq-preview` (`SUBQ_MODEL` changes it). `--subq` does the same for one run.
 3. **Run:**
 
 ```sh
@@ -144,7 +146,7 @@ Each retry is a trace event, and each call records how long it waited. Models pe
 run on Haiku 4.5, and the few calls that decide quality (Matchmaker, Writer, Critic) on Sonnet 4.6. The second Critic takes another
 provider when a key for one is set, else Haiku 4.5. With keys for more providers, the workers spread over all of them to share
 the rate limits. `MODEL_<ROLE>` in `.env` pins one role, for example `MODEL_CRITIC=claude-haiku-4-5`. The backends are Mozaik's
-own (Anthropic, OpenAI, Gemini), local Claude Code (`LOCAL_CLAUDE=1`, 6 sessions at once by default), and the mock.
+own (Anthropic, OpenAI, Gemini), local Claude Code (`LOCAL_CLAUDE=1`, 6 sessions at once by default), SubQ (`SUBQ=1`), and the mock.
 
 ## How the agents run concurrently
 
