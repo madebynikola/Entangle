@@ -1,9 +1,9 @@
 import type { RunInfo } from "@shared/server/api"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { create } from "zustand"
 import { useShallow } from "zustand/react/shallow"
 import { getBackend, type Backend } from "./backend"
-import type { RunView } from "./fold"
+import { foldTrace, type RunView } from "./fold"
 import { runClock, useRunStore, type RunStore } from "./store"
 
 export { useRunStore, runClock } from "./store"
@@ -17,6 +17,19 @@ export function useRun<T>(selector: (state: RunStore) => T): T {
 /** The fold of the trace up to the playhead: agents, loops, tasks, totals, feed. */
 export function useRunView(): RunView {
 	return useRunStore((state) => state.view)
+}
+
+/**
+ * The whole run as far as it is known, whatever the playhead shows: for summaries (Overview, header numbers).
+ * The same object as useRunView() unless a replay is part-way through.
+ */
+export function useFullView(): RunView {
+	const view = useRunStore((state) => state.view)
+	const records = useRunStore((state) => state.records)
+	const partial = useRunStore((state) => state.applied < state.records.length && state.mode !== "live")
+	// Fold once per record list, not once per replay frame.
+	const full = useMemo(() => (partial ? foldTrace(records) : null), [partial, records])
+	return full ?? view
 }
 
 /** The open run's results (needs, profiles, pairs, proposals, verdicts, approvals), or null while loading. */

@@ -10,6 +10,8 @@ import { applyRecords, emptyView, foldTrace, type RunView } from "./fold"
  * live:   records apply as the server streams them; the clock is wall time since the run started.
  * replay: records apply as the playhead passes them, at 1×, 4× or instantly. Seeking switches a live run to replay;
  *         when the playhead catches up with a run that is still live, it follows live again.
+ *
+ * A finished run opens at its end, still: nothing moves until someone presses play (or opens it with `?replay`).
  */
 
 export type Speed = 1 | 4 | "instant"
@@ -169,8 +171,12 @@ export const useRunStore = create<RunStore>()((set, get) => {
 					const records = await backend.getTrace(runId)
 					if (gen !== generation) return
 					const duration = records.at(-1)?.ms ?? 0
-					set({ records, duration, mode: "replay", loading: false, playing: true, position: 0 })
-					if (get().speed === "instant") get().seek(duration)
+					const replay = Boolean(options.replay) && get().speed !== "instant"
+					set(
+						replay
+							? { records, duration, mode: "replay", loading: false, playing: true, position: 0 }
+							: { records, duration, mode: "replay", loading: false, playing: false, position: duration, view: foldTrace(records), applied: records.length },
+					)
 				}
 				schedule()
 			} catch (error) {
