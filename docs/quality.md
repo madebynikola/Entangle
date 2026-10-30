@@ -190,18 +190,19 @@ filter on subq-snap-1.1), each after one more fix. Run 5 also has #33's OpenAlex
 The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds all 129 claims of
 C001, C005 and C012 from both runs, each with its cited ids, a label and a note on why. The Critic had passed every one of them.
 `npm run critic:eval` runs only the Critic on them, as on a proposal in a match: the code checks, then both reviewers. It sends the
-claims and their records, with no free text. Measured on 30 October in two runs at commit 146d0b3, with the settings in `.env`:
-Sonnet 4.6, and subq-snap-1.1 as the second reviewer. Each run is 12 calls, 49–70 s and $0.32–0.35 at API prices. The table gives
-the lowest and the highest count of the two runs. A claim that a code check rejects does not go to the reviewers.
+claims and their records, with no free text. Measured on 30 October in three runs, with the settings in `.env`: Sonnet 4.6, and
+subq-snap-1.1 as the second reviewer. Two ran at commit 146d0b3, one at 5555066 (the word-form fixes below, which change no code
+result on these claims). Each run is 12 calls, 46–70 s and $0.31–0.35 at API prices. The table gives the lowest and the highest
+count of the three runs. A claim that a code check rejects does not go to the reviewers.
 
 | Label | Claims | Rejected | By code | Sonnet 4.6 alone | subq-snap-1.1 alone |
 | --- | --- | --- | --- | --- | --- |
 | Judgement added to a fact | 9 | 7–8 | 0 | 7–8 | 0 |
 | Detail from an uncited record | 7 | 5–6 | 4 | 1–2 | 0 |
-| Widened scope | 7 | 5–6 | 1 | 4–5 | 0 |
-| **Wrong, all** | **23** | **18–19 (78–83%)** | 5 (22%) | 13–14 (57–61%) | 0 |
-| Ok | 98 | **5–6 (5–6%)** | 0 | 5–6 | 0 |
-| Borderline (not scored) | 8 | 3 | 0 | 3 | 0 |
+| Widened scope | 7 | 3–6 | 1 | 2–5 | 0 |
+| **Wrong, all** | **23** | **17–19 (74–83%)** | 5 (22%) | 12–14 (52–61%) | 0 |
+| Ok | 98 | **3–6 (3–6%)** | 0 | 3–6 | 0 |
+| Borderline (not scored) | 8 | 2–3 | 0 | 2–3 | 0 |
 
 **Until commit 33823c0 the eval reviewed only 102 of the 129 claims.** Two proposals share the id C012-CH1-R0564, the same pair in
 the before and the after run. The second one overwrote the first on the blackboard before its review, so the 27 claims of the before
@@ -229,11 +230,48 @@ What the numbers show:
   1–2 of those 3.
 - **subq-snap-1.1 now catches nothing.** Its one catch in every earlier run was "AWS", which the code check now rejects first.
 - **The before C012 proposal is reviewed for the first time.** Sonnet catches "the core engine for change detection between scan
-  snapshots" and "matching the structured output requirement" in both runs. The earlier text said it passed them in all four runs, but
-  it never saw them. It passes "which requires reducing the initial engagement phase from four days to one day" in both runs.
-- **False rejects: 5–6 of 98, all by Sonnet, none by code.** Two are in the newly reviewed proposal and come back in both runs. Sonnet
-  calls "the pipeline must replace" and "should be scoped carefully against this constraint" editorial. On the 102 claims of the old
-  eval it rejects 3–4 of 79, in the range of the earlier runs. It also rejects "four days spent on reconnaissance" in both runs: it
-  reads "a few days" in CH1 and misses "from four days to one" further down the same record.
+  snapshots" and "matching the structured output requirement" in all three runs. The earlier text said it passed them in all four
+  runs, but it never saw them. It passes "which requires reducing the initial engagement phase from four days to one day" in all three.
+- **False rejects: 3–6 of 98, all by Sonnet, none by code.** Two are in the newly reviewed proposal and come back in all three runs.
+  Sonnet calls "the pipeline must replace" and "should be scoped carefully against this constraint" editorial. On the 102 claims of the
+  old eval it rejects 3–4 of 79 in the first two runs, in the range of the earlier runs. It also rejects "four days spent on
+  reconnaissance" in all three runs: it reads "a few days" in CH1 and misses "from four days to one" further down the same record.
+
+### The names-and-numbers check on real runs
+
+The labels hold 129 claims. To see the check on many more, `checkByCode` ran again on every need, profile, pair and proposal in the
+results of the 12 real runs of 30 October: 13,888 claims, with the records in each run's `sources.json`. All 12 runs are older than
+the check, so each claim it rejects there is one that a run today would send back. No model runs, so this costs nothing and gives
+the same answer each time.
+
+| Form of the check | Claims it rejects, 12 runs | In the reference run (`out/golden`) | On the labels: wrong caught, ok rejected |
+| --- | --- | --- | --- |
+| A name or number in none of the claim's own records | 1,155 | 53 | 6 of 23, 2 of 98 |
+| The same, names and single numbers only | 714 | 28 | 5 of 23, 0 of 98 |
+| In none of its own records, but in another record of the artifact (146d0b3) | 431 | 22 | 5 of 23, 0 of 98 |
+| The same, with the fixes below (5555066, kept) | **371** | **19** | **5 of 23, 0 of 98** |
+
+- **"In none of its own records" rejects 2–3 times as many claims and catches no more details.** Its one extra catch on the labels is
+  a judgement claim, for a stray "1 and" in "3:1 and". A number with the word after it adds most of its noise: "2022 experience",
+  "18 month". A hand-check of the 40 extra rejects of the second form in three runs (`golden`, 15-09-14, 17-02-48) found one or two
+  real ones ("South Slavic"). Most of the rest come from records written in Serbian: "Vojvodini" for Vojvodina, "340.000" for
+  340,000, "maja" for May, "u prvom kvartalu" for Q1. Others were "Austria" for "Austrian", "Netherlands" for "Dutch", "Forty-seven"
+  for 47, and the digits of page paths. So the rule stays: a detail counts only when another record of the artifact writes it as
+  the claim does.
+- **The fixes clear 60 claims and reject none that passed before.** A cited record may hold a name in another form: "Hungary" for
+  "Hungarian", the Serbian "Vojvodini" for "Vojvodina", "STM32H7" for "STM32", "text-to-speech" for "TTS", "9.000" for 9,000. This
+  applies to the claim's own records only. Another record is blamed only for the detail as written: its "manages" is not the
+  claim's "Manager".
+- **A number under 100 on its own no longer blames a paper.** 8 claims were rejected for a lone "10" that only papers of the
+  researcher hold. In 4 of them the cited C017-CH1 writes it as "deset godina" (ten years). A company record, page or researcher record
+  holding the number still counts: "20 engineers" from C020-CH1 on a claim that cites C020. One arguable catch is lost this way: a
+  pair claim on a paper that names the company's "60-second latency budget".
+- **A page path in a claim left numbers behind.** In "(C018/job/2024-03-10)" the id pattern took "C018" first and left "2024", "03"
+  and "10", so "10" was blamed on a paper. It now takes the whole path.
+- **What the 19 rejects in the reference run are:** 18 hold a detail that the cited records lack and another record has. Examples:
+  "TCP/IP" where C001-CH1 says only "Modbus and BACnet", and "µA", "AFE" and "IC" from R0905 and C005 on claims that cite
+  SYN-PUB-09637. One is chance: "2" in "2–4 minutes", where SYN-PUB-09983 says 2.1 and C018 holds "Tier-2".
+- **Cost:** a run today sends back about 2.7% of the claims that these runs accepted, 19 in the reference run. The reason names the
+  record that holds the detail, so the producer can cite it or drop the word.
 
 Each run writes every claim with its verdict, and the reason for a reject, to `out/critic-eval/`. Run it again after a rubric change; `--mock` costs nothing.
