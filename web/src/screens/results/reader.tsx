@@ -22,6 +22,7 @@ import { DecisionBar, DecisionNote } from "./decision"
 import { ExportMenu } from "./export"
 import { Block, ClaimRows, DetailFrame, useTab } from "./parts"
 import { ReviewHistory } from "./review"
+import { FundingBlock } from "./funding"
 
 const READER_TABS = ["proposal", "claims", "review"] as const
 type ReaderTab = (typeof READER_TABS)[number]
@@ -96,7 +97,12 @@ export function ProposalDetail({ index, proposal }: { index: ResultsIndex; propo
 			}
 		>
 			<DecisionNote pairId={proposal.pairId} className="mb-6 max-w-[72ch]" />
-			{tab === "proposal" && <Markdown>{stripTitle(proposal.markdown, proposal.title)}</Markdown>}
+			{tab === "proposal" && (
+				<>
+					<Markdown>{stripTitle(proposal.markdown, proposal.title)}</Markdown>
+					<FundingBlock index={index} pairId={proposal.pairId} className="mt-10" />
+				</>
+			)}
 			{tab === "claims" && (
 				<Block
 					title="Every claim and its sources"

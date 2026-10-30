@@ -27,6 +27,7 @@ import {
 import { DecisionBar, DecisionNote } from "./decision"
 import { useFilters } from "./filters"
 import { Block, ClaimRows, DetailFrame, PairFit, useTab } from "./parts"
+import { FundingBlock } from "./funding"
 import { ReviewHistory } from "./review"
 
 const PAIR_TABS = ["why", "challenge", "researcher", "review"] as const
@@ -100,6 +101,7 @@ export function PairDetail({ index, pair }: { index: ResultsIndex; pair: PairCan
 					<Block title="Risks and constraints">
 						<ClaimRows claims={pair.risks} empty="None named." />
 					</Block>
+					<FundingBlock index={index} pairId={pair.id} />
 				</div>
 			)}
 			{tab === "challenge" && <ChallengeBody index={index} challengeId={pair.challengeId} />}
