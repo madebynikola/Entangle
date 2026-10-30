@@ -7,6 +7,9 @@ import type { Claim, RejectedClaim } from "../../types"
 /** How a claim must read so the Critic can confirm it against its source. Shared by the Matchmaker and the Writer prompts. */
 export const CLAIM_RULES = `How to write a claim, so a reviewer finds it in the cited record:
 - Say what the cited record says, at the same scope, and no more. "co-authored a paper on one-class SVMs for DNP3 command sequences in water treatment", not "used one-class SVMs for control systems". Your reasoning is not a claim.
+- A claim states facts only, never how well they fit. A record about the researcher says nothing about the company, so "directly addresses the company's false-positive problem", "matching the structured output requirement" or "the core engine for change detection" is not in it. That judgement goes in your reasoning.
+- Every word must come from a record the claim cites. If a detail ("paid", "Nordic", "data partner", "led") is only in the researcher's profile or a job page, cite that id too, or leave the detail out. Do not merge two separate points of a record into one ("clinical validation under MDR" when the record covers clinical validation and, apart from it, MDR classification).
+- Do not widen a list or a count: "asked for a retest after patches; one asked for monthly checks", not "all three ask for monthly testing". Write "all" or "every" only when the record does.
 - Give the researcher's role as the record gives it: "co-authored" for a paper with other authors, "led" only for a principal investigator or coordinator, "took part in" for other project roles.
 - Keep the company's own hedges: if it suspects a cause, write that it suspects it. Add no requirement or label the record does not give.
 - Never write a claim that guesses ("may", "might", "probably") or says what a record lacks. State a gap as the scope of what the record covers: "the paper covers Modbus traffic", not "there is no BACnet work". Gaps and guesses belong in your reasoning.
@@ -73,6 +76,17 @@ export function findClaim(claims: Claim[], rejected: Claim): number {
 	return claims.findIndex(
 		(claim) => [...claim.sourceIds].sort().join(",") === ids && (norm(claim.text).startsWith(text.slice(0, 40)) || text.startsWith(norm(claim.text).slice(0, 40))),
 	)
+}
+
+/** The claims without repeats: same text (ignoring case and spaces), the first one kept. */
+export function uniqueClaims(claims: Claim[]): Claim[] {
+	const seen = new Set<string>()
+	return claims.filter((claim) => {
+		const key = norm(claim.text)
+		if (seen.has(key)) return false
+		seen.add(key)
+		return true
+	})
 }
 
 /** One model fix for one rejected claim. */

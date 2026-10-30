@@ -14,7 +14,10 @@ import {
 	type PairFixInput,
 } from "./prompt"
 import { shortlist } from "./select"
-import { EventOfType, applyClaimFixes, emit, parseJson, registerMockResponder, type ClaimFix } from "./shared"
+import { EventOfType, applyClaimFixes, emit, parseJson, registerMockResponder, uniqueClaims, type ClaimFix } from "./shared"
+
+/** The lowest fit the prompt allows for a pair. Below it the evidence does not meet the core difficulty. */
+const MIN_FIT = 0.5
 
 export interface MatchmakerOptions {
 	/** Default: the role's model from config/models.ts. */
@@ -144,13 +147,17 @@ export function createMatchmaker(options: MatchmakerOptions): Matchmaker {
 		const byId = new Map(input.candidates.map((profile) => [profile.researcherId, profile]))
 		if (!Array.isArray(answer.pairs)) throw new Error("pairs is not a list")
 
-		// Only candidates we gave the model can form a pair; one pair per researcher.
+		// Only candidates we gave the model can form a pair; one pair per researcher, at the prompt's minimum fit.
 		const pairs = new Map<string, MatchAnswer["pairs"][number]>()
 		if (answer.outcome !== "no-match") {
-			for (const pair of answer.pairs) if (byId.has(pair.researcherId) && !pairs.has(pair.researcherId)) pairs.set(pair.researcherId, pair)
+			for (const pair of answer.pairs) {
+				if (byId.has(pair.researcherId) && Number(pair.fit) >= MIN_FIT && !pairs.has(pair.researcherId)) pairs.set(pair.researcherId, pair)
+			}
 		}
 		const invented = answer.pairs.filter((pair) => !byId.has(pair.researcherId)).map((pair) => pair.researcherId)
 		if (invented.length) emit(agent.getId(), "match.dropped", { taskId: task.id, challengeId: need.challengeId, researcherIds: invented, reason: "not a candidate" })
+		const weak = answer.pairs.filter((pair) => byId.has(pair.researcherId) && !(Number(pair.fit) >= MIN_FIT)).map((pair) => pair.researcherId)
+		if (weak.length) emit(agent.getId(), "match.dropped", { taskId: task.id, challengeId: need.challengeId, researcherIds: weak, reason: `fit below ${MIN_FIT}` })
 
 		if (pairs.size === 0) {
 			const reason = answer.noMatchReason?.trim() || "No candidate's evidence addresses the core of this problem."
@@ -194,6 +201,9 @@ export function createMatchmaker(options: MatchmakerOptions): Matchmaker {
 			return
 		}
 		pair.problem = problem[0]
+		// A rewrite can turn one claim into a copy of another.
+		pair.why = uniqueClaims(pair.why)
+		pair.risks = uniqueClaims(pair.risks)
 		s.candidates.set(pair.id, pair)
 		postArtifact("pair", pair.id, agent.getId(), task.id)
 	}
