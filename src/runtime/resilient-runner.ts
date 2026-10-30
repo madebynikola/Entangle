@@ -6,7 +6,8 @@ import {
 	type InferenceOutput,
 	type InferenceRunner,
 } from "@mozaik-ai/core"
-import type { InferenceAttempt } from "../types"
+import type { InferenceAttempt, TaskKind } from "../types"
+import { ClaudeCodeRunner } from "./claude-code-runner"
 import { providerLimits, providerOf, runnerSettings, type RunnerSettings } from "./config"
 import { Semaphore, TokenBucket, sleep } from "./limits"
 import { sendEvent, state } from "./mozaik"
@@ -28,6 +29,8 @@ interface Call {
 	loopId?: string
 	/** Sender of the call's events: the task's agent, else the loop's agent, else the task tracker. */
 	senderId: string
+	/** Its place in the queue for a slot: see RANK. */
+	rank: number
 }
 
 interface ProviderGate {
@@ -38,8 +41,19 @@ interface ProviderGate {
 type AttemptData = Omit<InferenceAttempt, "taskId" | "loopId" | "model" | "provider">
 
 /**
+ * A freed slot goes to the call furthest down the pipeline, so a company that is almost done does not wait behind
+ * the profiles of companies that just started. A review ranks with the work it reviews, and so does the fix it sends back.
+ * Reviews of needs and their fixes rank just under the writes: only the company's decision waits on them, and they are few.
+ * Ranked with the analyses, they wait behind every profile, and every company is decided at the end again.
+ * Within one rank, calls go in arrival order.
+ */
+const RANK: Record<TaskKind, number> = { write: 5, match: 3, profile: 2, screen: 1, analyze: 0, demo: 0, critique: 0 }
+const NEED_REVIEW = 4
+
+/**
  * Wraps another InferenceRunner (Mozaik's default, or the mock) with what many parallel loops need:
- * - a global semaphore: at most `maxInFlight` calls at once;
+ * - a global semaphore: at most `maxInFlight` calls at once, and no more than the local Claude Code sessions;
+ *   a freed slot goes to the call furthest down the pipeline (RANK);
  * - a token bucket per provider, for requests and input tokens per minute; a 429 pauses the whole provider;
  * - retries with exponential backoff and jitter on 429, 5xx and network errors, each one a trace event;
  * - a stop: no call goes out for a task that is already settled (timeout, budget, failed by an agent),
@@ -57,7 +71,8 @@ export class ResilientRunner implements InferenceRunner {
 		readonly inner: InferenceRunner,
 		private readonly settings: RunnerSettings = runnerSettings(),
 	) {
-		this.slots = new Semaphore(settings.maxInFlight)
+		// Local Claude Code serves its sessions first come first served. More slots here would only queue calls there, out of rank.
+		this.slots = new Semaphore(Math.min(settings.maxInFlight, sessionsOf(inner)))
 	}
 
 	async run(input: InferenceInput): Promise<InferenceOutput> {
@@ -120,6 +135,7 @@ export class ResilientRunner implements InferenceRunner {
 			taskId,
 			loopId,
 			senderId,
+			rank: rankOf(taskId),
 		}
 	}
 
@@ -131,7 +147,7 @@ export class ResilientRunner implements InferenceRunner {
 		const gate = this.gate(call.provider)
 		await gate.requests.take(1)
 		await gate.inputTokens.take(call.inputTokens)
-		await this.slots.acquire()
+		await this.slots.acquire(call.rank)
 		// The wait can be long; the task may have settled or the budget run out meanwhile.
 		reason = this.stopReason(call)
 		if (reason) {
@@ -206,6 +222,28 @@ export class ResilientRunner implements InferenceRunner {
 		}
 		sendEvent(SemanticEvent.create(type, call.senderId, payload), call.senderId)
 	}
+}
+
+/** A call's rank from its task (see RANK). A call with no task is not pipeline work, so nothing holds it up. */
+function rankOf(taskId: string | undefined): number {
+	const s = state()
+	const task = taskId ? s.tasks.get(taskId) : undefined
+	if (!task) return RANK.write
+	const subject = task.subjectId ?? ""
+	// An Analyst's first task is about a company; a fix it is sent back is about one of the company's needs.
+	if ((task.kind === "critique" || task.kind === "analyze") && s.needs.has(subject)) return NEED_REVIEW
+	if (task.kind !== "critique") return RANK[task.kind]
+	if (s.proposals.has(subject)) return RANK.write
+	if (s.candidates.has(subject)) return RANK.match
+	return RANK.profile
+}
+
+/** The local Claude Code sessions under `runner`, if it wraps that backend. */
+function sessionsOf(runner: InferenceRunner | undefined): number {
+	for (; runner; runner = (runner as { inner?: InferenceRunner }).inner) {
+		if (runner instanceof ClaudeCodeRunner) return runner.settings.sessions
+	}
+	return Infinity
 }
 
 /** Never settles. Mozaik keeps no handle on its loops, so a loop that waits on this is just garbage-collected. */

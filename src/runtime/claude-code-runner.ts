@@ -33,7 +33,7 @@ export class ClaudeCodeRunner implements InferenceRunner {
 	private readonly waiting: Array<() => void> = []
 	private readonly cwd: string
 
-	constructor(private readonly settings: LocalClaudeSettings = localClaudeSettings()) {
+	constructor(readonly settings: LocalClaudeSettings = localClaudeSettings()) {
 		// An empty folder, so no project CLAUDE.md is read.
 		this.cwd = joinPath(tmpdir(), "einstein-claude-code")
 		mkdirSync(this.cwd, { recursive: true })
