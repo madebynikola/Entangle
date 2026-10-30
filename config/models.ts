@@ -74,9 +74,9 @@ export const LOCAL_CLAUDE = {
 
 /** [BUDGET_TOKENS, BUDGET_USD, BUDGET_MINUTES, MAX_ATTEMPTS] */
 export const BUDGET: BudgetLimits = {
-	maxTokens: 3_000_000,
+	maxTokens: 6_000_000,
 	maxCostUsd: 20,
-	maxWallMs: 30 * 60_000,
+	maxWallMs: 45 * 60_000,
 	maxAttempts: 3,
 }
 
