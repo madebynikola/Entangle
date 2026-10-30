@@ -141,6 +141,9 @@ Only accepted artifacts reach the result. A Writer never starts on a pair whose 
 Every model call goes through one `ResilientRunner` (`src/runtime/resilient-runner.ts`) around the model backend:
 
 - at most 16 calls in flight over all providers (`MAX_IN_FLIGHT`), with a token bucket per provider for requests and input tokens per minute;
+- a freed slot goes to the call furthest down the pipeline: writes and proposal reviews, then need reviews and their fixes, then matches
+  and pair reviews, then profiles, then analyses; first come first served within one. So a company that is almost done does not wait
+  behind the profiles of companies that just started. With local Claude Code, the slots are capped at its sessions, so calls wait here in that order;
 - retries on 429, 5xx and network errors, with exponential backoff and jitter; a `retry-after` header wins, and a 429 pauses that whole provider;
 - a budget for the run: tokens, dollars, wall clock and attempts per task (`BUDGET_TOKENS`, `BUDGET_USD`, `BUDGET_MINUTES`, `MAX_ATTEMPTS`).
   At the limit no new task starts. Running tasks get 10% more to finish, then their calls are refused too;
