@@ -32,7 +32,7 @@ export function StatusDot({ tone, pulse, className }: { tone: StatusTone; pulse?
 	)
 }
 
-/** Dot plus coloured text: "● working: profile R0012 · just now". */
+/** Dot plus coloured text: "● working: profile R0012". */
 export function Status({
 	tone,
 	pulse,
@@ -44,6 +44,16 @@ export function Status({
 		<span data-slot="status" className={cn("inline-flex min-w-0 items-center gap-2", TEXT[tone], className)} {...props}>
 			<StatusDot tone={tone} pulse={pulse} />
 			<span className="truncate">{children}</span>
+		</span>
+	)
+}
+
+/** Dot plus a plain label: the status of a run or a stage ("● Finished"). The text stays ink; the dot carries the colour. */
+export function StatusLabel({ tone, pulse, children, className }: { tone: StatusTone; pulse?: boolean; children: React.ReactNode; className?: string }) {
+	return (
+		<span className={cn("inline-flex items-center gap-2 text-ink", className)}>
+			<StatusDot tone={tone} pulse={pulse} />
+			{children}
 		</span>
 	)
 }

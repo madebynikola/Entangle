@@ -52,6 +52,11 @@ export function SheetContent({
 		<DialogPrimitive.Portal>
 			<Overlay className="bg-black/10 dark:bg-black/35" />
 			<DialogPrimitive.Content
+				// Focus the panel, not its first link or chip: a chip with a hover card would pop open.
+				onOpenAutoFocus={(event) => {
+					event.preventDefault()
+					;(event.currentTarget as HTMLElement | null)?.focus()
+				}}
 				className={cn(
 					"fixed inset-y-2 right-2 z-50 flex w-[min(30rem,calc(100vw-1rem))] flex-col overflow-hidden rounded-xl border border-hairline bg-panel shadow-float outline-none data-[state=open]:animate-sheet-in data-[state=closed]:animate-sheet-out",
 					className,

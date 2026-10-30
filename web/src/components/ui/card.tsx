@@ -1,13 +1,13 @@
 import type * as React from "react"
 import { cn } from "@/lib/utils"
 
-/** White card, hairline border, small radius, roomy padding. No shadow. */
+/** White card, hairline border, a whisper of shadow in light mode. */
 export function Card({ className, interactive, ...props }: React.ComponentProps<"div"> & { interactive?: boolean }) {
 	return (
 		<div
 			data-slot="card"
 			className={cn(
-				"rounded-md border border-hairline bg-card p-4",
+				"rounded-lg border border-hairline bg-card p-5 shadow-card",
 				interactive && "cursor-pointer transition-colors duration-150 hover:border-strong",
 				className,
 			)}
@@ -16,13 +16,13 @@ export function Card({ className, interactive, ...props }: React.ComponentProps<
 	)
 }
 
-/** "#12" style id line at the top of a card. */
+/** A short mono id at the top of a card. */
 export function CardId({ className, ...props }: React.ComponentProps<"div">) {
 	return <div className={cn("font-mono text-xs text-ink-muted", className)} {...props} />
 }
 
 export function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
-	return <h3 className={cn("text-md font-medium leading-snug text-ink", className)} {...props} />
+	return <h3 className={cn("text-base font-medium leading-snug text-ink", className)} {...props} />
 }
 
 /** Secondary lines under a title. */
@@ -30,7 +30,35 @@ export function CardMeta({ className, ...props }: React.ComponentProps<"div">) {
 	return <div className={cn("text-sm text-ink-muted", className)} {...props} />
 }
 
-/** Soft grey rounded container that holds cards: a Kanbix column, a swimlane group. */
+/** A titled block of a page: a heading with an optional description and action, then its content. */
+export function Section({
+	title,
+	description,
+	action,
+	className,
+	children,
+}: {
+	title: React.ReactNode
+	description?: React.ReactNode
+	action?: React.ReactNode
+	className?: string
+	children: React.ReactNode
+}) {
+	return (
+		<section className={cn("flex min-w-0 flex-col gap-3", className)}>
+			<header className="flex items-end justify-between gap-4">
+				<div className="min-w-0">
+					<h2 className="text-base font-semibold text-ink">{title}</h2>
+					{description && <p className="mt-0.5 text-sm text-ink-muted">{description}</p>}
+				</div>
+				{action}
+			</header>
+			{children}
+		</section>
+	)
+}
+
+/** A titled container that holds cards or rows: a column, a group of swimlanes. */
 export function Lane({
 	title,
 	count,
@@ -41,12 +69,12 @@ export function Lane({
 	...props
 }: React.ComponentProps<"section"> & { title?: React.ReactNode; count?: React.ReactNode; icon?: React.ReactNode; action?: React.ReactNode }) {
 	return (
-		<section data-slot="lane" className={cn("flex min-w-0 flex-col rounded-lg bg-sunken p-2", className)} {...props}>
+		<section data-slot="lane" className={cn("flex min-w-0 flex-col gap-2", className)} {...props}>
 			{title != null && (
-				<header className="flex h-10 items-center gap-2 px-2.5">
+				<header className="flex h-8 items-center gap-2">
 					{icon}
-					<h2 className="font-medium text-ink">{title}</h2>
-					{count != null && <span className="tabular text-ink-muted">{count}</span>}
+					<h2 className="text-sm font-medium text-ink">{title}</h2>
+					{count != null && <span className="tabular text-sm text-ink-subtle">{count}</span>}
 					<div className="ml-auto">{action}</div>
 				</header>
 			)}
@@ -55,7 +83,18 @@ export function Lane({
 	)
 }
 
-/** Every metric in one muted line, joined by middle dots: "61k / 200k · 388k spent · ~$0.42". */
+/** A label over a value: "Duration / 2m 43s". */
+export function Stat({ label, value, hint, className }: { label: React.ReactNode; value: React.ReactNode; hint?: React.ReactNode; className?: string }) {
+	return (
+		<div className={cn("min-w-0", className)}>
+			<div className="text-sm text-ink-muted">{label}</div>
+			<div className="tabular mt-1 truncate text-base font-medium text-ink">{value}</div>
+			{hint && <div className="mt-0.5 truncate text-xs text-ink-subtle">{hint}</div>}
+		</div>
+	)
+}
+
+/** Secondary facts in one quiet line, joined by middle dots. */
 export function Meta({ items, className }: { items: React.ReactNode[]; className?: string }) {
 	const shown = items.filter((item) => item != null && item !== false && item !== "")
 	return (

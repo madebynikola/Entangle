@@ -19,7 +19,7 @@ export function Segmented<V extends string>({
 }) {
 	const group = useId()
 	return (
-		<div role="radiogroup" aria-label={ariaLabel} className={cn("inline-flex h-7 items-center rounded-md bg-sunken p-0.5", className)}>
+		<div role="radiogroup" aria-label={ariaLabel} className={cn("inline-flex h-8 items-center rounded-md bg-sunken p-0.5", className)}>
 			{items.map((item) => {
 				const active = item.value === value
 				return (
@@ -31,14 +31,14 @@ export function Segmented<V extends string>({
 						title={item.title}
 						onClick={() => onValueChange(item.value)}
 						className={cn(
-							"relative inline-flex h-6 min-w-8 items-center justify-center gap-1 rounded-[5px] px-2 text-sm transition-colors duration-150 [&_svg]:size-3.5",
+							"relative inline-flex h-7 min-w-8 items-center justify-center gap-1 rounded-[5px] px-2.5 text-sm font-medium transition-colors duration-150 [&_svg]:size-3.5",
 							active ? "text-ink" : "text-ink-muted hover:text-ink",
 						)}
 					>
 						{active && (
 							<motion.span
 								layoutId={`segment-${group}`}
-								className="absolute inset-0 rounded-[5px] border border-hairline bg-panel"
+								className="absolute inset-0 rounded-[5px] bg-panel shadow-[0_0_0_1px_var(--hairline),0_1px_2px_#0000000f]"
 								transition={{ type: "spring", stiffness: 560, damping: 44 }}
 							/>
 						)}

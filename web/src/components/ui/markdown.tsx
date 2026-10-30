@@ -41,7 +41,7 @@ const components: Components = {
 	ol: ({ children }) => <ol className="my-2.5 list-decimal pl-5 marker:text-ink-muted">{children}</ol>,
 	strong: ({ children }) => <strong className="font-medium text-ink">{children}</strong>,
 	a: ({ children, href }) => (
-		<a href={href} target="_blank" rel="noreferrer" className="text-primary underline-offset-2 hover:underline">
+		<a href={href} target="_blank" rel="noreferrer" className="text-link underline-offset-2 hover:underline">
 			{children}
 		</a>
 	),

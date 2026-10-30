@@ -13,23 +13,23 @@ export interface ChipProps extends React.ComponentProps<"span"> {
 }
 
 const TONE: Record<NonNullable<ChipProps["tone"]>, string> = {
-	default: "text-ink-muted",
-	primary: "border-primary/35 text-primary",
-	needs: "border-needs/40 text-needs",
-	failed: "border-failed/40 text-failed",
-	working: "border-working/40 text-working",
+	default: "border-hairline bg-panel text-ink-muted",
+	primary: "border-transparent bg-primary-soft text-ink",
+	needs: "border-transparent bg-needs/12 text-needs",
+	failed: "border-transparent bg-failed/10 text-failed",
+	working: "border-transparent bg-working/12 text-working",
 }
 
-/** Outlined pill with a hairline border: dates, counts, settings, source ids. */
+/** A small pill: kinds, counts, source ids. */
 export function Chip({ icon, count, tone = "default", asChild, mono, className, children, ...props }: ChipProps) {
 	const Comp = asChild ? Slot.Root : "span"
 	return (
 		<Comp
 			data-slot="chip"
 			className={cn(
-				"inline-flex h-6 max-w-full shrink-0 items-center gap-1.5 whitespace-nowrap rounded-sm border border-hairline bg-panel px-2 text-sm [&_svg]:size-3.5 [&_svg]:shrink-0",
-				asChild && "cursor-pointer transition-colors duration-150 hover:border-strong hover:bg-hover hover:text-ink",
-				mono && "font-mono text-xs",
+				"inline-flex h-6 max-w-full shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 text-xs font-medium [&_svg]:size-3.5 [&_svg]:shrink-0",
+				asChild && "cursor-pointer transition-colors duration-150 hover:border-strong hover:text-ink",
+				mono && "rounded-sm px-1.5 font-mono font-normal",
 				TONE[tone],
 				className,
 			)}
