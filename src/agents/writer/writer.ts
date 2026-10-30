@@ -242,7 +242,9 @@ export function replaceFreeText(draft: ProposalDraft, quote: string, replacement
 	const swap = (text: string) => {
 		if (found || !pattern.test(text)) return text
 		found = true
-		return text.replace(pattern, () => replacement).replace(/\s{2,}/g, " ").trim()
+		// Inside a sentence, the replacement does not start with a capital ("but the list", not "but The list").
+		const fit = (offset: number) => (/[^.!?:\s]\s*$/.test(text.slice(0, offset)) ? lowerFirst(replacement) : replacement)
+		return text.replace(pattern, (_match, offset: number) => fit(offset)).replace(/\s{2,}/g, " ").trim()
 	}
 	draft.pairReasoning = swap(draft.pairReasoning)
 	for (const key of ["researchQuestions", "approach", "firstSixMonths", "agreedUpFront"] as const) {
@@ -250,6 +252,11 @@ export function replaceFreeText(draft: ProposalDraft, quote: string, replacement
 	}
 	draft.plan = draft.plan.map((row) => ({ period: row.period, work: swap(row.work), result: swap(row.result) }))
 	return found
+}
+
+/** Lower-case a leading article or pronoun; a name ("LinguaBot", "Stefan") keeps its capital. */
+function lowerFirst(text: string): string {
+	return /^(The|A|An|This|These|That|Those|It|Its|Each|Every)\b/.test(text) ? text.charAt(0).toLowerCase() + text.slice(1) : text
 }
 
 /** A quote as a case- and space-blind pattern, without the quote marks and end stop a model may add or drop. */

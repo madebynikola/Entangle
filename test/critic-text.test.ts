@@ -35,6 +35,15 @@ describe("free text of a proposal (no model)", () => {
 		assert.deepEqual(d.approach, ["Record 500 hours of traffic in month 1. Then write the rules down in Coq."])
 	})
 
+	test("inside a sentence, the replacement loses its leading capital; a name keeps it", () => {
+		const d = draft({ pairReasoning: "The company has the data, but its team lacks the methods, so the work stalls." })
+		assert.equal(replaceFreeText(d, "its team lacks the methods", "The current synonym list does not scale"), true)
+		assert.equal(d.pairReasoning, "The company has the data, but the current synonym list does not scale, so the work stalls.")
+		const e = draft({ pairReasoning: "In short, the company lacks proofs." })
+		replaceFreeText(e, "the company lacks proofs", "LinguaBot brings the data.")
+		assert.equal(e.pairReasoning, "In short, LinguaBot brings the data.")
+	})
+
 	test("an empty replacement removes the sentence, and a list item left empty goes", () => {
 		const d = draft({ firstSixMonths: ["Move the firmware source.", "Set up the proof project."] })
 		assert.equal(replaceFreeText(d, "Move the firmware source.", ""), true)
