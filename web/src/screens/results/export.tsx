@@ -26,13 +26,15 @@ export interface ExportContext {
 
 const SOURCE_ID = /^(R\d{3,4}|C\d{3}(?:-CH\d+)?|SYN-[A-Z]{3}-\d+|C\d{3}\/.+)$/
 const CITATION = /\[([^\]\n]+)\](?!\()/g
+/** The comma between two ids, not one inside a page title. */
+const BETWEEN = /\s*,\s*(?=R\d{3,4}\b|C\d{3}\b|SYN-)/
 
 /** Every dataset id the proposal cites: in its claims and inline as `[ID]` or `[ID, ID]`. */
 export function citedIds(proposal: Proposal): string[] {
 	const ids = new Set<string>()
 	for (const claim of proposal.claims) for (const id of claim.sourceIds) ids.add(id)
 	for (const match of proposal.markdown.matchAll(CITATION)) {
-		for (const part of match[1].split(/\s*,\s*/)) if (SOURCE_ID.test(part.trim())) ids.add(part.trim())
+		for (const part of match[1].split(BETWEEN)) if (SOURCE_ID.test(part.trim())) ids.add(part.trim())
 	}
 	return [...ids].sort(byDatasetId)
 }
@@ -126,7 +128,7 @@ function cite(children: React.ReactNode): React.ReactNode {
 		const parts: React.ReactNode[] = []
 		let last = 0
 		for (const match of child.matchAll(CITATION)) {
-			if (!match[1].split(/\s*,\s*/).every((part) => SOURCE_ID.test(part.trim()))) continue
+			if (!match[1].split(BETWEEN).every((part) => SOURCE_ID.test(part.trim()))) continue
 			parts.push(child.slice(last, match.index))
 			parts.push(
 				<span key={match.index} className="cite">
