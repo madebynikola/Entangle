@@ -10,7 +10,8 @@ The look is calm and monochrome, in the spirit of Vercel: one question per scree
   With no real runs, an intro points at the sample run.
 - `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
 - `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running). It is the only tab with the replay bar.
-- `#/runs/:id/results`: pairs and proposals.
+- `#/runs/:id/results`: pairs and proposals, as a list and a detail side by side. Deep links:
+  `results/proposals/:id` (add `?tab=review` for the Critic history), `results/pairs/:pairId`, `results/challenges/:id`.
 
 **The frame.** A sidebar on the grey canvas, and one white panel inset beside it (the Kanbix frame).
 The sidebar has search (⌘K), the runs worth opening (live, finished real runs, the sample; "All runs" for the rest),
@@ -40,8 +41,8 @@ npm start                         # serve web/dist plus the API
 
 | Path | Owner |
 | --- | --- |
-| `web/src/screens/live/` | #20: the Timeline (now a working stub) |
-| `web/src/screens/results/` | #21: results view (now a working stub) |
+| `web/src/screens/live/` | #20: the Timeline |
+| `web/src/screens/results/` | #21: the results view |
 | everything else in `web/` (incl. `screens/overview`, `screens/home`), and `src/server/` | #12: shell, design system, routing, run data, server |
 
 Need something in a shared file (a token, a component, a field on the run view)? Ask on #12's card, or add it

@@ -12,7 +12,7 @@ import { HomeScreen } from "@/screens/home"
  *   #/                         all runs
  *   #/runs/:runId/overview     what the run did (screens/overview)
  *   #/runs/:runId/live/*       the Timeline: agents at work, with the replay bar (#20 owns screens/live)
- *   #/runs/:runId/results/*    results view (#21 owns screens/results); nest your own <Routes> under it
+ *   #/runs/:runId/results/*    results (#21 owns screens/results): proposals/:id[?tab=review], pairs[/:pairId], challenges/:id
  */
 export const router = createHashRouter([
 	{
