@@ -148,9 +148,10 @@ describe("two reviewers on the Mozaik runtime", () => {
 		const splitClaims = (split.payload as { claims: { claim: Claim; rejectedBy: string[] }[] }).claims
 		assert.deepEqual(splitClaims.map((c) => [c.claim.text, c.rejectedBy]), [[INVENTED_YEAR.text, ["critic-2"]]])
 
-		// Two critique tasks, one per reviewer, at the same time; the fixed proposal needs no model call.
+		// Three critique tasks at the same time: one per reviewer on the claims, and the first one's on the free text.
+		// The fixed proposal needs no model call: its claims passed and its free text did not change.
 		const critiques = [...s.tasks.values()].filter((task) => task.kind === "critique" && task.subjectId === doc.id)
-		assert.deepEqual(critiques.map((task) => task.assignee), [critic.agent.getId(), critic.second!.getId()])
+		assert.deepEqual(critiques.map((task) => task.assignee), [critic.agent.getId(), critic.second!.getId(), critic.agent.getId()])
 		assert.ok(Math.max(...critiques.map((t) => t.startedAt!)) < Math.min(...critiques.map((t) => t.finishedAt!)))
 		assert.deepEqual(s.proposals.get(doc.id)!.claims, [TRUE_CLAIMS.coq])
 		assert.equal(critic.status("proposal", doc.id), "accepted")

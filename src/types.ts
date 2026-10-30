@@ -141,9 +141,10 @@ export interface Proposal {
 /**
  * Which Critic check failed. By code: `no-source` (empty sourceIds), `unknown-source` (id not in the SourceStore),
  * `wrong-subject` (the record belongs to another researcher or company), `name-mismatch` (name does not fit the id).
- * By the model: `unsupported` (the source text does not back the claim), `unchecked` (the review gave no answer for it).
+ * By the model: `unsupported` (the source text does not back the claim), `unchecked` (the review gave no answer for it),
+ * `free-text` (a sentence of a proposal's free text states a fact that no claim or source gives; `claim.text` quotes it).
  */
-export type RejectCheck = "no-source" | "unknown-source" | "wrong-subject" | "name-mismatch" | "unsupported" | "unchecked"
+export type RejectCheck = "no-source" | "unknown-source" | "wrong-subject" | "name-mismatch" | "unsupported" | "unchecked" | "free-text"
 
 export interface RejectedClaim {
 	claim: Claim

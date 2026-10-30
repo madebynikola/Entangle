@@ -244,11 +244,11 @@ describe("review loop on the Mozaik runtime", () => {
 		const critiques = [...s.tasks.values()].filter(
 			(task) => task.kind === "critique" && [p.id, doc.id, "R0002"].includes(task.subjectId ?? ""),
 		)
-		// Two reviewers check the proposal, one each the pair and the profile.
-		assert.equal(critiques.length, 4)
+		// Two reviewers check the proposal's claims and one its free text, one each the pair and the profile.
+		assert.equal(critiques.length, 5)
 		const lastStart = Math.max(...critiques.map((task) => task.startedAt!))
 		const firstEnd = Math.min(...critiques.map((task) => task.finishedAt!))
-		assert.ok(lastStart < firstEnd, "all four critique loops ran at the same time")
+		assert.ok(lastStart < firstEnd, "all five critique loops ran at the same time")
 	})
 
 	test("every intervention is in the trace, tied to a task", async () => {

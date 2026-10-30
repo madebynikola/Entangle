@@ -36,9 +36,19 @@ import type {
 	SourceStore,
 } from "../../types"
 import { ROUTES } from "../../../config/models"
-import { checkByCode, claimsOf, readArtifact, removeArtifact, type Artifact } from "./checks"
+import { checkByCode, claimsOf, freeTextOf, proposalText, readArtifact, removeArtifact, type Artifact } from "./checks"
 import { lexicalReview, strictReview } from "./mock"
-import { CRITIC_INSTRUCTION, REVIEW_SCHEMA, parseReview, reviewDecision, reviewMessage, type ReviewCheck } from "./prompt"
+import {
+	CRITIC_INSTRUCTION,
+	REVIEW_SCHEMA,
+	TEXT_REVIEW_SCHEMA,
+	parseReview,
+	parseTextReview,
+	reviewDecision,
+	reviewMessage,
+	textReviewMessage,
+	type ReviewCheck,
+} from "./prompt"
 import {
 	ARTIFACT_POSTED,
 	CRITIC_DROPPED,
@@ -114,6 +124,8 @@ interface Review {
 	sendBacks: number
 	/** Bumped on every post. A review that ends on an older version is stale. */
 	version: number
+	/** A proposal's free text as it last passed the free-text check; unchanged text is not checked again. */
+	checkedText?: string
 }
 
 interface Job {
@@ -123,6 +135,8 @@ interface Job {
 	sources: Map<string, SourceRecord>
 	subjectLine: string
 	mock: MockReview
+	/** The free-text check of a proposal, not a claim check. */
+	text?: boolean
 }
 
 /** A reviewer's answer in mock runs, in place of its model. */
@@ -164,6 +178,10 @@ class WhenArtifactPosted extends SituationSpecification {
  * For the kinds in `dualReview` (proposals by default) a second reviewer runs the same model check at the
  * same time, on another model and in its own context. Both must pass. Their rejected claims go back as one
  * send-back, and when the fixes run out the artifact goes to human review (the "santa method").
+ *
+ * A proposal's free text (research questions, approach, plan, reasoning, terms) gets one more task on the first reviewer,
+ * whenever it changed since it last passed: every sentence that states as true what no claim or source states goes back
+ * to the Writer as a `free-text` reject, beside the rejected claims.
  *
  * Every step is a trace event (see protocol.ts). It does not join itself: `join(critic.agent)` after the trace observer.
  */
@@ -262,8 +280,13 @@ export function createCritic(options: CriticOptions): Critic {
 			producerTaskId: review.producerTaskId,
 		}
 
+		// A proposal's free text gets its own check by the first reviewer, whenever it changed since it last passed.
+		const freeText = kind === "proposal" ? freeTextOf(artifact as Proposal) : undefined
+		const checkText = freeText !== undefined && freeText !== review.checkedText
+
 		let votes: Vote[] = []
-		if (!fresh.length) {
+		let textVote: Vote | undefined
+		if (!fresh.length && !checkText) {
 			emit(CRITIC_REVIEWING, { ...header, modelCheck: 0 })
 		} else {
 			const sources = new Map(
@@ -271,10 +294,20 @@ export function createCritic(options: CriticOptions): Critic {
 			)
 			const message = reviewMessage(kind, id, code.subject, fresh, sources)
 			// Each reviewer runs its own task at the same time: same claims and rubric, its own model and context.
-			votes = await Promise.all(
-				panel.map((reviewer) => vote(reviewer, id, message, { claims: fresh, sources, subjectLine: code.subject.line }, header)),
-			)
-			const failed = votes.find((v) => !v.rejected)
+			const claimVotes = fresh.length
+				? panel.map((reviewer) => vote(reviewer, id, message, { claims: fresh, sources, subjectLine: code.subject.line }, header))
+				: []
+			const textCheck = checkText
+				? vote(
+						primary,
+						id,
+						textReviewMessage(id, code.subject, proposalText(artifact as Proposal), code.sources),
+						{ claims: [], sources: code.sources, subjectLine: code.subject.line, text: true },
+						header,
+					)
+				: undefined
+			;[votes, textVote] = await Promise.all([Promise.all(claimVotes), textCheck])
+			const failed = [...votes, ...(textVote ? [textVote] : [])].find((v) => !v.rejected)
 			if (failed) {
 				if (version === review.version) review.status = "error"
 				emit(CRITIC_ERROR, { taskId: failed.taskId, kind, id, reviewer: failed.reviewer, error: failed.error })
@@ -286,13 +319,16 @@ export function createCritic(options: CriticOptions): Critic {
 				}
 			})
 			rejected.push(...mergeVotes(fresh, votes))
+			if (textVote) rejected.push(...textVote.rejected!)
 		}
 
-		const taskId = votes[0]?.taskId
+		const ran = votes.length ? votes : textVote ? [textVote] : []
+		const taskId = ran[0]?.taskId
 		if (version !== review.version) {
 			emit(CRITIC_STALE, { taskId, kind, id, reason: "a newer version was posted during the review" })
 			return
 		}
+		if (textVote?.rejected?.length === 0) review.checkedText = freeText
 		const split = rejected.filter((r) => r.reviewers && r.reviewers.length < votes.length)
 		if (split.length) {
 			splits++
@@ -308,23 +344,27 @@ export function createCritic(options: CriticOptions): Critic {
 				})),
 			})
 		}
-		decide(review, artifact, rejected, votes)
+		decide(review, artifact, rejected, ran)
 	}
 
-	/** One reviewer's model check, as its own critique task. A failed call or an unusable answer is tried once more. */
+	/**
+	 * One reviewer's model check, as its own critique task: of the claims, or with `job.text` of a proposal's free text.
+	 * A failed call or an unusable answer is tried once more.
+	 */
 	async function vote(reviewer: Reviewer, id: string, message: string, job: Omit<Job, "mock" | "message">, header: object): Promise<Vote> {
 		const task = createTask("critique", reviewer.agent, id)
 		const model = reviewer.model()
-		emit(CRITIC_REVIEWING, { taskId: task.id, ...header, modelCheck: job.claims.length, reviewer: reviewer.name, model }, reviewer.agent)
+		const freeText = job.text ? { freeText: true } : {}
+		emit(CRITIC_REVIEWING, { taskId: task.id, ...header, modelCheck: job.claims.length, ...freeText, reviewer: reviewer.name, model }, reviewer.agent)
 		jobs.set(task.id, { ...job, message, mock: reviewer.mock })
 		let rejected: RejectedClaim[] | undefined
 		let error = ""
 		for (let attempt = 0; attempt < MODEL_TRIES && !rejected; attempt++) {
-			runTask(task, message, { model, structuredOutput: REVIEW_SCHEMA })
+			runTask(task, message, { model, structuredOutput: job.text ? TEXT_REVIEW_SCHEMA : REVIEW_SCHEMA })
 			await whenSettled([task.id])
 			try {
 				if (task.status !== "done") throw new Error(task.error ?? `critique task ${task.status}`)
-				rejected = parseReview(task.output, job.claims)
+				rejected = job.text ? parseTextReview(task.output) : parseReview(task.output, job.claims)
 			} catch (e) {
 				error = e instanceof Error ? e.message : String(e)
 			}
@@ -418,12 +458,14 @@ export function createCritic(options: CriticOptions): Critic {
 	const mockResponder: MockResponder = (input) => {
 		const job = jobOf(input.context.id)
 		if (!job) return undefined
+		// The mock has no reader for free text: it passes.
+		if (job.text) return JSON.stringify({ statements: [] })
 		return JSON.stringify({ checks: job.mock(job.claims, job.sources, job.subjectLine) })
 	}
 	// A reviewer on a decision model (subq-snap, Jev) gets the review as one yes/no question per claim.
 	const decider: Decider = (input) => {
 		const job = jobOf(input.context.id)
-		return job ? reviewDecision(job.message, job.claims, subqSettings().threshold) : undefined
+		return job && !job.text ? reviewDecision(job.message, job.claims, subqSettings().threshold) : undefined
 	}
 	const runner = resolveRuntime().getInferenceRunner()
 	innerOf(runner, MockInferenceRunner)?.responders.push(mockResponder)

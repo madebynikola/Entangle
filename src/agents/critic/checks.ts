@@ -68,6 +68,20 @@ export function claimsOf(kind: ArtifactKind, artifact: Artifact): Claim[] {
 	}
 }
 
+/** A proposal's Markdown without its Sources list: what the free-text check reads. */
+export function proposalText(proposal: Proposal): string {
+	const markdown = proposal.markdown ?? ""
+	const end = markdown.indexOf("\n### Sources")
+	return (end >= 0 ? markdown.slice(0, end) : markdown).trim()
+}
+
+/** A proposal's free text only, with every rendered claim cut out, so a fix to a claim does not count as a change. */
+export function freeTextOf(proposal: Proposal): string {
+	let text = proposalText(proposal)
+	for (const claim of proposal.claims ?? []) text = text.split(`${claim.text.trim()} [${claim.sourceIds.join(", ")}]`).join("")
+	return text.replace(/\s+/g, " ").trim()
+}
+
 /**
  * The checks that need no model: the artifact's own ids exist and fit its names,
  * every claim cites at least one source, every cited id exists, and every cited record

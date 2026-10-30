@@ -163,9 +163,15 @@ export function createWriter(options: WriterOptions): Writer {
 		const context: RenderContext = { ...entry.context, pair: { ...entry.context.pair, risks: [...entry.context.pair.risks] } }
 		const missing = applyClaimFixes([draft.problem, draft.companyBrings, draft.researcherBrings, draft.whyThisPair, context.pair.risks], input.rejected, answer)
 
+		// A free-text sentence the Critic quoted is replaced by its fix, or removed.
 		// An id the Critic found only in free text ("The proposal text cites X.") is removed from it.
 		const unmatched = missing.filter((index) => {
-			const cited = input.rejected[index].claim.text.match(/^The proposal text cites (.+)\.$/)
+			const rejected = input.rejected[index]
+			if (rejected.check === "free-text") {
+				const fix = answer.find((f) => f.index === index)
+				return !replaceFreeText(draft, rejected.claim.text, fix?.action === "rewrite" ? fix.text.trim() : "")
+			}
+			const cited = rejected.claim.text.match(/^The proposal text cites (.+)\.$/)
 			if (!cited) return true
 			for (const id of input.rejected[index].claim.sourceIds) scrubDraft(draft, id)
 			return false
@@ -222,6 +228,37 @@ function normalize(answer: ProposalDraft, allowedKinds: ProposalKind[]): Proposa
 		whyThisPair: claims(answer.whyThisPair),
 		agreedUpFront: list(answer.agreedUpFront),
 	}
+}
+
+/**
+ * Put `replacement` in place of the first match of `quote` in the draft's free text; an empty replacement removes it,
+ * and a list item left empty goes. False when the quote is not in the free text.
+ */
+export function replaceFreeText(draft: ProposalDraft, quote: string, replacement: string): boolean {
+	const pattern = loosePattern(quote)
+	if (!pattern) return false
+	let found = false
+	const swap = (text: string) => {
+		if (found || !pattern.test(text)) return text
+		found = true
+		return text.replace(pattern, () => replacement).replace(/\s{2,}/g, " ").trim()
+	}
+	draft.pairReasoning = swap(draft.pairReasoning)
+	for (const key of ["researchQuestions", "approach", "firstSixMonths", "agreedUpFront"] as const) {
+		draft[key] = draft[key].map(swap).filter(Boolean)
+	}
+	draft.plan = draft.plan.map((row) => ({ period: row.period, work: swap(row.work), result: swap(row.result) }))
+	return found
+}
+
+/** A quote as a case- and space-blind pattern, without the quote marks and end stop a model may add or drop. */
+function loosePattern(quote: string): RegExp | undefined {
+	const words = quote
+		.replace(/^["'“”‘’\s]+|["'“”‘’.\s]+$/g, "")
+		.split(/\s+/)
+		.filter(Boolean)
+	if (!words.length) return undefined
+	return new RegExp(`${words.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s+")}\\.?`, "i")
 }
 
 function scrubDraft(draft: ProposalDraft, id: string): void {

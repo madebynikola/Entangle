@@ -275,6 +275,7 @@ export const CHECK_LABEL: Record<NonNullable<CriticVerdict["rejected"][number]["
 	"name-mismatch": "Name does not match the id",
 	unsupported: "Source does not support it",
 	unchecked: "Not checked",
+	"free-text": "Free text states it, no source does",
 }
 
 export type Fix = { kind: "kept" | "new-sources" | "rewritten"; claim: Claim } | { kind: "removed" }
