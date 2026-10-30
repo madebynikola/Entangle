@@ -1,5 +1,6 @@
 import type { PairCandidate, ResearcherProfile } from "@shared/types"
 import { FileText } from "lucide-react"
+import { useMemo } from "react"
 import { Link } from "react-router"
 import { ClaimText, SourceChip, useSource } from "@/components/shell/source"
 import { Meta } from "@/components/ui/card"
@@ -8,7 +9,21 @@ import { Status, StatusLabel } from "@/components/ui/status"
 import { Tabs } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import { useRunStore } from "@/run/hooks"
-import { companyOf, noPair, pairClaims, reviewsOf, reviewSummary, TRIAGE_LABEL, useResultsPath, type ResultsIndex } from "./data"
+import {
+	companyOf,
+	failureLabel,
+	noPair,
+	pairClaims,
+	pairOutcome,
+	proposalIdOf,
+	reviewsOf,
+	reviewSummary,
+	TRIAGE_LABEL,
+	useResultsPath,
+	writeFailure,
+	type PairOutcome,
+	type ResultsIndex,
+} from "./data"
 import { DecisionBar, DecisionNote } from "./decision"
 import { useFilters } from "./filters"
 import { Block, ClaimRows, DetailFrame, PairFit, useTab } from "./parts"
@@ -23,7 +38,12 @@ export function PairDetail({ index, pair }: { index: ResultsIndex; pair: PairCan
 	const paths = useResultsPath()
 	const company = companyOf(index, pair.companyId)
 	const profile = index.profiles.get(pair.researcherId)
-	const proposal = index.proposalByPair.get(pair.id)
+	const outcome = pairOutcome(index, pair.id)
+	const records = useRunStore((state) => state.records)
+	const failure = useMemo(
+		() => (outcome.kind === "not-written" ? writeFailure(records, proposalIdOf(pair.id)) : undefined),
+		[outcome.kind, records, pair.id],
+	)
 	const verdicts = reviewsOf(index.results, "pair", pair.id)
 	const review = reviewSummary(verdicts)
 
@@ -40,14 +60,7 @@ export function PairDetail({ index, pair }: { index: ResultsIndex; pair: PairCan
 						items={[
 							<span className="font-mono text-xs">{pair.challengeId}</span>,
 							<PairFit fit={pair.fit} />,
-							proposal ? (
-								<Link to={paths.proposal(proposal.id)} className="inline-flex items-center gap-1 text-ink underline-offset-2 hover:underline">
-									<FileText className="size-3.5" />
-									Read the proposal
-								</Link>
-							) : (
-								"No proposal written"
-							),
+							<ProposalOutcome outcome={outcome} failure={failure} />,
 							verdicts.length > 0 && (
 								<StatusLabel tone={review.tone} className="text-ink-muted">
 									{review.label}
@@ -105,6 +118,24 @@ export function PairDetail({ index, pair }: { index: ResultsIndex; pair: PairCan
 	)
 }
 
+/** The pair's proposal or held-back draft as a link, or why it has none. `failure` is the failed write task's error. */
+function ProposalOutcome({ outcome, failure }: { outcome: PairOutcome; failure?: string }) {
+	const paths = useResultsPath()
+	if (outcome.kind === "proposal" || outcome.kind === "held-back") {
+		const id = outcome.kind === "proposal" ? outcome.proposal.id : outcome.held.id
+		return (
+			<Link to={paths.proposal(id)} className="inline-flex items-center gap-1 text-ink underline-offset-2 hover:underline">
+				<FileText className="size-3.5" />
+				{outcome.kind === "proposal" ? "Read the proposal" : outcome.held.draft ? "Read the held-back draft" : "Held back for a person"}
+			</Link>
+		)
+	}
+	if (outcome.kind === "not-written") {
+		return <span title={failure}>{failure ? `Chosen, proposal not written (${failureLabel(failure)})` : "Chosen, proposal not written"}</span>
+	}
+	return outcome.kind === "not-chosen" ? "Not chosen for a proposal" : "No proposal written"
+}
+
 /** One company challenge: its pairs best fit first, or why no researcher fits. */
 export function ChallengeDetail({ index, challengeId }: { index: ResultsIndex; challengeId: string }) {
 	const paths = useResultsPath()
@@ -142,6 +173,7 @@ export function ChallengeDetail({ index, challengeId }: { index: ResultsIndex; c
 						<ul className="max-w-[72ch] divide-y divide-hairline rounded-lg border border-hairline bg-panel">
 							{pairs.map((pair) => {
 								const profile = index.profiles.get(pair.researcherId)
+								const outcome = pairOutcome(index, pair.id)
 								const decision = approvals?.[pair.id]?.decision
 								return (
 									<li key={pair.id}>
@@ -153,7 +185,9 @@ export function ChallengeDetail({ index, challengeId }: { index: ResultsIndex; c
 												<div className="truncate text-sm font-medium text-ink">{profile?.name ?? pair.researcherId}</div>
 												<div className="truncate text-xs text-ink-muted">{pair.problem.text}</div>
 											</div>
-											{index.proposalByPair.has(pair.id) && <Chip icon={<FileText />}>Proposal</Chip>}
+											{outcome.kind === "proposal" && <Chip icon={<FileText />}>Proposal</Chip>}
+											{outcome.kind === "held-back" && <Chip icon={<FileText />}>Held back</Chip>}
+											{outcome.kind === "not-written" && <Chip>Not written</Chip>}
 											{decision && (
 												<Status tone={decision === "approved" ? "working" : "failed"} className="text-sm">
 													{decision === "approved" ? "Approved" : "Rejected"}
