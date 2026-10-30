@@ -70,7 +70,9 @@ export class ClaudeCodeRunner implements InferenceRunner {
 		if (schema) args.push("--json-schema", JSON.stringify(schema))
 		if (input.reasoningEffort) args.push("--effort", String(input.reasoningEffort))
 
-		const result = await this.exec(args, prompt)
+		// No thinking unless the call asks for effort, as on the API path. Claude Code would otherwise think on
+		// Haiku 4.5 and Sonnet 4.6 with --json-schema: about 10k hidden output tokens on a profile.
+		const result = await this.exec(args, prompt, !input.reasoningEffort)
 		const items = tools.length ? toolTurn(result.structured_output, tools) : [answerItem(result, answerSchema !== undefined)]
 		const usage = result.usage ?? {}
 		const cached = usage.cache_read_input_tokens ?? 0
@@ -92,10 +94,11 @@ export class ClaudeCodeRunner implements InferenceRunner {
 	}
 
 	/** Run one `claude -p` with the prompt on stdin. Resolves with its JSON result, or rejects with a status. */
-	private exec(args: string[], prompt: string): Promise<ClaudeResult> {
+	private exec(args: string[], prompt: string, noThinking: boolean): Promise<ClaudeResult> {
 		// The user's login, never an API key that `.env` put in this process.
 		const env = { ...process.env }
 		delete env.ANTHROPIC_API_KEY
+		if (noThinking) env.MAX_THINKING_TOKENS = "0"
 		return new Promise((resolve, reject) => {
 			const child = spawn(this.settings.command, args, { cwd: this.cwd, env, stdio: ["pipe", "pipe", "pipe"] })
 			let stdout = ""
