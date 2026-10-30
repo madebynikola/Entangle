@@ -12,7 +12,7 @@ import { useRunClock, useRunStore, type Speed } from "@/run/hooks"
 import { concurrency } from "@/run/metrics"
 
 /**
- * The floating player on a run's Timeline: play or pause, 1× / 4× / skip to the end, and a scrubber.
+ * The player docked at the bottom of a run's Timeline: play or pause, 1× / 4× / skip to the end, and a scrubber.
  * Behind the scrubber, a histogram of model calls in flight shows where the agents overlapped.
  */
 export function ReplayBar({ className }: { className?: string }) {
@@ -40,7 +40,7 @@ export function ReplayBar({ className }: { className?: string }) {
 	return (
 		<div
 			className={cn(
-				"pointer-events-auto flex h-12 w-full max-w-2xl items-center gap-2 rounded-xl bg-panel pl-1.5 pr-2 shadow-float",
+				"flex h-14 w-full items-center gap-3 border-t border-hairline bg-panel pl-3 pr-4 sm:pl-4 sm:pr-6",
 				className,
 			)}
 		>
