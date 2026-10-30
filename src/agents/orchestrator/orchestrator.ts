@@ -38,7 +38,7 @@ export interface RunOutcome {
 	chosen: string[]
 	noMatches: NoMatch[]
 	proposals: Proposal[]
-	/** Proposals that still failed review after the last fix. Not part of the result; a person decides. */
+	/** Proposals on the blackboard the Critic did not accept: escalated after the last fix, or unfinished. A person decides. */
 	needsHuman: Proposal[]
 	ms: number
 }
@@ -355,7 +355,8 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 			chosen: [...chosen],
 			noMatches: [...s.noMatches.values()].filter((noMatch) => ours(noMatch.challengeId) && s.needs.has(noMatch.challengeId)),
 			proposals: [...s.proposals.values()].filter((proposal) => accepted("proposal", proposal.id)),
-			needsHuman: [...s.proposals.values()].filter((proposal) => critic.status("proposal", proposal.id) === "needs-human"),
+			// Escalated by the Critic, or left unfinished: its fix or its review could not run.
+			needsHuman: [...s.proposals.values()].filter((proposal) => !accepted("proposal", proposal.id)),
 			ms: Date.now() - started,
 		}
 		emit(me, "orchestrator.done", {

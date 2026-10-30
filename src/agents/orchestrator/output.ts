@@ -15,7 +15,7 @@ export interface RunSummary {
 	durationMs: number
 	counts: { needs: number; profiles: number; pairs: number; chosen: number; proposals: number; needsHuman: number; noMatches: number }
 	critic: CriticStats
-	/** Proposals left for a person: the two Critics still rejected them after the last fix. */
+	/** Proposals left for a person: the two Critics still rejected them after the last fix, or the fix could not run. */
 	needsHuman: string[]
 	failures: Array<{ taskId: string; kind: Task["kind"]; subjectId?: string; error?: string }>
 	budget: Budget
