@@ -244,7 +244,13 @@ export function replaceFreeText(draft: ProposalDraft, quote: string, replacement
 		found = true
 		// Inside a sentence, the replacement does not start with a capital ("but the list", not "but The list").
 		const fit = (offset: number) => (/[^.!?:\s]\s*$/.test(text.slice(0, offset)) ? lowerFirst(replacement) : replacement)
-		return text.replace(pattern, (_match, offset: number) => fit(offset)).replace(/\s{2,}/g, " ").trim()
+		return text
+			.replace(pattern, (_match, offset: number) => fit(offset))
+			.replace(/\s{2,}/g, " ")
+			// A removed clause can leave its punctuation behind: "published. ; the company" becomes "published; the company".
+			.replace(/\s+([,.;:])/g, "$1")
+			.replace(/[.,;:]([.,;:])/g, "$1")
+			.trim()
 	}
 	draft.pairReasoning = swap(draft.pairReasoning)
 	for (const key of ["researchQuestions", "approach", "firstSixMonths", "agreedUpFront"] as const) {

@@ -44,6 +44,12 @@ describe("free text of a proposal (no model)", () => {
 		assert.equal(e.pairReasoning, "In short, LinguaBot brings the data.")
 	})
 
+	test("a removed clause leaves no stray punctuation", () => {
+		const d = draft({ pairReasoning: "This is new work. The company cannot do it alone; the company brings the data." })
+		replaceFreeText(d, "The company cannot do it alone", "")
+		assert.equal(d.pairReasoning, "This is new work; the company brings the data.")
+	})
+
 	test("an empty replacement removes the sentence, and a list item left empty goes", () => {
 		const d = draft({ firstSixMonths: ["Move the firmware source.", "Set up the proof project."] })
 		assert.equal(replaceFreeText(d, "Move the firmware source.", ""), true)
