@@ -119,8 +119,8 @@ What is still open:
 - **Length.** About 1,270 words, twice the 600 the prompt asks for.
 - **Two fix rounds per proposal.** The Writer's first drafts still put judgement into claims: 9 of the 11 claims rejected in C001's
   first review. The Critic catches them, so each proposal now takes two fix rounds and more critique calls.
-- **More drops upstream.** The stricter rubric dropped 14 needs, profiles or pairs in run 2, against 5 in run 1. In a 20-company
-  run this may leave some companies with no proposal; the golden run will show it.
+- **More drops upstream.** The stricter rubric dropped 14 needs, profiles or pairs in run 2, against 5 in run 1. Addressed after
+  run 2 by cutting a claim instead of dropping the artifact (see below).
 - **C012 still plans on a scan archive no record mentions** (5 of the 6 substantive facts after). The rule on "data the company is not
   shown to have" came after run 2. In a one-off check of the stored proposals it flags all 8 of those sentences in C012, and nothing in C009.
 - 15 minor free-text items remain in the three proposals, such as "a master's student" as if one already exists, or a dataset's
@@ -146,6 +146,40 @@ fix task, and the producer's fixed artifact as a new `artifact.posted`. Run 2, p
 
 To list a run's interventions: `grep '"kind":"critic.verdict"' out/<run>/trace.jsonl`. The web app shows the same history per
 proposal under Results.
+
+## SubQ, and the last fixes
+
+Run 2 had SubQ off. Three more runs on the same 5 companies, all with `SUBQ=1` and `SCREEN=1` (the second Critic and the shortlist
+filter on subq-snap-1.1), each after one more fix. Run 5 also has #33's OpenAlex prior-work step.
+
+| | Run 2 (SubQ off) | Run 3 (SubQ on) | Run 4 | Run 5 |
+| --- | --- | --- | --- | --- |
+| Code | as above | + SubQ criteria updated | + cut instead of drop, re-check changed sentences only | + joint problem judged as a proposal |
+| Accepted / to a person | 5 / 0 | 1 / 3 | 2 / 1 | 3 / 2 |
+| Companies with no pair | 0 | 1 | 2 | **0** |
+| Pairs | 11 | 10 | 13 | 18 |
+| Needs, profiles or pairs dropped / kept after a cut | 14 / – | 12 / – | 10 / 5 | 7 / 8 |
+| Time, cost at API prices | 12.7 min, $9.15 | 11.9 min, $7.78 | 12.1 min, $8.11 | 14.8 min, $9.05 |
+
+- **SubQ changes little either way.** As the second Critic, subq-snap rejected 1 proposal claim on its own in run 3, and Haiku 4.5
+  2 in run 2. The first Critic (Sonnet 4.6) made 27–45 such rejects in each run. With SubQ the run costs about $1 less. Its
+  criteria now include the new rules: "same domain is not same problem" for the filter, judgement and uncited words for the reviewer.
+- **A drop cost a whole artifact for one sentence.** All 42 drops in the runs of 30 October had exactly one claim left. The Critic
+  now cuts that claim and keeps the rest (`critic.trimmed`), unless it is core: a need's restatement, a pair's problem, a profile's
+  availability. Run 5 kept 8 artifacts this way.
+- **The free-text check re-judged old sentences.** Each round it flagged sentences it had passed before, so a proposal could fail on
+  text that never changed. After the first round it now checks only new or changed sentences, as the claim check does.
+- **A rule clash lost every pair of C012 in run 4.** The Matchmaker's "problem" claim says what the two would do. The new rubric
+  wanted every word of it in a record. The planned work is now a proposal, and only the facts it gives about either side are checked.
+- **The last escalations had one claim left each:** "self-directed" reading (C001), "ARXML files" for "AUTOSAR software component
+  configuration files" (C018). A proposal now gets the same cut, in its claims and its Markdown. Its header, its last problem
+  claim and its last "why this pair" claim are core, and so is a free-text sentence. On the two stored escalations of run 5, the cut
+  leaves proposals of 17 and 16 claims. This came after run 5, so no full run has it yet.
+- **Tried, not kept:** marking each source with the claims that cite it ("cited by claims 2, 5"), for the blind spot that
+  `npm run critic:eval` found (below). One eval before and after: uncited details caught 2 → 1 of 7, wrong claims 8 → 7 of 23,
+  false rejects 6 → 3 of 98. That is no gain, so it was reverted. A check without a model looks better on the same labels: names and
+  numbers in a claim that its own records do not contain catch 3 of the 7 ("Nordic", "NTP", "AWS"). It flags 6 of 98 good claims,
+  4 of them for dataset ids and "-based" words that are easy to leave out.
 
 ## The Critic on the labelled claims (measured)
 
