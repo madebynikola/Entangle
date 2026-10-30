@@ -1,8 +1,22 @@
 # Entangle web app
 
-The web app for the EINSTEIN matchmaker: a live view of the agents at work and the results they produce.
-Vite + React 19 + TypeScript + Tailwind 4 + shadcn/ui (restyled) + Motion. The look follows Kanbix
-(`docs/design/README.md`): grey canvas, sidebar on the grey, one white panel inset with a large radius.
+The web app for the EINSTEIN matchmaker: what a run did, the agents at work, and the results they produce.
+Vite + React 19 + TypeScript + Tailwind 4 + shadcn/ui (restyled) + Motion, set in Geist.
+The look is calm and monochrome, in the spirit of Vercel: one question per screen, colour only where it means something.
+
+## Layout
+
+- `#/`: the runs, as one table. Real runs by default; mock runs and unfinished dev runs are a click away.
+  With no real runs, an intro points at the sample run.
+- `#/runs/:id/overview`: what happened. Stats, the five steps, model calls in flight over time, what the Critic caught, the proposals.
+- `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running). It is the only tab with the replay bar.
+- `#/runs/:id/results`: pairs and proposals.
+
+Each screen sits under a sticky top bar: the mark, a run switcher, search (⌘K) and the theme. A run's tabs are its second row.
+Content is centred, `max-w-6xl`, on the grey canvas, with white bordered cards.
+
+**Nothing moves unless asked.** A finished run opens at its end, still. "Watch the replay" (or `?replay`) plays it from the start.
+Leaving the Timeline pauses a replay, so Overview and Results never change under the reader.
 
 ```sh
 npm run dev                       # server + app with hot reload: http://localhost:4317 (or the next free port)
@@ -15,9 +29,9 @@ npm start                         # serve web/dist plus the API
 
 | Path | Owner |
 | --- | --- |
-| `web/src/screens/live/` | #20: live run view (now a working stub) |
+| `web/src/screens/live/` | #20: the Timeline (now a working stub) |
 | `web/src/screens/results/` | #21: results view (now a working stub) |
-| everything else in `web/`, and `src/server/` | #12: shell, design system, routing, run data, server |
+| everything else in `web/` (incl. `screens/overview`, `screens/home`), and `src/server/` | #12: shell, design system, routing, run data, server |
 
 Need something in a shared file (a token, a component, a field on the run view)? Ask on #12's card, or add it
 in your own folder first. Pull components from shadcn registries into `components/ui/` only if no screen owns them.
@@ -30,6 +44,7 @@ A run is open while you are under `#/runs/:runId/…`. Everything comes from one
 import { useRun, useRunView, useRunClock, useResults } from "@/run/hooks"
 
 const view = useRunView()          // fold of the trace up to the playhead: agents, loops, tasks, totals, feed
+const full = useFullView()         // the whole run as far as known, whatever the playhead shows (for summaries)
 const clock = useRunClock()        // run ms now; re-renders every frame while live or playing
 const { results } = useResults()   // needs, profiles, pairs, noMatches, proposals, verdicts, approvals
 const records = useRun((s) => s.records) // every trace record loaded so far (TraceRecord from src/types.ts)
@@ -44,7 +59,7 @@ const records = useRun((s) => s.records) // every trace record loaded so far (Tr
   `{ kind, id, taskId }`, `critic.reviewing`, `critic.verdict` `{ kind, id, revision, ok, action, producerTaskId, rejected }`,
   `critic.sent_back` and `task.completed` / `task.failed`. The sample run writes the same shapes.
 - Player: `useRunStore.getState()` has `play`, `pause`, `toggle`, `seek(ms)`, `setSpeed(1 | 4 | "instant")`,
-  `restart`, `goLive`. The shell already shows the replay bar and handles Space, ← → and L.
+  `restart`, `goLive`. On the Timeline the shell shows the replay bar and handles Space, ← → and L.
 - Approvals: `useRunStore.getState().approve(pairId, "approved" | "rejected" | null, note)`. On the server it writes
   `out/<run>/approvals.json`. In a static build it stays in the browser.
 - For a smooth 50-agent view, call `useRunClock()` once near the top and pass the value down, or read
@@ -60,22 +75,22 @@ Tokens are in `src/styles.css`, with light and dark values. Use the Tailwind nam
 
 | Use | Classes |
 | --- | --- |
-| Surfaces | `bg-canvas` (window), `bg-panel` (white panel), `bg-sunken` (lanes, columns), `bg-card`, `bg-hover` |
+| Surfaces | `bg-canvas` (page), `bg-panel` / `bg-card` (cards, tables, top bar), `bg-sunken` (wells: charts, code), `bg-hover` |
 | Text | `text-ink`, `text-ink-muted`, `text-ink-subtle` |
-| Lines | `border-hairline`, `border-strong` |
-| The one interactive colour | `text-primary`, `bg-primary`, `bg-primary-soft` (tabs, links, focus, primary button) |
-| Status (dot plus text) | `working` green, `needs` orange (needs you, sent back), `info` blue, `idle` grey, `failed` red |
+| Lines | `border-hairline`, `border-strong`; `shadow-card` (a whisper, light mode only), `shadow-float` (floating layers) |
+| Actions | `bg-primary` is ink: the one primary button per view. `text-link` is blue: links and focus rings |
+| Status (dot plus text) | `working` green, `needs` amber (needs you, sent back), `info` blue, `idle` grey, `failed` red |
 | Agent roles | `role-orchestrator`, `role-analyst`, `role-profiler`, `role-matchmaker`, `role-writer`, `role-critic` |
 
 Round dots mean status; small squares mean roles. `ROLE_CLASS`, `roleColor(role)` and `ROLE_INFO` are in `lib/roles.ts`.
 For SVG, use `var(--role-critic)` and `color-mix(in oklab, var(--role-critic) 16%, transparent)` for soft fills.
 
-Type: system font. Body is `text-base` (14 px). Steps: `text-xs` 12, `text-sm` 13, `text-md` 15, `text-lg` 17,
-`text-xl` 20 (page titles), `text-2xl` 24. Titles are regular or medium weight, never bold. Use `font-mono` only for ids,
-traces and code. Use `tabular` on numbers that change in place.
+Type: Geist and Geist Mono (self-hosted). Body is `text-base` (14 px). Steps: `text-xs` 12, `text-sm` 13, `text-md` 15,
+`text-lg` 16, `text-xl` 20, `text-2xl` 24 (page titles), `text-3xl` 32 (big numbers). Page and section titles are `font-semibold`;
+headings get tight tracking. Use `font-mono` only for ids, traces and code. Use `tabular` on numbers that change in place.
 
-Radii by rank: chips `rounded-sm`, cards and buttons `rounded-md`, lanes `rounded-lg`, the panel `rounded-xl`.
-Only floating layers get a shadow (`shadow-float`): the replay bar, popovers, the palette and toasts.
+Radii: buttons and inputs `rounded-md`, cards and tables `rounded-lg`, floating layers `rounded-xl`, chips `rounded-full`.
+A screen is a stack of `Section`s (title, one line of description, optional action) with `gap-10` between them.
 
 Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layout does not jump.
 `MotionConfig reducedMotion="user"` is set, and CSS animations stop under `prefers-reduced-motion`.
@@ -84,11 +99,11 @@ Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layo
 
 | Import | What |
 | --- | --- |
-| `ui/button` | `Button`: `outline` (default), `primary`, `ghost`, `quiet`, `danger`; sizes `sm`, `md`, `lg`, `icon`, `icon-sm` |
-| `ui/chip` | `Chip`: outlined pill with an icon and a `count`; `asChild` for a clickable chip; `mono` for ids |
-| `ui/status` | `Status` (dot plus coloured text) and `StatusDot`; `pulse` for things happening now |
+| `ui/button` | `Button`: `outline` (default), `primary` (ink), `ghost`, `quiet`, `danger`; sizes `sm`, `md`, `lg`, `icon`, `icon-sm` |
+| `ui/chip` | `Chip`: small pill with an icon and a `count`; tones; `asChild` for a clickable chip; `mono` for ids |
+| `ui/status` | `Status` (dot plus coloured text), `StatusLabel` (dot plus ink text: a run's state), `StatusDot`; `pulse` for now |
 | `ui/role` | `RoleSquare`, `RoleTag` (square plus name) |
-| `ui/card` | `Card`, `CardId`, `CardTitle`, `CardMeta`, `Lane` (grey column with a title and count), `Meta` (one muted line joined by ·) |
+| `ui/card` | `Card`, `Section` (titled block), `Stat` (label over value), `CardId`, `CardTitle`, `CardMeta`, `Lane`, `Meta` |
 | `ui/tabs` | `Tabs` (state) and `RouteTabs` (links): underlined, with counts |
 | `ui/segmented` | `Segmented` control |
 | `ui/empty`, `ui/skeleton` | `EmptyState`, `Skeleton`, `Spinner`, `LoadingState` |
@@ -98,6 +113,7 @@ Motion: small and quick (120–240 ms, `ease-out`). Status changes animate; layo
 | `ui/switch`, `ui/input`, `ui/kbd`, `ui/command` | the rest |
 | `shell/source` | `SourceChip` (hover shows the record), `ClaimText` (claim plus its sources), `SourceView`, `openSource(id)` |
 | `shell/command-palette` | `useCommands(owner, commands)`: add your screen's commands to ⌘K while it is mounted |
+| `run/metrics` | `concurrency(records, duration)` (calls in flight over time, and the peak) and `pipeline(...)` (the five steps) |
 
 ### Wording
 
