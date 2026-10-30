@@ -1,6 +1,6 @@
 import { List as ListIcon, X } from "lucide-react"
 import { AnimatePresence, motion, useAnimate, useReducedMotion } from "motion/react"
-import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
+import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from "react"
 import { useShallow } from "zustand/react/shallow"
 import { useFloatInsets } from "@/components/shell/float"
 import { Button } from "@/components/ui/button"
@@ -91,23 +91,27 @@ export function StageScreen() {
 	// The stage fills the panel. The run's header and replay bar float over it (see run-layout), and so does the log.
 	const float = useFloatInsets()
 	const [logOpen, setLogOpen] = useState(() => window.matchMedia("(min-width: 1024px)").matches)
+	const ref = useRef<HTMLDivElement>(null)
+	const size = useSize(ref)
 	const top = float.top + GAP
 	const bottom = float.bottom + GAP
 	const safe = { top, bottom, left: GAP, right: logOpen ? LOG_WIDTH + GAP * 2 : GAP }
+	// The header is only as wide as its content: the log goes beside it when there is room, else below it.
+	const logTop = float.headRight + GAP + LOG_WIDTH + GAP <= size.width ? GAP : top
 
 	return (
-		<div className="relative h-full overflow-hidden bg-sunken">
+		<div ref={ref} className="relative h-full overflow-hidden bg-sunken">
 			<div
 				aria-hidden
 				className="absolute inset-0 opacity-70 [background-image:radial-gradient(var(--strong)_1px,transparent_1.2px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]"
 			/>
-			<Arena faces={faces} beats={beats} waiting={finished ? waiting : 0} safe={safe} />
+			<Arena size={size} faces={faces} beats={beats} waiting={finished ? waiting : 0} safe={safe} />
 			<AnimatePresence initial={false}>
 				{logOpen ? (
 					<motion.div
 						key="log"
 						className="absolute right-3 z-20 flex"
-						style={{ top, bottom, width: `min(${LOG_WIDTH}px, calc(100% - 24px))` }}
+						style={{ top: logTop, bottom, width: `min(${LOG_WIDTH}px, calc(100% - 24px))` }}
 						initial={{ opacity: 0, x: 24 }}
 						animate={{ opacity: 1, x: 0 }}
 						exit={{ opacity: 0, x: 24 }}
@@ -119,13 +123,13 @@ export function StageScreen() {
 					<motion.div
 						key="open"
 						className="absolute right-3 z-20"
-						style={{ top }}
+						style={{ top: logTop }}
 						initial={{ opacity: 0, scale: 0.9 }}
 						animate={{ opacity: 1, scale: 1 }}
 						exit={{ opacity: 0, scale: 0.9 }}
 						transition={{ type: "spring", stiffness: 420, damping: 30 }}
 					>
-						<Button variant="outline" size="sm" onClick={() => setLogOpen(true)} className="bg-panel/80 shadow-float backdrop-blur-xl">
+						<Button variant="outline" size="sm" onClick={() => setLogOpen(true)} className="bg-panel/80 shadow-soft backdrop-blur-xl">
 							<ListIcon />
 							Events
 							{upTo > 0 && <span className="tabular text-ink-subtle">{upTo}</span>}
@@ -144,6 +148,26 @@ const LOG_WIDTH = 320
 /** The open space the faces sit in: px kept clear at each edge, for the floating cards. */
 type Safe = { top: number; bottom: number; left: number; right: number }
 
+/** The ring keeps its shape: at most this much wider than tall, centred in the open space. */
+const ASPECT = 1.4
+
+type Size = { width: number; height: number }
+
+function useSize(ref: RefObject<HTMLElement | null>): Size {
+	const [size, setSize] = useState<Size>({ width: 0, height: 0 })
+	useLayoutEffect(() => {
+		const node = ref.current
+		if (!node) return
+		const observer = new ResizeObserver(([entry]) => setSize({ width: entry.contentRect.width, height: entry.contentRect.height }))
+		observer.observe(node)
+		return () => observer.disconnect()
+	}, [ref])
+	return size
+}
+
+/** Ease for the ring sliding when the open space changes (the log opens or closes). */
+const SETTLE = "transition-[left,top] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+
 type Point = [number, number]
 type Wire = { out: string; back: string }
 
@@ -154,47 +178,58 @@ function wire([bx, by]: Point, [sx, sy]: Point, bow = 0.16): Wire {
 	return { out: `M${bx} ${by}Q${cx} ${cy} ${sx} ${sy}`, back: `M${sx} ${sy}Q${cx} ${cy} ${bx} ${by}` }
 }
 
-function Arena({ faces, beats, waiting, safe }: { faces: Map<FaceId, Cast>; beats: Beat[]; waiting: number; safe: Safe }) {
-	const ref = useRef<HTMLDivElement>(null)
-	const [size, setSize] = useState({ width: 0, height: 0 })
-	useLayoutEffect(() => {
-		const node = ref.current
-		if (!node) return
-		const observer = new ResizeObserver(([entry]) => setSize({ width: entry.contentRect.width, height: entry.contentRect.height }))
-		observer.observe(node)
-		return () => observer.disconnect()
-	}, [])
+function Arena({ size, faces, beats, waiting, safe }: { size: Size; faces: Map<FaceId, Cast>; beats: Beat[]; waiting: number; safe: Safe }) {
 	const still = useReducedMotion() ?? false
+	// Slide only after the first layout, so the ring does not drift in while the floating cards are measured.
+	const [settled, setSettled] = useState(false)
+	useEffect(() => {
+		const timer = window.setTimeout(() => setSettled(true), 600)
+		return () => window.clearTimeout(timer)
+	}, [])
 	const width = Math.max(0, size.width - safe.left - safe.right)
 	const height = Math.max(0, size.height - safe.top - safe.bottom)
-	const small = width < 640
+	const boxWidth = Math.min(width, height * ASPECT)
+	const boxHeight = boxWidth / ASPECT
+	const small = boxWidth < 640
 	const { bus, seats, wires } = useMemo(() => {
-		const bus: Point = [safe.left + width / 2, safe.top + height / 2]
+		const left = safe.left + (width - boxWidth) / 2
+		const top = safe.top + (height - boxHeight) / 2
+		const bus: Point = [left + boxWidth / 2, top + boxHeight / 2]
 		const seats = Object.fromEntries(
-			ORDER.map((face) => [face, [safe.left + SEAT[face][0] * width, safe.top + SEAT[face][1] * height]]),
+			ORDER.map((face) => [face, [left + SEAT[face][0] * boxWidth, top + SEAT[face][1] * boxHeight]]),
 		) as Record<FaceId, Point>
 		const wires = Object.fromEntries(ORDER.map((face) => [face, wire(bus, seats[face])])) as Record<FaceId, Wire>
 		return { bus, seats, wires }
-	}, [safe.left, safe.top, width, height])
+	}, [safe.left, safe.top, width, height, boxWidth, boxHeight])
+	const glide = settled && !still
 
 	const now = performance.now()
 	const speaker = beats.at(-1)?.from ?? null
 	const link = beats.findLast((beat) => beat.link)
 
 	return (
-		<div ref={ref} className="absolute inset-0 overflow-hidden">
+		<div className="absolute inset-0 overflow-hidden">
 			{size.width > 0 && (
 				<>
 					<svg className="pointer-events-none absolute inset-0 size-full" aria-hidden>
 						{ORDER.map((face) => (
-							<path key={face} d={wires[face].out} fill="none" stroke="var(--strong)" strokeOpacity={0.6} strokeWidth={1} />
+							<motion.path
+								key={face}
+								initial={false}
+								animate={{ d: wires[face].out }}
+								transition={glide ? { duration: 0.5, ease: [0.2, 0.8, 0.2, 1] } : { duration: 0 }}
+								fill="none"
+								stroke="var(--strong)"
+								strokeOpacity={0.6}
+								strokeWidth={1}
+							/>
 						))}
 						<AnimatePresence>
 							{link && <Thread key={link.id} from={seats.spica} to={seats.tycho} bus={bus} />}
 						</AnimatePresence>
 						{!still && beats.map((beat) => <Pulse key={beat.id} beat={beat} wires={wires} />)}
 					</svg>
-					<BusMark x={bus[0]} y={bus[1]} hops={beats.at(-1)?.id ?? 0} small={small} still={still} />
+					<BusMark x={bus[0]} y={bus[1]} hops={beats.at(-1)?.id ?? 0} small={small} still={still} glide={glide} />
 					{ORDER.map((face) => {
 						const [x, y] = seats[face]
 						return (
@@ -212,6 +247,7 @@ function Arena({ faces, beats, waiting, safe }: { faces: Map<FaceId, Cast>; beat
 								place={PLACE[face]}
 								shift={Math.min(Math.max(x, safe.left + BUBBLE_HALF), safe.left + width - BUBBLE_HALF) - x}
 								waiting={face === "you" ? waiting : 0}
+								glide={glide}
 							/>
 						)
 					})}
@@ -341,7 +377,21 @@ const SLOTS: [number, number][] = [
  * The bus is the Entangle mark. On each beat the indigo tile hops one slot clockwise, lifting over the tile it
  * passes while that one slides under into its place: the logo's own "Hop" motion (design/logo).
  */
-const BusMark = memo(function BusMark({ x, y, hops, small, still }: { x: number; y: number; hops: number; small: boolean; still: boolean }) {
+const BusMark = memo(function BusMark({
+	x,
+	y,
+	hops,
+	small,
+	still,
+	glide,
+}: {
+	x: number
+	y: number
+	hops: number
+	small: boolean
+	still: boolean
+	glide: boolean
+}) {
 	// slotOf[tile] = slot. Tile 0 is indigo and starts top right, as in the still mark.
 	const [tiles, setTiles] = useState(() => ({ hops, slotOf: [2, 0, 1, 3, 4, 5, 6, 7], under: -1 }))
 	if (tiles.hops !== hops) {
@@ -358,9 +408,9 @@ const BusMark = memo(function BusMark({ x, y, hops, small, still }: { x: number;
 	const box = small ? 64 : 88
 	const unit = box / 62
 	return (
-		<div className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center" style={{ left: x, top: y }}>
+		<div className={cn("absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center", glide && SETTLE)} style={{ left: x, top: y }}>
 			<div
-				className="relative grid place-items-center rounded-[30%] bg-panel shadow-[0_0_0_1px_var(--hairline),0_10px_30px_-14px_#1d1d1f40]"
+				className="relative grid place-items-center rounded-[30%] border border-hairline bg-panel shadow-soft"
 				style={{ width: box * 1.6, height: box * 1.6 }}
 			>
 				<AnimatePresence>
@@ -444,6 +494,7 @@ function Seat({
 	place,
 	shift,
 	waiting,
+	glide,
 }: {
 	face: FaceId
 	entry: Cast
@@ -459,6 +510,8 @@ function Seat({
 	/** Moves the bubble sideways (px) so the stage edge does not cut it. */
 	shift: number
 	waiting: number
+	/** Slide to a new seat instead of jumping. */
+	glide: boolean
 }) {
 	const base = useHeld(entry.state)
 	const state = mood ?? base
@@ -480,7 +533,7 @@ function Seat({
 	const working = entry.working > 0 && entry.total > 1 ? `${entry.working} working` : null
 	const talking = beat != null && performance.now() - beat.at < 1400
 	return (
-		<div className="absolute flex w-36 -translate-x-1/2 -translate-y-1/2 flex-col items-center" style={{ left: x, top: y }}>
+		<div className={cn("absolute flex w-36 -translate-x-1/2 -translate-y-1/2 flex-col items-center", glide && SETTLE)} style={{ left: x, top: y }}>
 			<div className="relative">
 				<div ref={scope} className="origin-bottom">
 					<AgentFace
@@ -541,7 +594,7 @@ function Bubble({ text, place, shift }: { text: string; place: Place; shift: num
 			style={{ marginLeft: shift }}
 		>
 			<motion.div
-				className="max-w-60 rounded-[18px] bg-panel px-3 py-2 text-xs leading-snug text-ink shadow-float"
+				className="max-w-60 rounded-[18px] border border-hairline bg-panel px-3 py-2 text-xs leading-snug text-ink shadow-soft"
 				style={{ transformOrigin: `calc(50% - ${shift}px) ${above ? "100%" : "0%"}` }}
 				initial={{ opacity: 0, scale: 0.86, y: above ? 8 : -8 }}
 				animate={{ opacity: 1, scale: 1, y: 0, transition: SPRING }}
@@ -601,7 +654,7 @@ const Log = memo(function Log({ lines, upTo, names, onClose }: { lines: Line[]; 
 			title="Events"
 			count={upTo || undefined}
 			scroll
-			className="w-full rounded-xl bg-panel/80 shadow-float backdrop-blur-xl"
+			className="w-full rounded-xl bg-panel/80 shadow-soft backdrop-blur-xl"
 			action={
 				<Button variant="quiet" size="icon-sm" onClick={onClose} aria-label="Hide the events">
 					<X />
