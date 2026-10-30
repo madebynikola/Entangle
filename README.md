@@ -129,7 +129,9 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
 2. **Model check.** The reviewer reads the cited records and decides, claim by claim, whether the record says what the claim says.
    It gives the reason before the verdict. A re-posted artifact only has its changed claims checked again.
    Proposals get a **second reviewer** at the same time, on another model and in its own context. A claim passes only if both pass it,
-   and each disagreement is logged as `critic.split`.
+   and each disagreement is logged as `critic.split`. A proposal's **free text** (research questions, approach, plan, reasoning) gets
+   its own check too: each sentence that states as true what no claim or source states goes back as a `free-text` reject.
+   See [docs/quality.md](docs/quality.md) for what a hand-check found and what this changed.
 3. **Verdict.** Accept, or send the rejected claims back to the producer as a new task, with the reason for each.
    The producer fixes only those claims (cite a record that says it, narrow the claim, or remove it) and posts the artifact again.
    If it is still rejected after two send-backs, a need, profile or pair is dropped, and a proposal goes to a person (`needs-human/`).
