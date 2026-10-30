@@ -83,13 +83,15 @@ export function SourceView({ id, className }: { id: string; className?: string }
 	)
 }
 
-/** A cited id as a mono chip. Hover (or focus) shows the source record. */
+/** A cited id as a mono chip. Hover (or focus) shows the source record; a click opens it in the side panel. */
 export function SourceChip({ id, className }: { id: string; className?: string }) {
 	return (
 		<HoverCard openDelay={180} closeDelay={80}>
 			<HoverCardTrigger asChild>
 				<Chip asChild mono className={className}>
-					<button type="button">{id}</button>
+					<button type="button" onClick={() => openSource(id)}>
+						{id}
+					</button>
 				</Chip>
 			</HoverCardTrigger>
 			<HoverCardContent className="w-96">
