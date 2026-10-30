@@ -19,6 +19,15 @@ export { ClaudeCodeRunner } from "./claude-code-runner"
 export { SnapRunner, type Decider, type Decision, type DecisionAnswer, type DecisionQuestion } from "./snap-runner"
 export { ResilientRunner, defaultInferenceRunner } from "./resilient-runner"
 
+/** A runner of this type under the runtime's runner, which may wrap it (the ResilientRunner keeps it as `inner`). */
+export function innerOf<T extends InferenceRunner>(runner: InferenceRunner | undefined, type: new (...args: never[]) => T): T | undefined {
+	for (let depth = 0; runner && depth < 4; depth++) {
+		if (runner instanceof type) return runner
+		runner = (runner as { inner?: InferenceRunner }).inner
+	}
+	return undefined
+}
+
 export interface RuntimeOptions {
 	runId: string
 	/** Use the mock runner: fake latency, no API calls. Also the default when no provider key is set and LOCAL_CLAUDE is off. */

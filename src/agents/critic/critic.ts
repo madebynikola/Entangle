@@ -3,13 +3,13 @@ import {
 	SemanticEvent,
 	SituationSpecification,
 	createAgent,
-	type InferenceRunner,
 	type SituationContext,
 } from "@mozaik-ai/core"
 import {
 	MockInferenceRunner,
 	SnapRunner,
 	createTask,
+	innerOf,
 	join,
 	providerOf,
 	providersWithKeys,
@@ -450,15 +450,6 @@ export function createCritic(options: CriticOptions): Critic {
 			}
 		},
 	}
-}
-
-/** A runner of this type under the runtime's runner, which may wrap it (the ResilientRunner keeps it as `inner`). */
-function innerOf<T extends InferenceRunner>(runner: InferenceRunner | undefined, type: new (...args: never[]) => T): T | undefined {
-	for (let depth = 0; runner && depth < 4; depth++) {
-		if (runner instanceof type) return runner
-		runner = (runner as { inner?: InferenceRunner }).inner
-	}
-	return undefined
 }
 
 function claimKey(claim: Claim): string {
