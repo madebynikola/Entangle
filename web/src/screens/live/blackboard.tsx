@@ -36,10 +36,18 @@ export function Blackboard({
 	onMoment: (moment: Moment) => void
 }) {
 	const [kind, setKind] = useState<string | null>(null)
+	// Per kind: every id posted, and the ids whose latest post passed. Passed is what the run keeps, as summary.json counts it.
 	const counts = useMemo(() => {
-		const ids = new Map<string, Set<string>>(KINDS.map((k) => [k, new Set()]))
-		for (const posting of postings) ids.get(posting.kind)?.add(posting.id)
-		return ids
+		const latest = new Map<string, Posting>()
+		for (const posting of postings) latest.set(`${posting.kind}:${posting.id}`, posting)
+		const counts = new Map(KINDS.map((k) => [k as string, { posted: 0, passed: 0 }]))
+		for (const posting of latest.values()) {
+			const count = counts.get(posting.kind)
+			if (!count) continue
+			count.posted++
+			if (posting.state === "passed") count.passed++
+		}
+		return counts
 	}, [postings])
 	const rows = useMemo(() => {
 		const shown = kind ? postings.filter((posting) => posting.kind === kind) : postings
@@ -52,11 +60,14 @@ export function Blackboard({
 			<div className="grid shrink-0 grid-cols-4 border-b border-hairline">
 				{KINDS.map((k) => {
 					const active = kind === k
+					const count = counts.get(k) ?? { posted: 0, passed: 0 }
+					const label = kindLabel(k).toLowerCase()
 					return (
 						<button
 							key={k}
 							type="button"
 							aria-pressed={active}
+							title={`${count.passed} ${label}s passed the Critic, of ${count.posted} posted. The others were dropped, or have no verdict yet.`}
 							onClick={() => setKind(active ? null : k)}
 							className={cn(
 								"flex min-w-0 flex-col items-start gap-0.5 border-r border-hairline px-3 py-2.5 text-left transition-colors duration-150 last:border-r-0 hover:bg-hover",
@@ -64,7 +75,10 @@ export function Blackboard({
 							)}
 						>
 							<span className={cn("max-w-full truncate text-xs", active ? "text-ink" : "text-ink-muted")}>{kindLabel(k)}s</span>
-							<span className="tabular text-md font-medium text-ink">{counts.get(k)?.size ?? 0}</span>
+							<span className="tabular whitespace-nowrap text-md font-medium text-ink">
+								{count.passed}
+								<span className="text-xs font-normal text-ink-subtle"> / {count.posted}</span>
+							</span>
 						</button>
 					)
 				})}
