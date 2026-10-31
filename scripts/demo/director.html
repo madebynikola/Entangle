@@ -278,7 +278,7 @@
 			doc.documentElement.classList.toggle("iso", on)
 			if (!on)
 				for (const el of doc.querySelectorAll("[data-iso], [data-iso-hide]")) {
-					if (el.hasAttribute("data-iso")) el.style.maxWidth = ""
+					if (el.hasAttribute("data-iso")) Object.assign(el.style, { maxWidth: "", marginTop: "", marginLeft: "", scrollMargin: "" })
 					for (const name of ["data-iso", "data-iso-card", "data-iso-hide"]) el.removeAttribute(name)
 				}
 		},
