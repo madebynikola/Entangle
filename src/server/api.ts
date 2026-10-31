@@ -63,6 +63,8 @@ export interface RunInfo {
 	tokens: number
 	costUsd: number
 	tasks: { total: number; done: number; failed: number }
+	/** Why the run stopped before its work ended (a crash, or a signal), from summary.json. Its files then hold partial results. */
+	stopped?: string
 	/** Which result files the run folder has. */
 	has: { summary: boolean; results: boolean; sources: boolean }
 	/** True for the sample run built into the web app (no folder on disk). */

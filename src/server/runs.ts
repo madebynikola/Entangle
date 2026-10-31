@@ -101,6 +101,7 @@ export class RunRegistry {
 				results: existsSync(join(dir, "results.json")),
 				sources: existsSync(join(dir, "sources.json")),
 			},
+			...(summary?.stopped ? { stopped: summary.stopped } : {}),
 			...(problem ? { problem } : {}),
 			...(dataset?.kind && dataset.name ? { dataset: { kind: dataset.kind, name: dataset.name } } : {}),
 		}
@@ -114,6 +115,8 @@ interface Summary {
 	mock: boolean
 	budget: { tokensUsed: number; costUsd: number; startedAt: number }
 	tasks?: Task[]
+	/** Why the run stopped early; set when it crashed or got a signal. */
+	stopped?: string
 	[key: string]: unknown
 }
 
