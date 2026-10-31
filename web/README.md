@@ -48,7 +48,13 @@ npm run dev                       # server + app with hot reload: http://localho
 npm run replay -- out/<run>       # open any run folder and play it back; no API keys needed
 npm run build                     # static build in web/dist with the finished, non-mock runs (or: -- out/golden)
 npm start                         # serve web/dist plus the API
+npm run test:web                  # open the app in headless Chromium and run a mock reverse search through it
 ```
+
+`npm run test:web` (`test/e2e/`) starts the dev server on a free port and drives the app as a person would. It opens
+**Describe a problem**, checks that the box waits for a real description, and starts the mock run. It then follows the run
+to its proposal in Results and back to its "Reverse search" row on the Runs screen. It needs no key, takes about 30 s, and
+deletes the run it made. The first time on a machine, run `npx playwright install chromium`.
 
 ## Who owns what
 
