@@ -704,6 +704,8 @@ async function scene6() {
 	await page.mouse.up()
 	await dir("press", false)
 	await dir("showCursor", false)
+	// Off the bars, or the one under the pointer shows its tooltip over the zoomed lanes.
+	await page.mouse.move(2, 2)
 	await wait(500)
 	const rows = await around(app.getByText("profiler-1", { exact: true }).first(), app.getByText("writer-3", { exact: true }).first())
 	await camera({ rect: { x: rows.x, y: rows.y - 10, w: lanesBox.x + lanesBox.w - rows.x, h: rows.h + 20 }, pad: 0.04, max: 1.9 }, 1500)
