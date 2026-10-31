@@ -104,14 +104,14 @@ export function createScout(options: ScoutOptions = {}): Scout {
 	}
 
 	/**
-	 * Search with the model's queries and the need's own terms, then hand the calls to the model to pick from.
+	 * Search with the model's queries, the need's own terms and the English area, then hand the calls to the model to pick from.
 	 * The pick task exists before the search starts, so the run never looks idle while the portal answers.
 	 */
-	async function search({ pair, need, researcher }: Subject, queries: string[]): Promise<void> {
+	async function search({ pair, need, researcher }: Subject, queries: string[], area: string): Promise<void> {
 		const task = createTask("scout", agent, pair.id)
 		const terms = [...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 4)]
 		// CORDIS needs every word of a query in a project, so the short EU-vocabulary queries and two search terms.
-		const [found, related] = await Promise.all([calls.search(terms, need.sector), cordis.search([...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 2)])])
+		const [found, related] = await Promise.all([calls.search(terms, area), cordis.search([...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 2)])])
 		const list = found.calls.slice(0, MAX_CALLS)
 		const projects = related.projects.slice(0, MAX_PROJECTS)
 		const base: Omit<FundingMatch, "calls"> = {
@@ -138,7 +138,10 @@ export function createScout(options: ScoutOptions = {}): Scout {
 		if (!job || !task) return
 		jobs.delete(taskId)
 		try {
-			if (job.type === "queries") void search(job.subject, queryList(parseJson<{ queries: string[] }>(task.output).queries))
+			if (job.type === "queries") {
+				const answer = parseJson<{ queries: string[]; area?: string }>(task.output)
+				void search(job.subject, queryList(answer.queries), areaOf(answer.area, job.subject.need.sector))
+			}
 			else post({ ...job.base, taskId, ...fits(parseJson<FundingAnswer>(task.output), job.calls, job.projects) })
 		} catch (error) {
 			retryOrFail(task, job, error instanceof Error ? error.message : String(error))
@@ -176,6 +179,15 @@ export function queryList(queries: unknown): string[] {
 	const list = [...new Set(queries.filter((q): q is string => typeof q === "string").map((q) => q.trim()).filter(Boolean))].slice(0, MAX_QUERIES)
 	if (!list.length) throw new Error("no query given")
 	return list
+}
+
+/**
+ * The broad area for the portal search: the model's English name for the sector. The portal reads English only, so a
+ * sector the dataset gives in Serbian ("Prerada hrane") must not go out as it is. With no answer, the sector itself.
+ */
+export function areaOf(area: unknown, sector: string): string {
+	const text = typeof area === "string" ? area.replace(/\s+/g, " ").trim() : ""
+	return text && text.split(" ").length <= 5 ? text : sector
 }
 
 /**

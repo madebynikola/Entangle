@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
 import { describe, test } from "node:test"
-import { fits, queryList } from "../src/agents/scout/scout"
+import { areaOf, fits, queryList } from "../src/agents/scout/scout"
 import { fundingMarkdown } from "../src/agents/scout/render"
 import { SAVED_PROJECTS, cordisQuery, createCordis, projectRecord, toProject } from "../src/data/cordis"
 import { SAVED_CALLS, callQueries, callRecord, createEuCalls, fuse, savedEuCalls, toCall } from "../src/data/eucalls"
@@ -144,6 +144,13 @@ describe("the Funding Scout's answer", () => {
 	test("the model's queries are trimmed, without repeats, at most 4", () => {
 		assert.deepEqual(queryList([" AI for health ", "AI for health", "", "digital twins", "edge AI", "smart grids", "x"]), ["AI for health", "digital twins", "edge AI", "smart grids"])
 		assert.throws(() => queryList([]), /no query/)
+	})
+
+	test("the portal gets the model's English area, or the sector when the model gives none", () => {
+		assert.equal(areaOf(" food  processing ", "Prerada hrane"), "food processing")
+		assert.equal(areaOf("", "Prerada hrane"), "Prerada hrane")
+		assert.equal(areaOf(undefined, "Energy"), "Energy")
+		assert.equal(areaOf("a whole sentence about what the company does all day", "Energy"), "Energy")
 	})
 
 	test("no fit keeps the reason", () => {

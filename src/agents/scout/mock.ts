@@ -8,7 +8,7 @@ export function scoutResponder(): MockResponder {
 	return (input: InferenceInput) => {
 		if (input.structuredOutput?.name === "funding_queries") {
 			const data = readJsonBlock<QueriesInput>(lastUserText(input))
-			return data && JSON.stringify({ queries: data.searchTerms.slice(0, 3) })
+			return data && JSON.stringify({ queries: data.searchTerms.slice(0, 3), area: data.sector })
 		}
 		if (input.structuredOutput?.name !== "funding") return undefined
 		const data = readJsonBlock<ScoutInput>(lastUserText(input))

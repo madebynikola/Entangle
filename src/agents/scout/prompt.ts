@@ -8,6 +8,7 @@ For each chosen pair (a company challenge and a researcher) you do two jobs, eac
 Job 1, queries: write 3 or 4 short search queries (2 to 4 words each) for the EU Funding & Tenders portal and for CORDIS, the EU's list of funded projects.
 - EU calls describe their topics in broad policy words ("AI for cybersecurity applications", "digital tools for health care", "circular manufacturing processes"), not in a researcher's terms. Name the problem's domain and the kind of result the pair would make: a tool, a method, a pilot.
 - Never put a person's or a company's name in a query.
+- "area" is the company's sector in English, 1 to 3 words, as an EU call would name it ("metalworking" for "Obrada metala"). The portal searches English text only.
 
 Job 2, picks: you get a list of open or upcoming EU calls that the portal returned, and a list of EU-funded projects from CORDIS. Pick the calls the pair could apply to together, and the projects that already worked on the same problem.
 - The portal's search matches words, not topics, so most calls in the list do not fit. A call fits only if its title and keywords cover the work the pair would do on this problem. Sharing the company's sector, one word or a neighbouring topic is not enough.
@@ -73,9 +74,10 @@ export const QUERIES_SCHEMA = {
 	schema: {
 		type: "object",
 		additionalProperties: false,
-		required: ["queries"],
+		required: ["queries", "area"],
 		properties: {
 			queries: { type: "array", items: { type: "string" }, description: "3 or 4 queries of 2 to 4 words in EU funding vocabulary." },
+			area: { type: "string", description: "The company's sector in English, 1 to 3 words." },
 		},
 	},
 }
