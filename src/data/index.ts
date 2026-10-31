@@ -7,8 +7,10 @@
  *   findResearchersForNeed(data, "anomaly detection in industrial network traffic", 10)
  *   createDataTools(data)                      // Mozaik tools for agents
  *   shardCompanies(data, 4)                    // id ranges for parallel Analysts
+ *   addProblem(data, { text })                 // reverse search: a described problem as company C999
  */
 export * from "./dataset"
+export * from "./problem"
 export * from "./search"
 export * from "./shards"
 export * from "./tools"

@@ -165,19 +165,7 @@ export class Dataset {
 			for (const id of researcherIds) this.researchers.get(id)!.patents.push(p.id)
 		}
 
-		for (const c of raw.companies) {
-			const { challenges, rd_capacity, past_collaborations, ...rest } = c
-			this.companies.set(c.id, {
-				...rest,
-				about: clean(c.about),
-				plans: clean(c.plans),
-				rdCapacity: clean(rd_capacity),
-				pastCollaborations: clean(past_collaborations),
-				challenges: challenges.map((ch) => ch.id),
-				pages: [],
-			})
-			for (const ch of challenges) this.challenges.set(ch.id, { id: ch.id, companyId: c.id, text: clean(ch.text), detail: clean(ch.detail) })
-		}
+		for (const c of raw.companies) this.putCompany(c)
 		for (const p of raw.pages) {
 			const page = pageFrom(p)
 			this.pages.set(page.id, page)
@@ -185,6 +173,32 @@ export class Dataset {
 			const prefix = page.id.split("/").slice(0, 3).join("/")
 			this.pageByPrefix.set(prefix, this.pageByPrefix.has(prefix) ? null : page.id)
 		}
+	}
+
+	/**
+	 * Add a company that is not in the dataset files, such as a problem described for the reverse search
+	 * (see `addProblem`). It is cleaned like the others and becomes citable at once. Its id must be new.
+	 */
+	addCompany(c: RawCompany): Company {
+		if (this.companies.has(c.id) || c.challenges.some((ch) => this.challenges.has(ch.id))) throw new Error(`The dataset already has ${c.id}`)
+		this.companyIndexCache = undefined
+		return this.putCompany(c)
+	}
+
+	private putCompany(c: RawCompany): Company {
+		const { challenges, rd_capacity, past_collaborations, ...rest } = c
+		const company: Company = {
+			...rest,
+			about: clean(c.about),
+			plans: clean(c.plans),
+			rdCapacity: clean(rd_capacity),
+			pastCollaborations: clean(past_collaborations),
+			challenges: challenges.map((ch) => ch.id),
+			pages: [],
+		}
+		this.companies.set(c.id, company)
+		for (const ch of challenges) this.challenges.set(ch.id, { id: ch.id, companyId: c.id, text: clean(ch.text), detail: clean(ch.detail) })
+		return company
 	}
 
 	/** Canonical researcher id: resolves duplicate aliases. */
@@ -213,9 +227,9 @@ export class Dataset {
 		const pat = this.patents.get(key)
 		if (pat) return { id: pat.id, kind: "patent", title: pat.title, text: patentText(pat), researcherIds: pat.researcherIds, year: pat.year }
 		const ch = this.challenges.get(key)
-		if (ch) return { id: ch.id, kind: "challenge", title: ch.text, text: `${ch.text}\n\n${ch.detail}`, researcherIds: [], companyId: ch.companyId }
+		if (ch) return { id: ch.id, kind: "challenge", title: ch.text, text: [ch.text, ch.detail].filter(Boolean).join("\n\n"), researcherIds: [], companyId: ch.companyId }
 		const c = this.companies.get(key)
-		if (c) return { id: c.id, kind: "company", title: c.name, text: companyText(c), researcherIds: [], companyId: c.id, year: c.founded }
+		if (c) return { id: c.id, kind: "company", title: c.name, text: companyText(c), researcherIds: [], companyId: c.id, year: c.founded || undefined }
 		const page = this.page(key)
 		if (page) {
 			const year = Number(page.date.slice(0, 4)) || undefined
@@ -412,8 +426,10 @@ function patentText(p: Patent): string {
 }
 
 function companyText(c: Company): string {
+	// A described problem (reverse search) has none of these, so each is left out when empty.
+	const facts = [c.sector, c.location, c.employees && `${c.employees} employees`, c.founded && `founded ${c.founded}`].filter(Boolean)
 	return [
-		`${c.name} (${c.id}): ${c.sector}, ${c.location}, ${c.employees} employees, founded ${c.founded}.`,
+		`${c.name} (${c.id})${facts.length ? `: ${facts.join(", ")}` : ""}.`,
 		c.about,
 		c.products.length && `Products: ${c.products.join("; ")}.`,
 		c.tech.length && `Tech: ${c.tech.join("; ")}.`,
