@@ -19,6 +19,12 @@ A claim is not supported when:
   "matching the structured output requirement", "the core engine for change detection"). A record about the researcher
   says nothing about the company, so such words are not in it;
 - it takes a word from a record it does not cite. Judge only the cited text, even when you know the fact is true elsewhere;
+- it translates a Serbian record into words of another meaning. A Serbian word can have several English meanings, and the
+  thing it is about decides which one: "ležaj" of a machine is a bearing, of a hotel a bed. When the cited text is in
+  Serbian, first translate yourself the Serbian words the claim rests on, for the thing they are about (a fruit, a
+  machine, a person). Then compare the claim's English with your translation, not with the claim's own choice of word.
+  A term in brackets is the claim's quote of the original: check that the English before it means the same;
+- it turns a number into another measure: "an error of 5%" is not "95% accuracy", "half of the units" is not "50 units";
 - it gives a record to a person the record does not link. Go by ids, never by names;
 - it says that two researchers worked together and no cited record links both;
 - it gives a private reason for availability (family, parental leave, health). Only the availability fact may be stated;
@@ -243,7 +249,7 @@ const SUPPORTED =
 	"directly from, the text of the records it cites. Leaving out details of the text is fine."
 const NOT_SUPPORTED =
 	"The claim adds or changes a fact the cited text does not state (a paper, number, tie, stronger result, wider scope, " +
-	"other year or role), widens a list or a count, merges two separate points of a record, takes a word from a record it " +
+	"other year or role), translates a Serbian word into one of another meaning, turns a number into another measure (an error rate into an accuracy), widens a list or a count, merges two separate points of a record, takes a word from a record it " +
 	"does not cite, adds a judgement on how a record fits the other side (\"directly addresses the company's problem\", " +
 	"\"the core method the project needs\"), gives a record to a person it does not link, says two researchers worked " +
 	"together with no record linking both, gives a private reason for availability, or names someone who cannot lead as " +
