@@ -88,7 +88,7 @@ export interface ScreenSettings {
 export function screenSettings(): ScreenSettings {
 	return {
 		model: subqSettings().model,
-		widen: SCREEN.widen,
+		widen: Math.max(1, Math.round(envNumber("SCREEN_WIDEN", SCREEN.widen))),
 		threshold: envNumber("SCREEN_THRESHOLD", SCREEN.threshold),
 	}
 }

@@ -100,7 +100,7 @@ export const SUBQ = {
  * profiled. One call costs far less than one profile. If the call fails, the shortlist is retrieval's top k.
  */
 export const SCREEN = {
-	/** Candidates retrieved per need for the model to rate, as a multiple of k. */
+	/** Candidates retrieved per need for the model to rate, as a multiple of k [SCREEN_WIDEN]. */
 	widen: 2,
 	/** A candidate is cut under this probability of fit, even with room on the shortlist [SCREEN_THRESHOLD]. */
 	threshold: 0.2,
