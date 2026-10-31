@@ -106,8 +106,9 @@ export function companyBundle(data: Dataset, companyId: string) {
 			id: c.id,
 			name: c.name,
 			sector: c.sector,
-			employees: c.employees,
-			founded: c.founded,
+			// A described problem (reverse search) has neither: leave them out rather than show 0.
+			employees: c.employees || undefined,
+			founded: c.founded || undefined,
 			location: c.location,
 			language: c.language,
 			about: c.about,

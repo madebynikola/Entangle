@@ -12,7 +12,13 @@ export interface RenderContext {
 /** The facts the Writer states in every header, from the blackboard, not from the model. */
 export function headerClaims({ need, researcher }: RenderContext): { company: Claim; researcher: Claim } {
 	return {
-		company: { text: `${need.companyName} works in ${need.sector.charAt(0).toLowerCase() + need.sector.slice(1)}.`, sourceIds: [need.companyId] },
+		company: {
+			// A described problem (reverse search) has no sector: its record says only that it was described.
+			text: need.sector
+				? `${need.companyName} works in ${need.sector.charAt(0).toLowerCase() + need.sector.slice(1)}.`
+				: `${need.companyName} described this problem in the reverse search.`,
+			sourceIds: [need.companyId],
+		},
 		researcher: {
 			text: `${researcher.name} is ${article(researcher.title)} ${researcher.title} in the ${researcher.department}, ${researcher.faculty}.`,
 			sourceIds: [researcher.researcherId],
