@@ -11,6 +11,7 @@ import {
 	challengeIdOf,
 	companyOf,
 	noPair,
+	kindLabel,
 	researcherIdOf,
 	researcherName,
 	reviewsOf,
@@ -111,13 +112,18 @@ function ProposalList({ index, selected }: { index: ResultsIndex; selected?: str
 		<>
 			{proposals.map((proposal) => {
 				const review = reviewSummary(reviewsOf(index.results, "proposal", proposal.id))
+				const fit = index.pairs.get(proposal.pairId)?.fit
+				const calls = index.results.funding?.find((m) => m.pairId === proposal.pairId)?.calls.length
+				const facts = [kindLabel(proposal.kind), fit != null && `fit ${Math.round(fit * 100)}%`, calls != null && (calls ? `${calls} EU call${calls === 1 ? "" : "s"}` : "no EU call")]
 				return (
 					<Row key={proposal.id} to={`${paths.proposal(proposal.id)}${keep}`} active={selected === proposal.id} className="border-b border-hairline px-4 py-3.5">
 						<div className="line-clamp-2 text-sm font-medium leading-snug text-ink">{proposal.title}</div>
 						<div className="mt-1 truncate text-xs text-ink-muted">{names(proposal.pairId)}</div>
 						<div className="mt-2.5 flex items-center justify-between gap-3 text-xs">
 							<DecisionStatus pairId={proposal.pairId} className="text-xs" />
-							<span className="truncate text-ink-subtle">{review.label}</span>
+							<span className="truncate text-ink-subtle" title={review.label}>
+								{facts.filter(Boolean).join(" · ")}
+							</span>
 						</div>
 					</Row>
 				)

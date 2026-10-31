@@ -1,6 +1,7 @@
 import type { FundingCall } from "@shared/types"
 import { ArrowUpRight } from "lucide-react"
 import { Chip } from "@/components/ui/chip"
+import { AgentFace } from "@/components/ui/face"
 import { cn } from "@/lib/utils"
 import { Block } from "./parts"
 import type { ResultsIndex } from "./data"
@@ -17,7 +18,12 @@ export function FundingBlock({ index, pairId, className }: { index: ResultsIndex
 	return (
 		<div className={cn("flex flex-col gap-8", className)}>
 			<Block
-				title="Where to apply"
+				title={
+					<span className="inline-flex items-center gap-2">
+						<AgentFace face="ceres" state={match.calls.length ? "done" : "reject"} className="size-6" />
+						Where to apply
+					</span>
+				}
 				description="Open or upcoming EU calls the Funding Scout found in the EU Funding & Tenders portal. The call facts are the portal's; the reasons are the Scout's, and the Critic does not review them."
 			>
 				{match.calls.length ? (

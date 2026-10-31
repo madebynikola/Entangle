@@ -12,8 +12,13 @@ const CITATION = new RegExp(String.raw`\[(${ID}(?:\s*,\s*${ID})*)\]`, "g")
 /** The comma between two ids, not one inside a page title. */
 const BETWEEN = /\s*,\s*(?=R\d{3,4}\b|C\d{3}\b|SYN-|W\d{6,}\b)/
 
-/** Replace inline citations in plain-text children with source chips that wrap with the text, one by one. */
+/**
+ * Replace inline citations in plain-text children with source chips that wrap with the text, one by one.
+ * A source already cited earlier in the same paragraph is drawn quieter, so a paragraph that cites one record
+ * five times does not read as five badges; every citation stays and still opens its record.
+ */
 function cite(children: React.ReactNode): React.ReactNode {
+	const seen = new Set<string>()
 	return Children.map(children, (child) => {
 		if (typeof child !== "string") return isValidElement(child) ? child : child
 		const parts: React.ReactNode[] = []
@@ -21,12 +26,14 @@ function cite(children: React.ReactNode): React.ReactNode {
 		for (const match of child.matchAll(CITATION)) {
 			parts.push(child.slice(last, match.index))
 			const ids = match[1].split(BETWEEN)
+			const repeat = ids.map((id) => seen.has(id))
+			for (const id of ids) seen.add(id)
 			parts.push(
 				<span key={match.index} className="mx-0.5">
 					{ids.map((id, i) => (
 						<Fragment key={id}>
 							{i > 0 && " "}
-							<SourceChip id={id} className="h-5 align-[1px]" />
+							<SourceChip id={id} className={cn("h-5 align-[1px]", repeat[i] && "opacity-45 hover:opacity-100")} />
 						</Fragment>
 					))}
 				</span>,
