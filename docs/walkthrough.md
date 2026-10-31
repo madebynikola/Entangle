@@ -38,25 +38,25 @@ A **Critic** checks every claim against the record it cites, and a **person appr
 > The EINSTEIN dataset is about seven million tokens, which no model can read at once. So we split the work across a team
 > of agents. Each one reads only one company or one researcher, and they all run at the same time on one Mozaik runtime.
 > Each fact an agent writes carries the id of the record it comes from. A separate Critic agent, in its own context, checks
-> every claim against that record, and sends back what does not hold. In our reference run it rejected 483 claims that
+> every claim against that record, and sends back what does not hold. In our reference run it rejected 401 claims that
 > would otherwise have reached a company. At the end a coordinator approves each pair. Nothing is sent to anyone before that.
 
 ## The numbers worth knowing (reference run `out/golden/`)
 
 | What | Value |
 | --- | --- |
-| Companies, challenges ("needs") | 8 companies (C001 to C008), 29 needs |
+| Companies, challenges ("needs") | 8 companies (C001 to C008), 28 needs |
 | Researchers searched | all 1,047, with their 10,779 publications, projects and patents |
-| Profiles written (passed the Critic) | 66 |
-| Pairs (passed) / "no match" outcomes | 32 / 7 |
-| Pairs chosen for a proposal | 7 |
-| Proposals accepted / left for a person | 6 / 1 |
-| Model calls | 696, by 20 agents |
-| Tokens, cost | 4,958,225 tokens, $16.90 at API prices |
-| Critic: reviews, sent back, dropped, cut-and-kept | 337, 194, 10, 20 |
-| Critic: claims rejected | 483 |
-| Trace | 7,105 events in `trace.jsonl` |
-| Why it stopped at 66 minutes | the 60-minute budget stopped the last company (C008) before matching |
+| Profiles written (passed the Critic) | 41 |
+| Pairs (passed) / "no match" outcomes | 28 / 7 |
+| Pairs chosen for a proposal | 8, one per company |
+| Proposals accepted / left for a person | 6 / 2 |
+| Model calls | 597, by 20 agents |
+| Tokens, cost | 4,315,445 tokens, $15.04 at API prices |
+| Critic: reviews, sent back, dropped, cut-and-kept | 260, 151, 4, 11 |
+| Critic: claims rejected | 401 |
+| Trace | 5,950 events in `trace.jsonl` |
+| Run time | 25 minutes; every company finished and no task failed |
 
 ---
 
@@ -400,7 +400,7 @@ npm run typecheck                 # tsc for the server and the web app
    What we *did* measure is how many wrong claims a strong model writes unchecked: in a hand-check of three proposals, **15 of 76 claims (20%)** were wrong, and the first Critic had passed them.
 5. **Mozaik 4.1.0 cannot cancel a loop.** A task stopped by the budget is marked failed and its loop is *dropped* (a promise that never resolves), not killed (`dropped()` in `resilient-runner.ts`).
    It also sends no `cache_control`, so prompt caching on the API would need a wrapper.
-6. **Local Claude Code runs 6 sessions at once,** so a run on it is slower than on the API. In the reference run, 11 `claude -p` calls hung for 5 minutes each before the budget ended the run.
+6. **Local Claude Code runs 6 sessions at once,** so a run on it is slower than on the API. In an earlier 8-company run, 11 `claude -p` calls hung for 5 minutes each before the budget ended the run. The reference run had no hang and took 25 minutes.
 7. **The reference run covers 8 of 153 companies.** A run on all of them is about 69M tokens and $250. That is a cost decision, not a technical limit.
 8. **One proposal per company and per researcher per run,** by design.
 9. **Known failing unit test:** `test/stage-words.test.ts` fails when run with plain `tsx` because the web code imports through the `@/` alias, which only Vite resolves.
@@ -411,13 +411,13 @@ npm run typecheck                 # tsc for the server and the web app
 # Part 10. Questions we should expect
 
 **"Why a team of agents and not one big model?"**
-The data is 7M tokens and does not fit in one call. Each call here reads one company, one researcher or one pair: the median call read 6,285 tokens, the largest 19,447.
+The data is 7M tokens and does not fit in one call. Each call here reads one company, one researcher or one pair: the median call read 6,193 tokens, the largest 23,713.
 Second, a model does not check itself: our Critic is a separate agent that sees only the claim and its cited records. Third, we can put the right model on each job.
 Full answer in `docs/qa.md` (in Serbian) and the README section *Why a team of agents*.
 
 **"Is this real parallelism or just async calls?"**
 Real. Each task is its own Mozaik loop, an agent can have several open, and the runner lets 16 calls run at once (6 with local Claude Code).
-Up to 5 roles called a model at the same moment, 2 or more for 48% of the run. Open the Timeline (`npm run replay -- out/golden`): overlapping bars are the proof.
+Up to 5 roles called a model at the same moment, 2 or more for 79% of the run. Open the Timeline (`npm run replay -- out/golden`): overlapping bars are the proof.
 
 **"How do you stop the model from making things up?"**
 Four layers. (1) Models return claims with `sourceIds` as structured output. (2) Code strips ids that do not belong to the subject before the artifact is even posted (`ClaimFilter`).
@@ -441,10 +441,10 @@ Only the provided dataset, plus published work **by topic**. No agent searches a
 
 **"How do you handle rate limits and failures?"**
 `ResilientRunner`: 16 calls at once, a token bucket per provider, retries with backoff and jitter, `retry-after` honoured, a 429 pauses the provider. A failed task fails alone.
-In the reference run there were 11 retries and 19 failed tasks, and the run still produced 6 accepted proposals.
+The reference run had no retry and no failed task. An earlier 8-company run had 11 retries and 19 failed tasks, and it still produced 6 accepted proposals.
 
 **"How much does it cost?"**
-The reference run (8 companies): 4.96M tokens, $16.90 at API prices. Re-reviews are about 26% of the cost. All 153 companies would be about 69M tokens and $250.
+The reference run (8 companies): 4.32M tokens, $15.04 at API prices. Re-reviews are about 27% of the cost. All 153 companies would be about 69M tokens and $250.
 
 **"Why Mozaik?"**
 The hackathon asks for it, and it fits: an event bus where every participant sees every event gave us a Critic that reacts the moment something is posted, and a trace for free.
