@@ -1,4 +1,5 @@
 import { fileURLToPath } from "node:url"
+import { FormData, fetch as undiciFetch } from "undici"
 import type { FundingCall, SourceRecord, SourceStore } from "../types"
 import { Bm25 } from "./bm25"
 
@@ -27,9 +28,18 @@ export interface EuCallsOptions {
 	timeoutMs?: number
 	/** "Today" for the deadline filter. Tests pass a fixed date. */
 	now?: () => Date
-	/** Tests pass a stub. */
+	/** Default: fetch from npm undici, not Node's own (see portalFetch). Tests pass a stub. */
 	fetch?: typeof fetch
 }
+
+/**
+ * The portal answers with `Connection: close` and bodies of about 530 KB. When the run reads a body late, Node 22's
+ * bundled undici (6.x) pauses its parser, and the socket's close then fails `assert(!this.paused)` in Parser.finish,
+ * an uncaught error that stops the process (out/2026-10-31T15-04-02/repro-portal.mjs). Undici 8.6 fixes it.
+ * The form must be undici's FormData too: undici 8 sends Node's global one as the text "[object FormData]", and the
+ * portal then ignores the filters and answers with closed calls and FAQ pages only.
+ */
+export const portalFetch = undiciFetch as unknown as typeof fetch
 
 export interface EuCalls {
 	/** Open and upcoming calls: one query per term, plus the broad area (the company's sector). Cached per terms; never throws. */
@@ -74,7 +84,7 @@ export const isCallId = (id: string) => id.startsWith("CALL:")
 
 export function createEuCalls(options: EuCallsOptions = {}): EuCalls {
 	const { pageSize = 50, timeoutMs = 8000, concurrency = 4 } = options
-	const get = options.fetch ?? fetch
+	const get = options.fetch ?? portalFetch
 	const now = options.now ?? (() => new Date())
 	const found = new Map<string, SourceRecord>()
 	const cache = new Map<string, Promise<CallSearch>>()
