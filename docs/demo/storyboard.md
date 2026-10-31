@@ -6,7 +6,9 @@ app into `out/tmp/demo/entangle-demo.mp4` (gitignored). It needs ffmpeg and no A
 The app runs in an iframe inside `scripts/demo/director.html`, which is the camera. After the app's own splash, the
 app's page is hidden: only the component that matters floats on a soft backdrop, cut out of the real app with nothing
 around it. Each agent is introduced on its own, with its face from the brand kit, its role, its model, and the real
-thing it made in the reverse-search run. Captions make it work with no sound. The voice-over below follows the same
+thing it made in the reverse-search run. The video uses the app's dark theme. Music runs under it, with sound effects
+on titles, faces, clicks, typing, the Critic's stamps and the approval (scripts/demo/audio/, free to use, see
+CREDITS.md). Captions make it work with the sound off. The voice-over below follows the same
 beats, if we record one over it.
 
 | # | Screen | On screen | Voice-over |
@@ -33,6 +35,10 @@ for Fides, Amity and Tinta. Libra is a search in code, and You is a person.
 - **Only the two committed runs show** in the Runs list. The recorder filters the list in the browser; the app is not changed.
 - **Approve is answered in the browser.** The recorder returns what the server would, so recording never writes to `out/`.
 - **No toasts.**
+- **No snaps.** The camera moves frame by frame, and the faces grow in size rather than scale, so the page is drawn
+  sharp at every frame. A CSS scale is drawn sharp again only when it stops, which showed as a snap at the end.
+- **Sound is mixed after recording.** The story logs a cue at each sound; `--remix` mixes them again onto the last
+  recording in seconds, to tune the sound without recording again. `--preview` plays the story live, with no render.
 
 ## Re-recording
 
