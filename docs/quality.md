@@ -433,7 +433,7 @@ results of the 12 real runs of 30 October: 13,888 claims, with the records in ea
 the check, so each claim it rejects there is one that a run today would send back. No model runs, so this costs nothing and gives
 the same answer each time.
 
-| Form of the check | Claims it rejects, 12 runs | In the reference run (`out/golden`) | On the labels: wrong caught, ok rejected |
+| Form of the check | Claims it rejects, 12 runs | In run 22-50-57 (the reference run until 31 October) | On the labels: wrong caught, ok rejected |
 | --- | --- | --- | --- |
 | A name or number in none of the claim's own records | 1,155 | 53 | 6 of 23, 2 of 98 |
 | The same, names and single numbers only | 714 | 28 | 5 of 23, 0 of 98 |
@@ -442,7 +442,7 @@ the same answer each time.
 
 - **"In none of its own records" rejects 2–3 times as many claims and catches no more details.** Its one extra catch on the labels is
   a judgement claim, for a stray "1 and" in "3:1 and". A number with the word after it adds most of its noise: "2022 experience",
-  "18 month". A hand-check of the 40 extra rejects of the second form in three runs (`golden`, 15-09-14, 17-02-48) found one or two
+  "18 month". A hand-check of the 40 extra rejects of the second form in three runs (22-50-57, 15-09-14, 17-02-48) found one or two
   real ones ("South Slavic"). Most of the rest come from records written in Serbian: "Vojvodini" for Vojvodina, "340.000" for
   340,000, "maja" for May, "u prvom kvartalu" for Q1. Others were "Austria" for "Austrian", "Netherlands" for "Dutch", "Forty-seven"
   for 47, and the digits of page paths. So the rule stays: a detail counts only when another record of the artifact writes it as
