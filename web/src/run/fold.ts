@@ -38,6 +38,8 @@ export interface Span {
 	startMs: number
 	/** Undefined while open: draw it up to the run clock. */
 	endMs?: number
+	/** Still open when the run ended: `endMs` is the run's end, not a reply. */
+	stopped?: boolean
 }
 
 export interface InferenceSpan extends Span {
@@ -104,6 +106,8 @@ export interface RunView {
 	totals: Totals
 	/** Records that are not loop plumbing: task results, Critic verdicts, custom events. Oldest first. */
 	feed: TraceRecord[]
+	/** Set by `endRun`: the run is over and nothing is in flight. */
+	endedMs?: number
 }
 
 /** Mozaik loop plumbing: drawn as loops and spans, kept out of the feed. */
@@ -146,6 +150,27 @@ export function applyRecords(prev: RunView, records: TraceRecord[]): RunView {
 /** Fold a whole trace. */
 export function foldTrace(records: TraceRecord[]): RunView {
 	return applyRecords(emptyView(), records)
+}
+
+/**
+ * The run is over: calls, tool calls, loops and tasks still open never finished (they hung, or the budget stopped
+ * the run). Close them at `ms` (the last record) as stopped, so no agent shows as working and nothing is in flight.
+ */
+export function endRun(prev: RunView, ms = prev.lastMs): RunView {
+	if (prev.endedMs != null) return prev
+	const stop = <T extends Span>(span: T): T => (span.endMs == null ? { ...span, endMs: Math.max(ms, span.startMs), stopped: true } : span)
+	const loops = new Map(prev.loops)
+	for (const [id, loop] of loops) {
+		if (loop.endMs != null && loop.inferences.every((s) => s.endMs != null) && loop.calls.every((s) => s.endMs != null)) continue
+		loops.set(id, { ...stop(loop), inferences: loop.inferences.map(stop), calls: loop.calls.map(stop) })
+	}
+	const tasks = new Map(prev.tasks)
+	for (const [id, task] of tasks) if (task.status === "running" && task.endMs == null) tasks.set(id, stop(task))
+	const agents = new Map(prev.agents)
+	for (const [id, agent] of agents) {
+		if (agent.activity !== "idle" || agent.openLoops > 0) agents.set(id, { ...agent, activity: "idle", openLoops: 0 })
+	}
+	return { ...prev, loops, tasks, agents, totals: { ...prev.totals, inFlight: 0 }, endedMs: ms }
 }
 
 /** Copy-on-write helper: clones a map and its entries the first time they change in a batch. */

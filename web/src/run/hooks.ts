@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react"
 import { create } from "zustand"
 import { useShallow } from "zustand/react/shallow"
 import { getBackend, type Backend } from "./backend"
-import { foldTrace, type RunView } from "./fold"
+import { endRun, foldTrace, type RunView } from "./fold"
 import { runClock, useRunStore, type RunStore } from "./store"
 
 export { useRunStore, runClock } from "./store"
@@ -27,8 +27,9 @@ export function useFullView(): RunView {
 	const view = useRunStore((state) => state.view)
 	const records = useRunStore((state) => state.records)
 	const partial = useRunStore((state) => state.applied < state.records.length && state.mode !== "live")
+	const ended = useRunStore((state) => state.runStatus === "ended")
 	// Fold once per record list, not once per replay frame.
-	const full = useMemo(() => (partial ? foldTrace(records) : null), [partial, records])
+	const full = useMemo(() => (partial ? (ended ? endRun(foldTrace(records)) : foldTrace(records)) : null), [partial, ended, records])
 	return full ?? view
 }
 

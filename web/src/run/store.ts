@@ -2,7 +2,7 @@ import type { ApprovalDecision, RunInfo, RunResults, RunStatus } from "@shared/s
 import type { TraceRecord } from "@shared/types"
 import { create } from "zustand"
 import { getBackend, type Backend } from "./backend"
-import { applyRecords, emptyView, foldTrace, type RunView } from "./fold"
+import { applyRecords, emptyView, endRun, foldTrace, type RunView } from "./fold"
 
 /**
  * The open run and its player. One run is open at a time (the route /runs/:runId opens it).
@@ -12,6 +12,7 @@ import { applyRecords, emptyView, foldTrace, type RunView } from "./fold"
  *         when the playhead catches up with a run that is still live, it follows live again.
  *
  * A finished run opens at its end, still: nothing moves until someone presses play (or opens it with `?replay`).
+ * At the end of a finished run, calls that never completed show as stopped (see `endRun`), not as in flight.
  */
 
 export type Speed = 1 | 4 | "instant"
@@ -84,11 +85,18 @@ export const useRunStore = create<RunStore>()((set, get) => {
 			let end = 0
 			while (end < records.length && records[end].ms <= position) end++
 			set({ view: foldTrace(records.slice(0, end)), applied: end })
-			return
+		} else {
+			let end = applied
+			while (end < records.length && records[end].ms <= position) end++
+			if (end !== applied) set({ view: applyRecords(view, records.slice(applied, end)), applied: end })
 		}
-		let end = applied
-		while (end < records.length && records[end].ms <= position) end++
-		if (end !== applied) set({ view: applyRecords(view, records.slice(applied, end)), applied: end })
+		settleEnd()
+	}
+
+	/** When the run has ended and every record is applied, close what is still open as stopped. */
+	const settleEnd = () => {
+		const { records, applied, view, runStatus } = get()
+		if (runStatus === "ended" && records.length > 0 && applied === records.length && view.endedMs == null) set({ view: endRun(view) })
 	}
 
 	const tick = (now: number) => {
@@ -155,12 +163,15 @@ export const useRunStore = create<RunStore>()((set, get) => {
 							if (get().mode === "live") applyUpTo(Infinity)
 						},
 						onStatus(runStatus) {
-							if (gen === generation) set({ runStatus })
+							if (gen !== generation) return
+							set({ runStatus })
+							settleEnd()
 						},
 						onEnd() {
 							if (gen !== generation) return
 							if (get().runStatus === "live") set({ runStatus: "ended" })
 							if (get().mode === "live") set({ mode: "replay", playing: false, position: get().duration })
+							settleEnd()
 							void loadResults(backend, runId, gen)
 						},
 						onError(error) {
@@ -177,6 +188,7 @@ export const useRunStore = create<RunStore>()((set, get) => {
 							? { records, duration, mode: "replay", loading: false, playing: true, position: 0 }
 							: { records, duration, mode: "replay", loading: false, playing: false, position: duration, view: foldTrace(records), applied: records.length },
 					)
+					settleEnd()
 				}
 				schedule()
 			} catch (error) {
