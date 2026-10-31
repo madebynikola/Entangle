@@ -7,7 +7,7 @@ The app runs in an iframe inside `scripts/demo/director.html`, which is the came
 app's page is hidden: only the component that matters floats on a soft backdrop, cut out of the real app with nothing
 around it. Each agent is introduced on its own, with its face from the brand kit, its role, its model, and the real
 thing it made in the reverse-search run. The video uses the app's dark theme. Music runs under it, with sound effects
-on titles, faces, clicks, typing, the Critic's stamps and the approval (scripts/demo/audio/, free to use, see
+on titles, faces, clicks, typing, the Critic's rejections and fixes, and the approval (scripts/demo/audio/, free to use, see
 CREDITS.md). Captions make it work with the sound off. The voice-over below follows the same
 beats, if we record one over it.
 
@@ -38,7 +38,8 @@ for Fides, Amity and Tinta. Libra is a search in code, and You is a person.
 - **No snaps.** The camera moves frame by frame, and the faces grow in size rather than scale, so the page is drawn
   sharp at every frame. A CSS scale is drawn sharp again only when it stops, which showed as a snap at the end.
 - **Sound is mixed after recording.** The story logs a cue at each sound; `--remix` mixes them again onto the last
-  recording in seconds, to tune the sound without recording again. `--preview` plays the story live, with no render.
+  recording in seconds, to tune the sound without recording again; `--music FILE` tries another track. The music
+  is set to one loudness, whatever the track. `--preview` plays the story live, with no render.
 
 ## Re-recording
 
