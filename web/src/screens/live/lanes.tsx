@@ -9,7 +9,7 @@ import { ROLE_INFO, roleColor, type RoleKey } from "@/lib/roles"
 import { cn } from "@/lib/utils"
 import type { AgentView, LoopView, RunView } from "@/run/fold"
 import { MIN_ZOOM_MS, runClock, useRunStore, type TimeRange } from "@/run/hooks"
-import { kindLabel, laneGeometry, tickStep, viewWindow, type Moment, type Note } from "./derive"
+import { groupMarks, kindLabel, laneGeometry, tickStep, viewWindow, type MarkGroup, type Moment, type Note } from "./derive"
 
 export type { TimeRange }
 
@@ -143,6 +143,16 @@ export function Lanes({
 	const scrollRef = useRef<HTMLDivElement>(null)
 	const dense = useDense(scrollRef, groups)
 	const gestures = useTimeGestures({ scrollRef, trackRef, span, follow, zoom, onZoom, canSeek, onDrag: hover.clear })
+	const trackWidth = useWidth(trackRef)
+	// Critic marks closer than this, in run ms, would touch: they show as one mark with a count.
+	const gapMs = (MARK_PX * visible) / trackWidth
+
+	/** A click on a grouped mark zooms in so it splits; when zoom cannot help, it opens the first moment. */
+	const openGroup = (members: Moment[]) => {
+		const range = groupZoom(members, visible, span)
+		if (range) onZoom(range)
+		else onMoment(members[0])
+	}
 
 	return (
 		<div
@@ -165,12 +175,19 @@ export function Lanes({
 				onPointerCancel={gestures.onPointerCancel}
 				onDoubleClick={gestures.onDoubleClick}
 				onClick={(event) => {
-					const key = (event.target as HTMLElement).closest<HTMLElement>("[data-moment]")?.dataset.moment
+					const target = event.target as HTMLElement
+					const group = target.closest<HTMLElement>("[data-marks]")?.dataset.marks
+					if (group) {
+						const members = momentsOf(group, moments)
+						if (members.length) openGroup(members)
+						return
+					}
+					const key = target.closest<HTMLElement>("[data-moment]")?.dataset.moment
 					const moment = key && moments.find((m) => String(m.key) === key)
 					if (moment) onMoment(moment)
 				}}
 			>
-				<Axis span={span} visible={visible} worldWidth={worldWidth} zoom={zoom} />
+				<Axis span={span} visible={visible} worldWidth={worldWidth} zoom={zoom} width={trackWidth} />
 				{groups.map((group, i) => (
 					<Fragment key={group.role}>
 						{dense ? (
@@ -188,6 +205,7 @@ export function Lanes({
 								pulse={pulse}
 								hasDispatch={hasDispatch}
 								flying={flights.flying}
+								gapMs={gapMs}
 								onAgent={onAgent}
 							/>
 						))}
@@ -201,7 +219,7 @@ export function Lanes({
 					{gestures.brush && <Brush brush={gestures.brush} span={span} follow={follow} zoom={zoom} />}
 				</div>
 			</div>
-			{hover.target && <HoverInfo target={hover.target} view={view} moments={moments} />}
+			{hover.target && <HoverInfo target={hover.target} view={view} moments={moments} visible={visible} span={span} />}
 		</div>
 	)
 }
@@ -240,17 +258,23 @@ function groupLanes(lanes: LaneAgent[]): Group[] {
 
 const ROW = "grid grid-cols-[var(--label)_minmax(0,1fr)_var(--meta)]"
 
-function Axis({ span, visible, worldWidth, zoom }: { span: number; visible: number; worldWidth: string; zoom: TimeRange | null }) {
-	// One label per 72 px of track, so labels never run into each other.
+/** The width of the track column in px, rounded to 8 px so a resize does not re-render the lanes on every pixel. */
+function useWidth(ref: React.RefObject<HTMLElement | null>): number {
 	const [width, setWidth] = useState(600)
-	const trackRef = useRef<HTMLDivElement>(null)
 	useLayoutEffect(() => {
-		const el = trackRef.current
+		const el = ref.current
 		if (!el) return
-		const observer = new ResizeObserver(() => setWidth(el.clientWidth))
+		const measure = () => setWidth(Math.max(8, Math.round(el.clientWidth / 8) * 8))
+		measure()
+		const observer = new ResizeObserver(measure)
 		observer.observe(el)
 		return () => observer.disconnect()
-	}, [])
+	}, [ref])
+	return width
+}
+
+function Axis({ span, visible, worldWidth, zoom, width }: { span: number; visible: number; worldWidth: string; zoom: TimeRange | null; width: number }) {
+	// One label per 72 px of track, so labels never run into each other.
 	const step = tickStep(visible, Math.max(2, Math.floor(width / 72)))
 	// Zoomed, only the ticks in view: a 15 s range of an hour-long run would otherwise draw hundreds.
 	const from = zoom ? Math.floor(zoom.start / step) * step : 0
@@ -263,7 +287,7 @@ function Axis({ span, visible, worldWidth, zoom }: { span: number; visible: numb
 	return (
 		<div className={cn(ROW, "sticky top-0 z-10 h-8 border-b border-hairline bg-card text-xs text-ink-subtle")}>
 			<div className="flex items-center px-4">Agent</div>
-			<div ref={trackRef} className="relative overflow-hidden border-l border-hairline [contain:strict]">
+			<div className="relative overflow-hidden border-l border-hairline [contain:strict]">
 				<div data-world className="absolute inset-y-0 left-0" style={{ width: worldWidth }}>
 					{ticks.map((ms) => (
 						<span
@@ -309,6 +333,8 @@ interface LaneProps {
 	hasDispatch: boolean
 	/** Moments whose claim is still in the air: their mark shows when it lands. */
 	flying: Set<number>
+	/** Critic marks closer than this (run ms) show as one mark with a count. */
+	gapMs: number
 	onAgent: (id: string) => void
 }
 
@@ -316,7 +342,7 @@ interface LaneProps {
  * One agent's lane. Every event of the agent gives it a new AgentView, so the lane itself re-renders often;
  * its parts are memoized on what they show, and a re-render touches only the part that changed.
  */
-const Lane = memo(function Lane({ lane, span, worldWidth, dense, pulse, hasDispatch, flying, onAgent }: LaneProps) {
+const Lane = memo(function Lane({ lane, span, worldWidth, dense, pulse, hasDispatch, flying, gapMs, onAgent }: LaneProps) {
 	const { agent, now, status, loops, track, tracks, moments, notes } = lane
 	const geometry = laneGeometry(tracks, dense)
 	const color = roleColor(agent.role)
@@ -341,7 +367,7 @@ const Lane = memo(function Lane({ lane, span, worldWidth, dense, pulse, hasDispa
 					{hasDispatch && <WaitBand loops={loops} span={span} bottom={dense ? 1 : 3} color={color} />}
 					<LaneBars loops={loops} track={track} top={geometry.top} pitch={geometry.pitch} bar={geometry.bar} span={span} color={color} hasDispatch={hasDispatch} />
 					<LaneNotes notes={notes} span={span} />
-					<LaneMarks moments={moments} span={span} flying={flying} />
+					<LaneMarks moments={moments} span={span} flying={flying} gapMs={gapMs} />
 				</div>
 			</div>
 			<LaneTokens tokens={now?.tokens ?? 0} cost={now?.costUsd ?? 0} busy={busy} dense={dense} />
@@ -466,24 +492,81 @@ const LaneNotes = memo(function LaneNotes({ notes, span }: { notes: Note[]; span
 })
 
 /** The Critic's rejections on the producer's lane. A mark stays hidden while its claim is in the air. */
-const LaneMarks = memo(function LaneMarks({ moments, span, flying }: { moments: Moment[]; span: number; flying: Set<number> }) {
-	return moments.map((moment) => (
-		<button
-			key={moment.key}
-			type="button"
-			data-moment={moment.key}
-			aria-label={`${actionLabel(moment)}: ${kindLabel(moment.kind)} ${moment.id}`}
-			className={cn(
-				"group/mark absolute top-0 flex h-2.5 w-3 -translate-x-1/2 justify-center outline-none transition-opacity duration-200",
-				moment.action === "send-back" ? "text-needs" : "text-failed",
-				flying.has(moment.key) && "opacity-0",
-			)}
-			style={{ left: `${(moment.ms / span) * 100}%` }}
-		>
-			<MarkPin className="mt-px transition-transform duration-150 group-hover/mark:scale-125 group-focus-visible/mark:scale-125" />
-		</button>
-	))
+const LaneMarks = memo(function LaneMarks({ moments, span, flying, gapMs }: { moments: Moment[]; span: number; flying: Set<number>; gapMs: number }) {
+	const groups = useMemo(() => groupMarks(moments, gapMs), [moments, gapMs])
+	return groups.map((group) => {
+		const first = group.moments[0]
+		if (group.moments.length === 1) {
+			return (
+				<button
+					key={first.key}
+					type="button"
+					data-moment={first.key}
+					aria-label={`${actionLabel(first)}: ${kindLabel(first.kind)} ${first.id}`}
+					className={cn(
+						"group/mark absolute top-0 flex h-2.5 w-3 -translate-x-1/2 justify-center outline-none transition-opacity duration-200",
+						first.action === "send-back" ? "text-needs" : "text-failed",
+						flying.has(first.key) && "opacity-0",
+					)}
+					style={{ left: `${(group.ms / span) * 100}%` }}
+				>
+					<MarkPin className="mt-px transition-transform duration-150 group-hover/mark:scale-125 group-focus-visible/mark:scale-125" />
+				</button>
+			)
+		}
+		return <GroupMark key={first.key} group={group} span={span} flying={flying} />
+	})
 })
+
+/** Critic marks that would touch at this zoom: one small badge with their count. A claim in the air counts when it lands. */
+function GroupMark({ group, span, flying }: { group: MarkGroup; span: number; flying: Set<number> }) {
+	const landed = group.moments.filter((moment) => !flying.has(moment.key))
+	// Red when any of them was dropped or left for a person: a count never hides the worse outcome.
+	const tone = group.moments.every((moment) => moment.action === "send-back") ? "text-needs" : "text-failed"
+	const first = group.moments[0].ms
+	const last = group.moments[group.moments.length - 1].ms
+	return (
+		<button
+			type="button"
+			data-marks={group.moments.map((moment) => moment.key).join(",")}
+			aria-label={`${format.plural(group.moments.length, "Critic rejection")}, ${format.clock(first)} to ${format.clock(last)}`}
+			className={cn(
+				"group/mark absolute top-0 flex h-3.5 min-w-4 -translate-x-1/2 justify-center outline-none transition-opacity duration-200",
+				tone,
+				landed.length === 0 && "opacity-0",
+			)}
+			style={{ left: `${(group.ms / span) * 100}%` }}
+		>
+			{landed.length === 1 ? (
+				<MarkPin className="mt-px transition-transform duration-150 group-hover/mark:scale-125 group-focus-visible/mark:scale-125" />
+			) : (
+				// A tint of the mark's colour with the count in that colour: as quiet as a pin, but it reads as many.
+				<span className="tabular mt-px flex h-3 min-w-3 origin-top items-center justify-center rounded-full bg-[color-mix(in_oklab,currentColor_16%,var(--card))] px-[3px] text-[9px] font-semibold leading-none shadow-[inset_0_0_0_1px_color-mix(in_oklab,currentColor_45%,transparent)] ring-[1.5px] ring-card transition-transform duration-150 group-hover/mark:scale-110 group-focus-visible/mark:scale-110">
+					{Math.max(1, landed.length)}
+				</span>
+			)}
+		</button>
+	)
+}
+
+/** The keys in a grouped mark's `data-marks`, back to their moments. */
+function momentsOf(keys: string, moments: Moment[]): Moment[] {
+	const wanted = new Set(keys.split(","))
+	return moments.filter((moment) => wanted.has(String(moment.key)))
+}
+
+/** The range to zoom to so a grouped mark splits: around its moments, at least MIN_ZOOM_MS. Null when that is no closer. */
+function groupZoom(members: Moment[], visible: number, span: number): TimeRange | null {
+	const first = members[0].ms
+	const last = members[members.length - 1].ms
+	const length = Math.max(MIN_ZOOM_MS, (last - first) * 3)
+	if (length > visible * 0.8) return null
+	const mid = (first + last) / 2
+	return fitRange(mid - length / 2, mid + length / 2, span)
+}
+
+/** A Critic mark's width, plus a hair: marks closer than this would touch, so they group. */
+const MARK_PX = 14
 
 /**
  * The bars and tool dots of one loop. Memoized on the loop: the fold replaces a loop object only when it changes,
@@ -576,6 +659,7 @@ function sameLaneProps(a: LaneProps, b: LaneProps): boolean {
 		a.pulse === b.pulse &&
 		a.hasDispatch === b.hasDispatch &&
 		a.flying === b.flying &&
+		a.gapMs === b.gapMs &&
 		a.onAgent === b.onAgent &&
 		x.agent === y.agent &&
 		x.now === y.now &&
@@ -894,7 +978,7 @@ function Flight({ flight, onDone }: { flight: FlightItem; onDone: (key: number) 
 // ---------------------------------------------------------------------------
 
 interface HoverTarget {
-	kind: "span" | "tool" | "moment" | "note"
+	kind: "span" | "tool" | "moment" | "marks" | "note"
 	ref: string
 	x: number
 	y: number
@@ -903,18 +987,32 @@ interface HoverTarget {
 function useHover(rootRef: React.RefObject<HTMLDivElement | null>) {
 	const [target, setTarget] = useState<HoverTarget | null>(null)
 	const onPointerOver = useCallback((event: React.PointerEvent) => {
-		const el = (event.target as HTMLElement).closest<HTMLElement>("[data-span],[data-tool],[data-moment],[data-note]")
+		const el = (event.target as HTMLElement).closest<HTMLElement>("[data-span],[data-tool],[data-moment],[data-marks],[data-note]")
 		if (!el || !rootRef.current?.contains(el)) return setTarget(null)
 		const box = el.getBoundingClientRect()
-		const kind = el.dataset.moment != null ? "moment" : el.dataset.note != null ? "note" : el.dataset.tool != null ? "tool" : "span"
-		const ref = el.dataset.moment ?? el.dataset.note ?? el.dataset.tool ?? el.dataset.span ?? ""
+		const { moment, marks, note, tool, span } = el.dataset
+		const kind = moment != null ? "moment" : marks != null ? "marks" : note != null ? "note" : tool != null ? "tool" : "span"
+		const ref = moment ?? marks ?? note ?? tool ?? span ?? ""
 		setTarget((prev) => (prev?.ref === ref && prev.kind === kind ? prev : { kind, ref, x: event.clientX, y: box.top }))
 	}, [rootRef])
 	const clear = useCallback(() => setTarget(null), [])
 	return { target, onPointerOver, clear }
 }
 
-function HoverInfo({ target, view, moments }: { target: HoverTarget; view: RunView; moments: Moment[] }) {
+function HoverInfo({
+	target,
+	view,
+	moments,
+	visible,
+	span,
+}: {
+	target: HoverTarget
+	view: RunView
+	moments: Moment[]
+	/** The ms in view and the run's span: whether a click on a grouped mark can zoom in. */
+	visible: number
+	span: number
+}) {
 	let title: React.ReactNode = null
 	let lines: React.ReactNode[] = []
 	if (target.kind === "note") {
@@ -924,6 +1022,21 @@ function HoverInfo({ target, view, moments }: { target: HoverTarget; view: RunVi
 		if (!moment) return null
 		title = `${actionLabel(moment)} by the Critic`
 		lines = [`${kindLabel(moment.kind)} ${moment.id}`, `${format.plural(moment.rejected.length, "claim")} rejected · click to see why`]
+	} else if (target.kind === "marks") {
+		const members = momentsOf(target.ref, moments)
+		if (!members.length) return null
+		const counts = new Map<string, number>()
+		for (const m of members) counts.set(actionLabel(m), (counts.get(actionLabel(m)) ?? 0) + 1)
+		const ids = [...new Set(members.map((m) => `${kindLabel(m.kind)} ${m.id}`))]
+		const first = members[0].ms
+		const last = members[members.length - 1].ms
+		title = `${format.plural(members.length, "rejection")} by the Critic`
+		lines = [
+			[...counts].map(([label, n]) => `${label} ${n}×`).join(" · "),
+			ids.length > 2 ? `${ids.slice(0, 2).join(", ")} +${ids.length - 2}` : ids.join(", "),
+			last - first >= 1000 ? `${format.clock(first)} – ${format.clock(last)}` : format.clock(first),
+			groupZoom(members, visible, span) ? "click to zoom in" : "click to see the first",
+		]
 	} else {
 		const [loopId, index] = target.ref.split(":")
 		const loop = view.loops.get(loopId)
