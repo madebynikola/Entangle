@@ -1,660 +1,80 @@
 {
   "chosen": [
-    "C009-CH1:R0349",
-    "C012-CH1:R0564",
-    "C018-CH1:R0948",
     "C005-CH1:R0905",
-    "C001-CH1:R1008"
+    "C002-CH1:R1006",
+    "C001-CH1:R1015",
+    "C003-CH1:R0365",
+    "C006-CH1:R0484",
+    "C004-CH1:R0364",
+    "C007-CH1:R0992"
   ],
   "pairs": [
     {
-      "id": "C012-CH1:R0564",
-      "challengeId": "C012-CH1",
-      "companyId": "C012",
-      "researcherId": "R0564",
-      "fit": 0.88,
-      "why": [
-        {
-          "text": "Sentinel Byte needs a pipeline that runs scheduled reconnaissance and detects changes between scans, and has a budget of roughly 3,000 to 5,000 euros for a working prototype (C012-CH1).",
-          "sourceIds": [
-            "C012-CH1"
-          ]
-        },
-        {
-          "text": "Árpád Nagy co-authored work on agent-based scanning pipelines for host discovery and topology mapping in heterogeneous enterprise environments (SYN-PUB-06542) and in IPv6 environments (SYN-PUB-06548), and on attack surface enumeration via an agent-based reconnaissance framework in Kubernetes environments (SYN-PUB-03012).",
-          "sourceIds": [
-            "SYN-PUB-06542",
-            "SYN-PUB-06548",
-            "SYN-PUB-03012"
-          ]
-        },
-        {
-          "text": "Árpád Nagy co-authored work on vulnerability data normalisation from multiple vulnerability data sources using ontology-driven methods and SPARQL integration for unified ingestion pipelines (SYN-PUB-03796).",
-          "sourceIds": [
-            "SYN-PUB-03796"
-          ]
-        },
-        {
-          "text": "Árpád Nagy co-authored work on temporal attack graph construction that tracks vulnerability disclosure timelines and patch deployment lag across network assets (SYN-PUB-06550), and on incremental attack graph updates after configuration changes (SYN-PUB-06546).",
-          "sourceIds": [
-            "SYN-PUB-06550",
-            "SYN-PUB-06546"
-          ]
-        },
-        {
-          "text": "Árpád Nagy co-authored work on LLM-assisted parsing of raw scanner output into structured JSON reports with suggested remediation priorities (SYN-PUB-06551).",
-          "sourceIds": [
-            "SYN-PUB-06551"
-          ]
-        },
-        {
-          "text": "Árpád Nagy is open to joint projects with NTP companies on vulnerability scanning pipeline development and consulting on penetration testing automation (R0564).",
-          "sourceIds": [
-            "R0564"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Together, Árpád Nagy and Sentinel Byte would design and prototype a scheduled reconnaissance and vulnerability enumeration pipeline — applying agent-based scanning for host discovery and topology mapping, normalising vulnerability data from multiple sources via ontology-driven methods, applying incremental graph updates to track changes across scans, and emitting structured JSON reports for manual testers — targeting a reduction of the initial engagement phase from four days to one (C012-CH1, SYN-PUB-06542, SYN-PUB-03796, SYN-PUB-06550, SYN-PUB-06551).",
-        "sourceIds": [
-          "C012-CH1",
-          "SYN-PUB-06542",
-          "SYN-PUB-03796",
-          "SYN-PUB-06550",
-          "SYN-PUB-06551"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The budget for tooling or a development collaboration is limited to roughly 3,000 to 5,000 euros for a working prototype (C012-CH1).",
-          "sourceIds": [
-            "C012-CH1"
-          ]
-        },
-        {
-          "text": "Nikola Kovačević can dedicate roughly two days per week to a collaborative development project (C012).",
-          "sourceIds": [
-            "C012"
-          ]
-        },
-        {
-          "text": "SYN-PUB-06550 covers temporal attack graph construction tracking vulnerability disclosure timelines and patch deployment lag; the record does not describe integration into a production scanning toolchain.",
-          "sourceIds": [
-            "SYN-PUB-06550"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C009-CH2:R0265",
-      "challengeId": "C009-CH2",
-      "companyId": "C009",
-      "researcherId": "R0265",
-      "fit": 0.96,
-      "why": [
-        {
-          "text": "LinguaBot has a measured WER baseline above 38% on Serbian call-centre audio and no in-house speech model training expertise, making external research expertise essential.",
-          "sourceIds": [
-            "C009-CH2"
-          ]
-        },
-        {
-          "text": "Kapor co-authored research on transfer learning from Wav2Vec 2.0 for low-resource ASR evaluated on Serbian customer-service telephone speech with varying data volumes and bandwidth conditions.",
-          "sourceIds": [
-            "SYN-PUB-03342"
-          ]
-        },
-        {
-          "text": "Kapor co-authored research on front-end augmentation strategies including multi-condition training and SpecAugment for noise-robust acoustic modelling in call-centre telephone speech recognition.",
-          "sourceIds": [
-            "SYN-PUB-03341"
-          ]
-        },
-        {
-          "text": "Kapor co-authored work on collection and annotation of telephone speech corpora for low-resource languages including protocol design and codec simulation, and took part in the TELSRP project coordinating data collection with call-centre partners in Serbia and Bosnia-Herzegovina.",
-          "sourceIds": [
-            "SYN-PUB-03340",
-            "SYN-PRJ-1818"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Emilija Kapor and LinguaBot would fine-tune a multilingual self-supervised model (Wav2Vec 2.0) on the 1,200-recording Serbian call-centre corpus, apply noise-robust front-end augmentation for telephony codec conditions, evaluate WER reduction against the 38% baseline, and design a data-collection protocol for any subsequent larger corpus — all within the proof-of-concept scope required by C009-CH2.",
-        "sourceIds": [
-          "C009-CH2",
-          "SYN-PUB-03342",
-          "SYN-PUB-03341",
-          "SYN-PUB-03340",
-          "SYN-PRJ-1818"
-        ]
-      },
-      "risks": [
-        {
-          "text": "SYN-PUB-03340 covers codec simulation and PSTN versus VoIP degradation in Serbian telephone speech corpora; SYN-PUB-03342 covers Wav2Vec 2.0 fine-tuning evaluated on Serbian customer-service telephone speech with varying bandwidth conditions.",
-          "sourceIds": [
-            "SYN-PUB-03340",
-            "SYN-PUB-03342"
-          ]
-        },
-        {
-          "text": "C009-CH2 states the timeline is firm because of the contract, with one telecom client having written a requirement into a contract renewal that goes up for review in early 2027 and three bank clients having requested voice by end of 2027.",
-          "sourceIds": [
-            "C009-CH2"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C009-CH2:R0131",
-      "challengeId": "C009-CH2",
-      "companyId": "C009",
-      "researcherId": "R0131",
-      "fit": 0.55,
-      "why": [
-        {
-          "text": "LinguaBot needs expertise in evaluating and fine-tuning multilingual pre-trained ASR models for a morphologically rich low-resource language under constrained data conditions.",
-          "sourceIds": [
-            "C009-CH2"
-          ]
-        },
-        {
-          "text": "Uzelac co-authored research on zero-shot multilingual speech recognition evaluation on morphologically rich low-resource languages using large pre-trained models such as Whisper.",
-          "sourceIds": [
-            "SYN-PUB-01737"
-          ]
-        },
-        {
-          "text": "Uzelac co-authored research on fine-tuning Wav2Vec 2.0 self-supervised representations for a mismatched-domain low-resource speech scenario (adult pre-training data, child test speakers).",
-          "sourceIds": [
-            "SYN-PUB-01734"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Željko Uzelac and LinguaBot would evaluate zero-shot and fine-tuned multilingual pre-trained ASR models (including Whisper and Wav2Vec 2.0) on the 1,200-recording Serbian call-centre corpus, measure WER reduction against the 38% baseline, and assess what data augmentation would be needed — within the proof-of-concept scope of C009-CH2.",
-        "sourceIds": [
-          "C009-CH2",
-          "SYN-PUB-01737",
-          "SYN-PUB-01731",
-          "SYN-PUB-01734"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The Wav2Vec 2.0 fine-tuning work covers adult-to-child speaker mismatch; the extent to which the approach transfers to telephony channel mismatch is not stated in the record.",
-          "sourceIds": [
-            "SYN-PUB-01731",
-            "SYN-PUB-01734"
-          ]
-        },
-        {
-          "text": "The timeline is firm: one telecom client's contract goes up for review in early 2027, and three bank clients have requested a voice channel by end of 2027.",
-          "sourceIds": [
-            "C009-CH2"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C009-CH1:R0349",
-      "challengeId": "C009-CH1",
-      "companyId": "C009",
-      "researcherId": "R0349",
+      "id": "C005-CH2:R0057",
+      "challengeId": "C005-CH2",
+      "companyId": "C005",
+      "researcherId": "R0057",
       "fit": 0.93,
       "why": [
         {
-          "text": "C009-CH1 identifies script mixing and morphological mismatch as the causes of more than half of missed queries in the Elasticsearch system.",
+          "text": "Kardiolink requires a lossless algorithm that exploits ECG-specific structure (quasi-periodicity, baseline wander, wearable electrode noise) to exceed a 3:1 compression ratio, which the current modified SZ algorithm cannot achieve.",
           "sourceIds": [
-            "C009-CH1"
+            "C005-CH2",
+            "C005"
           ]
         },
         {
-          "text": "The researcher has publications on script normalization and phoneme-based canonicalization for mixed Cyrillic-Latin Serbian text retrieval.",
+          "text": "Šarić co-authored work on exploitation of inter-beat redundancy in cardiac signals through differential pulse-code modulation applied to DCT coefficients with arithmetic coding of residuals, and on exploitation of intra-beat and inter-beat redundancy through a GRU-based entropy model.",
           "sourceIds": [
-            "SYN-PUB-04279",
-            "SYN-PUB-04278",
-            "SYN-PUB-04281"
+            "SYN-PUB-00757",
+            "SYN-PUB-00761"
           ]
         },
         {
-          "text": "The researcher co-authored work on query expansion through transliteration variants and morphological analysis for Serbian mixed-script search.",
+          "text": "Šarić co-authored work on beat-aligned signal framing via R-peak detection with rate-distortion tradeoffs between beat-synchronous and free-running frame strategies for ECG.",
           "sourceIds": [
-            "SYN-PUB-04280",
-            "SYN-PUB-00225"
+            "SYN-PUB-00760",
+            "SYN-PUB-00755"
           ]
         },
         {
-          "text": "The researcher co-authored work on a real-time streaming indexing architecture for incremental document processing with script normalization at scale.",
+          "text": "Šarić is open to contract research on codec design and evaluation for medical device manufacturers and consulting on compression standard compliance.",
           "sourceIds": [
-            "SYN-PUB-02734"
-          ]
-        },
-        {
-          "text": "The researcher collaborated with a legaltech startup on customizing search modules for Serbian court decisions under an 18-month contract research agreement.",
-          "sourceIds": [
-            "R0349"
+            "R0057"
           ]
         }
       ],
       "problem": {
-        "text": "Stefan Dragić and LinguaBot would adapt a script-normalizing, morphology-aware query expansion layer for the existing Elasticsearch pipeline—using phoneme-based canonicalization and transliteration-variant expansion drawn from work in SYN-PUB-04279, SYN-PUB-04278, SYN-PUB-04280—and pair it with real-time incremental indexing from SYN-PUB-02734, evaluated against the 85,000-pair annotated dataset from C009-CH1 to drive the miss rate below 5%.",
+        "text": "Using the approximately 140,000 labelled 30-minute ECG segments provided by Kardiolink under NDA, Lazar Šarić and Kardiolink would design and benchmark a lossless ECG codec that exploits inter-beat and intra-beat redundancy through beat-aligned framing, differential pulse-code modulation, and arithmetic entropy coding, with the solution required to be lossless.",
         "sourceIds": [
-          "C009-CH1",
-          "SYN-PUB-04279",
-          "SYN-PUB-04278",
-          "SYN-PUB-04280",
-          "SYN-PUB-02734"
+          "C005-CH2",
+          "C005",
+          "SYN-PUB-00757",
+          "SYN-PUB-00761",
+          "SYN-PUB-00760",
+          "SYN-PUB-00755"
         ]
       },
       "risks": [
         {
-          "text": "The publications cover general Serbian document collections; coverage of financial and telecom support terminology as found in C009-CH1 is not evidenced in the record.",
+          "text": "The published work covers ECG and PPG compression; coverage of wearable electrode noise and baseline wander artefacts specific to patch-type wearable devices is not documented in the cited records.",
           "sourceIds": [
-            "C009-CH1",
-            "SYN-PUB-04279",
-            "SYN-PUB-04278"
+            "SYN-PUB-00762",
+            "SYN-PUB-00760",
+            "SYN-PUB-00759",
+            "SYN-PUB-00758",
+            "SYN-PUB-00757",
+            "SYN-PUB-00756",
+            "SYN-PUB-00755",
+            "SYN-PUB-00754"
           ]
         },
         {
-          "text": "C009-CH1 states the budget for tooling or data work is around 8,000 EUR and that a testable solution is expected within six months.",
+          "text": "The design and evaluation of compression codecs for medical device applications covers real-time encoding latency and embedded implementation; whether cloud-side decompression throughput at Kardiolink's projected 4,000-device scale is covered is not documented in the cited records.",
           "sourceIds": [
-            "C009-CH1"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C009-CH1:R0925",
-      "challengeId": "C009-CH1",
-      "companyId": "C009",
-      "researcherId": "R0925",
-      "fit": 0.82,
-      "why": [
-        {
-          "text": "C009-CH1 states that morphological mismatch and script confusion account for more than half of the 18% miss rate in the current search system.",
-          "sourceIds": [
-            "C009-CH1"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on dense retrieval for customer-support question answering, including script normalization and bi-encoder fine-tuning.",
-          "sourceIds": [
-            "SYN-PUB-09805"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on cross-script semantic alignment for Latin and Cyrillic text using contrastive fine-tuning and transliteration.",
-          "sourceIds": [
-            "SYN-PUB-09806"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on retrieval-augmented generation adapted to morphologically rich languages, including lemma-expanded dense retrieval.",
-          "sourceIds": [
-            "SYN-PUB-09810"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Milan Petrović and LinguaBot would fine-tune a bi-encoder dense retrieval model with script normalization and lemma expansion—drawing on SYN-PUB-09805 and SYN-PUB-09806 and SYN-PUB-09810—evaluated on the 85,000-pair annotated dataset from C009-CH1, to complement or replace the existing BM25 Elasticsearch layer and reduce the miss rate below 5%.",
-        "sourceIds": [
-          "C009-CH1",
-          "SYN-PUB-09805",
-          "SYN-PUB-09806",
-          "SYN-PUB-09810"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The dense retrieval approach in the record covers retrieval tasks generally; integration with an existing Elasticsearch index without full re-indexing, as required by C009-CH1, is not evidenced.",
-          "sourceIds": [
-            "C009-CH1",
-            "SYN-PUB-09805"
-          ]
-        },
-        {
-          "text": "C009-CH1 states the budget for tooling or data work is modest—around 8,000 EUR—and the solution must be testable within six months.",
-          "sourceIds": [
-            "C009-CH1"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C009-CH1:R0288",
-      "challengeId": "C009-CH1",
-      "companyId": "C009",
-      "researcherId": "R0288",
-      "fit": 0.67,
-      "why": [
-        {
-          "text": "C009-CH1 identifies Serbian morphological forms and Latin-Cyrillic script mixing as the primary causes of search misses.",
-          "sourceIds": [
-            "C009-CH1"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on lemmatization of morphologically rich languages with dual-script handling, achieving 94.7% accuracy across Cyrillic and Latin scripts.",
-          "sourceIds": [
-            "SYN-PUB-03588"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on corpus-driven induction of morphological lexicons covering 187,000 lemmas with inflectional paradigm data.",
-          "sourceIds": [
-            "SYN-PUB-03592"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on spelling variant typology in Serbian distinguishing script-switching, norm-competing, and phonetic variants.",
-          "sourceIds": [
-            "SYN-PUB-03591"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Katarina Nikolić and LinguaBot would adapt the morphological lexicon from SYN-PUB-03592 and the dual-script lemmatization method from SYN-PUB-03588 to build a query normalization component for the Elasticsearch pipeline in C009-CH1, covering inflectional forms and script variants, validated against the 85,000-pair annotated dataset with support from the company's two in-house linguists.",
-        "sourceIds": [
-          "C009-CH1",
-          "SYN-PUB-03592",
-          "SYN-PUB-03588"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The researcher's record covers morphological lexicons and lemmatization; integration into a running Elasticsearch retrieval pipeline with incremental indexing as required by C009-CH1 is not evidenced.",
-          "sourceIds": [
-            "C009-CH1",
-            "SYN-PUB-03592",
-            "SYN-PUB-03588"
-          ]
-        },
-        {
-          "text": "The record covers general contemporary Serbian corpora; domain-specific terminology for banking and telecom support as described in C009-CH1 is not evidenced.",
-          "sourceIds": [
-            "C009-CH1",
-            "SYN-PRJ-0013"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C012-CH2:R0386",
-      "challengeId": "C012-CH2",
-      "companyId": "C012",
-      "researcherId": "R0386",
-      "fit": 0.78,
-      "why": [
-        {
-          "text": "Sentinel Byte suspects its informal sessions work but does not know how to formalise them into a repeatable programme with measurable retention (C012-CH2).",
-          "sourceIds": [
-            "C012-CH2"
-          ]
-        },
-        {
-          "text": "Ninkov's research covers instructional design principles including worked examples, spacing effects, microlearning, and cognitive load theory applied to procedural skill training (SYN-PUB-04689, SYN-PUB-04691, SYN-PUB-04686).",
-          "sourceIds": [
-            "SYN-PUB-04689",
-            "SYN-PUB-04691",
-            "SYN-PUB-04686"
-          ]
-        },
-        {
-          "text": "Ninkov's research covers situated learning and informal knowledge transfer in workplace contexts, including how peripheral participation and community of practice mechanisms support competency development (SYN-PUB-04687), and the balance between formal instruction and informal workplace learning in SME onboarding (SYN-PRJ-0050).",
-          "sourceIds": [
-            "SYN-PUB-04687",
-            "SYN-PRJ-0050"
-          ]
-        },
-        {
-          "text": "Ninkov's research covers onboarding programme design and assessment, including development of measurement instruments and evaluation of training delivery formats (SYN-PUB-04688, SYN-PUB-04690).",
-          "sourceIds": [
-            "SYN-PUB-04688",
-            "SYN-PUB-04690"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Together, Sentinel Byte and Ognjen Ninkov would translate the company's informal explanation sessions into a structured training programme using instructional design principles—spacing, worked examples, microlearning—and design a measurement study to test whether people retained the material, producing a pilot-ready set of modules for one municipality client by the end of this year (C012-CH2, SYN-PUB-04689, SYN-PUB-04691).",
-        "sourceIds": [
-          "C012-CH2",
-          "SYN-PUB-04689",
-          "SYN-PUB-04691"
-        ]
-      },
-      "risks": [
-        {
-          "text": "SYN-PUB-04688 covers onboarding and workplace training across organisations in Serbia and Croatia, and SYN-PRJ-0051 covers technology companies at NTP Novi Sad; none of the cited works cover training for public-sector municipal IT staff, which is Sentinel Byte's target learner group.",
-          "sourceIds": [
-            "SYN-PUB-04688",
-            "SYN-PRJ-0051"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C018-CH1:R0948",
-      "challengeId": "C018-CH1",
-      "companyId": "C018",
-      "researcherId": "R0948",
-      "fit": 0.95,
-      "why": [
-        {
-          "text": "DriveLogic needs to automate the mapping from System Extract to ARXML configuration files using the DaVinci API, reducing a three-week manual task to under one working day.",
-          "sourceIds": [
-            "C018-CH1"
-          ]
-        },
-        {
-          "text": "Vidaković co-authored work on AUTOSAR model transformations using ATL and QVT-O, including SWC flattening, port interface normalisation, and ECU topology migration.",
-          "sourceIds": [
-            "SYN-PUB-09975",
-            "SYN-PUB-09973"
-          ]
-        },
-        {
-          "text": "Vidaković co-authored work on template-based code generation for AUTOSAR artefacts: Xpand-based RTE stub generation, Acceleo-based Adaptive Platform service instance manifests, and a DSL using Xtext and Xtend for communication matrix configuration.",
-          "sourceIds": [
-            "SYN-PUB-09974",
-            "SYN-PUB-09977",
-            "SYN-PUB-03795"
-          ]
-        },
-        {
-          "text": "Vidaković co-authored work on ARXML authoring workflows including consistency checking via OCL constraints, traceability between requirements and ARXML artefacts, and ARXML-aware diffing and merging.",
-          "sourceIds": [
-            "SYN-PUB-06834",
-            "SYN-PUB-05926",
-            "SYN-PUB-09976"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Vidaković and DriveLogic would design and implement a transformation chain that reads a System Extract, applies AUTOSAR model-transformation rules, and generates reviewable ARXML SWC configuration files at the scale required by C018-CH1, drawing on template-based code generation methods from SYN-PUB-09974, SYN-PUB-09977, SYN-PUB-09979, and ARXML workflow tooling from SYN-PUB-06834, SYN-PUB-09976.",
-        "sourceIds": [
-          "C018-CH1",
-          "SYN-PUB-09974",
-          "SYN-PUB-09977",
-          "SYN-PUB-09979",
-          "SYN-PUB-06834",
-          "SYN-PUB-09976"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The published record covers transformation chains for SWC descriptors, RTE stubs, and Adaptive Platform service skeletons; coverage of the specific System Extract format used by DriveLogic's customer is not documented in these records.",
-          "sourceIds": [
-            "SYN-PUB-09973",
-            "SYN-PUB-09974",
-            "SYN-PUB-09979"
-          ]
-        },
-        {
-          "text": "The published record covers ATL, QVT-O, Xpand, and Acceleo as transformation engines; integration with the DaVinci Configurator API specifically is not documented in these records.",
-          "sourceIds": [
-            "SYN-PUB-09975",
-            "SYN-PUB-09974",
-            "SYN-PUB-09977",
-            "SYN-PUB-09979"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C018-CH2:R0919",
-      "challengeId": "C018-CH2",
-      "companyId": "C018",
-      "researcherId": "R0919",
-      "fit": 0.93,
-      "why": [
-        {
-          "text": "DriveLogic has full access to ARXML descriptions, COM configuration, and CANoe environment, and three of four delivered projects came back with CAN communication faults at component boundaries.",
-          "sourceIds": [
-            "C018-CH2"
-          ]
-        },
-        {
-          "text": "Lačoková co-authored work on specification and verification of interface contracts using assume-guarantee reasoning, extended with real-time guards for multi-supplier CAN node integration.",
-          "sourceIds": [
-            "SYN-PUB-09744"
-          ]
-        },
-        {
-          "text": "Lačoková co-authored work on automated synthesis of runtime contracts from AUTOSAR system descriptions in ARXML format.",
-          "sourceIds": [
-            "SYN-PUB-03011"
-          ]
-        },
-        {
-          "text": "Lačoková co-authored work on benchmark suites and covering arrays for CAN-based configurations, and separately co-authored work on cross-layer fault detection in multi-supplier embedded stacks through taxonomy-based analysis of interaction faults.",
-          "sourceIds": [
-            "SYN-PUB-09747",
-            "SYN-PUB-09749"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Using ARXML descriptions and COM configuration from DriveLogic's CAN stack, Lačoková and DriveLogic would develop a method that synthesises test scenarios targeting interface assumptions and interaction contracts between multi-supplier SWCs, validated against the known boundary faults in CANoe, drawing on assume-guarantee reasoning for CAN node integration and automated contract synthesis from AUTOSAR system descriptions.",
-        "sourceIds": [
-          "C018-CH2",
-          "SYN-PUB-09744",
-          "SYN-PUB-03011"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The first-phase budget does not exceed €40,000.",
-          "sourceIds": [
-            "C018-CH2"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C018-CH2:R0233",
-      "challengeId": "C018-CH2",
-      "companyId": "C018",
-      "researcherId": "R0233",
-      "fit": 0.56,
-      "why": [
-        {
-          "text": "DriveLogic needs a method that generates test scenarios from component descriptions to target interaction faults that unit tests do not catch.",
-          "sourceIds": [
-            "C018-CH2",
-            "C018/blog/2024-04-18/What we learned from four integration faults in twelve months"
-          ]
-        },
-        {
-          "text": "Stojanović co-authored work on model-based test generation for embedded firmware using extended finite automata and formal specifications.",
-          "sourceIds": [
-            "SYN-PUB-02953",
-            "SYN-PUB-02949"
-          ]
-        },
-        {
-          "text": "Stojanović co-authored work on mutation testing frameworks including specification-level mutation operators for embedded control software.",
-          "sourceIds": [
-            "SYN-PUB-02944",
-            "SYN-PUB-02953"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Using DriveLogic's ARXML descriptions and the four documented boundary fault cases as input, Stojanović and DriveLogic would investigate whether model-based test generation from formal specifications and specification-level mutation operators can be adapted to synthesise integration test scenarios targeting SWC interface contracts in the CAN communication stack.",
-        "sourceIds": [
-          "C018-CH2",
-          "SYN-PUB-02953",
-          "SYN-PUB-02949",
-          "SYN-PUB-02944"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The publications cover model-based test generation for embedded firmware broadly; none of the cited records address ARXML parsing, CAN interface-contract analysis, or multi-supplier SWC boundary assumptions specifically.",
-          "sourceIds": [
-            "SYN-PUB-02953",
-            "SYN-PUB-02949",
-            "SYN-PUB-02944"
-          ]
-        },
-        {
-          "text": "Stojanović's profile states a preference for collaborations where research access to real firmware codebases or development histories is possible.",
-          "sourceIds": [
-            "R0233"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "C018-CH2:R0193",
-      "challengeId": "C018-CH2",
-      "companyId": "C018",
-      "researcherId": "R0193",
-      "fit": 0.51,
-      "why": [
-        {
-          "text": "DriveLogic's integration faults occur in the CAN communication stack between SWCs from different suppliers, and the company has a CANoe-based network simulation environment available.",
-          "sourceIds": [
-            "C018-CH2",
-            "C018"
-          ]
-        },
-        {
-          "text": "Matić co-authored work on hardware-in-the-loop testing of automotive ECUs including simulation of CAN and LIN bus interfaces.",
-          "sourceIds": [
-            "SYN-PUB-02483"
-          ]
-        },
-        {
-          "text": "Matić co-authored work on model-based testing methodologies for automotive software including automatic generation of ISO 26262-compliant test cases and coverage criteria evaluation.",
-          "sourceIds": [
-            "SYN-PUB-02482",
-            "SYN-PUB-02486"
-          ]
-        }
-      ],
-      "problem": {
-        "text": "Using DriveLogic's CAN bus assets and the three CAN communication faults found across four delivered projects, Matić and DriveLogic would examine whether automotive model-based test generation and HIL simulation of CAN interfaces can be extended to expose interaction faults at SWC boundaries under AUTOSAR COM configuration, within the CANoe environment.",
-        "sourceIds": [
-          "C018-CH2",
-          "SYN-PUB-02482",
-          "SYN-PUB-02483",
-          "SYN-PUB-02486"
-        ]
-      },
-      "risks": [
-        {
-          "text": "The publications cover model-based test generation from Simulink models and HIL bench design; none of the cited records address systematic generation of test scenarios from ARXML interface-contract or assume-guarantee analysis of multi-supplier SWC boundaries.",
-          "sourceIds": [
-            "SYN-PUB-02482",
-            "SYN-PUB-02483",
-            "SYN-PUB-02486"
-          ]
-        },
-        {
-          "text": "DriveLogic states it would not start something that costs more than €40,000 in the first phase.",
-          "sourceIds": [
-            "C018-CH2"
+            "SYN-PUB-00755",
+            "SYN-PUB-00754",
+            "SYN-PRJ-0213"
           ]
         }
       ]
@@ -664,55 +84,47 @@
       "challengeId": "C005-CH1",
       "companyId": "C005",
       "researcherId": "R0905",
-      "fit": 0.78,
+      "fit": 0.85,
       "why": [
         {
-          "text": "Kardiolink states that firmware-level BLE tuning has reached diminishing returns and is seeking system-level power headroom beyond the software stack (C005-CH1).",
+          "text": "The challenge identifies radio duty cycling, ADC configuration, and memory access patterns as areas where remaining headroom toward the 35% active-current reduction may be found.",
           "sourceIds": [
             "C005-CH1"
           ]
         },
         {
-          "text": "The researcher co-authored work on wake-up receiver circuits for asynchronous event-driven body-area networks operating at 4.2 µW from a 1.0 V supply (SYN-PUB-07802).",
-          "sourceIds": [
-            "SYN-PUB-07802"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on deadline-aware MAC scheduling for implantable sensor networks using beacon-enabled IEEE 802.15.4 superframe structures, achieving below 0.3% deadline miss rates at 80% utilisation (SYN-PUB-09632).",
+          "text": "Mijatović co-authored work on duty-cycled MAC scheduling with deadline-aware slot allocation for implantable sensor nodes, reducing radio duty cycle and extending node lifetime in multi-sensor scenarios.",
           "sourceIds": [
             "SYN-PUB-09632"
           ]
         },
         {
-          "text": "The researcher co-authored work on ultra-low-power instrumentation amplifiers for multi-modal biopotential acquisition at sub-1 µA average current in ECG and EEG modes (SYN-PUB-09637, SYN-PUB-09629).",
+          "text": "Mijatović co-authored work on a reconfigurable instrumentation amplifier for biopotential acquisition in 65 nm CMOS, and co-authored separate work on an ECG front-end OTA in 180 nm CMOS.",
           "sourceIds": [
             "SYN-PUB-09637",
             "SYN-PUB-09629"
           ]
+        },
+        {
+          "text": "Mijatović worked part-time as a hardware design consultant for a Novi Sad-based startup on Bluetooth-connected pulse oximetry accessories, contributing to analogue signal chain and firmware.",
+          "sourceIds": [
+            "R0905"
+          ]
         }
       ],
       "problem": {
-        "text": "Together they would profile the radio and analogue front-end power layers of Kardiolink's ECG patch — reviewing event-driven wake-up receiver techniques and MAC-layer duty-cycling methods from the researcher's record against the device's radio power budget, and reviewing the biopotential AFE current budget against the sub-1 µA designs in the researcher's record — using the Keysight N6705C to measure current profiles before and after each intervention, targeting the ≥35% active-current reduction at 250 Hz (C005-CH1, SYN-PUB-07802, SYN-PUB-09632, SYN-PUB-09637).",
+        "text": "Filip Mijatović and Kardiolink would jointly profile and redesign the radio duty-cycling schedule of the KL-Patch 72 to cut active current draw by ≥35%, using the company's Keysight N6705C current profiles and Mijatović's duty-cycled MAC scheduling methods, while holding ECG sampling at ≥250 Hz.",
         "sourceIds": [
           "C005-CH1",
-          "SYN-PUB-07802",
-          "SYN-PUB-09632",
-          "SYN-PUB-09637"
+          "SYN-PUB-09632"
         ]
       },
       "risks": [
         {
-          "text": "The researcher's radio scheduling work covers IEEE 802.15.4 and 868 MHz wake-up receivers; the records do not cover BLE 5.x or the nRF52840 specifically (SYN-PUB-07802, SYN-PUB-09632).",
+          "text": "The duty-cycling work covers IEEE 802.15.4 MAC scheduling; the challenge platform is BLE on nRF52840.",
           "sourceIds": [
-            "SYN-PUB-07802",
-            "SYN-PUB-09632"
-          ]
-        },
-        {
-          "text": "The researcher's AFE work targets custom IC design in 65 nm CMOS (SYN-PUB-09637).",
-          "sourceIds": [
-            "SYN-PUB-09637"
+            "SYN-PUB-09632",
+            "C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
           ]
         }
       ]
@@ -722,37 +134,31 @@
       "challengeId": "C005-CH1",
       "companyId": "C005",
       "researcherId": "R0206",
-      "fit": 0.6,
+      "fit": 0.72,
       "why": [
         {
-          "text": "Kardiolink has exhausted firmware-only changes and requires investigation of system-level power dynamics, including ADC/DMA modes and radio transfer overhead (C005-CH1).",
+          "text": "The challenge asks for a way to cut active current draw by at least 35% across radio duty cycling, ADC configuration, and memory access patterns on a BLE device running on a 54 mAh lithium cell, while holding ECG sampling rate at ≥250 Hz.",
           "sourceIds": [
             "C005-CH1"
           ]
         },
         {
-          "text": "The researcher co-authored work on energy budget analysis and design for coin-cell-powered sensor nodes, balancing sampling rate, compression, and inference duty cycles to extend battery life (SYN-PUB-01739, SYN-PRJ-0427).",
+          "text": "Knežević co-authored a measurement-based assessment of sampling, compression, and inference energy trade-offs on coin-cell-powered platforms with BLE connectivity.",
           "sourceIds": [
-            "SYN-PUB-01739",
-            "SYN-PRJ-0427"
+            "SYN-PUB-01739"
           ]
         },
         {
-          "text": "The researcher co-authored work on adaptive and low-power vibration acquisition strategies on ARM Cortex-M microcontrollers, including triggered burst acquisition using comparator thresholds and demand-driven sampling (SYN-PUB-02637, SYN-PAT-044).",
+          "text": "Knežević co-authored work on duty-cycle optimization for battery-powered sensor nodes, including triggered burst sampling and spectral stationarity-based frame boundary detection.",
           "sourceIds": [
             "SYN-PUB-02637",
+            "SYN-PUB-02640",
             "SYN-PAT-044"
-          ]
-        },
-        {
-          "text": "The researcher co-authored work on over-the-air model update protocols for embedded nodes using delta-transfer techniques and CRC integrity checking over BLE connections (SYN-PUB-02642).",
-          "sourceIds": [
-            "SYN-PUB-02642"
           ]
         }
       ],
       "problem": {
-        "text": "Together they would apply energy budget analysis and adaptive ARM Cortex-M acquisition strategies — including triggered burst acquisition and compression to reduce data volume — to the KL-Patch 72 stack, measuring current savings with the Keysight N6705C power analyser and verifying that ECG sampling remains at 250 Hz or above throughout (C005-CH1, SYN-PUB-01739, SYN-PUB-02637, SYN-PAT-044).",
+        "text": "Vesna Knežević and Kardiolink would use measurement-based energy budget analysis and duty-cycle optimization methods to identify and reduce the dominant current consumers in the KL-Patch 72's sampling, radio, and memory subsystems, targeting the ≥35% reduction constraint while holding ECG rate at ≥250 Hz.",
         "sourceIds": [
           "C005-CH1",
           "SYN-PUB-01739",
@@ -762,145 +168,204 @@
       },
       "risks": [
         {
-          "text": "The researcher's energy budget work covers a coin-cell-powered node built on an nRF52833 SoC, and the acquisition work covers an STM32F407 (Cortex-M4) target; neither record covers the nRF52840 or FreeRTOS specifically (SYN-PUB-01739, SYN-PUB-02637).",
+          "text": "The energy budget and duty-cycle work covers vibration sensor nodes for industrial condition monitoring; the records do not cover continuous biopotential (ECG) signal acquisition or BLE medical device constraints.",
           "sourceIds": [
             "SYN-PUB-01739",
-            "SYN-PUB-02637"
-          ]
-        },
-        {
-          "text": "Compression techniques in the researcher's record cover vibration signals from rotating machinery and spindle motors; the cited records do not cover ECG signals or clinical signal quality (SYN-PUB-02636, SYN-PUB-02638).",
-          "sourceIds": [
-            "SYN-PUB-02636",
-            "SYN-PUB-02638"
+            "SYN-PUB-02637",
+            "C005-CH1"
           ]
         }
       ]
     },
     {
-      "id": "C005-CH2:R0057",
-      "challengeId": "C005-CH2",
+      "id": "C005-CH1:R0779",
+      "challengeId": "C005-CH1",
       "companyId": "C005",
-      "researcherId": "R0057",
-      "fit": 0.92,
+      "researcherId": "R0779",
+      "fit": 0.55,
       "why": [
         {
-          "text": "Kardiolink requires a lossless algorithm exploiting ECG-specific properties such as quasi-periodicity and baseline wander to improve on its current 3:1 ratio; switching to lossy compression would require a new clinical validation study and amendments to the technical file (C005-CH2).",
+          "text": "The challenge asks to cut active current draw by at least 35% while keeping ECG sampling at 250 Hz or above, and the job posting lists radio scheduler configuration and ADC sampling modes on a FreeRTOS/nRF52840 platform as the relevant technical levers.",
           "sourceIds": [
-            "C005-CH2"
+            "C005-CH1",
+            "C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
           ]
         },
         {
-          "text": "The researcher co-authored publications on near-lossless compression of ECG signals using discrete cosine transforms and beat-aligned framing, and on DPCM-based ECG coding evaluated with PRD metrics (SYN-PUB-00755, SYN-PUB-00757, SYN-PUB-00760, SYN-PUB-00762).",
+          "text": "Ostojić co-authored work applying a Lyapunov drift-plus-penalty framework to derive an online task-offloading policy under battery constraints and latency constraints without requiring future channel state information.",
           "sourceIds": [
-            "SYN-PUB-00755",
-            "SYN-PUB-00757",
-            "SYN-PUB-00760",
-            "SYN-PUB-00762"
+            "SYN-PUB-00708"
           ]
         },
         {
-          "text": "The researcher co-authored publications on learned entropy models for ECG compression using small recurrent neural networks to capture intra-beat spectral structure and inter-beat temporal redundancy (SYN-PUB-00761, SYN-PUB-00763).",
+          "text": "Ostojić has embedded software development experience implementing MAC-layer duty-cycling firmware for IEEE 802.15.4 nodes.",
           "sourceIds": [
-            "SYN-PUB-00761",
-            "SYN-PUB-00763"
-          ]
-        },
-        {
-          "text": "The researcher leads a PROMIS-funded project on physiological signal compression for low-power microcontrollers with clinical validation in collaboration with Clinical Centre of Vojvodina, covering practical codec design and evaluation for medical devices (SYN-PRJ-0213, SYN-PUB-00755).",
-          "sourceIds": [
-            "SYN-PRJ-0213",
-            "SYN-PUB-00755"
+            "R0779"
           ]
         }
       ],
       "problem": {
-        "text": "Lazar Šarić and Kardiolink would develop a lossless ECG compression algorithm — applying beat-synchronous transform coding, DPCM-based coding, and learned entropy models to ECG beat structure — benchmarked against the current 3:1 ratio using Kardiolink's labelled field dataset, targeting a codec for the existing cloud pipeline while satisfying the challenge's lossless requirement (C005-CH2, SYN-PUB-00755, SYN-PUB-00757, SYN-PUB-00760, SYN-PUB-00762, SYN-PUB-00761, SYN-PUB-00763, SYN-PRJ-0213).",
+        "text": "Ivona Ostojić and Kardiolink would apply online scheduling and energy-constrained task management methods to the FreeRTOS task graph of the KL-Patch 72, seeking a radio and computation schedule that meets the ≥35% current reduction target without dropping ECG sampling below 250 Hz.",
         "sourceIds": [
-          "C005-CH2",
-          "SYN-PUB-00755",
-          "SYN-PUB-00757",
-          "SYN-PUB-00760",
-          "SYN-PUB-00762",
-          "SYN-PUB-00761",
-          "SYN-PUB-00763",
-          "SYN-PRJ-0213"
+          "C005-CH1",
+          "SYN-PUB-00708",
+          "C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
         ]
       },
       "risks": [
         {
-          "text": "SYN-PRJ-0213 covers wearable and implantable patient monitoring devices; the Kardiolink challenge specifically describes wearable patch electrode noise characteristics in ambulatory use as a property to exploit for compression, and whether the compression work in SYN-PRJ-0213 targets that specific noise regime is not stated in the cited record (SYN-PRJ-0213, C005-CH2).",
+          "text": "Ostojić's profile states limited capacity to lead new project coordination roles before 2027 due to supervision of two Ph.D. students.",
           "sourceIds": [
-            "SYN-PRJ-0213",
-            "C005-CH2"
+            "R0779"
           ]
         },
         {
-          "text": "The dictionary-learning and sparse-representation publications cover physiological signals broadly; their compression ratios under a strict lossless constraint (rather than near-lossless or lossy) are not stated in the cited records (SYN-PUB-00758, SYN-PUB-00759).",
+          "text": "The MAC-layer duty-cycling experience covers IEEE 802.15.4 nodes; the records do not cover BLE connection-event scheduling on nRF52840.",
           "sourceIds": [
-            "SYN-PUB-00758",
-            "SYN-PUB-00759"
+            "R0779",
+            "C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
           ]
         }
       ]
     },
     {
-      "id": "C001-CH1:R1008",
-      "challengeId": "C001-CH1",
-      "companyId": "C001",
-      "researcherId": "R1008",
-      "fit": 0.96,
+      "id": "C002-CH1:R1006",
+      "challengeId": "C002-CH1",
+      "companyId": "C002",
+      "researcherId": "R1006",
+      "fit": 0.81,
       "why": [
         {
-          "text": "ArmaturaSec has terabytes of unlabelled normal Modbus TCP and BACnet/IP traffic and zero confirmed attack examples, making supervised classifiers unusable and requiring a purely unsupervised baseline approach.",
+          "text": "The company needs a method to flag students guessing rather than learning from two school years of clickstream logs (C002-CH1).",
           "sourceIds": [
-            "C001-CH1",
-            "C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+            "C002-CH1"
           ]
         },
         {
-          "text": "Krisztina Kiss co-authored work on unsupervised anomaly detection in ICS network traffic using one-class classification and statistical baseline modelling on Modbus/TCP, and one-class SVM on DNP3.",
+          "text": "Danilo Mitrović co-authored work on longitudinal modelling of learning management system clickstream sequences using latent variable models including hidden Markov models and latent profile analysis (SYN-PUB-10456, SYN-PUB-10459).",
           "sourceIds": [
-            "SYN-PUB-10472",
-            "SYN-PUB-10473"
+            "SYN-PUB-10456",
+            "SYN-PUB-10459"
           ]
         },
         {
-          "text": "Krisztina Kiss co-authored work on threshold calibration for anomaly detectors under imbalanced operating conditions using beta mixture models to estimate contamination fraction from unlabelled operational data.",
+          "text": "Danilo Mitrović co-authored sequence clustering and temporal pattern analysis of engagement trajectories using dynamic time warping and k-medoids clustering on clickstream data (SYN-PUB-10455).",
           "sourceIds": [
-            "SYN-PUB-10480"
+            "SYN-PUB-10455"
           ]
         },
         {
-          "text": "Krisztina Kiss co-authored work on lightweight model compression through quantisation and pruning for deploying traffic-based anomaly detectors on resource-constrained embedded gateways with 256 MB RAM.",
+          "text": "Danilo Mitrović completed a four-month consultancy with an e-learning content provider in Novi Sad, advising on learner progress scoring systems for a digital platform (R1006).",
           "sourceIds": [
-            "SYN-PUB-10239"
+            "R1006"
           ]
         }
       ],
       "problem": {
-        "text": "Using ArmaturaSec's Modbus TCP and BACnet traffic archives (C001-CH1), apply one-class classification and statistical baseline modelling (SYN-PUB-10472, SYN-PUB-10473) with threshold calibration from unlabelled data (SYN-PUB-10480) and quantisation-based compression for on-device deployment (SYN-PUB-10239) to produce a site-adaptive anomaly detector.",
+        "text": "Using the company's clickstream logs (C002-CH1), Danilo Mitrović would apply latent variable models and sequence clustering on the attempt-count and time-on-question trajectories (SYN-PUB-10456, SYN-PUB-10455, SYN-PUB-10459) to identify behavioural profiles consistent with random clicking, and would build a prediction model (SYN-PUB-10454, SYN-PUB-10457) that flags at-risk students in a form teachers can act on before the 2025–26 school year.",
         "sourceIds": [
-          "C001-CH1",
-          "SYN-PUB-10472",
-          "SYN-PUB-10473",
-          "SYN-PUB-10480",
-          "SYN-PUB-10239"
+          "C002-CH1",
+          "SYN-PUB-10456",
+          "SYN-PUB-10455",
+          "SYN-PUB-10459",
+          "SYN-PUB-10454",
+          "SYN-PUB-10457"
         ]
       },
       "risks": [
         {
-          "text": "The records on long-term traffic characterisation and baseline construction cover discrete manufacturing, water utility, and district heating sites (SYN-PUB-10474) and substation automation networks (SYN-PUB-10472); coverage of BACnet/IP-specific baseline behaviour at building-automation sites is not documented in those records.",
+          "text": "The records do not include work on guessing or disengaged-responding detection specifically; the clustering and prediction work covers dropout and performance, which is a related but distinct outcome from random-click detection.",
           "sourceIds": [
-            "SYN-PUB-10474",
-            "SYN-PUB-10472"
+            "SYN-PUB-10454",
+            "SYN-PUB-10455",
+            "SYN-PUB-10457"
           ]
         },
         {
-          "text": "C001-CH1 requires a method that can be explained to a plant manager in plain language; the records on one-class classification and score aggregation do not document plain-language explanation methods.",
+          "text": "The output must be explainable and actionable for classroom teachers without statistical training (C002/job/2024-06-01); the researcher's prediction work uses gradient-boosted trees and LSTM neural networks (SYN-PUB-10457, SYN-PUB-10458).",
           "sourceIds": [
-            "C001-CH1",
-            "SYN-PUB-10482"
+            "C002/job/2024-06-01/Freelance Data Analyst — Learning Outcomes Project (Short-Term Contract)",
+            "SYN-PUB-10457",
+            "SYN-PUB-10458"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C002-CH2:R0207",
+      "challengeId": "C002-CH2",
+      "companyId": "C002",
+      "researcherId": "R0207",
+      "fit": 0.82,
+      "why": [
+        {
+          "text": "The company needs evidence-based recommendations for font, contrast, and text-presentation speed to apply across their game catalogue, and lacks expertise to design and conduct classroom experiments with children without external methodological and ethical guidance (C002-CH2).",
+          "sourceIds": [
+            "C002-CH2"
+          ]
+        },
+        {
+          "text": "Fejsa's expertise covers accessible instructional material design for students with specific learning differences, including text simplification and colour contrast optimisation (SYN-PUB-02653, SYN-PUB-02651, SYN-PUB-02650, SYN-PUB-02645).",
+          "sourceIds": [
+            "SYN-PUB-02653",
+            "SYN-PUB-02651",
+            "SYN-PUB-02650",
+            "SYN-PUB-02645"
+          ]
+        },
+        {
+          "text": "Fejsa co-authored a randomised controlled trial comparing educational interventions on student learning outcomes (SYN-PUB-02657) and a mixed-methods study on UDL-aligned digital environments for students with specific learning differences (SYN-PUB-02655).",
+          "sourceIds": [
+            "SYN-PUB-02657",
+            "SYN-PUB-02655"
+          ]
+        },
+        {
+          "text": "Fejsa co-authored work using eye-tracking analysis of student interaction with digital texts to inform accessible design (SYN-PUB-02649).",
+          "sourceIds": [
+            "SYN-PUB-02649"
+          ]
+        },
+        {
+          "text": "Fejsa took part in teacher professional development for inclusive digital pedagogy validated through two-year collaborative programmes across Vojvodina schools (SYN-PUB-02656, SYN-PRJ-0078).",
+          "sourceIds": [
+            "SYN-PUB-02656",
+            "SYN-PRJ-0078"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together, Danijela Fejsa and Zrenjanin Game Works would design and run a classroom trial in Vojvodina schools to measure how font choice, colour contrast, and text-presentation speed affect reading outcomes for primary-school children with dyslexia or reading difficulties, using mixed-methods or randomised controlled designs (SYN-PUB-02657, SYN-PUB-02655) and eye-tracking of student interaction with digital text (SYN-PUB-02649), producing evidence-backed recommendations applicable to the company's bilingual HTML5 game catalogue in one update cycle (C002-CH2, C002).",
+        "sourceIds": [
+          "C002-CH2",
+          "C002",
+          "SYN-PUB-02657",
+          "SYN-PUB-02655",
+          "SYN-PUB-02649"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published records cover accessible design and intervention evaluation broadly; no record specifically covers font readability trials for children with dyslexia as the primary research question.",
+          "sourceIds": [
+            "SYN-PUB-02653",
+            "SYN-PUB-02651",
+            "SYN-PUB-02657"
+          ]
+        },
+        {
+          "text": "The records cover digital learning environments and instructional materials; none document prior work in game-based or entertainment-software contexts, which may require methodological adaptation.",
+          "sourceIds": [
+            "SYN-PUB-02652",
+            "SYN-PUB-02650",
+            "SYN-PRJ-0078"
+          ]
+        },
+        {
+          "text": "The company's games are available in Serbian and Hungarian (C002, C002/website/2024-02-10/What We Do — Zrenjanin Game Works); the records do not document dyslexia or readability work specific to Hungarian-language text.",
+          "sourceIds": [
+            "C002",
+            "C002/website/2024-02-10/What We Do — Zrenjanin Game Works"
           ]
         }
       ]
@@ -910,165 +375,1543 @@
       "challengeId": "C001-CH1",
       "companyId": "C001",
       "researcherId": "R1015",
-      "fit": 0.77,
+      "fit": 0.72,
       "why": [
         {
-          "text": "ArmaturaSec needs a method that works with no labelled attack examples and that can run inference on-device on their existing hardware.",
+          "text": "ArmaturaSec requires an unsupervised method that learns what normal looks like on a specific site without relying on labelled attack examples or a pre-trained model.",
           "sourceIds": [
-            "C001-CH1"
+            "C001-CH1",
+            "C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
           ]
         },
         {
-          "text": "Vuk Đukić co-authored work on unsupervised anomaly detection in industrial control systems using autoencoders trained on benign Modbus traffic.",
+          "text": "The researcher co-authored work on unsupervised anomaly detection on industrial control system protocols using autoencoder-based neural networks.",
           "sourceIds": [
             "SYN-PUB-10523"
           ]
         },
         {
-          "text": "Vuk Đukić co-authored work on lightweight intrusion detection models with quantisation, pruning, and knowledge distillation to reduce memory footprint on resource-constrained devices.",
+          "text": "The researcher co-authored work on intrusion detection on resource-constrained IoT devices using compressed recurrent neural network models.",
           "sourceIds": [
             "SYN-PUB-10531"
           ]
         },
         {
-          "text": "Vuk Đukić led the academic partner contribution to SECURE-ICS, a project developing security monitoring for factory automation systems covering Modbus, PROFINET, and EtherNet/IP protocol stacks.",
+          "text": "The researcher led the academic partner contribution to SECURE-ICS, an Innovation Fund project developing security monitoring for factory automation systems on Modbus, PROFINET, and EtherNet/IP protocols.",
           "sourceIds": [
             "SYN-PRJ-0017"
           ]
         }
       ],
       "problem": {
-        "text": "Using ArmaturaSec's unlabelled Modbus TCP traffic archives (C001-CH1), design and compress an autoencoder-based anomaly detector trained on benign traffic only (SYN-PUB-10523, SYN-PUB-10531) deployable on ArmaturaSec's on-device hardware without degrading packet forwarding latency.",
+        "text": "Using ArmaturaSec's unlabelled Modbus and BACnet traffic archives (C001-CH1, C001), Vuk Đukić would apply autoencoder-based unsupervised anomaly detection from (SYN-PUB-10523) and model compression techniques for resource-constrained devices from (SYN-PUB-10531) to build a per-site normal baseline and on-device detector for the ProtoSense module.",
         "sourceIds": [
           "C001-CH1",
+          "C001",
           "SYN-PUB-10523",
           "SYN-PUB-10531"
         ]
       },
       "risks": [
         {
-          "text": "The records on unsupervised autoencoder detection cover Modbus environments (SYN-PUB-10523); BACnet/IP-specific detection is not documented in those records.",
+          "text": "The published record covers autoencoder-based detection on ICS protocols (SYN-PUB-10523) but does not evidence threshold calibration or sliding-window recalibration on unlabelled operational data specifically.",
           "sourceIds": [
-            "SYN-PUB-10523"
+            "SYN-PUB-10523",
+            "C001-CH1"
           ]
         },
         {
-          "text": "ArmaturaSec requires that the solution can be explained to a plant manager in plain language.",
+          "text": "SYN-PUB-10531 covers intrusion detection on IoT devices using compressed RNNs; C001 states that inference must run on-device without affecting packet forwarding latency.",
+          "sourceIds": [
+            "SYN-PUB-10531",
+            "C001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C001-CH1:R0416",
+      "challengeId": "C001-CH1",
+      "companyId": "C001",
+      "researcherId": "R0416",
+      "fit": 0.58,
+      "why": [
+        {
+          "text": "ArmaturaSec has no labelled attack data and needs something that learns what normal looks like on a specific site.",
+          "sourceIds": [
+            "C001-CH1"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on anomaly detection in SCADA and protocol traffic by comparing observed message sequences against inferred finite automaton models.",
+          "sourceIds": [
+            "SYN-PUB-04998"
+          ]
+        },
+        {
+          "text": "The researcher co-authored work on passive inference of finite automata from labelled strings using state-merging algorithms, and developed GInferLib, an open-source Python library implementing seven grammatical inference algorithms.",
+          "sourceIds": [
+            "SYN-PUB-04995",
+            "SYN-PUB-05000"
+          ]
+        },
+        {
+          "text": "ArmaturaSec requires the method to be explainable in plain language to plant managers.",
           "sourceIds": [
             "C001-CH1"
           ]
         }
-      ]
-    },
-    {
-      "id": "C001-CH4:R0983",
-      "challengeId": "C001-CH4",
-      "companyId": "C001",
-      "researcherId": "R0983",
-      "fit": 0.58,
-      "why": [
-        {
-          "text": "The challenge requires keeping regression tests current across frequent firmware releases; the researcher's publication covers regression test selection under continuous deployment, comparing static change-impact analysis and dynamic coverage-matrix matching strategies.",
-          "sourceIds": [
-            "C001-CH4",
-            "SYN-PUB-10274"
-          ]
-        },
-        {
-          "text": "The challenge requires reducing the time a junior engineer spends producing test cases for a new feature; the researcher's work covers search-based test generation using multi-objective optimisation for endpoint coverage and schema validity.",
-          "sourceIds": [
-            "C001-CH4",
-            "SYN-PUB-10273"
-          ]
-        },
-        {
-          "text": "The researcher is open to contract research on test automation tooling and methodology.",
-          "sourceIds": [
-            "R0983"
-          ]
-        }
       ],
       "problem": {
-        "text": "Adapt regression test selection and search-based test generation methods (SYN-PUB-10274, SYN-PUB-10273) to ArmaturaSec's Python-based test runner and hardware bench (C001-CH4), evaluating coverage-matrix matching for selecting which of the 1,400 test cases to re-run after each firmware change and prototyping a generation scaffold for new feature tests.",
+        "text": "Using ArmaturaSec's Modbus TCP and BACnet/IP traffic archives, Ksenija Hadžić would infer finite automaton models of normal per-site protocol behaviour using methods from SYN-PUB-04998 and flag observed message sequences that deviate from those models.",
         "sourceIds": [
-          "C001-CH4",
-          "SYN-PUB-10274",
-          "SYN-PUB-10273"
+          "C001-CH1",
+          "C001",
+          "SYN-PUB-04998"
         ]
       },
       "risks": [
         {
-          "text": "The regression test selection and test generation publications cover REST APIs, microservices, and Java EE components; they do not document application to embedded firmware running on physical hardware benches.",
+          "text": "The researcher's published anomaly detection work (SYN-PUB-04998) covers SCADA protocol traffic in general; Modbus TCP and BACnet/IP payload-level features are not specifically evidenced.",
           "sourceIds": [
-            "SYN-PUB-10274",
-            "SYN-PUB-10273",
-            "SYN-PUB-10270"
+            "SYN-PUB-04998",
+            "C001-CH1"
           ]
         },
         {
-          "text": "The challenge requires that the solution not replace physical testing on the hardware bench; the researcher's coverage-guided instrumentation methods are evaluated in containerised software environments, and adaptation to physical hardware bench constraints is not documented.",
+          "text": "The researcher's record covers automaton inference and anomaly detection at the protocol traffic level; it does not cover on-device inference or latency-constrained deployment.",
           "sourceIds": [
-            "C001-CH4",
-            "SYN-PUB-10272"
+            "R0416"
+          ]
+        },
+        {
+          "text": "SYN-PUB-04998 notes that field mutation is detected less well because it does not always alter the message-type sequence.",
+          "sourceIds": [
+            "SYN-PUB-04998"
           ]
         }
       ]
     },
     {
-      "id": "C001-CH4:R0356",
-      "challengeId": "C001-CH4",
+      "id": "C001-CH2:R0286",
+      "challengeId": "C001-CH2",
       "companyId": "C001",
-      "researcherId": "R0356",
+      "researcherId": "R0286",
+      "fit": 0.91,
+      "why": [
+        {
+          "text": "ArmaturaSec's three failed update designs each broke on one of three constraints — key storage, mid-transfer recovery, or flash budget — that the challenge requires a single design to satisfy simultaneously (C001-CH2).",
+          "sourceIds": [
+            "C001-CH2"
+          ]
+        },
+        {
+          "text": "Ana Rajić co-authored work on adaptive firmware delivery protocols over low-bandwidth wireless links including NB-IoT, with segmentation and retransmission scheduling optimised for variable signal conditions (SYN-PUB-03573, SYN-PUB-03568, SYN-PUB-03565).",
+          "sourceIds": [
+            "SYN-PUB-03573",
+            "SYN-PUB-03568",
+            "SYN-PUB-03565"
+          ]
+        },
+        {
+          "text": "Ana Rajić co-authored work on delta patching and incremental firmware updates using binary differencing algorithms to reduce transmission payload on bandwidth-constrained devices (SYN-PUB-03562), and on integrity verification of incremental patches using Merkle hash trees and ECDSA (SYN-PUB-03567).",
+          "sourceIds": [
+            "SYN-PUB-03562",
+            "SYN-PUB-03567"
+          ]
+        },
+        {
+          "text": "Ana Rajić co-authored work on IEC 62443 industrial security standards compliance for OTA firmware update mechanisms, including mapping of security level requirements to cryptographic and transaction management techniques (SYN-PUB-03505).",
+          "sourceIds": [
+            "SYN-PUB-03505"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Ana Rajić and ArmaturaSec would jointly design and evaluate a flash-budget-respecting, resumable OTA firmware delivery protocol for GPRS links, using delta patching to reduce payload, segmentation and retransmission scheduling to survive interrupted cellular transfers, and ECDSA-based integrity verification fitted to the existing hardware's key storage constraints, mapped against IEC 62443 security level requirements (C001-CH2, SYN-PUB-03562, SYN-PUB-03567, SYN-PUB-03573, SYN-PUB-03568, SYN-PUB-03565, SYN-PUB-03570, SYN-PUB-03505, SYN-PUB-03563).",
+        "sourceIds": [
+          "C001-CH2",
+          "SYN-PUB-03562",
+          "SYN-PUB-03567",
+          "SYN-PUB-03573",
+          "SYN-PUB-03568",
+          "SYN-PUB-03565",
+          "SYN-PUB-03570",
+          "SYN-PUB-03505",
+          "SYN-PUB-03563"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers LoRaWAN and NB-IoT links (SYN-PUB-03573, SYN-PUB-03568, SYN-PUB-03565) and IEEE 802.15.4 links in SCADA environments (SYN-PUB-03561); coverage of GPRS specifically — the cellular backhaul on ArmaturaSec's appliances — is not documented in the profile (C001-CH2).",
+          "sourceIds": [
+            "SYN-PUB-03573",
+            "SYN-PUB-03568",
+            "SYN-PUB-03565",
+            "SYN-PUB-03561",
+            "C001-CH2"
+          ]
+        },
+        {
+          "text": "The profile covers firmware update protocol design; the specific flash-layout and bootloader constraints of ArmaturaSec's older hardware variant are not addressed in any cited record (C001-CH2).",
+          "sourceIds": [
+            "C001-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C001-CH2:R0754",
+      "challengeId": "C001-CH2",
+      "companyId": "C001",
+      "researcherId": "R0754",
+      "fit": 0.52,
+      "why": [
+        {
+          "text": "ArmaturaSec's dual-partition design left devices unrecoverable when GPRS dropped mid-transfer (C001-CH2).",
+          "sourceIds": [
+            "C001-CH2"
+          ]
+        },
+        {
+          "text": "Žarko Jakovljević co-authored work on NB-IoT link characterisation including packet loss patterns and over-the-air firmware update reliability in rural and weak-signal environments (SYN-PUB-00990, SYN-PUB-08318).",
+          "sourceIds": [
+            "SYN-PUB-00990",
+            "SYN-PUB-08318"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Žarko Jakovljević and ArmaturaSec would characterise cellular link behaviour — packet loss patterns and firmware update reliability in weak-signal environments — to produce input for the protocol design that must tolerate interrupted cellular transfers on unmanned sites (C001-CH2, SYN-PUB-00990, SYN-PUB-08318).",
+        "sourceIds": [
+          "C001-CH2",
+          "SYN-PUB-00990",
+          "SYN-PUB-08318"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers NB-IoT link characterisation (SYN-PUB-00990, SYN-PUB-08318); coverage of GPRS specifically — the cellular backhaul on ArmaturaSec's appliances where mid-transfer drops caused unrecoverable devices — is not documented in those publications (C001-CH2).",
+          "sourceIds": [
+            "SYN-PUB-00990",
+            "SYN-PUB-08318",
+            "C001-CH2"
+          ]
+        },
+        {
+          "text": "The profile covers fault detection, intermittent connectivity, and edge diagnostics in sensor nodes; the firmware security requirements — key storage and prevention of new remote code execution paths — are part of the challenge scope (C001-CH2) but do not appear in any record in the researcher's profile.",
+          "sourceIds": [
+            "C001-CH2",
+            "R0754"
+          ]
+        },
+        {
+          "text": "Žarko Jakovljević led the DIAQUAL project ending mid-2026; the profile states availability for consulting and student co-supervision engagements, and is now available for those (SYN-PRJ-0341, R0754).",
+          "sourceIds": [
+            "SYN-PRJ-0341",
+            "R0754"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C003-CH1:R0365",
+      "challengeId": "C003-CH1",
+      "companyId": "C003",
+      "researcherId": "R0365",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "The challenge requires reproducing and characterising weld-joint failure under low-temperature cyclic loading and thermal cycling, not at room temperature (C003-CH1).",
+          "sourceIds": [
+            "C003-CH1"
+          ]
+        },
+        {
+          "text": "Erić co-authored work on thermo-mechanical fatigue of welded structures under combined cyclic mechanical loading and thermal cycling between −25 °C and +15 °C (SYN-PUB-04482), and between −30 °C and +20 °C (SYN-PUB-04475).",
+          "sourceIds": [
+            "SYN-PUB-04482",
+            "SYN-PUB-04475"
+          ]
+        },
+        {
+          "text": "Erić's research covers fracture toughness characterisation of heat-affected zone microstructures in high-strength steels at sub-zero temperatures using Charpy and CTOD testing (SYN-PUB-04476).",
+          "sourceIds": [
+            "SYN-PUB-04476"
+          ]
+        },
+        {
+          "text": "Erić's research covers residual stress relaxation in welded joints under cyclic loading measured by X-ray diffraction with finite element modelling (SYN-PUB-04478), and residual stress measurement in welded joints by hole-drilling with finite element simulation (SYN-PUB-04473).",
+          "sourceIds": [
+            "SYN-PUB-04478",
+            "SYN-PUB-04473"
+          ]
+        },
+        {
+          "text": "Erić can provide access to a servo-hydraulic fatigue testing machine and a climate chamber capable of reaching −60 °C, which matches the constraint that testing must occur at low temperature (R0365).",
+          "sourceIds": [
+            "R0365"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Characterise fatigue crack initiation and growth at crossmember-to-stringer weld joints in mild steel conveyor frames under combined low-temperature thermal cycling and cyclic mechanical loading using the two failed frame sections, climate-chamber testing, fracture mechanics analysis, and residual stress measurement, then identify changes to welding procedure, filler material, or joint design that prevent crack initiation (C003-CH1, SYN-PUB-04482, SYN-PUB-04475, SYN-PUB-04476, SYN-PUB-04481).",
+        "sourceIds": [
+          "C003-CH1",
+          "SYN-PUB-04482",
+          "SYN-PUB-04475",
+          "SYN-PUB-04476",
+          "SYN-PUB-04481"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers thermal cycling and sub-zero testing of high-strength steels; the records do not specify that mild steel weld joints have been tested under the same conditions.",
+          "sourceIds": [
+            "SYN-PUB-04482",
+            "SYN-PUB-04476"
+          ]
+        },
+        {
+          "text": "The climate chamber and servo-hydraulic machines are shared equipment and require advance coordination for extended campaigns (R0365).",
+          "sourceIds": [
+            "R0365"
+          ]
+        },
+        {
+          "text": "The records cover fatigue and fracture under mechanical and thermal cycling; the corrosion-assisted component from condensation is not addressed in the published work.",
+          "sourceIds": [
+            "SYN-PUB-04482",
+            "SYN-PUB-04475",
+            "SYN-PUB-04474"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C003-CH2:R0995",
+      "challengeId": "C003-CH2",
+      "companyId": "C003",
+      "researcherId": "R0995",
+      "fit": 0.87,
+      "why": [
+        {
+          "text": "AutomVoj must push safety patches across 38 separate PLC codebases in TIA Portal and cannot afford a full rewrite while engineers are on active commissioning projects.",
+          "sourceIds": [
+            "C003-CH2"
+          ]
+        },
+        {
+          "text": "Pantelić co-authored a paper on extraction and recovery of implicit variability from legacy PLC codebases using clone detection and feature model synthesis.",
+          "sourceIds": [
+            "SYN-PUB-10379"
+          ]
+        },
+        {
+          "text": "Pantelić co-authored a paper on incremental generation strategies for PLC software that reduce regeneration time while preserving manually authored customisation sections.",
+          "sourceIds": [
+            "SYN-PUB-02958"
+          ]
+        },
+        {
+          "text": "Pantelić led the traceability work package in SAFEPLL, an Interreg IPA project integrating functional safety requirements into PLC product-line workflows; the project produced a methodology document adopted by both SME automation integrators as an internal development guideline.",
+          "sourceIds": [
+            "SYN-PRJ-0391"
+          ]
+        },
+        {
+          "text": "Pantelić led PLCGEN, a Science Fund project that delivered an Eclipse-based IDE plugin and transformation library for model-driven PLC product-line engineering, with validation on industrial automation projects.",
+          "sourceIds": [
+            "SYN-PRJ-0390"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Pantelić and AutomVoj would apply variability recovery and incremental model-driven generation methods to the 38 TIA Portal PLC codebases (C003-CH2), using clone detection and feature model synthesis to identify shared and variable logic (SYN-PUB-10379), then produce a modular IEC 61131-3 product-line library with incremental generation strategies that preserve manually authored sections (SYN-PUB-02958), so that future safety patches can be propagated from a single model rather than applied to each codebase individually.",
+        "sourceIds": [
+          "C003-CH2",
+          "SYN-PUB-10379",
+          "SYN-PUB-02958"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published variability-recovery work covers IEC 61131-3 Structured Text; AutomVoj's 38 codebases are written in ladder logic in TIA Portal, and the records do not confirm the method has been applied to ladder logic or TIA Portal specifically.",
+          "sourceIds": [
+            "SYN-PUB-10379",
+            "C003-CH2"
+          ]
+        },
+        {
+          "text": "Pantelić has limited availability for consulting during spring semester; flexible in summer and autumn.",
+          "sourceIds": [
+            "R0995"
+          ]
+        },
+        {
+          "text": "The company requires the result to be maintainable by its current team going forward; the records do not confirm that the PLCGEN or SAFEPLL tooling was handed over in a form maintainable without researcher involvement.",
+          "sourceIds": [
+            "C003-CH2",
+            "SYN-PRJ-0390",
+            "SYN-PRJ-0391"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C003-CH4:R0283",
+      "challengeId": "C003-CH4",
+      "companyId": "C003",
+      "researcherId": "R0283",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "AutomVoj suspects harmonic current emissions from SINAMICS frequency drives are disturbing precision instruments on the customer LV grid, and needs on-site measurement and a design rule to prevent recurrence (C003-CH4).",
+          "sourceIds": [
+            "C003-CH4"
+          ]
+        },
+        {
+          "text": "The researcher co-authored a paper on conducted EMI measurement uncertainty using LISN-based testing, and a paper on differential-mode and common-mode noise separation in three-phase PWM drives (SYN-PUB-03540, SYN-PUB-03535).",
+          "sourceIds": [
+            "SYN-PUB-03540",
+            "SYN-PUB-03535"
+          ]
+        },
+        {
+          "text": "The researcher co-authored papers on EMC filter design and validation for variable-speed drives optimised for IEC 61800-3 Category C2 compliance, and on harmonic spectrum analysis in multi-drive systems (SYN-PUB-03536, SYN-PUB-03539, SYN-PUB-01738).",
+          "sourceIds": [
+            "SYN-PUB-03536",
+            "SYN-PUB-03539",
+            "SYN-PUB-01738"
+          ]
+        },
+        {
+          "text": "The researcher led project EMCDRIVE on EMC characterisation and filter validation for variable-speed drives in industrial environments, delivering a filter design procedure and a public dataset of emission spectra and protective earth impedance profiles (SYN-PRJ-0392).",
+          "sourceIds": [
+            "SYN-PRJ-0392"
+          ]
+        },
+        {
+          "text": "The researcher provided consulting to domestic manufacturers of industrial control panels on EMC filter selection and IEC 61800-3 pre-compliance testing procedures, and completed a contract audit of a regional drive assembler for Category C2 compliance (R0283).",
+          "sourceIds": [
+            "R0283"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Ana Mamužić would conduct on-site conducted EMI measurements at the two customer sites using LISN-based methods, separate differential-mode and common-mode emission paths, characterise the emission spectrum of the SINAMICS drives against IEC 61800-3 Category C2 limits, and deliver a passive EMC filter design procedure AutomVoj can apply to future installations (C003-CH4, SYN-PUB-03540, SYN-PUB-03535, SYN-PUB-03536, SYN-PRJ-0392).",
+        "sourceIds": [
+          "C003-CH4",
+          "SYN-PUB-03540",
+          "SYN-PUB-03535",
+          "SYN-PUB-03536",
+          "SYN-PRJ-0392"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PRJ-0392 covers EMC characterisation of SiC-based variable-speed drives in industrial environments; SYN-PUB-03542 covers protective earth impedance characterisation and its effect on EMC filter performance in field installations, based on site surveys and circuit simulation.",
+          "sourceIds": [
+            "SYN-PRJ-0392",
+            "SYN-PUB-03542"
+          ]
+        },
+        {
+          "text": "AutomVoj states a limited budget for a practical engineering engagement; the scope of on-site measurement at two customer sites plus filter design rule derivation must be contained within that constraint (C003-CH4).",
+          "sourceIds": [
+            "C003-CH4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C003-CH4:R0567",
+      "challengeId": "C003-CH4",
+      "companyId": "C003",
+      "researcherId": "R0567",
+      "fit": 0.78,
+      "why": [
+        {
+          "text": "AutomVoj needs on-site harmonic emission measurement, EN standard comparison, and a reusable installation design rule for its SINAMICS drive systems (C003-CH4).",
+          "sourceIds": [
+            "C003-CH4"
+          ]
+        },
+        {
+          "text": "The researcher co-authored a paper on harmonic limits compliance for variable-speed pump drives using class-A measurements and passive filter design at a medium-voltage 6 kV network (SYN-PUB-06581), and led on-site measurement campaigns with validated filter design procedures for 6 kV and 10 kV industrial distribution networks (SYN-PRJ-0699).",
+          "sourceIds": [
+            "SYN-PUB-06581",
+            "SYN-PRJ-0699"
+          ]
+        },
+        {
+          "text": "The researcher led a harmonic mitigation project with an industrial partner in the food processing sector, including on-site measurement campaigns and validated filter design procedures for industrial distribution networks (SYN-PRJ-0699).",
+          "sourceIds": [
+            "SYN-PRJ-0699"
+          ]
+        },
+        {
+          "text": "The researcher conducted a six-month applied research engagement with a regional electrical switchgear manufacturer providing technical analysis of harmonic emissions in variable-frequency drive product lines (R0567).",
+          "sourceIds": [
+            "R0567"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Zorica Jovanović would conduct on-site power quality measurement and harmonic compliance assessment at the two AutomVoj customer sites, compare emission levels to EN harmonic limits, and design a passive harmonic filter and configuration procedure the company can apply to future SINAMICS drive installations (C003-CH4, SYN-PUB-05533, SYN-PUB-06581, SYN-PRJ-0699).",
+        "sourceIds": [
+          "C003-CH4",
+          "SYN-PUB-05533",
+          "SYN-PUB-06581",
+          "SYN-PRJ-0699"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-05533 covers medium-voltage networks and SYN-PRJ-0699 covers 6 kV and 10 kV industrial distribution networks; C003-CH4 describes harmonic emissions on the building's low-voltage grid (SYN-PUB-05533, SYN-PRJ-0699, C003-CH4).",
+          "sourceIds": [
+            "SYN-PUB-05533",
+            "SYN-PRJ-0699",
+            "C003-CH4"
+          ]
+        },
+        {
+          "text": "SYN-PUB-06585 covers SHE-PWM reformulation for cascaded H-bridge inverters and SYN-PUB-06584 covers embedded SHE-PWM look-up table implementation for cascaded H-bridge inverters; neither paper involves measurement of harmonic emissions from installed commercial drives (SYN-PUB-06585, SYN-PUB-06584).",
+          "sourceIds": [
+            "SYN-PUB-06585",
+            "SYN-PUB-06584"
+          ]
+        },
+        {
+          "text": "AutomVoj states that budget for this is limited and that it is looking for a practical engineering solution, not a research project (C003-CH4).",
+          "sourceIds": [
+            "C003-CH4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH1:R0484",
+      "challengeId": "C006-CH1",
+      "companyId": "C006",
+      "researcherId": "R0484",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "The challenge requires improving case-outcome prediction on a small labeled Serbian legal corpus where fine-tuned multilingual models have plateaued (C006-CH1).",
+          "sourceIds": [
+            "C006-CH1"
+          ]
+        },
+        {
+          "text": "Puzović co-authored work on classification and outcome prediction on imbalanced legal text datasets using resampling strategies and cost-sensitive learning objectives (SYN-PUB-05712, SYN-PUB-03940, SYN-PUB-05706).",
+          "sourceIds": [
+            "SYN-PUB-05712",
+            "SYN-PUB-03940",
+            "SYN-PUB-05706"
+          ]
+        },
+        {
+          "text": "Puzović co-authored work on synthetic legal text generation using conditional language models and back-translation for data augmentation, and evaluated synthetic data validity against domain expertise (SYN-PUB-05711, SYN-PUB-05710, SYN-PUB-05707).",
+          "sourceIds": [
+            "SYN-PUB-05711",
+            "SYN-PUB-05710",
+            "SYN-PUB-05707"
+          ]
+        },
+        {
+          "text": "Puzović co-authored work on transfer learning and intermediate pretraining strategies for adapting general language models to specialised legal domains on small datasets (SYN-PUB-05708), and led a project covering corpus construction and annotation guidelines for outcome and procedural-stage labels in Serbian legal text, and co-authored work on named entity recognition for domain-specific Serbian text (SYN-PRJ-0554, SYN-PUB-05713).",
+          "sourceIds": [
+            "SYN-PUB-05708",
+            "SYN-PRJ-0554",
+            "SYN-PUB-05713"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Puzović and PravniPilot would design and evaluate a pipeline that combines synthetic legal text generation and cross-lingual transfer learning to expand the effective training set beyond 9,000 decisions and push case-outcome prediction accuracy to 75% on the held-out Serbian commercial-dispute test set, using the company's existing Python and PyTorch infrastructure (C006, C006-CH1, SYN-PUB-05711, SYN-PUB-05710, SYN-PUB-05708, SYN-PRJ-0554).",
+        "sourceIds": [
+          "C006",
+          "C006-CH1",
+          "SYN-PUB-05711",
+          "SYN-PUB-05710",
+          "SYN-PUB-05708",
+          "SYN-PRJ-0554"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers legal text classification broadly; it is not confirmed to cover Serbian commercial-dispute court-decision formats specifically (SYN-PUB-05712, SYN-PUB-05708).",
+          "sourceIds": [
+            "SYN-PUB-05712",
+            "SYN-PUB-05708"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH1:R0925",
+      "challengeId": "C006-CH1",
+      "companyId": "C006",
+      "researcherId": "R0925",
+      "fit": 0.71,
+      "why": [
+        {
+          "text": "The challenge identifies transfer learning from Croatian and Bosnian court data as a candidate route to overcome the labeled-data ceiling in Serbian (C006-CH1).",
+          "sourceIds": [
+            "C006-CH1"
+          ]
+        },
+        {
+          "text": "Petrović co-authored work on pre-training transformer language models on Serbian web text with mixed-script handling (SYN-PUB-09804).",
+          "sourceIds": [
+            "SYN-PUB-09804"
+          ]
+        },
+        {
+          "text": "Petrović co-authored work on cross-lingual transfer learning across South Slavic languages using shared subword vocabularies and morphology-aware tokenisation (SYN-PUB-09809, SYN-PUB-09812).",
+          "sourceIds": [
+            "SYN-PUB-09809",
+            "SYN-PUB-09812"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Petrović and PravniPilot would apply cross-lingual transfer learning across Serbian, Croatian, and Bosnian court decisions — using shared subword vocabularies and morphology-aware tokenisation — to improve the base representation used by the case-outcome classifier trained on the company's 9,000 labeled decisions (C006-CH1, SYN-PUB-09809, SYN-PUB-09812).",
+        "sourceIds": [
+          "C006-CH1",
+          "SYN-PUB-09809",
+          "SYN-PUB-09812"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published record covers low-resource NLP and cross-lingual transfer for South Slavic languages; no work covers legal document classification or case-outcome prediction specifically (SYN-PUB-09804, SYN-PUB-09809, SYN-PUB-09812).",
+          "sourceIds": [
+            "SYN-PUB-09804",
+            "SYN-PUB-09809",
+            "SYN-PUB-09812"
+          ]
+        },
+        {
+          "text": "Petrović took part in the SRB-NLP project, which runs from 2023 to 2026, overlapping with the 12-month engagement the challenge requires (SYN-PRJ-0009, C006-CH1).",
+          "sourceIds": [
+            "SYN-PRJ-0009",
+            "C006-CH1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH1:R0524",
+      "challengeId": "C006-CH1",
+      "companyId": "C006",
+      "researcherId": "R0524",
+      "fit": 0.61,
+      "why": [
+        {
+          "text": "The challenge requires working with Serbian, Croatian, and Bosnian legal text, and identifies transfer from related-language court data as a route to improve accuracy (C006-CH1).",
+          "sourceIds": [
+            "C006-CH1"
+          ]
+        },
+        {
+          "text": "Papp co-authored work on cross-lingual sentence embeddings and semantic similarity for legal and administrative documents using XLM-R (SYN-PUB-06159, SYN-PUB-06158, SYN-PUB-06155); SYN-PUB-06159 additionally uses LaBSE for sentence-encoder fine-tuning on legal text.",
+          "sourceIds": [
+            "SYN-PUB-06159",
+            "SYN-PUB-06158",
+            "SYN-PUB-06155"
+          ]
+        },
+        {
+          "text": "Papp co-authored work on fine-tuning multilingual transformer models on small domain-specific parallel corpora using contrastive learning and hard-negative mining (SYN-PUB-06159, SYN-PUB-06155).",
+          "sourceIds": [
+            "SYN-PUB-06159",
+            "SYN-PUB-06155"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Papp and PravniPilot would apply cross-lingual sentence embedding alignment across Serbian, Croatian, and Bosnian court decisions — using fine-tuned LaBSE or XLM-R with contrastive learning on small parallel corpora — to enable transfer of labeled examples across language variants and improve the feature representations used by the case-outcome classifier (C006-CH1, SYN-PUB-06159, SYN-PUB-06158, SYN-PUB-06155).",
+        "sourceIds": [
+          "C006-CH1",
+          "SYN-PUB-06159",
+          "SYN-PUB-06158",
+          "SYN-PUB-06155"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published record covers document matching and semantic similarity; no work covers outcome classification or prediction tasks on court decisions (SYN-PUB-06159, SYN-PUB-06158, SYN-PUB-06156).",
+          "sourceIds": [
+            "SYN-PUB-06159",
+            "SYN-PUB-06158",
+            "SYN-PUB-06156"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH3:R0127",
+      "challengeId": "C006-CH3",
+      "companyId": "C006",
+      "researcherId": "R0127",
+      "fit": 0.92,
+      "why": [
+        {
+          "text": "The challenge states that PravniPilot needs sentence-level confidence scores and source provenance in its RAG system, that sentence-level provenance tracking has proven harder than it looks, that the company has budget for one additional engineer, and that it is willing to explore collaboration with external research groups (C006-CH3).",
+          "sourceIds": [
+            "C006-CH3"
+          ]
+        },
+        {
+          "text": "Tešić co-authored work on citation grounding and fact verification in retrieval-augmented generation systems with cross-encoder ranking (SYN-PUB-01678, SYN-PUB-01682).",
+          "sourceIds": [
+            "SYN-PUB-01678",
+            "SYN-PUB-01682"
+          ]
+        },
+        {
+          "text": "Tešić co-authored work on hallucination detection in language model outputs using atomic claim decomposition and natural language inference (SYN-PUB-01679), and co-authored separate work on natural language inference as a proxy for factual consistency in language model outputs (SYN-PUB-01675).",
+          "sourceIds": [
+            "SYN-PUB-01679",
+            "SYN-PUB-01675"
+          ]
+        },
+        {
+          "text": "Tešić took part in the VERIFAI-RS project, which tested a prototype verification module with a regional legal information provider listed as an observer partner (SYN-PRJ-0556).",
+          "sourceIds": [
+            "SYN-PRJ-0556"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Design and validate a sentence-level citation grounding and confidence scoring module for PravniPilot's RAG pipeline, using atomic claim decomposition and cross-encoder ranking against retrieved court decisions, integrable into the existing React interface (C006-CH3, SYN-PUB-01678, SYN-PUB-01679, SYN-PUB-01682).",
+        "sourceIds": [
+          "C006-CH3",
+          "SYN-PUB-01678",
+          "SYN-PUB-01679",
+          "SYN-PUB-01682"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers citation grounding in RAG systems generally; the records do not show work on South Slavic or multilingual legal corpora specifically.",
+          "sourceIds": [
+            "SYN-PUB-01678",
+            "SYN-PUB-01682"
+          ]
+        },
+        {
+          "text": "SYN-PUB-01682 covers real-time claim verification with a latency budget of 400 milliseconds per response for document assistant systems; C006-CH3 does not specify production latency constraints.",
+          "sourceIds": [
+            "SYN-PUB-01682",
+            "C006-CH3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH3:R0925",
+      "challengeId": "C006-CH3",
+      "companyId": "C006",
+      "researcherId": "R0925",
+      "fit": 0.72,
+      "why": [
+        {
+          "text": "Petrović co-authored work on retrieval-augmented generation pipelines adapted to morphologically rich languages with multilingual generative models (SYN-PUB-09810).",
+          "sourceIds": [
+            "SYN-PUB-09810"
+          ]
+        },
+        {
+          "text": "Petrović co-authored work on dense retrieval systems adapted to morphologically complex languages through cross-script handling (SYN-PUB-09805) and lemma expansion (SYN-PUB-09810).",
+          "sourceIds": [
+            "SYN-PUB-09805",
+            "SYN-PUB-09810"
+          ]
+        },
+        {
+          "text": "Petrović co-authored work on cross-lingual transfer learning across South Slavic languages using shared subword vocabularies and morphology-aware tokenisation (SYN-PUB-09809, SYN-PUB-09812).",
+          "sourceIds": [
+            "SYN-PUB-09809",
+            "SYN-PUB-09812"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Build and evaluate the multilingual dense retrieval layer of PravniPilot's RAG pipeline for Serbian, Croatian and Bosnian legal text, using lemma expansion, cross-script handling and cross-lingual transfer to ensure retrieved passages are accurate enough for downstream sentence-level provenance (C006-CH3, SYN-PUB-09810, SYN-PUB-09805, SYN-PUB-09809).",
+        "sourceIds": [
+          "C006-CH3",
+          "SYN-PUB-09810",
+          "SYN-PUB-09805",
+          "SYN-PUB-09809"
+        ]
+      },
+      "risks": [
+        {
+          "text": "Petrović's records cover dense retrieval and RAG pipelines for morphologically rich languages (SYN-PUB-09805, SYN-PUB-09810); the records do not show work on sentence-level confidence scoring or citation grounding in RAG outputs, which C006-CH3 identifies as the unsolved requirement.",
+          "sourceIds": [
+            "SYN-PUB-09805",
+            "SYN-PUB-09810",
+            "C006-CH3"
+          ]
+        },
+        {
+          "text": "The SRB-NLP project covers open language resources for Serbian (SYN-PRJ-0009); the records do not show coverage of Croatian or Bosnian legal registers specifically.",
+          "sourceIds": [
+            "SYN-PRJ-0009"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH3:R0524",
+      "challengeId": "C006-CH3",
+      "companyId": "C006",
+      "researcherId": "R0524",
+      "fit": 0.62,
+      "why": [
+        {
+          "text": "The challenge requires confidence scores and source provenance links on generated summaries in a multilingual legal context, a gap PravniPilot states explicitly (C006-CH3).",
+          "sourceIds": [
+            "C006-CH3"
+          ]
+        },
+        {
+          "text": "Papp co-authored work on evaluation of hallucination and factual preservation in cross-lingual summarisation by instruction-tuned large language models on structured documents (SYN-PUB-06160).",
+          "sourceIds": [
+            "SYN-PUB-06160"
+          ]
+        },
+        {
+          "text": "Papp co-authored work on cross-lingual sentence embeddings and semantic similarity for legal and administrative documents using transformer models such as LaBSE and XLM-R (SYN-PUB-06159, SYN-PUB-06158, SYN-PUB-06155).",
+          "sourceIds": [
+            "SYN-PUB-06159",
+            "SYN-PUB-06158",
+            "SYN-PUB-06155"
+          ]
+        },
+        {
+          "text": "Papp co-authored work on construction and evaluation of multilingual semantic textual similarity benchmarks and cross-lingual NLP resources for South Slavic languages (SYN-PUB-06154).",
+          "sourceIds": [
+            "SYN-PUB-06154"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Develop and benchmark sentence-level confidence scoring and source provenance for PravniPilot's summaries of court decisions across the multilingual legal context it operates in (C006-CH3), drawing on cross-lingual semantic similarity methods and hallucination evaluation from Papp's work on structured documents (SYN-PUB-06160, SYN-PUB-06159, SYN-PUB-06154).",
+        "sourceIds": [
+          "C006-CH3",
+          "SYN-PUB-06160",
+          "SYN-PUB-06159",
+          "SYN-PUB-06154"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-06160 covers hallucination evaluation in cross-lingual summarisation; the records do not show work on the RAG citation grounding or source-link attribution pipeline that C006-CH3 requires as the primary output.",
+          "sourceIds": [
+            "SYN-PUB-06160",
+            "C006-CH3"
+          ]
+        },
+        {
+          "text": "Papp's records on legal documents cover Serbian, Hungarian and Romanian language pairs; the records do not show specific coverage of Croatian or Bosnian legal text.",
+          "sourceIds": [
+            "SYN-PUB-06159",
+            "SYN-PUB-06158"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH4:R0741",
+      "challengeId": "C006-CH4",
+      "companyId": "C006",
+      "researcherId": "R0741",
+      "fit": 0.92,
+      "why": [
+        {
+          "text": "PravniPilot's cluster response time has degraded to 2.4 seconds after exhausting sharding and caching, and the corpus grows at 15,000 documents per month across three jurisdictions (C006-CH4).",
+          "sourceIds": [
+            "C006-CH4"
+          ]
+        },
+        {
+          "text": "Todorović has published on distributed full-text indexing architectures for heterogeneous document collections with document and term partitioning strategies (SYN-PUB-08205, SYN-PUB-07783, SYN-PUB-08204).",
+          "sourceIds": [
+            "SYN-PUB-08205",
+            "SYN-PUB-07783",
+            "SYN-PUB-08204"
+          ]
+        },
+        {
+          "text": "Todorović has published on query latency optimisation in multi-tenant search services through index routing policies and sharded query brokering (SYN-PUB-06501, SYN-PUB-08204).",
+          "sourceIds": [
+            "SYN-PUB-06501",
+            "SYN-PUB-08204"
+          ]
+        },
+        {
+          "text": "Todorović led the index infrastructure work package on the CROSSDOC project, designing a federated index architecture for cross-lingual document discovery, and took part in a project covering multilingual text encoder fine-tuning and quantisation-aware index construction for legal and administrative document retrieval (SYN-PRJ-0559, SYN-PRJ-0558).",
+          "sourceIds": [
+            "SYN-PRJ-0559",
+            "SYN-PRJ-0558"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Todorović and PravniPilot would redesign the Elasticsearch cluster's index architecture — evaluating document and term partitioning strategies, sharded query brokering, and a hybrid sparse-dense retrieval pipeline — to restore sub-second response times on the 2M+ multilingual legal document corpus while preserving boolean filter queries and the enterprise API contract (C006-CH4, SYN-PUB-08205, SYN-PUB-08204, SYN-PUB-06501, SYN-PUB-08207).",
+        "sourceIds": [
+          "C006-CH4",
+          "SYN-PUB-08205",
+          "SYN-PUB-08204",
+          "SYN-PUB-06501",
+          "SYN-PUB-08207"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers distributed indexing architectures generally; the records do not confirm work specifically on zero-downtime live index migration within a four-hour window on a production Elasticsearch cluster (SYN-PUB-08205, SYN-PUB-08204).",
+          "sourceIds": [
+            "SYN-PUB-08205",
+            "SYN-PUB-08204"
+          ]
+        },
+        {
+          "text": "The hybrid sparse-dense retrieval work covers retrieval without score normalisation; the records do not confirm compatibility with Elasticsearch's native boolean filter query model (SYN-PUB-08207, SYN-PUB-08208).",
+          "sourceIds": [
+            "SYN-PUB-08207",
+            "SYN-PUB-08208"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C006-CH4:R0349",
+      "challengeId": "C006-CH4",
+      "companyId": "C006",
+      "researcherId": "R0349",
+      "fit": 0.62,
+      "why": [
+        {
+          "text": "PravniPilot's index spans three jurisdictions with multilingual text, and the company has not resolved the latency problem despite hardware and sharding changes (C006-CH4).",
+          "sourceIds": [
+            "C006-CH4"
+          ]
+        },
+        {
+          "text": "Dragić has published on benchmarking and evaluation of mixed-script Serbian information retrieval, including passage retrieval with script normalization (SYN-PUB-04282, SYN-PUB-04284, SYN-PUB-04286), and on latency–accuracy trade-offs in retrieval pipelines under production load (SYN-PUB-04287).",
+          "sourceIds": [
+            "SYN-PUB-04282",
+            "SYN-PUB-04284",
+            "SYN-PUB-04286",
+            "SYN-PUB-04287"
+          ]
+        },
+        {
+          "text": "Dragić has published on real-time incremental indexing for high-volume document streams with script normalization applied to news aggregation (SYN-PUB-02734).",
+          "sourceIds": [
+            "SYN-PUB-02734"
+          ]
+        },
+        {
+          "text": "Dragić collaborated with a Novi Sad legaltech startup for 18 months on customizing a search module for Serbian court decisions under contract research (R0349).",
+          "sourceIds": [
+            "R0349"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Dragić and PravniPilot would design and validate a script-normalizing indexing layer for the multilingual legal corpus — covering Cyrillic-Latin Serbian variation across jurisdictions — integrated into the retrieval pipeline without exceeding the latency budget, as one component of the broader architecture redesign (C006-CH4, SYN-PUB-04282, SYN-PUB-04287, SYN-PUB-02734, R0349).",
+        "sourceIds": [
+          "C006-CH4",
+          "SYN-PUB-04282",
+          "SYN-PUB-04287",
+          "SYN-PUB-02734",
+          "R0349"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-04282 and SYN-PUB-04286 cover mixed-script Serbian retrieval benchmarking; neither covers Elasticsearch-specific sharding, shard routing, or distributed query execution.",
+          "sourceIds": [
+            "SYN-PUB-04282",
+            "SYN-PUB-04286"
+          ]
+        },
+        {
+          "text": "Dragić prefers collaboration with companies with a clearly defined and sufficiently large Serbian-language text corpus (R0349); PravniPilot's index spans three jurisdictions with multilingual text (C006-CH4).",
+          "sourceIds": [
+            "R0349",
+            "C006-CH4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C004-CH1:R0364",
+      "challengeId": "C004-CH1",
+      "companyId": "C004",
+      "researcherId": "R0364",
+      "fit": 0.97,
+      "why": [
+        {
+          "text": "OsiguroMi's contractual threshold must not be replaced but corrected through spatially accurate parcel-level rainfall estimates derived from a sparse gauge network and satellite data.",
+          "sourceIds": [
+            "C004-CH1"
+          ]
+        },
+        {
+          "text": "Pejić co-authored a publication on kriging with external drift for precipitation downscaling, blending IMERG satellite estimates with gauge networks to produce field-scale rainfall grids.",
+          "sourceIds": [
+            "SYN-PUB-04461"
+          ]
+        },
+        {
+          "text": "Pejić co-authored publications on design of rainfall index insurance products for crops, including burn analysis across cadastral municipalities and basis risk assessment across sample parcels.",
+          "sourceIds": [
+            "SYN-PUB-04462",
+            "SYN-PUB-04014"
+          ]
+        },
+        {
+          "text": "Pejić provided technical consultancy to an agricultural insurance intermediary in 2023 on spatial resolution requirements for parametric rainfall products.",
+          "sourceIds": [
+            "R0364"
+          ]
+        },
+        {
+          "text": "Pejić is the work package leader of AGRIDATA-CROSS, a cross-border project on meteorological data infrastructure and climate risk assessment serving agricultural stakeholders.",
+          "sourceIds": [
+            "SYN-PRJ-0113"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using OsiguroMi's approximately 140-station network and satellite products, Žarko Pejić would build a kriging-with-external-drift precipitation downscaling model to produce parcel-scale rainfall grids and run burn-analysis-based calibration of the contractual payout trigger for the coming season.",
+        "sourceIds": [
+          "C004-CH1",
+          "SYN-PUB-04461",
+          "SYN-PUB-04014",
+          "SYN-PUB-04460"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The publications on multi-source bias correction cover ERA5, IMERG, and TMPA; coverage of the specific private agro-meteorological networks OsiguroMi holds is not documented in the record.",
+          "sourceIds": [
+            "SYN-PUB-04014",
+            "SYN-PUB-04464",
+            "SYN-PUB-04463"
+          ]
+        },
+        {
+          "text": "The company requires results applicable within six to nine months.",
+          "sourceIds": [
+            "C004"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C004-CH1:R0700",
+      "challengeId": "C004-CH1",
+      "companyId": "C004",
+      "researcherId": "R0700",
+      "fit": 0.74,
+      "why": [
+        {
+          "text": "OsiguroMi's challenge is to correct spatial rainfall estimates from a sparse gauge network for parcel-level payout calibration.",
+          "sourceIds": [
+            "C004-CH1"
+          ]
+        },
+        {
+          "text": "Tošić co-authored a publication on merging rain-gauge and C-band radar data using kriging with external drift for precipitation estimation, and a publication on multi-source precipitation blending by weighting passive microwave and infrared satellite retrievals.",
+          "sourceIds": [
+            "SYN-PUB-07834",
+            "SYN-PUB-07840"
+          ]
+        },
+        {
+          "text": "Tošić collaborated with insurance company Agroprot on hail hazard zoning using radar products for crop insurance premiums at parcel scale.",
+          "sourceIds": [
+            "R0700"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using OsiguroMi's gauge network, Darko Tošić would apply rain-gauge merging with geostatistical interpolation to produce spatially corrected rainfall estimates at parcel level for payout calibration.",
+        "sourceIds": [
+          "C004-CH1",
+          "SYN-PUB-07834"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The record does not document experience with rainfall index insurance trigger calibration or burn analysis at cadastral parcel level.",
+          "sourceIds": [
+            "R0700"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C004-CH3:R0842",
+      "challengeId": "C004-CH3",
+      "companyId": "C004",
+      "researcherId": "R0842",
+      "fit": 0.95,
+      "why": [
+        {
+          "text": "OsiguroMi's pricing problem requires stable loss curves from fewer than 200 historical events, a sample size below classical actuarial thresholds.",
+          "sourceIds": [
+            "C004-CH3"
+          ]
+        },
+        {
+          "text": "Szabó co-authored work on Bayesian inference for generalised Pareto distributions for tail risk estimation, including threshold selection and prior elicitation for small samples.",
+          "sourceIds": [
+            "SYN-PUB-09113",
+            "SYN-PUB-09112",
+            "SYN-PUB-09110"
+          ]
+        },
+        {
+          "text": "Szabó co-authored work on small-sample hierarchical Bayesian models for insurance data including credibility theory and empirical Bayes shrinkage for heterogeneous groups.",
+          "sourceIds": [
+            "SYN-PUB-09116",
+            "SYN-PUB-09109",
+            "SYN-PUB-09112"
+          ]
+        },
+        {
+          "text": "Szabó led the statistical methodology work package in CATTOOL, an applied project that produced a decision-support toolkit piloted with two regional non-life insurers.",
+          "sourceIds": [
+            "SYN-PRJ-0117"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together, OsiguroMi and Péter Szabó would build a Bayesian hierarchical pricing model for the festival-cancellation product (C004-CH3), using threshold-based GPD fitting and credibility-weighted shrinkage (SYN-PUB-09113, SYN-PUB-09112, SYN-PUB-09109) to produce posterior predictive loss curves from the sub-200-event dataset, with sequential Monte Carlo updating (SYN-PUB-09115) as new events arrive, yielding competitive confidence intervals applicable across multiple regional locations.",
+        "sourceIds": [
+          "C004-CH3",
+          "SYN-PUB-09113",
+          "SYN-PUB-09112",
+          "SYN-PUB-09109",
+          "SYN-PUB-09115"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published extreme-value work covers motor third-party liability tail risk, flood losses, and operational risk exceedances.",
+          "sourceIds": [
+            "SYN-PUB-08138",
+            "SYN-PUB-06563",
+            "SYN-PUB-09110"
+          ]
+        },
+        {
+          "text": "OsiguroMi states that unstable loss curves make pricing margins non-competitive and that the goal is to achieve reasonable confidence intervals with small historical data.",
+          "sourceIds": [
+            "C004-CH3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C004-CH3:R0664",
+      "challengeId": "C004-CH3",
+      "companyId": "C004",
+      "researcherId": "R0664",
+      "fit": 0.72,
+      "why": [
+        {
+          "text": "The challenge requires that pricing be applicable to multiple regional locations beyond historical event locations.",
+          "sourceIds": [
+            "C004-CH3"
+          ]
+        },
+        {
+          "text": "Arsić co-authored work on regional frequency analysis for compound environmental events using spatial pooling and L-moments.",
+          "sourceIds": [
+            "SYN-PUB-07511"
+          ]
+        },
+        {
+          "text": "Arsić co-authored work on extreme value theory, tail dependence estimation, and max-stable processes for regional precipitation and environmental fields.",
+          "sourceIds": [
+            "SYN-PUB-07505",
+            "SYN-PUB-07509",
+            "SYN-PUB-03207"
+          ]
+        },
+        {
+          "text": "Arsić carried out a consulting engagement developing copula-based aggregate loss models for weather-related claims portfolios at a regional reinsurance analytics firm.",
+          "sourceIds": [
+            "R0664"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together, OsiguroMi and Jasmina Arsić would develop a pricing methodology yielding stable loss curves from a small historical event database (C004-CH3), applying spatial pooling and L-moment methods (SYN-PUB-07511) combined with extreme value theory and tail dependence estimation (SYN-PUB-07505, SYN-PUB-07509) to extend results to regional locations beyond those in the historical data.",
+        "sourceIds": [
+          "C004-CH3",
+          "SYN-PUB-07511",
+          "SYN-PUB-07505",
+          "SYN-PUB-07509"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers multivariate environmental hazard modelling (flood, drought, precipitation); constructing actuarial pricing confidence intervals for a parametric insurance product under sparse samples is outside the scope of those records.",
+          "sourceIds": [
+            "SYN-PUB-07504",
+            "SYN-PUB-07511",
+            "SYN-PUB-07508"
+          ]
+        },
+        {
+          "text": "The records do not cover small-sample prior elicitation or credibility shrinkage for actuarial loss curve estimation; the Bayesian inference work covers high-dimensional vine copulas, not sparse event loss curves.",
+          "sourceIds": [
+            "SYN-PUB-07510"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C004-CH3:R0261",
+      "challengeId": "C004-CH3",
+      "companyId": "C004",
+      "researcherId": "R0261",
+      "fit": 0.6,
+      "why": [
+        {
+          "text": "OsiguroMi needs a pricing methodology yielding reasonable confidence intervals from a sparse event database with fewer than 200 records.",
+          "sourceIds": [
+            "C004-CH3"
+          ]
+        },
+        {
+          "text": "Struhár co-authored work on hierarchical Bayesian Poisson–Gamma models for failure-rate heterogeneity across heterogeneous populations with MCMC inference, applicable to sparse event count data.",
+          "sourceIds": [
+            "SYN-PUB-03297"
+          ]
+        },
+        {
+          "text": "Struhár co-authored work on actuarial pricing using credibility theory embedded in Bayesian linear models.",
+          "sourceIds": [
+            "SYN-PUB-03299"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Together, OsiguroMi and Pavol Struhár would build a Bayesian pricing model for the cancellation event dataset described in C004-CH3, drawing on hierarchical Poisson–Gamma models for failure-rate heterogeneity with MCMC inference (SYN-PUB-03297) and actuarial credibility theory embedded in Bayesian linear models (SYN-PUB-03299) to produce confidence intervals on loss estimates from a database of fewer than 200 historical festival events (C004-CH3).",
+        "sourceIds": [
+          "C004-CH3",
+          "SYN-PUB-03297",
+          "SYN-PUB-03299"
+        ]
+      },
+      "risks": [
+        {
+          "text": "Struhár is not on sabbatical and has no planned leave through 2027.",
+          "sourceIds": [
+            "R0261"
+          ]
+        },
+        {
+          "text": "The GEV and credibility work covers sensor-driven telematics and industrial equipment data; the records do not cover weather-triggered parametric insurance or sparse environmental event loss curves.",
+          "sourceIds": [
+            "SYN-PUB-03298",
+            "SYN-PUB-03299",
+            "SYN-PUB-03297"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C007-CH1:R0992",
+      "challengeId": "C007-CH1",
+      "companyId": "C007",
+      "researcherId": "R0992",
+      "fit": 0.95,
+      "why": [
+        {
+          "text": "Suncokret Eko requires 70% fixed carbon for soil-amendment certification in Germany and the Netherlands while keeping mass yield above the level at which feedstock cost eliminates the price premium, on existing batch equipment within six months.",
+          "sourceIds": [
+            "C007-CH1",
+            "C007"
+          ]
+        },
+        {
+          "text": "The researcher covers temperature–residence-time optimisation for biochar production using response surface methodology and central composite design.",
+          "sourceIds": [
+            "SYN-PUB-10356"
+          ]
+        },
+        {
+          "text": "The researcher covers pyrolysis kinetics of lignocellulosic biomass using thermogravimetric analysis and isoconversional methods, with activation energy determination across conversion ranges.",
+          "sourceIds": [
+            "SYN-PUB-10346",
+            "SYN-PUB-10348"
+          ]
+        },
+        {
+          "text": "The researcher holds a granted patent on a process for producing certified-grade biochar from sunflower husk by controlled slow pyrolysis with integrated temperature–residence-time feedback.",
+          "sourceIds": [
+            "SYN-PAT-033"
+          ]
+        },
+        {
+          "text": "The researcher covers physicochemical certification of biochar against European Biochar Certificate criteria including stable carbon content.",
+          "sourceIds": [
+            "SYN-PUB-10349"
+          ]
+        },
+        {
+          "text": "The researcher covers fixed-bed pyrolysis reactor operation including particle size effects on heat transfer and biochar surface area, and residence time effects on product distribution.",
+          "sourceIds": [
+            "SYN-PUB-10351",
+            "SYN-PUB-05944"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using response surface methodology applied to Suncokret Eko's two years of batch logs and controlled production trials, Đorđe Vukelić and the company would map the temperature–residence-time parameter space to find operating conditions that push fixed-carbon content toward 70% while keeping mass yield commercially viable on the existing reactor, then verify the optimized biochar against European Biochar Certificate stable-carbon criteria.",
+        "sourceIds": [
+          "C007-CH1",
+          "C007",
+          "SYN-PUB-10356",
+          "SYN-PUB-10349",
+          "SYN-PAT-033"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The company requires a process adjustment testable within six months, involving controlled production trials on the existing reactor.",
+          "sourceIds": [
+            "C007-CH1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C007-CH2:R0992",
+      "challengeId": "C007-CH2",
+      "companyId": "C007",
+      "researcherId": "R0992",
+      "fit": 0.72,
+      "why": [
+        {
+          "text": "The company has collected most required lab data and 18 months of production records but needs someone to read the EBC framework critically and identify documentation gaps.",
+          "sourceIds": [
+            "C007-CH2"
+          ]
+        },
+        {
+          "text": "Vukelić co-authored work on physicochemical certification of biochar against European Biochar Certificate criteria including PAH, heavy metals, and stable carbon content.",
+          "sourceIds": [
+            "SYN-PUB-10349"
+          ]
+        },
+        {
+          "text": "Vukelić holds a granted patent on a process for producing certified-grade biochar from sunflower husk, which demonstrates working familiarity with the EBC certification requirements in a production context.",
+          "sourceIds": [
+            "SYN-PAT-033"
+          ]
+        },
+        {
+          "text": "Vukelić's profile states openness to consulting on pyrolysis process design and biochar quality assurance and records working on a short-term industry contract evaluating technical feasibility of small-scale pyrolysis.",
+          "sourceIds": [
+            "R0992"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Đorđe Vukelić and Suncokret Eko would jointly review the company's existing lab data and 18 months of production records against European Biochar Certificate criteria for PAH, heavy metals, and stable carbon content, identify documentation gaps, and produce a technically complete application package — including the quality management section — before the year-end deadline.",
+        "sourceIds": [
+          "C007-CH2",
+          "SYN-PUB-10349",
+          "SYN-PUB-10348"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published record covers physicochemical characterisation and EBC criteria including PAH, heavy metals, and stable carbon content; it does not extend to writing the quality management section of an EBC application.",
+          "sourceIds": [
+            "SYN-PUB-10349"
+          ]
+        },
+        {
+          "text": "The challenge budget is approximately 4,000 EUR for the full scope of gap analysis, documentation review, and quality management writing.",
+          "sourceIds": [
+            "C007-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C007-CH2:R0104",
+      "challengeId": "C007-CH2",
+      "companyId": "C007",
+      "researcherId": "R0104",
       "fit": 0.55,
       "why": [
         {
-          "text": "The challenge requires automated test case generation from internal protocol specifications; the researcher co-authored a publication on automated test case generation from CAN signal databases using boundary-value analysis for ECU firmware validation.",
+          "text": "The company needs someone to write the quality management section of the EBC application and map framework requirements to internal procedures.",
           "sourceIds": [
-            "C001-CH4",
-            "SYN-PUB-04378"
+            "C007-CH2"
           ]
         },
         {
-          "text": "The challenge requires integration with a physical hardware-in-the-loop bench; the researcher's work covers hardware-in-the-loop simulation for ECU validation on open-source real-time platforms.",
+          "text": "Matić's profile states experience as an external quality management consultant for manufacturing companies, including in-house training workshops for quality teams.",
           "sourceIds": [
-            "C001-CH4",
-            "SYN-PUB-02251",
-            "SYN-PUB-04373"
-          ]
-        },
-        {
-          "text": "The researcher collaborated with two regional automotive ECU suppliers on bench design and test case development under the HILVOP project.",
-          "sourceIds": [
-            "SYN-PRJ-0416"
+            "R0104"
           ]
         }
       ],
       "problem": {
-        "text": "Apply automated test case generation from signal or protocol databases using boundary-value analysis (SYN-PUB-04378) to ArmaturaSec's internal protocol specifications (C001-CH4), integrating generated test skeletons with the existing Python hardware-in-the-loop runner and physical bench across four hardware variants.",
+        "text": "Aleksandra Matić and Suncokret Eko would map the quality management section requirements of the European Biochar Certificate framework to the company's existing procedures and records, then draft and structure that section of the application, before the company's year-end submission deadline.",
         "sourceIds": [
-          "C001-CH4",
-          "SYN-PUB-04378"
+          "C007-CH2"
         ]
       },
       "risks": [
         {
-          "text": "The automated generation publication covers CAN signal databases for automotive ECU firmware; it does not document generation from the kind of protocol specifications ArmaturaSec uses for cybersecurity firmware.",
+          "text": "The published record and consulting history covers ISO 9001 and balanced scorecard in metal processing and food manufacturing; none of it covers the European Biochar Certificate scheme or biomass/biochar production contexts.",
           "sourceIds": [
-            "SYN-PUB-04378"
+            "SYN-PUB-01389",
+            "SYN-PUB-01386",
+            "R0104"
           ]
         },
         {
-          "text": "The hardware-in-the-loop and bench design work covers automotive ECU platforms with CAN, FlexRay, and FPGA interfaces; the publications do not document integration with a Python-based test runner of the type ArmaturaSec operates.",
+          "text": "The European Biochar Certificate framework is available in German and English, and the technical language is not straightforward even for native speakers.",
           "sourceIds": [
-            "SYN-PUB-04373",
-            "SYN-PUB-04377",
-            "SYN-PRJ-0416"
+            "C007-CH2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C007-CH3:R0135",
+      "challengeId": "C007-CH3",
+      "companyId": "C007",
+      "researcherId": "R0135",
+      "fit": 0.57,
+      "why": [
+        {
+          "text": "The challenge requires knowing how moisture and particle-size variance cause die clogging and bearing failures in a pellet press.",
+          "sourceIds": [
+            "C007-CH3"
           ]
         },
         {
-          "text": "The researcher prefers projects where at least part of the results can be published and is willing to negotiate publication embargoes of up to 18 months for industry contracts.",
+          "text": "Savić co-authored work quantifying abrasive wear in pellet die steel as a function of feedstock ash content, and separately co-authored work measuring ring-die geometry wear progression as a function of feedstock moisture.",
           "sourceIds": [
-            "R0356"
+            "SYN-PUB-01789",
+            "SYN-PUB-01785"
+          ]
+        },
+        {
+          "text": "Savić led the RELIODENSE project, which developed a decision-support system combining NIR sensing with Bayesian degradation models and tested it at two commercial pellet facilities.",
+          "sourceIds": [
+            "SYN-PRJ-0334"
+          ]
+        },
+        {
+          "text": "Savić provided consulting to agricultural cooperatives in Vojvodina on maintenance programme restructuring for pellet production lines.",
+          "sourceIds": [
+            "R0135"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using quantitative models of pellet die and roller wear as functions of feedstock moisture and ash content, and the NIR-integrated decision-support system tested at commercial pellet facilities, define the moisture and particle-size tolerance window that keeps Suncokret Eko's press within safe operating limits, and evaluate whether the proposed hammer-mill and conditioning-mixer configuration would reliably hold incoming material within that window.",
+        "sourceIds": [
+          "C007-CH3",
+          "SYN-PUB-01789",
+          "SYN-PUB-01785",
+          "SYN-PRJ-0334"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers wear modelling and condition monitoring of pellet press components; pre-processing equipment specification (hammer mill sizing, conditioning mixer configuration) is not within the scope of those records.",
+          "sourceIds": [
+            "SYN-PUB-01789",
+            "SYN-PUB-01785",
+            "SYN-PRJ-0334"
+          ]
+        },
+        {
+          "text": "The RELIODENSE NIR integration covers moisture monitoring for maintenance decisions; the challenge also requires particle-size characterisation, which is not covered in those records.",
+          "sourceIds": [
+            "SYN-PRJ-0334",
+            "C007-CH3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C007-CH3:R0750",
+      "challengeId": "C007-CH3",
+      "companyId": "C007",
+      "researcherId": "R0750",
+      "fit": 0.51,
+      "why": [
+        {
+          "text": "The challenge states that suppliers deliver sunflower husk material with moisture ranging from 8% to 22% and that each press breakdown costs approximately 15,000 EUR in lost production, emergency maintenance, and contract penalties.",
+          "sourceIds": [
+            "C007-CH3"
+          ]
+        },
+        {
+          "text": "Lukács co-authored work on supply chain disruption risk quantification combining FMEA with Monte Carlo simulation to estimate annual disruption cost distributions.",
+          "sourceIds": [
+            "SYN-PUB-08280"
+          ]
+        },
+        {
+          "text": "Lukács co-authored stochastic optimisation models for supplier selection and order allocation under demand uncertainty, using two-stage models and scenario generation.",
+          "sourceIds": [
+            "SYN-PUB-08279",
+            "SYN-PUB-08282"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Apply disruption-risk quantification and stochastic supplier-selection models to the company's feedstock procurement data to estimate the annual cost distribution of moisture-driven press failures and evaluate order-allocation scenarios across current suppliers.",
+        "sourceIds": [
+          "C007-CH3",
+          "SYN-PUB-08280",
+          "SYN-PUB-08279",
+          "SYN-PUB-08282"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published work covers supplier selection and procurement optimisation in automotive, food processing, and plastics processing supply chains; the records do not cover feedstock quality characterisation or pre-processing equipment specification for biomass densification.",
+          "sourceIds": [
+            "SYN-PUB-03827",
+            "SYN-PUB-08279",
+            "SYN-PUB-08280"
+          ]
+        },
+        {
+          "text": "The core difficulty requires defining the acceptable moisture and particle-size envelope and validating pre-processing equipment — this is a process-engineering question that the supplier-allocation models do not address.",
+          "sourceIds": [
+            "C007-CH3"
+          ]
+        },
+        {
+          "text": "The RISKCHAIN-VS project covered data collection at Vojvodina SMEs in food processing and light manufacturing; the records do not cover biomass or agricultural feedstock supply chains.",
+          "sourceIds": [
+            "SYN-PRJ-0826"
           ]
         }
       ]
@@ -1076,20 +1919,32 @@
   ],
   "noMatches": [
     {
-      "challengeId": "C012-CH3",
-      "reason": "Not a research problem: This is a regulatory compliance and administrative documentation problem; research cannot solve it."
-    },
-    {
-      "challengeId": "C018-CH3",
-      "reason": "Not a research problem: This is a staff training and retention problem; the need is for structured educational content and training delivery, which is a curriculum and instructional design task, not a research question."
-    },
-    {
       "challengeId": "C005-CH3",
-      "reason": "Not a research problem: This is regulatory documentation and compliance work under EU MDR; while it requires expertise, it is not a technical or scientific research question and cannot be solved by a research group."
+      "reason": "Not a research problem: Drafting regulatory responses to a notified body and updating compliance documentation under EU MDR 2017/745 and IEC 62304 is legal and regulatory affairs work; hiring and staffing are outside the scope of research."
+    },
+    {
+      "challengeId": "C002-CH3",
+      "reason": "Not a research problem: Grant administration, compliance paperwork, and institutional partnerships are management and bureaucratic work, not research."
     },
     {
       "challengeId": "C001-CH3",
-      "reason": "Not a research problem: This is a methodology and reporting framework problem tied to financial valuation and client negotiation, not a technical or scientific research question."
+      "reason": "Not a research problem: Risk quantification methodology for procurement and board reporting is a business process and financial analysis problem, not a technical or scientific research question."
+    },
+    {
+      "challengeId": "C003-CH3",
+      "reason": "Not a research problem: Financial modelling and loan application preparation are business and management work, not research."
+    },
+    {
+      "challengeId": "C006-CH2",
+      "reason": "Not a research problem: This is a legal and corporate finance problem: cap table restructuring and shareholder-agreement renegotiation require corporate lawyers, not research."
+    },
+    {
+      "challengeId": "C004-CH4",
+      "reason": "Not a research problem: This is a regulatory and legal compliance problem requiring expert navigation of FMA (Austrian regulator) licensing procedures, not a technical or scientific research question."
+    },
+    {
+      "challengeId": "C008-CH3",
+      "reason": "Not a research problem: The problem is legal and regulatory compliance (public procurement documentation, notarial certification, local-content clauses)—it requires expert guidance on administration and contracts, not research."
     }
   ]
 }
