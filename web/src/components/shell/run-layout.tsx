@@ -22,8 +22,8 @@ import { runLabel, runState } from "./run-label"
 /**
  * /runs/:runId: opens the run in the store, then fills the panel: the header (title, facts, tabs), the screen, and on the
  * Timeline and the Stage the replay bar.
- * Tabs: Overview (what happened), Timeline (agents at work), Stage (the agents' faces talking over the event bus; both
- * with the replay bar) and Results (pairs and proposals).
+ * Tabs: Stage (the agents' faces talking over the event bus; the main view, where a run opens), Timeline (agents at work;
+ * both with the replay bar), Overview (what happened) and Results (pairs and proposals).
  * Query: `?replay` plays a finished run from the start; `?speed=1|4|instant`.
  */
 export function RunLayout() {
@@ -75,9 +75,9 @@ export function RunLayout() {
 			tabs={
 				<RouteTabs
 					items={[
-						{ value: "overview", label: "Overview", to: "overview" },
-						{ value: "live", label: live ? <LiveLabel /> : "Timeline", to: "live" },
 						{ value: "stage", label: "Stage", to: "stage" },
+						{ value: "live", label: live ? <LiveLabel /> : "Timeline", to: "live" },
+						{ value: "overview", label: "Overview", to: "overview" },
 						{ value: "results", label: "Results", count: proposals || undefined, to: "results" },
 					]}
 				/>
@@ -187,7 +187,7 @@ function RunMeta() {
 	)
 }
 
-/** A finished run opens still. This plays it from the start: on the Stage where it is, else on the Timeline. */
+/** A finished run opens still. This plays it from the start, on the Stage. */
 function WatchButton() {
 	const info = useRunStore((state) => state.info)
 	const view = useFullView()
@@ -199,7 +199,7 @@ function WatchButton() {
 		<Button
 			variant="primary"
 			onClick={() => {
-				if (!onStage) navigate("live")
+				if (!onStage) navigate("stage")
 				useRunStore.getState().restart()
 			}}
 		>

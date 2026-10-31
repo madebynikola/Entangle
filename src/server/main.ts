@@ -47,7 +47,7 @@ async function main(): Promise<void> {
 	if (command === "replay") {
 		const id = folder ? registry.add(folder) : registry.list().find((run) => run.status === "ended")?.id
 		if (!id) throw new Error(`No finished run in out/. Run \`npm run match -- --mock\` first, or pass a folder.`)
-		path = `/#/runs/${encodeURIComponent(id)}/live?replay`
+		path = `/#/runs/${encodeURIComponent(id)}/stage?replay`
 	}
 
 	const prod = command === "start"

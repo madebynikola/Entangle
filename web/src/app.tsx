@@ -10,8 +10,10 @@ import { HomeScreen } from "@/screens/home"
  * Routes. Hash routing, so a static build works on any host (GitHub Pages) with no rewrites.
  *
  *   #/                         all runs
- *   #/runs/:runId/overview     what the run did (screens/overview)
+ *   #/runs/:runId              opens on the Stage, the run's main view
+ *   #/runs/:runId/stage        the Stage: the agents' faces talking over the event bus, with the replay bar (screens/stage)
  *   #/runs/:runId/live/*       the Timeline: agents at work, with the replay bar (#20 owns screens/live)
+ *   #/runs/:runId/overview     what the run did (screens/overview)
  *   #/runs/:runId/results/*    results (#21 owns screens/results): proposals/:id[?tab=review], pairs[/:pairId], challenges/:id
  */
 export const router = createHashRouter([
@@ -24,7 +26,7 @@ export const router = createHashRouter([
 				path: "runs/:runId",
 				element: <RunLayout />,
 				children: [
-					{ index: true, element: <Navigate to="overview" replace /> },
+					{ index: true, element: <Navigate to="stage" replace /> },
 					{ path: "overview", lazy: async () => ({ Component: (await import("@/screens/overview")).OverviewScreen }) },
 					// Loaded on first visit, so each screen's weight stays out of the first page load.
 					{ path: "live/*", lazy: async () => ({ Component: (await import("@/screens/live")).LiveScreen }) },

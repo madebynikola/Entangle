@@ -152,7 +152,7 @@ function SampleIntro({ canStart }: { canStart: boolean }) {
 				</p>
 				<div className="mt-5 flex flex-wrap items-center gap-2">
 					<Button variant="primary" asChild>
-						<Link to="/runs/sample/live?replay&speed=1">
+						<Link to="/runs/sample/stage?replay&speed=1">
 							<Play className="fill-current" />
 							Watch the sample
 						</Link>

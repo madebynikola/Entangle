@@ -11,13 +11,14 @@ import {
 	Play,
 	Radio,
 	RotateCcw,
+	Sparkles,
 	Sun,
 	SunMoon,
 	Zap,
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import type * as React from "react"
-import { useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router"
 import { create } from "zustand"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/components/ui/command"
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog"
@@ -80,6 +81,7 @@ export function CommandPalette() {
 	const setOpen = usePalette((state) => state.setOpen)
 	const extra = usePalette((state) => state.commands)
 	const navigate = useNavigate()
+	const { pathname } = useLocation()
 	const runs = useRuns()
 	const backend = useBackend()
 	const runId = useRunStore((state) => state.runId)
@@ -108,6 +110,10 @@ export function CommandPalette() {
 		action()
 	}
 	const player = useRunStore.getState()
+	/** Play and replay need a tab with the replay bar: stay on the Timeline or the Stage, else go to the Stage. */
+	const toPlayer = () => {
+		if (!/\/(live|stage)(\/|$)/.test(pathname)) navigate(`/runs/${runId}/stage`)
+	}
 	const id = query.trim().toUpperCase()
 
 	return (
@@ -131,24 +137,28 @@ export function CommandPalette() {
 
 						{runId && (
 							<CommandGroup heading="This run">
-								<CommandItem value="overview summary" onSelect={run(() => navigate(`/runs/${runId}/overview`))}>
-									<LayoutDashboard />
-									Overview
+								<CommandItem value="stage faces bus" onSelect={run(() => navigate(`/runs/${runId}/stage`))}>
+									<Sparkles />
+									Stage
 								</CommandItem>
 								<CommandItem value="timeline live agents" onSelect={run(() => navigate(`/runs/${runId}/live`))}>
 									<Radio />
 									Timeline
 								</CommandItem>
+								<CommandItem value="overview summary" onSelect={run(() => navigate(`/runs/${runId}/overview`))}>
+									<LayoutDashboard />
+									Overview
+								</CommandItem>
 								<CommandItem value="results pairs proposals" onSelect={run(() => navigate(`/runs/${runId}/results`))}>
 									<ListChecks />
 									Results
 								</CommandItem>
-								<CommandItem value="play pause" onSelect={run(() => { navigate(`/runs/${runId}/live`); player.toggle() })}>
+								<CommandItem value="play pause" onSelect={run(() => { toPlayer(); player.toggle() })}>
 									{playing && mode === "replay" ? <Pause /> : <Play />}
 									{playing || mode === "live" ? "Pause" : "Play"}
 									<CommandShortcut>Space</CommandShortcut>
 								</CommandItem>
-								<CommandItem value="replay from the start restart watch" onSelect={run(() => { navigate(`/runs/${runId}/live`); player.restart() })}>
+								<CommandItem value="replay from the start restart watch" onSelect={run(() => { toPlayer(); player.restart() })}>
 									<RotateCcw />
 									Replay from the start
 								</CommandItem>
@@ -208,7 +218,7 @@ export function CommandPalette() {
 										try {
 											const id = await backend.startRun({ mock: true })
 											toast.success("Mock run started", { description: id })
-											navigate(`/runs/${id}/live`)
+											navigate(`/runs/${id}/stage`)
 										} catch (error) {
 											toast.error("The run did not start", { description: String(error instanceof Error ? error.message : error) })
 										}
