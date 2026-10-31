@@ -5,7 +5,7 @@ import { budgetSpent, failTask, join, modelFor, state } from "../../runtime"
 import { runnerSettings } from "../../runtime/config"
 import type { ArtifactKind, CompanyNeed, FundingMatch, NoMatch, PairCandidate, Proposal, ResearcherProfile, SentBack, SourceStore, Task } from "../../types"
 import { analyzeCompanies, createAnalysts } from "../analyst"
-import { CRITIC_SENT_BACK, createCritic, type Critic, type ReviewStatus } from "../critic"
+import { CRITIC_SENT_BACK, createCritic, createTranslator, type Critic, type ReviewStatus } from "../critic"
 import { choosePairs, createMatchmaker } from "../matchmaker"
 import { emit } from "../matchmaker/shared"
 import { createProfilerPool } from "../profiler"
@@ -132,13 +132,15 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 	const { openAlex } = options
 	const sources = openAlex ? withWorks(data.sources, openAlex.works) : data.sources
 	const priorWork = openAlex && ((need: CompanyNeed) => openAlex.priorWork(need.searchTerms))
-	const critic = createCritic({ store: sources, model: () => modelFor("critic") })
+	// One translation per Serbian record per run: the Analysts and Writers write from the English the Critic checks against.
+	const translator = createTranslator()
+	const critic = createCritic({ store: sources, model: () => modelFor("critic"), translator })
 	join(critic.agent)
-	const analysts = createAnalysts(options.analysts ?? 4, { data, mockPlantFakeClaim: plant })
+	const analysts = createAnalysts(options.analysts ?? 4, { data, mockPlantFakeClaim: plant, translator })
 	const pool = createProfilerPool({ data, size: options.profilers ?? 6, k, mockPlantFakeClaim: plant })
 	const matchmaker = createMatchmaker({})
 	const writers = Array.from({ length: Math.max(1, options.writers ?? 3) }, (_, i) =>
-		createWriter({ name: `writer-${i + 1}`, sources, priorWork, mockPlantFakeClaim: plant && i === 0 }),
+		createWriter({ name: `writer-${i + 1}`, sources, priorWork, translator, mockPlantFakeClaim: plant && i === 0 }),
 	)
 	// It answers `orchestrator.decided` by itself: each chosen pair's EU calls are found while its Writer writes.
 	const scout = createScout()
