@@ -38,7 +38,7 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
 
 ```sh
 git clone https://github.com/madebynikola/Entangle.git && cd Entangle
-npm install                      # Node 20 or newer
+npm install                      # Node 22.22 or newer
 npm run replay -- out/golden     # the committed reference run in the web app
 ```
 

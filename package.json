@@ -5,7 +5,7 @@
   "description": "EINSTEIN matchmaker: concurrent Mozaik agents that pair researchers with company challenges and write proposals",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.22"
   },
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/server/main.ts dev",
@@ -38,6 +38,7 @@
     "remark-gfm": "4.0.1",
     "sonner": "2.0.8",
     "tailwind-merge": "3.7.0",
+    "undici": "8.12.3",
     "zustand": "5.0.16"
   },
   "devDependencies": {
