@@ -8,12 +8,12 @@
  *   npm run demo:record -- --preview          play it live in a Chromium window, with no recording or encoding
  *   npm run demo:record -- --remix            mix the music and sound effects onto the last recording again
  *   npm run demo:record -- --no-audio         a silent video
- *   npm run demo:record -- --remix --voice X  speak the voice-over again in another Soniox voice
+ *   npm run demo:record -- --voice X          add a Soniox voice-over in voice X (off by default)
  *
  * Sound: scripts/demo/audio/ holds the music and the sound effects (free to use, see CREDITS.md). The story logs a cue
  * at each moment that has a sound (a title, a face, a click, typing, a rejected claim); ffmpeg mixes them over the music.
- * The voice-over is Soniox text-to-speech (SONIOX_API_KEY): each line is fetched once into out/tmp/demo/vo/ and the
- * scenes wait for their line to end. Without a key and without those files, the video has no voice-over.
+ * The voice-over is off by default. With --voice it is Soniox text-to-speech (SONIOX_API_KEY): each line is fetched once
+ * into out/tmp/demo/vo/ and the scenes wait for their line to end, so the video gets longer.
  *
  * Needs ffmpeg on PATH and Chromium for Playwright (`npx playwright install chromium`). No API key: it replays the two
  * committed runs, out/reverse-search/ and out/golden/. The storyboard and the voice-over are in docs/demo/storyboard.md.
@@ -57,8 +57,8 @@ const { values } = parseArgs({
 		out: { type: "string" },
 		/** Another music file, to try a track with --remix. */
 		music: { type: "string" },
-		/** The Soniox voice of the voice-over; needs SONIOX_API_KEY the first time each line is spoken. */
-		voice: { type: "string", default: "Brooke" },
+		/** A Soniox voice for the voice-over, such as Brooke; none by default. Needs SONIOX_API_KEY the first time each line is spoken. */
+		voice: { type: "string" },
 	},
 })
 const output = resolve(values.out ?? join(OUT, "entangle-demo.mp4"))
@@ -774,7 +774,7 @@ async function main() {
 	rmSync(frameDir, { recursive: true, force: true })
 	mkdirSync(frameDir, { recursive: true })
 
-	if (!values["no-audio"]) await prepareVoice(values.voice!)
+	if (!values["no-audio"] && values.voice) await prepareVoice(values.voice)
 	base = await startServer(values.port!)
 	// The scale comes from a Chrome flag, not from Playwright's emulation: only then does the screencast send device
 	// pixels (1920×1080) instead of CSS pixels. A preview is a plain window on the screen.
@@ -906,7 +906,7 @@ const MUSIC_LUFS = -24
 
 async function remix() {
 	if (!existsSync(SILENT) || !existsSync(CUES)) throw new Error(`Nothing to remix: record once first (${SILENT}).`)
-	await prepareVoice(values.voice!)
+	if (values.voice) await prepareVoice(values.voice)
 	mix()
 	console.log(output)
 }
@@ -941,12 +941,12 @@ function mix() {
 		labels.push(`[c${j}]`)
 	})
 	// The voice-over, one input per line, and the music ducks under it.
-	const voice = values.voice!
-	const spoken = cues.filter((c) => c.sound === "vo" && c.line && c.at >= 0 && existsSync(voFile(voice, c.line)))
+	const voice = values.voice
+	const spoken = voice ? cues.filter((c) => c.sound === "vo" && c.line && c.at >= 0 && existsSync(voFile(voice, c.line))) : []
 	let bed = "[music]"
 	if (spoken.length) {
 		spoken.forEach((c, j) => {
-			inputs.push("-i", voFile(voice, c.line!))
+			inputs.push("-i", voFile(voice!, c.line!))
 			const delay = Math.round(c.at * 1000)
 			graph.push(`[${2 + sounds.length + j}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${VO_GAIN},adelay=${delay}|${delay}[v${j}]`)
 		})
