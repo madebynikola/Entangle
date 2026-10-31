@@ -5,6 +5,7 @@
  *   npm run demo:record -- --keep-frames      keep the captured JPEG frames next to the video
  *   npm run demo:record -- --out PATH         write the video elsewhere
  *   npm run demo:record -- --from 4 --to 4    record only scenes 4 to 4
+ *   npm run demo:record -- --preview          play it live in a Chromium window, with no recording or encoding
  *
  * Needs ffmpeg on PATH and Chromium for Playwright (`npx playwright install chromium`). No API key: it replays the two
  * committed runs, out/reverse-search/ and out/golden/. The storyboard and the voice-over are in docs/demo/storyboard.md.
@@ -38,6 +39,7 @@ const RS_MS = 311_730
 const { values } = parseArgs({
 	options: {
 		"keep-frames": { type: "boolean", default: false },
+		preview: { type: "boolean", default: false },
 		port: { type: "string", default: "4640" },
 		from: { type: "string", default: "0" },
 		to: { type: "string", default: "99" },
@@ -602,17 +604,20 @@ async function story(from: number, to: number) {
 // Capture and encode
 
 async function main() {
-	if (spawnSync("ffmpeg", ["-version"]).status !== 0) throw new Error("ffmpeg is not on PATH. Install it (brew install ffmpeg) and run again.")
+	const preview = values.preview!
+	if (!preview && spawnSync("ffmpeg", ["-version"]).status !== 0) throw new Error("ffmpeg is not on PATH. Install it (brew install ffmpeg) and run again.")
 	rmSync(frameDir, { recursive: true, force: true })
 	mkdirSync(frameDir, { recursive: true })
 
 	base = await startServer(values.port!)
 	// The scale comes from a Chrome flag, not from Playwright's emulation: only then does the screencast send device
-	// pixels (1920×1080) instead of CSS pixels.
-	const browser = await chromium.launch({
-		args: [`--force-device-scale-factor=${SCALE}`, `--window-size=${VIEW.width},${VIEW.height}`],
-	})
-	const context = await browser.newContext({ viewport: null, colorScheme: "light" })
+	// pixels (1920×1080) instead of CSS pixels. A preview is a plain window on the screen.
+	const browser = await chromium.launch(
+		preview
+			? { headless: false, args: [`--window-size=${VIEW.width},${VIEW.height + 90}`] }
+			: { args: [`--force-device-scale-factor=${SCALE}`, `--window-size=${VIEW.width},${VIEW.height}`] },
+	)
+	const context = await browser.newContext({ viewport: preview ? VIEW : null, colorScheme: "light" })
 	page = await context.newPage()
 	page.setDefaultTimeout(30_000)
 	app = page.frameLocator("#app")
@@ -683,11 +688,13 @@ async function main() {
 		frames.push({ file, at: metadata.timestamp ?? Date.now() / 1000 })
 		void cdp.send("Page.screencastFrameAck", { sessionId }).catch(() => {})
 	})
-	await cdp.send("Page.startScreencast", { format: "jpeg", quality: 92, everyNthFrame: 1 })
+	if (!preview) await cdp.send("Page.startScreencast", { format: "jpeg", quality: 92, everyNthFrame: 1 })
 
 	try {
 		await story(Number(values.from), Number(values.to))
 	} finally {
+		// A preview holds the last frame a moment before the window closes.
+		if (preview) await wait(3000).catch(() => {})
 		await cdp.send("Page.stopScreencast").catch(() => {})
 		const end = Date.now() / 1000
 		await browser.close()
