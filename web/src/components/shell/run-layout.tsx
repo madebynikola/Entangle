@@ -143,7 +143,7 @@ export function RunLayout() {
 						transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
 						className="shrink-0 overflow-hidden"
 					>
-						<ReplayBar />
+						<ReplayBar ranged />
 					</motion.div>
 				)}
 			</AnimatePresence>

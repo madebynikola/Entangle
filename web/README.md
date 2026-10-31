@@ -18,6 +18,7 @@ The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](.
 - `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running).
   Drag across the lanes to zoom to a range, ⌘ or pinch scroll to zoom at the pointer, scroll sideways to pan;
   double-click, Esc or "Whole run" goes back. A click on a lane moves the playhead there.
+  The zoomed range also shows as a box over the replay bar: drag it to move the range, drag an edge to resize it.
 - `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
 - `#/runs/:id/results`: pairs and proposals, as a list and a detail side by side. Deep links:
   `results/proposals/:id` (add `?tab=review` for the Critic history), `results/pairs/:pairId`, `results/challenges/:id`.

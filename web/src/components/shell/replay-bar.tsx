@@ -1,6 +1,7 @@
 import { Pause, Play, RotateCcw, Zap } from "lucide-react"
 import { Slider } from "radix-ui"
-import { memo, useMemo } from "react"
+import { memo, useMemo, useRef } from "react"
+import type * as React from "react"
 import { useShallow } from "zustand/react/shallow"
 import { Button } from "@/components/ui/button"
 import { Segmented } from "@/components/ui/segmented"
@@ -8,17 +9,19 @@ import { StatusDot } from "@/components/ui/status"
 import { Tooltip } from "@/components/ui/tooltip"
 import * as format from "@/lib/format"
 import { cn } from "@/lib/utils"
-import { useRunClock, useRunStore, type Speed } from "@/run/hooks"
+import { MIN_ZOOM_MS, useRunClock, useRunStore, type Speed, type TimeRange } from "@/run/hooks"
 import { concurrency } from "@/run/metrics"
 
 /**
  * The player docked at the bottom of a run's Timeline: play or pause, 1× / 4× / skip to the end, and a scrubber.
  * Behind the scrubber, a histogram of model calls in flight shows where the agents overlapped.
  *
+ * On the Timeline (`ranged`), the lanes' zoomed range shows over the scrubber as a box you can drag.
+ *
  * Only `Time` and `Scrubber` read the clock, so only they re-render on each frame of a replay. The rest (the speed
  * control has a Motion layoutId, which measures layout when it renders) re-renders only when the player state changes.
  */
-export function ReplayBar({ className }: { className?: string }) {
+export function ReplayBar({ className, ranged = false }: { className?: string; ranged?: boolean }) {
 	const { live, playing, runStatus, records, duration } = useRunStore(
 		useShallow((state) => ({
 			live: state.mode === "live",
@@ -49,7 +52,7 @@ export function ReplayBar({ className }: { className?: string }) {
 			</Tooltip>
 
 			<Time />
-			<Scrubber histogram={histogram} />
+			<Scrubber histogram={histogram} ranged={ranged} />
 
 			{runStatus === "live" &&
 				(live ? (
@@ -120,9 +123,10 @@ function SpeedControl() {
 	)
 }
 
-function Scrubber({ histogram }: { histogram: number[] }) {
+function Scrubber({ histogram, ranged }: { histogram: number[]; ranged: boolean }) {
 	const { position: value, total: max } = usePlayhead()
 	const played = max > 0 ? (value / max) * 100 : 0
+	const trackRef = useRef<HTMLSpanElement>(null)
 	return (
 		<Slider.Root
 			className="relative flex h-8 min-w-0 flex-1 cursor-pointer touch-none select-none items-center"
@@ -132,16 +136,74 @@ function Scrubber({ histogram }: { histogram: number[] }) {
 			onValueChange={([ms]) => useRunStore.getState().seek(ms)}
 			aria-label="Playhead"
 		>
-			<Slider.Track className="relative h-full grow">
+			<Slider.Track ref={trackRef} className="relative h-full grow">
 				<Bars histogram={histogram} className="text-strong" />
 				<div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - played}% 0 0)` }}>
 					<Bars histogram={histogram} className="text-ink-muted" />
 				</div>
 				<div className="absolute inset-x-0 bottom-1 h-px bg-hairline" />
 				<Slider.Range className="absolute bottom-1 h-px bg-ink-muted" />
+				{ranged && <RangeBox total={max} trackRef={trackRef} />}
 			</Slider.Track>
 			<Slider.Thumb className="block h-6 w-0.5 rounded-full bg-ink outline-none ring-link/30 transition-shadow focus-visible:ring-4" />
 		</Slider.Root>
+	)
+}
+
+/**
+ * The range the Timeline is zoomed to, as a box over the scrubber: a minimap of the run.
+ * Drag the box to move the range, drag an edge to resize it. Its pointer events stop here, so they never move the playhead.
+ */
+function RangeBox({ total, trackRef }: { total: number; trackRef: React.RefObject<HTMLElement | null> }) {
+	const zoom = useRunStore((state) => state.zoom)
+	const drag = useRef<{ part: "move" | "start" | "end"; x: number; range: TimeRange; pointer: number } | null>(null)
+	if (!zoom || total <= 0) return null
+
+	const begin = (part: "move" | "start" | "end") => (event: React.PointerEvent<HTMLElement>) => {
+		if (event.button !== 0 || !event.isPrimary) return
+		event.stopPropagation()
+		event.currentTarget.setPointerCapture(event.pointerId)
+		drag.current = { part, x: event.clientX, range: zoom, pointer: event.pointerId }
+	}
+	const move = (event: React.PointerEvent) => {
+		const d = drag.current
+		const width = trackRef.current?.getBoundingClientRect().width
+		if (!d || d.pointer !== event.pointerId || !width) return
+		const delta = ((event.clientX - d.x) / width) * total
+		const { start, end } = d.range
+		const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n))
+		let next: TimeRange
+		if (d.part === "move") {
+			const from = clamp(start + delta, 0, Math.max(0, total - (end - start)))
+			next = { start: from, end: from + (end - start) }
+		} else if (d.part === "start") {
+			next = { start: clamp(start + delta, 0, end - MIN_ZOOM_MS), end }
+		} else {
+			next = { start, end: clamp(end + delta, start + MIN_ZOOM_MS, Math.max(total, start + MIN_ZOOM_MS)) }
+		}
+		useRunStore.getState().setZoom(next)
+	}
+	const finish = (event: React.PointerEvent) => {
+		if (drag.current?.pointer === event.pointerId) drag.current = null
+	}
+
+	const left = Math.min(100, (zoom.start / total) * 100)
+	const right = Math.min(100, (zoom.end / total) * 100)
+	return (
+		<div
+			role="group"
+			aria-label={`Zoomed range ${format.clock(zoom.start)} to ${format.clock(zoom.end)}`}
+			title="The range in the lanes. Drag it to move, drag an edge to resize."
+			className="absolute inset-y-0 min-w-1.5 cursor-grab touch-none rounded-[2px] border border-ink/40 bg-ink/[0.07] active:cursor-grabbing"
+			style={{ left: `${left}%`, width: `${Math.max(0, right - left)}%` }}
+			onPointerDown={begin("move")}
+			onPointerMove={move}
+			onPointerUp={finish}
+			onPointerCancel={finish}
+		>
+			<span onPointerDown={begin("start")} className="absolute inset-y-0 -left-1 w-2 cursor-ew-resize" />
+			<span onPointerDown={begin("end")} className="absolute inset-y-0 -right-1 w-2 cursor-ew-resize" />
+		</div>
 	)
 }
 
