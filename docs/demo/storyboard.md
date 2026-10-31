@@ -8,8 +8,9 @@ app's page is hidden: only the component that matters floats on a soft backdrop,
 around it. Each agent is introduced on its own, with its face from the brand kit, its role, its model, and the real
 thing it made in the reverse-search run. The video uses the app's dark theme. Music runs under it, with sound effects
 on titles, faces, clicks, typing, the Critic's rejections and fixes, and the approval (scripts/demo/audio/, free to use, see
-CREDITS.md). Captions make it work with the sound off. The voice-over below follows the same
-beats, if we record one over it.
+CREDITS.md). Captions make it work with the sound off. The voice-over is Soniox text-to-speech, the voice Brooke:
+the spoken lines are `VO` in `record.ts`, with tags such as [excited] or [warm] that set the delivery and are not
+spoken. The voice-over column below is the first draft of those lines.
 
 | # | Screen | On screen | Voice-over |
 | --- | --- | --- | --- |
@@ -47,3 +48,7 @@ The story is in `scripts/demo/record.ts`: one function per scene (`scene0` … `
 The camera, isolation, intros, titles, captions and cursor are in `scripts/demo/director.html`. `--from N --to M`
 records only scenes N to M. `--keep-frames` keeps the JPEG frames, `--out PATH` writes elsewhere. A full recording
 takes about 5 minutes: it warms up the dev server first, then records in real time.
+
+The voice-over needs `SONIOX_API_KEY` only for lines not yet fetched: each line in each voice is kept in
+`out/tmp/demo/vo/`, and each scene waits for its line to end. `--remix --voice NAME` speaks it again in another Soniox
+voice without recording; a line much longer than before can then run into the next one.
