@@ -251,14 +251,24 @@ function Arena({ size, faces, beats, waiting, safe }: { size: Size; faces: Map<F
 								small={small}
 								gaze={speaker && speaker !== face ? toward(seats[face], seats[speaker]) : null}
 								beat={beats.findLast((beat) => beat.from === face)}
-								place={PLACE[face]}
-								shift={Math.min(Math.max(x, safe.left + BUBBLE_HALF), safe.left + width - BUBBLE_HALF) - x}
 								waiting={face === "you" ? waiting : 0}
 								verdict={verdictOf(face, beats)}
 								glide={glide}
 							/>
 						)
 					})}
+					<div className="pointer-events-none absolute inset-0 z-20">
+							<AnimatePresence>
+								{layoutBubbles(beats, seats, bus, small, {
+									left: safe.left + 8,
+									top: safe.top + 8,
+									right: size.width - safe.right - 8,
+									bottom: size.height - safe.bottom - 8,
+								}).map((bubble) => (
+									<Bubble key={bubble.beat.from} bubble={bubble} />
+								))}
+							</AnimatePresence>
+						</div>
 				</>
 			)}
 		</div>
@@ -499,8 +509,6 @@ function Seat({
 	small,
 	gaze,
 	beat,
-	place,
-	shift,
 	waiting,
 	verdict,
 	glide,
@@ -515,9 +523,6 @@ function Seat({
 	gaze: [number, number] | null
 	/** The last beat this face said, while it is on stage. */
 	beat?: Beat
-	place: Place
-	/** Moves the bubble sideways (px) so the stage edge does not cut it. */
-	shift: number
 	waiting: number
 	/** The Critic's verdict on this face's work: a badge on its shoulder and the word under its role. */
 	verdict: Verdict | null
@@ -587,7 +592,6 @@ function Seat({
 						</motion.span>
 					)}
 				</AnimatePresence>
-				<AnimatePresence>{beat && <Bubble key={beat.id} text={beat.text} place={place} shift={shift} />}</AnimatePresence>
 			</div>
 			<div className="mt-1 flex items-baseline gap-1">
 				<span className="text-sm font-semibold text-ink">{FACE_NAME[face]}</span>
@@ -620,13 +624,11 @@ function Seat({
 	)
 }
 
-/** Half the widest bubble, to keep bubbles inside the stage. */
-const BUBBLE_HALF = 120
+type Side = "above" | "below" | "right" | "left"
+type Rect = { left: number; top: number; right: number; bottom: number }
 
-type Place = "above" | "below"
-
-/** Where each face speaks, so bubbles land in open space: Deneb (no room above) below its name, the rest above. */
-const PLACE: Record<FaceId, Place> = {
+/** Where each face prefers to speak: Deneb (no room above) below its name, the rest above. Other sides are tried after. */
+const PREFER: Record<FaceId, Side> = {
 	deneb: "below",
 	tycho: "above",
 	fides: "above",
@@ -638,27 +640,124 @@ const PLACE: Record<FaceId, Place> = {
 	spica: "above",
 }
 
-/** A speech bubble that rises out of its speaker and sinks back into it. */
-function Bubble({ text, place, shift }: { text: string; place: Place; shift: number }) {
-	const above = place === "above"
+/** A bubble the layout found room for: its box, its side, and where its speaker is, for the spring's origin. */
+interface Placed {
+	beat: Beat
+	side: Side
+	box: Rect
+	/** The speaker's centre, relative to the box. */
+	origin: Point
+}
+
+/** The bubble's text box: Inter 12px, padding 12 × 8, lines 16.5px. Measured, so the layout is exact. A crowded stage tries the narrow width. */
+const BUBBLE = { widths: [240, 168], padX: 12, padY: 8, line: 16.5, font: 12, gap: 8 }
+let measurer: CanvasRenderingContext2D | null = null
+function bubbleSize(text: string, max: number): { width: number; height: number } {
+	measurer ??= document.createElement("canvas").getContext("2d")
+	if (!measurer) return { width: max, height: BUBBLE.line * 3 + BUBBLE.padY * 2 }
+	measurer.font = `${BUBBLE.font}px ${getComputedStyle(document.body).fontFamily}`
+	const room = max - BUBBLE.padX * 2
+	// Ids are drawn as chips, a little wider than the text; 6px each covers their padding.
+	const widthOf = (word: string) => measurer!.measureText(word).width + (/\d{3}/.test(word) ? 6 : 0)
+	const space = measurer.measureText(" ").width
+	let lines = 1
+	let line = 0
+	let widest = 0
+	for (const word of text.split(/\s+/)) {
+		const w = widthOf(word)
+		if (line > 0 && line + space + w > room) {
+			widest = Math.max(widest, line)
+			lines++
+			line = w
+		} else line += (line > 0 ? space : 0) + w
+	}
+	widest = Math.max(widest, line)
+	return { width: Math.ceil(Math.min(room, widest)) + BUBBLE.padX * 2 + 2, height: Math.ceil(lines * BUBBLE.line) + BUBBLE.padY * 2 + 2 }
+}
+
+const overlaps = (a: Rect, b: Rect, gap: number) =>
+	a.left < b.right + gap && b.left < a.right + gap && a.top < b.bottom + gap && b.top < a.bottom + gap
+
+/**
+ * Bubbles for the faces that are speaking, newest first. Each tries its face's usual side, then the opposite one, then
+ * beside the face, and takes the first that stays inside the open stage and touches no face, the bus or a newer bubble;
+ * with none clear at full width, the same sides at the narrow width.
+ * The newest speaker always gets one: with no clear side it takes the side that covers least, drawn above it all.
+ * An older line with no room gets none: it is still in the event log, and its face still bobs.
+ */
+function layoutBubbles(beats: Beat[], seats: Record<FaceId, Point>, bus: Point, small: boolean, open: Rect): Placed[] {
+	const face = small ? 56 : 76
+	// A seat as drawn: the face, its name, its role and the status line, about as wide as the role line.
+	const seatBox = ([x, y]: Point): Rect => ({ left: x - 54, right: x + 54, top: y - (face + 53) / 2, bottom: y + (face + 53) / 2 })
+	const half = ((small ? 64 : 88) * 1.6) / 2
+	const busBox: Rect = { left: bus[0] - half, right: bus[0] + half, top: bus[1] - half, bottom: bus[1] + half + 20 }
+	const latest = new Map<FaceId, Beat>()
+	for (const beat of beats) latest.set(beat.from, beat)
+	const placed: Placed[] = []
+	const area = (a: Rect, b: Rect) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top))
+	for (const [rank, beat] of [...latest.values()].sort((a, b) => b.at - a.at).entries()) {
+		const seat = seats[beat.from]
+		const own = seatBox(seat)
+		const faceTop = own.top
+		const faceMid = faceTop + face / 2
+		// How much a side covers: faces and the bus by area; leaving the stage or touching a newer bubble rules it out.
+		const cost = (box: Rect) => {
+			const inside = box.left >= open.left && box.right <= open.right && box.top >= open.top && box.bottom <= open.bottom
+			if (!inside || placed.some((other) => overlaps(box, other.box, 6))) return Infinity
+			return area(box, busBox) + ORDER.reduce((sum, other) => (other === beat.from ? sum : sum + area(box, seatBox(seats[other]))), 0)
+		}
+		const order: Side[] = PREFER[beat.from] === "above" ? ["above", "below", "right", "left"] : ["below", "above", "right", "left"]
+		let best: { side: Side; box: Rect; cost: number } | null = null
+		search: for (const max of BUBBLE.widths) {
+			const { width, height } = bubbleSize(beat.text, max)
+			const clampX = (left: number) => Math.min(Math.max(left, open.left), open.right - width)
+			const lefts: Record<Side, number> = {
+				above: clampX(seat[0] - width / 2),
+				below: clampX(seat[0] - width / 2),
+				right: seat[0] + face / 2 + 14,
+				left: seat[0] - face / 2 - 14 - width,
+			}
+			const tops: Record<Side, number> = {
+				above: faceTop - BUBBLE.gap - height,
+				below: own.bottom + BUBBLE.gap,
+				right: faceMid - height / 2,
+				left: faceMid - height / 2,
+			}
+			for (const side of order) {
+				const box = { left: lefts[side], top: tops[side], right: lefts[side] + width, bottom: tops[side] + height }
+				const c = cost(box)
+				if (c < (best?.cost ?? Infinity)) best = { side, box, cost: c }
+				if (c === 0) break search
+			}
+		}
+		if (best && (best.cost === 0 || (rank === 0 && best.cost < Infinity))) {
+			placed.push({ beat, side: best.side, box: best.box, origin: [seat[0] - best.box.left, faceMid - best.box.top] })
+		}
+	}
+	return placed
+}
+
+/**
+ * A face's speech bubble: it grows out of its speaker and sinks back into it. One per face: when the face speaks again,
+ * the words change inside it (and it glides if the new line needs another spot), so two lines never cross-fade on one spot.
+ */
+function Bubble({ bubble }: { bubble: Placed }) {
+	const { side, box, origin } = bubble
+	const from = { above: { y: 8 }, below: { y: -8 }, right: { x: -8 }, left: { x: 8 } }[side]
 	return (
-		<div
-			className={cn(
-				"absolute left-1/2 z-10 w-max -translate-x-1/2",
-				above ? "bottom-[calc(100%+8px)]" : "top-[calc(100%+52px)]",
-			)}
-			style={{ marginLeft: shift }}
+		<motion.div
+			layout="position"
+			className="absolute rounded-[18px] border border-hairline bg-panel px-3 py-2 text-xs leading-snug text-ink shadow-soft"
+			style={{ left: box.left, top: box.top, width: box.right - box.left, transformOrigin: `${origin[0]}px ${origin[1]}px` }}
+			initial={{ opacity: 0, scale: 0.86, ...from }}
+			animate={{ opacity: 1, scale: 1, x: 0, y: 0, transition: SPRING }}
+			exit={{ opacity: 0, scale: 0.82, transition: { duration: 0.18, ease: "easeIn" } }}
+			transition={{ layout: { duration: 0.3, ease: GLIDE } }}
 		>
-			<motion.div
-				className="max-w-60 rounded-[18px] border border-hairline bg-panel px-3 py-2 text-xs leading-snug text-ink shadow-soft"
-				style={{ transformOrigin: `calc(50% - ${shift}px) ${above ? "100%" : "0%"}` }}
-				initial={{ opacity: 0, scale: 0.86, y: above ? 8 : -8 }}
-				animate={{ opacity: 1, scale: 1, y: 0, transition: SPRING }}
-				exit={{ opacity: 0, scale: 0.82, transition: { duration: 0.18, ease: "easeIn" } }}
-			>
-				<Ids text={text} />
+			<motion.div key={bubble.beat.id} initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.16 } }}>
+				<Ids text={bubble.beat.text} />
 			</motion.div>
-		</div>
+		</motion.div>
 	)
 }
 
