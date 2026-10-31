@@ -103,7 +103,7 @@ const wait = (ms: number) => page.waitForTimeout(ms)
 // ---------------------------------------------------------------------------------------------------------------
 // Sound cues
 
-type Sound = "whoosh" | "pop" | "click" | "typing" | "reject" | "fixed" | "success" | "tick"
+type Sound = "whoosh" | "slide" | "pop" | "click" | "typing" | "reject" | "fixed" | "success" | "tick"
 type Cue = { sound: Sound; at: number; gain: number; ms?: number }
 const cues: Cue[] = []
 
@@ -128,8 +128,9 @@ const camera = (shot: Shot, ms = 1100) => dir("camera", shot, ms)
 const blur = (mode: "blur" | "soft" | "none", ms = 420) => dir("blur", mode, ms)
 const caption = (kicker: string | null, html: string | null) => dir("caption", kicker, html)
 
-async function title(spec: { kicker?: string; faces?: string[]; lines?: string[]; small?: boolean; sub?: string; code?: string; lockup?: boolean }, hold: number, keep = false) {
-	cue("whoosh", 0.45)
+/** A title card. Only the start of a part has a sound, so the sweep does not repeat on every card. */
+async function title(spec: { kicker?: string; faces?: string[]; lines?: string[]; small?: boolean; sub?: string; code?: string; lockup?: boolean }, hold: number, keep = false, sound?: Sound) {
+	if (sound) cue(sound, 0.4)
 	await dir("title", spec)
 	await wait(hold)
 	if (!keep) await dir("untitle")
@@ -261,7 +262,6 @@ async function isolate(
 	for (const el of els)
 		await el.evaluate(
 			(node, { card, hide, width }) => {
-				node.scrollIntoView({ block: "nearest" })
 				node.setAttribute("data-iso", "")
 				if (card) node.setAttribute("data-iso-card", "")
 				// Narrower, so it wraps taller and the camera can come closer.
@@ -270,6 +270,12 @@ async function isolate(
 			},
 			{ card: opts.card ?? true, hide: opts.hide ?? [], width: opts.width ?? 0 },
 		)
+	// Scroll after the marks change its size, and keep a margin: a card flush with its scroller's edge is cut off there.
+	for (const el of els)
+		await el.evaluate((node, alone) => {
+			;(node as HTMLElement).style.scrollMargin = "48px"
+			node.scrollIntoView({ block: alone && node.getBoundingClientRect().height < innerHeight - 160 ? "center" : "nearest" })
+		}, els.length === 1)
 	// Measure before hiding the page: role lookups such as getByRole("main") no longer see it after.
 	const box = await around(...els)
 	await iso(true)
@@ -466,10 +472,10 @@ async function scene0() {
 /** 1. The problem */
 async function scene1() {
 	await blur("blur", 600)
-	await title({ kicker: "The EINSTEIN challenge", lines: ["{1047} researchers.", "{153} companies."] }, 2100)
+	await title({ kicker: "The EINSTEIN challenge", lines: ["{1047} researchers.", "{153} companies."] }, 2100, false, "whoosh")
 	await title({ lines: ["Which researcher can solve", "which company's *problem?*"] }, 2000)
 	await title({ lines: ["7 million tokens.", "Too much for *one* model."] }, 1900)
-	await title({ lockup: true, sub: "So we built a team of agents that reads it together, cites every claim, and asks a person before anyone is contacted." }, 3000)
+	await title({ lockup: true, sub: "So we built a team of agents that reads it together, cites every claim, and asks a person before anyone is contacted." }, 3000, false, "slide")
 	// Out of sight under the blur first, so nothing of the page shows when the blur lifts.
 	await stageTo("gone", 700)
 	await blur("none", 0)
@@ -533,7 +539,7 @@ async function scene4() {
 
 /** 5. Together: the real run on the Stage, alone on the backdrop */
 async function scene5() {
-	await title({ kicker: "Together", lines: ["One event bus.", "Every agent *hears every event.*"], small: true }, 2200)
+	await title({ kicker: "Together", lines: ["One event bus.", "Every agent *hears every event.*"], small: true }, 2200, false, "whoosh")
 	await iso(false)
 	await camera("full", 0)
 	await route(`${RS}/stage`)
@@ -570,7 +576,7 @@ async function scene5() {
 
 /** 6. Proof: the agents really run at once */
 async function scene6() {
-	await title({ kicker: "Is it really parallel?", lines: ["The reference run:", "*8 companies*, 20 agents, 66 minutes."], small: true }, 2400)
+	await title({ kicker: "Is it really parallel?", lines: ["The reference run:", "*8 companies*, 20 agents, 66 minutes."], small: true }, 2400, false, "slide")
 	const lanes = () => app.locator('section[data-slot="pane"]').filter({ hasText: "Agents at work" }).first()
 	await isolate(`#/runs/golden/live`, () => [lanes()], { box: { x: 40, y: 24, w: 1360, h: 666 }, pad: 0.02, max: 1.5, card: false })
 	await stageTo("none", 700)
@@ -630,6 +636,7 @@ async function scene8() {
 		},
 		5200,
 		true,
+		"whoosh",
 	)
 	await wait(400)
 }
