@@ -68,7 +68,7 @@ A mock run plants one invented claim in a need, a profile and a proposal, so you
      a decision model that answers one yes/no question per claim. `SUBQ_MODEL=jev-latest` with `TYPESAFE_API_KEY` uses
      [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) instead. `--subq` does the same for one run.
    - Optional, `SCREEN=1`: the same decision model, with the same key, filters each shortlist before profiling. It answers
-     one yes/no question per candidate in one call, and only the most likely to fit are profiled. `--screen` does the same for one run.
+     one yes/no question per candidate in one call, and only the 2 most likely to fit of 8 are profiled. `--screen` does the same for one run.
    - Optional, `OPENALEX_API_KEY=...` (free, from [openalex.org/settings/api](https://openalex.org/settings/api)): each proposal
      gets a **Prior work** section. Before a Writer starts, it asks [OpenAlex](https://openalex.org) for recent, cited works on the
      need's search terms, and the proposal may cite up to two of them by work id (`W4293154696`). Mock runs stay offline.
@@ -129,7 +129,7 @@ Everything lands in `out/<run-id>/`:
 | `--companies N \| all`, `--ids LIST` | 5 | Which companies to work on |
 | `--problem TEXT`, `--sector TEXT` | | Reverse search: find researchers for a described problem instead |
 | `--analysts N`, `--profilers N`, `--writers N` | 4, 6, 3 | Agents per role |
-| `--k N` | 4 (6 with `--problem`) | Researchers shortlisted per challenge |
+| `--k N` | 4 (2 with `SCREEN=1`, 6 with `--problem`) | Researchers shortlisted per challenge |
 | `--proposals N` | one per company | Most proposals in the run |
 | `--mock`, `--local` | | Mock model, or local Claude Code sessions |
 | `--subq`, `--screen` | | The second Critic, or the shortlist filter, on a decision model |
@@ -150,7 +150,7 @@ They read and write one shared blackboard and talk through events on one bus, wh
 | --- | --- | --- | --- | --- |
 | Orchestrator | 1 | none | Progress events | Assignments, the pair chosen per company, the result |
 | Industry Analyst | 4 | Haiku 4.5 | One company: profile, challenges, website, job ads, news | One need per challenge: triage (research, engineering service, not research) with the reason, an English academic restatement, 5–10 search terms, what the company brings, constraints |
-| Shortlist | 1 | none (subq-snap with `SCREEN=1`) | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped. With `SCREEN=1`, the decision model rates 8 and only the 4 most likely to fit stay |
+| Shortlist | 1 | none (subq-snap with `SCREEN=1`) | Each need as it is posted | 4 candidates per need, by BM25 on the Analyst's search terms. People who left, or retired and do not consult, are skipped. With `SCREEN=1`, the decision model rates 8 and only the 2 most likely to fit stay |
 | Research Profiler | 6 | Haiku 4.5 | One shortlisted researcher: profile, publications, projects, patents | A profile: expertise and industry facts, each backed by records, availability as timing only, and whether they can lead |
 | Matchmaker | 1 | Sonnet 4.6 | One need and its candidate profiles | Pairs with a fit to this problem (0–1), why these two, the problem they solve and the risks; or "no good match" with the reason |
 | Proposal Writer | 3 | Sonnet 4.6 | One chosen pair and its records, and recent OpenAlex works on the need (with `OPENALEX_API_KEY`) | The proposal, shaped like [the example PhD topic](docs/brief/example-industrial-phd-topic.md): problem, prior work, research questions, approach, plan, first six months, what each side brings, why this pair, risks, what is agreed up front |

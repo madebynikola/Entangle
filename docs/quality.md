@@ -221,7 +221,47 @@ The code changed after run 5, and #54 changed the availability regex during the 
 - **Accepted against sent to a person** goes from 5 / 0 to 3 / 2 between runs of the same setting (run 5 and today's k 4 run). With
   one run each, the four settings do not differ on it.
 - **k 2 with 8 rated is the better of the two k 2 settings.** It rates the same 8 candidates as the default, costs $0.19 more than
-  4 rated, and had its chosen pairs all at the screen's rank 1. The default is still k 4; changing it is open.
+  4 rated, and had its chosen pairs all at the screen's rank 1. Two more runs of each setting follow below, and it is now the default.
+
+### Two more runs of k 4 and k 2, and the new default
+
+One run of each setting did not show if the accepted count was noise. So we ran k 4 and k 2 with 8 rated twice more, on commit
+3a2098a, same 5 companies, `--screen --subq`, local Claude Code. In each round the two settings ran at the same time, so both had the
+same load on the machine, and their times compare inside a round. With the two runs of 31 October above, each setting has 3 runs.
+
+| | k 4, 8 rated | | | k 2, 8 rated | | |
+| --- | --- | --- | --- | --- | --- | --- |
+| Run | `10-53-09` | `11-37-26` | `11-55-10` | `10-38-09` | `11-37-31` | `11-55-14` |
+| Accepted / to a person | 5 / 0 | 4 / 1 | 5 / 0 | 4 / 1 | 5 / 0 | 4 / 1 |
+| Challenges with no match | 3 | 3 | 3 | 3 | 4 | 3 |
+| Profiles / pairs | 40 / 19 | 35 / 23 | 38 / 13 | 22 / 14 | 22 / 13 | 22 / 17 |
+| Mean fit of the 5 chosen pairs | 0.84 | 0.88 | 0.78 | 0.90 | 0.88 | 0.88 |
+| Chosen pairs at the screen's rank 1 / 2 / 3 | 4 / 0 / 1 | 4 / 1 / 0 | 3 / 2 / 0 | 5 / 0 / 0 | 4 / 1 / 0 | 3 / 2 / 0 |
+| Tokens | 2.96M | 2.80M | 2.96M | 2.22M | 2.06M | 2.09M |
+| Cost at API prices | $9.97 | $9.40 | $10.13 | $7.66 | $6.97 | $7.23 |
+| Time (profiling ended at) | 22.0 (18.3) min | 17.6 (14.2) min | 18.2 (14.9) min | 14.9 (10.6) min | 13.2 (9.5) min | 14.5 (9.9) min |
+
+The runs are in `out/2026-10-31T…`. `11-37-26` ran with `11-37-31`, and `11-55-10` with `11-55-14`.
+
+- **Over 3 runs each, k 4 had 14 accepted and 1 sent to a person, k 2 had 13 and 2.** The difference is one proposal, and it is not
+  from k. Both k 2 runs that sent one to a person sent C009-CH1 × R0349. That pair was chosen in all 6 runs, and the Critic stopped it
+  at the proposal, not at the pair. The k 4 runs accepted the same pair's proposal. In `11-37-26` (k 4) the Critic
+  sent C012-CH1 × R0564 to a person the same way.
+- **k 2 chose the same researcher for each company in all 3 runs:** R1008 (C001), R0905 or R0057 (C005), R0349 (C009), R0564 (C012)
+  and R0948 (C018). k 4 chose all five in 1 of its 3 runs. In `10-53-09` it chose C005-CH1 × R0206 at 0.54 (see above). In
+  `11-55-10` the Critic dropped 11 pairs after two revisions each, and every pair on C001-CH1 and C012-CH1 was one of them. So the
+  Orchestrator chose C001-CH4 × R0833 at 0.55 and C012-CH2 × R0386 at 0.62. The mean fit of the chosen pairs is 0.83 at k 4 and 0.89 at k 2.
+- **k 2 costs 26% less: $7.29 against $9.83 on average,** and uses 27% fewer tokens (2.12M against 2.91M).
+- **k 2 is 20–25% faster in the same round:** 13.2 against 17.6 min, and 14.5 against 18.2 min. With a shortlist of 2, profiling ends
+  4–5 minutes sooner.
+- **The screen's rank 1 and 2 are close to a tie.** For C009-CH1, R0288, R0349 and R0925 are at 0.9985–0.9996 in each of the 4 new runs,
+  and their order changes. R0349 was rank 1 or 2 in all 6 runs, so a shortlist of 2 kept it every time. A shortlist of 2 can lose a right
+  researcher when the model puts them third. That did not occur in these 6 runs.
+
+**The default is now k 2 with the screen on** (`SCREEN.k` in `config/models.ts`). With the screen off, k is still 4, and with
+`--problem` it is 6. The screen rates at least 8 candidates (`SCREEN_RATED`), or `SCREEN_WIDEN` (default 2) times k if that is more.
+So k 2 and k 4 rate 8, as in these runs, and the reverse search (k 6) still rates 12. `--k 4` gives the old shortlist, and
+`SCREEN_RATED=4 --k 2` the "k 2, 4 rated" setting above.
 
 ## The Critic on the labelled claims (measured)
 
