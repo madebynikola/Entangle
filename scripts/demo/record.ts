@@ -10,7 +10,7 @@
  *   npm run demo:record -- --no-audio         a silent video
  *
  * Sound: scripts/demo/audio/ holds the music and the sound effects (free to use, see CREDITS.md). The story logs a cue
- * at each moment that has a sound (a title, a face, a click, typing, a stamp); ffmpeg mixes them over the music.
+ * at each moment that has a sound (a title, a face, a click, typing, a rejected claim); ffmpeg mixes them over the music.
  *
  * Needs ffmpeg on PATH and Chromium for Playwright (`npx playwright install chromium`). No API key: it replays the two
  * committed runs, out/reverse-search/ and out/golden/. The storyboard and the voice-over are in docs/demo/storyboard.md.
@@ -51,6 +51,8 @@ const { values } = parseArgs({
 		from: { type: "string", default: "0" },
 		to: { type: "string", default: "99" },
 		out: { type: "string" },
+		/** Another music file, to try a track with --remix. */
+		music: { type: "string" },
 	},
 })
 const output = resolve(values.out ?? join(OUT, "entangle-demo.mp4"))
@@ -101,7 +103,7 @@ const wait = (ms: number) => page.waitForTimeout(ms)
 // ---------------------------------------------------------------------------------------------------------------
 // Sound cues
 
-type Sound = "whoosh" | "pop" | "click" | "typing" | "stamp" | "success" | "tick"
+type Sound = "whoosh" | "pop" | "click" | "typing" | "reject" | "fixed" | "success" | "tick"
 type Cue = { sound: Sound; at: number; gain: number; ms?: number }
 const cues: Cue[] = []
 
@@ -229,10 +231,7 @@ const PROPOSAL = `${RS}/results/proposals/C999-CH1-R0822`
 const RIGHT = { x: 610, y: 48, w: 790, h: 680 }
 
 const iso = (on: boolean) => dir("iso", on)
-const stageTo = (mode: "gone" | "none", ms = 560) => {
-	if (mode === "none" && ms > 0) cue("whoosh", 0.3)
-	return dir("stage", mode, ms)
-}
+const stageTo = (mode: "gone" | "none", ms = 560) => dir("stage", mode, ms)
 
 /** The innermost <section> whose heading is `name`. */
 const block = (name: string | RegExp) =>
@@ -294,7 +293,7 @@ const HAIKU = "Claude Haiku 4.5"
 const SONNET = "Claude Sonnet 4.6"
 
 const mood = (state: string) => {
-	if (state === "reject") cue("stamp", 0.8)
+	if (state === "reject") cue("reject", 0.7)
 	return dir("mood", state)
 }
 
@@ -381,7 +380,7 @@ const AGENTS: Agent[] = [
 			await wait(2200)
 			await mood("reject")
 			await wait(2200)
-			cue("stamp", 0.6)
+			cue("fixed", 0.7)
 			await mood("done")
 			await wait(1500)
 		},
@@ -783,8 +782,8 @@ function encode(frames: { file: string; at: number }[], end: number) {
 const AUDIO = resolve(import.meta.dirname, "audio")
 const SILENT = join(OUT, "silent.mp4")
 const CUES = join(OUT, "cues.json")
-/** The music sits under the sound effects. */
-const MUSIC_GAIN = 0.32
+/** The music's loudness (LUFS), whatever the track: it sits under the sound effects. */
+const MUSIC_LUFS = -24
 
 function remix() {
 	if (!existsSync(SILENT) || !existsSync(CUES)) throw new Error(`Nothing to remix: record once first (${SILENT}).`)
@@ -794,7 +793,7 @@ function remix() {
 
 /** Music over the whole video, each cue's sound at its time, onto the silent video. */
 function mix() {
-	const music = join(AUDIO, "music.mp3")
+	const music = values.music ? resolve(values.music) : join(AUDIO, "music.mp3")
 	if (values["no-audio"] || !existsSync(music)) {
 		if (!values["no-audio"]) console.warn(`No ${music}: the video is silent.`)
 		copyFileSync(SILENT, output)
@@ -806,7 +805,7 @@ function mix() {
 	for (const sound of sounds) inputs.push(...(sound === "typing" ? ["-stream_loop", "-1"] : []), "-i", join(AUDIO, `${sound}.mp3`))
 	const played = cues.filter((c) => sounds.includes(c.sound) && c.at >= 0)
 	const graph: string[] = [
-		`[1:a]atrim=0:${seconds.toFixed(3)},volume=${MUSIC_GAIN},afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, seconds - 3).toFixed(3)}:d=3[music]`,
+		`[1:a]atrim=0:${seconds.toFixed(3)},loudnorm=I=${MUSIC_LUFS}:TP=-3:LRA=11,aresample=48000,afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, seconds - 3).toFixed(3)}:d=3[music]`,
 	]
 	sounds.forEach((sound, k) => {
 		const mine = played.filter((c) => c.sound === sound)
