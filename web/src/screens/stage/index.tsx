@@ -49,7 +49,7 @@ const COLOR: Record<FaceId, string> = {
 	you: "var(--idle)",
 }
 
-/** Where each face sits, as a share of the stage: a loose ring, a little off true so it does not look ruled. */
+/** Where each face and its labels sit, as a share of the stage: a loose ring, a little off true so it does not look ruled. */
 const SEAT: Record<FaceId, [number, number]> = {
 	deneb: [0.5, 0.14],
 	tycho: [0.765, 0.235],
@@ -158,6 +158,15 @@ type Safe = { top: number; bottom: number; left: number; right: number }
 /** The ring keeps its shape: at most this much wider than tall, centred in the open space. */
 const ASPECT = 1.4
 
+/**
+ * Px under a face for its name, role and status lines, and under the bus for its name. They hang below, so a seat's
+ * point is its face's centre and the bus's point is its tile's: the wires meet the faces, not the middle of their labels.
+ */
+const LABELS = 55
+const BUS_LABEL = 22
+/** A glow of the stage's own colour round the labels, so a wire on its way to a face goes under the words, not through them. */
+const HALO = "[text-shadow:0_0_2px_var(--stage-bg),0_0_4px_var(--stage-bg),0_0_6px_var(--stage-bg)]"
+
 type Size = { width: number; height: number }
 
 function useSize(ref: RefObject<HTMLElement | null>): Size {
@@ -201,9 +210,10 @@ function Arena({ size, faces, beats, waiting, safe }: { size: Size; faces: Map<F
 	const { bus, seats, wires } = useMemo(() => {
 		const left = safe.left + (width - boxWidth) / 2
 		const top = safe.top + (height - boxHeight) / 2
-		const bus: Point = [left + boxWidth / 2, top + boxHeight / 2]
+		// The centres of the bus tile and the faces, each raised by half its labels so the group, labels included, keeps its spot.
+		const bus: Point = [left + boxWidth / 2, top + boxHeight / 2 - BUS_LABEL / 2]
 		const seats = Object.fromEntries(
-			ORDER.map((face) => [face, [left + SEAT[face][0] * boxWidth, top + SEAT[face][1] * boxHeight]]),
+			ORDER.map((face) => [face, [left + SEAT[face][0] * boxWidth, top + SEAT[face][1] * boxHeight - LABELS / 2]]),
 		) as Record<FaceId, Point>
 		const wires = Object.fromEntries(ORDER.map((face) => [face, wire(bus, seats[face])])) as Record<FaceId, Wire>
 		return { bus, seats, wires }
@@ -426,7 +436,7 @@ const BusMark = memo(function BusMark({
 	const box = small ? 64 : 88
 	const unit = box / 62
 	return (
-		<div className={cn("absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center", glide && SETTLE)} style={{ left: x, top: y }}>
+		<div className={cn("absolute -translate-x-1/2 -translate-y-1/2", glide && SETTLE)} style={{ left: x, top: y }}>
 			<div
 				className="relative grid place-items-center rounded-[30%] border border-hairline bg-panel shadow-soft"
 				style={{ width: box * 1.6, height: box * 1.6 }}
@@ -470,7 +480,7 @@ const BusMark = memo(function BusMark({
 					})}
 				</div>
 			</div>
-			<div className="mt-2 text-2xs text-ink-subtle">event bus</div>
+			<div className={cn("absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-2xs text-ink-subtle", HALO)}>event bus</div>
 		</div>
 	)
 })
@@ -549,7 +559,7 @@ function Seat({
 	const working = entry.working > 0 && entry.total > 1 ? `${entry.working} working` : null
 	const talking = beat != null && performance.now() - beat.at < 1400
 	return (
-		<div className={cn("absolute flex w-36 -translate-x-1/2 -translate-y-1/2 flex-col items-center", glide && SETTLE)} style={{ left: x, top: y }}>
+		<div className={cn("absolute -translate-x-1/2 -translate-y-1/2", glide && SETTLE)} style={{ left: x, top: y }}>
 			<div className="relative">
 				<div ref={scope} className="origin-bottom">
 					<AgentFace
@@ -557,7 +567,7 @@ function Seat({
 						state={state}
 						gaze={gaze}
 						label={`${FACE_NAME[face]}, ${label}: ${state}`}
-						className={cn(small ? "size-14" : "size-[76px]", talking && "face-talk")}
+						className={cn("block", small ? "size-14" : "size-[76px]", talking && "face-talk")}
 					/>
 				</div>
 				<AnimatePresence>
@@ -593,33 +603,35 @@ function Seat({
 					)}
 				</AnimatePresence>
 			</div>
-			<div className="mt-1 flex items-baseline gap-1">
-				<span className="text-sm font-semibold text-ink">{FACE_NAME[face]}</span>
-				{count && <span className="tabular text-xs text-ink-subtle">{count}</span>}
-			</div>
-			<span className="text-2xs text-ink-muted">{label}</span>
-			{/* One line that is always there, so a verdict or a count never shifts the face. */}
-			<span className="relative h-3.5 text-2xs leading-3.5">
-				<AnimatePresence mode="popLayout" initial={false}>
-					{verdict ? (
-						<motion.span
-							key={`v${verdict.id}`}
-							className={cn("block font-medium", verdict.ok ? "text-working" : "text-needs")}
-							initial={{ opacity: 0, y: -3 }}
-							animate={{ opacity: 1, y: 0, transition: { duration: 0.25, delay: STAMP_AT / 1000 } }}
-							exit={{ opacity: 0, transition: { duration: 0.2 } }}
-						>
-							{verdict.ok ? "Passed" : "Sent back"}
-						</motion.span>
-					) : (
-						(working || waiting > 0) && (
-							<motion.span key="count" className="tabular block text-working" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-								{waiting > 0 ? `${waiting} to approve` : working}
+			<div className={cn("absolute left-1/2 top-full flex w-36 -translate-x-1/2 flex-col items-center pt-[9px]", HALO)} style={{ height: LABELS }}>
+				<div className="flex items-baseline gap-1">
+					<span className="text-sm font-semibold text-ink">{FACE_NAME[face]}</span>
+					{count && <span className="tabular text-xs text-ink-subtle">{count}</span>}
+				</div>
+				<span className="text-2xs text-ink-muted">{label}</span>
+				{/* One line that is always there, so a verdict or a count never moves the labels. */}
+				<span className="relative h-3.5 text-2xs leading-3.5">
+					<AnimatePresence mode="popLayout" initial={false}>
+						{verdict ? (
+							<motion.span
+								key={`v${verdict.id}`}
+								className={cn("block font-medium", verdict.ok ? "text-working" : "text-needs")}
+								initial={{ opacity: 0, y: -3 }}
+								animate={{ opacity: 1, y: 0, transition: { duration: 0.25, delay: STAMP_AT / 1000 } }}
+								exit={{ opacity: 0, transition: { duration: 0.2 } }}
+							>
+								{verdict.ok ? "Passed" : "Sent back"}
 							</motion.span>
-						)
-					)}
-				</AnimatePresence>
-			</span>
+						) : (
+							(working || waiting > 0) && (
+								<motion.span key="count" className="tabular block text-working" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+									{waiting > 0 ? `${waiting} to approve` : working}
+								</motion.span>
+							)
+						)}
+					</AnimatePresence>
+				</span>
+			</div>
 		</div>
 	)
 }
@@ -687,10 +699,10 @@ const overlaps = (a: Rect, b: Rect, gap: number) =>
  */
 function layoutBubbles(beats: Beat[], seats: Record<FaceId, Point>, bus: Point, small: boolean, open: Rect): Placed[] {
 	const face = small ? 56 : 76
-	// A seat as drawn: the face, its name, its role and the status line, about as wide as the role line.
-	const seatBox = ([x, y]: Point): Rect => ({ left: x - 54, right: x + 54, top: y - (face + 53) / 2, bottom: y + (face + 53) / 2 })
+	// A seat as drawn: the face round its point, then its name, its role and the status line, about as wide as the role line.
+	const seatBox = ([x, y]: Point): Rect => ({ left: x - 54, right: x + 54, top: y - face / 2, bottom: y + face / 2 + LABELS })
 	const half = ((small ? 64 : 88) * 1.6) / 2
-	const busBox: Rect = { left: bus[0] - half, right: bus[0] + half, top: bus[1] - half, bottom: bus[1] + half + 20 }
+	const busBox: Rect = { left: bus[0] - half, right: bus[0] + half, top: bus[1] - half, bottom: bus[1] + half + BUS_LABEL }
 	const latest = new Map<FaceId, Beat>()
 	for (const beat of beats) latest.set(beat.from, beat)
 	const placed: Placed[] = []
@@ -699,7 +711,7 @@ function layoutBubbles(beats: Beat[], seats: Record<FaceId, Point>, bus: Point, 
 		const seat = seats[beat.from]
 		const own = seatBox(seat)
 		const faceTop = own.top
-		const faceMid = faceTop + face / 2
+		const faceMid = seat[1]
 		// How much a side covers: faces and the bus by area; leaving the stage or touching a newer bubble rules it out.
 		const cost = (box: Rect) => {
 			const inside = box.left >= open.left && box.right <= open.right && box.top >= open.top && box.bottom <= open.bottom
