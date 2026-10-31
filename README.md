@@ -7,8 +7,8 @@
 
 # Entangle: the EINSTEIN matchmaker
 
-**See it with no install:** [madebynikola.github.io/Entangle](https://madebynikola.github.io/Entangle/) opens the web app on the
-committed reference run (`out/golden/`): the agents' Timeline, the pairs and the proposals with every source.
+**See it with no install:** [madebynikola.github.io/Entangle](https://madebynikola.github.io/Entangle/#/runs/golden/stage) opens the web app on the
+committed reference run (`out/golden/`): the agents' Stage and Timeline, the pairs and the proposals with every source.
 
 A team of Mozaik agents splits the EINSTEIN dataset (1,047 researchers, 153 companies, about 7 million tokens) and works on it
 in parallel. It finds researcher–challenge pairs that fit a company's stated problem, says so when a challenge has no good match, and writes
@@ -341,7 +341,11 @@ Both reviewers accepted the proposal at 20:07.
 
 Across the run the Critic made 337 reviews, sent artifacts back 194 times with 483 rejected claims, cut a failed claim and kept
 the rest 20 times (`critic.trimmed`), dropped 10, and logged 15 splits where the two reviewers disagreed. In the Timeline
-each send-back is an orange mark on the producer's lane.
+each send-back or drop is an orange mark on the producer's lane.
+
+The counts in this README and in `summary.json` are what the run kept. The Blackboard also shows what was posted:
+"Profiles 66 / 75" means 66 profiles passed of 75 posted, and "Pairs 32 / 42" means 32 passed of 42 posted. The other 9 profiles
+were still waiting for a verdict, or for a fix, when the time limit ended the run. The other 10 pairs are the 10 the Critic dropped.
 
 Find every send-back in a trace with `grep '"critic.sent_back"' out/golden/trace.jsonl`, or in the Blackboard panel next to the Timeline.
 
