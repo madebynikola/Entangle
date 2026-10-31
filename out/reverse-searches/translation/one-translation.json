@@ -1,0 +1,412 @@
+{
+	"runId": "2026-10-31T16-19-15",
+	"local": true,
+	"check": false,
+	"tries": 20,
+	"models": [
+		"claude-haiku-4-5",
+		"claude-sonnet-4-6"
+	],
+	"results": [
+		{
+			"model": "claude-haiku-4-5",
+			"try": 1,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1639,
+			"costUsd": 0.002315,
+			"ms": 3374
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 6,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1658,
+			"costUsd": 0.00241,
+			"ms": 3493
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 4,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1645,
+			"costUsd": 0.002345,
+			"ms": 3501
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 3,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and initial rot.",
+			"tasks": 1,
+			"tokens": 1652,
+			"costUsd": 0.00238,
+			"ms": 3538
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 2,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1658,
+			"costUsd": 0.00241,
+			"ms": 3625
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 5,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1651,
+			"costUsd": 0.002375,
+			"ms": 3657
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 7,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.",
+			"tasks": 1,
+			"tokens": 1645,
+			"costUsd": 0.002345,
+			"ms": 6524
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 10,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1641,
+			"costUsd": 0.002325,
+			"ms": 6532
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 9,
+			"sense": "wrong",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor bark damage and early rot.",
+			"tasks": 1,
+			"tokens": 1639,
+			"costUsd": 0.002315,
+			"ms": 6665
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 8,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1658,
+			"costUsd": 0.00241,
+			"ms": 6667
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 11,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and incipient rot.",
+			"tasks": 1,
+			"tokens": 1650,
+			"costUsd": 0.00237,
+			"ms": 6668
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 12,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.",
+			"tasks": 1,
+			"tokens": 1657,
+			"costUsd": 0.002405,
+			"ms": 6833
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 13,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.",
+			"tasks": 1,
+			"tokens": 1660,
+			"costUsd": 0.00242,
+			"ms": 9626
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 14,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1653,
+			"costUsd": 0.002385,
+			"ms": 9767
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 15,
+			"sense": "wrong",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor bark damage and incipient rot.",
+			"tasks": 1,
+			"tokens": 1656,
+			"costUsd": 0.0024,
+			"ms": 10095
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 16,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1654,
+			"costUsd": 0.00239,
+			"ms": 10102
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 17,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1654,
+			"costUsd": 0.00239,
+			"ms": 10130
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 18,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1655,
+			"costUsd": 0.002395,
+			"ms": 10283
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 19,
+			"sense": "wrong",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor bark damage and initial rot.",
+			"tasks": 1,
+			"tokens": 1643,
+			"costUsd": 0.002335,
+			"ms": 12616
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 20,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.",
+			"tasks": 1,
+			"tokens": 1640,
+			"costUsd": 0.00232,
+			"ms": 12784
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 2,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 13723
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 1,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 13728
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 3,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 13843
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 4,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1615,
+			"costUsd": 0.006573,
+			"ms": 13944
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 6,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1613,
+			"costUsd": 0.006543,
+			"ms": 16374
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 5,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1612,
+			"costUsd": 0.006528,
+			"ms": 16625
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 7,
+			"sense": "right",
+			"english": "Our fruit sorting line often misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 17223
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 8,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1615,
+			"costUsd": 0.006573,
+			"ms": 17451
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 10,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1612,
+			"costUsd": 0.006528,
+			"ms": 17627
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 9,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 17630
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 11,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1613,
+			"costUsd": 0.006543,
+			"ms": 19881
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 12,
+			"sense": "right",
+			"english": "Our fruit sorting line often misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1612,
+			"costUsd": 0.006528,
+			"ms": 20289
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 13,
+			"sense": "right",
+			"english": "Our fruit sorting line often misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 20862
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 14,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin blemishes and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1617,
+			"costUsd": 0.006603,
+			"ms": 21200
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 15,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1615,
+			"costUsd": 0.006573,
+			"ms": 21235
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 16,
+			"sense": "right",
+			"english": "Our fruit sorting line often misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1615,
+			"costUsd": 0.006573,
+			"ms": 21334
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 17,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1612,
+			"costUsd": 0.006528,
+			"ms": 23536
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 18,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1612,
+			"costUsd": 0.006528,
+			"ms": 23807
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 19,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1612,
+			"costUsd": 0.006528,
+			"ms": 24382
+		},
+		{
+			"model": "claude-sonnet-4-6",
+			"try": 20,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 1,
+			"tokens": 1614,
+			"costUsd": 0.006558,
+			"ms": 24927
+		}
+	]
+}

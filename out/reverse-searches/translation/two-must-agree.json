@@ -1,0 +1,475 @@
+{
+	"runId": "2026-10-31T16-20-43",
+	"local": true,
+	"check": true,
+	"tries": 20,
+	"models": [
+		"claude-haiku-4-5"
+	],
+	"results": [
+		{
+			"model": "claude-haiku-4-5",
+			"try": 2,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.",
+			"tasks": 2,
+			"tokens": 3961,
+			"costUsd": 0.006941,
+			"ms": 5604,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment/system)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (machinery)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"skin\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 8,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.",
+			"tasks": 2,
+			"tokens": 3997,
+			"costUsd": 0.007121000000000001,
+			"ms": 15408,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40.000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"kore\",\"english\":\"skin\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 9,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and incipient rot.",
+			"tasks": 2,
+			"tokens": 4047,
+			"costUsd": 0.007371,
+			"ms": 17063,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"skin\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 12,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and initial rot.",
+			"tasks": 2,
+			"tokens": 3976,
+			"costUsd": 0.007016,
+			"ms": 21375,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and initial rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (processing system)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 3,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6458,
+			"costUsd": 0.023188,
+			"ms": 40366,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and initial rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production system)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting (classification process)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies (distributes into categories)\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage (physical harm)\"},{\"serbian\":\"kore\",\"english\":\"skin (outer layer of fruit)\"},{\"serbian\":\"truleži\",\"english\":\"rot (decay)\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds (boundary values)\"},{\"serbian\":\"greška\",\"english\":\"error (mistake/incorrect rate)\"},{\"serbian\":\"vraćaju\",\"english\":\"return (send back)\"},{\"serbian\":\"robu\",\"english\":\"goods (merchandise)\"},{\"serbian\":\"označenih\",\"english\":\"labeled (marked/annotated)\"},{\"serbian\":\"sezone\",\"english\":\"seasons (time periods)\"},{\"serbian\":\"berbe\",\"english\":\"harvest (gathering of crops)\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor rind damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment/production system)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 4,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6517,
+			"costUsd": 0.023453,
+			"ms": 42945,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor peel damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production/sorting)\"},{\"serbian\":\"pogrešno\",\"english\":\"incorrectly\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"peel\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"fiksnim\",\"english\":\"fixed\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"vraćaju\",\"english\":\"return\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor bark damage and early rot.\",\"senses\":[{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"voća\",\"english\":\"fruit\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 5,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6434,
+			"costUsd": 0.022888,
+			"ms": 43251,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor peel damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"peel\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production/sorting system)\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage (injury to surface)\"},{\"serbian\":\"truleži\",\"english\":\"rot (decay of fruit)\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40.000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera (imaging device)\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds (limit values)\"},{\"serbian\":\"greška\",\"english\":\"error (mistake rate)\"},{\"serbian\":\"robu\",\"english\":\"goods (merchandise/products)\"},{\"serbian\":\"sezone\",\"english\":\"seasons (harvest periods)\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 1,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin defects and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6605,
+			"costUsd": 0.024033,
+			"ms": 43257,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with fine bark damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment/machinery)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"voća\",\"english\":\"fruit\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"fine\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"boje\",\"english\":\"color\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"slike\",\"english\":\"images\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor bark damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin defects and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"defects\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 6,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6505,
+			"costUsd": 0.023403,
+			"ms": 43715,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor bark damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production system)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"bark (fruit skin)\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"boje\",\"english\":\"color\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with fine skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production equipment)\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts (arranges by category)\"},{\"serbian\":\"kore\",\"english\":\"skin (outer layer)\"},{\"serbian\":\"truleži\",\"english\":\"rot (decay)\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds (boundary values)\"},{\"serbian\":\"greška\",\"english\":\"error (mistake rate)\"},{\"serbian\":\"robu\",\"english\":\"goods (products)\"},{\"serbian\":\"sezone\",\"english\":\"seasons (periods of time)\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 7,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6390,
+			"costUsd": 0.022988,
+			"ms": 45442,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and beginning rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production/processing line)\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts (divides into categories)\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage (physical defects)\"},{\"serbian\":\"kore\",\"english\":\"skin (outer covering of fruit)\"},{\"serbian\":\"truleži\",\"english\":\"rot (decay of fruit)\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds (boundary values)\"},{\"serbian\":\"greška\",\"english\":\"error (rate of mistakes)\"},{\"serbian\":\"robu\",\"english\":\"goods (merchandise/products)\"},{\"serbian\":\"sezone\",\"english\":\"seasons (harvest periods)\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production system)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone berbe\",\"english\":\"harvest seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed colour thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labelled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labelled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 13,
+			"sense": "right",
+			"english": "Our fruit sorting line often misclassifies apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6052,
+			"costUsd": 0.018258,
+			"ms": 49433,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production line)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"kore\",\"english\":\"skin (of fruit)\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return goods. We have 40.000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor bark damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (machinery/process)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"bark\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40.000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often misclassifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed colour thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labelled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labelled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 11,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6074,
+			"costUsd": 0.018798000000000002,
+			"ms": 50638,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (conveyor/production)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone berbe\",\"english\":\"harvest seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line frequently misclassifies apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (sorting equipment)\"},{\"serbian\":\"razvrstava\",\"english\":\"misclassifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone berbe\",\"english\":\"harvest seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"pogrešno\",\"english\":\"incorrectly\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed colour thresholds, but the error rate is still around 12% and customers are returning goods. We have 40.000 labelled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labelled\"},{\"serbian\":\"slika\",\"english\":\"images\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 10,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6527,
+			"costUsd": 0.023533,
+			"ms": 51063,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (machinery)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate remains around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line frequently misclassifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"vraćaju\",\"english\":\"return\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 14,
+			"sense": "right",
+			"english": "Our fruit sorting line often misclassifies apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6368,
+			"costUsd": 0.022888,
+			"ms": 54130,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor bark damage and initial rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (sorting line)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error remains around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers return the merchandise. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"merchandise\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often misclassifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production)\"},{\"serbian\":\"kore\",\"english\":\"skin (of fruit)\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"slika\",\"english\":\"images\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 15,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6482,
+			"costUsd": 0.023398,
+			"ms": 54238,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor bark damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment)\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and incipient rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"voća\",\"english\":\"fruit\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"početnom\",\"english\":\"early-stage\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 17,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6290,
+			"costUsd": 0.022478,
+			"ms": 56502,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"production line\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"kore\",\"english\":\"skin\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 19,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.",
+			"tasks": 3,
+			"tokens": 6037,
+			"costUsd": 0.018653,
+			"ms": 57933,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with fine skin damage and beginning rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (processing)\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"fine (small)\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40.000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with fine bark damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"voća\",\"english\":\"fruit\"},{\"serbian\":\"pogrešno\",\"english\":\"incorrectly\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"slika\",\"english\":\"images\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 16,
+			"sense": "right",
+			"english": "Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6508,
+			"costUsd": 0.023648000000000002,
+			"ms": 60659,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor bark damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production system)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed colour thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labelled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"boje\",\"english\":\"colour\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labelled\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line frequently misclassifies apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (production)\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 20,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6398,
+			"costUsd": 0.020938,
+			"ms": 60898,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"voća\",\"english\":\"fruit\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"boje\",\"english\":\"color\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"vraćaju\",\"english\":\"return\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"slika\",\"english\":\"images\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (equipment)\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"pogrešno\",\"english\":\"incorrectly\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"početnom\",\"english\":\"early\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"kupci\",\"english\":\"customers\"},{\"serbian\":\"vraćaju\",\"english\":\"return\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly sorts apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"},{\"serbian\":\"pogrešno\",\"english\":\"incorrectly\"},{\"serbian\":\"razvrstava\",\"english\":\"sorts\"},{\"serbian\":\"sitnim\",\"english\":\"minor\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"početnom\",\"english\":\"early-stage\"},{\"serbian\":\"truleži\",\"english\":\"rot\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed colour thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labelled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"kameru\",\"english\":\"camera\"},{\"serbian\":\"fiksnim\",\"english\":\"fixed\"},{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"dalje\",\"english\":\"still\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labelled\"},{\"serbian\":\"slika\",\"english\":\"images\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		},
+		{
+			"model": "claude-haiku-4-5",
+			"try": 18,
+			"sense": "right",
+			"english": "Our fruit sorting line often incorrectly classifies apples with minor skin damage and early-stage rot.",
+			"tasks": 3,
+			"tokens": 6311,
+			"costUsd": 0.022513,
+			"ms": 60981,
+			"answers": [
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor bark damage and initial rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"kore\",\"english\":\"bark\"},{\"serbian\":\"početnom\",\"english\":\"initial\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40.000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"sezone\",\"english\":\"seasons\"}]}]}"
+				},
+				{
+					"model": "claude-haiku-4-5",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line frequently misclassifies apples with minor bark damage and early rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"line (industrial equipment)\"},{\"serbian\":\"razvrstava\",\"english\":\"classifies\"},{\"serbian\":\"oštećenjima\",\"english\":\"damage\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error is still around 12% and customers return the goods. We have 40,000 labeled apple images from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				},
+				{
+					"model": "claude-sonnet-4-6",
+					"output": "{\"lines\":[{\"line\":1,\"english\":\"Our fruit sorting line often incorrectly classifies apples with minor skin damage and early-stage rot.\",\"senses\":[{\"serbian\":\"linija\",\"english\":\"sorting line\"},{\"serbian\":\"kore\",\"english\":\"skin\"},{\"serbian\":\"sortiranje\",\"english\":\"sorting\"}]},{\"line\":2,\"english\":\"We tried a camera with fixed color thresholds, but the error rate is still around 12% and customers are returning goods. We have 40,000 labeled images of apples from three harvest seasons.\",\"senses\":[{\"serbian\":\"pragovima\",\"english\":\"thresholds\"},{\"serbian\":\"greška\",\"english\":\"error rate\"},{\"serbian\":\"robu\",\"english\":\"goods\"},{\"serbian\":\"označenih\",\"english\":\"labeled\"},{\"serbian\":\"berbe\",\"english\":\"harvest\"}]}]}"
+				}
+			]
+		}
+	]
+}

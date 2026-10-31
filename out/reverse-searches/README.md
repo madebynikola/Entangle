@@ -64,6 +64,12 @@ the same researchers come up as for an English problem. These parts fail:
    the Critic, which trusts the translation, passes "bark" too. Four full runs on 2026-10-31 had 14 and 14 send-backs
    before, 16 and 11 after. None came from a translation: in all four the need already said "skin". The send-backs are
    about profiles, pairs and proposal wording, so the run-level count does not move.
+   *Since card #80* Sonnet 4.6 makes the translation, not Haiku 4.5. `npm run translate:eval -- --local` runs only
+   the translation of this problem, 20 tries per model (`translation/`): Haiku gives "bark" in 3 of 20 ($0.0024 a
+   record, 7 s), Sonnet in 0 of 20 ($0.0066, 19 s). A fix on Haiku was tried and dropped: two translations that
+   must agree on the meanings they list for ambiguous words, else a third on Sonnet. It gives 0 of 20, but synonyms
+   ("sorts" and "classifies", "minor" and "fine") break the agreement in 16 of 20, so it costs $0.019 a record and
+   takes 44 s. Asking Haiku to list those meanings also makes it worse alone: "bark" in 6 of 20.
 2. **The Analyst invents the original term in brackets.** The prompt says to add the Serbian original when unsure
    (`src/agents/analyst/prompt.ts:26`). The restatement says "minor bark damage (drobna oštećenja kore)", but the text says
    "sitnim oštećenjima kore". "drobna" is not in the source. This one did not reach the proposal.
