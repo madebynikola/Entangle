@@ -91,12 +91,43 @@ export function redactPersonal(text: string): string {
 		.replace(/\s{2,}/g, " ")
 }
 
-const AVAILABILITY =
-	/\bleave\b|limited availability|reduced availability|not available|unavailable|does not travel|left the university|retired|emeritus status|available for consulting|consulting (?:engagements )?only|limits (?:his|her|their) (?:external )?engagement/i
+/** Phrases that limit a person's time: leave, sabbatical, workload, soft capacity limits. */
+const AVAILABILITY = new RegExp(
+	[
+		"\\bleave\\b",
+		"(?:limited|reduced|restricted|constrained|little) (?:\\w+ )?(?:availability|capacity)",
+		// "capacity for new large commitments is limited until mid-2026"
+		"(?:capacity|availability) (?:for|to)\\b[^.;]*?\\b(?:is|are|remains?) (?:limited|moderate|reduced|constrained)",
+		"(?:capacity|availability) for only\\b",
+		"\\bno (?:spare |free )?(?:capacity|time)\\b",
+		"\\blimits (?:his |her |their )?capacity",
+		"\\bnear full (?:\\w+ )?capacity",
+		"(?:full|heavy|high|substantial) (?:\\w+ )?(?:teaching|administrative) load",
+		"(?:cannot|can't|unable to) (?:take on|commit)",
+		"\\bnot (?:taking|able to take) on\\b",
+		"\\bon sabbatical\\b|\\bsabbatical (?:leave|in|during|for)\\b",
+		"not available|unavailable",
+		"does not travel|left the university|retired|emeritus status",
+		"available for consulting|consulting (?:engagements )?only",
+		"limits (?:his|her|their) (?:external )?engagement",
+	].join("|"),
+	"i",
+)
+
+/** Something other than the researcher is short: a capability, data, equipment or a lab ("a capability not available at the faculty"). */
+const NOT_THE_PERSON =
+	/\b(?:not|un)available (?:at|through|from)\b|\botherwise unavailable\b|\bavailability of\b|\bcapabilit|\b(?:equipment|instruments?|instrumented|platform|kits?|extractor|test strip|booking)\b|\b(?:lab|laboratory|sequencing|in-house) capacity\b|\bfacility\b/i
+
+/** "No planned sabbatical", "not currently on sabbatical", "no planned leave": nothing limits the person. */
+const NEGATED = /\b(?:no|not|without)\s+(?:\w+\s+){0,3}(?:sabbatical|leave)\b/gi
+
+function limitsPerson(sentence: string): boolean {
+	return AVAILABILITY.test(sentence.replace(NEGATED, "")) && !NOT_THE_PERSON.test(sentence)
+}
 
 /** The sentences of (redacted) notes that limit availability, or null. */
 export function availabilityOf(notes: string): string | null {
-	const sentences = notes.split(/(?<=[.;])\s+/).filter((s) => AVAILABILITY.test(s))
+	const sentences = notes.split(/(?<=[.;])\s+/).filter(limitsPerson)
 	return sentences.length ? sentences.join(" ").replace(/;$/, ".") : null
 }
 
