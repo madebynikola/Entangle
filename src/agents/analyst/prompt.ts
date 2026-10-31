@@ -2,6 +2,7 @@ import type { StructuredOutputFormat } from "@mozaik-ai/core"
 import type { Dataset } from "../../data"
 import type { ChallengeTriage, Claim, CompanyNeed, RejectedClaim } from "../../types"
 import { CLAIM_FIXES_SCHEMA, numbered } from "../matchmaker/shared"
+import type { Translations } from "../critic/translate"
 import { clip, dataBlock } from "../profiler/shared"
 
 export const ANALYST_INSTRUCTION = `You are an Industry Analyst of EINSTEIN, a programme that pairs researchers of the University of Novi Sad with companies around NTP Novi Sad.
@@ -23,7 +24,7 @@ Claims (restatement, assets, constraints):
 - Say what the record says, at the same scope and no more. Keep the company's own hedges: if it suspects a cause, write that it suspects it. Add no "must", "already", "severely" or "proven" that the text does not say.
 - Add no consequence or offer the text does not state: not "available for field testing", not "this limits the budget".
 - A job ad shows a role the company wants to fill, not the skills of its current staff.
-- Translate Serbian by the meaning in context: "ležaj" in a machine is a bearing, not a bed. After each technical term you translate, add the original in brackets, copied word for word from the record, in the form the record writes it: "fruit fly larvae (larve voćne mušice)". Never write a Serbian word that is not in the record. The Critic checks that the bracketed words are in the cited record.
+- Translate Serbian by the meaning in context: "ležaj" in a machine is a bearing, not a bed. A record with Serbian lines comes with "english": a translation of those lines, made apart from your task. The Critic checks your claims against the same translation, so take each Serbian term's meaning and English word from it. After each technical term you translate, add the original in brackets, copied word for word from the record (never from the translation), in the form the record writes it: "fruit fly larvae (larve voćne mušice)". Never write a Serbian word that is not in the record. The Critic checks that the bracketed words are in the cited record.
 - Keep a number as the measure the record gives: "an error of about 5%" stays an error, never "95% accuracy".
 - Keep the names of products and standards as they are.
 - No personal data: no employee names, no email addresses, and never a reason for anyone's leave or absence. Write "one of the two developers will be unavailable", not who or why.
@@ -98,10 +99,17 @@ export interface NeedAnswer {
 /** Chars of one page's text in the prompt. Pages run to 2,500 chars; the first part carries the facts. */
 const PAGE_CHARS = 1400
 
-/** What the Analyst reads for one company: about 5k tokens. Pages carry their shortest unique id. */
-export function companyBundle(data: Dataset, companyId: string) {
+/**
+ * What the Analyst reads for one company: about 5k tokens. Pages carry their shortest unique id. With `translations`,
+ * a record with Serbian lines carries "english", the run's translation of them; a page only of the lines it shows.
+ */
+export function companyBundle(data: Dataset, companyId: string, translations?: Translations) {
 	const c = data.companies.get(companyId)
 	if (!c) throw new Error(`Unknown company ${companyId}`)
+	const english = (id: string, shown?: string) => {
+		const lines = (translations?.get(id) ?? []).filter(({ serbian }) => shown === undefined || shown.includes(serbian.slice(0, 60)))
+		return lines.length ? lines.map((line) => line.english) : undefined
+	}
 	return {
 		company: {
 			id: c.id,
@@ -118,14 +126,16 @@ export function companyBundle(data: Dataset, companyId: string) {
 			plans: c.plans,
 			rdCapacity: c.rdCapacity,
 			pastCollaborations: c.pastCollaborations,
+			english: english(c.id),
 		},
 		challenges: c.challenges.map((id) => {
 			const ch = data.challenges.get(id)!
-			return { id: ch.id, text: ch.text, detail: ch.detail }
+			return { id: ch.id, text: ch.text, detail: ch.detail, english: english(ch.id) }
 		}),
 		pages: c.pages.map((id) => {
 			const page = data.pages.get(id)!
-			return { id: shortPageId(data, page.id), kind: page.kind, date: page.date, title: page.title, text: clip(page.text, PAGE_CHARS) }
+			const text = clip(page.text, PAGE_CHARS)
+			return { id: shortPageId(data, page.id), kind: page.kind, date: page.date, title: page.title, text, english: english(page.id, `${page.title}\n${text}`) }
 		}),
 	}
 }

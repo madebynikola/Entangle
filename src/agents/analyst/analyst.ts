@@ -3,6 +3,7 @@ import { shardCompanies, type Dataset } from "../../data"
 import { createTask, join, modelFor, runTask, state } from "../../runtime"
 import type { Claim, CompanyNeed, RejectedClaim, SentBack, Task } from "../../types"
 import { SentBackToMe, describeRejections, postArtifact, sentBackTask } from "../critic/protocol"
+import type { Translations, Translator } from "../critic/translate"
 import { EventOfType, applyClaimFixes, emit, parseJson, registerMockResponder, type ClaimFix } from "../matchmaker/shared"
 import { ClaimFilter, reportCleaned, retryOrFail } from "../profiler/shared"
 import { analystResponder } from "./mock"
@@ -29,6 +30,11 @@ export interface AnalystOptions {
 	maxOutputTokens?: number
 	/** Mock runs only: plant one invented claim in the first need, so a mock trace shows the Critic's send-back. */
 	mockPlantFakeClaim?: boolean
+	/**
+	 * The run's translations of Serbian records, shared with the Critic. The Analyst reads a company only once its
+	 * Serbian records are translated, and writes from the same English the Critic checks against. Without it, no translation.
+	 */
+	translator?: Translator
 }
 
 export interface Analyst {
@@ -58,6 +64,8 @@ const PLANTED: Omit<Claim, "sourceIds"> = { text: "The company runs its own part
 export function createAnalyst(options: AnalystOptions): Analyst {
 	const { data } = options
 	const jobs = new Map<string, Job>()
+	/** The translations each company was read with, for its fixes. */
+	const translated = new Map<string, Translations>()
 	let planted = false
 	const agent = createAgent({
 		name: options.name ?? "analyst",
@@ -86,9 +94,23 @@ export function createAnalyst(options: AnalystOptions): Analyst {
 	}
 
 	function analyze(companyId: string): Task {
-		const message = analyzeMessage(companyBundle(data, companyId))
 		const task = createTask("analyze", agent, companyId)
-		run(task, { type: "analyze", companyId, message })
+		const start = (english?: Translations) => {
+			if (english) translated.set(companyId, english)
+			run(task, { type: "analyze", companyId, message: analyzeMessage(companyBundle(data, companyId, english)) })
+		}
+		const { translator } = options
+		if (!translator) {
+			start()
+			return task
+		}
+		// The task waits, queued, for the English of the company's Serbian records: one cheap task per record, made once per run.
+		const company = data.companies.get(companyId)
+		const records = company ? [company.id, ...company.challenges, ...company.pages].map((id) => data.sources.get(id)) : []
+		void translator
+			.of(records, agent, companyId)
+			.catch(() => undefined)
+			.then(start)
 		return task
 	}
 
@@ -104,7 +126,7 @@ export function createAnalyst(options: AnalystOptions): Analyst {
 	function startFix(task: Task, challengeId: string, rejected: RejectedClaim[], critique = ""): Task | null {
 		const need = state().needs.get(challengeId)
 		if (!need) return null
-		const input: NeedFixInput = { need, rejected, company: companyBundle(data, need.companyId) }
+		const input: NeedFixInput = { need, rejected, company: companyBundle(data, need.companyId, translated.get(need.companyId)) }
 		run(task, { type: "fix", input, message: needFixMessage(input) + (critique && `\n\n${critique}`) })
 		return task
 	}
