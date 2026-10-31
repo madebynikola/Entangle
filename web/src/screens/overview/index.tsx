@@ -181,6 +181,8 @@ function LoadChart({ series, peak, peakMs, duration }: { series: number[]; peak:
 	const area = `M0,${h} L${points.join(" L")} L${w},${h} Z`
 	const line = `M${points.join(" L")}`
 	const peakX = duration > 0 ? (peakMs / duration) * 100 : 0
+	// Near an edge the peak's label hangs off that edge instead of centring, and stands in for the axis label.
+	const edge = peakX < 12 ? "left" : peakX > 88 ? "right" : null
 	return (
 		<div className="flex min-h-0 flex-1 flex-col">
 			<div className="relative min-h-0 flex-1">
@@ -194,12 +196,19 @@ function LoadChart({ series, peak, peakMs, duration }: { series: number[]; peak:
 				{peak > 1 && (
 					<div className="pointer-events-none absolute inset-y-0" style={{ left: `${peakX}%` }}>
 						<div className="h-full border-l border-dashed border-strong" />
-						<div className="absolute top-0 -translate-x-1/2 -translate-y-full whitespace-nowrap pb-1 text-xs font-medium text-ink">
+						<div
+							className={cn(
+								"absolute top-0 -translate-y-full whitespace-nowrap pb-1 text-xs font-medium text-ink",
+								edge === "left" ? "left-0" : edge === "right" ? "right-0" : "-translate-x-1/2",
+							)}
+						>
 							{peak} at once
 						</div>
 					</div>
 				)}
-				<div className="tabular absolute left-0 top-0 -translate-y-full pb-1 text-xs text-ink-subtle">{peak}</div>
+				{!(peak > 1 && edge === "left") && (
+					<div className="tabular absolute left-0 top-0 -translate-y-full pb-1 text-xs text-ink-subtle">{peak}</div>
+				)}
 			</div>
 			<div className="tabular mt-2 flex justify-between text-xs text-ink-subtle">
 				<span>0:00</span>
