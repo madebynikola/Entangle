@@ -190,7 +190,7 @@ function RunsSection({ onNavigate }: { onNavigate?: () => void }) {
 	}, [runs, current])
 
 	return (
-		<section className="flex min-h-0 shrink flex-col">
+		<section className="flex min-h-0 flex-1 flex-col">
 			<SectionHeader title="Runs">
 				{canStart && (
 					<Tooltip content="New run: a problem or companies, on any data">
@@ -264,9 +264,10 @@ function AgentsSection() {
 	}, [agents])
 	const busy = roles.reduce((sum, [, row]) => sum + row.busy, 0)
 
-	if (!inRun) return <div className="flex-1" />
+	if (!inRun) return null
+	// The runs take the space left over and scroll; the team keeps its own height, up to half the column.
 	return (
-		<section className="flex min-h-0 flex-1 flex-col border-t border-hairline pt-3">
+		<section className="flex max-h-[50%] min-h-0 shrink-0 flex-col border-t border-hairline pt-3">
 			<SectionHeader title="Agents">
 				<span className={cn("tabular pr-2 text-xs", busy ? "text-working" : "text-ink-subtle")}>
 					{busy ? `${busy} working` : agents.size || ""}
