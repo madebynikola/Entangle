@@ -5,7 +5,7 @@ import { createOrchestrator, writeRun, type RunOutcome, type RunSummary } from "
 import { DATA_DIR, FIXTURE_DIR, addProblem, loadDataset, problemError, type Dataset, type DescribedProblem } from "./data"
 import { dataLabel } from "./data/import"
 import { createOpenAlex } from "./data/openalex"
-import { decisionEndpoint, join, localClaude, screen, screenSettings, startRuntime, subq, subqSettings } from "./runtime"
+import { decisionEndpoint, guardRun, join, localClaude, screen, screenSettings, startRuntime, subq, subqSettings } from "./runtime"
 import { createTraceObserver } from "./trace"
 
 const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [--companies N | all | --ids C006,C054 | --problem TEXT] [options]
@@ -121,7 +121,22 @@ async function main(): Promise<void> {
 	console.log(`run ${runId} · ${backend} · ${problem ? `reverse search on ${problem.challengeId}` : `${companyIds.length} companies`}`)
 	if (label?.kind === "upload") console.log(`  your data: ${label.name} (${relative(process.cwd(), dataDir)})`)
 	else if (dataDir === FIXTURE_DIR) console.log(values.data ? `  data: the test fixtures` : `  no data/raw/: using the test fixtures`)
+
+	// A run that must stop still writes what it has, so a crash or Ctrl-C never loses the work done.
+	let written = false
+	guardRun({
+		save: async (reason) => {
+			if (written) return
+			written = true
+			const partial = orchestrator.outcome()
+			const summary = writeRun(trace.dir, partial, orchestrator.critic.stats(), orchestrator.sources, reason)
+			await Promise.race([trace.close(), new Promise((resolve) => setTimeout(resolve, 2000))])
+			report(summary, trace.dir)
+			if (problem) reportProblem(problem, partial)
+		},
+	})
 	const outcome = await orchestrator.run(companyIds)
+	written = true
 	const summary = writeRun(trace.dir, outcome, orchestrator.critic.stats(), orchestrator.sources)
 	await trace.close()
 	report(summary, trace.dir)
@@ -204,7 +219,8 @@ function count(flag: string, raw: string): number {
 function report(summary: RunSummary, dir: string): void {
 	const { budget, counts, critic, failures } = summary
 	const price = summary.mock ? " (simulated)" : localClaude() ? " at API prices" : ""
-	console.log(`\ndone in ${duration(summary.durationMs)} · ${budget.tokensUsed.toLocaleString("en")} tokens · $${budget.costUsd.toFixed(2)}${price}`)
+	const ended = summary.stopped ? `stopped after ${duration(summary.durationMs)}, ${summary.stopped}; partial results` : `done in ${duration(summary.durationMs)}`
+	console.log(`\n${ended} · ${budget.tokensUsed.toLocaleString("en")} tokens · $${budget.costUsd.toFixed(2)}${price}`)
 	console.log(
 		`${summary.companies.length} companies · ${counts.needs} needs · ${counts.profiles} profiles · ${counts.pairs} pairs · ` +
 			`${counts.proposals} proposals accepted · ${counts.needsHuman} need human review · ${counts.noMatches} no match`,

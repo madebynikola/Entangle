@@ -23,6 +23,8 @@ export interface RunSummary {
 	failures: Array<{ taskId: string; kind: Task["kind"]; subjectId?: string; error?: string }>
 	budget: Budget
 	tasks: Task[]
+	/** Why the run stopped before its work ended (a crash, or a signal). The files then hold its partial results. */
+	stopped?: string
 }
 
 /**
@@ -31,7 +33,7 @@ export interface RunSummary {
  * (every cited record, so the run replays without the dataset) and `summary.json`. The summary goes last,
  * because the server takes it as the sign that the run has ended.
  */
-export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, store: SourceStore): RunSummary {
+export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, store: SourceStore, stopped?: string): RunSummary {
 	const s = state()
 	const save = (name: string, value: unknown) => writeFileSync(join(dir, name), JSON.stringify(value, null, 2) + "\n")
 	const funding = new Map(outcome.funding.map((match) => [match.pairId, match]))
@@ -95,6 +97,7 @@ export function writeRun(dir: string, outcome: RunOutcome, critic: CriticStats, 
 			.map(({ id, kind, subjectId, error }) => ({ taskId: id, kind, subjectId, error })),
 		budget: s.budget,
 		tasks,
+		...(stopped ? { stopped } : {}),
 	}
 	save("summary.json", summary)
 	return summary

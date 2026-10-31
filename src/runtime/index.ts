@@ -18,6 +18,7 @@ export { decisionEndpoint, decisionProviderOf, localClaude, modelFor, providerOf
 export { ClaudeCodeRunner } from "./claude-code-runner"
 export { SnapRunner, type Decider, type Decision, type DecisionAnswer, type DecisionQuestion } from "./snap-runner"
 export { ResilientRunner, defaultInferenceRunner } from "./resilient-runner"
+export { guardRun, isUndiciSocketAssertion } from "./crash"
 
 /** A runner of this type under the runtime's runner, which may wrap it (the ResilientRunner keeps it as `inner`). */
 export function innerOf<T extends InferenceRunner>(runner: InferenceRunner | undefined, type: new (...args: never[]) => T): T | undefined {

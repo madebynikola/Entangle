@@ -57,6 +57,8 @@ export interface Orchestrator {
 	sources: SourceStore
 	/** Run the whole team on these companies. Resolves when no task runs and no review is left. */
 	run(companyIds: string[]): Promise<RunOutcome>
+	/** What the run has so far. Read it when the run must stop before `run` resolves, to save partial results. */
+	outcome(): RunOutcome
 }
 
 interface CompanyWork {
@@ -336,6 +338,25 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 		}
 	}
 
+	/** The outcome from what is on the blackboard now: the accepted work, and the proposals left for a person. */
+	function snapshot(): RunOutcome {
+		const s = state()
+		const ours = (challengeId: string) => companies.has(data.challenges.get(challengeId)?.companyId ?? "")
+		return {
+			companyIds: [...companies.keys()],
+			needs: [...s.needs.values()].filter((need) => ours(need.challengeId) && accepted("need", need.challengeId)),
+			profiles: [...s.profiles.values()].filter((profile) => accepted("profile", profile.researcherId)),
+			pairs: [...s.candidates.values()].filter((pair) => accepted("pair", pair.id)),
+			chosen: [...chosen],
+			noMatches: [...s.noMatches.values()].filter((noMatch) => ours(noMatch.challengeId) && s.needs.has(noMatch.challengeId)),
+			proposals: [...s.proposals.values()].filter((proposal) => accepted("proposal", proposal.id)),
+			// Escalated by the Critic, or left unfinished: its fix or its review could not run.
+			needsHuman: [...s.proposals.values()].filter((proposal) => !accepted("proposal", proposal.id)),
+			funding: scout.results().filter((match) => chosen.includes(match.pairId)),
+			ms: Date.now() - started,
+		}
+	}
+
 	async function run(companyIds: string[]): Promise<RunOutcome> {
 		started = Date.now()
 		for (const id of companyIds) {
@@ -358,21 +379,7 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 		}
 		await settle()
 
-		const s = state()
-		const ours = (challengeId: string) => companies.has(data.challenges.get(challengeId)?.companyId ?? "")
-		const outcome: RunOutcome = {
-			companyIds,
-			needs: [...s.needs.values()].filter((need) => ours(need.challengeId) && accepted("need", need.challengeId)),
-			profiles: [...s.profiles.values()].filter((profile) => accepted("profile", profile.researcherId)),
-			pairs: [...s.candidates.values()].filter((pair) => accepted("pair", pair.id)),
-			chosen: [...chosen],
-			noMatches: [...s.noMatches.values()].filter((noMatch) => ours(noMatch.challengeId) && s.needs.has(noMatch.challengeId)),
-			proposals: [...s.proposals.values()].filter((proposal) => accepted("proposal", proposal.id)),
-			// Escalated by the Critic, or left unfinished: its fix or its review could not run.
-			needsHuman: [...s.proposals.values()].filter((proposal) => !accepted("proposal", proposal.id)),
-			funding: scout.results().filter((match) => chosen.includes(match.pairId)),
-			ms: Date.now() - started,
-		}
+		const outcome = snapshot()
 		emit(me, "orchestrator.done", {
 			ms: outcome.ms,
 			needs: outcome.needs.length,
@@ -385,5 +392,5 @@ export function createOrchestrator(options: OrchestratorOptions): Orchestrator {
 		return outcome
 	}
 
-	return { participant, critic, sources, run }
+	return { participant, critic, sources, run, outcome: snapshot }
 }
