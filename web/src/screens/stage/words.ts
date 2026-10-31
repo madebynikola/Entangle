@@ -151,6 +151,12 @@ function sayRaw(line: Line, names: Names, detail: boolean): string {
 			return `Dropped ${x}. Nothing held up after the fix.`
 		case "decide":
 			return pick(seed, [`Tinta, write up ${x}.`, `${x} it is. Tinta, your turn.`])
+		case "funding":
+			if (!line.count) return `No open EU call fits ${x}.`
+			return pick(seed, [
+				`${line.count} open EU call${line.count === 1 ? "" : "s"} fit ${x}.`,
+				`Found ${line.count} EU call${line.count === 1 ? "" : "s"} for ${x}. Tinta, they go at the end.`,
+			])
 		case "done":
 			return `Done. ${line.totals?.proposals ?? 0} proposals from ${line.totals?.pairs ?? 0} pairs.`
 		case "fail":
@@ -192,6 +198,8 @@ function sayGroup(lines: Line[], names: Names): string {
 			return `No good match for ${items}.`
 		case "decide":
 			return `Picked ${n} pairs to write up.`
+		case "funding":
+			return `Scouted EU calls for ${items}.`
 		default:
 			return sayOne(lines.at(-1)!, names)
 	}
@@ -210,6 +218,7 @@ export const VERB: Record<Act, string> = {
 	"no-match": "found no match",
 	"pair-dropped": "dropped a pair",
 	decide: "chose a pair",
+	funding: "scouted EU calls",
 	done: "finished",
 	fail: "failed",
 }

@@ -49,6 +49,7 @@
 	--role-matchmaker: #8447c2;
 	--role-writer: #13807a;
 	--role-critic: #c8463d;
+	--role-shortlist: #5b6b7b;
 	--role-scout: #5f7f1e;
 	--role-other: #aeaeb2;
 
@@ -92,6 +93,7 @@
 	--role-matchmaker: #b48ae8;
 	--role-writer: #3cbfb4;
 	--role-critic: #f07a70;
+	--role-shortlist: #8b9aab;
 	--role-scout: #a3c95a;
 	--role-other: #5c5c60;
 
@@ -127,6 +129,7 @@
 	--color-role-matchmaker: var(--role-matchmaker);
 	--color-role-writer: var(--role-writer);
 	--color-role-critic: var(--role-critic);
+	--color-role-shortlist: var(--role-shortlist);
 	--color-role-scout: var(--role-scout);
 	--color-role-other: var(--role-other);
 

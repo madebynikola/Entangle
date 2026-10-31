@@ -431,7 +431,7 @@ class Draft {
 
 /** Agents sorted for display: by role order, then by name with numbers in order (profiler-2 before profiler-10). */
 export function sortAgents(agents: Iterable<AgentView>): AgentView[] {
-	const order: RoleKey[] = ["orchestrator", "analyst", "profiler", "matchmaker", "writer", "scout", "critic", "other"]
+	const order: RoleKey[] = ["orchestrator", "analyst", "shortlist", "profiler", "matchmaker", "writer", "scout", "critic", "other"]
 	return [...agents].sort(
 		(a, b) => order.indexOf(a.role) - order.indexOf(b.role) || a.name.localeCompare(b.name, undefined, { numeric: true }),
 	)

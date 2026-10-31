@@ -1,6 +1,8 @@
 import amity from "@design/agents/amity.svg?raw"
+import ceres from "@design/agents/ceres.svg?raw"
 import deneb from "@design/agents/deneb.svg?raw"
 import fides from "@design/agents/fides.svg?raw"
+import libra from "@design/agents/libra.svg?raw"
 import spica from "@design/agents/spica.svg?raw"
 import tinta from "@design/agents/tinta.svg?raw"
 import tycho from "@design/agents/tycho.svg?raw"
@@ -11,21 +13,23 @@ import you from "@design/agents/you.svg?raw"
  * `data-state` on the root picks one. Their CSS goes into the page once, so a face is only its markup.
  */
 
-export type FaceId = "deneb" | "spica" | "tycho" | "amity" | "tinta" | "fides" | "you"
+export type FaceId = "deneb" | "spica" | "libra" | "tycho" | "amity" | "tinta" | "fides" | "ceres" | "you"
 /** `happy` is the smiling eyes without the done props: for greetings and the boot animation. */
 export type FaceState = "idle" | "working" | "reject" | "done" | "happy"
 
 export const FACE_NAME: Record<FaceId, string> = {
 	deneb: "Deneb",
 	spica: "Spica",
+	libra: "Libra",
 	tycho: "Tycho",
 	amity: "Amity",
 	tinta: "Tinta",
 	fides: "Fides",
+	ceres: "Ceres",
 	you: "You",
 }
 
-const SOURCES: Record<FaceId, string> = { deneb, spica, tycho, amity, tinta, fides, you }
+const SOURCES: Record<FaceId, string> = { deneb, spica, libra, tycho, amity, tinta, fides, ceres, you }
 
 /** The SVG's own markup without its <style>, as a fresh root the app sets the state on. */
 const MARKUP = Object.fromEntries(

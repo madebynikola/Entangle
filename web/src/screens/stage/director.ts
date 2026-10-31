@@ -46,6 +46,7 @@ const WEIGHT: Record<Act, number> = {
 	fail: 8,
 	drop: 7,
 	decide: 7,
+	funding: 6,
 	"no-match": 6,
 	"pair-dropped": 6,
 	post: 5,
@@ -87,6 +88,10 @@ function beatOf(id: number, at: number, lines: Line[], names: Names): Beat {
 			break
 		case "no-match":
 			beat.mood = { face: "amity", state: "reject" }
+			break
+		case "funding":
+			// Ceres's chest opens when calls fit; the trail ends at a question mark when none do.
+			beat.mood = { face: "ceres", state: lines.some((line) => line.count) ? "done" : "reject" }
 			break
 		case "fail":
 			beat.mood = { face: first.from, state: "reject" }
