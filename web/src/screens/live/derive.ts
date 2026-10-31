@@ -265,6 +265,35 @@ export function pack(loops: Iterable<LoopView>, startOf: (loop: LoopView) => num
 	return { track, tracks: Math.max(1, ends.length) }
 }
 
+/** Critic moments on one lane that sit too close to tell apart: one mark with a count. */
+export interface MarkGroup {
+	/** In time order. */
+	moments: Moment[]
+	/** Where the mark sits: halfway between its first and last moment. */
+	ms: number
+}
+
+/**
+ * Groups a lane's Critic moments so that no two marks sit closer than `gapMs` (a mark's width at the current zoom).
+ * A moment closer than that to the mark before it joins that mark. The mark sits halfway between its first and last
+ * moment, so a growing group moves away from the mark before it, never towards it, and spans less than 2 × `gapMs`.
+ * Zooming in makes `gapMs` smaller, so the groups split again.
+ */
+export function groupMarks(moments: Moment[], gapMs: number): MarkGroup[] {
+	const sorted = moments.every((m, i) => i === 0 || moments[i - 1].ms <= m.ms) ? moments : [...moments].sort((a, b) => a.ms - b.ms)
+	const groups: MarkGroup[] = []
+	for (const moment of sorted) {
+		const last = groups.at(-1)
+		if (last && moment.ms - last.ms < gapMs) {
+			last.moments.push(moment)
+			last.ms = (last.moments[0].ms + moment.ms) / 2
+		} else {
+			groups.push({ moments: [moment], ms: moment.ms })
+		}
+	}
+	return groups
+}
+
 export interface LaneGeometry {
 	height: number
 	/** Top of the first track. */
