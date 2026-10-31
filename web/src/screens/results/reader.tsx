@@ -1,9 +1,9 @@
 import type { Proposal } from "@shared/types"
 import { Link } from "react-router"
-import { Meta } from "@/components/ui/card"
-import { Markdown } from "@/components/ui/markdown"
-import { StatusLabel } from "@/components/ui/status"
+import { Chip } from "@/components/ui/chip"
+import { AgentFace } from "@/components/ui/face"
 import { Tabs } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils"
 import { useRunStore } from "@/run/hooks"
 import {
 	challengeIdOf,
@@ -23,6 +23,7 @@ import { ExportMenu } from "./export"
 import { Block, ClaimRows, DetailFrame, useTab } from "./parts"
 import { ReviewHistory } from "./review"
 import { FundingBlock } from "./funding"
+import { ProposalBody } from "./proposal-body"
 
 const READER_TABS = ["proposal", "claims", "review"] as const
 type ReaderTab = (typeof READER_TABS)[number]
@@ -39,13 +40,52 @@ function sides(index: ResultsIndex, pairId: string) {
 	}
 }
 
+/** The two sides of a pair, one per line with the face of the agent that read it: Spica the company, Tycho the researcher. */
+function PairSides({ index, pairId, className }: { index: ResultsIndex; pairId: string; className?: string }) {
+	const paths = useResultsPath()
+	const { pair, company, researcher } = sides(index, pairId)
+	const faculty = index.profiles.get(pair?.researcherId ?? researcherIdOf(pairId))?.faculty
+	const side = (face: "spica" | "tycho", name: string, detail: string | undefined) => (
+		<div className="flex min-w-0 items-center gap-2">
+			<AgentFace face={face} className="size-5" />
+			<span className="truncate text-sm">
+				{pair ? (
+					<Link to={paths.pair(pair.id)} className="font-medium text-ink underline-offset-2 hover:underline">
+						{name}
+					</Link>
+				) : (
+					<span className="font-medium text-ink">{name}</span>
+				)}
+				{detail && <span className="text-ink-subtle"> · {detail}</span>}
+			</span>
+		</div>
+	)
+	return (
+		<div className={cn("flex flex-col gap-1", className)}>
+			{side("spica", company.name, company.sector)}
+			{side("tycho", researcher, faculty)}
+		</div>
+	)
+}
+
+/** How many open EU calls Ceres found for the pair; nothing when the run has no Scout answer for it. */
+function CallsChip({ index, pairId }: { index: ResultsIndex; pairId: string }) {
+	const match = index.results.funding?.find((m) => m.pairId === pairId)
+	if (!match) return null
+	const n = match.calls.length
+	return (
+		<Chip icon={<AgentFace face="ceres" state={n ? "idle" : "reject"} className="size-4" />}>
+			{n ? `${n} EU call${n === 1 ? "" : "s"}` : "No EU call fits"}
+		</Chip>
+	)
+}
+
 /**
  * One proposal: the Markdown with every citation as a source chip (hover shows the record, click opens it),
  * its claims one by one, and the Critic history. The person's decision and the export sit in the header.
  */
 export function ProposalDetail({ index, proposal }: { index: ResultsIndex; proposal: Proposal }) {
 	const [tab, setTab] = useTab(READER_TABS, "proposal")
-	const paths = useResultsPath()
 	const runId = useRunStore((state) => state.runId) ?? ""
 	const approval = useRunStore((state) => state.results?.approvals[proposal.pairId])
 	const { pair, company, researcher } = sides(index, proposal.pairId)
@@ -58,22 +98,13 @@ export function ProposalDetail({ index, proposal }: { index: ResultsIndex; propo
 			header={
 				<>
 					<h2 className="text-balance text-lg font-semibold leading-snug tracking-tight text-ink">{proposal.title}</h2>
-					<Meta
-						className="mt-1.5"
-						items={[
-							kindLabel(proposal.kind),
-							pair ? (
-								<Link to={paths.pair(pair.id)} className="text-ink underline-offset-2 hover:underline">
-									{company.name} and {researcher}
-								</Link>
-							) : (
-								`${company.name} and ${researcher}`
-							),
-							<StatusLabel tone={review.tone} className="text-ink-muted">
-								{review.label}
-							</StatusLabel>,
-						]}
-					/>
+					<PairSides index={index} pairId={proposal.pairId} className="mt-3" />
+					<div className="mt-3 flex flex-wrap items-center gap-1.5">
+						<Chip>{kindLabel(proposal.kind)}</Chip>
+						{pair && <Chip>fit {Math.round(pair.fit * 100)}%</Chip>}
+						<Chip tone={review.tone === "working" ? "working" : review.tone === "failed" ? "failed" : "needs"}>{review.label}</Chip>
+						<CallsChip index={index} pairId={proposal.pairId} />
+					</div>
 				</>
 			}
 			actions={
@@ -99,7 +130,7 @@ export function ProposalDetail({ index, proposal }: { index: ResultsIndex; propo
 			<DecisionNote pairId={proposal.pairId} className="mb-6 max-w-[72ch]" />
 			{tab === "proposal" && (
 				<>
-					<Markdown>{stripTitle(proposal.markdown, proposal.title)}</Markdown>
+					<ProposalBody markdown={stripTitle(proposal.markdown, proposal.title)} />
 					<FundingBlock index={index} pairId={proposal.pairId} className="mt-10" />
 				</>
 			)}
@@ -125,7 +156,6 @@ export function ProposalDetail({ index, proposal }: { index: ResultsIndex; propo
  */
 export function HeldBackDetail({ index, held }: { index: ResultsIndex; held: HeldBack }) {
 	const [tab, setTab] = useTab(READER_TABS, "proposal")
-	const paths = useResultsPath()
 	const runId = useRunStore((state) => state.runId)
 	const { pair, company, researcher } = sides(index, held.pairId)
 	const verdicts = reviewsOf(index.results, "proposal", held.id)
@@ -150,22 +180,13 @@ export function HeldBackDetail({ index, held }: { index: ResultsIndex; held: Hel
 					<h2 className="text-balance text-lg font-semibold leading-snug tracking-tight text-ink">
 						{draft?.title ?? `${company.name} and ${researcher}`}
 					</h2>
-					<Meta
-						className="mt-1.5"
-						items={[
-							draft ? kindLabel(draft.kind) : <span className="font-mono text-xs">{held.id}</span>,
-							pair ? (
-								<Link to={paths.pair(pair.id)} className="text-ink underline-offset-2 hover:underline">
-									{draft ? `${company.name} and ${researcher}` : "Open the pair"}
-								</Link>
-							) : (
-								draft && `${company.name} and ${researcher}`
-							),
-							<StatusLabel tone="needs" className="text-ink-muted">
-								Needs human review
-							</StatusLabel>,
-						]}
-					/>
+					<PairSides index={index} pairId={held.pairId} className="mt-3" />
+					<div className="mt-3 flex flex-wrap items-center gap-1.5">
+						<Chip>{draft ? kindLabel(draft.kind) : held.id}</Chip>
+						{pair && <Chip>fit {Math.round(pair.fit * 100)}%</Chip>}
+						<Chip tone="needs">Needs human review</Chip>
+						<CallsChip index={index} pairId={held.pairId} />
+					</div>
 				</>
 			}
 			actions={<DecisionBar pairId={held.pairId} />}
@@ -191,7 +212,7 @@ export function HeldBackDetail({ index, held }: { index: ResultsIndex; held: Hel
 					{tab === "proposal" && (
 						<div className="flex flex-col gap-8">
 							{note}
-							<Markdown>{stripTitle(draft.markdown, draft.title)}</Markdown>
+							<ProposalBody markdown={stripTitle(draft.markdown, draft.title)} />
 						</div>
 					)}
 					{tab === "claims" && (
