@@ -79,11 +79,70 @@
 		opacity: 0; scale: 0.4; }
 	#cursor .ring.go { animation: ring 560ms var(--out); }
 	@keyframes ring { 0% { opacity: 0.9; scale: 0.4; } 100% { opacity: 0; scale: 1.25; } }
+
+	/* Isolation: the app's page is hidden and only the marked components float on the backdrop (see iso()). */
+	#win.iso { background: transparent; box-shadow: none; border-radius: 0; transition: none; }
+	#stage { translate: 0 0; }
+	#stage.gone { filter: blur(14px); opacity: 0; translate: 0 26px; scale: 0.985; }
+	#stage { transition: filter 520ms var(--out), opacity 520ms var(--out), scale 520ms var(--out), translate 620ms var(--out); }
+
+	/* An agent's introduction: its face, name, role and model, on the left. Its real work floats on the right. */
+	#intro { position: fixed; left: 96px; top: 50%; translate: 0 -50%; width: 470px; display: flex; flex-direction: column; gap: 0; pointer-events: none; }
+	#intro .face { width: 196px; height: 196px; margin: 0 0 30px -10px; opacity: 0; scale: 0.3; translate: 0 30px;
+		animation: pop 900ms cubic-bezier(0.34, 1.5, 0.6, 1) forwards; }
+	#intro .face svg { width: 100%; height: 100%; overflow: visible; }
+	#intro .num { font-size: 14px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--role); margin-bottom: 10px; }
+	#intro .name { font-family: var(--serif); font-weight: 500; font-size: 86px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 18px; }
+	#intro .job { font-size: 24px; line-height: 1.42; color: var(--muted); letter-spacing: -0.01em; margin-bottom: 26px; }
+	#intro .job b { color: var(--ink); font-weight: 600; }
+	#intro .model { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 13px; border-radius: 999px;
+		font-size: 17px; font-weight: 550; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 8px 20px -10px rgba(29, 29, 31, 0.25); }
+	#intro .model i { width: 9px; height: 9px; border-radius: 50%; background: var(--role); }
+	#intro .model span { color: var(--muted); font-weight: 450; }
+	#intro .in { opacity: 0; filter: blur(10px); translate: 0 16px; animation: word-in2 700ms var(--out) forwards; animation-delay: calc(180ms + var(--i) * 90ms); }
+	#intro.out > * { animation: word-out 420ms var(--ease) forwards !important; animation-delay: calc(var(--i, 0) * 30ms) !important; }
+	@keyframes pop { to { opacity: 1; scale: 1; translate: 0 0; } }
+	@keyframes word-in2 { to { opacity: 1; filter: blur(0); translate: 0 0; } }
+
+	/* The roster: the nine faces in a row at the bottom, the one being introduced lit up. */
+	#roster { position: fixed; left: 50%; bottom: 30px; translate: -50% 20px; display: flex; gap: 16px; opacity: 0; pointer-events: none;
+		transition: opacity 500ms var(--out), translate 500ms var(--out); }
+	#roster.on { opacity: 1; translate: -50% 0; }
+	#roster .m { width: 34px; height: 34px; opacity: 0.28; filter: grayscale(0.6); transition: opacity 400ms var(--out), scale 500ms cubic-bezier(0.34, 1.5, 0.6, 1), filter 400ms; }
+	#roster .m.seen { opacity: 0.55; filter: none; }
+	#roster .m.on { opacity: 1; filter: none; scale: 1.3; }
+	#roster svg { width: 100%; height: 100%; }
+
+	/* A row of faces on a title card. */
+	#titles .faces { display: flex; gap: 26px; margin-bottom: 18px; }
+	#titles .faces .f { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; scale: 0.3; translate: 0 30px;
+		animation: pop 800ms cubic-bezier(0.34, 1.5, 0.6, 1) forwards; animation-delay: calc(var(--i) * 85ms); }
+	#titles .faces svg { width: 96px; height: 96px; }
+	#titles .faces span { font-size: 15px; font-weight: 600; color: var(--muted); }
+	#titles.out .faces .f { animation: word-out 420ms var(--ease) forwards; animation-delay: calc(var(--i) * 25ms); opacity: 1; scale: 1; translate: 0 0; }
+
+	/* A panel the director draws itself, in the component's place: Libra's count, the run's numbers. */
+	#panel { position: fixed; inset: 0; pointer-events: none; }
+	#panel .box { position: absolute; display: grid; place-items: center; }
+	#panel .tally { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+	#panel .tally .big { font-family: var(--serif); font-size: 150px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+	#panel .tally .lab { font-size: 24px; color: var(--muted); }
+	#panel .tally .arrow { font-size: 40px; color: var(--subtle); margin: 6px 0; }
+	#panel .grid { display: grid; grid-template-columns: repeat(4, 262px); gap: 24px; }
+	#panel .stat { padding: 30px 26px 26px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 24px 50px -24px rgba(29, 29, 31, 0.3); }
+	#panel .stat .n { font-family: var(--serif); font-size: 76px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+	#panel .stat .l { margin-top: 12px; font-size: 20px; line-height: 1.35; color: var(--muted); }
+	#panel .stat svg { width: 58px; height: 58px; margin-bottom: 18px; }
+	#panel .in { opacity: 0; filter: blur(10px); translate: 0 20px; animation: word-in2 760ms var(--out) forwards; animation-delay: calc(var(--i) * 110ms); }
+	#panel.out .in { animation: word-out 420ms var(--ease) forwards; animation-delay: calc(var(--i) * 30ms); }
 </style>
 </head>
 <body>
 	<div id="backdrop"></div>
 	<div id="stage"><div id="cam"><div id="win"><iframe id="app" title="Entangle"></iframe></div></div></div>
+	<div id="panel"></div>
+	<div id="intro"></div>
+	<div id="roster"></div>
 	<div id="titles"></div>
 	<div id="caption"><div class="kicker"></div><div class="text"></div></div>
 	<div id="cursor"><div class="ring"></div><svg viewBox="0 0 28 28"><path d="M5 3 L5 22 L10 17.5 L13.5 25 L17 23.4 L13.6 16 L20 16 Z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
@@ -92,9 +151,29 @@
 	const $ = (id) => document.getElementById(id)
 	const sleep = (ms) => new Promise((done) => setTimeout(done, ms))
 	const app = $("app"), cam = $("cam"), win = $("win"), stage = $("stage"), titles = $("titles"), caption = $("caption"), cursor = $("cursor")
+	const intro = $("intro"), roster = $("roster"), panel = $("panel")
 
 	/** Where the camera is: screen = (tx, ty) + s × app. */
 	let view = { s: 1, tx: 0, ty: 0, rx: 0, ry: 0 }
+	let isolated = false
+
+	/** The agents' faces from the brand kit, inlined so their state can change. Each SVG carries its own CSS. */
+	const FACE_IDS = ["deneb", "spica", "libra", "tycho", "fides", "amity", "tinta", "ceres", "you"]
+	const FACES = {}
+	const FACE_NAME = { deneb: "Deneb", spica: "Spica", libra: "Libra", tycho: "Tycho", fides: "Fides", amity: "Amity", tinta: "Tinta", ceres: "Ceres", you: "You" }
+	const facesReady = Promise.all(FACE_IDS.map(async (id) => { FACES[id] = await (await fetch(`/__demo/agents/${id}.svg`)).text() }))
+	const faceSvg = (id, state = "idle") => FACES[id].replace(/<svg\b([^>]*?)data-state="[^"]*"/, `<svg$1data-state="${state}"`).replace(/<\?xml[^>]*>/, "")
+
+	/** Hide the app's page and keep only elements marked data-iso; data-iso-hide hides a part of one. */
+	const ISO_CSS = `
+		html.iso, html.iso body, html.iso #root { background: transparent !important; }
+		html.iso body * { visibility: hidden !important; }
+		html.iso [data-iso], html.iso [data-iso] * { visibility: visible !important; }
+		[data-iso] [data-iso-hide] { display: none !important; }
+		html.iso [data-iso][data-iso-card] { background: #fff !important; border-radius: 12px;
+			box-shadow: 0 0 0 20px #fff, 0 0 0 21px rgba(0, 0, 0, 0.05), 0 40px 90px -24px rgba(29, 29, 31, 0.35) !important; }
+		html.iso .stage-canvas[data-iso] { background: transparent !important; }
+		html.iso [data-sonner-toaster] { display: none !important; }`
 
 	function apply(next, ms, ease) {
 		view = next
@@ -115,12 +194,17 @@
 		}
 		const { x, y, w, h } = spec.rect
 		const pad = spec.pad ?? 0.12
-		let s = Math.min(W / (w * (1 + pad)), H / (h * (1 + pad)))
-		s = Math.max(spec.min ?? 1, Math.min(spec.max ?? 2.4, s))
-		let tx = W / 2 - s * (x + w / 2)
-		let ty = H / 2 - s * (y + h / 2) + (spec.lift ?? 0)
-		tx = Math.min(0, Math.max(W - W * s, tx))
-		ty = Math.min(0, Math.max(H - H * s, ty))
+		// The screen box to fit into: the whole screen, or a part of it (an isolated component beside an intro).
+		const box = spec.box ?? { x: 0, y: 0, w: W, h: H }
+		let s = Math.min(box.w / (w * (1 + pad)), box.h / (h * (1 + pad)))
+		s = Math.max(spec.min ?? (spec.box ? 0.3 : 1), Math.min(spec.max ?? 2.4, s))
+		let tx = box.x + box.w / 2 - s * (x + w / 2)
+		let ty = box.y + box.h / 2 - s * (y + h / 2) + (spec.lift ?? 0)
+		// With the page around it, never show past the window's edge. Isolated, there is no edge.
+		if (!isolated) {
+			tx = Math.min(0, Math.max(W - W * s, tx))
+			ty = Math.min(0, Math.max(H - H * s, ty))
+		}
 		return { s, tx, ty, rx: 0, ry: 0 }
 	}
 
@@ -135,6 +219,92 @@
 			const next = shot(spec)
 			win.classList.toggle("framed", next.s < 1)
 			return apply(next, ms, ease)
+		},
+		/** Isolate: only the app's marked components show, on the backdrop. */
+		iso(on) {
+			isolated = on
+			win.classList.toggle("iso", on)
+			const doc = app.contentDocument
+			if (!doc.getElementById("demo-iso")) {
+				const style = doc.createElement("style")
+				style.id = "demo-iso"
+				style.textContent = ISO_CSS
+				doc.head.append(style)
+			}
+			doc.documentElement.classList.toggle("iso", on)
+			if (!on)
+				for (const el of doc.querySelectorAll("[data-iso], [data-iso-hide]")) {
+					if (el.hasAttribute("data-iso")) el.style.maxWidth = ""
+					for (const name of ["data-iso", "data-iso-card", "data-iso-hide"]) el.removeAttribute(name)
+				}
+		},
+		/** The stage in or out: "gone" fades it down and away, for a cut between isolated components. */
+		stage(mode, ms = 560) {
+			stage.classList.toggle("gone", mode === "gone")
+			return sleep(ms)
+		},
+		ready() {
+			return facesReady
+		},
+		/** Introduce one agent on the left. */
+		async meet(spec) {
+			await facesReady
+			intro.classList.remove("out")
+			intro.style.setProperty("--role", spec.color)
+			let i = 0
+			const line = (cls, html) => `<div class="${cls} in" style="--i:${i++}">${html}</div>`
+			intro.innerHTML =
+				`<div class="face">${faceSvg(spec.face, "idle")}</div>` +
+				line("num", spec.kicker) +
+				line("name", spec.name) +
+				line("job", spec.job) +
+				line("model", `<i></i>${spec.model}`)
+			for (const m of roster.querySelectorAll(".m")) {
+				if (m.classList.contains("on")) m.classList.add("seen")
+				m.classList.toggle("on", m.dataset.face === spec.face)
+			}
+			await sleep(900)
+		},
+		mood(state) {
+			intro.querySelector(".face svg")?.setAttribute("data-state", state)
+		},
+		async unmeet() {
+			intro.classList.add("out")
+			await sleep(460)
+			intro.innerHTML = ""
+			intro.classList.remove("out")
+		},
+		async roster(on) {
+			await facesReady
+			if (on && !roster.children.length) roster.innerHTML = FACE_IDS.map((id) => `<div class="m" data-face="${id}">${faceSvg(id, "idle")}</div>`).join("")
+			roster.classList.toggle("on", on)
+		},
+		/** Draw in the component's place. kind "tally": from → to; kind "stats": a row of numbers. */
+		async panel(spec) {
+			await facesReady
+			panel.classList.remove("out")
+			const b = spec.box ?? { x: 0, y: 0, w: W, h: H }
+			let html = ""
+			if (spec.kind === "tally") {
+				html = `<div class="tally">
+					<div class="big in" style="--i:0"><span class="count" data-to="${spec.from}" data-ms="900">0</span></div>
+					<div class="lab in" style="--i:1">${spec.fromLabel}</div>
+					<div class="arrow in" style="--i:5">↓</div>
+					<div class="big in" style="--i:6; color:${spec.color}"><span class="count" data-from="${spec.from}" data-to="${spec.to}" data-delay="1500" data-ms="1300">${spec.from}</span></div>
+					<div class="lab in" style="--i:7">${spec.toLabel}</div></div>`
+			} else {
+				html = `<div class="grid">${spec.stats.map((stat, k) => `<div class="stat in" style="--i:${k}">${stat.face ? faceSvg(stat.face, "done") : ""}
+					<div class="n">${stat.prefix ?? ""}<span class="count" data-to="${stat.n}" data-delay="${300 + k * 110}">0</span>${stat.suffix ?? ""}</div><div class="l">${stat.label}</div></div>`).join("")}</div>`
+			}
+			panel.innerHTML = `<div class="box" style="left:${b.x}px;top:${b.y}px;width:${b.w}px;height:${b.h}px">${html}</div>`
+			for (const el of panel.querySelectorAll(".count")) countUp(el, Number(el.dataset.to), Number(el.dataset.from ?? 0), Number(el.dataset.delay ?? 250), Number(el.dataset.ms ?? 1300))
+			await sleep(800)
+		},
+		async unpanel() {
+			panel.classList.add("out")
+			await sleep(460)
+			panel.innerHTML = ""
+			panel.classList.remove("out")
 		},
 		/** App px to screen px, for the camera's target. */
 		toScreen(x, y) {
@@ -161,6 +331,10 @@
 					}).join("")
 				}).join("")
 			const parts = []
+			if (spec.faces) {
+				await facesReady
+				parts.push(`<div class="faces">${spec.faces.map((id) => `<div class="f" style="--i:${i++}">${faceSvg(id, "happy")}<span>${FACE_NAME[id]}</span></div>`).join("")}</div>`)
+			}
 			if (spec.lockup) parts.push(`<img class="lockup fade" style="--i:${i++}" src="/__demo/lockup.svg" alt="">`)
 			if (spec.kicker) parts.push(`<div class="kicker fade" style="--i:${i++}">${spec.kicker}</div>`)
 			for (const line of spec.lines || []) parts.push(`<div class="line ${spec.small ? "small" : ""}">${words(line)}</div>`)
@@ -204,11 +378,13 @@
 		},
 	}
 
-	function countUp(el, to) {
-		const start = performance.now() + 250, ms = 1300
+	function countUp(el, to, from = 0, delay = 250, ms = 1300) {
+		const start = performance.now() + delay
+		const decimals = String(to).split(".")[1]?.length ?? 0
 		const step = (now) => {
 			const t = Math.max(0, Math.min(1, (now - start) / ms))
-			el.textContent = Math.round(to * (1 - (1 - t) ** 3)).toLocaleString("en-US")
+			const v = from + (to - from) * (1 - (1 - t) ** 3)
+			el.textContent = v.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
 			if (t < 1) requestAnimationFrame(step)
 		}
 		requestAnimationFrame(step)

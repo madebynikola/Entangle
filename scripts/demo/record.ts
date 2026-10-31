@@ -4,13 +4,14 @@
  *   npm run demo:record                       out/tmp/demo/entangle-demo.mp4
  *   npm run demo:record -- --keep-frames      keep the captured JPEG frames next to the video
  *   npm run demo:record -- --out PATH         write the video elsewhere
+ *   npm run demo:record -- --from 4 --to 4    record only scenes 4 to 4
  *
  * Needs ffmpeg on PATH and Chromium for Playwright (`npx playwright install chromium`). No API key: it replays the two
  * committed runs, out/reverse-search/ and out/golden/. The storyboard and the voice-over are in docs/demo/storyboard.md.
  *
- * The app runs in an iframe inside scripts/demo/director.html, the camera: it frames the app as a floating window,
- * zooms into the moment that matters, blurs between scenes and lays titles, captions and a cursor over it.
- * The app itself is not changed.
+ * The app runs in an iframe inside scripts/demo/director.html, the camera. After the splash, the app's page is hidden
+ * and only the component that matters floats on a backdrop (isolate()). Each agent is introduced beside the real
+ * thing it made in the run. The director also draws titles, captions, the intros and a cursor. The app is not changed.
  *
  * How it records: Chrome's screencast sends a JPEG each time the page paints, with its time. The frames are joined
  * with those times and resampled to 30 fps, so the video keeps the real pace.
@@ -39,6 +40,7 @@ const { values } = parseArgs({
 		"keep-frames": { type: "boolean", default: false },
 		port: { type: "string", default: "4640" },
 		from: { type: "string", default: "0" },
+		to: { type: "string", default: "99" },
 		out: { type: "string" },
 	},
 })
@@ -78,7 +80,7 @@ function startServer(port: string): Promise<string> {
 // Directing
 
 type Rect = { x: number; y: number; w: number; h: number }
-type Shot = "full" | "frame" | "tilt" | { rect: Rect; pad?: number; max?: number; min?: number; lift?: number }
+type Shot = "full" | "frame" | "tilt" | { rect: Rect; box?: Rect; pad?: number; max?: number; min?: number; lift?: number }
 
 let page: Page
 let app: FrameLocator
@@ -190,8 +192,230 @@ async function untilSplashEnds() {
 // ---------------------------------------------------------------------------------------------------------------
 // The story
 
-const face = (role: string) => app.getByRole("main").getByText(role, { exact: true }).first()
-const bus = () => app.getByRole("main").getByText("event bus", { exact: true })
+const RS = "#/runs/reverse-search"
+const PAIR = `${RS}/results/pairs/${encodeURIComponent("C999-CH1:R0822")}`
+const PROPOSAL = `${RS}/results/proposals/C999-CH1-R0822`
+/** Where an isolated component floats, beside an agent's introduction: the right part of the screen. */
+const RIGHT = { x: 610, y: 48, w: 790, h: 680 }
+
+const iso = (on: boolean) => dir("iso", on)
+const stageTo = (mode: "gone" | "none", ms = 560) => dir("stage", mode, ms)
+
+/** The innermost <section> whose heading is `name`. */
+const block = (name: string | RegExp) =>
+	app.getByRole("main").locator("section").filter({ has: app.locator("h3").filter({ hasText: name }) }).last()
+
+/**
+ * Float components of the app on the backdrop: route there unseen, mark them, and point the camera at them.
+ * The stage must be "gone" first. `hide` marks parts of them to leave out, such as rows past the third.
+ */
+async function isolate(
+	hash: string | null,
+	targets: () => Locator[],
+	opts: { box?: Rect; pad?: number; max?: number; card?: boolean; hide?: string[]; width?: number } = {},
+) {
+	await iso(false)
+	await camera("full", 0)
+	if (hash) await route(hash)
+	const els = targets()
+	try {
+		for (const el of els) await el.waitFor({ state: "visible", timeout: 30_000 })
+	} catch (error) {
+		const where = await app.locator("body").evaluate(() => `${location.hash}: ${[...document.querySelectorAll("h2, h3")].map((h) => h.textContent).join(" | ")}`)
+		await page.screenshot({ path: join(OUT, "isolate-failed.png") })
+		throw new Error(`isolate: not found on ${where}`, { cause: error })
+	}
+	await wait(250)
+	for (const el of els)
+		await el.evaluate(
+			(node, { card, hide, width }) => {
+				node.scrollIntoView({ block: "nearest" })
+				node.setAttribute("data-iso", "")
+				if (card) node.setAttribute("data-iso-card", "")
+				// Narrower, so it wraps taller and the camera can come closer.
+				if (width) (node as HTMLElement).style.maxWidth = `${width}px`
+				for (const selector of hide) for (const part of node.querySelectorAll(selector)) part.setAttribute("data-iso-hide", "")
+			},
+			{ card: opts.card ?? true, hide: opts.hide ?? [], width: opts.width ?? 0 },
+		)
+	// Measure before hiding the page: role lookups such as getByRole("main") no longer see it after.
+	const box = await around(...els)
+	await iso(true)
+	await camera({ rect: box, box: opts.box ?? RIGHT, pad: opts.pad ?? 0.1, max: opts.max ?? 1.9 }, 0)
+}
+
+type Agent = {
+	face: string
+	name: string
+	kicker: string
+	job: string
+	model: string
+	color: string
+	/** Put its component on the stage (unseen), or draw a panel instead. */
+	show: () => Promise<void>
+	/** What happens while it is on: moods and clicks. */
+	act: () => Promise<void>
+}
+
+const HAIKU = "Claude Haiku 4.5"
+const SONNET = "Claude Sonnet 4.6"
+
+const mood = (state: string) => dir("mood", state)
+
+const AGENTS: Agent[] = [
+	{
+		face: "deneb",
+		name: "Deneb",
+		kicker: "01 · Orchestrator",
+		job: "Plans the run and <b>hands out the work</b>. Each row is an agent, each bar a task it gave out.",
+		model: HAIKU,
+		color: "#1d1d1f",
+		show: () => isolate(`${RS}/live`, () => [app.locator('section[data-slot="pane"]').filter({ hasText: "Agents at work" }).first()], { box: { x: 590, y: 40, w: 830, h: 700 }, pad: 0.03, max: 1.3, card: false }),
+		act: async () => {
+			await mood("working")
+			await wait(3200)
+			await mood("done")
+			await wait(1400)
+		},
+	},
+	{
+		face: "spica",
+		name: "Spica",
+		kicker: "02 · Industry Analyst",
+		job: "Reads the company's own words and <b>restates the problem</b> as a research question.",
+		model: HAIKU,
+		color: "#a46719",
+		show: () => isolate(`${PAIR}?tab=challenge`, () => [block("In the company's words"), block("As a research question")], { width: 500 }),
+		act: async () => {
+			await mood("working")
+			await wait(3400)
+			await mood("done")
+			await wait(1400)
+		},
+	},
+	{
+		face: "libra",
+		name: "Libra",
+		kicker: "03 · Shortlist",
+		job: "Searches <b>every researcher</b> on EINSTEIN and keeps the few worth reading in full.",
+		model: "No model <span>· a search, in code</span>",
+		color: "#5b6b7b",
+		// Nothing of the app: every page element hidden.
+		show: async () => {
+			await iso(false)
+			await iso(true)
+		},
+		act: async () => {
+			await dir("panel", { kind: "tally", box: RIGHT, from: 1047, fromLabel: "researchers on EINSTEIN", to: 6, toLabel: "to read, for this problem", color: "#5b6b7b" })
+			await mood("working")
+			await wait(3200)
+			await mood("done")
+			await wait(1300)
+			await dir("unpanel")
+		},
+	},
+	{
+		face: "tycho",
+		name: "Tycho",
+		kicker: "04 · Research Profiler",
+		job: "Reads a researcher's papers and projects and writes a profile. <b>Six work at once.</b>",
+		model: `${HAIKU} <span>· ×6</span>`,
+		color: "#4c5bd4",
+		show: () => isolate(`${PAIR}?tab=researcher`, () => [block("Expertise")], { width: 500, hide: ["li:nth-child(n+4)"] }),
+		act: async () => {
+			await mood("working")
+			await wait(3400)
+			await mood("done")
+			await wait(1500)
+		},
+	},
+	{
+		face: "fides",
+		name: "Fides",
+		kicker: "05 · Critic",
+		job: "Checks <b>every claim</b> against the record it cites. What it cannot find goes back to its writer.",
+		model: SONNET,
+		color: "#c8463d",
+		show: () =>
+			isolate(`${PROPOSAL}?tab=review`, () => [app.getByRole("main").locator("li.rounded-md").filter({ has: app.locator(".line-through") }).first()], { width: 480 }),
+		act: async () => {
+			await mood("working")
+			await wait(2200)
+			await mood("reject")
+			await wait(2200)
+			await mood("done")
+			await wait(1500)
+		},
+	},
+	{
+		face: "amity",
+		name: "Amity",
+		kicker: "06 · Matchmaker",
+		job: "Pairs the problem with the researchers who passed, and <b>says why</b>, with a source for each reason.",
+		model: SONNET,
+		color: "#8447c2",
+		show: () => isolate(PAIR, () => [block("Why these two")], { width: 500, hide: ["li:nth-child(n+4)"] }),
+		act: async () => {
+			await mood("working")
+			await wait(3600)
+			await mood("done")
+			await wait(1500)
+		},
+	},
+	{
+		face: "tinta",
+		name: "Tinta",
+		kicker: "07 · Proposal Writer",
+		job: "Writes the <b>joint project</b> for the pair, in plain words, with every fact cited.",
+		model: SONNET,
+		color: "#13807a",
+		show: () => isolate(PROPOSAL, () => [app.getByRole("main").locator("section.scroll-mt-4").first()], { width: 520 }),
+		act: async () => {
+			await mood("working")
+			await wait(3400)
+			await mood("done")
+			await wait(1600)
+		},
+	},
+	{
+		face: "ceres",
+		name: "Ceres",
+		kicker: "08 · Funding Scout",
+		job: "Finds the <b>open EU calls</b> that could fund the pair, from the Funding &amp; Tenders portal.",
+		model: HAIKU,
+		color: "#5f7f1e",
+		show: () => isolate(PAIR, () => [block("Where to apply")], { width: 520, hide: ["li:nth-child(n+2)", ":scope > p"] }),
+		act: async () => {
+			await mood("working")
+			await wait(3200)
+			await mood("done")
+			await wait(1500)
+		},
+	},
+	{
+		face: "you",
+		name: "You",
+		kicker: "09 · Human approver",
+		job: "Nobody is contacted until <b>a person approves</b> the pair.",
+		model: "A person <span>· the coordinator</span>",
+		color: "#8e8e93",
+		show: () =>
+			isolate(PROPOSAL, () => [app.getByRole("main").locator("header").filter({ has: app.getByRole("button", { name: "Approve", exact: true }) }).last()], {
+				width: 560,
+				pad: 0.14,
+				hide: [":scope > div.mt-2"],
+			}),
+		act: async () => {
+			await mood("working")
+			await wait(900)
+			await dir("showCursor", true)
+			await click(app.getByRole("button", { name: "Approve", exact: true }), 1000)
+			await mood("done")
+			await wait(2200)
+			await dir("showCursor", false)
+		},
+	},
+]
 
 /** 0. The app's own splash, full screen */
 async function scene0() {
@@ -203,119 +427,105 @@ async function scene0() {
 /** 1. The problem */
 async function scene1() {
 	await blur("blur", 600)
-	await title({ kicker: "The EINSTEIN challenge", lines: ["{1047} researchers.", "{153} companies."] }, 2300)
-	await title({ lines: ["Which researcher can solve", "which company's *problem?*"] }, 2200)
-	await title({ lines: ["7 million tokens.", "Too much for *one* model."], small: false }, 2000)
-	await title({ lockup: true, sub: "So we built a team of agents that reads it together, cites every claim, and asks a person before anyone is contacted." }, 3200)
+	await title({ kicker: "The EINSTEIN challenge", lines: ["{1047} researchers.", "{153} companies."] }, 2100)
+	await title({ lines: ["Which researcher can solve", "which company's *problem?*"] }, 2000)
+	await title({ lines: ["7 million tokens.", "Too much for *one* model."] }, 1900)
+	await title({ lockup: true, sub: "So we built a team of agents that reads it together, cites every claim, and asks a person before anyone is contacted." }, 3000)
+	// Out of sight under the blur first, so nothing of the page shows when the blur lifts.
+	await stageTo("gone", 700)
+	await blur("none", 0)
 }
 
-/** 2. A company describes its problem */
+/** 2. A company describes its problem: the dialog alone, on the backdrop */
 async function scene2() {
-	await camera("tilt", 0)
-	await blur("none", 700)
-	await camera("frame", 1500)
-	await caption("Reverse search", "A company describes <b>one problem</b> in its own words.")
-	await dir("showCursor", true)
-	await click(app.getByRole("button", { name: "Describe a problem" }))
+	await iso(false)
+	await camera("full", 0)
+	await route("#/")
+	await app.getByRole("button", { name: "Describe a problem" }).evaluate((el: HTMLElement) => el.click())
 	const dialog = app.getByRole("dialog", { name: "Find researchers for a problem" })
 	await dialog.waitFor()
-	await wait(350)
-	await camera({ rect: await rect(dialog), pad: 0.08, max: 1.55 }, 1100)
+	await wait(400)
+	await dialog.evaluate((el) => el.setAttribute("data-iso", ""))
+	await iso(true)
+	await camera({ rect: await rect(dialog), box: { x: 120, y: 16, w: 1200, h: 676 }, pad: 0.06, max: 1.45 }, 0)
+	await stageTo("none", 700)
+	await caption("Reverse search", "A company describes <b>one problem</b> in its own words.")
+	await dir("showCursor", true)
 	await click(dialog.getByLabel("The problem"))
-	await page.keyboard.type(PROBLEM, { delay: 11 })
-	await wait(300)
+	await page.keyboard.type(PROBLEM, { delay: 8 })
+	await wait(250)
 	await click(dialog.getByLabel(/^Sector/), 500)
 	await page.keyboard.type("Renewable energy", { delay: 35 })
 	const mock = dialog.getByRole("switch", { name: "Run on the mock model" })
 	if ((await mock.getAttribute("aria-checked")) === "true" && (await mock.isEnabled())) await click(mock, 500)
 	await wait(300)
 	await click(dialog.getByRole("button", { name: "Find researchers" }), 600)
+	await dir("showCursor", false)
 	await caption(null, null)
+	await stageTo("gone")
 }
 
-/** 3. The team: the real run of that problem, on the Stage */
+/** 3. Meet the team */
 async function scene3() {
-	await app.locator("body").evaluate(() => new Promise((done) => setTimeout(done, 0)))
-	const watch = app.getByRole("button", { name: "Watch the replay" })
-	await watch.waitFor()
-	await dir("showCursor", false)
-	await camera("full", 1200)
-	await caption("The real run", "This is that problem, run for real: <b>5 minutes</b> on Sonnet 4.6 and Haiku 4.5. Here it is 4× faster.")
-	await wait(2600)
-	await dir("showCursor", true)
-	await click(watch, 800)
-	await dir("showCursor", false)
-	// Hold the first second while the camera meets the team.
-	await app.getByRole("button", { name: "Pause", exact: true }).evaluate((el: HTMLElement) => el.click())
-	await caption("The team", "Nine roles, <b>twenty agents</b>, one Mozaik event bus. Each one sees every event.")
-	await camera({ rect: await around(face("Industry Analyst"), face("Shortlist"), face("Orchestrator")), pad: 0.35, max: 2 }, 1300)
-	await wait(1300)
-	await camera({ rect: await around(face("Research Profiler"), face("Critic"), face("Orchestrator")), pad: 0.35, max: 2 }, 1300)
-	await wait(1300)
-	await camera({ rect: await around(face("Matchmaker"), face("Proposal Writer"), face("Funding Scout"), face("Human approver")), pad: 0.25, max: 2 }, 1300)
-	await wait(1400)
+	await iso(false)
+	await title(
+		{ faces: ["deneb", "spica", "libra", "tycho", "fides", "amity", "tinta", "ceres", "you"], lines: ["Meet the *team.*"], small: true, sub: "Nine roles, twenty agents on one Mozaik event bus. Each does one job well." },
+		3000,
+	)
 }
 
-/** 4. The run, in four moments */
+/** 4. Each agent, alone, with the real thing it made in that run */
 async function scene4() {
-	const total = RS_MS
-	const moment = async (from: number, shot: Shot, kicker: string, text: string, hold: number) => {
-		await cut(async () => {
-			await camera("full", 0)
-			await seek(from, total)
-			await camera(shot, 0)
-		})
-		await caption(kicker, text)
-		await wait(hold)
+	await dir("roster", true)
+	for (const agent of AGENTS) {
+		await agent.show()
+		await Promise.all([
+			dir("meet", { face: agent.face, name: agent.name, kicker: agent.kicker, job: agent.job, model: agent.model, color: agent.color }),
+			(async () => {
+				await wait(250)
+				await stageTo("none", 700)
+			})(),
+		])
+		await agent.act()
+		await Promise.all([dir("unmeet"), stageTo("gone")])
 	}
-	await camera("full", 900)
-	await app.getByRole("button", { name: "Play", exact: true }).evaluate((el: HTMLElement) => el.click())
-	await caption("In parallel", "Libra shortlists six researchers. <b>Six Profilers</b> read them at the same time.")
-	await wait(1200)
-	await camera({ rect: await around(face("Research Profiler"), bus(), face("Critic")), pad: 0.3, max: 1.9 }, 1400)
-	await wait(2600)
-	await moment(
-		40_000,
-		{ rect: await around(face("Critic"), bus(), face("Research Profiler")), pad: 0.3, max: 1.9 },
-		"The Critic",
-		"Fides checks every claim against the record it cites, and <b>sends back</b> what it cannot find.",
-		4200,
-	)
-	await moment(
-		94_000,
-		{ rect: await around(face("Matchmaker"), bus(), face("Research Profiler")), pad: 0.2, max: 1.6 },
-		"The match",
-		"Amity pairs the problem with the researchers who passed, and says <b>why</b> each pair fits.",
-		4600,
-	)
-	await moment(
-		158_000,
-		{ rect: await around(face("Proposal Writer"), face("Funding Scout"), bus()), pad: 0.25, max: 1.8 },
-		"The proposal",
-		"Tinta writes the proposal while Ceres finds <b>open EU calls</b> that could fund it.",
-		4400,
-	)
-	await moment(
-		292_000,
-		{ rect: await around(face("Human approver"), bus(), face("Proposal Writer"), face("Funding Scout")), pad: 0.25, max: 1.7 },
-		"Five minutes later",
-		"One proposal, sent back twice, now <b>sourced</b>. It waits for a person.",
-		5200,
-	)
-	await caption(null, null)
+	await dir("roster", false)
 }
 
-/** 5. Proof: the agents really run at once */
+/** 5. Together: the real run on the Stage, alone on the backdrop */
 async function scene5() {
-	await blur("blur", 500)
-	await route(`#/runs/golden/live`)
-	await title({ kicker: "Is it really parallel?", lines: ["The reference run:", "*8 companies*, 20 agents, 66 minutes."], small: true }, 2600)
-	await camera("frame", 0)
-	await blur("none", 600)
-	const lanesBox = await rect(app.locator('section[data-slot="pane"]').filter({ hasText: "Agents at work" }).first())
-	await camera({ rect: lanesBox, pad: 0.04, max: 1.5 }, 1400)
+	await title({ kicker: "Together", lines: ["One event bus.", "Every agent *hears every event.*"], small: true }, 2200)
+	await iso(false)
+	await camera("full", 0)
+	await route(`${RS}/stage`)
+	await app.getByRole("button", { name: "Watch the replay" }).evaluate((el: HTMLElement) => el.click())
+	await wait(300)
+	await seek(58_000, RS_MS)
+	const canvas = app.locator(".stage-canvas").first()
+	await canvas.evaluate((el) => {
+		el.setAttribute("data-iso", "")
+		for (const part of el.querySelectorAll(":scope > div[aria-hidden], :scope > .z-20")) part.setAttribute("data-iso-hide", "")
+	})
+	await iso(true)
+	await camera({ rect: await rect(canvas), box: { x: 0, y: 0, w: 1440, h: 700 }, pad: 0, max: 1.05 }, 0)
+	await stageTo("none", 700)
+	await caption("The real run", "That problem, run for real in <b>5 minutes</b> for $1.46. Here it plays 4× faster.")
+	await wait(4800)
+	await caption("The real run", "Profilers post, the Critic <b>sends back</b>, Amity pairs, Tinta writes.")
+	await wait(4600)
+	await caption(null, null)
+	await stageTo("gone")
+}
+
+/** 6. Proof: the agents really run at once */
+async function scene6() {
+	await title({ kicker: "Is it really parallel?", lines: ["The reference run:", "*8 companies*, 20 agents, 66 minutes."], small: true }, 2400)
+	const lanes = () => app.locator('section[data-slot="pane"]').filter({ hasText: "Agents at work" }).first()
+	await isolate(`#/runs/golden/live`, () => [lanes()], { box: { x: 40, y: 24, w: 1360, h: 666 }, pad: 0.02, max: 1.5, card: false })
+	await stageTo("none", 700)
 	await caption("The Timeline", "One row per agent, one bar per model call. <b>Bars that overlap</b> are agents working at the same time.")
-	await wait(2600)
+	await wait(2400)
+	const lanesBox = await rect(lanes())
 	const [zero, half, row] = await Promise.all([
 		screenOf(app.getByText("0:00", { exact: true }).first()),
 		screenOf(app.getByText("30:00", { exact: true }).first()),
@@ -330,70 +540,34 @@ async function scene5() {
 	await dir("press", false)
 	await dir("showCursor", false)
 	await wait(500)
-	const profilers = await around(app.getByText("profiler-1", { exact: true }).first(), app.getByText("writer-3", { exact: true }).first())
-	await camera({ rect: { x: profilers.x, y: profilers.y - 10, w: lanesBox.x + lanesBox.w - profilers.x, h: profilers.h + 20 }, pad: 0.04, max: 1.9 }, 1500)
+	const rows = await around(app.getByText("profiler-1", { exact: true }).first(), app.getByText("writer-3", { exact: true }).first())
+	await camera({ rect: { x: rows.x, y: rows.y - 10, w: lanesBox.x + lanesBox.w - rows.x, h: rows.h + 20 }, pad: 0.04, max: 1.9 }, 1500)
 	await caption("The first 27 minutes", "Profilers, the Matchmaker, Writers and the Critic, <b>all in flight together</b>.")
-	await wait(3600)
+	await wait(3400)
 	await caption(null, null)
+	await stageTo("gone")
+	await iso(false)
 }
 
-/** 6. Trust: every claim has a source */
-async function scene6() {
-	await blur("blur", 500)
-	await route(`#/runs/reverse-search/results/proposals/C999-CH1-R0822`)
-	await title({ kicker: "No source, no claim", lines: ["In the reference run the Critic", "rejected *{483}* claims."], small: true, sub: "Every fact that reaches a proposal cites the record it comes from." }, 3000)
-	await camera("frame", 0)
-	await blur("none", 600)
-	const reader = app.getByRole("main")
-	const head = reader.getByRole("heading", { name: /Adaptive Threshold/ }).first()
-	const chips = reader.getByText(/Passed review after/).first()
-	await camera({ rect: await around(head, chips), pad: 0.25, max: 2 }, 1300)
-	await caption("The proposal", "Passed the Critic after two fixes, with <b>two EU calls</b> that fit.")
-	await wait(2400)
-	const chip = reader.getByRole("button", { name: /C999-CH1/ }).first()
-	await camera({ rect: await around(reader.getByRole("heading", { name: "The problem" }).first(), chip), pad: 0.3, max: 2 }, 1200)
-	await dir("showCursor", true)
-	await click(chip, 700)
-	await wait(400)
-	const sheet = app.getByRole("dialog").first()
-	if (await sheet.isVisible().catch(() => false)) await camera({ rect: await rect(sheet), pad: 0.1, max: 1.6 }, 1000)
-	await caption("Sources", "Click any source to read <b>the record itself</b>.")
-	await wait(2800)
-	await page.keyboard.press("Escape")
-	await dir("showCursor", false)
-	await camera("full", 900)
-	await caption(null, null)
-	const review = app.getByRole("tab", { name: /^Critic review/ })
-	await dir("showCursor", true)
-	await click(review, 700)
-	await wait(400)
-	const struck = reader.locator(".line-through").first()
-	const reviewBox = await around(struck, reader.getByText(/^critic:/).first()).catch(() => rect(struck))
-	await dir("showCursor", false)
-	await camera({ rect: reviewBox, pad: 0.25, max: 2 }, 1200)
-	await caption("The review", "What the Critic struck out, and <b>why</b>: here, a detail the company never wrote.")
-	await wait(3600)
-	await caption(null, null)
-}
-
-/** 7. A person decides */
+/** 7. What the reference run made */
 async function scene7() {
-	const approve = app.getByRole("button", { name: "Approve", exact: true })
-	const head = app.getByRole("main").getByRole("heading", { name: /Adaptive Threshold/ }).first()
-	await camera({ rect: await around(head, approve), pad: 0.2, max: 1.8 }, 1200)
-	await caption("A person decides", "Nobody is contacted until a coordinator <b>approves the pair</b>.")
-	await dir("showCursor", true)
-	await wait(900)
-	await click(approve, 900)
-	await wait(2400)
-	await dir("showCursor", false)
+	await dir("panel", {
+		kind: "stats",
+		stats: [
+			{ face: "tycho", n: 66, label: "researchers profiled" },
+			{ face: "amity", n: 32, label: "pairs, each with its reasons" },
+			{ face: "fides", n: 483, label: "claims the Critic rejected" },
+			{ face: "tinta", n: 6, label: "proposals, every fact sourced" },
+		],
+	})
+	await caption("The reference run", "8 companies in 66 minutes, for <b>$16.90</b> of Claude.")
+	await wait(4200)
 	await caption(null, null)
+	await dir("unpanel")
 }
 
 /** 8. Close */
 async function scene8() {
-	await camera("frame", 1200)
-	await blur("blur", 600)
 	await title(
 		{
 			lockup: true,
@@ -410,23 +584,18 @@ async function scene8() {
 
 const SCENES = [scene0, scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8]
 
-/** Where each scene starts, when the recording starts there (`--from N`). */
+/** Where each scene starts, when the recording starts there (`--from N`). Every scene after 2 sets up its own page. */
 async function setUp(from: number) {
 	await dir("load", `${base}/#/`)
 	await untilSplashEnds()
 	await camera("full", 0)
-	if (from === 3 || from === 4) await route("#/runs/reverse-search/stage")
-	if (from === 4) {
-		await app.getByRole("button", { name: "Watch the replay" }).evaluate((el: HTMLElement) => el.click())
-		await app.getByRole("button", { name: "Pause", exact: true }).evaluate((el: HTMLElement) => el.click())
-	}
-	if (from === 7) await route("#/runs/reverse-search/results/proposals/C999-CH1-R0822")
+	await stageTo("gone", 0)
 	await wait(800)
 }
 
-async function story(from: number) {
+async function story(from: number, to: number) {
 	if (from > 0) await setUp(from)
-	for (const scene of SCENES.slice(from)) await scene()
+	for (const scene of SCENES.slice(from, to + 1)) await scene()
 }
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -467,6 +636,8 @@ async function main() {
 	await page.route("**/__demo/**", (req) => {
 		const path = new URL(req.request().url()).pathname
 		if (path === "/__demo/director") return req.fulfill({ contentType: "text/html", body: readFileSync(resolve(import.meta.dirname, "director.html")) })
+		const agent = path.match(/^\/__demo\/agents\/(\w+)\.svg$/)
+		if (agent) return req.fulfill({ contentType: "image/svg+xml", body: readFileSync(resolve(ROOT, "design/agents", `${agent[1]}.svg`)) })
 		if (path === "/__demo/lockup.svg") return req.fulfill({ contentType: "image/svg+xml", body: readFileSync(resolve(ROOT, "docs/brand/entangle-lockup-animated-light.svg")) })
 		const font = path.match(/^\/__demo\/fonts\/((inter|source-serif-4)-[\w-]+\.woff2)$/)
 		if (font) return req.fulfill({ contentType: "font/woff2", body: readFileSync(join(fonts, font[2] === "inter" ? "inter" : "source-serif-4", "files", font[1])) })
@@ -494,7 +665,7 @@ async function main() {
 	// Warm up before recording: the dev server builds each screen on its first visit.
 	await page.goto(`${base}/__demo/director`)
 	await dir("load", `${base}/#/`)
-	for (const hash of ["#/", "#/runs/reverse-search/stage", "#/runs/reverse-search/results", "#/runs/golden/live", "#/runs/golden/results", "#/"]) {
+	for (const hash of ["#/", "#/runs/reverse-search/stage", "#/runs/reverse-search/results", "#/runs/golden/live", "#/runs/golden/results", "#/runs/reverse-search/live", "#/"]) {
 		await route(hash)
 		const ready = hash === "#/" ? app.getByRole("button", { name: "Describe a problem" }) : app.getByRole("link", { name: "Timeline", exact: true })
 		await ready.first().waitFor({ timeout: 120_000 })
@@ -502,6 +673,7 @@ async function main() {
 	}
 	await page.goto(`${base}/__demo/director`)
 	await page.evaluate(() => document.fonts.ready)
+	await dir("ready")
 
 	const frames: { file: string; at: number }[] = []
 	const cdp = await context.newCDPSession(page)
@@ -514,7 +686,7 @@ async function main() {
 	await cdp.send("Page.startScreencast", { format: "jpeg", quality: 92, everyNthFrame: 1 })
 
 	try {
-		await story(Number(values.from))
+		await story(Number(values.from), Number(values.to))
 	} finally {
 		await cdp.send("Page.stopScreencast").catch(() => {})
 		const end = Date.now() / 1000
