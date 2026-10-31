@@ -14,6 +14,7 @@
     "start": "tsx src/server/main.ts start",
     "match": "tsx src/cli.ts",
     "critic:eval": "tsx src/critic-eval.ts",
+    "critic:runs": "tsx src/critic-runs.ts",
     "typecheck": "tsc --noEmit && tsc --noEmit -p web"
   },
   "dependencies": {
