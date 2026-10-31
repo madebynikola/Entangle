@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { before, describe, test } from "node:test"
 import { SituationSpecification, createAgent, createHuman, type InferenceInput, type SituationContext } from "@mozaik-ai/core"
-import { CRITIC_TRANSLATED, FakeSourceStore, createCritic, postArtifact, translateModel, type Critic } from "../src/agents/critic"
+import { FakeSourceStore, RECORD_TRANSLATED, createCritic, postArtifact, translateModel, type Critic } from "../src/agents/critic"
 import { reviewMessage } from "../src/agents/critic/prompt"
 import { isSerbian, parseTranslation, serbianLines } from "../src/agents/critic/translate"
 import { MockInferenceRunner, join, lastUserText, startRuntime, state, whenSettled } from "../src/runtime"
@@ -11,8 +11,8 @@ import { RECORDS, need } from "./critic-fixtures"
 // Run: npx tsx --test test/critic-translate.test.ts
 
 /** The problem of the Serbian reverse search (out/reverse-searches/serbian), as a challenge record. */
-const SORTING = "Naša linija za sortiranje voća često pogrešno razvrstava jabuke sa sitnim oštećenjima kore i početnom truleži."
-const CAMERA = "Probali smo kameru sa fiksnim pragovima boje, ali greška je i dalje oko 12% i kupci vraćaju robu."
+export const SORTING = "Naša linija za sortiranje voća često pogrešno razvrstava jabuke sa sitnim oštećenjima kore i početnom truleži."
+export const CAMERA = "Probali smo kameru sa fiksnim pragovima boje, ali greška je i dalje oko 12% i kupci vraćaju robu."
 const SERBIAN_CHALLENGE: SourceRecord = {
 	id: "C001-CH1",
 	kind: "challenge",
@@ -21,7 +21,7 @@ const SERBIAN_CHALLENGE: SourceRecord = {
 	researcherIds: [],
 	companyId: "C001",
 }
-const ENGLISH: Record<string, string> = {
+export const ENGLISH: Record<string, string> = {
 	[SORTING]: "Our fruit sorting line often misgrades apples with minor skin damage and early rot.",
 	[CAMERA]: "We tried a camera with fixed colour thresholds, but the error is still about 12% and customers return the goods.",
 }
@@ -106,7 +106,7 @@ describe("translation on the Mozaik runtime", () => {
 				capabilities: ["observer"],
 				handlers: [
 					{
-						specification: new Is(CRITIC_TRANSLATED),
+						specification: new Is(RECORD_TRANSLATED),
 						processor: {
 							apply: ({ event }) => {
 								const { recordId, lines, english } = event.payload as Record<string, unknown>
@@ -155,6 +155,8 @@ class Is extends SituationSpecification {
 async function settle(critic: Critic): Promise<void> {
 	for (;;) {
 		await critic.idle()
+		// A task waits, queued, for its translations before it runs.
+		await new Promise((resolve) => setTimeout(resolve, 20))
 		const open = [...state().tasks.values()].filter((task) => task.status === "running" || task.status === "queued")
 		if (!open.length) return
 		await whenSettled(open.map((task) => task.id), 30_000)

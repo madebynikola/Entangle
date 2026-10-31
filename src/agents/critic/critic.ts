@@ -58,13 +58,12 @@ import {
 	CRITIC_SENT_BACK,
 	CRITIC_SPLIT,
 	CRITIC_STALE,
-	CRITIC_TRANSLATED,
 	CRITIC_TRIMMED,
 	CRITIC_VERDICT,
 	PRODUCER_TASK,
 } from "./protocol"
 import { clip } from "./text"
-import { TRANSLATION_SCHEMA, parseTranslation, serbianLines, translationMessage, type TranslatedLine, type Translations } from "./translate"
+import { createTranslator, translateModel, type Translator } from "./translate"
 
 export interface CriticOptions {
 	store: SourceStore
@@ -83,9 +82,13 @@ export interface CriticOptions {
 	/** Participant name. Default `critic`; the second reviewer is `<name>-2`. */
 	name?: string
 	/**
-	 * Model that translates the Serbian lines of cited records into English, once per record per run, for both reviewers.
-	 * Default: `translateModel()`, the cheap tier. On the Serbian reverse search Haiku 4.5 and Sonnet 4.6 both translate
-	 * "oštećenja kore" as skin damage, and Haiku costs a third.
+	 * The run's translations of Serbian records, shared with the Analysts and Writers so all read the same English.
+	 * Default: a translator of the Critic's own on `translateModel`.
+	 */
+	translator?: Translator
+	/**
+	 * Model that translates the Serbian lines of cited records into English, once per record per run, when the Critic
+	 * makes its own translator. Default: `translateModel()`, the cheap tier.
 	 */
 	translateModel?: string | (() => string)
 }
@@ -205,18 +208,11 @@ export function createCritic(options: CriticOptions): Critic {
 		typeof options.secondModel === "function"
 			? options.secondModel
 			: () => (options.secondModel as string | undefined) ?? secondCriticModel(pickModel())
-	const pickTranslator =
-		typeof options.translateModel === "function"
-			? options.translateModel
-			: () => (options.translateModel as string | undefined) ?? translateModel()
+	const translator = options.translator ?? createTranslator(options.translateModel ?? translateModel)
 	const dualKinds = new Set(options.dualReview ?? ["proposal"])
 	const maxAttempts = options.maxAttempts ?? 2
 	const reviews = new Map<string, Review>()
 	const jobs = new Map<string, Job>()
-	/** The English of each cited record's Serbian lines, by record id: one translation per record per run. */
-	const translated = new Map<string, Promise<TranslatedLine[]>>()
-	/** Translation tasks running, for the mock. */
-	const translating = new Set<string>()
 	let splits = 0
 	let trims = 0
 	let inFlight = 0
@@ -317,7 +313,8 @@ export function createCritic(options: CriticOptions): Critic {
 			const sources = new Map(
 				[...code.sources].filter(([cited]) => fresh.some((claim) => claim.sourceIds.includes(cited))),
 			)
-			const english = await translationsOf(code.sources, id)
+			// The English of the records' Serbian lines: made once per run, by the first agent that read the record.
+			const english = await translator.of(code.sources.values(), agent, id)
 			const message = reviewMessage(kind, id, code.subject, fresh, sources, undefined, english)
 			// Each reviewer runs its own task at the same time: same claims and rubric, its own model and context.
 			const claimVotes = fresh.length
@@ -374,58 +371,6 @@ export function createCritic(options: CriticOptions): Critic {
 			})
 		}
 		decide(review, artifact, rejected, ran)
-	}
-
-	/** The English of the Serbian lines of these records, translating each record the first time any review cites it. */
-	async function translationsOf(sources: Map<string, SourceRecord>, reviewId: string): Promise<Translations> {
-		const records = new Map([...sources.values()].map((record) => [record.id, record]))
-		const english: Translations = new Map()
-		await Promise.all(
-			[...records.values()].map(async (record) => {
-				let pending = translated.get(record.id)
-				if (!pending) {
-					pending = translate(record, reviewId)
-					translated.set(record.id, pending)
-				}
-				const lines = await pending
-				if (lines.length) english.set(record.id, lines)
-			}),
-		)
-		return english
-	}
-
-	/**
-	 * Translate a record's Serbian lines as a task about the review that first cites it, so it runs at that
-	 * review's priority. A failed task or an unusable answer is tried once more; after that the reviews go on without it.
-	 */
-	async function translate(record: SourceRecord, reviewId: string): Promise<TranslatedLine[]> {
-		const lines = serbianLines(record.text)
-		if (!lines.length) return []
-		const task = createTask("translate", agent, reviewId)
-		const model = pickTranslator()
-		translating.add(task.id)
-		let english: TranslatedLine[] | undefined
-		let error = ""
-		for (let attempt = 0; attempt < MODEL_TRIES && !english; attempt++) {
-			runTask(task, translationMessage(record, lines), { model, structuredOutput: TRANSLATION_SCHEMA })
-			await whenSettled([task.id])
-			try {
-				if (task.status !== "done") throw new Error(task.error ?? `translation task ${task.status}`)
-				english = parseTranslation(task.output, lines)
-			} catch (e) {
-				error = e instanceof Error ? e.message : String(e)
-			}
-		}
-		translating.delete(task.id)
-		emit(CRITIC_TRANSLATED, {
-			taskId: task.id,
-			recordId: record.id,
-			model,
-			lines: lines.length,
-			english: (english ?? []).map((line) => clip(line.english, 300)),
-			...(!english && { error }),
-		})
-		return english ?? []
 	}
 
 	/**
@@ -556,8 +501,6 @@ export function createCritic(options: CriticOptions): Critic {
 		return taskId ? jobs.get(taskId) : undefined
 	}
 	const mockResponder: MockResponder = (input) => {
-		// The mock cannot translate: the reviews go on with the originals alone.
-		if (translating.has(state().contextTasks.get(input.context.id) ?? "")) return JSON.stringify({ lines: [] })
 		const job = jobOf(input.context.id)
 		if (!job) return undefined
 		// The mock has no reader for free text: it passes.
@@ -595,17 +538,6 @@ export function createCritic(options: CriticOptions): Critic {
 			}
 		},
 	}
-}
-
-/**
- * The model that translates Serbian records for the Critic [MODEL_TRANSLATE]: else the first model of the analyst
- * route (the cheap tier, config/models.ts) whose provider has a key, or its first model when no key is set.
- */
-export function translateModel(): string {
-	const pinned = process.env.MODEL_TRANSLATE
-	if (pinned) return pinned
-	const keyed = providersWithKeys()
-	return ROUTES.analyst.models.find((model) => !keyed.length || keyed.includes(providerOf(model))) ?? ROUTES.analyst.models[0]
 }
 
 function claimKey(claim: Claim): string {

@@ -22,8 +22,6 @@ export const CRITIC_DROPPED = "critic.dropped"
 export const CRITIC_TRIMMED = "critic.trimmed"
 /** The fixes ran out on a two-reviewer artifact. It stays on the blackboard and waits for a person. */
 export const CRITIC_ESCALATED = "critic.escalated"
-/** The Critic translated the Serbian lines of a cited record, once per run, to show beside the original in its reviews. */
-export const CRITIC_TRANSLATED = "critic.translated"
 export const CRITIC_ERROR = "critic.error"
 export const CRITIC_STALE = "critic.stale"
 

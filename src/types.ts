@@ -350,7 +350,10 @@ export interface SentBack {
 
 export type AgentRole = "orchestrator" | "profiler" | "analyst" | "matchmaker" | "writer" | "critic" | "scout"
 
-/** `translate`: the Critic's English for the Serbian lines of a record, for the review of the artifact in `subjectId`. */
+/**
+ * `translate`: the run's English for the Serbian lines of a record, made once by the first agent that reads it (an
+ * Analyst's company, a Critic's review or a Writer's proposal in `subjectId`) and shared with the others.
+ */
 export type TaskKind = "screen" | "profile" | "analyze" | "match" | "write" | "critique" | "translate" | "demo" | "scout"
 
 export type TaskStatus = "queued" | "running" | "done" | "failed"
