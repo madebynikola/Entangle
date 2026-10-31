@@ -68,7 +68,11 @@ export function createOpenAlex(options: OpenAlexOptions = {}): OpenAlex {
 		if (apiKey) params.set("api_key", apiKey)
 		// The error names the status only: the URL holds the key.
 		const response = await get(`${API}?${params}`, { signal: AbortSignal.timeout(timeoutMs) })
-		if (!response.ok) throw new Error(`OpenAlex answered ${response.status}`)
+		// An unread body can crash the process when the server then closes the socket (src/runtime/crash.ts): drop it.
+		if (!response.ok) {
+			await response.body?.cancel().catch(() => {})
+			throw new Error(`OpenAlex answered ${response.status}`)
+		}
 		const body = (await response.json()) as { results?: RawWork[] }
 		return (body.results ?? []).map(toWork).filter((work) => work !== undefined)
 	}

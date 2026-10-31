@@ -100,7 +100,11 @@ export function createEuCalls(options: EuCallsOptions = {}): EuCalls {
 		form.append("query", json({ bool: { must: [{ terms: { type: CALL_TYPES } }, { terms: { status: Object.keys(STATUS) } }] } }))
 		form.append("languages", json(["en"]))
 		const response = await get(`${API}?${params}`, { method: "POST", body: form, signal: AbortSignal.timeout(timeoutMs) })
-		if (!response.ok) throw new Error(`EU Funding & Tenders answered ${response.status}`)
+		// An unread body can crash the process when the server then closes the socket (src/runtime/crash.ts): drop it.
+		if (!response.ok) {
+			await response.body?.cancel().catch(() => {})
+			throw new Error(`EU Funding & Tenders answered ${response.status}`)
+		}
 		const body = (await response.json()) as { results?: RawResult[] }
 		const today = now().toISOString().slice(0, 10)
 		return (body.results ?? []).map((raw) => toCall(raw, today)).filter((call) => call !== undefined)

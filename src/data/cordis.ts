@@ -71,7 +71,11 @@ export function createCordis(options: CordisOptions = {}): Cordis {
 		if (!q) return []
 		const params = new URLSearchParams({ q, p: "1", num: String(perQuery), srt: "Relevance:decreasing", format: "json" })
 		const response = await get(`${API}?${params}`, { signal: AbortSignal.timeout(timeoutMs) })
-		if (!response.ok) throw new Error(`CORDIS answered ${response.status}`)
+		// An unread body can crash the process when the server then closes the socket (src/runtime/crash.ts): drop it.
+		if (!response.ok) {
+			await response.body?.cancel().catch(() => {})
+			throw new Error(`CORDIS answered ${response.status}`)
+		}
 		const body = (await response.json()) as { hits?: { hit?: RawHit | RawHit[] } | "" }
 		const hits = body.hits && typeof body.hits === "object" ? body.hits.hit : undefined
 		return (Array.isArray(hits) ? hits : hits ? [hits] : []).map(toProject).filter((project) => project !== undefined)
