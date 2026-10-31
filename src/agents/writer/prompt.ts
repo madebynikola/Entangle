@@ -36,6 +36,7 @@ Facts and sources:
 - Free-text fields (title, research questions, approach, plan, first six months, pairReasoning, agreed up front) hold proposals and reasoning, not facts. They may only rely on facts that appear in a claim. Write no ids in free text.
 - Free text may propose new work and new data ("label 2,000 seeds from 200 lots in year 1"). It may never present as existing any data, recordings, dataset size, history, equipment, staff, skill or past result that no claim states. If no claim says how much data the company has, give no number for it. If no claim says the patch has an accelerometer, it has none. Plan only on data a claim says the company has; if the work needs more (past scans, labelled cases), the first step collects it.
 - Never say what a side lacks or cannot do ("the company has no signal-processing know-how", "the researcher has no access to real traffic") unless a claim states it. Say instead what each side brings.
+- "english" in the input, when there is one, translates the Serbian lines of the cited records, by record id. The Critic checks claims against the same translation. When you say in English what a Serbian record says, use the translation's word for each thing ("skin damage", not a word of another meaning) and keep a term in brackets only as the input already quotes it.
 - Describe the researcher's methods only as far as the claims do. Do not add features, steps or results the cited work does not state.
 - "pairReasoning" is where your judgement goes: why these two fit, and why neither could do it alone. The "whyThisPair" claims under it are only the facts that judgement rests on.
 - Never claim or suggest that the researcher already knows, worked with, or works at the company.
@@ -151,6 +152,8 @@ export interface WriteInput {
 	allowedKinds: ProposalKind[]
 	/** Recent works from OpenAlex on the need's search terms. Absent when OpenAlex is off. */
 	priorWork?: PriorWorkInput[]
+	/** The run's English of the Serbian lines of the records the need, profile and pair cite, by record id. Absent when none has any. */
+	english?: Record<string, string[]>
 }
 
 export function writeMessage(input: WriteInput): string {
@@ -164,7 +167,7 @@ export interface ProposalFixInput {
 	/** The claim fields of the current draft. */
 	draft: Pick<ProposalDraft, "problem" | "priorWork" | "companyBrings" | "researcherBrings" | "whyThisPair">
 	rejected: RejectedClaim[]
-	evidence: { need?: CompanyNeed; researcher?: ResearcherProfile; pair?: PairCandidate; priorWork?: PriorWorkInput[] }
+	evidence: { need?: CompanyNeed; researcher?: ResearcherProfile; pair?: PairCandidate; priorWork?: PriorWorkInput[]; english?: Record<string, string[]> }
 }
 
 export function proposalFixMessage(input: ProposalFixInput): string {

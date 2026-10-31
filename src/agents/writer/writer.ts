@@ -1,8 +1,10 @@
 import { createAgent, type Agent } from "@mozaik-ai/core"
 import type { PriorWorkResult } from "../../data/openalex"
 import { createTask, failTask, join, modelFor, runTask, state } from "../../runtime"
-import type { Claim, CompanyNeed, PairCandidate, Proposal, ProposalKind, RejectedClaim, SentBack, SourceStore, Task } from "../../types"
+import type { Claim, CompanyNeed, PairCandidate, Proposal, ProposalKind, RejectedClaim, ResearcherProfile, SentBack, SourceStore, Task } from "../../types"
+import { claimsOf } from "../critic/checks"
 import { SentBackToMe, describeRejections, postArtifact, sentBackTask } from "../critic/protocol"
+import { englishById, type Translator } from "../critic/translate"
 import { EventOfType, applyClaimFixes, assignFixes, emit, parseJson, registerMockResponder, type ClaimFix } from "../matchmaker/shared"
 import { writerResponder } from "./mock"
 import {
@@ -31,6 +33,11 @@ export interface WriterOptions {
 	maxOutputTokens?: number
 	/** Mock runs only: plant one invented claim in the first draft, so a mock trace shows the Critic loop. */
 	mockPlantFakeClaim?: boolean
+	/**
+	 * The run's translations of Serbian records, shared with the Analyst and the Critic: the Writer gets the English of
+	 * the records its evidence cites, the same the Critic checks against. Needs `sources`. Without it, no translation.
+	 */
+	translator?: Translator
 }
 
 export interface Writer {
@@ -51,6 +58,8 @@ interface Entry {
 	context: RenderContext
 	/** The works the draft could cite, for a fix. */
 	priorWork: PriorWorkInput[]
+	/** The English of the cited Serbian records it was written with, for a fix. */
+	english?: Record<string, string[]>
 }
 
 export const proposalId = (pair: Pick<PairCandidate, "challengeId" | "researcherId">) => `${pair.challengeId}-${pair.researcherId}`
@@ -96,20 +105,40 @@ export function createWriter(options: WriterOptions): Writer {
 		const input: WriteInput = { pair, need, researcher, allowedKinds }
 		const task = createTask("write", agent, proposalId(pair))
 		const start = (ready: WriteInput) => run(task, { type: "write", input: ready, message: writeMessage(ready) })
-		if (!options.priorWork) {
+		if (!options.priorWork && !options.translator) {
 			start(input)
 			return task
 		}
-		// The task waits, queued, for OpenAlex. The lookup never throws and times out on its own.
+		// The task waits, queued, for OpenAlex and the English of cited Serbian records. Neither ever throws.
 		const asked = Date.now()
-		void options
-			.priorWork(need)
+		const found = options.priorWork
+			?.(need)
 			.catch((error): PriorWorkResult => ({ queries: [], works: [], error: error instanceof Error ? error.message : String(error) }))
-			.then(({ queries, works, error }) => {
+			.then((result) => {
+				const { queries, works, error } = result
 				emit(agent.getId(), "prior_work.found", { taskId: task.id, challengeId: need.challengeId, queries, works: works.map((work) => work.id), ms: Date.now() - asked, error })
-				start({ ...input, priorWork: works.map(({ id, title, year, venue, abstract }) => ({ id, title, year, venue, abstract })) })
+				return result
 			})
+		void Promise.all([found, englishOf(task.subjectId!, need, researcher, pair)]).then(([prior, english]) => {
+			start({
+				...input,
+				...(prior && { priorWork: prior.works.map(({ id, title, year, venue, abstract }) => ({ id, title, year, venue, abstract })) }),
+				...(english && { english }),
+			})
+		})
 		return task
+	}
+
+	/**
+	 * The English of the Serbian records that the need, the profile and the pair cite. The Critic has mostly made them
+	 * already, when it checked those artifacts, so this rarely costs a task. Undefined when none has Serbian lines.
+	 */
+	async function englishOf(subjectId: string, need: CompanyNeed, researcher: ResearcherProfile, pair: PairCandidate): Promise<Record<string, string[]> | undefined> {
+		const { translator, sources } = options
+		if (!translator || !sources) return undefined
+		const cited = [...claimsOf("need", need), ...claimsOf("profile", researcher), ...claimsOf("pair", pair)].flatMap((claim) => claim.sourceIds)
+		const translations = await translator.of([...new Set(cited)].map((id) => sources.get(id)), agent, subjectId).catch(() => undefined)
+		return translations?.size ? englishById(translations) : undefined
 	}
 
 	function fix(id: string, rejected: RejectedClaim[]): Task | null {
@@ -124,12 +153,12 @@ export function createWriter(options: WriterOptions): Writer {
 	function startFix(task: Task, id: string, rejected: RejectedClaim[], critique = ""): Task | null {
 		const entry = entries.get(id)
 		if (!entry) return null
-		const { draft, context, priorWork } = entry
+		const { draft, context, priorWork, english } = entry
 		const input: ProposalFixInput = {
 			proposalId: id,
 			draft: { problem: draft.problem, priorWork: draft.priorWork, companyBrings: draft.companyBrings, researcherBrings: draft.researcherBrings, whyThisPair: draft.whyThisPair },
 			rejected,
-			evidence: { need: context.need, researcher: context.researcher, pair: context.pair, ...(priorWork.length ? { priorWork } : {}) },
+			evidence: { need: context.need, researcher: context.researcher, pair: context.pair, ...(priorWork.length ? { priorWork } : {}), ...(english && { english }) },
 		}
 		run(task, { type: "fix", input, message: proposalFixMessage(input) + (critique && `\n\n${critique}`) })
 		return task
@@ -169,7 +198,7 @@ export function createWriter(options: WriterOptions): Writer {
 		const context: RenderContext = { pair: { ...input.pair, risks: [...input.pair.risks] }, need: input.need, researcher: input.researcher, sources: options.sources }
 		const id = proposalId(input.pair)
 		const previous = state().proposals.get(id)
-		publish(task, id, { draft, context, priorWork: input.priorWork ?? [] }, previous ? previous.revision + 1 : 0)
+		publish(task, id, { draft, context, priorWork: input.priorWork ?? [], english: input.english }, previous ? previous.revision + 1 : 0)
 	}
 
 	function applyFix(task: Task, input: ProposalFixInput, answer: ClaimFix[]): void {
@@ -205,7 +234,7 @@ export function createWriter(options: WriterOptions): Writer {
 			emit(agent.getId(), "proposal.dropped", { taskId: task.id, proposalId: input.proposalId, reason: "no supported problem or reason left after the fix" })
 			return
 		}
-		publish(task, input.proposalId, { draft, context, priorWork: entry.priorWork }, current.revision + 1)
+		publish(task, input.proposalId, { draft, context, priorWork: entry.priorWork, english: entry.english }, current.revision + 1)
 	}
 
 	function publish(task: Task, id: string, entry: Entry, revision: number): void {
