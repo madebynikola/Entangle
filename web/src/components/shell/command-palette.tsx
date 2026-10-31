@@ -1,4 +1,5 @@
 import {
+	Database,
 	FileSearch,
 	FlaskConical,
 	Gauge,
@@ -236,6 +237,10 @@ export function CommandPalette() {
 									Find researchers for a problem
 								</CommandItem>
 							)}
+							<CommandItem value="new run your own data upload dataset companies choose pick" onSelect={run(() => navigate("/new"))}>
+								<Database />
+								New run on your own data
+							</CommandItem>
 						</CommandGroup>
 
 						<CommandGroup heading="Appearance">

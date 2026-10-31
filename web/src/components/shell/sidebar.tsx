@@ -3,7 +3,7 @@ import { LayoutList, Moon, PanelLeft, Plus, Search, Sun } from "lucide-react"
 import { Dialog as DialogPrimitive } from "radix-ui"
 import { useEffect, useMemo } from "react"
 import type * as React from "react"
-import { Link, NavLink, useMatch } from "react-router"
+import { Link, NavLink, useMatch, useNavigate } from "react-router"
 import { create } from "zustand"
 import { Button } from "@/components/ui/button"
 import { RoleFace } from "@/components/ui/face"
@@ -180,7 +180,8 @@ const rowClass = (active: boolean) =>
 function RunsSection({ onNavigate }: { onNavigate?: () => void }) {
 	const runs = useRuns()
 	const current = useMatch("/runs/:runId/*")?.params.runId
-	const { canStart, starting, start } = useStartRun()
+	const { canStart } = useStartRun()
+	const navigate = useNavigate()
 	const listed = useMemo(() => {
 		const all = runs ?? []
 		const live = all.filter((run) => run.status === "live")
@@ -192,14 +193,26 @@ function RunsSection({ onNavigate }: { onNavigate?: () => void }) {
 		<section className="flex min-h-0 shrink flex-col">
 			<SectionHeader title="Runs">
 				{canStart && (
-					<Tooltip content="Start a mock run (no API keys)">
-						<Button variant="quiet" size="icon-sm" onClick={() => start()} disabled={starting} aria-label="Start a mock run">
+					<Tooltip content="New run: a problem or companies, on any data">
+						<Button
+							variant="quiet"
+							size="icon-sm"
+							onClick={() => {
+								onNavigate?.()
+								navigate("/new")
+							}}
+							aria-label="New run"
+						>
 							<Plus />
 						</Button>
 					</Tooltip>
 				)}
 			</SectionHeader>
 			<nav className="scrollbar-thin -mx-1 flex min-h-0 flex-col gap-px overflow-y-auto px-1 py-px">
+				<NavLink to="/new" onClick={onNavigate} className={({ isActive }) => rowClass(isActive)}>
+					<Plus className="size-4 text-ink-subtle" />
+					<span className="flex-1">New run</span>
+				</NavLink>
 				{runs === null
 					? Array.from({ length: 3 }, (_, i) => <div key={i} className="mx-2 my-1.5 h-5 shrink-0 animate-shimmer rounded-sm bg-hover" />)
 					: listed.map((run) => <RunRow key={run.id} run={run} onNavigate={onNavigate} />)}

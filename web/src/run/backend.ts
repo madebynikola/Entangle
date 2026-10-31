@@ -1,4 +1,4 @@
-import type { ApprovalBody, Approvals, Health, RunInfo, RunResults, RunStatus, StartRunBody } from "@shared/server/api"
+import type { ApprovalBody, Approvals, CompanyInfo, DatasetInfo, Health, RunInfo, RunResults, RunStatus, StartRunBody } from "@shared/server/api"
 import type { SourceRecord, TraceRecord } from "@shared/types"
 import { SAMPLE_ID, sampleRun } from "@/fixtures/sample-run"
 
@@ -20,6 +20,13 @@ export interface Backend {
 	setApproval(runId: string, body: ApprovalBody): Promise<Approvals>
 	/** A mock or real run on the first companies, or a reverse search on a described `problem`. */
 	startRun(options: StartRunBody): Promise<string>
+	/** The data a run can read: the EINSTEIN dataset, the fixture, your uploads. Empty in a static build. */
+	listDatasets(): Promise<DatasetInfo[]>
+	/** The companies of one dataset, for the New run screen's picker. */
+	listCompanies(datasetId: string): Promise<CompanyInfo[]>
+	/** Your own data: files in the dataset's format, kept by the local server in data/uploads/. */
+	uploadDataset(name: string, files: File[]): Promise<DatasetInfo>
+	deleteDataset(id: string): Promise<void>
 }
 
 export interface StreamHandlers {
@@ -124,6 +131,22 @@ function serverBackend(health: Health): Backend {
 			})
 			return runId
 		},
+		async listDatasets() {
+			return json("api/datasets")
+		},
+		async listCompanies(datasetId) {
+			return json(`api/datasets/${enc(datasetId)}/companies`)
+		},
+		async uploadDataset(name, files) {
+			const form = new FormData()
+			form.set("name", name)
+			for (const file of files) form.append("files", file, file.name)
+			return json("api/datasets", { method: "POST", body: form })
+		},
+		async deleteDataset(id) {
+			const response = await fetch(`api/datasets/${enc(id)}`, { method: "DELETE" })
+			if (!response.ok) throw new Error((await response.json().catch(() => null))?.error ?? `DELETE ${id}: ${response.status}`)
+		},
 	}
 }
 
@@ -169,6 +192,18 @@ function staticBackend(): Backend {
 		},
 		async startRun() {
 			throw new Error("This is a static build. Run `npm run dev` to start runs.")
+		},
+		async listDatasets() {
+			return []
+		},
+		async listCompanies() {
+			return []
+		},
+		async uploadDataset() {
+			throw new Error("This is a static build. Run `npm run dev` to add your own data.")
+		},
+		async deleteDataset() {
+			throw new Error("This is a static build.")
 		},
 	}
 }

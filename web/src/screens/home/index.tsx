@@ -1,5 +1,5 @@
 import type { RunInfo } from "@shared/server/api"
-import { Play, ScanSearch, Search } from "lucide-react"
+import { Play, Plus, ScanSearch, Search } from "lucide-react"
 import { useMemo, useState } from "react"
 import { Link } from "react-router"
 import { PageHeader } from "@/components/shell/page-header"
@@ -27,7 +27,7 @@ const COLUMNS = "md:grid-cols-[minmax(0,1fr)_8rem_6rem_6rem_7rem]"
  */
 export function HomeScreen() {
 	const runs = useRuns()
-	const { canStart, starting, start } = useStartRun()
+	const { canStart } = useStartRun()
 	const [query, setQuery] = useState("")
 
 	const groups = useMemo(() => {
@@ -43,7 +43,7 @@ export function HomeScreen() {
 		const inFilter =
 			run.status === "live" || (filter === "all" ? true : filter === "runs" ? group === "run" || group === "sample" : group === "mock")
 		const q = query.trim().toLowerCase()
-		return inFilter && (!q || `${run.id} ${runLabel(run)} ${run.problem ?? ""}`.toLowerCase().includes(q))
+		return inFilter && (!q || `${run.id} ${runLabel(run)} ${run.problem ?? ""} ${run.dataset?.name ?? ""}`.toLowerCase().includes(q))
 	})
 
 	return (
@@ -62,12 +62,12 @@ export function HomeScreen() {
 								Describe a problem
 							</Button>
 						)}
-						{canStart && (
-							<Button variant="primary" onClick={() => start()} disabled={starting}>
-								<Play className="fill-current" />
-								{starting ? "Starting…" : "Start a mock run"}
-							</Button>
-						)}
+						<Button variant="primary" asChild>
+							<Link to="/new">
+								<Plus />
+								New run
+							</Link>
+						</Button>
 					</>
 				}
 				tabs={
@@ -107,7 +107,7 @@ export function HomeScreen() {
 							{query
 								? "Try part of the date or the folder name."
 								: canStart
-									? "Start a mock run, or run `npm run match` in a terminal. It shows up here as it runs."
+									? "Start a new run, or run `npm run match` in a terminal. It shows up here as it runs."
 									: "This build has no runs of this kind."}
 						</EmptyState>
 					) : (
@@ -134,6 +134,11 @@ function RunRow({ run, showKind }: { run: RunInfo; showKind: boolean }) {
 					<span className="truncate font-medium text-ink">{runLabel(run)}</span>
 					{run.sample && <Chip>Example</Chip>}
 					{run.problem && <Chip>Reverse search</Chip>}
+					{run.dataset && (
+						<Chip tone={run.dataset.kind === "upload" ? "primary" : "default"} title={run.dataset.kind === "upload" ? "Run on your own data" : "Run on the test fixture"}>
+							{run.dataset.name}
+						</Chip>
+					)}
 					{showKind && run.mock && !run.sample && <Chip>Mock</Chip>}
 				</div>
 				{run.problem ? (

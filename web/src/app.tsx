@@ -10,6 +10,7 @@ import { HomeScreen } from "@/screens/home"
  * Routes. Hash routing, so a static build works on any host (GitHub Pages) with no rewrites.
  *
  *   #/                         all runs
+ *   #/new[?mode=companies&data=<id>]   start a run: a problem or companies, on the EINSTEIN data or your own (screens/new)
  *   #/runs/:runId              opens on the Stage, the run's main view
  *   #/runs/:runId/stage        the Stage: the agents' faces talking over the event bus, with the replay bar (screens/stage)
  *   #/runs/:runId/live/*       the Timeline: agents at work, with the replay bar (#20 owns screens/live)
@@ -22,6 +23,7 @@ export const router = createHashRouter([
 		hydrateFallbackElement: <div className="h-dvh bg-canvas" />,
 		children: [
 			{ index: true, element: <HomeScreen /> },
+			{ path: "new", lazy: async () => ({ Component: (await import("@/screens/new")).NewRunScreen }) },
 			{
 				path: "runs/:runId",
 				element: <RunLayout />,
