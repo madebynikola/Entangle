@@ -97,6 +97,20 @@ researchers (`--k`), the Matchmaker pairs them, a Writer writes the proposal for
 whose pairs passed the Critic, best fit first, each with one reason from their own records. In the web app (`npm run dev`),
 **Describe a problem** on the Runs screen, or ⌘K, starts the same run and opens it on the Stage.
 
+The command above, with `--sector "Renewable energy"`, is committed as `out/reverse-search/` (`npm run replay -- out/reverse-search`).
+On local Claude Code it took 5 minutes and 443k tokens, about $1.46 at API prices. Over the run the Critic sent artifacts back
+17 times, and the proposal ([`out/reverse-search/proposals/`](out/reverse-search/proposals/)) passed after 2 fixes. It ends with
+two Horizon Europe calls and three CORDIS projects on wind-turbine monitoring. The CLI's answer:
+
+```text
+reverse search · C999-CH1 · triage: research
+  R0822  fit 0.89  Vladana Radić, Full Professor, Faculty of Technical Sciences · proposal
+         Radić holds a granted patent on adaptive threshold setting for vibration-based bearing condition monitoring under variable operating speed.
+  R0510  fit 0.82  Olivera Ognjanov, Assistant Professor, Faculty of Technical Sciences
+         The company's fixed seasonal thresholds fail to prevent missed bearing faults under temperature variation (C999-CH1); Ognjanov co-authored work on operating-condition-dependent threshold setting for vibration-based fault detection under varying load and temperature, including both fixed statistical and machine learning approaches (SYN-PUB-05999).
+  Pairs, not people: each fit is for this problem only. A coordinator approves a pair before anyone is contacted.
+```
+
 Everything lands in `out/<run-id>/`:
 
 | File | What is in it |
@@ -432,5 +446,6 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 | `config/models.ts` | Models per role, rate limits, retries and budget |
 | `docs/` | [Dataset notes](docs/dataset.md), the track brief, the architecture diagram |
 | `out/golden/` | The committed reference run |
+| `out/reverse-search/` | A committed reverse search: one described problem, on real models |
 
 Checks: `npm run typecheck`, and `node --import tsx --test src/data/*.test.ts test/*.test.ts src/agents/*/*.test.ts`.
