@@ -832,7 +832,7 @@ const Log = memo(function Log({ lines, upTo, names, onClose }: { lines: Line[]; 
 									)}
 								>
 									<span className="tabular text-xs text-ink-subtle">{format.clock(line.ms)}</span>
-									<span className="size-2 self-center rounded-full" style={{ background: COLOR[line.from] }} />
+									<span className="mt-[5px] size-2 self-start rounded-full" style={{ background: COLOR[line.from] }} />
 									<span className="min-w-0">
 										<span className="font-medium text-ink">{FACE_NAME[line.from]}</span>{" "}
 										<span className="text-xs text-ink-subtle">{verbOf(line)}</span>
