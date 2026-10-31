@@ -277,6 +277,23 @@ describe("EU projects from CORDIS", () => {
 		assert.match((await createCordis({ fetch: down }).search(["x ray"])).error ?? "", /502/)
 	})
 
+	// Run: LIVE_CORDIS=1 npx tsx --test test/funding.test.ts
+	test(
+		"live: npm undici finds the same projects as Node's own fetch",
+		{ skip: !process.env.LIVE_CORDIS && "set LIVE_CORDIS=1 to search CORDIS" },
+		async () => {
+			const terms = ["photonics", "battery recycling"]
+			const node = await createCordis({ fetch: globalThis.fetch }).search(terms)
+			const npm = await createCordis().search(terms)
+			assert.equal(npm.error, undefined)
+			assert.ok(npm.projects.length > 0)
+			assert.deepEqual(
+				npm.projects.map((p) => p.id),
+				node.projects.map((p) => p.id),
+			)
+		},
+	)
+
 	test("the saved projects are valid projects", () => {
 		const saved = JSON.parse(readFileSync(SAVED_PROJECTS, "utf8")) as EuProject[]
 		assert.ok(saved.length >= 10)

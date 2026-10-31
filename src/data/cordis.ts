@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url"
 import type { EuProject, SourceRecord, SourceStore } from "../types"
 import { Bm25 } from "./bm25"
-import { fuse, interleave } from "./eucalls"
+import { fuse, interleave, portalFetch } from "./eucalls"
 
 export type { EuProject }
 
@@ -28,7 +28,7 @@ export interface CordisOptions {
 	/** Requests at once, over every search of the run. Default 3. */
 	concurrency?: number
 	timeoutMs?: number
-	/** Tests pass a stub. */
+	/** Default: fetch from npm undici, not Node's own (see portalFetch in eucalls.ts). Tests pass a stub. */
 	fetch?: typeof fetch
 }
 
@@ -49,7 +49,7 @@ export const isProjectId = (id: string) => id.startsWith("CORDIS:")
 
 export function createCordis(options: CordisOptions = {}): Cordis {
 	const { perQuery = 10, since = "2019-01-01", concurrency = 3, timeoutMs = 10_000 } = options
-	const get = options.fetch ?? fetch
+	const get = options.fetch ?? portalFetch
 	const found = new Map<string, SourceRecord>()
 	const cache = new Map<string, Promise<ProjectSearch>>()
 	let running = 0
