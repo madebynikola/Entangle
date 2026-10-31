@@ -483,7 +483,7 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 | `src/trace/` | The trace observer that writes `trace.jsonl` |
 | `src/server/`, `web/` | The local server and the web app (see [`web/README.md`](web/README.md)) |
 | `config/models.ts` | Models per role, rate limits, retries and budget |
-| `docs/` | [Dataset notes](docs/dataset.md), the track brief, the architecture diagram |
+| `docs/` | [Dataset notes](docs/dataset.md), the track brief, the architecture diagram, and the team's reading script ([`walkthrough.md`](docs/walkthrough.md), as [PDF](docs/entangle-walkthrough.pdf); `npm run walkthrough` rebuilds it) |
 | `out/golden/` | The committed reference run |
 | `out/reverse-search/` | A committed reverse search: one described problem, on real models |
 
