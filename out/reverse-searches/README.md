@@ -54,6 +54,10 @@ the same researchers come up as for an English problem. These parts fail:
    skin) became "bark damage". The proposal (`serbian/proposals/C999-CH1-R0548.md`) says "bark damage" 7 times. One of the
    Critic's own reasons translates the source correctly as "minor skin damage", but no claim was rejected for "bark".
    The Critic checks that the source supports a claim; it does not check the translation of a word.
+   *Since card #72* the Critic translates the Serbian lines of each cited record once per run (Haiku 4.5, the whole
+   line, apart from the claims) and judges claims against that English. On 4 "bark" claims from this run, 3 tries
+   each, both reviewers together reject 12 of 12 (Sonnet 4.6 alone 11); before, 2 of 8. The same claims with "skin" pass,
+   except one that also says "cannot reliably separate", which the record does not state (rejected before too).
 2. **The Analyst invents the original term in brackets.** The prompt says to add the Serbian original when unsure
    (`src/agents/analyst/prompt.ts:26`). The restatement says "minor bark damage (drobna oštećenja kore)", but the text says
    "sitnim oštećenjima kore". "drobna" is not in the source. This one did not reach the proposal.
