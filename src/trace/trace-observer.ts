@@ -44,6 +44,8 @@ export function createTraceObserver(outDir: string, options: TraceOptions = {}):
 				specification: new AnyEvent(),
 				processor: {
 					apply({ event }) {
+						// A retry's backoff can still emit after the run has closed the file.
+						if (file.writableEnded) return
 						const record = toRecord(s, event)
 						file.write(JSON.stringify(record) + "\n")
 						options.onRecord?.(record)
