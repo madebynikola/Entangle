@@ -376,6 +376,16 @@ const NEGATION = /\b(?:not|no|none|neither|nor|never|without|cannot|lacks?|lacki
 /** Small words an acronym's expansion may hold: "MDR" for "Medical Device Regulation", "ICS" for "industrial control systems". */
 const LINK_WORDS = new Set(["of", "and", "for", "the", "on", "in", "to"])
 
+/** Common abbreviations of one word: "PV" for "photovoltaic". Folded, without a plural s. */
+const ONE_WORD_SPELLINGS: Record<string, string[]> = {
+	pv: ["photovoltaic"],
+	ecg: ["electrocardiogram", "electrocardiography", "electrocardiographic"],
+	ekg: ["electrocardiogram", "electrocardiography"],
+	eeg: ["electroencephalogram", "electroencephalography"],
+	emg: ["electromyogram", "electromyography"],
+	mcu: ["microcontroller"],
+}
+
 /** A name, number, or number with the word after it, that a code check can look up in records. */
 interface Detail {
 	/** As the claim writes it: "Nordic", "AWS", "72 hours". */
@@ -424,7 +434,7 @@ function detailsOf(text: string, skip: Set<string>): Detail[] {
 						add({ text: `${token} ${next[0]}`, words: [norm(token), norm(next[0])] })
 					}
 				} else if ((/\p{N}|.\p{Lu}/u.test(token) || (!start && /^\p{Lu}./u.test(token))) && !skip.has(norm(token))) {
-					const acronym = /^\p{Lu}{3,}s?$/u.test(token) ? fold(token.replace(/s$/, "")) : undefined
+					const acronym = /^\p{Lu}{2,}s?$/u.test(token) ? fold(token.replace(/s$/, "")) : undefined
 					add({ text: token, words: [norm(token)], acronym })
 				}
 			})
@@ -450,10 +460,17 @@ function holds({ words, set }: Indexed, detail: Detail, loose = false): boolean 
 		return (
 			forms(head).some((form) => set.has(form)) ||
 			(detail.acronym !== undefined && spells(detail.acronym, words, loose)) ||
+				(loose && spelledInOneWord(head, set)) ||
 			(loose && words.some((word) => sameStem(head, word)))
 		)
 	}
 	return words.some((word, i) => word === head && tail.every((next, k) => forms(next).includes(words[i + 1 + k])))
+}
+
+/** Whether a record holds the one-word spelling of an abbreviation ("PV" in a record that says "photovoltaics"). */
+function spelledInOneWord(abbreviation: string, set: Set<string>): boolean {
+	const spellings = ONE_WORD_SPELLINGS[abbreviation.replace(/s$/, "")]
+	return spellings !== undefined && spellings.some((word) => set.has(word) || set.has(`${word}s`))
 }
 
 /**
@@ -470,9 +487,11 @@ function sameStem(detail: string, word: string): boolean {
 
 /**
  * Whether consecutive words start with the acronym's letters, with small link words between them. `loose` lets a link
- * word inside the acronym give a letter of its own: "TTS" for "text-to-speech".
+ * word inside the acronym give a letter of its own: "TTS" for "text-to-speech". Two letters ("AF") are too few for a
+ * name nobody wrote, so only `loose` takes them.
  */
 function spells(acronym: string, words: string[], loose: boolean): boolean {
+	if (acronym.length < 3 && !loose) return false
 	const from = (i: number, k: number): boolean => {
 		if (k === acronym.length) return true
 		const word = words[i]

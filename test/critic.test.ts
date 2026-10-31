@@ -173,6 +173,34 @@ describe("code checks (no model)", () => {
 	})
 })
 
+describe("code check: abbreviations", () => {
+	const s = new MatchState("unit", true)
+	const make = (id: string, kind: SourceRecord["kind"], text: string): SourceRecord => ({ id, kind, title: id, text, researcherIds: [], companyId: "C001", year: 2024 })
+	const cited = make("C001-CH7", "challenge", "Our wearable patch misses atrial fibrillation episodes. The solar yield of photovoltaic arrays drops, and the electrocardiogram is noisy.")
+	const other = make("C001/blog/2024-07-01/Patches", "page", "AF detection with PV inverters and ECG patches.")
+	const records = new FakeSourceStore([...RECORDS, cited, other])
+	const claim = (text: string): Claim => ({ text, sourceIds: [cited.id] })
+	// A claim of the same artifact cites the page, so the lookup reaches it.
+	const companion: Claim = { text: "AF detection with PV inverters and ECG patches.", sourceIds: [other.id] }
+	const rejected = (text: string) => checkByCode("need", need({ assets: [claim(text), companion] }), s, records).rejected.map((r) => r.reason)
+
+	test("pass a two-letter acronym and a one-word abbreviation that a cited record spells out", () => {
+		assert.deepEqual(rejected("AF episodes are missed."), [])
+		assert.deepEqual(rejected("PV arrays lose yield."), [])
+		assert.deepEqual(rejected("The ECG is noisy."), [])
+	})
+
+	test("still blame a two-letter name that no cited record spells", () => {
+		const nothing = make("C001-CH8", "challenge", "Our patch misses episodes when patients walk.")
+		const none = new FakeSourceStore([...RECORDS, nothing, other])
+		const result = checkByCode("need", need({ assets: [{ text: "AF episodes are missed.", sourceIds: [nothing.id] }, companion] }), s, none)
+		assert.deepEqual(
+			result.rejected.map((r) => r.reason),
+			[`"AF" is not in C001-CH8 but is in ${other.id}, which the claim does not cite.`],
+		)
+	})
+})
+
 describe("mock model check", () => {
 	test("rejects the planted patent claim and keeps the true ones", () => {
 		const sources = new Map(["SYN-PUB-00001", "SYN-PRJ-0001", "R0001"].map((id) => [id, store.get(id)!]))
