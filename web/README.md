@@ -8,7 +8,9 @@ The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](.
 ## Layout
 
 - `#/`: the runs, as one table. Real runs by default; mock runs and unfinished dev runs are a click away.
-  With no real runs, an intro points at the sample run.
+  With no real runs, an intro points at the sample run. **Describe a problem** (also in ⌘K) opens the reverse search
+  (`shell/problem-dialog.tsx`): a company's problem in its own words, run on the mock or real models, opened on the Stage.
+  Its rows say "Reverse search" and show the problem instead of the folder name.
 - `#/runs/:id/stage`: the **Stage**, the run's main view: `#/runs/:id` opens here, and so do new runs and "Watch the replay".
   It fills the panel edge to edge; the run's header, the replay bar and the events log float over it as frosted cards (`shell/float.ts` shares how much they cover). The seven agent faces sit round the event bus. Each event travels from its author
   through the bus to everyone, the author says it in a bubble, and the Critic stamps what it checks ("Passed", "Sent back").

@@ -83,6 +83,20 @@ npm run match -- --companies 5   # the first 5 companies; --ids C006,C054 for ch
 ```
 
 The CLI prints one line per milestone (a company read, a pair chosen, a proposal accepted or sent back) and a summary at the end.
+
+**Reverse search.** A company that is not in the dataset describes one problem in its own words, and the run finds researchers for it:
+
+```sh
+npm run match -- --problem "Our vibration sensors on wind turbine gearboxes raise false alarms in cold weather. We tried fixed thresholds per season, but bearing faults are still missed in winter. We have two years of labelled vibration data from 40 turbines."
+```
+
+The text becomes challenge `C999-CH1` of a company record `C999` that holds nothing else: no size, products or pages are invented.
+The rest is the normal run on one challenge. An Analyst triages it and picks search terms, the Profilers read up to 6 shortlisted
+researchers (`--k`), the Matchmaker pairs them, a Writer writes the proposal for the best pair, and the Funding Scout adds EU calls
+(`--sector` adds a sector to its search). The Critic checks every claim against the described text. The CLI ends with the researchers
+whose pairs passed the Critic, best fit first, each with one reason from their own records. In the web app (`npm run dev`),
+**Describe a problem** on the Runs screen, or ⌘K, starts the same run and opens it on the Stage.
+
 Everything lands in `out/<run-id>/`:
 
 | File | What is in it |
@@ -99,8 +113,9 @@ Everything lands in `out/<run-id>/`:
 | Option | Default | What it does |
 | --- | --- | --- |
 | `--companies N \| all`, `--ids LIST` | 5 | Which companies to work on |
+| `--problem TEXT`, `--sector TEXT` | | Reverse search: find researchers for a described problem instead |
 | `--analysts N`, `--profilers N`, `--writers N` | 4, 6, 3 | Agents per role |
-| `--k N` | 4 | Researchers shortlisted per challenge |
+| `--k N` | 4 (6 with `--problem`) | Researchers shortlisted per challenge |
 | `--proposals N` | one per company | Most proposals in the run |
 | `--mock`, `--local` | | Mock model, or local Claude Code sessions |
 | `--subq`, `--screen` | | The second Critic, or the shortlist filter, on a decision model |
@@ -325,7 +340,8 @@ network who connect a faculty with a company. It does the reading, so they can s
   and cluster members fill in a short challenge form with the fields the dataset already has (challenges, products, tech, plans,
   R&D capacity), plus their public website and job ads. On the research side: publications from OpenAlex (UNS is `I170726198`),
   ORCID records by the iDs researchers give, and projects from CORDIS. Never a search for a person by name.
-- **When it runs:** a batch run for each new cohort of NTP members or each open call, and on request when one company brings a problem.
+- **When it runs:** a batch run for each new cohort of NTP members or each open call, and on request when one company brings a problem:
+  the reverse search (`--problem`, or **Describe a problem** in the app) takes the problem as the company writes it.
 - **What comes out, in EINSTEIN's own instruments:** industrial PhD topics for the doctoral schools, one-page joint projects for
   the Innovation Fund or Horizon Europe calls, and consulting or contract research where a researcher says that is what they want.
   A challenge triaged as an engineering service points to a student project or training, which fits EINSTEIN's upskilling work.
@@ -341,6 +357,9 @@ into "here is who at the university works on it":
 - **At entry.** A company that joins Stars fills in its challenges once. A run on that company alone
   (`npm run match -- --ids C054`) reads its challenges, website and job ads next to the whole university. It returns a triage
   for each challenge, the candidate pairs with their evidence, and one proposal the company can take to a first meeting.
+- **Before entry.** A startup with one problem and no profile yet describes it in a few sentences
+  (`npm run match -- --problem "..."`, or **Describe a problem** in the app). The reverse search answers in the same form:
+  a triage, the researchers whose own work fits, and a proposal.
 - **The triage routes each challenge to the right help.** A research problem goes to a faculty. An engineering service
   points to a student project or a consultancy. A challenge that is not research at all (a funding round, hiring, a licence)
   gets a plain answer that research cannot solve it, so the programme can offer its own business support instead.
@@ -394,7 +413,6 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 
 **Next steps**
 
-- Reverse search: a company describes a problem and the system finds researchers.
 - The Innovation Fund of Serbia in the Funding Scout. It has no API, so proposals only link to its calls page for now.
 - Multilingual embeddings fused with BM25, for wording and language gaps (26 companies write in Serbian).
 - Approvals and rejections fed back into matching.
