@@ -3,6 +3,7 @@ import { join } from "node:path"
 import { Readable } from "node:stream"
 import { Hono } from "hono"
 import { streamSSE } from "hono/streaming"
+import { problemError } from "../data/problem"
 import type { TraceRecord } from "../types"
 import type { ApprovalBody, Health, StartRunBody } from "./api"
 import { LineReader, readApprovals, readResults, writeApproval, type RunRegistry } from "./runs"
@@ -32,7 +33,7 @@ export function createApi({ root, registry }: AppOptions): Hono {
 			ok: true,
 			dataset: Boolean(await Promise.race([datasetSources(), Promise.resolve(null)])),
 			canStartRuns: true,
-			hasKeys: KEY_VARS.some((name) => process.env[name]),
+			hasKeys: KEY_VARS.some((name) => process.env[name]) || process.env.LOCAL_CLAUDE === "1",
 		}
 		return c.json(health)
 	})
@@ -43,6 +44,11 @@ export function createApi({ root, registry }: AppOptions): Hono {
 		const body = await c.req.json<StartRunBody>().catch(() => ({}) as StartRunBody)
 		if (body.companies != null && !(Number.isInteger(body.companies) && body.companies > 0 && body.companies <= 200)) {
 			return c.json({ error: "companies must be a whole number from 1 to 200." }, 400)
+		}
+		if (body.problem != null) {
+			const error = typeof body.problem === "string" ? problemError(body.problem) : "problem must be text."
+			if (error) return c.json({ error }, 400)
+			if (body.sector != null && (typeof body.sector !== "string" || body.sector.length > 100)) return c.json({ error: "sector must be text under 100 characters." }, 400)
 		}
 		const runId = await startRun(root, registry, body)
 		return c.json({ runId }, 201)

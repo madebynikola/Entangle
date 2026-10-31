@@ -41,7 +41,7 @@ export interface Health {
 	dataset: boolean
 	/** True when POST /api/runs is available. */
 	canStartRuns: boolean
-	/** True when a model API key is set, so a run without `mock` can start. */
+	/** True when a model API key is set, or LOCAL_CLAUDE=1, so a run without `mock` can start. */
 	hasKeys: boolean
 }
 
@@ -63,11 +63,17 @@ export interface RunInfo {
 	has: { summary: boolean; results: boolean; sources: boolean }
 	/** True for the sample run built into the web app (no folder on disk). */
 	sample?: boolean
+	/** A reverse search: the problem a company described, from `problem.json`. Absent for runs on dataset companies. */
+	problem?: string
 }
 
 export interface StartRunBody {
 	mock?: boolean
 	companies?: number
+	/** Reverse search: find researchers for this described problem instead of reading dataset companies. */
+	problem?: string
+	/** With `problem`: the company's sector, if given. */
+	sector?: string
 }
 
 export type ApprovalDecision = "approved" | "rejected"

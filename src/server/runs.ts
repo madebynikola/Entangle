@@ -81,6 +81,7 @@ export class RunRegistry {
 		const first = parseLine(firstLine(join(dir, "trace.jsonl")))
 		const last = parseLine(lastLine(join(dir, "trace.jsonl")))
 		const tasks = summary?.tasks ?? []
+		const problem = readJson<{ text?: string }>(join(dir, "problem.json"))?.text
 		const info: RunInfo = {
 			id,
 			status,
@@ -99,6 +100,7 @@ export class RunRegistry {
 				results: existsSync(join(dir, "results.json")),
 				sources: existsSync(join(dir, "sources.json")),
 			},
+			...(problem ? { problem } : {}),
 		}
 		this.cache.set(id, { key, info })
 		return info
