@@ -16,6 +16,7 @@ const STATE: Record<ReviewState, { tone: StatusTone; label: string }> = {
 	"sent-back": { tone: "needs", label: "Sent back" },
 	dropped: { tone: "failed", label: "Dropped" },
 	"human-review": { tone: "needs", label: "Needs a person" },
+	unreviewed: { tone: "idle", label: "Not reviewed" },
 }
 
 /** The most rows the feed keeps in the page; older ones are a filter away. */

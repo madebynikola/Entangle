@@ -37,7 +37,8 @@ export function LiveScreen() {
 	const [agentId, setAgentId] = useState<string | null>(null)
 	const [moment, setMoment] = useState<Moment | null>(null)
 
-	const derived = useMemo(() => derive(view.feed), [view.feed])
+	const ended = view.endedMs != null
+	const derived = useMemo(() => derive(view.feed, ended), [view.feed, ended])
 	const nameOf = useMemo(() => nameLookup(results), [results])
 	const agents = useMemo(() => sortAgents(full.agents.values()), [full.agents])
 	// Tracks come from the whole run, so lanes keep their height while a replay plays.

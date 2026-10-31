@@ -41,7 +41,8 @@ export interface Moment {
 	split?: string[]
 }
 
-export type ReviewState = "posted" | "reviewing" | "passed" | "sent-back" | "dropped" | "human-review"
+/** `unreviewed`: the run ended before a verdict came (the review failed, hung, or never started). */
+export type ReviewState = "posted" | "reviewing" | "passed" | "sent-back" | "dropped" | "human-review" | "unreviewed"
 
 /** One `artifact.posted`: an artifact landed on the blackboard. A fix posts it again as a new row. */
 export interface Posting {
@@ -86,7 +87,8 @@ interface VerdictData {
 	rejected?: Rejection[]
 }
 
-export function derive(feed: TraceRecord[]): Derived {
+/** `ended`: the run is over (`view.endedMs`), so a posting still waiting for a verdict will never get one. */
+export function derive(feed: TraceRecord[], ended = false): Derived {
 	const postings: Posting[] = []
 	const moments: Moment[] = []
 	const notes: Note[] = []
@@ -182,6 +184,7 @@ export function derive(feed: TraceRecord[]): Derived {
 			}
 		}
 	})
+	if (ended) for (const posting of postings) if (posting.state === "posted" || posting.state === "reviewing") posting.state = "unreviewed"
 	return { postings, moments, notes, fixTasks }
 }
 
