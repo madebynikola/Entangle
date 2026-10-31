@@ -83,7 +83,7 @@ export function pipeline(records: TraceRecord[], view: RunView, results: RunResu
 		} else if (record.kind === "critic.sent_back") sentBack++
 	}
 	const running = new Set<string>()
-	for (const task of view.tasks.values()) if (task.status === "running") running.add(String(task.kind))
+	for (const task of view.tasks.values()) if (task.status === "running" && !task.stopped) running.add(String(task.kind))
 
 	const stage = (key: StageKey, label: string, unit: string, count: number, detail?: string): Stage => ({
 		key,
