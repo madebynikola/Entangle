@@ -10,7 +10,7 @@ import { join as joinPath } from "node:path"
 import { after, before, describe, test } from "node:test"
 import { FIXTURE_DIR, loadDataset } from "../src/data"
 import { cutShortlist, createProfilerPool, lexicalFit, readFit, screenDecision, screenInput, shortlistFor, type ProfilerPool } from "../src/agents/profiler"
-import { MockInferenceRunner, SnapRunner, join, startRuntime, state } from "../src/runtime"
+import { MockInferenceRunner, SnapRunner, join, screenRated, startRuntime, state } from "../src/runtime"
 import { createTraceObserver, type TraceObserver } from "../src/trace"
 import type { CompanyNeed, TraceRecord } from "../src/types"
 
@@ -56,6 +56,15 @@ describe("cut (no model)", () => {
 		const list = cutShortlist(wide, { R1: 0.1, R2: 0.1, R3: 0.1, R4: 0.1, R5: 0.1 }, 2, settings)
 		assert.deepEqual(list.researcherIds, [])
 		assert.match(list.reason ?? "", /rates no candidate 20% likely/)
+	})
+
+	test("rates 8 candidates for a shortlist of 2 or 4, and widen times k for a longer one", () => {
+		const defaults = { rated: 8, widen: 2 }
+		assert.equal(screenRated(2, defaults), 8)
+		assert.equal(screenRated(4, defaults), 8)
+		assert.equal(screenRated(6, defaults), 12)
+		assert.equal(screenRated(2, { rated: 4, widen: 2 }), 4)
+		assert.equal(screenRated(2, { rated: 8, widen: 4 }), 8)
 	})
 })
 
@@ -127,8 +136,8 @@ describe("filter on the Mozaik runtime, through the snap runner", () => {
 		await closeTrace()
 	})
 
-	test("rates 2k candidates in one call, then profiles only the k most likely", async () => {
-		const wide = shortlistFor(data, need, { k: 4 }).researcherIds
+	test("rates 8 candidates in one call, then profiles only the k most likely", async () => {
+		const wide = shortlistFor(data, need, { k: 8 }).researcherIds
 		const list = await pool.forNeed(need)
 
 		assert.equal(requests.length, 1)

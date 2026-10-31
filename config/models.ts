@@ -95,12 +95,18 @@ export const SUBQ = {
 
 /**
  * The decision model above (SUBQ.model) as a cheap filter on each need's shortlist [SCREEN=1, or `--screen`].
- * Retrieval finds `widen` times k candidates. The model answers one yes/no question per candidate (could their own
- * research help solve this challenge?) in one call, and only the k most likely, at or above the threshold, are
- * profiled. One call costs far less than one profile. If the call fails, the shortlist is retrieval's top k.
+ * Retrieval finds `rated` candidates, or `widen` times k if that is more. The model answers one yes/no question per
+ * candidate (could their own research help solve this challenge?) in one call, and only the k most likely, at or
+ * above the threshold, are profiled. One call costs far less than one profile. If the call fails, the shortlist is
+ * retrieval's top k. With the filter on, k is 2, not 4: in docs/quality.md it cost about a quarter less and chose
+ * as well.
  */
 export const SCREEN = {
-	/** Candidates retrieved per need for the model to rate, as a multiple of k [SCREEN_WIDEN]. */
+	/** Candidates profiled per need with the filter on, when `--k` is not given (4 with it off, 6 with `--problem`). */
+	k: 2,
+	/** Candidates retrieved per need for the model to rate, at least [SCREEN_RATED]. */
+	rated: 8,
+	/** Candidates retrieved per need for the model to rate, at least this multiple of k [SCREEN_WIDEN]. */
 	widen: 2,
 	/** A candidate is cut under this probability of fit, even with room on the shortlist [SCREEN_THRESHOLD]. */
 	threshold: 0.2,

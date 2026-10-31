@@ -81,6 +81,9 @@ export function screen(): boolean {
 
 export interface ScreenSettings {
 	model: string
+	/** Candidates profiled per need when the run sets no k. */
+	k: number
+	rated: number
 	widen: number
 	threshold: number
 }
@@ -88,9 +91,16 @@ export interface ScreenSettings {
 export function screenSettings(): ScreenSettings {
 	return {
 		model: subqSettings().model,
+		k: SCREEN.k,
+		rated: Math.max(1, Math.round(envNumber("SCREEN_RATED", SCREEN.rated))),
 		widen: Math.max(1, Math.round(envNumber("SCREEN_WIDEN", SCREEN.widen))),
 		threshold: envNumber("SCREEN_THRESHOLD", SCREEN.threshold),
 	}
+}
+
+/** How many candidates the filter rates for a shortlist of k: `rated`, or `widen` times k if that is more. */
+export function screenRated(k: number, settings: Pick<ScreenSettings, "rated" | "widen"> = screenSettings()): number {
+	return Math.max(settings.rated, k * settings.widen)
 }
 
 /** The endpoint and key for a decision model, or undefined for any other model. */

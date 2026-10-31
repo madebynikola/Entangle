@@ -14,8 +14,8 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [-
                   (same as LOCAL_CLAUDE=1 in .env). Needs the \`claude\` CLI, logged in.
   --subq          Run the second Critic on a decision model, subq-snap-1.1 by default (same as SUBQ=1 in .env).
                   Needs SUBQ_API_KEY, or TYPESAFE_API_KEY for SUBQ_MODEL=jev-latest.
-  --screen        Rate each need's candidates on the same decision model before profiling, and profile only the
-                  most likely (same as SCREEN=1 in .env). Needs the same key as --subq.
+  --screen        Rate 8 candidates per need on the same decision model before profiling, and profile only the
+                  2 most likely (same as SCREEN=1 in .env). Needs the same key as --subq.
   --companies N   How many companies to work on, from the first; \`all\` for every one (default 5).
   --ids LIST      Exactly these companies, comma-separated.
   --problem TEXT  Reverse search: a company describes one problem in its own words, and the run finds researchers
@@ -24,7 +24,7 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [-
   --analysts N    Industry Analysts (default 4).
   --profilers N   Research Profilers (default 6).
   --writers N     Proposal Writers (default 3).
-  --k N           Researchers shortlisted per challenge (default 4, 6 with --problem).
+  --k N           Researchers shortlisted per challenge (default 4, 2 with --screen, 6 with --problem).
   --proposals N   Most proposals in the run (default: one per company).
 
 Models per role are in config/models.ts; MODEL_<ROLE> in .env pins one, e.g. MODEL_CRITIC=claude-haiku-4-5.
@@ -96,7 +96,7 @@ async function main(): Promise<void> {
 		analysts: count("--analysts", values.analysts),
 		profilers: count("--profilers", values.profilers),
 		writers: count("--writers", values.writers),
-		k: count("--k", values.k ?? (problem ? "6" : "4")),
+		k: count("--k", values.k ?? String(problem ? 6 : screen() ? screenSettings().k : 4)),
 		maxProposals: values.proposals ? count("--proposals", values.proposals) : undefined,
 		mockPlantFakeClaims: state.mock,
 		openAlex,

@@ -1,5 +1,5 @@
 import { SituationSpecification, createHuman, type Human, type SituationContext } from "@mozaik-ai/core"
-import { join, screen, screenSettings, state, whenSettled } from "../../runtime"
+import { join, screen, screenRated, state, whenSettled } from "../../runtime"
 import type { ArtifactPosted, CompanyNeed, ResearcherProfile, Task } from "../../types"
 import { ARTIFACT_POSTED } from "../critic/protocol"
 import { emit } from "../matchmaker/shared"
@@ -122,7 +122,7 @@ export function createProfilerPool(options: ProfilerPoolOptions): ProfilerPool {
 			return list
 		}
 		const list = screener
-			? screener.screen(need, shortlistFor(data, need, { k: k * screenSettings().widen }), k).then(land)
+			? screener.screen(need, shortlistFor(data, need, { k: screenRated(k) }), k).then(land)
 			: Promise.resolve(land(shortlistFor(data, need, { k })))
 		started.set(need.challengeId, list)
 		return list
