@@ -185,6 +185,44 @@ filter on subq-snap-1.1), each after one more fix. Run 5 also has #33's OpenAlex
   claims caught 10, 11 → 7, 7 of 23, uncited details 2, 2 → 1, 0 of 7, false rejects 2, 2 → 2, 3 of 98. That is no gain, so it was
   reverted too.
 
+## A shortlist of 2 with the SubQ screen
+
+In 4 screened runs, 18 of 19 chosen pairs were the screen's rank 1 or 2. So we tried to profile only 2 candidates per challenge
+(`--k 2`) and not 4. `SCREEN_WIDEN` sets how many candidates the screen rates, as a multiple of k: `--k 2` alone rates 4, and
+`SCREEN_WIDEN=4` rates 8, as many as the default. Same 5 companies, `--screen --subq`, local Claude Code, one run each on 31 October.
+The code changed after run 5, and #54 changed the availability regex during the first k 2 run. So we ran k 4 again on today's code
+(`out/2026-10-31T10-53-09`) and ran the first k 2 setting again (`out/2026-10-31T11-15-19`). The three runs of 31 October below use the same code.
+
+| | Run 5 (k 4, 8 rated) | k 4, 8 rated | k 2, 8 rated | k 2, 4 rated |
+| --- | --- | --- | --- | --- |
+| Run | `2026-10-30T16-13-38` | `2026-10-31T10-53-09` | `2026-10-31T10-38-09` | `2026-10-31T11-15-19` |
+| Accepted / to a person | 3 / 2 | **5 / 0** | 4 / 1 | 3 / 2 |
+| Companies with a chosen pair | 5 | 5 | 5 | 5 |
+| Challenges with no match | 4 | 3 | 3 | 3 |
+| Profiles / pairs | 34 / 18 | 40 / 19 | 22 / 14 | 22 / 16 |
+| Mean fit of the 5 chosen pairs | 0.90 | 0.84 | 0.90 | 0.89 |
+| Chosen pairs that are the screen's rank 1 | 5 of 5 | 4 of 5 | 5 of 5 | 4 of 5 (one rank 2) |
+| Tokens | 2.63M | 2.96M | 2.22M (−25%) | 2.14M (−28%) |
+| Cost at API prices | $9.05 | $9.97 | **$7.66 (−23%)** | **$7.47 (−25%)** |
+| Time | 14.8 min | 22.0 min | 14.9 min | 14.4 min |
+
+- **A shortlist of 2 costs about a quarter less.** The saving is in profiles, their critiques, matches and pair critiques: $6.84 at
+  k 4, $4.58 and $4.23 at k 2. Proposals cost the same ($1.96–2.12). The screen calls are not priced in the budget.
+- **The time gain is not clear.** Local Claude runs 6 sessions at once, so 40 profiles wait in a queue. At k 4 today, profiling ended
+  at 18.3 min; at k 2 at 10.2–10.6 min. But run 5, also k 4, ended profiling at 9.5 min and the whole run at 14.8 min. So part of the
+  22 minutes is load on the machine, not k.
+- **The same researcher was chosen in all four runs for C001 (R1008), C009 (R0349) and C018 (R0948),** and for C012 (R0564) in three.
+  The screen's probabilities are near 1 (0.996–0.9998) for most chosen pairs, so rank 1 and rank 2 are close to a tie.
+- **What changed the result was the Critic, not k.** In each of the three runs on today's code the Critic dropped a strong pair or need:
+  C005-CH1 × R0905 in the k 4 run and the k 2, 8 rated run, C012-CH1 × R0564 and the C005-CH1 need in the k 2, 4 rated run.
+  At k 4 the Orchestrator then chose C005-CH1 × R0206, the screen's rank 3, at a fit of 0.54. At k 2 there was no second option on
+  that challenge, so the company's pair came from its other challenge: C005-CH2 × R0057 at 0.93–0.95, and C012-CH2 × R1027 at 0.88.
+  C012-CH1 had only one candidate over the screen's threshold of 0.2, so k 4 would not have kept a second one there.
+- **Accepted against sent to a person** goes from 5 / 0 to 3 / 2 between runs of the same setting (run 5 and today's k 4 run). With
+  one run each, the four settings do not differ on it.
+- **k 2 with 8 rated is the better of the two k 2 settings.** It rates the same 8 candidates as the default, costs $0.19 more than
+  4 rated, and had its chosen pairs all at the screen's rank 1. The default is still k 4; changing it is open.
+
 ## The Critic on the labelled claims (measured)
 
 The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds all 129 claims of
