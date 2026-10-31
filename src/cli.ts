@@ -1,8 +1,9 @@
-import { existsSync, writeFileSync } from "node:fs"
-import { join as joinPath } from "node:path"
+import { existsSync, mkdirSync, writeFileSync } from "node:fs"
+import { join as joinPath, relative, resolve } from "node:path"
 import { parseArgs } from "node:util"
 import { createOrchestrator, writeRun, type RunOutcome, type RunSummary } from "./agents/orchestrator"
 import { DATA_DIR, FIXTURE_DIR, addProblem, loadDataset, problemError, type Dataset, type DescribedProblem } from "./data"
+import { dataLabel } from "./data/import"
 import { createOpenAlex } from "./data/openalex"
 import { decisionEndpoint, join, localClaude, screen, screenSettings, startRuntime, subq, subqSettings } from "./runtime"
 import { createTraceObserver } from "./trace"
@@ -21,6 +22,8 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [-
   --problem TEXT  Reverse search: a company describes one problem in its own words, and the run finds researchers
                   for it instead of reading dataset companies. Say what is wrong, what you tried and what you have.
   --sector TEXT   With --problem: the company's sector, if you want the Funding Scout to search it too.
+  --data DIR      Read this dataset folder instead of data/raw/data: your own data in the dataset's format,
+                  such as an upload from the app's New run screen (data/uploads/<name>). Same as EINSTEIN_DATA_DIR.
   --analysts N    Industry Analysts (default 4).
   --profilers N   Research Profilers (default 6).
   --writers N     Proposal Writers (default 3).
@@ -50,6 +53,7 @@ async function main(): Promise<void> {
 			ids: { type: "string" },
 			problem: { type: "string" },
 			sector: { type: "string" },
+			data: { type: "string" },
 			analysts: { type: "string", default: "4" },
 			profilers: { type: "string", default: "6" },
 			writers: { type: "string", default: "3" },
@@ -72,17 +76,23 @@ async function main(): Promise<void> {
 	}
 
 	// A fresh clone has no data/raw/: the run then uses the test fixtures (5 companies).
-	const dataDir = process.env.EINSTEIN_DATA_DIR || (existsSync(DATA_DIR) ? DATA_DIR : FIXTURE_DIR)
+	const dataDir = values.data ? resolve(values.data) : process.env.EINSTEIN_DATA_DIR || (existsSync(DATA_DIR) ? DATA_DIR : FIXTURE_DIR)
 	const data = loadDataset(dataDir)
 	const problem = values.problem !== undefined ? describe(data, values.problem, values.sector, values.ids) : undefined
 	const companyIds = problem ? [problem.companyId] : pickCompanies(data, values.companies, values.ids)
 
-	const runId = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19) + (values.mock ? "-mock" : "")
+	const runId = claimRunId(new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19), values.mock ? "-mock" : "")
 	const state = startRuntime({ runId, mock: values.mock })
 	const trace = createTraceObserver("out")
 	join(trace.participant)
 	// The server and the web app read it to show the run as a reverse search, while it runs and after.
 	if (problem) writeFileSync(joinPath(trace.dir, "problem.json"), JSON.stringify(problem, null, 2) + "\n")
+	// A run on other data than the EINSTEIN dataset says which, so the app labels it and looks its sources up there.
+	const label = dataLabel(dataDir)
+	if (label) {
+		const dir = relative(process.cwd(), dataDir)
+		writeFileSync(joinPath(trace.dir, "dataset.json"), JSON.stringify({ ...label, dir: dir.startsWith("..") ? dataDir : dir }, null, 2) + "\n")
+	}
 
 	// A failed model call fails its task; this only catches loops that have no task.
 	process.on("unhandledRejection", (error) => console.error("[loop error]", error))
@@ -109,12 +119,30 @@ async function main(): Promise<void> {
 		(screen() ? ` · shortlist filter on ${screenSettings().model}` : "") +
 		(openAlex ? " · prior work from OpenAlex" : "")
 	console.log(`run ${runId} · ${backend} · ${problem ? `reverse search on ${problem.challengeId}` : `${companyIds.length} companies`}`)
-	if (dataDir === FIXTURE_DIR) console.log(`  no data/raw/: using the test fixtures`)
+	if (label?.kind === "upload") console.log(`  your data: ${label.name} (${relative(process.cwd(), dataDir)})`)
+	else if (dataDir === FIXTURE_DIR) console.log(values.data ? `  data: the test fixtures` : `  no data/raw/: using the test fixtures`)
 	const outcome = await orchestrator.run(companyIds)
 	const summary = writeRun(trace.dir, outcome, orchestrator.critic.stats(), orchestrator.sources)
 	await trace.close()
 	report(summary, trace.dir)
 	if (problem) reportProblem(problem, outcome)
+}
+
+/**
+ * The run's folder name, made in out/ at once: two runs started in the same second (two clicks in the app) would
+ * otherwise write one trace. The second gets `-2` before the `-mock` ending that marks mock runs.
+ */
+function claimRunId(stamp: string, ending: string): string {
+	mkdirSync("out", { recursive: true })
+	for (let n = 1; ; n++) {
+		const id = `${stamp}${n > 1 ? `-${n}` : ""}${ending}`
+		try {
+			mkdirSync(joinPath("out", id))
+			return id
+		} catch (error) {
+			if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error
+		}
+	}
 }
 
 /** Add the described problem to the dataset as company C999. It needs no dataset company, so --ids cannot join it. */
