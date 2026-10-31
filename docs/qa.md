@@ -96,13 +96,19 @@ bilo je pogrešno, a prvi Critic ih je propustio. Posle toga smo dodali proveru 
 Košta više tokena nego jedan poziv na malom primeru. Ponovni pregledi su oko 26% cene. Ali jedan poziv ne može da pročita
 7 miliona tokena, a ono što bi preskočio je upravo provera. Referentno pokretanje je 5,0M tokena, oko 17 dolara po API ceni, za 8 kompanija.
 
-**"Zašto je golden samo na 8 kompanija, a ne na svih 120? Zašto traje toliko?"**
-Zato što svaka kompanija ima oko 87 poziva modela, a svaki traje 1 do 1,5 minuta. Referentno pokretanje ima 696 poziva: 8
-kompanija, 66 minuta, 5,0M tokena, 17 dolara. To je oko 8 minuta i 2 dolara po kompaniji. Većina poziva nije pisanje nego
-provera: 367 pregleda Critic-a prema 19 napisanih predloga. Uz pregled ide ispravka, pa je kvalitet cena vremena. Za svih
-120 kompanija isti postav treba oko 16 sati i 250 dolara. Uska tačka nije cena nego broj poziva odjednom: 6 lokalnih Claude
-Code sesija. Na API ključu, sa većim `MAX_IN_FLIGHT`, procena je oko 3 sata (nije mereno). Zato smo birali 8 kompanija
-koje smo mogli da proverimo ručno, a ne 120 koje niko ne bi pročitao.
+**"Zašto je golden samo na 8 kompanija, a ne na svim? Zašto traje toliko?"**
+Pokretali smo i veće: dva puta po 20 kompanija (30. oktobra, oko 35 minuta i 33 dolara svako). Na svim nismo, iz tri razloga.
+1. **Svaka promena traži novo pokretanje.** Za dva dana bilo je oko 20 pravih pokretanja dok smo menjali Critic-a, k i filter.
+   Na 5 kompanija to je oko 15 minuta i 8 dolara. Na svima oko 250 dolara i nekoliko sati po promeni, pa ne bismo stigli da popravljamo.
+2. **Kvalitet merimo rukom.** Svaku tvrdnju predloga proveravamo prema zapisu ([quality.md](quality.md)). To ide za 5 do 8
+   kompanija. Za 150 predloga koje niko ne pročita ne bismo mogli ništa da tvrdimo.
+3. **Više kompanija ne pokazuje ništa novo.** Svaka potreba već pretražuje svih 1.047 istraživača. Kompanije su nezavisne,
+   pa vreme i cena rastu linearno.
+
+Sporo je zbog provere, ne zbog modela. Golden ima 696 poziva, a 367 su pregledi Critic-a (19 napisanih predloga). Svaki poziv
+traje 1 do 1,5 minuta, a lokalno ih ide najviše 6 odjednom. Sa strožim Critic-om, SubQ-om i filterom golden traje oko 8 minuta
+po kompaniji. Ranija verzija, bez njih, trajala je oko 2 minuta. Za svih 153 kompanije to je oko 4,5 sata na ranijoj verziji,
+a oko 20 sati na sadašnjoj sa 6 sesija (procena, nije mereno). Na API ključu, sa većim `MAX_IN_FLIGHT`, može brže.
 
 **"Da li je ovo pravi paralelizam ili samo asinhroni pozivi?"**
 Pravi: do 5 uloga zove model u istom trenutku, dve ili više 48% vremena. Na Timeline-u se trake preklapaju.
