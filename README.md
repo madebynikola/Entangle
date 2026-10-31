@@ -487,3 +487,16 @@ each one are in [`docs/dataset.md`](docs/dataset.md).
 | `out/reverse-search/` | A committed reverse search: one described problem, on real models |
 
 Checks: `npm run typecheck`, and `node --import tsx --test src/data/*.test.ts test/*.test.ts src/agents/*/*.test.ts`.
+To contribute, see [`CONTRIBUTING.md`](CONTRIBUTING.md). To report a security problem, see [`SECURITY.md`](SECURITY.md).
+
+## License
+
+The code, docs and design are under the [MIT License](LICENSE).
+
+Some files come from others and keep their own terms:
+
+- **The EINSTEIN dataset** (synthetic) is by JigJoy, from [`jigjoy-ai/einstein-matchmaker-data`](https://github.com/jigjoy-ai/einstein-matchmaker-data).
+  It is not in this repository. The 5-company slice in `test/fixtures/data/`, the committed runs in `out/` and the track brief in
+  `docs/brief/` come from it or from the organisers, and the MIT License does not cover them.
+- **Demo audio** in `scripts/demo/audio/` is from Mixkit and Kenney. See [`CREDITS.md`](scripts/demo/audio/CREDITS.md).
+- **Fonts** (Inter, Source Serif 4) are under the SIL Open Font License, through Fontsource.
