@@ -109,7 +109,7 @@ Golden traje 66 minuta, ali pravi posao je gotov za 27. Sedam kompanija ima napi
 lokalne Claude Code sesije stale: pozivi su visili po 5 minuta (`claude -p ran longer than 300000 ms`, 11 ponovnih pokušaja),
 pa je limit od 60 minuta zaustavio C008 pre uparivanja. Sam poziv modela traje oko 11 sekundi (medijana). Sporo je zbog
 broja poziva: 696, od toga 367 pregleda Critic-a za 19 predloga, i najviše 6 lokalnih sesija odjednom. Za svih 153
-kompanije procena je nekoliko sati i oko 300 dolara po pokretanju (nije mereno), a na lokalnoj prijavi zastoj kao ovaj je verovatan.
+kompanije to je nekoliko sati po pokretanju (procena, nije mereno), a na lokalnoj prijavi zastoj kao ovaj je verovatan.
 
 **"Da li je ovo pravi paralelizam ili samo asinhroni pozivi?"**
 Pravi: do 5 uloga zove model u istom trenutku, dve ili više 48% vremena. Na Timeline-u se trake preklapaju.
