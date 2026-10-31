@@ -382,17 +382,18 @@ prices; these runs ran on local Claude Code.
 ### A Haiku 4.5 Critic: measured, not kept
 
 The Critic costs the most, so we ran `npm run critic:eval` with `MODEL_CRITIC=claude-haiku-4-5`. We did three runs on
-31 October, with subq-snap-1.1 as the second reviewer as before, and one Sonnet 4.6 run for comparison.
+31 October, with subq-snap-1.1 as the second reviewer as before, and three Sonnet 4.6 runs for comparison.
 
-| | Haiku 4.5 (3 runs) | Sonnet 4.6 (1 run) |
+| | Haiku 4.5 (3 runs) | Sonnet 4.6 (3 runs) |
 | --- | --- | --- |
-| Wrong claims caught, of 23 (code checks and both reviewers) | 11, 11, 11 | 21 |
-| The model alone | 6, 6, 6 | 16 |
-| Ok claims rejected, of 98 | 2–4 | 7 |
-| Cost, time | $0.09, 21 s | $0.35, 63 s |
+| Wrong claims caught, of 23 (code checks and both reviewers) | 11, 11, 11 | 21, 15, 16 |
+| The model alone | 6, 6, 6 | 16, 10, 11 |
+| Ok claims rejected, of 98 | 2–4 | 7, 4, 6 |
+| Cost, time | $0.09, 21 s | $0.32–0.35, 50–63 s |
 
-A Haiku Critic would cost about $2.80 less per run (38%). But it misses half the wrong claims that Sonnet catches, and nearly
-all the judgements and widened claims. That is the work the Critic is for, so the Critic stays on Sonnet 4.6.
+A Haiku Critic would cost about $2.80 less per run (38%). But it catches 11 of 23 wrong claims where Sonnet catches 15 to 21 (16 on average), and the model alone catches 6
+where Sonnet catches 10 to 16. Sonnet varies more between runs than Haiku does, so the first run (21) was the best case.
+Haiku still misses nearly all the judgements and widened claims. That is the work the Critic is for, so the Critic stays on Sonnet 4.6.
 
 ### The other levers
 
@@ -400,7 +401,7 @@ all the judgements and widened claims. That is the work the Critic is for, so th
 | --- | --- | --- | --- |
 | Shortlist of 2 with the screen | 26% | the same over 3 runs each | done, the default |
 | subq-snap-1.1 as the second Critic, not Haiku 4.5 | about $1 | the same | done |
-| Haiku 4.5 as the Critic | 38% | catches 11 of 23 wrong claims, not 21 | measured, not kept |
+| Haiku 4.5 as the Critic | 38% | catches 11 of 23 wrong claims, not 15–21| measured, not kept |
 | Sonnet 5.5 for Matchmaker, Writer and Critic ($2 / $10 per MTok, not $3 / $15) | about 29% | not measured | not now: the hackathon expects Sonnet 4.6 |
 | Prompt caching of the system prompt on the Anthropic API | about 4–5% | none: the same tokens | not done (see below) |
 | Sources before claims in the Critic's prompt, so that re-reviews read the sources from the cache | up to about 8% more | must be measured with `critic:eval` | not done |
