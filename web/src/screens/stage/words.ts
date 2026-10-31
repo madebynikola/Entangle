@@ -93,7 +93,7 @@ function some(ids: (string | undefined)[], names: Names): string {
 	return `${unique.slice(0, 2).join(", ")} and ${unique.length - 2} more`
 }
 
-const TASK: Record<string, string> = { analyze: "read", profile: "profile", match: "match", write: "write up", critique: "check" }
+const TASK: Record<string, string> = { analyze: "read", profile: "profile", match: "match", write: "write up", critique: "check", translate: "translate" }
 
 /** A name that ends in a full stop ("TloCare d.o.o.") does not get a second one. */
 function tidy(text: string): string {

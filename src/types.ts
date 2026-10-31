@@ -350,7 +350,8 @@ export interface SentBack {
 
 export type AgentRole = "orchestrator" | "profiler" | "analyst" | "matchmaker" | "writer" | "critic" | "scout"
 
-export type TaskKind = "screen" | "profile" | "analyze" | "match" | "write" | "critique" | "demo" | "scout"
+/** `translate`: the Critic's English for the Serbian lines of a record, for the review of the artifact in `subjectId`. */
+export type TaskKind = "screen" | "profile" | "analyze" | "match" | "write" | "critique" | "translate" | "demo" | "scout"
 
 export type TaskStatus = "queued" | "running" | "done" | "failed"
 

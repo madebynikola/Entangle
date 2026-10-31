@@ -47,7 +47,7 @@ type AttemptData = Omit<InferenceAttempt, "taskId" | "loopId" | "model" | "provi
  * Ranked with the analyses, they wait behind every profile, and every company is decided at the end again.
  * Within one rank, calls go in arrival order.
  */
-const RANK: Record<TaskKind, number> = { write: 5, scout: 5, match: 3, profile: 2, screen: 1, analyze: 0, demo: 0, critique: 0 }
+const RANK: Record<TaskKind, number> = { write: 5, scout: 5, match: 3, profile: 2, screen: 1, analyze: 0, demo: 0, critique: 0, translate: 0 }
 const NEED_REVIEW = 4
 
 /**
@@ -231,8 +231,10 @@ function rankOf(taskId: string | undefined): number {
 	if (!task) return RANK.write
 	const subject = task.subjectId ?? ""
 	// An Analyst's first task is about a company; a fix it is sent back is about one of the company's needs.
-	if ((task.kind === "critique" || task.kind === "analyze") && s.needs.has(subject)) return NEED_REVIEW
-	if (task.kind !== "critique") return RANK[task.kind]
+	// A translation for a review ranks with that review.
+	const review = task.kind === "critique" || task.kind === "translate"
+	if ((review || task.kind === "analyze") && s.needs.has(subject)) return NEED_REVIEW
+	if (!review) return RANK[task.kind]
 	if (s.proposals.has(subject)) return RANK.write
 	if (s.candidates.has(subject)) return RANK.match
 	return RANK.profile
