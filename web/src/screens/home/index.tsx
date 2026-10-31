@@ -3,7 +3,7 @@ import { Play, Plus, ScanSearch, Search } from "lucide-react"
 import { useMemo, useState } from "react"
 import { Link } from "react-router"
 import { PageHeader } from "@/components/shell/page-header"
-import { runGroup, runLabel, runState, type RunGroup } from "@/components/shell/run-label"
+import { runGroup, runLabel, runState, stoppedLine, type RunGroup } from "@/components/shell/run-label"
 import { useProblemDialog } from "@/components/shell/problem-dialog"
 import { useStartRun } from "@/components/shell/start-run"
 import { Button } from "@/components/ui/button"
@@ -121,6 +121,7 @@ export function HomeScreen() {
 
 function RunRow({ run, showKind }: { run: RunInfo; showKind: boolean }) {
 	const state = runState(run)
+	const stopped = stoppedLine(run)
 	return (
 		<Link
 			to={`/runs/${encodeURIComponent(run.id)}`}
@@ -147,6 +148,11 @@ function RunRow({ run, showKind }: { run: RunInfo; showKind: boolean }) {
 					</div>
 				) : (
 					<div className="mt-0.5 truncate font-mono text-xs text-ink-subtle">{run.sample ? "Invented data that shows a full run" : run.id}</div>
+				)}
+				{stopped && (
+					<div className="mt-0.5 truncate text-sm text-ink-muted" title={stopped}>
+						{stopped}
+					</div>
 				)}
 			</div>
 			<StatusLabel tone={state.tone} pulse={state.pulse} className="text-sm">

@@ -17,7 +17,7 @@ import { runClock, useFullView, useRunStore, type Speed } from "@/run/hooks"
 import { FloatInsetsContext, useMeasureInsets } from "./float"
 import { PageHeader } from "./page-header"
 import { ReplayBar } from "./replay-bar"
-import { runLabel, runState } from "./run-label"
+import { runLabel, runState, stoppedLine } from "./run-label"
 
 /**
  * /runs/:runId: opens the run in the store, then fills the panel: the header (title, facts, tabs), the screen, and on the
@@ -170,20 +170,28 @@ function RunMeta() {
 	if (!info) return <Skeleton className="h-4 w-64" />
 	const state = runState(info)
 	const { totals } = view
+	const stopped = stoppedLine(info)
 	return (
-		<Meta
-			items={[
-				<StatusLabel key="state" tone={state.tone} pulse={state.pulse}>
-					{state.label}
-				</StatusLabel>,
-				format.duration(info.status === "live" ? view.lastMs : (info.durationMs ?? view.lastMs)),
-				view.agents.size > 0 && format.plural(view.agents.size, "agent"),
-				totals.tokens > 0 && `${format.tokens(totals.tokens)} tokens`,
-				totals.costUsd > 0 && `${format.usd(totals.costUsd)}${totals.costKnown ? "" : "+"}`,
-				!info.sample && info.startedAt && format.ago(info.startedAt),
-				info.sample ? <Chip key="kind">Invented data</Chip> : info.mock ? <Chip key="kind">Mock model</Chip> : null,
-			]}
-		/>
+		<div className="min-w-0">
+			<Meta
+				items={[
+					<StatusLabel key="state" tone={state.tone} pulse={state.pulse}>
+						{state.label}
+					</StatusLabel>,
+					format.duration(info.status === "live" ? view.lastMs : (info.durationMs ?? view.lastMs)),
+					view.agents.size > 0 && format.plural(view.agents.size, "agent"),
+					totals.tokens > 0 && `${format.tokens(totals.tokens)} tokens`,
+					totals.costUsd > 0 && `${format.usd(totals.costUsd)}${totals.costKnown ? "" : "+"}`,
+					!info.sample && info.startedAt && format.ago(info.startedAt),
+					info.sample ? <Chip key="kind">Invented data</Chip> : info.mock ? <Chip key="kind">Mock model</Chip> : null,
+				]}
+			/>
+			{stopped && (
+				<p className="mt-0.5 line-clamp-2 text-sm text-ink-muted" title={stopped}>
+					{stopped}
+				</p>
+			)}
+		</div>
 	)
 }
 
