@@ -9,8 +9,8 @@ import type { RunView } from "@/run/fold"
  * base state at the playhead. The director (director.ts) decides when and how the lines are shown; words.ts says them.
  */
 
-/** The seven faces round the bus, clockwise from the top (as in design/agents/simulation.html). */
-export const ORDER: FaceId[] = ["deneb", "tycho", "fides", "you", "tinta", "amity", "spica"]
+/** The nine faces round the bus, clockwise from the top. Libra sits by Spica, whose needs she shortlists; Ceres by Tinta, whose pair she scouts. */
+export const ORDER: FaceId[] = ["deneb", "tycho", "fides", "ceres", "you", "tinta", "amity", "libra", "spica"]
 
 /** What happened, in the Stage's own terms. */
 export type Act =
@@ -25,6 +25,7 @@ export type Act =
 	| "no-match"
 	| "pair-dropped"
 	| "decide"
+	| "funding"
 	| "done"
 	| "fail"
 
@@ -83,7 +84,7 @@ export function lineOf(record: TraceRecord, index: number): Line | null {
 			return { ...base, from: "deneb", to: [faceOf(assignee)], act: "assign", assignee, task: str(data.kind), id: str(data.subjectId) }
 		}
 		case "shortlist.ready":
-			return { ...base, from: "deneb", to: ["tycho"], act: "shortlist", id: str(data.challengeId), count: list(data.researcherIds).length }
+			return { ...base, from: "libra", to: ["tycho"], act: "shortlist", id: str(data.challengeId), count: list(data.researcherIds).length }
 		case "artifact.posted": {
 			const artifact = artifactOf(data.kind)
 			return { ...base, from: artifact ? AUTHOR[artifact] : faceOf(record.agent), to: ["fides"], act: "post", artifact, id: str(data.id) }
@@ -105,6 +106,8 @@ export function lineOf(record: TraceRecord, index: number): Line | null {
 			return { ...base, from: "amity", to: "all", act: "pair-dropped", artifact: "pair", id: str(data.pairId) }
 		case "orchestrator.decided":
 			return { ...base, from: "deneb", to: ["tinta"], act: "decide", artifact: "pair", id: str(data.pairId) }
+		case "funding.posted":
+			return { ...base, from: "ceres", to: ["tinta"], act: "funding", artifact: "pair", id: str(data.pairId), count: list(data.calls).length }
 		case "orchestrator.done":
 			return { ...base, from: "deneb", to: "all", act: "done", totals: { proposals: list(data.proposals).length, pairs: num(data.pairs) } }
 		case "task.failed":

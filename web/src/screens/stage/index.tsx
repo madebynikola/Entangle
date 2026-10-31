@@ -28,32 +28,38 @@ import { namesOf, sayOne, VERB, type Names } from "./words"
 const ROLE: Record<FaceId, RoleKey | null> = {
 	deneb: "orchestrator",
 	spica: "analyst",
+	libra: "shortlist",
 	tycho: "profiler",
 	amity: "matchmaker",
 	tinta: "writer",
 	fides: "critic",
+	ceres: "scout",
 	you: null,
 }
 
 const COLOR: Record<FaceId, string> = {
 	deneb: "var(--role-orchestrator)",
 	spica: "var(--role-analyst)",
+	libra: "var(--role-shortlist)",
 	tycho: "var(--role-profiler)",
 	amity: "var(--role-matchmaker)",
 	tinta: "var(--role-writer)",
 	fides: "var(--role-critic)",
+	ceres: "var(--role-scout)",
 	you: "var(--idle)",
 }
 
 /** Where each face sits, as a share of the stage: a loose ring, a little off true so it does not look ruled. */
 const SEAT: Record<FaceId, [number, number]> = {
-	deneb: [0.5, 0.15],
-	tycho: [0.795, 0.265],
-	fides: [0.885, 0.585],
-	you: [0.665, 0.865],
-	tinta: [0.335, 0.855],
-	amity: [0.115, 0.605],
-	spica: [0.21, 0.28],
+	deneb: [0.5, 0.14],
+	tycho: [0.765, 0.235],
+	fides: [0.895, 0.475],
+	ceres: [0.83, 0.74],
+	you: [0.63, 0.88],
+	tinta: [0.37, 0.875],
+	amity: [0.165, 0.735],
+	libra: [0.1, 0.48],
+	spica: [0.235, 0.235],
 }
 
 /** The kit's motion: a quick start, a small overshoot, a long rest. */
@@ -619,11 +625,18 @@ const BUBBLE_HALF = 120
 
 type Place = "above" | "below"
 
-/**
- * Where each face speaks, so bubbles land in open space: Deneb (no room above) and the two at mid height (Spica
- * and Tycho sit above them) below their names, the rest above.
- */
-const PLACE: Record<FaceId, Place> = { deneb: "below", tycho: "above", fides: "below", you: "above", tinta: "above", amity: "below", spica: "above" }
+/** Where each face speaks, so bubbles land in open space: Deneb (no room above) below its name, the rest above. */
+const PLACE: Record<FaceId, Place> = {
+	deneb: "below",
+	tycho: "above",
+	fides: "above",
+	ceres: "above",
+	you: "above",
+	tinta: "above",
+	amity: "above",
+	libra: "above",
+	spica: "above",
+}
 
 /** A speech bubble that rises out of its speaker and sinks back into it. */
 function Bubble({ text, place, shift }: { text: string; place: Place; shift: number }) {
