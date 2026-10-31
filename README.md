@@ -20,11 +20,11 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/brand/entangle-stage-dark.gif">
-    <img src="docs/brand/entangle-stage-light.gif" alt="The Stage tab replaying the reference run: the role faces sit round the event bus, each event travels from its speaker through the bus, and the Critic's verdicts land on the work it checked. The run ends with three proposals for a person to approve." width="760">
+    <img src="docs/brand/entangle-stage-light.gif" alt="The Stage tab replaying the reference run: the role faces sit round the event bus, each event travels from its speaker through the bus, and the Critic's verdicts land on the work it checked. The run ends with six proposals for a person to approve." width="760">
   </picture>
 </p>
 
-<sub>The Stage tab replaying a real 5-company run in real time: its first half minute, then its last. Each face is a role, each bubble an event on the Mozaik bus.</sub>
+<sub>The Stage tab replaying the reference run (<code>out/golden/</code>) in real time: its first half minute, then its last. Each face is a role, each bubble an event on the Mozaik bus.</sub>
 
 ![The Timeline of a real run: one row per agent, one bar per model call. Overlapping bars are agents working at the same time.](docs/screenshots/timeline.png)
 
@@ -112,7 +112,7 @@ stopped the last company, C008, before matching. `npm run match -- --help` lists
 
 ## Architecture
 
-![Architecture: an Orchestrator, Industry Analysts, Research Profilers, a Matchmaker and Proposal Writers share one blackboard; a Critic reviews every artifact and sends rejected claims back; a Funding Scout finds EU calls and projects for each chosen pair](docs/brand/architecture.svg)
+![Architecture: an Orchestrator, Industry Analysts, Research Profilers, a Matchmaker and Proposal Writers share one blackboard; a Critic reviews every artifact and sends rejected claims back; a Funding Scout finds EU calls and projects for each chosen pair](docs/brand/architecture-bus.svg)
 
 Every box with a dot is a Mozaik participant in one runtime (`@mozaik-ai/core` 4.1.0). Agents never call each other.
 They read and write one shared blackboard and talk through events on one bus, where every participant sees every event.
@@ -130,17 +130,19 @@ They read and write one shared blackboard and talk through events on one bus, wh
 
 <table align="center">
   <tr>
-    <td align="center"><img src="design/agents/deneb.svg" width="56" alt=""><br><b>Deneb</b><br><sub>Orchestrator</sub></td>
-    <td align="center"><img src="design/agents/spica.svg" width="56" alt=""><br><b>Spica</b><br><sub>Industry Analyst</sub></td>
-    <td align="center"><img src="design/agents/tycho.svg" width="56" alt=""><br><b>Tycho</b><br><sub>Research Profiler</sub></td>
-    <td align="center"><img src="design/agents/amity.svg" width="56" alt=""><br><b>Amity</b><br><sub>Matchmaker</sub></td>
-    <td align="center"><img src="design/agents/tinta.svg" width="56" alt=""><br><b>Tinta</b><br><sub>Proposal Writer</sub></td>
-    <td align="center"><img src="design/agents/fides.svg" width="56" alt=""><br><b>Fides</b><br><sub>Critic</sub></td>
-    <td align="center"><img src="design/agents/you.svg" width="56" alt=""><br><b>You</b><br><sub>Human approver</sub></td>
+    <td align="center" valign="top"><img src="design/agents/deneb.svg" width="52" alt=""><br><b>Deneb</b><br><sub>Orchestrator</sub></td>
+    <td align="center" valign="top"><img src="design/agents/spica.svg" width="52" alt=""><br><b>Spica</b><br><sub>Industry Analyst</sub></td>
+    <td align="center" valign="top"><img src="design/agents/libra.svg" width="52" alt=""><br><b>Libra</b><br><sub>Shortlist</sub></td>
+    <td align="center" valign="top"><img src="design/agents/tycho.svg" width="52" alt=""><br><b>Tycho</b><br><sub>Research Profiler</sub></td>
+    <td align="center" valign="top"><img src="design/agents/amity.svg" width="52" alt=""><br><b>Amity</b><br><sub>Matchmaker</sub></td>
+    <td align="center" valign="top"><img src="design/agents/tinta.svg" width="52" alt=""><br><b>Tinta</b><br><sub>Proposal Writer</sub></td>
+    <td align="center" valign="top"><img src="design/agents/fides.svg" width="52" alt=""><br><b>Fides</b><br><sub>Critic</sub></td>
+    <td align="center" valign="top"><img src="design/agents/ceres.svg" width="52" alt=""><br><b>Ceres</b><br><sub>Funding Scout</sub></td>
+    <td align="center" valign="top"><img src="design/agents/you.svg" width="52" alt=""><br><b>You</b><br><sub>Human approver</sub></td>
   </tr>
 </table>
 
-<p align="center"><sub>The faces the web app gives each role, from the brand kit in <a href="design/"><code>design/</code></a>.</sub></p>
+<p align="center"><sub>Each role's face, from the brand kit in <a href="design/"><code>design/</code></a>. The web app shows seven of them; Libra and Ceres are new to the kit.</sub></p>
 
 ### Work starts when its input exists, not in stages
 
@@ -158,6 +160,10 @@ The Orchestrator hands out work as events arrive. It makes no model calls.
    queries in the EU's own words, the code searches the portal and CORDIS with them and the need's terms, and the model picks the
    calls that fit and the projects that worked on the same problem.
 5. The Critic reviews every need, profile, pair and proposal as it lands, beside all of this.
+
+![Data flow in the reference run: 8 companies become 29 needs, up to 4 candidates per need, 66 profiles, 32 pairs and 7 no-match outcomes, 7 chosen pairs, and 6 accepted proposals plus 1 for a person, written to out/golden](docs/brand/data-flow.svg)
+
+<sub>The same steps in the reference run, with its counts from <code>out/golden/summary.json</code>.</sub>
 
 ### The shared blackboard
 
@@ -190,6 +196,10 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
    free-text sentence is still rejected; the core claims are its header and its last claim under "The problem" and "Why this pair".
 
 Only accepted artifacts reach the result. A Writer never starts on a pair whose need, profile or pair is still in doubt.
+
+![The Critic loop in the reference run: of 337 reviews, 133 accepted, 194 sent back to the producer and 10 dropped; 6 more reviews ended in an error](docs/brand/critic-loop.svg)
+
+<sub>The three steps and their outcomes in the reference run, counted from <code>out/golden/trace.jsonl</code>.</sub>
 
 ### Models, budget and rate limits
 
@@ -263,6 +273,10 @@ console.log({ calls: edges.length / 2, peakInFlight: peak, averageInFlight: +(ar
 
 Each line of `trace.jsonl` has `ms` (since the start), `kind`, `agent`, `taskId`, `loopId` and `model`. `inference.dispatched`
 is when the runner let a call out past the rate limits; the time before it is a wait.
+
+![One company's path in the reference run: ArmaturaSec's first challenge from its need at 0:24 to an accepted proposal at 14:36, with the need sent back once and the pair and the proposal twice each, while the other roles work beside it](docs/brand/company-path.svg)
+
+<sub>One company through the reference run, with times from <code>out/golden/trace.jsonl</code>: each role works on it as soon as its input exists.</sub>
 
 ## Where the Critic stepped in
 
