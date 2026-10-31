@@ -18,15 +18,17 @@ import { runClock, useFullView, useResults, useRunClock, useRunStore, useRunView
 import { Blackboard } from "./blackboard"
 import { AgentSheet, MomentDialog } from "./details"
 import { axisSpan, derive, FOLLOW_MS, nameLookup, pack, type Moment, type Note } from "./derive"
-import { Lanes, MarkPin, type LaneAgent, type LaneStatus } from "./lanes"
+import { Lanes, MarkPin, type LaneAgent, type LaneStatus, type TimeRange } from "./lanes"
 
 export function LiveScreen() {
 	const view = useRunView()
 	const full = useFullView()
-	const { duration, liveRun, active, instant } = useRunStore(
+	const { runId, duration, liveRun, tracking, active, instant } = useRunStore(
 		useShallow((state) => ({
+			runId: state.runId,
 			duration: state.duration,
 			liveRun: state.runStatus === "live",
+			tracking: state.mode === "live",
 			active: state.mode === "live" || state.playing,
 			instant: state.speed === "instant",
 		})),
@@ -34,6 +36,13 @@ export function LiveScreen() {
 	const { results } = useResults()
 	const reduced = useReducedMotion()
 	const [follow, setFollow] = useState(false)
+	const [zoom, setZoom] = useState<TimeRange | null>(null)
+	// Another run has another length: start it on the whole run.
+	const [zoomRun, setZoomRun] = useState(runId)
+	if (zoomRun !== runId) {
+		setZoomRun(runId)
+		setZoom(null)
+	}
 	const [agentId, setAgentId] = useState<string | null>(null)
 	const [moment, setMoment] = useState<Moment | null>(null)
 
@@ -52,7 +61,15 @@ export function LiveScreen() {
 	const notesByAgent = useStableGroups(derived.notes, (n: Note) => n.agentId, (a, b) => a.key === b.key)
 	const span = useAxisSpan(duration, liveRun)
 	const canFollow = span > FOLLOW_MS * 1.5
-	const following = follow && canFollow
+	const following = follow && canFollow && !zoom
+	const range: RangeMode = zoom ? "zoom" : following ? "follow" : "run"
+	const zoomLabel = zoom ? `${format.clock(zoom.start)} – ${format.clock(zoom.end)}` : undefined
+	const onZoom = useCallback((next: TimeRange | null) => setZoom(next), [])
+	const onRange = useCallback((mode: RangeMode) => {
+		if (mode === "zoom") return
+		setZoom(null)
+		setFollow(mode === "follow")
+	}, [])
 
 	const lanes = useMemo(
 		() =>
@@ -77,19 +94,12 @@ export function LiveScreen() {
 	const openMoment = useCallback((m: Moment) => setMoment(m), [])
 	const openAgent = useCallback((id: string) => setAgentId(id), [])
 
-	useCommands(
-		"timeline",
-		canFollow
-			? [
-					{
-						id: following ? "timeline-whole" : "timeline-follow",
-						group: "Timeline",
-						label: following ? "Show the whole run" : "Follow the playhead",
-						run: () => setFollow(!following),
-					},
-				]
-			: [],
-	)
+	useCommands("timeline", [
+		...(range !== "run" ? [{ id: "timeline-whole", group: "Timeline", label: "Show the whole run", run: () => onRange("run") }] : []),
+		...(canFollow && range !== "follow"
+			? [{ id: "timeline-follow", group: "Timeline", label: "Follow the playhead", run: () => onRange("follow") }]
+			: []),
+	])
 
 	if (agents.length === 0) {
 		return (
@@ -108,7 +118,7 @@ export function LiveScreen() {
 				description="A bar is one model call. Bars at the same time are agents working at once."
 				className="h-[36rem] lg:h-auto"
 				bodyClassName="@container flex flex-col"
-				action={canFollow && <FollowToggle following={following} onChange={setFollow} />}
+				action={(canFollow || zoom) && <RangeToggle mode={range} canFollow={canFollow} zoomLabel={zoomLabel} onChange={onRange} />}
 			>
 				<Metrics view={view} calls={calls} rejections={derived.moments.length} duration={duration} liveRun={liveRun} active={active} />
 				<Lanes
@@ -116,6 +126,9 @@ export function LiveScreen() {
 					view={view}
 					span={span}
 					follow={following}
+					zoom={zoom}
+					onZoom={onZoom}
+					canSeek={!tracking}
 					animate={!reduced && active && !instant}
 					pulse={active}
 					hasDispatch={hasDispatch}
@@ -142,22 +155,28 @@ export function LiveScreen() {
 	)
 }
 
+type RangeMode = "run" | "follow" | "zoom"
+
 /**
+ * Whole run, Follow, and the zoomed range while there is one.
  * Memoized on purpose: Segmented animates with a layout id, and Motion measures layout on every render.
  * The screen re-renders on each frame of a replay; this must not.
  */
-const FollowToggle = memo(function FollowToggle({ following, onChange }: { following: boolean; onChange: (follow: boolean) => void }) {
-	return (
-		<Segmented
-			aria-label="Time range"
-			value={following ? "follow" : "run"}
-			onValueChange={(value) => onChange(value === "follow")}
-			items={[
-				{ value: "run", label: "Whole run", title: "Fit the whole run in the lanes" },
-				{ value: "follow", label: "Follow", title: "Show the two minutes around the playhead" },
-			]}
-		/>
-	)
+const RangeToggle = memo(function RangeToggle({
+	mode,
+	canFollow,
+	zoomLabel,
+	onChange,
+}: {
+	mode: RangeMode
+	canFollow: boolean
+	zoomLabel?: string
+	onChange: (mode: RangeMode) => void
+}) {
+	const items: { value: RangeMode; label: string; title: string }[] = [{ value: "run", label: "Whole run", title: "Fit the whole run in the lanes (Esc)" }]
+	if (canFollow) items.push({ value: "follow", label: "Follow", title: "Show the two minutes around the playhead" })
+	if (zoomLabel) items.push({ value: "zoom", label: zoomLabel, title: "Drag across the lanes or ⌘ scroll to zoom. Scroll sideways to pan." })
+	return <Segmented aria-label="Time range" value={mode} onValueChange={onChange} items={items} />
 })
 
 const NONE: never[] = []
@@ -253,7 +272,12 @@ function Legend({ stopped }: { stopped: boolean }) {
 				<MarkPin className="text-needs" />
 				Sent back by the Critic
 			</span>
-			<span className="ml-auto hidden xl:inline">Click for details</span>
+			<span
+				className="ml-auto hidden xl:inline"
+				title="Drag across the lanes or ⌘ scroll to zoom, scroll sideways to pan, Esc for the whole run. Click a lane to move the playhead there."
+			>
+				Drag to zoom
+			</span>
 		</div>
 	)
 }

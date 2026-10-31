@@ -11,12 +11,30 @@ import type { AgentView, LoopView, RunView } from "@/run/fold"
 import { runClock, useRunStore } from "@/run/hooks"
 import { kindLabel, laneGeometry, tickStep, viewWindow, type Moment, type Note } from "./derive"
 
+/** A stretch of the run, in run ms: the range the lanes are zoomed to. */
+export interface TimeRange {
+	start: number
+	end: number
+}
+
+/** The shortest range the lanes zoom to: a few ticks of the finest axis step. */
+export const MIN_ZOOM_MS = 15_000
+
+/** The part of the axis in view: the zoomed range, else the whole run or the window that follows the playhead. */
+function windowOf(now: number, span: number, follow: boolean, zoom: TimeRange | null): { start: number; visible: number } {
+	if (zoom) return { start: zoom.start, visible: zoom.end - zoom.start }
+	return viewWindow(now, span, follow)
+}
+
 /**
  * The swimlanes: one lane per agent, grouped by role. A bar is one model call; a lane splits into tracks when
  * the agent runs several tasks at once. Tool calls are dots, Critic rejections are amber marks on the producer's lane.
  *
  * Speed: React renders the bars when the fold changes. Every frame, `paint` only moves the playhead, grows the
  * open bars and shifts the window. So a run with 50+ agents and thousands of calls stays smooth.
+ *
+ * Time: drag across the lanes to zoom to a range, ⌘ or pinch scroll to zoom at the pointer, scroll sideways to pan,
+ * double-click or Esc for the whole run. A click on a lane (not on a mark) moves the playhead there.
  */
 
 export interface LaneStatus {
@@ -47,6 +65,9 @@ export function Lanes({
 	view,
 	span,
 	follow,
+	zoom,
+	onZoom,
+	canSeek,
 	animate,
 	pulse,
 	hasDispatch,
@@ -58,6 +79,11 @@ export function Lanes({
 	view: RunView
 	span: number
 	follow: boolean
+	/** The range in view, or null for the whole run (or the follow window). */
+	zoom: TimeRange | null
+	onZoom: (range: TimeRange | null) => void
+	/** A click on a lane moves the playhead (not while the view tracks a live run). */
+	canSeek: boolean
 	/** Fly rejected claims (live or playing, not instant, motion allowed). */
 	animate: boolean
 	/** Pulse the dots of working agents. */
@@ -68,16 +94,17 @@ export function Lanes({
 	onMoment: (moment: Moment) => void
 }) {
 	const rootRef = useRef<HTMLDivElement>(null)
+	const trackRef = useRef<HTMLDivElement>(null)
 	const playheadRef = useRef<HTMLDivElement>(null)
 	const worlds = useRef<HTMLElement[]>([])
 	const openBars = useRef<HTMLElement[]>([])
 	const groups = useMemo(() => groupLanes(lanes), [lanes])
-	const visible = follow ? Math.min(span, viewWindow(0, span, true).visible) : span
+	const visible = zoom ? zoom.end - zoom.start : follow ? Math.min(span, viewWindow(0, span, true).visible) : span
 	const worldWidth = `${(span / visible) * 100}%`
 
 	const paint = useCallback(() => {
 		const now = runClock()
-		const { start, visible } = viewWindow(now, span, follow)
+		const { start, visible } = windowOf(now, span, follow, zoom)
 		const shift = start > 0 ? `translateX(${-(start / span) * 100}%)` : ""
 		for (const el of worlds.current) if (el.style.transform !== shift) el.style.transform = shift
 		for (const el of openBars.current) {
@@ -85,8 +112,14 @@ export function Lanes({
 			el.style.width = `max(2px, ${(Math.max(0, now - from) / span) * 100}%)`
 		}
 		// A full-width layer moved by transform: the playhead never triggers layout or a repaint of the lanes.
-		if (playheadRef.current) playheadRef.current.style.transform = `translateX(${Math.min(1, Math.max(0, (now - start) / visible)) * 100}%)`
-	}, [span, follow])
+		const playhead = playheadRef.current
+		if (playhead) {
+			const at = (now - start) / visible
+			playhead.style.transform = `translateX(${Math.min(1, Math.max(0, at)) * 100}%)`
+			// Zoomed away from the playhead: hide it rather than pin it to an edge.
+			playhead.style.opacity = at < 0 || at > 1 ? "0" : ""
+		}
+	}, [span, follow, zoom])
 
 	// After each render: find the moving parts again, then paint them once.
 	useLayoutEffect(() => {
@@ -112,10 +145,11 @@ export function Lanes({
 		}
 	}, [paint])
 
-	const flights = useFlights(moments, rootRef, animate, span, follow)
+	const flights = useFlights(moments, rootRef, animate, span, follow, zoom)
 	const hover = useHover(rootRef)
 	const scrollRef = useRef<HTMLDivElement>(null)
 	const dense = useDense(scrollRef, groups)
+	const gestures = useTimeGestures({ scrollRef, trackRef, span, follow, zoom, onZoom, canSeek, onDrag: hover.clear })
 
 	return (
 		<div
@@ -126,16 +160,24 @@ export function Lanes({
 			<div
 				ref={rootRef}
 				// Column widths follow the pane, not the window: the sidebar and the blackboard take their share.
-				className="relative [--label:8.5rem] [--meta:0px] @lg:[--label:10.5rem] @2xl:[--label:12rem] @2xl:[--meta:4.5rem] @3xl:[--label:13.5rem] @3xl:[--meta:5rem]"
-				onPointerOver={hover.onPointerOver}
+				className={cn(
+					"relative select-none [--label:8.5rem] [--meta:0px] @lg:[--label:10.5rem] @2xl:[--label:12rem] @2xl:[--meta:4.5rem] @3xl:[--label:13.5rem] @3xl:[--meta:5rem]",
+					gestures.brush && "cursor-ew-resize",
+				)}
+				onPointerOver={(event) => !gestures.brush && hover.onPointerOver(event)}
 				onPointerLeave={hover.clear}
+				onPointerDown={gestures.onPointerDown}
+				onPointerMove={gestures.onPointerMove}
+				onPointerUp={gestures.onPointerUp}
+				onPointerCancel={gestures.onPointerCancel}
+				onDoubleClick={gestures.onDoubleClick}
 				onClick={(event) => {
 					const key = (event.target as HTMLElement).closest<HTMLElement>("[data-moment]")?.dataset.moment
 					const moment = key && moments.find((m) => String(m.key) === key)
 					if (moment) onMoment(moment)
 				}}
 			>
-				<Axis span={span} visible={visible} worldWidth={worldWidth} />
+				<Axis span={span} visible={visible} worldWidth={worldWidth} zoom={zoom} />
 				{groups.map((group, i) => (
 					<Fragment key={group.role}>
 						{dense ? (
@@ -158,11 +200,12 @@ export function Lanes({
 						))}
 					</Fragment>
 				))}
-				<div className="pointer-events-none absolute inset-y-0 left-[var(--label)] right-[var(--meta)] z-20">
+				<div ref={trackRef} className="pointer-events-none absolute inset-y-0 left-[var(--label)] right-[var(--meta)] z-20">
 					<div ref={playheadRef} className="absolute inset-0 border-l border-ink/50 will-change-transform" />
 					{flights.items.map((flight) => (
 						<Flight key={flight.key} flight={flight} onDone={flights.remove} />
 					))}
+					{gestures.brush && <Brush brush={gestures.brush} span={span} follow={follow} zoom={zoom} />}
 				</div>
 			</div>
 			{hover.target && <HoverInfo target={hover.target} view={view} moments={moments} />}
@@ -204,7 +247,7 @@ function groupLanes(lanes: LaneAgent[]): Group[] {
 
 const ROW = "grid grid-cols-[var(--label)_minmax(0,1fr)_var(--meta)]"
 
-function Axis({ span, visible, worldWidth }: { span: number; visible: number; worldWidth: string }) {
+function Axis({ span, visible, worldWidth, zoom }: { span: number; visible: number; worldWidth: string; zoom: TimeRange | null }) {
 	// One label per 72 px of track, so labels never run into each other.
 	const [width, setWidth] = useState(600)
 	const trackRef = useRef<HTMLDivElement>(null)
@@ -216,8 +259,14 @@ function Axis({ span, visible, worldWidth }: { span: number; visible: number; wo
 		return () => observer.disconnect()
 	}, [])
 	const step = tickStep(visible, Math.max(2, Math.floor(width / 72)))
+	// Zoomed, only the ticks in view: a 15 s range of an hour-long run would otherwise draw hundreds.
+	const from = zoom ? Math.floor(zoom.start / step) * step : 0
+	const to = zoom ? Math.min(span, zoom.end + step) : span
+	// Where a tick sits in view, 0..1: labels near an edge are aligned inwards.
+	const at = (ms: number) => (zoom ? (ms - zoom.start) / visible : ms / span)
 	const ticks: number[] = []
-	for (let ms = 0; ms <= span; ms += step) ticks.push(ms)
+	// A tick just outside a zoomed range would be pulled into view by that alignment: leave it out.
+	for (let ms = from; ms <= to; ms += step) if (!zoom || (at(ms) >= 0 && at(ms) <= 1)) ticks.push(ms)
 	return (
 		<div className={cn(ROW, "sticky top-0 z-10 h-8 border-b border-hairline bg-card text-xs text-ink-subtle")}>
 			<div className="flex items-center px-4">Agent</div>
@@ -228,7 +277,7 @@ function Axis({ span, visible, worldWidth }: { span: number; visible: number; wo
 							key={ms}
 							className={cn(
 								"tabular absolute top-1/2 -translate-y-1/2 whitespace-nowrap",
-								ms === 0 ? "pl-2" : ms / span > 0.96 ? "-translate-x-full pr-2" : "-translate-x-1/2",
+								at(ms) < 0.03 ? "pl-2" : at(ms) > 0.96 ? "-translate-x-full pr-2" : "-translate-x-1/2",
 							)}
 							style={{ left: `${(ms / span) * 100}%` }}
 						>
@@ -564,6 +613,189 @@ export function actionLabel(moment: Moment): string {
 }
 
 // ---------------------------------------------------------------------------
+// Zoom and pan: the gestures on the track column, and the range being dragged.
+// ---------------------------------------------------------------------------
+
+/** A drag shorter than this is a click. */
+const DRAG_PX = 4
+
+interface Drag {
+	pointer: number
+	x: number
+	from: number
+	moved: boolean
+}
+
+function useTimeGestures({
+	scrollRef,
+	trackRef,
+	span,
+	follow,
+	zoom,
+	onZoom,
+	canSeek,
+	onDrag,
+}: {
+	scrollRef: React.RefObject<HTMLDivElement | null>
+	trackRef: React.RefObject<HTMLDivElement | null>
+	span: number
+	follow: boolean
+	zoom: TimeRange | null
+	onZoom: (range: TimeRange | null) => void
+	canSeek: boolean
+	onDrag: () => void
+}) {
+	const [brush, setBrush] = useState<TimeRange | null>(null)
+	const drag = useRef<Drag | null>(null)
+	// The wheel and key listeners are added once; they read the current values here.
+	const latest = useRef({ span, follow, zoom, onZoom })
+	useEffect(() => {
+		latest.current = { span, follow, zoom, onZoom }
+	})
+
+	/** The run ms under a pointer, or null when it is not over the track column. */
+	const msAt = useCallback(
+		(clientX: number, clamp = false): number | null => {
+			const box = trackRef.current?.getBoundingClientRect()
+			if (!box || box.width === 0) return null
+			let frac = (clientX - box.left) / box.width
+			if (frac < 0 || frac > 1) {
+				if (!clamp) return null
+				frac = Math.min(1, Math.max(0, frac))
+			}
+			const { span, follow, zoom } = latest.current
+			const { start, visible } = windowOf(runClock(), span, follow, zoom)
+			return start + frac * visible
+		},
+		[trackRef],
+	)
+
+	const onPointerDown = useCallback(
+		(event: React.PointerEvent) => {
+			if (event.button !== 0 || !event.isPrimary) return
+			// Agent names and Critic marks are buttons with their own click.
+			if ((event.target as HTMLElement).closest("button")) return
+			const from = msAt(event.clientX)
+			if (from == null) return
+			drag.current = { pointer: event.pointerId, x: event.clientX, from, moved: false }
+		},
+		[msAt],
+	)
+
+	const onPointerMove = useCallback(
+		(event: React.PointerEvent) => {
+			const d = drag.current
+			if (!d || d.pointer !== event.pointerId) return
+			if (!d.moved) {
+				if (Math.abs(event.clientX - d.x) < DRAG_PX) return
+				d.moved = true
+				;(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId)
+				onDrag()
+			}
+			const to = msAt(event.clientX, true)
+			if (to != null) setBrush({ start: Math.min(d.from, to), end: Math.max(d.from, to) })
+		},
+		[msAt, onDrag],
+	)
+
+	const onPointerUp = useCallback(
+		(event: React.PointerEvent) => {
+			const d = drag.current
+			drag.current = null
+			if (!d || d.pointer !== event.pointerId) return
+			if (!d.moved) {
+				if (canSeek) useRunStore.getState().seek(d.from)
+				return
+			}
+			setBrush(null)
+			const to = msAt(event.clientX, true)
+			if (to == null) return
+			onZoom(fitRange(Math.min(d.from, to), Math.max(d.from, to), latest.current.span))
+		},
+		[msAt, canSeek, onZoom],
+	)
+
+	const onPointerCancel = useCallback(() => {
+		drag.current = null
+		setBrush(null)
+	}, [])
+
+	const onDoubleClick = useCallback(
+		(event: React.MouseEvent) => {
+			if (latest.current.zoom && msAt(event.clientX) != null) onZoom(null)
+		},
+		[msAt, onZoom],
+	)
+
+	// ⌘ or Ctrl + scroll, and trackpad pinch (a wheel event with ctrlKey), zoom at the pointer.
+	// Sideways scroll (or Shift + scroll) pans a zoomed view. Plain scroll still scrolls the lanes.
+	useEffect(() => {
+		const el = scrollRef.current
+		if (!el) return
+		const onWheel = (event: WheelEvent) => {
+			const box = trackRef.current?.getBoundingClientRect()
+			if (!box || event.clientX < box.left || event.clientX > box.right) return
+			const { span, follow, zoom, onZoom } = latest.current
+			const { start, visible } = windowOf(runClock(), span, follow, zoom)
+			const unit = event.deltaMode === 1 ? 16 : 1
+			if (event.ctrlKey || event.metaKey) {
+				event.preventDefault()
+				const frac = (event.clientX - box.left) / box.width
+				const anchor = start + frac * visible
+				const delta = Math.min(50, Math.max(-50, event.deltaY * unit))
+				const next = Math.max(MIN_ZOOM_MS, visible * Math.exp(delta * 0.01))
+				if (next >= span) return onZoom(null)
+				const from = Math.min(span - next, Math.max(0, anchor - frac * next))
+				onZoom({ start: from, end: from + next })
+				return
+			}
+			const sideways = event.shiftKey && event.deltaX === 0 ? event.deltaY : event.deltaX
+			if (!zoom || sideways === 0 || (!event.shiftKey && Math.abs(event.deltaX) <= Math.abs(event.deltaY))) return
+			event.preventDefault()
+			const from = Math.min(span - visible, Math.max(0, start + ((sideways * unit) / box.width) * visible))
+			if (from !== start) onZoom({ start: from, end: from + visible })
+		}
+		el.addEventListener("wheel", onWheel, { passive: false })
+		return () => el.removeEventListener("wheel", onWheel)
+	}, [scrollRef, trackRef])
+
+	// Esc goes back to the whole run, unless a dialog or sheet is open and Esc is closing it.
+	useEffect(() => {
+		if (!zoom) return
+		const onKey = (event: KeyboardEvent) => {
+			if (event.key !== "Escape" || event.defaultPrevented || document.querySelector("[role=dialog]")) return
+			latest.current.onZoom(null)
+		}
+		window.addEventListener("keydown", onKey)
+		return () => window.removeEventListener("keydown", onKey)
+	}, [zoom])
+
+	return { brush, onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onDoubleClick }
+}
+
+/** A dragged range, at least MIN_ZOOM_MS long and inside the run. The whole run (or more) is no zoom. */
+function fitRange(start: number, end: number, span: number): TimeRange | null {
+	const length = Math.max(MIN_ZOOM_MS, end - start)
+	if (length >= span) return null
+	const from = Math.min(span - length, Math.max(0, (start + end) / 2 - length / 2))
+	return { start: from, end: from + length }
+}
+
+/** The range being dragged, with its times. */
+function Brush({ brush, span, follow, zoom }: { brush: TimeRange; span: number; follow: boolean; zoom: TimeRange | null }) {
+	const { start, visible } = windowOf(runClock(), span, follow, zoom)
+	const left = (brush.start - start) / visible
+	const width = (brush.end - brush.start) / visible
+	return (
+		<div className="absolute inset-y-0 border-x border-ink/40 bg-ink/[0.06]" style={{ left: `${left * 100}%`, width: `${width * 100}%` }}>
+			<span className="tabular absolute left-1/2 top-1.5 -translate-x-1/2 whitespace-nowrap rounded-sm bg-ink px-1.5 py-0.5 text-xs text-panel">
+				{format.clock(brush.start)} – {format.clock(brush.end)}
+			</span>
+		</div>
+	)
+}
+
+// ---------------------------------------------------------------------------
 // Critic moments in flight: the rejected claim, struck through, flies from the Critic's lane to its producer's.
 // ---------------------------------------------------------------------------
 
@@ -577,7 +809,14 @@ interface FlightItem {
 	more: number
 }
 
-function useFlights(moments: Moment[], rootRef: React.RefObject<HTMLDivElement | null>, animate: boolean, span: number, follow: boolean) {
+function useFlights(
+	moments: Moment[],
+	rootRef: React.RefObject<HTMLDivElement | null>,
+	animate: boolean,
+	span: number,
+	follow: boolean,
+	zoom: TimeRange | null,
+) {
 	const [items, setItems] = useState<FlightItem[]>([])
 	const seen = useRef(moments.at(-1)?.key ?? -1)
 
@@ -590,7 +829,7 @@ function useFlights(moments: Moment[], rootRef: React.RefObject<HTMLDivElement |
 		const root = rootRef.current
 		if (!root) return
 		const now = runClock()
-		const { start, visible } = viewWindow(now, span, follow)
+		const { start, visible } = windowOf(now, span, follow, zoom)
 		const lane = (id?: string) => (id ? root.querySelector<HTMLElement>(`[data-lane="${CSS.escape(id)}"]`) : null)
 		const next = fresh.flatMap((moment): FlightItem[] => {
 			const critic = lane(moment.criticId)
@@ -599,11 +838,14 @@ function useFlights(moments: Moment[], rootRef: React.RefObject<HTMLDivElement |
 			const from = critic ? critic.offsetTop + critic.offsetHeight / 2 : null
 			const to = producer ? producer.offsetTop + 6 : null
 			if (from == null || to == null) return []
+			const x = (moment.ms - start) / visible
+			// Zoomed to another part of the run: nothing to watch here.
+			if (zoom && (x < 0 || x > 1)) return []
 			const first = moment.rejected[0]?.claim.text
 			return [
 				{
 					key: moment.key,
-					x: Math.min(1, Math.max(0, (moment.ms - start) / visible)),
+					x: Math.min(1, Math.max(0, x)),
 					from,
 					to,
 					text: first ?? `${kindLabel(moment.kind)} ${moment.id}`,
