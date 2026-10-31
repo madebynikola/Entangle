@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs"
 import { createAgent, type Agent } from "@mozaik-ai/core"
-import { createCordis, savedCordis, SAVED_PROJECTS, type Cordis } from "../../data/cordis"
-import { createEuCalls, savedEuCalls, SAVED_CALLS, type EuCalls } from "../../data/eucalls"
+import { createCordis, savedCordis, SAVED_PROJECTS, type Cordis, type ProjectSearch } from "../../data/cordis"
+import { createEuCalls, savedEuCalls, SAVED_CALLS, type CallSearch, type EuCalls } from "../../data/eucalls"
 import { budgetSpent, createTask, failTask, join, modelFor, runTask, state } from "../../runtime"
 import type { CompanyNeed, EuProject, FundingCall, FundingFit, FundingMatch, PairCandidate, ProjectFit, ResearcherProfile, Task } from "../../types"
 import { EventOfType, emit, parseJson, registerMockResponder } from "../matchmaker/shared"
@@ -111,7 +111,14 @@ export function createScout(options: ScoutOptions = {}): Scout {
 		const task = createTask("scout", agent, pair.id)
 		const terms = [...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 4)]
 		// CORDIS needs every word of a query in a project, so the short EU-vocabulary queries and two search terms.
-		const [found, related] = await Promise.all([calls.search(terms, area), cordis.search([...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 2)])])
+		const projectTerms = [...queries.slice(0, MAX_QUERIES), ...need.searchTerms.slice(0, 2)]
+		// The clients never throw by contract. If one does, its search fails like a portal that did not answer, and the
+		// pick task settles: an open task would keep the run waiting.
+		const message = (error: unknown) => (error instanceof Error ? error.message : String(error))
+		const [found, related] = await Promise.all([
+			calls.search(terms, area).catch((error): CallSearch => ({ queries: terms, calls: [], error: message(error) })),
+			cordis.search(projectTerms).catch((error): ProjectSearch => ({ queries: projectTerms, projects: [], error: message(error) })),
+		])
 		const list = found.calls.slice(0, MAX_CALLS)
 		const projects = related.projects.slice(0, MAX_PROJECTS)
 		const base: Omit<FundingMatch, "calls"> = {
