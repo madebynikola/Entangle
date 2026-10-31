@@ -159,10 +159,45 @@ function sayRaw(line: Line, names: Names, detail: boolean): string {
 			])
 		case "done":
 			return `Done. ${line.totals?.proposals ?? 0} proposals from ${line.totals?.pairs ?? 0} pairs.`
-		case "fail":
+		case "fail": {
+			const limit = limitOf(line.error)
+			if (limit) return `${line.id ?? "A task"} stopped at the ${LIMIT[limit]} limit.`
 			return `${line.id ?? "A task"} failed. Trying again.`
+		}
 	}
 }
+
+/** The run limit a task error names, or null when the task failed for another reason. See budgetExceeded in src/runtime/state.ts and stopOverdue in the orchestrator. */
+export type Limit = "time" | "token" | "cost"
+
+const LIMIT: Record<Limit, string> = { time: "time", token: "token", cost: "cost" }
+
+export function limitOf(error: string | undefined): Limit | null {
+	if (!error) return null
+	if (/^(timeout: )?wall clock/.test(error)) return "time"
+	if (/^tokens /.test(error)) return "token"
+	if (/^cost /.test(error)) return "cost"
+	return null
+}
+
+/** The verb the log shows beside the face's name: a task the limit stopped did not fail. */
+export function verbOf(line: Line): string {
+	return line.act === "fail" && limitOf(line.error) ? "stopped" : VERB[line.act]
+}
+
+/** Lines in log order, with each run of tasks stopped by the same limit as one entry. */
+export function groupLog(lines: Line[]): Line[][] {
+	const groups: Line[][] = []
+	for (const line of lines) {
+		const last = groups.at(-1)
+		const limit = line.act === "fail" ? limitOf(line.error) : null
+		if (last && limit && last[0].act === "fail" && limitOf(last[0].error) === limit) last.push(line)
+		else groups.push([line])
+	}
+	return groups
+}
+
+const cap = (text: string) => text[0].toUpperCase() + text.slice(1)
 
 /** What a group of the same act says together: one line for a burst. */
 export function sayMany(lines: Line[], names: Names): string {
@@ -200,6 +235,11 @@ function sayGroup(lines: Line[], names: Names): string {
 			return `Picked ${n} pairs to write up.`
 		case "funding":
 			return `Scouted EU calls for ${items}.`
+		case "fail": {
+			const limit = limitOf(lines[0].error)
+			if (limit && lines.every((line) => limitOf(line.error) === limit)) return `${cap(LIMIT[limit])} limit reached. ${n} open tasks stopped.`
+			return sayOne(lines.at(-1)!, names)
+		}
 		default:
 			return sayOne(lines.at(-1)!, names)
 	}

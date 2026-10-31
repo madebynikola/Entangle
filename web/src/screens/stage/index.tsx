@@ -14,7 +14,7 @@ import { useResults, useRunClock, useRunStore, useRunView } from "@/run/hooks"
 import { cast, ORDER, useLines, type Cast, type Line } from "./derive"
 import { MOOD_MS, STAMP_AT, useDirector, type Beat } from "./director"
 import "./stage.css"
-import { namesOf, sayOne, VERB, type Names } from "./words"
+import { groupLog, namesOf, sayMany, sayOne, verbOf, type Names } from "./words"
 
 /**
  * /runs/:runId/stage: the run as a conversation. The seven faces from the brand kit sit round the event bus, which is
@@ -793,11 +793,11 @@ function Ids({ text }: { text: string }) {
 
 /** The events so far, newest first, in words. A click moves the playhead to that moment. */
 const Log = memo(function Log({ lines, upTo, names, onClose }: { lines: Line[]; upTo: number; names: Names; onClose: () => void }) {
-	const shown = useMemo(() => lines.slice(Math.max(0, upTo - LOG_MAX), upTo).reverse(), [lines, upTo])
+	const shown = useMemo(() => groupLog(lines.slice(Math.max(0, upTo - LOG_MAX), upTo)).reverse(), [lines, upTo])
 	const list = useRef<HTMLOListElement>(null)
 	useEffect(() => {
 		list.current?.parentElement?.scrollTo({ top: 0, behavior: "smooth" })
-	}, [shown[0]?.key])
+	}, [shown[0]?.[0].key])
 	return (
 		<Pane
 			title="Events"
@@ -814,33 +814,36 @@ const Log = memo(function Log({ lines, upTo, names, onClose }: { lines: Line[]; 
 				<p className="px-4 py-3 text-sm text-ink-subtle">Events appear here as the agents publish them.</p>
 			) : (
 				<ol ref={list} className="flex flex-col p-1.5">
-					{shown.map((line, i) => (
-						<motion.li
-							key={line.key}
-							initial={i === 0 ? { opacity: 0.2, y: -4 } : false}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.2, ease: "easeOut" }}
-						>
-							<button
-								type="button"
-								onClick={() => useRunStore.getState().seek(line.ms)}
-								className={cn(
-									"grid w-full grid-cols-[40px_8px_minmax(0,1fr)] items-baseline gap-2 rounded-md px-2 py-1.5 text-left text-sm transition-colors duration-300 hover:bg-hover",
-									i === 0 && "bg-sunken",
-								)}
+					{shown.map((group, i) => {
+						const line = group[0]
+						return (
+							<motion.li
+								key={line.key}
+								initial={i === 0 ? { opacity: 0.2, y: -4 } : false}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.2, ease: "easeOut" }}
 							>
-								<span className="tabular text-xs text-ink-subtle">{format.clock(line.ms)}</span>
-								<span className="size-2 self-center rounded-full" style={{ background: COLOR[line.from] }} />
-								<span className="min-w-0">
-									<span className="font-medium text-ink">{FACE_NAME[line.from]}</span>{" "}
-									<span className="text-xs text-ink-subtle">{VERB[line.act]}</span>
-									<span className="block leading-snug text-ink-muted">
-										<Ids text={sayOne(line, names, true)} />
+								<button
+									type="button"
+									onClick={() => useRunStore.getState().seek(line.ms)}
+									className={cn(
+										"grid w-full grid-cols-[40px_8px_minmax(0,1fr)] items-baseline gap-2 rounded-md px-2 py-1.5 text-left text-sm transition-colors duration-300 hover:bg-hover",
+										i === 0 && "bg-sunken",
+									)}
+								>
+									<span className="tabular text-xs text-ink-subtle">{format.clock(line.ms)}</span>
+									<span className="size-2 self-center rounded-full" style={{ background: COLOR[line.from] }} />
+									<span className="min-w-0">
+										<span className="font-medium text-ink">{FACE_NAME[line.from]}</span>{" "}
+										<span className="text-xs text-ink-subtle">{verbOf(line)}</span>
+										<span className="block leading-snug text-ink-muted">
+											<Ids text={group.length > 1 ? sayMany(group, names) : sayOne(line, names, true)} />
+										</span>
 									</span>
-								</span>
-							</button>
-						</motion.li>
-					))}
+								</button>
+							</motion.li>
+						)
+					})}
 				</ol>
 			)}
 		</Pane>

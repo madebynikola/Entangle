@@ -47,6 +47,8 @@ export interface Line {
 	assignee?: string
 	task?: string
 	reason?: string
+	/** Why a task failed, as the runtime wrote it. */
+	error?: string
 	count?: number
 	/** Numbers for the plan and the end. */
 	totals?: { companies?: number; challenges?: number; proposals?: number; pairs?: number }
@@ -111,7 +113,7 @@ export function lineOf(record: TraceRecord, index: number): Line | null {
 		case "orchestrator.done":
 			return { ...base, from: "deneb", to: "all", act: "done", totals: { proposals: list(data.proposals).length, pairs: num(data.pairs) } }
 		case "task.failed":
-			return { ...base, from: faceOf(record.agent), to: ["deneb"], act: "fail", id: record.taskId }
+			return { ...base, from: faceOf(record.agent), to: ["deneb"], act: "fail", id: record.taskId, error: str(data.error) || undefined }
 		default:
 			return null
 	}
