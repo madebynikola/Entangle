@@ -6,7 +6,7 @@ import { localClaude, modelFor, startRuntime } from "./runtime"
 
 const USAGE = `Usage: npm run critic:eval -- [--mock | --local]
 
-Runs only the Critic on the hand-labelled claims in test/fixtures/critic-labels.json (272 claims of 14 proposals),
+Runs only the Critic on the hand-labelled claims in test/fixtures/critic-labels.json (275 claims of 16 proposals),
 with both reviewers as on proposals in a match, and scores it: the share of wrong claims it rejects, the share of
 ok claims it rejects, and a confusion matrix by label. The per-claim result goes to out/critic-eval/.
 

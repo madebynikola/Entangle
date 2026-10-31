@@ -1,5 +1,5 @@
 {
-	"about": "The hand-check of 30 Oct (docs/quality.md) as data: every claim of three proposals (C001, C005, C012) from two runs, and the hand-check of 31 Oct: every claim of eight proposals (C001, C005, C012, C018) from the two k 2 default runs 2026-10-31T10-38-09 and 2026-10-31T11-55-14. Each claim has its cited ids and a label from reading the full text of the records it cites. The Critic passed every one. 'before' is run 2026-10-30T13-37-34 (old rubric), 'after' is run 2026-10-30T15-09-14 (new rubric), 'k2' is the two runs of 31 Oct. Score the Critic on it with `npm run critic:eval`.",
+	"about": "The hand-check of 30 Oct (docs/quality.md) as data: every claim of three proposals (C001, C005, C012) from two runs, and the hand-check of 31 Oct: every claim of eight proposals (C001, C005, C012, C018) from the two k 2 default runs 2026-10-31T10-38-09 and 2026-10-31T11-55-14. Each claim has its cited ids and a label from reading the full text of the records it cites. The Critic passed every one. 'before' is run 2026-10-30T13-37-34 (old rubric), 'after' is run 2026-10-30T15-09-14 (new rubric), 'k2' is the two runs of 31 Oct. Score the Critic on it with `npm run critic:eval`. Phase 'acronyms' is three true claims from the reverse searches (out/reverse-searches/medtech and energy) that the code check once rejected: \"AF\" for atrial fibrillation and \"PV\" for photovoltaic.",
 	"labels": {
 		"ok": "Every fact is in the cited records. The Critic should pass it. A note gives a caveat the hand-check accepted.",
 		"judgement": "Adds a judgement on how a record fits the other side, or reasoning stated as fact. The Critic should reject it.",
@@ -2484,6 +2484,51 @@
 					"label": "ok"
 				}
 			]
+		},
+		{
+			"id": "C999-CH1-R0906",
+			"pairId": "C999-CH1:R0906",
+			"run": "reverse-searches/medtech",
+			"phase": "acronyms",
+			"claims": [
+				{
+					"n": 1,
+					"text": "The company's wearable ECG patch uses fixed band-pass filtering, and AF detection sensitivity drops below 80% when the patient walks.",
+					"sourceIds": [
+						"C999-CH1"
+					],
+					"label": "ok",
+					"note": "The challenge says atrial fibrillation; the code check rejected \"AF\" as a name from uncited papers."
+				},
+				{
+					"n": 2,
+					"text": "Maja Popović led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term AF screening.",
+					"sourceIds": [
+						"SYN-PRJ-0014"
+					],
+					"label": "ok",
+					"note": "The project text says atrial fibrillation; the code check rejected \"AF\" as a name from uncited papers."
+				}
+			]
+		},
+		{
+			"id": "C998-CH1-R0696",
+			"pairId": "C998-CH1:R0696",
+			"run": "reverse-searches/energy",
+			"phase": "acronyms",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Jeremić co-authored hosting capacity assessment and probabilistic mapping methods for PV in low-voltage distribution networks using stochastic simulation and feeder classification.",
+					"sourceIds": [
+						"SYN-PUB-07801",
+						"SYN-PUB-07799",
+						"SYN-PUB-07796"
+					],
+					"label": "ok",
+					"note": "Two cited papers say photovoltaic; the code check rejected \"PV\" as a name from the uncited work W3177274304. The run called the challenge C999-CH1; here it is C998-CH1, as C999 is the medtech run's."
+				}
+			]
 		}
 	],
 	"records": {
@@ -3271,6 +3316,116 @@
 				"R0054"
 			],
 			"year": 2023
+		},
+		"C999": {
+			"id": "C999",
+			"kind": "company",
+			"title": "Described problem",
+			"text": "Described problem (C999): Medical devices.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+			"researcherIds": [],
+			"companyId": "C999"
+		},
+		"C999-CH1": {
+			"id": "C999-CH1",
+			"kind": "challenge",
+			"title": "Our wearable ECG patch misses atrial fibrillation episodes when patients walk or move during the day.",
+			"text": "Our wearable ECG patch misses atrial fibrillation episodes when patients walk or move during the day.\n\nWe remove motion artefacts with a fixed band-pass filter, but sensitivity drops below 80% while the patient walks. We have 1,200 hours of cardiologist-annotated recordings from 90 patients.",
+			"researcherIds": [],
+			"companyId": "C999"
+		},
+		"SYN-PUB-09638": {
+			"id": "SYN-PUB-09638",
+			"kind": "publication",
+			"title": "Cutting false atrial fibrillation alarms in patch ECG with motion-aware filtering",
+			"text": "Cutting false atrial fibrillation alarms in patch ECG with motion-aware filtering (2024, journal, Journal of Biomedical Signal Analysis).\nAuthors: Maja Popović (R0906); Dragan Ilić (outside co-author); Sonja Vukić (outside co-author); Luka Horvat (outside co-author).\nPatch-based ECG monitors are increasingly deployed for continuous ambulatory cardiac surveillance, yet their clinical utility is severely limited by high false-positive rates for atrial fibrillation (AF) alarms, largely attributable to motion artifacts. This paper presents a motion-aware filtering framework that fuses single-lead ECG signals with three-axis accelerometer data recorded simultaneously by the same wearable patch. The proposed method employs an adaptive notch filter whose coefficients are dynamically updated according to a motion-intensity index derived from accelerometer magnitude. A subsequent AF detector based on RR-interval irregularity metrics is applied to the cleaned signal. The system was evaluated on a dataset of 312 twenty-four-hour recordings collected from 89 volunteers performing standardized daily activities including walking, stair climbing, and cycling. Compared with a baseline detector operating on raw ECG, the proposed approach reduced false AF alarms by 61% while maintaining sensitivity above 94% on confirmed AF episodes verified by a board-certified cardiologist. Processing latency was benchmarked on an ARM Cortex-M4 platform, confirming real-time feasibility. The results demonstrate that tightly coupled motion-aware signal conditioning is essential for trustworthy AF screening in free-living conditions.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2024
+		},
+		"SYN-PUB-09641": {
+			"id": "SYN-PUB-09641",
+			"kind": "publication",
+			"title": "Benchmark dataset for motion-corrupted patch ECG and simultaneous accelerometry in free-living adults",
+			"text": "Benchmark dataset for motion-corrupted patch ECG and simultaneous accelerometry in free-living adults (2023, journal, Data in Biomedical Engineering (Open Access Journal)).\nAuthors: Maja Popović (R0906); Sonja Vukić (outside co-author); Dragan Ilić (outside co-author); Petra Kovač (outside co-author).\nKeywords: benchmark dataset; patch ECG; accelerometry; atrial fibrillation; motion artifact; open data.\nHigh-quality annotated datasets pairing ambulatory ECG recordings with synchronised inertial data from the same wearable patch remain scarce, hampering reproducible research on motion-artifact suppression and context-aware cardiac monitoring. This paper describes the NovaSAD-PatchECG dataset: 128 recordings of 48 hours each, collected from 64 healthy volunteers and 64 patients with known arrhythmia history. Each recording includes single-lead ECG sampled at 500 Hz, three-axis accelerometer data at 100 Hz, and ground-truth rhythm annotations produced by two independent cardiologists with inter-annotator agreement reported via Cohen's kappa. Participants performed a standardized protocol encompassing controlled laboratory activities and unrestricted daily life. The dataset captures a diverse range of motion intensities, electrode contact qualities, and arrhythmia types. Baseline performance figures for three published AF detectors are reported to facilitate fair future comparisons. The dataset is released under an open-access licence and accompanied by Python-based loading utilities. We anticipate that this resource will accelerate development and fair benchmarking of wearable cardiac monitoring algorithms, particularly those addressing false-alarm reduction and real-time on-device inference.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2023
+		},
+		"SYN-PUB-09642": {
+			"id": "SYN-PUB-09642",
+			"kind": "publication",
+			"title": "Federated learning for atrial fibrillation detection across heterogeneous wearable ECG devices",
+			"text": "Federated learning for atrial fibrillation detection across heterogeneous wearable ECG devices (2024, journal, IEEE Transactions on Biomedical Engineering).\nAuthors: Luka Horvat (outside co-author); Maja Popović (R0906); Radovan Bešlin (outside co-author); Elena Ferreira (outside co-author).\nKeywords: federated learning; atrial fibrillation; ECG; wearable; privacy-preserving; domain adaptation.\nTraining robust atrial fibrillation detectors on data pooled from multiple clinical sites raises significant patient privacy concerns. Federated learning (FL) offers a privacy-preserving alternative by training shared model parameters without centralizing raw recordings. This work presents a federated AF detection framework tailored to the heterogeneous signal characteristics encountered when aggregating data from four distinct wearable ECG patch platforms with differing sampling rates, electrode configurations, and noise profiles. A domain-adaptive normalization layer is inserted before each local model head to compensate for device-specific distributional shifts. Communication efficiency is improved through gradient sparsification with a threshold calibrated per round. Experiments conducted on data partitioned across five simulated client nodes demonstrate that the federated model achieves within 2.1 percentage points of a centrally trained oracle in terms of F1 score for AF detection, while keeping raw data entirely local. Convergence analysis shows stable training within 35 communication rounds. The proposed approach is directly applicable to collaborative model development between hospitals and medical device manufacturers operating under strict data governance constraints.",
+			"researcherIds": [
+				"R0906"
+			],
+			"year": 2024
+		},
+		"C998": {
+			"id": "C998",
+			"kind": "company",
+			"title": "Described problem",
+			"text": "Described problem (C999): Solar energy.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+			"researcherIds": [],
+			"companyId": "C998"
+		},
+		"C998-CH1": {
+			"id": "C998-CH1",
+			"kind": "challenge",
+			"title": "Our rooftop solar inverters disconnect from the grid on hot summer afternoons because the local grid voltage rises too high.",
+			"text": "Our rooftop solar inverters disconnect from the grid on hot summer afternoons because the local grid voltage rises too high.\n\nWe tried lowering the export limit on every site, but that loses about 8% of the yearly yield. We have five years of inverter logs and grid voltage readings from 300 sites.",
+			"researcherIds": [],
+			"companyId": "C998"
+		},
+		"R0696": {
+			"id": "R0696",
+			"kind": "researcher",
+			"title": "Aleksandar Jeremić",
+			"text": "Aleksandar Jeremić (R0696): Assistant Professor, Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences, University of Novi Sad.\nFields: Electric Power Systems; Distribution Network Analysis; Renewable Energy Integration; Power Electronics.\nKeywords: bidirectional power flow; low-voltage distribution networks; distributed generation; hosting capacity; voltage regulation; reactive power compensation; prosumers; photovoltaic integration; power quality; smart inverters.\nBio: Aleksandar Jeremić received his B.Sc. and M.Sc. degrees in Electrical Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2009 and 2012 respectively, and his Ph.D. from the same institution in 2018, with a dissertation on voltage regulation in low-voltage feeders under high photovoltaic penetration. Since 2019 he has held an Assistant Professor position in the Department of Power, Electronics and Telecommunications. His research group focuses on power flow modelling, reactive power compensation, and hosting capacity assessment in distribution networks with significant prosumer activity. He teaches courses on electric power systems and power electronics at undergraduate and master level. The group regularly uses the laboratory for power systems simulation equipped with RTDS real-time digital simulator hardware and maintains access to measurement equipment for field data collection on urban low-voltage feeders.\nOpen to: joint projects with companies developing smart inverter control or energy management software; contract research on hosting capacity assessment for distribution system operators; consulting on photovoltaic connection applications and grid impact studies; industrial PhD supervision for candidates with an electrical engineering background; student internships in power systems simulation and field measurement.\nIndustry experience: Jeremić performed a six-month consultancy engagement with Elektrovojvodina d.o.o. between 2019 and 2020, supporting their technical team in developing internal procedures for evaluating distributed generation connection requests at the low-voltage level.\nNotes: Jeremić has an established working relationship with Elektrovojvodina d.o.o. and can facilitate data-sharing agreements for companies that require real feeder topology or smart meter data for product validation. He is not currently on sabbatical and is available for new collaborations starting from mid-2025.",
+			"researcherIds": [
+				"R0696"
+			]
+		},
+		"SYN-PUB-07801": {
+			"id": "SYN-PUB-07801",
+			"kind": "publication",
+			"title": "Probabilistic Hosting Capacity Maps for Low-Voltage Distribution Networks: A Methodology for Municipal-Scale Assessment",
+			"text": "Probabilistic Hosting Capacity Maps for Low-Voltage Distribution Networks: A Methodology for Municipal-Scale Assessment (2025, journal, IEEE Transactions on Power Delivery).\nAuthors: Aleksandar Jeremić (R0696); Stefan Kovačević (outside co-author); Cristina Moldovan (outside co-author); Tibor Farkaš (outside co-author); Nenad Đorđević (outside co-author).\nKeywords: hosting capacity mapping; probabilistic assessment; feeder classification; municipal scale; spatial analysis.\nDistribution system operators and municipal planners require spatially aggregated information on available photovoltaic hosting capacity to guide permitting decisions and grid investment planning. This paper proposes a methodology for producing probabilistic hosting capacity maps at the level of an entire municipal distribution network by applying a stratified feeder sampling approach. Feeders are classified into six morphological types based on cable length, cross-section, and customer density. For each type, 500 stochastic hosting capacity assessments are performed. The resulting per-type distributions are spatially assigned to all 1 140 low-voltage feeders in a medium-sized municipality in the Vojvodina region, producing a rasterised map with 100 m resolution. The map is validated against 23 actual photovoltaic connection applications processed by the distribution system operator in 2022–2023, showing that 91 % of accepted connections fell within the predicted feasible range. Limitations of the stratification approach and data requirements from the distribution system operator are discussed in detail.",
+			"researcherIds": [
+				"R0696"
+			],
+			"year": 2025
+		},
+		"SYN-PUB-07799": {
+			"id": "SYN-PUB-07799",
+			"kind": "publication",
+			"title": "Feeder Reconfiguration as a Hosting Capacity Enhancement Tool in Meshed Low-Voltage Networks",
+			"text": "Feeder Reconfiguration as a Hosting Capacity Enhancement Tool in Meshed Low-Voltage Networks (2023, journal, Electric Power Systems Research).\nAuthors: Miroslav Stanić (outside co-author); Aleksandar Jeremić (R0696); Ivana Jović (outside co-author).\nKeywords: feeder reconfiguration; normally-open point; meshed network; hosting capacity; impedance balancing.\nLow-voltage distribution networks in newer urban developments in Serbia are built with a meshed cable topology but operated radially through normally-open points. Switching the normally-open point changes feeder lengths, impedance distributions, and load sharing, all of which affect hosting capacity for distributed generation. This study systematically evaluates feeder reconfiguration as a low-cost hosting capacity enhancement measure for a 0.4 kV meshed network of 84 nodes representing a residential district in Novi Sad. A brute-force enumeration of all 12 candidate normally-open point positions is combined with the stochastic hosting capacity assessment method from previous work. Results show that the optimal normally-open point configuration raises the network-wide hosting capacity by 23 % compared to the default as-built configuration, without any hardware investment. The improvement is driven primarily by impedance balancing across two parallel cable routes. The sensitivity of results to load growth assumptions of 1 % and 2 % annual increase is also reported, showing that reconfiguration benefits persist over a 10-year horizon under both scenarios.",
+			"researcherIds": [
+				"R0696"
+			],
+			"year": 2023
+		},
+		"SYN-PUB-07796": {
+			"id": "SYN-PUB-07796",
+			"kind": "publication",
+			"title": "Hosting Capacity Assessment for Photovoltaic Systems in Low-Voltage Urban Networks: Deterministic and Stochastic Approaches Compared",
+			"text": "Hosting Capacity Assessment for Photovoltaic Systems in Low-Voltage Urban Networks: Deterministic and Stochastic Approaches Compared (2018, journal, Electric Power Systems Research – Balkan Regional Edition).\nAuthors: Aleksandar Jeremić (R0696); Miroslav Stanić (outside co-author); Tibor Farkaš (outside co-author); Ivana Jović (outside co-author).\nKeywords: hosting capacity; Monte Carlo; deterministic assessment; urban feeder; prosumer connection.\n(no abstract)",
+			"researcherIds": [
+				"R0696"
+			],
+			"year": 2018
+		},
+		"W3177274304": {
+			"id": "W3177274304",
+			"kind": "work",
+			"title": "Comparison of Reactive Power Control Techniques for Solar PV Inverters to Mitigate Voltage Rise in Low-Voltage Grids",
+			"text": "Electronics, 2021. The greater integration of solar photovoltaic (PV) systems into low-voltage (LV) distribution networks has posed new challenges for the operation of power systems. The violation of voltage limits attributed to reverse power flow has been recognized as one of the significant consequences of high PV penetration. Thus, the reactive power control of PV inverters has emerged as a viable solution for localized voltage regulation. This paper presents a detailed study on a typical Malaysian LV distribution network to demonstrate the effectiveness of different reactive power control techniques in mitigating overvoltage issues due to high PV integration. The performance of four reactive power control techniques namely, fixed power factor control, scheduled power factor control, power factor control as a function of injected active power, and voltage-dependent reactive power control were analyzed and compared in terms of the number of customers with voltage violations, reactive power compensation, and network losses. Three-phase, time-series, high-resolution power-flow simulations were performed to investigate the potential overvoltage issues and to assess the performance of the adoption of reactive power controls in the network. The simulation results revealed that the incorporation of reactive power controls of solar PV inverters aids in successfully mitigating the overvoltage issues of typical Malaysian networks. …",
+			"researcherIds": [],
+			"year": 2021,
+			"url": "https://openalex.org/W3177274304"
 		}
 	}
 }
