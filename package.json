@@ -15,6 +15,7 @@
     "match": "tsx src/cli.ts",
     "critic:eval": "tsx src/critic-eval.ts",
     "critic:runs": "tsx src/critic-runs.ts",
+    "translate:eval": "tsx src/translate-eval.ts",
     "typecheck": "tsc --noEmit && tsc --noEmit -p web",
     "test:web": "node --import tsx --test test/e2e/*.test.ts",
     "demo:record": "tsx scripts/demo/record.ts"
