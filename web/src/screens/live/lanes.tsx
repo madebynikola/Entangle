@@ -8,17 +8,10 @@ import * as format from "@/lib/format"
 import { ROLE_INFO, roleColor, type RoleKey } from "@/lib/roles"
 import { cn } from "@/lib/utils"
 import type { AgentView, LoopView, RunView } from "@/run/fold"
-import { runClock, useRunStore } from "@/run/hooks"
+import { MIN_ZOOM_MS, runClock, useRunStore, type TimeRange } from "@/run/hooks"
 import { kindLabel, laneGeometry, tickStep, viewWindow, type Moment, type Note } from "./derive"
 
-/** A stretch of the run, in run ms: the range the lanes are zoomed to. */
-export interface TimeRange {
-	start: number
-	end: number
-}
-
-/** The shortest range the lanes zoom to: a few ticks of the finest axis step. */
-export const MIN_ZOOM_MS = 15_000
+export type { TimeRange }
 
 /** The part of the axis in view: the zoomed range, else the whole run or the window that follows the playhead. */
 function windowOf(now: number, span: number, follow: boolean, zoom: TimeRange | null): { start: number; visible: number } {

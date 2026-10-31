@@ -23,9 +23,8 @@ import { Lanes, MarkPin, type LaneAgent, type LaneStatus, type TimeRange } from 
 export function LiveScreen() {
 	const view = useRunView()
 	const full = useFullView()
-	const { runId, duration, liveRun, tracking, active, instant } = useRunStore(
+	const { duration, liveRun, tracking, active, instant } = useRunStore(
 		useShallow((state) => ({
-			runId: state.runId,
 			duration: state.duration,
 			liveRun: state.runStatus === "live",
 			tracking: state.mode === "live",
@@ -36,13 +35,8 @@ export function LiveScreen() {
 	const { results } = useResults()
 	const reduced = useReducedMotion()
 	const [follow, setFollow] = useState(false)
-	const [zoom, setZoom] = useState<TimeRange | null>(null)
-	// Another run has another length: start it on the whole run.
-	const [zoomRun, setZoomRun] = useState(runId)
-	if (zoomRun !== runId) {
-		setZoomRun(runId)
-		setZoom(null)
-	}
+	// The zoomed range lives in the store, so the replay bar can draw it too. Opening another run resets it.
+	const zoom = useRunStore((state) => state.zoom)
 	const [agentId, setAgentId] = useState<string | null>(null)
 	const [moment, setMoment] = useState<Moment | null>(null)
 
@@ -64,10 +58,10 @@ export function LiveScreen() {
 	const following = follow && canFollow && !zoom
 	const range: RangeMode = zoom ? "zoom" : following ? "follow" : "run"
 	const zoomLabel = zoom ? `${format.clock(zoom.start)} – ${format.clock(zoom.end)}` : undefined
-	const onZoom = useCallback((next: TimeRange | null) => setZoom(next), [])
+	const onZoom = useCallback((next: TimeRange | null) => useRunStore.getState().setZoom(next), [])
 	const onRange = useCallback((mode: RangeMode) => {
 		if (mode === "zoom") return
-		setZoom(null)
+		useRunStore.getState().setZoom(null)
 		setFollow(mode === "follow")
 	}, [])
 

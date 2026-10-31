@@ -18,6 +18,15 @@ import { applyRecords, emptyView, endRun, foldTrace, type RunView } from "./fold
 export type Speed = 1 | 4 | "instant"
 export type Mode = "live" | "replay"
 
+/** A stretch of the run, in run ms: the range the Timeline is zoomed to. */
+export interface TimeRange {
+	start: number
+	end: number
+}
+
+/** The shortest range the Timeline zooms to: a few ticks of the finest axis step. */
+export const MIN_ZOOM_MS = 15_000
+
 export interface RunStore {
 	runId: string | null
 	info: RunInfo | null
@@ -39,6 +48,8 @@ export interface RunStore {
 	runStatus: RunStatus | null
 	results: RunResults | null
 	resultsError: string | null
+	/** The range the Timeline is zoomed to, or null for the whole run. The replay bar draws it as a box. */
+	zoom: TimeRange | null
 
 	open(runId: string, options?: { replay?: boolean; speed?: Speed }): Promise<void>
 	close(): void
@@ -47,6 +58,7 @@ export interface RunStore {
 	toggle(): void
 	setSpeed(speed: Speed): void
 	seek(ms: number): void
+	setZoom(range: TimeRange | null): void
 	restart(): void
 	goLive(): void
 	reloadResults(): Promise<void>
@@ -69,6 +81,7 @@ const initial = {
 	runStatus: null,
 	results: null,
 	resultsError: null,
+	zoom: null as TimeRange | null,
 }
 
 let stopStream: (() => void) | null = null
@@ -232,6 +245,11 @@ export const useRunStore = create<RunStore>()((set, get) => {
 			applyUpTo(position)
 			if (position >= get().duration && get().runStatus !== "live") set({ playing: false })
 			schedule()
+		},
+		setZoom(range) {
+			const current = get().zoom
+			if (current === range || (current && range && current.start === range.start && current.end === range.end)) return
+			set({ zoom: range })
 		},
 		restart() {
 			set({ mode: "replay", position: 0, view: emptyView(), applied: 0, playing: true })

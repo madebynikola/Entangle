@@ -6,8 +6,8 @@ import { getBackend, type Backend } from "./backend"
 import { endRun, foldTrace, type RunView } from "./fold"
 import { runClock, useRunStore, type RunStore } from "./store"
 
-export { useRunStore, runClock } from "./store"
-export type { Speed, Mode } from "./store"
+export { useRunStore, runClock, MIN_ZOOM_MS } from "./store"
+export type { Speed, Mode, TimeRange } from "./store"
 
 /** Pick from the open run's store. Use a narrow selector, or useShallow for objects. */
 export function useRun<T>(selector: (state: RunStore) => T): T {
