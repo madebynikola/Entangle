@@ -7,9 +7,9 @@ Kratki odgovori za demo i za pitanja drugih timova. Svaki broj je iz referentnog
 
 > Skup podataka ima oko 7 miliona tokena, a ni jedan model ne može da ga pročita odjednom. Zato ga deli tim agenata:
 > svaki agent čita samo jednu kompaniju ili jednog istraživača, i svi rade u isto vreme na jednom Mozaik runtime-u.
-> Najveći poziv modela u celom pokretanju pročitao je 19 hiljada tokena. Drugi razlog je provera: jedan model ne može
+> Najveći poziv modela u celom pokretanju pročitao je 24 hiljade tokena. Drugi razlog je provera: jedan model ne može
 > pouzdano da proveri sam sebe. Kod nas poseban Critic, u svom kontekstu, proverava svaku tvrdnju prema zapisu koji ona citira.
-> U referentnom pokretanju odbio je 483 tvrdnje i vratio ih na ispravku. Bez te provere one bi otišle kompaniji.
+> U referentnom pokretanju odbio je 401 tvrdnju i vratio ih na ispravku. Bez te provere one bi otišle kompaniji.
 
 ## Kako smo koristili Mozaik?
 
@@ -24,11 +24,11 @@ Jedan Mozaik runtime (`@mozaik-ai/core` 4.1.0) i 21 učesnik na jednoj magistral
 | `sendEvent` + `SituationSpecification` | Saradnja preko događaja: `artifact.posted`, `shortlist.ready`, `critic.sent_back`, `orchestrator.decided`. Svaki učesnik reaguje na događaj koji ga se tiče | `src/agents/*/` |
 | `structuredOutput` | Svaka uloga vraća JSON po šemi. Svaka činjenica je `Claim { text, sourceIds }` | `src/agents/*/prompt.ts` |
 | Svoj `InferenceRunner` | `ResilientRunner` oko svakog poziva: najviše 16 poziva odjednom, limiti po provajderu, ponovni pokušaji, prioritet za posao koji je bliži kraju, budžet. Isti interfejs za lokalni Claude Code, mock model i SubQ | `src/runtime/resilient-runner.ts` |
-| Događaji koje Mozaik šalje sam | `inference.started/completed` sa tokenima, `model.answer`. Posmatrač piše svaki događaj u `trace.jsonl` (7.105 događaja u referentnom pokretanju). Web aplikacija iz toga crta Stage i Timeline | `src/trace/trace-observer.ts` |
+| Događaji koje Mozaik šalje sam | `inference.started/completed` sa tokenima, `model.answer`. Posmatrač piše svaki događaj u `trace.jsonl` (5.950 događaja u referentnom pokretanju). Web aplikacija iz toga crta Stage i Timeline | `src/trace/trace-observer.ts` |
 
 Bitno je da posao ne ide u fazama. Orchestrator dodeljuje posao čim njegov ulaz postoji. Profajleri rade dok analitičari
-još čitaju druge kompanije, a prvi predlog se pisao pre nego što je većina kompanija uparena. U 49 minuta bilo je 2 h 47 min
-poziva modela, u proseku 3,4 poziva u isto vreme (ograničenje je bilo 6 lokalnih Claude Code sesija).
+još čitaju druge kompanije, a prvi predlog se pisao pre nego što je većina kompanija uparena. U 25 minuta bilo je 2 h 19 min
+poziva modela, u proseku 5,5 poziva u isto vreme (ograničenje je bilo 6 lokalnih Claude Code sesija).
 
 ## Šta nas razlikuje od jednog velikog LLM-a?
 
@@ -42,12 +42,12 @@ Kod nas svaki poziv vidi samo ono što mu treba. U referentnom pokretanju:
 
 | | Ulazni tokeni po pozivu (medijana) | Najveći poziv |
 | --- | --- | --- |
-| Svih 696 poziva | 6.285 | 19.447 |
-| Analitičar (jedna kompanija) | 7.203 | 9.756 |
-| Profajler (jedan istraživač) | 8.104 | 19.447 |
-| Pisac (jedan par) | 10.631 | 13.634 |
+| Svih 597 poziva | 6.193 | 23.713 |
+| Analitičar (jedna kompanija) | 7.353 | 12.756 |
+| Profajler (jedan istraživač) | 8.300 | 18.459 |
+| Pisac (jedan par) | 10.703 | 14.721 |
 
-Ceo posao je 5,0 miliona tokena, a ne 7 miliona po pitanju. Profajliramo samo istraživače sa užeg spiska: profili svih bi
+Ceo posao je 4,3 miliona tokena, a ne 7 miliona po pitanju. Profajliramo samo istraživače sa užeg spiska: profili svih bi
 koštali oko 8 miliona tokena.
 
 ### 2. Jedan model ne proverava sam sebe
@@ -60,7 +60,7 @@ Ne vidi razmišljanje pisca, nego samo tvrdnju i zapise koje ona citira. Provera
 2. **Model:** Sonnet 4.6 čita citirane zapise i za svaku tvrdnju odlučuje da li zapis kaže to što tvrdnja kaže.
 3. **Drugi recenzent** na drugom modelu, za predloge. Tvrdnja prolazi samo ako je oba prihvate.
 
-U referentnom pokretanju: 337 pregleda, 194 vraćanja na ispravku, 483 odbijene tvrdnje, 10 odbačenih artefakata.
+U referentnom pokretanju: 260 pregleda, 151 vraćanje na ispravku, 401 odbijena tvrdnja, 4 odbačena artefakta.
 Na 272 ručno označene tvrdnje Critic hvata 53–67% pogrešnih i odbija 3–6% tačnih ([quality.md](quality.md)).
 
 ### 3. Pravi model za pravi posao
@@ -81,20 +81,20 @@ nosi id zapisa, i u aplikaciji se klikom otvara izvor. Jedan veliki poziv je crn
 
 ### 6. Greška ostaje lokalna
 
-Zadatak koji padne pada sam. Budžet od 60 minuta zaustavio je poslednju kompaniju (C008) pre uparivanja, a ostalih 6
-prihvaćenih predloga je ostalo. Kod jednog velikog poziva, prekid ili loš odgovor znači da nemaš ništa.
+Zadatak koji padne pada sam. U ranijem pokretanju na istih 8 kompanija budžet od 60 minuta zaustavio je poslednju
+kompaniju (C008) pre uparivanja, a ostalih 6 prihvaćenih predloga je ostalo. Kod jednog velikog poziva, prekid ili loš odgovor znači da nemaš ništa.
 
 ## Pitanja koja mogu da dođu posle
 
 **"Da li ste merili jedan veliki LLM naspram ovoga?"**
 Ne direktno, i to treba reći. Ceo skup ne staje u jedan poziv, pa takav test nije moguć bez pretrage, a sa pretragom to je
 već sistem kao naš. Ono što jesmo merili: koliko pogrešnih tvrdnji jedan jak model (pisac na Sonnet 4.6) napiše kad ga niko ne
-proverava. U referentnom pokretanju Critic je odbio 483 tvrdnje. U ručnoj proveri tri predloga, 15 od 76 tvrdnji (20%)
+proverava. U referentnom pokretanju Critic je odbio 401 tvrdnju. U ručnoj proveri tri predloga, 15 od 76 tvrdnji (20%)
 bilo je pogrešno, a prvi Critic ih je propustio. Posle toga smo dodali proveru kodom i proveru slobodnog teksta.
 
 **"Zar više agenata ne košta više?"**
-Košta više tokena nego jedan poziv na malom primeru. Ponovni pregledi su oko 26% cene. Ali jedan poziv ne može da pročita
-7 miliona tokena, a ono što bi preskočio je upravo provera. Referentno pokretanje je 5,0M tokena, oko 17 dolara po API ceni, za 8 kompanija.
+Košta više tokena nego jedan poziv na malom primeru. Ponovni pregledi su oko 27% cene. Ali jedan poziv ne može da pročita
+7 miliona tokena, a ono što bi preskočio je upravo provera. Referentno pokretanje je 4,3M tokena, oko 15 dolara po API ceni, za 8 kompanija.
 
 **"Zašto je golden samo na 8 kompanija, a ne na svim? Zašto traje toliko?"**
 Pokretali smo i veće: dva puta po 20 kompanija (30. oktobra, oko 35 minuta i 33 dolara svako). Na svim nismo, iz tri razloga.
@@ -105,14 +105,15 @@ Pokretali smo i veće: dva puta po 20 kompanija (30. oktobra, oko 35 minuta i 33
 3. **Više kompanija ne pokazuje ništa novo.** Svaka potreba već pretražuje svih 1.047 istraživača. Kompanije su nezavisne,
    pa vreme i cena rastu linearno.
 
-Golden traje 66 minuta, ali pravi posao je gotov za 27. Sedam kompanija ima napisan predlog između 7. i 27. minuta. Posle toga su
-lokalne Claude Code sesije stale: pozivi su visili po 5 minuta (`claude -p ran longer than 300000 ms`, 11 ponovnih pokušaja),
-pa je limit od 60 minuta zaustavio C008 pre uparivanja. Sam poziv modela traje oko 11 sekundi (medijana). Sporo je zbog
-broja poziva: 696, od toga 367 pregleda Critic-a za 19 predloga, i najviše 6 lokalnih sesija odjednom. Za svih 153
-kompanije to je nekoliko sati po pokretanju (procena, nije mereno), a na lokalnoj prijavi zastoj kao ovaj je verovatan.
+Golden traje 25 minuta. Prvi predlog je prihvaćen u 9. minutu, poslednji u 20. Dva predloga Critic nije mogao da očisti,
+pa su do 25. minuta otišla čoveku. Nijedan zadatak nije pao i nije bilo ponovnih pokušaja. Sam poziv modela traje oko
+10 sekundi (medijana). Vreme određuje broj poziva: 597, od toga 300 pregleda Critic-a, i najviše 6 lokalnih sesija odjednom.
+U ranijem pokretanju na istih 8 kompanija lokalne sesije su stale: pozivi su visili po 5 minuta (`claude -p ran longer than
+300000 ms`), pa je limit od 60 minuta zaustavio C008 pre uparivanja. Za svih 153 kompanije to je nekoliko sati po pokretanju
+(procena, nije mereno), a na lokalnoj prijavi takav zastoj je moguć.
 
 **"Da li je ovo pravi paralelizam ili samo asinhroni pozivi?"**
-Pravi: do 5 uloga zove model u istom trenutku, dve ili više 48% vremena. Na Timeline-u se trake preklapaju.
+Pravi: do 5 uloga zove model u istom trenutku, dve ili više 79% vremena. Na Timeline-u se trake preklapaju.
 Proveri: `npm run replay -- out/golden`, pa Timeline.
 
 **"Šta ako Critic pogreši?"**
