@@ -892,6 +892,7 @@ function encode(frames: { file: string; at: number }[], end: number) {
 	const seconds = end - frames[0].at
 	// Kept, so --remix can mix the sound again without recording.
 	writeFileSync(CUES, JSON.stringify({ seconds, cues: cues.map((c) => ({ ...c, at: c.at - frames[0].at })) }, null, 1))
+	await fetchMusic()
 	mix()
 	console.log(`${output}  ${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, "0")}  ${frames.length} frames`)
 }
@@ -909,8 +910,26 @@ const MUSIC_LUFS = -24
 async function remix() {
 	if (!existsSync(SILENT) || !existsSync(CUES)) throw new Error(`Nothing to remix: record once first (${SILENT}).`)
 	if (values.voice) await prepareVoice(values.voice)
+	await fetchMusic()
 	mix()
 	console.log(output)
+}
+
+/** The music is not in git (the Mixkit license does not cover sharing the file): fetch it from the URL in CREDITS.md when missing. */
+async function fetchMusic() {
+	const file = join(AUDIO, "music.mp3")
+	if (values["no-audio"] || values.music || existsSync(file)) return
+	const credits = readFileSync(join(AUDIO, "CREDITS.md"), "utf8")
+	const url = credits.split("\n").find((row) => row.startsWith("| music.mp3 |"))?.match(/https:\/\/\S+\.mp3/)?.[0]
+	if (!url) return console.warn("No music.mp3 row with a direct URL in CREDITS.md.")
+	try {
+		const response = await fetch(url)
+		if (!response.ok) throw new Error(`${response.status} ${response.statusText}`)
+		writeFileSync(file, Buffer.from(await response.arrayBuffer()))
+		console.log(`Fetched ${url} to ${file}`)
+	} catch (error) {
+		console.warn(`Could not fetch the music from ${url}: ${(error as Error).message}`)
+	}
 }
 
 /** Music over the whole video, each cue's sound at its time, onto the silent video. */

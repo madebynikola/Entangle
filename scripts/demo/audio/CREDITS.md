@@ -1,7 +1,7 @@
 # Audio credits
 
 None of these needs attribution. Mixkit files are as published. Kenney files are converted from OGG to MP3, with no
-other change. Mixkit has no page per item, so the source page is the Mixkit list where the item appears.
+other change. music.mp3 is not committed: `npm run demo:record` downloads it from its direct file URL when it is missing. Mixkit has no page per item, so the source page is the Mixkit list where the item appears.
 
 | File | Title | Author | Source page | Direct file | License |
 |---|---|---|---|---|---|

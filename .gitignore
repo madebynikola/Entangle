@@ -18,3 +18,6 @@ out/*-mock/
 .vscode/
 docs/brief/kickoff-email.pdf
 web/dist/
+
+# Fetched by scripts/demo/record.ts (Mixkit license: not for redistribution as a file)
+scripts/demo/audio/music.mp3
