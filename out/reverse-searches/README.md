@@ -58,6 +58,12 @@ the same researchers come up as for an English problem. These parts fail:
    line, apart from the claims) and judges claims against that English. On 4 "bark" claims from this run, 3 tries
    each, both reviewers together reject 12 of 12 (Sonnet 4.6 alone 11); before, 2 of 8. The same claims with "skin" pass,
    except one that also says "cannot reliably separate", which the record does not state (rejected before too).
+   *Since card #77* the Analyst and the Writer read the same translation before they write: one per record per run,
+   made by the first agent that reads the record. The Analyst alone on this problem, 10 tries each, writes "bark" in
+   3 of 10 without it and 1 of 10 with it. That 1 is a wrong translation: Haiku gave "bark damage" in 1 of 10, and then
+   the Critic, which trusts the translation, passes "bark" too. Four full runs on 2026-10-31 had 14 and 14 send-backs
+   before, 16 and 11 after. None came from a translation: in all four the need already said "skin". The send-backs are
+   about profiles, pairs and proposal wording, so the run-level count does not move.
 2. **The Analyst invents the original term in brackets.** The prompt says to add the Serbian original when unsure
    (`src/agents/analyst/prompt.ts:26`). The restatement says "minor bark damage (drobna oštećenja kore)", but the text says
    "sitnim oštećenjima kore". "drobna" is not in the source. This one did not reach the proposal.
