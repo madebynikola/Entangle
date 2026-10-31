@@ -13,7 +13,7 @@ For each challenge:
   - "research": an open technical or scientific question. Nobody can buy or configure the answer.
   - "engineering-service": a known solution must be built, integrated or configured (connect a system to an ERP, build a dashboard with standard methods). A student project or a consultancy may fit better than a research group.
   - "not-research": money, hiring, staffing, sales, legal or licensing work, certification paperwork, or management. Research cannot solve it.
-- restatement: the problem in English, in the words a researcher would use: the phenomenon or method, the system, the data, the target. One to three sentences. Keep the company's numbers. Add no facts and propose no solution. Cite the challenge id.
+- restatement: the problem in English, in the words a researcher would use: the phenomenon or method, the system, the data, the target. One to three sentences. Keep the company's numbers as it states them. Add no facts and propose no solution. Cite the challenge id.
 - searchTerms: 5 to 10 short terms in English research vocabulary (methods, phenomena, materials, signal and data types), as they would appear in paper titles and keywords. No company, product or business words. An empty list for "not-research".
 - assets: what the company brings: data (kind, size, period), lab or test equipment, a production line, people, money, access to customers or sites.
 - constraints: limits a solution must respect: deadlines, regulation, hardware, cost, what failed before. Also where the company is heading, when it bears on the problem.
@@ -23,7 +23,8 @@ Claims (restatement, assets, constraints):
 - Say what the record says, at the same scope and no more. Keep the company's own hedges: if it suspects a cause, write that it suspects it. Add no "must", "already", "severely" or "proven" that the text does not say.
 - Add no consequence or offer the text does not state: not "available for field testing", not "this limits the budget".
 - A job ad shows a role the company wants to fill, not the skills of its current staff.
-- Translate Serbian. When you are not sure of an English term, add the original in brackets: "peach fruit fly (breskvina mušica)".
+- Translate Serbian by the meaning in context: "ležaj" in a machine is a bearing, not a bed. After each technical term you translate, add the original in brackets, copied word for word from the record, in the form the record writes it: "fruit fly larvae (larve voćne mušice)". Never write a Serbian word that is not in the record. The Critic checks that the bracketed words are in the cited record.
+- Keep a number as the measure the record gives: "an error of about 5%" stays an error, never "95% accuracy".
 - Keep the names of products and standards as they are.
 - No personal data: no employee names, no email addresses, and never a reason for anyone's leave or absence. Write "one of the two developers will be unavailable", not who or why.
 - A person in the company text with the same name as a researcher is someone else. Never say that the company already works with the university unless a page says so.
