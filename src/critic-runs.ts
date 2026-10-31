@@ -9,7 +9,7 @@ const USAGE = `Usage: npm run critic:runs -- [--summary] [run-dir ...]
 
 Runs the Critic's code checks (checkByCode) on every need, profile, pair and proposal (the escalated ones too) in the results of past runs: every
 real run in out/ that has results.json and sources.json, or only the run dirs you name. It prints each claim that the
-uncited-detail check rejects, then a total per run and over all runs. No model runs: it costs nothing and gives the same
+uncited-detail or misquote check rejects, then a total per run and over all runs. No model runs: it costs nothing and gives the same
 answer each time, so it measures a change to the code checks on the claims of real runs.
 
   --summary   Print only the totals, not each rejected claim.
@@ -33,6 +33,9 @@ interface Tally {
 	rejected: number
 	byCheck: Map<string, number>
 }
+
+/** The checks whose rejects are printed one by one: the word checks, whose false rejects a change can bring. */
+const PRINTED = new Set(["uncited-detail", "misquote"])
 
 const tally = (): Tally => ({ claims: 0, rejected: 0, byCheck: new Map() })
 
@@ -83,7 +86,7 @@ function checkRun(dir: string, summaryOnly: boolean): Tally {
 			for (const { claim, reason, check = "other" } of checkByCode(kind, artifact, s, store).rejected) {
 				total.rejected++
 				total.byCheck.set(check, (total.byCheck.get(check) ?? 0) + 1)
-				if (check === "uncited-detail" && !summaryOnly) {
+				if (PRINTED.has(check) && !summaryOnly) {
 					console.log(`  ${kind} ${id}: ${claim.text.trim()} [${claim.sourceIds.join(", ")}]\n    ${reason}`)
 				}
 			}

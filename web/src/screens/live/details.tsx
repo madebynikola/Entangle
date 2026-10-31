@@ -21,6 +21,7 @@ const CHECK: Record<string, string> = {
 	"wrong-subject": "Source is about someone else",
 	"name-mismatch": "Name does not match the id",
 	"uncited-detail": "Detail from a source it does not cite",
+	misquote: "Quoted original is not in its source",
 	unsupported: "Source does not back it",
 	unchecked: "Not checked",
 }

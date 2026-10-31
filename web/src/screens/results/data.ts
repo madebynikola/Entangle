@@ -274,6 +274,7 @@ export const CHECK_LABEL: Record<NonNullable<CriticVerdict["rejected"][number]["
 	"wrong-subject": "Source is about someone else",
 	"name-mismatch": "Name does not match the id",
 	"uncited-detail": "Detail from a source it does not cite",
+	misquote: "Quoted original is not in its source",
 	unsupported: "Source does not support it",
 	unchecked: "Not checked",
 	"free-text": "Free text states it, no source does",

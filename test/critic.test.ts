@@ -201,6 +201,46 @@ describe("code check: abbreviations", () => {
 	})
 })
 
+describe("code check: quoted originals", () => {
+	const s = new MatchState("unit", true)
+	// The Serbian reverse search of 31 Oct (out/reverse-searches/serbian/problem.json).
+	const problem: SourceRecord = {
+		id: "C001-CH9",
+		kind: "challenge",
+		title: "Sorting line",
+		text: "Naša linija za sortiranje voća često pogrešno razvrstava jabuke sa sitnim oštećenjima kore i početnom truleži. Probali smo kameru sa fiksnim pragovima boje, ali greška je i dalje oko 12% i kupci vraćaju robu.",
+		researcherIds: [],
+		companyId: "C001",
+		year: 2026,
+	}
+	const records = new FakeSourceStore([...RECORDS, problem])
+	const check = (text: string) => checkByCode("need", need({ assets: [{ text, sourceIds: [problem.id] }] }), s, records).rejected
+
+	test("reject a bracketed original that the cited record does not hold", () => {
+		const rejected = check("A fruit sorting line misclassifies apples with minor skin damage (drobna oštećenja kore).")
+		assert.deepEqual(
+			rejected.map((r) => [r.check, r.reason]),
+			[["misquote", `"drobna oštećenja kore" is not in ${problem.id}. Quote the original word for word as the record writes it, or leave it out.`]],
+		)
+		assert.equal(check(`The line misclassifies apples with early rot ("rana trulež").`)[0]?.check, "misquote")
+	})
+
+	test("pass an original quoted word for word, in another case ending, script or without diacritics", () => {
+		assert.deepEqual(check("The line misclassifies apples with minor skin damage (sitnim oštećenjima kore)."), [])
+		assert.deepEqual(check("The line misclassifies apples with early rot (početna trulež)."), [])
+		assert.deepEqual(check("The line misclassifies apples (pogresno razvrstava jabuke)."), [])
+		assert.deepEqual(check("The line misclassifies apples (погрешно разврстава јабуке)."), [])
+		assert.deepEqual(check(`The error stays at about 12% ("greška je i dalje oko 12%").`), [])
+		assert.deepEqual(check(`The camera uses fixed colour thresholds ("kameru sa fiksnim … boje").`), [])
+	})
+
+	test("leave brackets alone that quote nothing: English, names and ids", () => {
+		assert.deepEqual(check("The line sorts fruit (apples) with a camera (C001-CH9)."), [])
+		assert.deepEqual(check("Apples come back from buyers (kupci and one unnamed client)."), [])
+		assert.deepEqual(check("The line sorts apples (jabuke, voća)."), [])
+	})
+})
+
 describe("mock model check", () => {
 	test("rejects the planted patent claim and keeps the true ones", () => {
 		const sources = new Map(["SYN-PUB-00001", "SYN-PRJ-0001", "R0001"].map((id) => [id, store.get(id)!]))

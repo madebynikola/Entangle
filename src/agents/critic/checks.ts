@@ -179,8 +179,9 @@ export function quotes(quote: string, sentence: string): boolean {
 /**
  * The checks that need no model: the artifact's own ids exist and fit its names,
  * every claim cites at least one source, every cited id exists, every cited record
- * belongs to the artifact's researcher or company (ids only, never names), and no
- * claim takes a name or number from a record of the artifact that it does not cite.
+ * belongs to the artifact's researcher or company (ids only, never names), no
+ * claim takes a name or number from a record of the artifact that it does not cite, and every original a claim
+ * quotes (a Serbian term in brackets) is in its records.
  */
 export function checkByCode(kind: ArtifactKind, artifact: Artifact, s: MatchState, store: SourceStore): CodeCheck {
 	const rejected: RejectedClaim[] = []
@@ -230,6 +231,16 @@ export function checkByCode(kind: ArtifactKind, artifact: Artifact, s: MatchStat
 				claim,
 				reason: `${list(details, "and")} ${be} not in ${list(ids, "or")} but ${be} in ${list(holders, "and")}, which the claim does not cite.`,
 				check: "uncited-detail",
+			})
+			continue
+		}
+		const misquoted = misquotes(claim.text, records.map(([, record]) => record))
+		if (misquoted.length) {
+			const be = misquoted.length > 1 ? "are" : "is"
+			rejected.push({
+				claim,
+				reason: `${list(misquoted.map((quote) => `"${quote}"`), "and")} ${be} not in ${list(ids, "or")}. Quote the original word for word as the record writes it, or leave it out.`,
+				check: "misquote",
 			})
 			continue
 		}
@@ -529,6 +540,52 @@ function uncitedLookup(store: SourceStore, ids: string[]): (claim: Claim, skip: 
 		// "72 hours" says it all: no "72" beside it.
 		return found.filter(({ detail }) => !found.some((other) => other.detail.startsWith(`${detail} `)))
 	}
+}
+
+/** A letter of Serbian that English has not: Latin with a diacritic, or Cyrillic. */
+const SERBIAN_LETTER = /[čćžšđČĆŽŠĐЀ-ӿ]/u
+/** Text in brackets, and text in quote marks (straight, curly, or the Serbian „…“). */
+const BRACKETED = /\(([^()]+)\)/g
+const QUOTED = /["“„]([^"“”„]+)["”“]/g
+/** English words that Serbian has not: brackets with one ("Opština Kanjiza and one unnamed") explain, they do not quote. */
+const ENGLISH = /\b(?:and|or|the|an|of|not|with|for|is|are|by|from|another|other)\b/i
+
+/**
+ * The originals a claim quotes from its records: text in quote marks, and text in brackets with a Serbian letter and
+ * no English word ("skin damage (oštećenja kore)"), which the Analyst writes after a term it translates.
+ */
+export function quotedOriginals(text: string): string[] {
+	const found = new Set<string>()
+	for (const [, inner] of text.matchAll(BRACKETED)) {
+		const quoted = [...inner.matchAll(QUOTED)].map((m) => m[1])
+		const original = SERBIAN_LETTER.test(inner) && !ENGLISH.test(inner)
+		for (const quote of quoted.length ? quoted : original ? [inner] : []) found.add(quote.trim())
+	}
+	for (const [, quote] of text.matchAll(QUOTED)) if (SERBIAN_LETTER.test(quote)) found.add(quote.trim())
+	return [...found].filter((quote) => wordsOf(quote).length > 0)
+}
+
+/**
+ * The quoted originals of a claim that none of its records holds word for word (ids left out, script, case and
+ * diacritics ignored). A Serbian word may take another case ending ("početna" for "početnom"), never another word:
+ * "drobna oštećenja" is not in a text that says "sitnim oštećenjima". An ellipsis, a comma or a semicolon splits a
+ * quote into parts, so a list of names ("Merkur, Frišmarket") need not keep the record's "and".
+ */
+export function misquotes(text: string, records: Array<Pick<SourceRecord, "title" | "text">>): string[] {
+	const texts = records.map((record) => wordsOf(`${record.title} ${record.text}`))
+	return quotedOriginals(text).filter((quote) => {
+		const parts = quote.split(/…|\.{3}|[,;]/).map(wordsOf).filter((words) => words.length)
+		return !parts.every((part) => texts.some((words) => words.some((_, i) => part.every((word, k) => sameWord(word, words[i + k])))))
+	})
+}
+
+/** The same word, maybe with another ending: equal, or sharing all but the last three letters and at least three. */
+function sameWord(quoted: string, word: string | undefined): boolean {
+	if (word === undefined) return false
+	if (quoted === word || /\p{N}/u.test(quoted + word)) return quoted === word
+	let k = 0
+	while (k < quoted.length && quoted[k] === word[k]) k++
+	return k >= 3 && k >= Math.max(quoted.length, word.length) - 3
 }
 
 /** "a", "a and b", "a, b and c". */
