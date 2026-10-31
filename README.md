@@ -31,6 +31,7 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
 <sub>The Timeline of the reference run (8 companies, `out/golden/`), zoomed to its first 27 minutes. One row per agent, one bar per model call. Bars that overlap are agents working at the same time. Drag across the lanes to zoom.</sub>
 
 **Contents:** [Try it](#try-it-no-keys-needed) · [Run it](#run-it-on-real-models) · [Architecture](#architecture) ·
+[Why not one model](#why-a-team-of-agents-not-one-big-model) ·
 [Concurrency](#how-the-agents-run-concurrently) · [The Critic](#where-the-critic-stepped-in) · [EINSTEIN](#how-this-plugs-into-einstein) ·
 [Data](#responsible-use-of-data) · [Limits](#limits-and-next-steps) · [Repository](#repository)
 
@@ -263,6 +264,23 @@ the rate limits. `MODEL_<ROLE>` in `.env` pins one role, for example `MODEL_CRIT
 own (Anthropic, OpenAI, Gemini), local Claude Code (`LOCAL_CLAUDE=1`, 6 sessions at once by default), and the mock. Calls to a
 decision model (subq-snap, Jev) go to its own API; they write no text, so only the second Critic (`SUBQ=1`) and the shortlist
 filter (`SCREEN=1`) use one.
+
+## Why a team of agents, not one big model
+
+- **The data does not fit in one call.** The dataset is about 7 million tokens. Here each call reads one company, one
+  researcher or one pair: in the reference run the median call read 6,285 input tokens and the largest 19,447. The whole run
+  used 5.0M tokens, not 7M per question.
+- **A model does not check itself.** The Critic is its own agent, in its own context. It sees the claim and the records it cites,
+  not the Writer's reasoning. Code checks ids first, and a second reviewer on another model reads each proposal. In the reference
+  run it rejected 483 claims that would otherwise have reached a company.
+- **The right model for each job.** Haiku 4.5 for the many parallel reads, Sonnet 4.6 for the calls that decide quality. A Haiku
+  Critic caught 11 of 23 wrong claims where Sonnet caught 15 to 21 ([docs/quality.md](docs/quality.md)), so it stays on Sonnet.
+- **Code where no model is needed.** The Orchestrator, the BM25 shortlist, the id checks and "not a research problem" make no model call.
+- **Every step is visible and fails alone.** Each event is in `trace.jsonl` with its agent, task, time, tokens and cost. A task that
+  fails takes nothing else with it: the time limit stopped C008, and the other six proposals stayed.
+
+We did not run one big model as a baseline: the dataset does not fit in one call, and with retrieval added it is already a pipeline.
+The answers to other teams' questions on this, in Serbian, are in [docs/qa.md](docs/qa.md).
 
 ## How the agents run concurrently
 
