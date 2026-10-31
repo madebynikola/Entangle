@@ -88,7 +88,7 @@ export interface CriticOptions {
 	translator?: Translator
 	/**
 	 * Model that translates the Serbian lines of cited records into English, once per record per run, when the Critic
-	 * makes its own translator. Default: `translateModel()`, the cheap tier.
+	 * makes its own translator. Default: `translateModel()`, the strong tier.
 	 */
 	translateModel?: string | (() => string)
 }

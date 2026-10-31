@@ -37,16 +37,16 @@ describe("Serbian lines", () => {
 		assert.deepEqual(serbianLines(mixed), [mixed.split("\n")[1]])
 	})
 
-	test("the cheap tier translates, unless MODEL_TRANSLATE pins a model", () => {
+	test("the strong tier translates, unless MODEL_TRANSLATE pins a model", () => {
 		const keys = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY", "MODEL_TRANSLATE"]
 		const saved = Object.fromEntries(keys.map((key) => [key, process.env[key]]))
 		try {
 			keys.forEach((key) => delete process.env[key])
-			assert.equal(translateModel(), "claude-haiku-4-5")
-			process.env.OPENAI_API_KEY = "test"
-			assert.equal(translateModel(), "gpt-5.4-mini")
-			process.env.MODEL_TRANSLATE = "claude-sonnet-4-6"
 			assert.equal(translateModel(), "claude-sonnet-4-6")
+			process.env.OPENAI_API_KEY = "test"
+			assert.equal(translateModel(), "gpt-5.5")
+			process.env.MODEL_TRANSLATE = "claude-haiku-4-5"
+			assert.equal(translateModel(), "claude-haiku-4-5")
 		} finally {
 			keys.forEach((key) => (saved[key] === undefined ? delete process.env[key] : (process.env[key] = saved[key])))
 		}

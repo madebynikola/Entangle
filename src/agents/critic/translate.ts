@@ -215,13 +215,16 @@ export function createTranslator(model: string | (() => string) = translateModel
 }
 
 /**
- * The model that translates Serbian records [MODEL_TRANSLATE]: else the first model of the analyst route (the cheap
- * tier, config/models.ts) whose provider has a key, or its first model when no key is set. On the Serbian reverse
- * search Haiku 4.5 and Sonnet 4.6 both translate "oštećenja kore" as skin damage, and Haiku costs a third.
+ * The model that translates Serbian records [MODEL_TRANSLATE]: else the first model of the critic route (the strong
+ * tier, config/models.ts) whose provider has a key, or its first model when no key is set. The Analyst, the Writer
+ * and the Critic all trust this one translation, so nothing later catches a wrong word sense. On the Serbian reverse
+ * search (`npm run translate:eval`, 20 tries) Haiku 4.5 wrote "bark damage" for "oštećenja kore" in 3 of 20 and Sonnet
+ * 4.6 in 0 of 20, for $0.0066 a record against $0.0024. Two Haiku translations that must agree, else Sonnet, also
+ * gave 0 of 20, but synonyms ("sorts", "classifies") broke the agreement in 16 of 20, so it cost $0.019 a record.
  */
 export function translateModel(): string {
 	const pinned = process.env.MODEL_TRANSLATE
 	if (pinned) return pinned
 	const keyed = providersWithKeys()
-	return ROUTES.analyst.models.find((model) => !keyed.length || keyed.includes(providerOf(model))) ?? ROUTES.analyst.models[0]
+	return ROUTES.critic.models.find((model) => !keyed.length || keyed.includes(providerOf(model))) ?? ROUTES.critic.models[0]
 }
