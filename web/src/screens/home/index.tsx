@@ -1,9 +1,10 @@
 import type { RunInfo } from "@shared/server/api"
-import { Play, Search } from "lucide-react"
+import { Play, ScanSearch, Search } from "lucide-react"
 import { useMemo, useState } from "react"
 import { Link } from "react-router"
 import { PageHeader } from "@/components/shell/page-header"
 import { runGroup, runLabel, runState, type RunGroup } from "@/components/shell/run-label"
+import { useProblemDialog } from "@/components/shell/problem-dialog"
 import { useStartRun } from "@/components/shell/start-run"
 import { Button } from "@/components/ui/button"
 import { Chip } from "@/components/ui/chip"
@@ -42,7 +43,7 @@ export function HomeScreen() {
 		const inFilter =
 			run.status === "live" || (filter === "all" ? true : filter === "runs" ? group === "run" || group === "sample" : group === "mock")
 		const q = query.trim().toLowerCase()
-		return inFilter && (!q || `${run.id} ${runLabel(run)}`.toLowerCase().includes(q))
+		return inFilter && (!q || `${run.id} ${runLabel(run)} ${run.problem ?? ""}`.toLowerCase().includes(q))
 	})
 
 	return (
@@ -56,7 +57,13 @@ export function HomeScreen() {
 							<Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Find a run" className="h-8 pl-8 text-sm" />
 						</div>
 						{canStart && (
-							<Button variant="primary" onClick={start} disabled={starting}>
+							<Button onClick={() => useProblemDialog.getState().setOpen(true)}>
+								<ScanSearch />
+								Describe a problem
+							</Button>
+						)}
+						{canStart && (
+							<Button variant="primary" onClick={() => start()} disabled={starting}>
 								<Play className="fill-current" />
 								{starting ? "Starting…" : "Start a mock run"}
 							</Button>
@@ -126,9 +133,16 @@ function RunRow({ run, showKind }: { run: RunInfo; showKind: boolean }) {
 				<div className="flex items-center gap-2">
 					<span className="truncate font-medium text-ink">{runLabel(run)}</span>
 					{run.sample && <Chip>Example</Chip>}
+					{run.problem && <Chip>Reverse search</Chip>}
 					{showKind && run.mock && !run.sample && <Chip>Mock</Chip>}
 				</div>
-				<div className="mt-0.5 truncate font-mono text-xs text-ink-subtle">{run.sample ? "Invented data that shows a full run" : run.id}</div>
+				{run.problem ? (
+					<div className="mt-0.5 truncate text-sm text-ink-muted" title={run.problem}>
+						{run.problem}
+					</div>
+				) : (
+					<div className="mt-0.5 truncate font-mono text-xs text-ink-subtle">{run.sample ? "Invented data that shows a full run" : run.id}</div>
+				)}
 			</div>
 			<StatusLabel tone={state.tone} pulse={state.pulse} className="text-sm">
 				{state.label}

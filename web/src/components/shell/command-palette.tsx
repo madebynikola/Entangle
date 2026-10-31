@@ -11,6 +11,7 @@ import {
 	Play,
 	Radio,
 	RotateCcw,
+	ScanSearch,
 	Sparkles,
 	Sun,
 	SunMoon,
@@ -26,6 +27,7 @@ import { StatusDot } from "@/components/ui/status"
 import { toast } from "@/components/ui/toaster"
 import * as format from "@/lib/format"
 import { useBackend, useRuns, useRunStore } from "@/run/hooks"
+import { useProblemDialog } from "./problem-dialog"
 import { useSidebar } from "./sidebar"
 import { openSource } from "./source"
 import { useTheme } from "./theme"
@@ -226,6 +228,12 @@ export function CommandPalette() {
 								>
 									<FlaskConical />
 									Start a mock run
+								</CommandItem>
+							)}
+							{backend?.kind === "server" && (
+								<CommandItem value="find researchers for a problem reverse search describe" onSelect={run(() => useProblemDialog.getState().setOpen(true))}>
+									<ScanSearch />
+									Find researchers for a problem
 								</CommandItem>
 							)}
 						</CommandGroup>

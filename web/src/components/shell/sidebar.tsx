@@ -193,7 +193,7 @@ function RunsSection({ onNavigate }: { onNavigate?: () => void }) {
 			<SectionHeader title="Runs">
 				{canStart && (
 					<Tooltip content="Start a mock run (no API keys)">
-						<Button variant="quiet" size="icon-sm" onClick={start} disabled={starting} aria-label="Start a mock run">
+						<Button variant="quiet" size="icon-sm" onClick={() => start()} disabled={starting} aria-label="Start a mock run">
 							<Plus />
 						</Button>
 					</Tooltip>

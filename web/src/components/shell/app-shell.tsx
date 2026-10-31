@@ -3,6 +3,7 @@ import { Outlet } from "react-router"
 import { Toaster } from "@/components/ui/toaster"
 import { cn } from "@/lib/utils"
 import { CommandPalette } from "./command-palette"
+import { ProblemDialog } from "./problem-dialog"
 import { Sidebar, SidebarDrawer, useSidebar, useSidebarKeys } from "./sidebar"
 import { SourceSheet } from "./source"
 import { BootSplash } from "./splash"
@@ -43,6 +44,7 @@ export function AppShell() {
 			</main>
 
 			<CommandPalette />
+			<ProblemDialog />
 			<SourceSheet />
 			<Toaster />
 			<BootSplash />

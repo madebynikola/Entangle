@@ -1,4 +1,4 @@
-import type { ApprovalBody, Approvals, Health, RunInfo, RunResults, RunStatus } from "@shared/server/api"
+import type { ApprovalBody, Approvals, Health, RunInfo, RunResults, RunStatus, StartRunBody } from "@shared/server/api"
 import type { SourceRecord, TraceRecord } from "@shared/types"
 import { SAMPLE_ID, sampleRun } from "@/fixtures/sample-run"
 
@@ -18,7 +18,8 @@ export interface Backend {
 	getResults(id: string): Promise<RunResults>
 	getSource(id: string, runId?: string): Promise<SourceRecord | null>
 	setApproval(runId: string, body: ApprovalBody): Promise<Approvals>
-	startRun(options: { mock: boolean; companies?: number }): Promise<string>
+	/** A mock or real run on the first companies, or a reverse search on a described `problem`. */
+	startRun(options: StartRunBody): Promise<string>
 }
 
 export interface StreamHandlers {
