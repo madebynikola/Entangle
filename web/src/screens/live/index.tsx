@@ -114,7 +114,7 @@ export function LiveScreen() {
 				bodyClassName="@container flex flex-col"
 				action={(canFollow || zoom) && <RangeToggle mode={range} canFollow={canFollow} zoomLabel={zoomLabel} onChange={onRange} />}
 			>
-				<Metrics view={view} calls={calls} rejections={derived.moments.length} duration={duration} liveRun={liveRun} active={active} />
+				<Metrics view={view} calls={calls} moments={derived.moments} duration={duration} liveRun={liveRun} active={active} />
 				<Lanes
 					lanes={lanes}
 					view={view}
@@ -180,20 +180,25 @@ const NO_TRACKS = new Map<string, number>()
 function Metrics({
 	view,
 	calls,
-	rejections,
+	moments,
 	duration,
 	liveRun,
 	active,
 }: {
 	view: RunView
 	calls: { flying: number; waiting: number }
-	rejections: number
+	moments: Moment[]
 	duration: number
 	liveRun: boolean
 	active: boolean
 }) {
 	const clock = useRunClock()
 	const { totals } = view
+	// Counted as summary.json counts them: a drop is not a send-back, though both are Critic rejections.
+	const sentBack = moments.filter((moment) => moment.action === "send-back").length
+	const dropped = moments.filter((moment) => moment.action === "drop").length
+	const toPerson = moments.filter((moment) => moment.action === "human-review").length
+	const rest = [dropped > 0 && `${dropped} dropped`, toPerson > 0 && `${toPerson} to a person`].filter(Boolean).join(" · ")
 	return (
 		<div className="grid shrink-0 grid-cols-3 gap-x-4 gap-y-2 border-b border-hairline px-4 py-2.5 @2xl:grid-cols-6">
 			<Metric label="Run time" value={format.clock(clock)} extra={liveRun ? undefined : `/ ${format.clock(duration)}`} />
@@ -207,7 +212,12 @@ function Metrics({
 			<Metric label="Tokens" value={format.tokens(totals.tokens)} />
 			<Metric label="Cost" value={totals.costUsd > 0 ? `${format.usd(totals.costUsd)}${totals.costKnown ? "" : "+"}` : "—"} />
 			<Metric label="Retries" value={totals.retries} title="Model calls tried again after a 429, a 5xx or a network error" />
-			<Metric label="Critic rejections" value={rejections} title="Verdicts that sent claims back to be fixed, or dropped them" />
+			<Metric
+				label="Sent back"
+				value={sentBack}
+				extra={rest || undefined}
+				title="Times the Critic sent an artifact back to be fixed. Dropped: a core claim still failed after two fixes."
+			/>
 		</div>
 	)
 }
