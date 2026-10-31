@@ -24,11 +24,11 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
   </picture>
 </p>
 
-<sub>The Stage tab replaying the reference run (<code>out/golden/</code>) in real time: its first half minute, then its last. Each face is a role, each bubble an event on the Mozaik bus.</sub>
+<sub>The Stage tab replaying a real 5-company run in real time: its first half minute, then its last. Each face is a role, each bubble an event on the Mozaik bus.</sub>
 
 ![The Timeline of a real run: one row per agent, one bar per model call. Overlapping bars are agents working at the same time.](docs/screenshots/timeline.png)
 
-<sub>The Timeline of a real 5-company run. One row per agent, one bar per model call. Bars that overlap are agents working at the same time.</sub>
+<sub>The Timeline of the reference run (8 companies, `out/golden/`). One row per agent, one bar per model call. Bars that overlap are agents working at the same time.</sub>
 
 **Contents:** [Try it](#try-it-no-keys-needed) · [Run it](#run-it-on-real-models) · [Architecture](#architecture) ·
 [Concurrency](#how-the-agents-run-concurrently) · [The Critic](#where-the-critic-stepped-in) · [EINSTEIN](#how-this-plugs-into-einstein) ·
@@ -104,9 +104,10 @@ Everything lands in `out/<run-id>/`:
 | `--mock`, `--local` | | Mock model, or local Claude Code sessions |
 | `--subq`, `--screen` | | The second Critic, or the shortlist filter, on a decision model |
 
-**Time and cost.** Our 5-company run on Sonnet 4.6 and Haiku 4.5 took 40 minutes on local Claude Code and used 3.5M tokens,
-about $20 at API prices. It reached the default $20 budget during the last proposal reviews, so raise `BUDGET_USD` (and
-`BUDGET_MINUTES`) in `.env` for more companies. `npm run match -- --help` lists every option and setting.
+**Time and cost.** The reference run (`out/golden/`, `--companies 8`) on Sonnet 4.6 and Haiku 4.5 took 66 minutes on local
+Claude Code and used 5.0M tokens, about $17 at API prices. It ran with `BUDGET_USD=40 BUDGET_MINUTES=60 BUDGET_TOKENS=12000000`;
+the defaults ($20, 45 minutes, 6M tokens) fit about 5 companies, which take 15 minutes and about $9. Its 60-minute limit
+stopped the last company, C008, before matching. `npm run match -- --help` lists every option and setting.
 
 ## Architecture
 
@@ -172,6 +173,8 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
 1. **Code check, no model.** Each claim cites at least one source. Each cited id exists. Each cited record belongs to the artifact's
    researcher or company: by id, never by name. This catches same-name co-authors and company staff who share a researcher's name.
    An OpenAlex work id exists only if OpenAlex returned it in this run, so an invented paper fails here.
+   A name or number in a claim must be in the records it cites, when another record of the artifact holds it
+   (`uncited-detail`): "AWS" from the company record fails in a claim that cites only the challenge.
 2. **Model check.** The reviewer reads the cited records and decides, claim by claim, whether the record says what the claim says.
    It gives the reason before the verdict. A re-posted artifact only has its changed claims checked again.
    Proposals get a **second reviewer** at the same time, on another model and in its own context. A claim passes only if both pass it,
@@ -216,24 +219,26 @@ filter (`SCREEN=1`) use one.
   `critic.sent_back`), so analysis, profiling, matching, writing and review overlap.
 - **Only the limits slow it down:** the runner's 16 slots, the provider rate limits, or the 6 local Claude Code sessions.
 
-**Numbers from a real run:** 5 companies on 30 October, Sonnet 4.6 and Haiku 4.5 on the local Claude Code backend
-(6 sessions at once), 40 minutes, 320 model calls by 16 agents.
+**Numbers from the reference run:** 8 companies on 30 October, Sonnet 4.6 and Haiku 4.5 on the local Claude Code backend
+(6 sessions at once), 696 model calls by 20 agents. The last call finished at 49:25, so the measures below cover those
+49 minutes. After that, 11 `claude -p` calls hung for 5 minutes each, and the 60-minute budget ended the run at 66:05.
 
 | Measure | Value |
 | --- | --- |
-| Model calls open at once (running, or waiting for a slot) | 46 on average, 71 at the peak |
-| Model calls the runner let out at once | 13.9 on average, 16 (its cap) at the peak |
-| Claude Code sessions busy | all 6 for 90% of the run |
-| Model time against wall time | 3 h 52 min of model calls in 40 min, so 5.8 calls at once on average |
-| Roles calling a model at the same moment | up to 4; two or more for 70% of the run |
+| Model calls open at once (running, or waiting for a slot) | 14 on average, 45 at the peak |
+| Model calls the runner let out at once | 3.4 on average, 6 (the session cap) at the peak |
+| Claude Code sessions busy | all 6 for 55% of the time |
+| Model time against wall time | 2 h 47 min of model calls in 49 min, so 3.4 calls at once on average |
+| Roles calling a model at the same moment | up to 5; two or more for 48% of the time |
 
 | Role | First call | Last call | Overlaps with |
 | --- | --- | --- | --- |
-| Industry Analysts | 0:00 | 30:21 | everyone: after their first pass they fix needs the Critic sent back |
-| Research Profilers | 0:50 | 30:12 | Analysts still reading, the Matchmaker, the Critic |
-| Critic | 0:50 | 40:08 | the whole run, starting 50 seconds in |
-| Matchmaker | 12:57 | 33:13 | Profilers still profiling, Writers already writing |
-| Proposal Writers | 32:41 | 39:00 | the Matchmaker and the Critic |
+| Industry Analysts | 0:00 | 26:27 | everyone: after their first pass they fix needs the Critic sent back |
+| Research Profilers | 2:21 | 49:25 | Analysts still reading, the Matchmaker, the Writers, the Critic |
+| Critic | 0:21 | 49:19 | the whole run, starting 21 seconds in |
+| Matchmaker | 2:38 | 25:23 | Profilers still profiling, Writers already writing |
+| Proposal Writers | 5:56 | 26:44 | Analysts, Profilers, the Matchmaker and the Critic: the first proposal started before most companies were matched |
+| Funding Scout | 5:53 | 26:01 | the Writer of each pair it works on |
 
 On the API, the same runner lets 16 calls run at once instead of 6.
 
@@ -260,22 +265,26 @@ is when the runner let a call out past the rate limits; the time before it is a 
 
 ## Where the Critic stepped in
 
-One case from the same run. At 34:43, `writer-1` posted proposal `C003-CH1-R0365`: AutomVoj (C003), whose conveyor frames crack
-at the welds after 18 months in cold stores, with Bojan Erić (R0365), who works on low-temperature fatigue of welded steel.
-Both reviewers checked its 29 claims at the same time, the Critic on Sonnet 4.6 and the second reviewer on Haiku 4.5.
-At 37:28 the Critic sent 7 claims back to `writer-1`, among them:
+One case from the reference run. At 18:16, `writer-1` posted proposal `C003-CH1-R0365`: AutomVoj (C003), whose conveyor frames
+crack at the welds after 18 months in cold stores, with Bojan Erić (R0365), who works on low-temperature fatigue of welded steel.
+Three checks ran on it at the same time: the Critic (Sonnet 4.6) and the second reviewer (subq-snap-1.1) on its 20 claims,
+and the Critic's free-text check on the rest. At 19:00 the Critic sent 9 claims and sentences back to `writer-1`, among them:
 
-| Claim | Cites | Why it was rejected |
-| --- | --- | --- |
-| "Two failed frame sections are retained in storage and are available for destructive testing." | C003-CH1 | The challenge only says "we still have two of the failed sections in storage". Nothing says they are available for destructive testing. |
-| "The company requires the outcome to be a change to welding procedure, filler material, or joint design…" | C003-CH1 | The company wrote "a good outcome would be…": a wish, not a requirement. |
-| "In-house fabrication shop with MIG/MAG welding capability to produce replicated test specimens…" | C003, a C003 job ad | Both confirm the shop and MIG/MAG welding, but not that it can make test specimens. |
+| Claim | Cites | Why it was rejected | After the fix |
+| --- | --- | --- | --- |
+| "Two failed frame sections with weld cracks, photographs, and measurements from site visits, available for laboratory inspection." | C003-CH1 | The challenge says "we still have two of the failed sections in storage". It does not say they are available for laboratory inspection. | "Two failed frame sections are held in storage, and the company has photographs and measurements of the cracked joints from site visits." |
+| "In-house fabrication shop with welding capability to produce reference and candidate weld-joint specimens to any revised procedure." | C003 | The company has a fabrication shop and MIG/MAG welding, but nothing says it can make specimens "to any revised procedure". | "In-house fabrication shop with mild steel and stainless steel MIG/MAG welding capability." |
+| "Historical design records, welding procedure, filler material specification, and corrosion-protection specification for the affected frames." | C003-CH1 | Both reviewers: the challenge mentions none of these records (the second reviewer: 8% likely that the text supports it). | Removed |
+| "…the company's engineer is available for one day per week to answer questions about fabrication history." | (free text) | `free-text`: no claim or source gives the engineer's time. | Removed |
 
-`writer-1` narrowed each claim to what its record says ("Two failed frame sections in storage. [C003-CH1]") and posted the
-proposal again at 37:54. Only the 7 changed claims were checked again, and both reviewers accepted it at 38:08.
+`writer-1` posted the proposal again at 19:18. Only its 5 changed claims were checked again; the other 13 had already passed.
+One was still rejected: "access to customer cold-store installations" is in neither source. The second fix turned it into
+"photographs and measurements of cracked joints collected during site visits to cold-store installations operating at 2–6 °C".
+Both reviewers accepted the proposal at 20:07.
 
-Across the run the Critic made 177 reviews, sent 81 artifacts back with 181 rejected claims, dropped 3, and logged 5 splits
-where the two reviewers disagreed. In the Timeline each send-back is an orange mark on the producer's lane.
+Across the run the Critic made 337 reviews, sent artifacts back 194 times with 483 rejected claims, cut a failed claim and kept
+the rest 20 times (`critic.trimmed`), dropped 10, and logged 15 splits where the two reviewers disagreed. In the Timeline
+each send-back is an orange mark on the producer's lane.
 
 Find every send-back in a trace with `grep '"critic.sent_back"' out/golden/trace.jsonl`, or in the Blackboard panel next to the Timeline.
 
