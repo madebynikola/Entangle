@@ -332,8 +332,9 @@ So k 2 and k 4 rate 8, as in these runs, and the reverse search (k 6) still rate
 
 ## The Critic on the labelled claims (measured)
 
-The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds all 129 claims of
-C001, C005 and C012 from both runs, each with its cited ids, a label and a note on why. The Critic had passed every one of them.
+The hand-check above is now data. [`test/fixtures/critic-labels.json`](../test/fixtures/critic-labels.json) holds the 129 claims of
+C001, C005 and C012 from both runs of 30 October, each with its cited ids, a label and a note on why, and since 31 October the 143
+claims of the k 2 default runs as well (see "With the 143 claims of the k 2 runs" below). The Critic had passed every one of them.
 `npm run critic:eval` runs only the Critic on them, as on a proposal in a match: the code checks, then both reviewers. It sends the
 claims and their records, with no free text. Measured on 30 October in three runs, with the settings in `.env`: Sonnet 4.6, and
 subq-snap-1.1 as the second reviewer. Two ran at commit 146d0b3, one at 5555066 (the word-form fixes below, which change no code
@@ -381,6 +382,49 @@ What the numbers show:
   Sonnet calls "the pipeline must replace" and "should be scoped carefully against this constraint" editorial. On the 102 claims of the
   old eval it rejects 3–4 of 79 in the first two runs, in the range of the earlier runs. It also rejects "four days spent on
   reconnaissance" in all three runs: it reads "a few days" in CH1 and misses "from four days to one" further down the same record.
+
+### With the 143 claims of the k 2 runs
+
+The 143 claims that the "After" hand-check above labelled (8 proposals of `2026-10-31T10-38-09` and `2026-10-31T11-55-14`, 4 companies)
+are in the fixture now. It holds 272 claims of 14 proposals and the 80 records they cite: 36 wrong claims (23 + 13), 215 ok ones
+(98 + 117) and 21 borderline ones (8 + 13). The 13 new wrong claims are 10 widened and 3 judgement. None is an uncited detail.
+Three runs on 31 October with the same settings (Sonnet 4.6, subq-snap-1.1 as the second reviewer), at commit e00d185 plus the new
+labels. Each run is 12 calls, 102–109 s and $0.73–0.76 at API prices. The table gives the lowest and the highest count of the three.
+
+| Label | Claims | Rejected | By code | Sonnet 4.6 alone | subq-snap-1.1 alone |
+| --- | --- | --- | --- | --- | --- |
+| Judgement added to a fact | 12 | 7–8 | 0 | 7–8 | 0 |
+| Detail from an uncited record | 7 | 6 | 4 | 2 | 0 |
+| Widened scope | 17 | 5–10 | 1 | 4–9 | 0 |
+| **Wrong, all** | **36** | **19–24 (53–67%)** | 5 (14%) | 14–19 (39–53%) | 0 |
+| Ok | 215 | **7–13 (3–6%)** | 0 | 6–13 | 1 |
+| Borderline (not scored) | 21 | 4–7 | 0 | 4–7 | 1 |
+
+| Only the 143 claims of the k 2 runs | Claims | Rejected |
+| --- | --- | --- |
+| Judgement added to a fact | 3 | 0–1 |
+| Widened scope | 10 | 2–5 |
+| **Wrong, all** | **13** | **3–5 (23–38%)** |
+| Ok | 117 | **4–6 (3–5%)** |
+| Borderline (not scored) | 13 | 1–4 |
+
+- **The Critic catches fewer of the k 2 claims than of the 30 October ones.** It rejects 3–5 of the 13 wrong claims, and 19–24 of all
+  36, where it rejected 17–19 of the first 23. The extra claims are the hard type: widened scope and a judgement that is a general
+  point. The code check cannot see them, because they hold no name or number that is missing from the cited records.
+- **One of the 13 is caught in all three runs:** C005's "covering real ambulatory motion-artefact conditions". Five are never caught:
+  C018's "a DSL for AUTOSAR configuration tasks including communication matrix specification", C012's "must move part of its
+  reconnaissance workflow ... within twelve months" (the record says "we want to"), C001's "must run on ARM Cortex-A SoCs", and the
+  judgements on C005's "ADC duty cycling need not degrade" and C001's "the false-positive problem". Five more are caught in one
+  or two runs.
+- **The same merge is the hardest one.** Where the Writer turns a plan or a wish of the company into a requirement (the C001 fifth
+  hardware variant, the C012 retest request), Sonnet catches it in 0–1 of 3 runs. The widened claims of the 30 October runs were
+  caught 3–6 of 7. Now it is 5–10 of 17.
+- **False rejects stay at 3–6%:** 7–13 of 215, all by Sonnet except one by subq-snap-1.1 in each run. About half are on the C012
+  proposals, in the same claims run after run. The 117 ok claims of the k 2 runs give 4–6, the same rate as before.
+- **The k 2 default is not safer than the old one for the Critic.** The hand-check found 13 of 143 claims wrong (9%), and the
+  Critic passed all of them. With the Critic as measured here, 3–5 of those would be sent back. The rest goes to a person's review of
+  the proposal, which the pitch should not skip.
+- **subq-snap-1.1 still catches nothing**, in 215 + 36 claims. Its one reject in each run is of an ok or borderline claim.
 
 ### The names-and-numbers check on real runs
 
