@@ -96,6 +96,14 @@ bilo je pogrešno, a prvi Critic ih je propustio. Posle toga smo dodali proveru 
 Košta više tokena nego jedan poziv na malom primeru. Ponovni pregledi su oko 26% cene. Ali jedan poziv ne može da pročita
 7 miliona tokena, a ono što bi preskočio je upravo provera. Referentno pokretanje je 5,0M tokena, oko 17 dolara po API ceni, za 8 kompanija.
 
+**"Zašto je golden samo na 8 kompanija, a ne na svih 120? Zašto traje toliko?"**
+Zato što svaka kompanija ima oko 87 poziva modela, a svaki traje 1 do 1,5 minuta. Referentno pokretanje ima 696 poziva: 8
+kompanija, 66 minuta, 5,0M tokena, 17 dolara. To je oko 8 minuta i 2 dolara po kompaniji. Većina poziva nije pisanje nego
+provera: 367 pregleda Critic-a prema 19 napisanih predloga. Uz pregled ide ispravka, pa je kvalitet cena vremena. Za svih
+120 kompanija isti postav treba oko 16 sati i 250 dolara. Uska tačka nije cena nego broj poziva odjednom: 6 lokalnih Claude
+Code sesija. Na API ključu, sa većim `MAX_IN_FLIGHT`, procena je oko 3 sata (nije mereno). Zato smo birali 8 kompanija
+koje smo mogli da proverimo ručno, a ne 120 koje niko ne bi pročitao.
+
 **"Da li je ovo pravi paralelizam ili samo asinhroni pozivi?"**
 Pravi: do 5 uloga zove model u istom trenutku, dve ili više 48% vremena. Na Timeline-u se trake preklapaju.
 Proveri: `npm run replay -- out/golden`, pa Timeline.
