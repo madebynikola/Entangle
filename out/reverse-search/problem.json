@@ -1,0 +1,7 @@
+{
+  "companyId": "C999",
+  "challengeId": "C999-CH1",
+  "company": "Described problem",
+  "sector": "Renewable energy",
+  "text": "Our vibration sensors on wind turbine gearboxes raise false alarms in cold weather. We tried fixed thresholds per season, but bearing faults are still missed in winter. We have two years of labelled vibration data from 40 turbines."
+}

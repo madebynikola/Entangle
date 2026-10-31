@@ -1,0 +1,123 @@
+{
+  "chosen": [
+    "C999-CH1:R0822"
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0822",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0822",
+      "fit": 0.89,
+      "why": [
+        {
+          "text": "Radić holds a granted patent on adaptive threshold setting for vibration-based bearing condition monitoring under variable operating speed.",
+          "sourceIds": [
+            "SYN-PAT-045"
+          ]
+        },
+        {
+          "text": "Radić co-authored work on simultaneous vibration and surface temperature monitoring of rolling element bearings across four failure modes.",
+          "sourceIds": [
+            "SYN-PUB-08927"
+          ]
+        },
+        {
+          "text": "Radić co-authored work on multivariate statistical process control using principal component analysis and Hotelling T² for simultaneous monitoring of multiple bearing locations in rotating machinery.",
+          "sourceIds": [
+            "SYN-PUB-08930"
+          ]
+        },
+        {
+          "text": "Radić is open to contract research for condition monitoring system development and validation and to joint projects with process industry companies.",
+          "sourceIds": [
+            "R0822"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the company's labelled vibration data from 40 turbines (C999-CH1), Radić would build and validate an adaptive threshold system for wind turbine bearing fault detection that compensates for seasonal temperature variation, drawing on adaptive threshold methods (SYN-PAT-045), multivariate statistical process control across multiple bearing locations (SYN-PUB-08930), and sensor fusion of vibration and thermal signals (SYN-PUB-08927) to separate environmental drift from genuine fault signatures.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PAT-045",
+          "SYN-PUB-08930",
+          "SYN-PUB-08927"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The patent on adaptive threshold setting (SYN-PAT-045) covers variable operating speed; the company's core problem is seasonal temperature variation, and coverage of temperature as a covariate in that patent is not confirmed by the available record.",
+          "sourceIds": [
+            "SYN-PAT-045",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The infrared thermography and thermal fusion work (SYN-PUB-08929, SYN-PRJ-0441) covers slow-speed bearings in conveyor and grain handling systems; applicability to wind turbine gearbox speeds would need to be assessed.",
+          "sourceIds": [
+            "SYN-PUB-08929",
+            "SYN-PRJ-0441"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R0510",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0510",
+      "fit": 0.82,
+      "why": [
+        {
+          "text": "The company's fixed seasonal thresholds fail to prevent missed bearing faults under temperature variation (C999-CH1); Ognjanov co-authored work on operating-condition-dependent threshold setting for vibration-based fault detection under varying load and temperature, including both fixed statistical and machine learning approaches (SYN-PUB-05999).",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-05999"
+          ]
+        },
+        {
+          "text": "Ognjanov co-authored work on gearbox vibration signal processing including synchronous averaging, order tracking, and synchrosqueezed wavelet for non-stationary conditions.",
+          "sourceIds": [
+            "SYN-PUB-00312",
+            "SYN-PUB-04384",
+            "SYN-PUB-05517"
+          ]
+        },
+        {
+          "text": "The company requires diagnostics for wind turbine gearboxes; Ognjanov is open to joint projects with companies monitoring gearboxes in wind applications and to contract research on gear fault detection algorithm development and validation.",
+          "sourceIds": [
+            "R0510"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the company's labelled vibration data from 40 turbines (C999-CH1), Ognjanov would design and validate operating-condition-dependent threshold strategies for gearbox bearing fault detection that account for seasonal temperature variation, building on published work on condition-dependent threshold setting under varying load and temperature (SYN-PUB-05999, SYN-PUB-05997) and gearbox vibration signal processing methods (SYN-PUB-00312, SYN-PUB-04384).",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-05999",
+          "SYN-PUB-05997",
+          "SYN-PUB-00312"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published gearbox diagnostic work covers planetary gearboxes (SYN-PUB-05995, SYN-PUB-05996) and conveyor drives and small wind turbines (SYN-PRJ-0818); field validation on wind turbine gearboxes of the kind described in C999-CH1 is not documented in the available records.",
+          "sourceIds": [
+            "SYN-PUB-05995",
+            "SYN-PUB-05996",
+            "SYN-PRJ-0818",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The condition-dependent threshold work (SYN-PUB-05999) covers load and temperature variation; whether the methods scale to the multi-turbine fleet size (40 turbines) and two-year labelled dataset described in C999-CH1 is not addressed in the available records.",
+          "sourceIds": [
+            "SYN-PUB-05999",
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "noMatches": []
+}

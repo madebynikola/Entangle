@@ -28,7 +28,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build -- out/golden
+      - run: npm run build -- out/golden out/reverse-search
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web/dist

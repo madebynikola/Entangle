@@ -1,0 +1,907 @@
+{
+  "C999": {
+    "id": "C999",
+    "kind": "company",
+    "title": "Described problem",
+    "text": "Described problem (C999): Renewable energy.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "C999-CH1": {
+    "id": "C999-CH1",
+    "kind": "challenge",
+    "title": "Our vibration sensors on wind turbine gearboxes raise false alarms in cold weather.",
+    "text": "Our vibration sensors on wind turbine gearboxes raise false alarms in cold weather.\n\nWe tried fixed thresholds per season, but bearing faults are still missed in winter. We have two years of labelled vibration data from 40 turbines.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "R0045": {
+    "id": "R0045",
+    "kind": "researcher",
+    "title": "Bogdan Bajić",
+    "text": "Bogdan Bajić (R0045): Assistant Professor, Department of Mechatronics, Robotics and Automation, Faculty of Technical Sciences, University of Novi Sad.\nFields: Mechanical Engineering; Electrical and Electronic Engineering; Signal Processing; Artificial Intelligence and Machine Learning.\nKeywords: condition monitoring; predictive maintenance; rotating machinery; vibration analysis; bearing fault detection; time-frequency analysis; embedded systems; fault classification; gearbox diagnostics; feature extraction.\nBio: Bogdan Bajić received his B.Sc. and M.Sc. degrees in Mechatronics Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2010 and 2012, respectively, and his Ph.D. from the same institution in 2018, with a thesis on vibration-based bearing fault detection using embedded signal processing. He was a postdoctoral researcher at the Faculty of Mechanical Engineering, University of Ljubljana, from 2018 to 2020, before returning to Novi Sad as an Assistant Professor. His group focuses on condition monitoring of rotating machinery — bearings, gearboxes, and electric motors — through accelerometer arrays, time-frequency analysis, and machine learning classifiers running on low-power microcontrollers. He teaches undergraduate courses in Sensors and Measurement Systems and graduate courses in Predictive Maintenance. The laboratory operates a dedicated rotating machinery fault-simulation test rig, a multi-channel vibration data acquisition system, and a set of single-board embedded platforms for on-edge inference.\nOpen to: contract research; joint projects; consulting; equipment access; student internships; industrial PhD supervision.\nIndustry experience: During the SensiDrive project, Bajić collaborated with a medium-sized food processing company in Novi Sad to conduct a 14-month field trial of the wireless sensor nodes, including on-site installation, calibration, and follow-up fault confirmation with maintenance staff.\nNotes: Bajić has a working test rig and multi-channel DAQ system available for industry-funded experiments; short-turnaround measurement campaigns are feasible. He is particularly interested in companies with rotating machinery maintenance problems where data collection can be done on-site.",
+    "researcherIds": [
+      "R0045"
+    ]
+  },
+  "R0510": {
+    "id": "R0510",
+    "kind": "researcher",
+    "title": "Olivera Ognjanov",
+    "text": "Olivera Ognjanov (R0510): Assistant Professor, Department of Mechatronics, Robotics and Automation, Faculty of Technical Sciences, University of Novi Sad.\nFields: Mechanical Engineering; Condition Monitoring and Fault Diagnostics; Vibration Signal Processing; Computational Dynamics.\nKeywords: planetary gearbox; gear-mesh frequency; torsional dynamics; pitting detection; vibration signal processing; multi-body simulation; harmonic extraction; rotating machinery diagnostics; surface fatigue; spectral analysis.\nBio: Olivera Ognjanov received her B.Sc. and M.Sc. degrees in Mechanical Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2008 and 2011 respectively, and completed her Ph.D. at the same institution in 2017, with a dissertation on torsional vibration decomposition in planetary gearboxes under variable load conditions. She joined the Department of Mechatronics, Robotics and Automation as a teaching assistant in 2012 and was promoted to Assistant Professor in 2018. Her research group focuses on vibration signal processing for rotating machinery health monitoring, with particular emphasis on gear-mesh frequency harmonic extraction, multi-body torsional dynamics modelling, and early detection of surface fatigue in planetary gearbox stages. She teaches courses in machine dynamics and condition monitoring. The group operates a dedicated gearbox test rig equipped with torque sensors, incremental encoders, and a 24-channel NI data acquisition system.\nOpen to: joint projects with companies monitoring gearboxes in conveyor, wind, or industrial drive applications; contract research on gear fault detection algorithm development and validation; access to gearbox test rig and NI data acquisition equipment for measurements; student internships in signal processing and experimental vibration measurement; consulting on selection and calibration of diagnostic indices for planetary drive applications; industrial PhD supervision co-funded by industry partner.\nIndustry experience: Ognjanov collaborated with Konvejer Tehnika d.o.o. (Novi Sad) on a six-month measurement campaign on in-service conveyor gearboxes as part of the PLANETMON project. She has provided informal consulting to two local machine builders on sensor placement and threshold selection for vibration monitoring systems.\nNotes: Ognjanov's test rig is booked heavily during the academic year but is more accessible in July and August. She is specifically interested in companies at NTP Novi Sad working on industrial IoT or predictive maintenance platforms that could serve as deployment targets for the embedded monitoring unit developed under PLANETMON. She prefers collaborations where the company provides access to field gearboxes or operational data rather than purely funding-only arrangements.",
+    "researcherIds": [
+      "R0510"
+    ]
+  },
+  "R0737": {
+    "id": "R0737",
+    "kind": "researcher",
+    "title": "Gordana Kuzmanović",
+    "text": "Gordana Kuzmanović (R0737): Senior Research Associate, Department of Mechanical Engineering (Machine Design and Mechanics), Faculty of Technical Sciences, University of Novi Sad.\nFields: Mechanical Engineering; Condition Monitoring and Fault Diagnostics; Machine Learning Applied to Engineering; Signal Processing.\nKeywords: vibration analysis; rotating machinery; bearing fault diagnosis; gear fault detection; frequency-domain feature extraction; physics-informed machine learning; envelope spectrum; cyclostationary analysis; multi-class fault classification; drivetrain condition monitoring.\nBio: Gordana Kuzmanović received her B.Sc. and M.Sc. degrees in Mechanical Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2003 and 2006 respectively, and completed her Ph.D. at the same institution in 2012 with a dissertation on frequency-domain fault indicators for rolling-element bearings under variable speed conditions. She has been a Senior Research Associate in the Department of Machine Design and Mechanics since 2018. Her group focuses on vibration-based condition monitoring of rotating machinery, combining signal processing techniques—envelope analysis, cepstral pre-whitening, cyclostationary decomposition—with physics-informed machine learning models for multi-class fault classification. She teaches courses in Machine Dynamics and Applied Vibration Analysis at both undergraduate and master's level. Laboratory work is conducted in the FTS Rotating Machinery Diagnostics Lab, equipped with a modular drivetrain test rig, multi-axis accelerometers, laser tachometry, and a data acquisition system capable of 200 kS/s per channel.\nOpen to: joint projects with companies developing condition monitoring products or services; contract research on vibration-based fault detection for specific machine types; industrial PhD supervision for candidates employed at NTP Novi Sad companies; student internships in the Rotating Machinery Diagnostics Lab; consulting on sensor placement, feature extraction pipeline design, and classifier validation; equipment access to the modular drivetrain test rig for company-sponsored experiments.\nIndustry experience: During the WINDMON project Kuzmanović worked directly with a turbine operator in Vojvodina to install and calibrate field monitoring hardware and interpret alarm events over two years of operation. She has also provided informal technical advice to a Novi Sad-based maintenance services firm on vibration acceptance criteria for overhauled gearboxes.\nNotes: Kuzmanović is particularly interested in collaborations where access to proprietary field vibration data can complement her laboratory datasets; she is prepared to sign standard NDAs. Her benchmark dataset paper is under review and expected to increase interest from algorithm developers seeking a validated testbed.",
+    "researcherIds": [
+      "R0737"
+    ]
+  },
+  "R0738": {
+    "id": "R0738",
+    "kind": "researcher",
+    "title": "Igor Starčević",
+    "text": "Igor Starčević (R0738): Assistant Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Machine Learning and Data Mining; Industrial Control and SCADA Systems; Predictive Maintenance and Condition Monitoring; Renewable Energy Systems.\nKeywords: anomaly detection; predictive maintenance; time-series classification; SCADA telemetry; performance ratio; soiling estimation; photovoltaic systems; fault detection; regression modelling; distributed energy assets.\nBio: Igor Starčević received his B.Sc. and M.Sc. degrees in Computer Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2009 and 2012 respectively, and his Ph.D. in Technical Sciences from the same institution in 2018, with a dissertation on regression-based fault indicators for photovoltaic SCADA telemetry. He joined the Department of Computing and Control Engineering as a teaching assistant in 2013 and was appointed Assistant Professor in 2019. His group focuses on time-series anomaly detection, predictive maintenance pipelines, and performance degradation modelling for distributed energy assets including solar parks, small wind installations, and district heating substations. He teaches courses in machine learning and industrial data systems. The group regularly works with real SCADA datasets and uses a GPU-equipped workstation cluster and the university's HIL (hardware-in-the-loop) test bench for validation experiments.\nOpen to: joint projects with companies operating PV parks, wind farms, or district heating networks that can provide SCADA data access; contract research on anomaly detection pipeline development and validation; industrial PhD co-supervision with companies in the energy or industrial IoT sector; student internships focused on data engineering and model deployment tasks; consulting on threshold selection, sensor quality assessment, and maintenance scheduling frameworks.\nIndustry experience: Starčević provided a six-month consultancy to a regional solar asset management company in 2022–2023, assisting with the specification and partial implementation of an automated performance reporting system based on methods developed in the DIASOLAR project.\nNotes: He has an active doctoral student finishing in late 2026, so capacity for new project coordination is limited until 2027; work package participation or contract research roles are more feasible in the near term. He has expressed a preference for collaborations that include data sharing agreements, as access to labelled fault telemetry from new asset types remains the main bottleneck for his group's research.",
+    "researcherIds": [
+      "R0738"
+    ]
+  },
+  "R0773": {
+    "id": "R0773",
+    "kind": "researcher",
+    "title": "Branislava Ostojić",
+    "text": "Branislava Ostojić (R0773): Full Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Statistical Process Control; Machine Learning; Industrial Cyber-Physical Systems; Time Series Analysis.\nKeywords: multivariate statistical process control; change-point detection; non-stationary time series; adaptive thresholding; unsupervised anomaly detection; cyber-physical systems; online learning; control charts; kernel methods; industrial monitoring.\nBio: Branislava Ostojić received her Dipl.Ing. in Computer Engineering from the Faculty of Technical Sciences, University of Novi Sad in 2000, followed by an M.Sc. in 2003 and a Ph.D. in 2009, both from the same institution. She was appointed Assistant Professor in 2010, Associate Professor in 2016, and Full Professor in 2022. Her research group focuses on statistical process control for industrial systems, combining multivariate time-series analysis with machine learning methods such as kernel-based change-point detection, online anomaly scoring, and adaptive control-chart thresholds for non-stationary signals. She teaches courses in Stochastic Systems, Applied Statistics for Engineers, and Industrial Data Analysis. The group operates within the Laboratory for Intelligent Measurement and Control Systems at FTN, using a real-time data acquisition testbed with programmable logic controllers, vibration sensors, and a shared high-memory compute server for streaming-data experiments.\nOpen to: joint research projects with companies operating sensor-instrumented production equipment; contract research on anomaly detection and SPC system design; industrial PhD supervision for candidates employed in manufacturing or automation companies; consulting on deployment and calibration of statistical monitoring systems; student internships focused on data collection and algorithm prototyping; equipment access (laboratory testbed with PLC, vibration, pressure, and temperature acquisition).\nIndustry experience: Ostojić has carried out paid consultancy engagements for two manufacturers in the Vojvodina region, advising on the replacement of rule-based alarm systems with data-driven SPC methods and on the design of operator dashboards for process monitoring. Both engagements ran for approximately six months each.\nNotes: Ostojić is particularly interested in collaborators who can provide access to labelled or time-stamped operational data from real production systems, as clean annotated industrial datasets are the main bottleneck for her group's current research. She is not in a position to take on projects requiring extensive hardware integration or embedded firmware development beyond lightweight deployment of pre-trained models.",
+    "researcherIds": [
+      "R0773"
+    ]
+  },
+  "R0822": {
+    "id": "R0822",
+    "kind": "researcher",
+    "title": "Vladana Radić",
+    "text": "Vladana Radić (R0822): Full Professor, Department of Mechatronics, Robotics and Automation, Faculty of Technical Sciences, University of Novi Sad.\nFields: Condition Monitoring and Predictive Maintenance; Signal Processing and Time-Series Analysis; Mechatronics and Rotating Machinery; Machine Learning for Industrial Applications.\nKeywords: predictive maintenance; vibration analysis; thermal signatures; rotating machinery; remaining useful life; fault prognosis; multivariate time-series; gearbox diagnostics; infrared thermography; bearing fault detection.\nBio: Vladana Radić received her Dipl.Ing. and M.Sc. degrees in Mechanical Engineering from the University of Novi Sad in 2001 and 2005, respectively, and her Ph.D. in Mechatronics from the same institution in 2010. She joined the Department of Mechatronics, Robotics and Automation at the Faculty of Technical Sciences in 2010 as an Assistant Professor and was promoted to Full Professor in 2021. Her research group focuses on condition monitoring of rotating machinery—pumps, compressors, gearboxes, and electric motors—using synchronized acquisition of vibration and thermal data, multivariate statistical process control, and data-driven fault prognosis including remaining useful life estimation. She teaches courses in machine diagnostics, signal processing, and industrial automation. The group operates a dedicated rotating machinery test laboratory equipped with vibration measurement rigs, infrared thermography systems, and a multi-channel DAQ infrastructure.\nOpen to: joint projects with companies in process industries (pumps, compressors, conveyors); contract research for condition monitoring system development and validation; industrial PhD supervision for candidates employed at NTP Novi Sad companies; consulting on predictive maintenance system design and sensor selection; equipment access to rotating machinery test rigs and infrared thermography systems; student internships related to data collection and analysis for condition monitoring.\nIndustry experience: Prof. Radić has collaborated with two Vojvodina-based industrial companies (grain handling and conveyor operations) as project partner and has provided technical consulting to a domestic manufacturer of centrifugal pumps on vibration acceptance testing procedures.\nNotes: Prof. Radić is currently supervising three doctoral students and is co-supervising one additional student jointly with Politehnica University of Timișoara; she has limited capacity for new full-time project commitments before mid-2025 but is available for smaller consulting engagements and equipment-sharing arrangements. She prefers collaborations where measurement data can be shared for academic publication.",
+    "researcherIds": [
+      "R0822"
+    ]
+  },
+  "SYN-PAT-017": {
+    "id": "SYN-PAT-017",
+    "kind": "patent",
+    "title": "Adaptive Threshold Vibration Monitoring Node with Dual-Mode Sampling for Rotating Machinery",
+    "text": "Adaptive Threshold Vibration Monitoring Node with Dual-Mode Sampling for Rotating Machinery (2023, granted).\nInventors: Bogdan Bajić (R0045).\nA wireless sensor node for continuous bearing condition monitoring comprises a triaxial MEMS accelerometer, a low-power microcontroller, and a sub-GHz radio transceiver. The node operates in a low-power survey mode at reduced sampling frequency and switches autonomously to a high-rate diagnostic mode when an on-chip RMS estimator exceeds an adaptive threshold. The threshold adapts to baseline vibration level over a configurable initialisation window, reducing false triggers caused by operating-point changes. Patent covers the threshold adaptation algorithm, the dual-mode state machine firmware architecture, and the hardware layout of the sensor node enclosure.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2023
+  },
+  "SYN-PAT-045": {
+    "id": "SYN-PAT-045",
+    "kind": "patent",
+    "title": "Method and Device for Adaptive Threshold Setting in Vibration-Based Bearing Condition Monitoring Under Variable Operating Speed",
+    "text": "Method and Device for Adaptive Threshold Setting in Vibration-Based Bearing Condition Monitoring Under Variable Operating Speed (2020, granted).\nInventors: Vladana Radić (R0822).\nThe invention describes a method for automatically adjusting alarm and warning thresholds for vibration-derived health indicators—specifically RMS and kurtosis computed in selectable frequency bands—as a function of measured shaft rotational speed sampled from a tachometer signal. A lookup table of baseline healthy-condition feature distributions, indexed by speed bin, is updated online using an exponentially weighted moving average. Threshold levels are recomputed at each measurement interval as multiples of the current baseline standard deviation. The associated device comprises a signal conditioning unit, a microcontroller executing the threshold adaptation algorithm, and a relay output for maintenance alert signalling. The method reduces false alarm rates under variable-speed operation by approximately 60% relative to fixed-threshold implementations in validation tests.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2020
+  },
+  "SYN-PRJ-0203": {
+    "id": "SYN-PRJ-0203",
+    "kind": "project",
+    "title": "Embedded Sensor Intelligence for Predictive Maintenance of Industrial Drive Systems",
+    "text": "SensiDrive: Embedded Sensor Intelligence for Predictive Maintenance of Industrial Drive Systems (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0045 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad, Serbia; Institute for Automation and Control, Novi Sad, Serbia.\nSensiDrive addressed the gap between laboratory bearing-fault research and deployable embedded diagnostic hardware. The project developed a complete pipeline from data acquisition — using both piezoelectric and MEMS accelerometers — through on-chip feature extraction and compressed neural network inference, to wireless condition reporting. A test rig simulating a three-bearing drive shaft was designed and built at FTN Novi Sad. Algorithms were validated on the rig under controlled fault conditions and in a limited field trial at a partner manufacturing facility. The project produced open benchmark data, embedded firmware, and two peer-reviewed publications. A total of four researchers and two graduate students were involved over the project duration.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0240": {
+    "id": "SYN-PRJ-0240",
+    "kind": "project",
+    "title": "Warehouse Pose Estimation Under Real-World Conditions for Worker Safety Monitoring",
+    "text": "WARPEST: Warehouse Pose Estimation Under Real-World Conditions for Worker Safety Monitoring (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0575 principal investigator; R0773 team member.\nPartners: Faculty of Technical Sciences, University of Novi Sad; LogiTrans d.o.o., Novi Sad; VojaDistrib d.o.o., Zrenjanin.\nThe project developed and validated monocular pose estimation methods adapted to logistics warehouse environments where occlusion, mixed artificial lighting, and heavy machinery create severe domain shift from standard benchmark conditions. Research activities included collection and annotation of the WarePose dataset, design of source-free adaptation procedures, and integration of kinematic constraint layers into detection pipelines. Collaboration with two logistics companies in Vojvodina provided access to real facilities for data collection and for pilot deployment of a software monitoring prototype. The project also supported two PhD students and produced six peer-reviewed publications. The resulting software prototype estimates ergonomic risk indicators from monocular CCTV footage without modifying existing camera infrastructure.",
+    "researcherIds": [
+      "R0575",
+      "R0773"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0312": {
+    "id": "SYN-PRJ-0312",
+    "kind": "project",
+    "title": "Cross-Border Predictive Maintenance Frameworks for Distributed Renewable Energy Infrastructure",
+    "text": "MAINTAIN-IPA: Cross-Border Predictive Maintenance Frameworks for Distributed Renewable Energy Infrastructure (Interreg IPA Hungary–Serbia, 2023–2026).\nParticipants: R0738 work package leader.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Engineering and Information Technology, University of Pécs; SunField Energy Kft., Kecskemét; Vojvodina Renewables d.o.o., Novi Sad.\nMAINTAIN-IPA is a cross-border cooperation project addressing the fragmented and predominantly reactive maintenance practices applied to small and medium renewable energy installations on both sides of the Hungarian–Serbian border. Igor Starčević leads the work package on data integration and machine learning pipeline development, which involves aligning heterogeneous SCADA data from Hungarian and Serbian partners into a common schema and training shared predictive maintenance models. The project includes a pilot deployment at two sites—one wind farm in Bács-Kiskun county and one PV park in the Vojvodina region—with live anomaly alerting integrated into each operator's existing SCADA dashboard.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2023
+  },
+  "SYN-PRJ-0428": {
+    "id": "SYN-PRJ-0428",
+    "kind": "project",
+    "title": "Physics-Informed Machine Learning for Multi-Fault Diagnosis in Industrial Drivetrains",
+    "text": "DRIVETRAIN-DX: Physics-Informed Machine Learning for Multi-Fault Diagnosis in Industrial Drivetrains (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0737 principal investigator; R0525 team member.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Politehnica University of Timișoara, Romania.\nThe project develops fault diagnosis methods for industrial gearboxes and rolling-element bearings that incorporate physical knowledge of machine kinematics directly into the structure of machine learning classifiers and feature spaces. Work covers three threads: (1) physics-constrained feature engineering for SVM and RF classifiers, (2) domain adaptation strategies enabling classifiers trained on laboratory rigs to transfer to field machines, and (3) construction and publication of a labelled benchmark dataset from the FTS drivetrain test rig. The project supports two doctoral students and involves a collaboration with Politehnica University of Timișoara. All software and datasets are released openly at project end.",
+    "researcherIds": [
+      "R0737",
+      "R0525"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0429": {
+    "id": "SYN-PRJ-0429",
+    "kind": "project",
+    "title": "Low-Cost Condition Monitoring Systems for Small and Medium Wind Turbines in the Western Balkans",
+    "text": "WINDMON: Low-Cost Condition Monitoring Systems for Small and Medium Wind Turbines in the Western Balkans (Interreg IPA Hungary–Serbia, 2018–2020).\nParticipants: R0737 work package leader; R0786 team member.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Bay Zoltán Applied Research Institute, Miskolc, Hungary; Vojvodina Renewable Energy Agency, Novi Sad, Serbia.\nThis cross-border project addressed the lack of affordable condition monitoring infrastructure for the small and medium wind turbine fleet in the Hungary–Serbia border region. Gordana Kuzmanović led the work package responsible for vibration signal processing algorithms and alarm logic, adapting laboratory-developed spectral trending methods to operate on low-cost single-board computers with intermittent connectivity. Field installations on three turbines in Vojvodina provided long-term measurement data used to validate alarm thresholds. The project produced a hardware–software monitoring prototype and a deployment guide for turbine operators, and supported two master's thesis projects at the Faculty of Technical Sciences.",
+    "researcherIds": [
+      "R0737",
+      "R0786"
+    ],
+    "year": 2018
+  },
+  "SYN-PRJ-0441": {
+    "id": "SYN-PRJ-0441",
+    "kind": "project",
+    "title": "Fusion of Vibration and Infrared Thermography Data for Condition Assessment of Slow-Speed Industrial Machinery",
+    "text": "THERMOVIB: Fusion of Vibration and Infrared Thermography Data for Condition Assessment of Slow-Speed Industrial Machinery (Provincial Secretariat for Higher Education and Scientific Research, 2018–2020).\nParticipants: R0822 principal investigator; R0615 team member.\nPartners: Žitopromet Vojvodina d.o.o., Zrenjanin, Serbia; Lučka Uprava Novi Sad, Serbia.\nTHERMOVIB addressed the diagnostic gap for machinery operating at shaft speeds below 100 rpm, where standard vibration-based fault indicators are unreliable. The project developed synchronised data acquisition protocols combining piezoelectric accelerometers and thermal cameras, and constructed fusion algorithms that exploited the complementary sensitivity of each modality to different fault types and severity levels. Field experiments were conducted at a grain handling facility and a river port conveyor installation in the Vojvodina region. The project delivered sensor placement guidelines, fusion algorithm code, and a practical handbook for maintenance engineers working with slow-speed conveyor and elevator machinery. Two master's theses and one conference paper resulted from the project.",
+    "researcherIds": [
+      "R0822",
+      "R0615"
+    ],
+    "year": 2018
+  },
+  "SYN-PRJ-0671": {
+    "id": "SYN-PRJ-0671",
+    "kind": "project",
+    "title": "Interoperable Monitoring Middleware for Industrial IoT with Embedded Statistical Quality Control",
+    "text": "IIoTMON: Interoperable Monitoring Middleware for Industrial IoT with Embedded Statistical Quality Control (Interreg IPA Hungary–Serbia, 2022–2025).\nParticipants: R0773 work package leader.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Information Technology and Bionics, Pázmány Péter Catholic University, Budapest; Regional Chamber of Commerce Subotica; Chamber of Industry and Commerce Bács-Kiskun County, Kecskemét.\nThis cross-border project addressed the integration of statistical process control logic into IoT middleware platforms used by small and medium-sized manufacturers in the Hungary–Serbia border region. The Novi Sad team led the work package on SPC algorithm design and embedded deployment, contributing drift-robust anomaly scoring modules certified to run on Cortex-M class microcontrollers. The Hungarian partner coordinated middleware architecture and communication protocols, while a regional chamber of commerce facilitated access to pilot companies. Three pilot deployments were completed: a food-packaging line, a metal-pressing workshop, and a grain-drying facility. Evaluation covered detection latency, energy consumption, and false-alarm frequency over 12-month monitoring periods.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0818": {
+    "id": "SYN-PRJ-0818",
+    "kind": "project",
+    "title": "Physics-informed monitoring of planetary gearboxes for industrial conveyor and wind energy applications",
+    "text": "PLANETMON: Physics-informed monitoring of planetary gearboxes for industrial conveyor and wind energy applications (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2022–2025).\nParticipants: R0510 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Mechanical Engineering, University of Belgrade; Konvejer Tehnika d.o.o., Novi Sad.\nThe project develops and validates a monitoring framework that combines multi-body torsional dynamics models with vibration signal processing to detect early-stage surface pitting in planetary gearboxes used in conveyor drives and small wind turbines. The core activities include constructing a parameterised simulation library covering gearbox ratios and planet counts common in Serbian industry, performing accelerated fatigue experiments on two physical gearboxes, and deriving operating-condition-aware detection thresholds from the combined simulation and experimental database. A prototype embedded monitoring unit is being developed for field validation at an industrial partner site. The project involves three research groups from the University of Novi Sad and one from the University of Belgrade.",
+    "researcherIds": [
+      "R0510"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-00312": {
+    "id": "SYN-PUB-00312",
+    "kind": "publication",
+    "title": "Gear diagnostics in planetary drives: signal processing and simulation methods",
+    "text": "Gear diagnostics in planetary drives: signal processing and simulation methods (2022, book chapter, Handbook of Rotating Machinery Condition Monitoring, TechPress Verlag, Stuttgart).\nAuthors: Olivera Ognjanov (R0510); Dušan Tošić (R0174); Velimir Mladenović (R0026); Miroslav Kolar (outside co-author); Goran Lazić (outside co-author).\nKeywords: planetary gearbox diagnostics; synchronous averaging; order tracking; cepstrum; failure modes.\nThis book chapter reviews the signal processing and computational simulation approaches used for diagnostics in planetary gearboxes, covering synchronous averaging, cepstrum analysis, time-frequency methods, and multi-body torsional dynamics modelling. The chapter discusses the practical challenges of sensor placement on rotating carriers, reference signal acquisition for order tracking, and the selection of appropriate diagnostic indices for different failure modes including pitting, spalling, and tooth fracture. Example results from laboratory gearbox experiments at two test facilities are used to illustrate each method. The chapter concludes with a discussion of current limitations, including the difficulty of separating overlapping mesh harmonics when the number of planet gears changes the sideband spacing, and directions for combining physics-based models with data-driven approaches.",
+    "researcherIds": [
+      "R0510",
+      "R0174",
+      "R0026"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-00583": {
+    "id": "SYN-PUB-00583",
+    "kind": "publication",
+    "title": "Comparison of empirical mode decomposition and wavelet packet transform for gearbox fault feature extraction",
+    "text": "Comparison of empirical mode decomposition and wavelet packet transform for gearbox fault feature extraction (2015, conference, Proceedings of the 8th International Conference on Condition Monitoring and Machinery Failure Prevention Technologies (CMFPT), Novi Sad).\nAuthors: Bogdan Bajić (R0045); Miroslav Đorđević (outside co-author); Ana Petrović (outside co-author).\nKeywords: empirical mode decomposition; wavelet packet transform; gearbox diagnostics; feature extraction; k-nearest neighbour.\nGearbox tooth-surface fatigue and chipping faults produce non-stationary vibration signatures that challenge classical Fourier-based methods. This study compares empirical mode decomposition (EMD) and wavelet packet transform (WPT) for extracting fault-sensitive features from a two-stage helical gearbox test rig running at 1450 RPM under three load levels. Fourteen statistical features — including kurtosis, RMS, and energy ratio per sub-band — were computed from the intrinsic mode functions and wavelet packet nodes, respectively. A k-nearest neighbour classifier was trained and tested using stratified five-fold cross-validation on a dataset of 600 labelled acquisitions spanning healthy, pitting, and chipped-tooth conditions. WPT with a Daubechies-8 mother wavelet achieved 93.5% overall accuracy versus 87.2% for EMD-derived features, with the energy ratio from the third-level WPT nodes providing the most discriminative single feature. Misclassification was concentrated at low-load conditions for both methods.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-00584": {
+    "id": "SYN-PUB-00584",
+    "kind": "publication",
+    "title": "Vibration-based bearing fault classification using support vector machines with RBF kernels on a low-cost MEMS accelerometer platform",
+    "text": "Vibration-based bearing fault classification using support vector machines with RBF kernels on a low-cost MEMS accelerometer platform (2017, journal, Measurement Science and Engineering Letters).\nAuthors: Bogdan Bajić (R0045); Tamás Kovács (outside co-author); Zoltán Varga (outside co-author); Nikola Milošević (outside co-author).\nKeywords: MEMS accelerometer; support vector machine; bearing classification; low-cost sensing; frequency-domain features.\nIndustrial deployment of bearing diagnostics requires sensor and computation costs compatible with high-volume machinery. This paper evaluates a MEMS accelerometer (±16 g, 12-bit ADC, 10 kHz bandwidth) as an alternative to laboratory-grade piezoelectric sensors for classifying four bearing conditions: healthy, inner-race fault, outer-race fault, and rolling-element fault. A support vector machine with radial basis function kernel was trained on time-domain and frequency-domain features extracted from 1024-sample windows. Training data were collected at 1200 and 1800 RPM; test data included a 900 RPM speed not seen during training. Classification accuracy on the MEMS sensor reached 89.1% overall, compared with 95.4% for a co-located piezoelectric reference sensor. The accuracy gap was largest for rolling-element faults (−9.3 pp) due to the MEMS unit's higher noise floor above 4 kHz. Practical thresholds for minimum defect size detectable by the MEMS sensor are quantified.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-00585": {
+    "id": "SYN-PUB-00585",
+    "kind": "publication",
+    "title": "On-edge bearing fault detection with a convolutional neural network quantised for ARM Cortex-M4 deployment",
+    "text": "On-edge bearing fault detection with a convolutional neural network quantised for ARM Cortex-M4 deployment (2019, journal, IEEE Transactions on Industrial Embedded Computing).\nAuthors: Luka Horvat (outside co-author); Bogdan Bajić (R0045); Nikola Milošević (outside co-author).\nKeywords: 1D-CNN; embedded inference; quantisation; microcontroller; bearing diagnostics.\nRunning inference for bearing diagnostics directly on a microcontroller eliminates the need for continuous data streaming to a central server, reducing latency and communication overhead. A one-dimensional convolutional neural network (1D-CNN) was designed to classify five bearing conditions from raw vibration windows of 2048 samples acquired at 25.6 kHz. The network was trained on 4800 labelled windows collected on a laboratory test rig, then quantised from 32-bit float to 8-bit integer using post-training quantisation. The resulting model (63 kB) was deployed on an STM32F4-based board. Inference time was 14.7 ms per window, and classification accuracy dropped by 1.8 percentage points compared with the floating-point baseline (94.6% versus 96.4%). Power draw during inference was measured at 38 mW. The study also reports sensitivity of accuracy to quantisation bit-width, showing that 8-bit suffices while 4-bit degrades performance by more than 6 pp.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-00586": {
+    "id": "SYN-PUB-00586",
+    "kind": "publication",
+    "title": "Fault detection in permanent-magnet synchronous motor bearings using combined vibration and stator current signals",
+    "text": "Fault detection in permanent-magnet synchronous motor bearings using combined vibration and stator current signals (2020, journal, Diagnostics and Reliability in Rotating Systems).\nAuthors: Stefan Rădulescu (outside co-author); Milena Ostojić (outside co-author); Bogdan Bajić (R0045).\nKeywords: sensor fusion; stator current; PMSM; bearing fault; random forest.\nVibration and stator current signals carry complementary information about bearing health in permanent-magnet synchronous motors. This study investigates sensor fusion of these two modalities for detecting outer-race and inner-race bearing faults at incipient and developed stages in a 2.2 kW PMSM under 25%, 50%, and 75% rated load. Features were extracted separately from each modality — RMS, kurtosis, and characteristic frequency amplitudes from vibration; sideband amplitudes around the supply frequency from current — and fused at the feature level before input to a random forest classifier. Fusion improved overall accuracy to 91.8% compared with 84.3% for vibration alone and 79.6% for current alone on a 480-sample test set. Gain was most pronounced at 25% load where vibration signal-to-noise ratio is lowest. The approach requires only a single additional current sensor if a vibration sensor is already present.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-00588": {
+    "id": "SYN-PUB-00588",
+    "kind": "publication",
+    "title": "Transfer learning for bearing fault detection across different machine configurations using domain adaptation",
+    "text": "Transfer learning for bearing fault detection across different machine configurations using domain adaptation (2022, conference, Proceedings of the 14th European Conference on Structural Dynamics and Condition Monitoring (ECSDCM), Vienna).\nAuthors: Luka Horvat (outside co-author); Jana Turčanová (R0463); Dijana Čakarević (outside co-author); Bogdan Bajić (R0045); Vladana Radić (R0822).\nKeywords: transfer learning; domain adaptation; MMD; bearing fault; cross-machine.\nMachine learning models trained on one rotating machine configuration frequently perform poorly when applied to a different machine with different nominal vibration characteristics. This paper evaluates maximum mean discrepancy (MMD) domain adaptation for transferring a bearing fault classifier trained on a 4-pole induction motor test rig to two target machines: a 6-pole motor and a belt-driven spindle, both with different bearing types. Source-domain training used 3200 labelled samples; target domains provided 0, 10, and 50 labelled samples in three adaptation scenarios. With zero target labels, MMD adaptation improved accuracy from 61.4% (no adaptation) to 76.9% on the 6-pole target and from 54.1% to 70.3% on the spindle. With 50 target labels, accuracy reached 88.2% and 83.7% respectively. Results suggest that moderate unlabelled target data is sufficient for useful transfer when vibration frequency bands are partially overlapping.",
+    "researcherIds": [
+      "R0463",
+      "R0045",
+      "R0822"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-00589": {
+    "id": "SYN-PUB-00589",
+    "kind": "publication",
+    "title": "Wireless sensor node with adaptive sampling for continuous bearing condition monitoring in multi-machine installations",
+    "text": "Wireless sensor node with adaptive sampling for continuous bearing condition monitoring in multi-machine installations (2023, journal, Mechanical Systems Monitoring and Control).\nAuthors: Bogdan Bajić (R0045); Aleksandar Bogdanović (outside co-author); Petra Novotná (outside co-author).\nKeywords: wireless sensor node; adaptive sampling; IoT; field deployment; energy efficiency.\nContinuous high-rate vibration sampling across many machines is energetically and bandwidth-intensive. This paper presents a wireless sensor node design in which the sampling rate adapts between a low-power survey mode (1 kHz, 5 s per minute) and a full-rate diagnostic mode (25.6 kHz, triggered) based on a lightweight RMS threshold computed on-chip. The node uses a sub-GHz radio and a primary lithium battery. Field deployment covered eight conveyor-drive bearings in a food processing facility over 14 months. Battery life exceeded 18 months at the observed trigger rate. Three developing bearing faults were flagged by the node and confirmed by scheduled inspection, with lead times of 19, 31, and 44 days before audible symptoms appeared. One false positive occurred, attributable to a temporary increase in ambient floor vibration during facility maintenance.",
+    "researcherIds": [
+      "R0045"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-00590": {
+    "id": "SYN-PUB-00590",
+    "kind": "publication",
+    "title": "Explainability of CNN-based bearing fault classifiers through gradient-weighted activation mapping on time-frequency inputs",
+    "text": "Explainability of CNN-based bearing fault classifiers through gradient-weighted activation mapping on time-frequency inputs (2025, journal, International Journal of Condition Monitoring and Engineering).\nAuthors: Bogdan Bajić (R0045); Dijana Čakarević (outside co-author); Stefan Jakovljević (R0293); Milena Ostojić (outside co-author); Marco Ferretti (outside co-author).\nKeywords: Grad-CAM; explainability; CNN; STFT spectrogram; bearing fault.\nBlack-box neural network classifiers are difficult to validate for safety-relevant maintenance decisions. This study applies gradient-weighted class activation mapping (Grad-CAM) to a 2D-CNN trained on short-time Fourier transform spectrograms to identify which time-frequency regions drive fault-class predictions for inner-race, outer-race, and cage faults in angular-contact bearings. The model was trained on 5600 spectrograms and achieved 94.1% five-fold cross-validated accuracy. Grad-CAM heat maps were generated for 200 correctly and 18 incorrectly classified test samples. For inner-race faults, activation concentrated consistently at the ball-pass inner-race frequency harmonic band, in agreement with analytical fault-frequency predictions. Outer-race activations were more distributed, correlating with sidebands rather than the carrier frequency. Misclassified samples showed activation in noise-dominated low-frequency regions, providing a diagnostic indicator for uncertain predictions. The results support Grad-CAM as a practical sanity-check tool for maintenance engineers.",
+    "researcherIds": [
+      "R0045",
+      "R0293"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-00592": {
+    "id": "SYN-PUB-00592",
+    "kind": "publication",
+    "title": "Effect of ambient temperature variation on the long-term stability of robot kinematic calibration in uncontrolled workshop environments",
+    "text": "Effect of ambient temperature variation on the long-term stability of robot kinematic calibration in uncontrolled workshop environments (2022, journal, International Journal of Machine Tools and Manufacture).\nAuthors: Vladimir Ivanović (R0851); Bojan Lazić (outside co-author); Erika Horváth (outside co-author); Bogdan Bajić (R0045); Andrea Krstić (R0521); Tamás Vörös (outside co-author).\nKeywords: ambient temperature; calibration stability; workshop environment; long-term accuracy; recalibration interval.\nCalibration of industrial robots is routinely performed in temperature-controlled metrology rooms, yet robots operate in workshops where ambient temperature may vary by 15°C or more across a day. This study quantifies the degradation in calibration validity caused by ambient temperature swings using field measurements from two robot installations in an automotive component workshop in Novi Sad over a 90-day monitoring period. A laser tracker and a network of 24 ambient and structural temperature sensors logged data at 15-minute intervals. Calibration accuracy, expressed as the deviation of measured TCP positions from commanded positions, degraded from an initial 0.15 mm RMS to 0.38 mm RMS on days with ambient swings exceeding 12°C. A correction lookup table indexed by ambient temperature reduced this drift to 0.17 mm without requiring a full recalibration pass. The study quantifies the recalibration interval as a function of allowable accuracy budget and expected ambient temperature range, providing practitioners with a dimensioning tool.",
+    "researcherIds": [
+      "R0851",
+      "R0045",
+      "R0521"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-00593": {
+    "id": "SYN-PUB-00593",
+    "kind": "publication",
+    "title": "Long Short-Term Memory Networks for Remaining Useful Life Prediction of Rolling Bearings: Training Data Requirements and Generalisation Across Operating Conditions",
+    "text": "Long Short-Term Memory Networks for Remaining Useful Life Prediction of Rolling Bearings: Training Data Requirements and Generalisation Across Operating Conditions (2020, journal, Journal of Intelligent Maintenance Systems).\nAuthors: Milena Stojković (outside co-author); Petra Novotná (outside co-author); Filip Knežević (R0278); Nemanja Đorđević (outside co-author); Bogdan Bajić (R0045); Vladana Radić (R0822).\nKeywords: LSTM; remaining useful life; deep learning; bearing; generalisation.\nRecurrent neural networks with long short-term memory (LSTM) cells have been proposed for RUL prediction, but their practical data requirements are rarely quantified rigorously. This paper examines how many run-to-failure sequences are needed to train a reliable LSTM model, and how well a model trained at one operating condition generalises to others, using a dataset of 68 bearing run-to-failure sequences recorded at two speeds (1,200 and 1,800 rpm) and two radial loads (4 kN and 6 kN). Networks were trained on subsets ranging from 5 to 50 sequences. With 20 or more training sequences, mean absolute percentage error in RUL prediction stabilised near 14.3% at the 50% consumed-life mark. Cross-condition generalisation degraded performance to 22–28% MAPE when the training and test operating conditions differed, but a simple linear scaling of the health index by rated load and speed partially recovered accuracy to 17.1%. The study provides practical guidance for maintenance engineers considering LSTM-based prognosis tools.",
+    "researcherIds": [
+      "R0278",
+      "R0045",
+      "R0822"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-00594": {
+    "id": "SYN-PUB-00594",
+    "kind": "publication",
+    "title": "Comparison of time-domain AE features for estimating remaining useful tool life in intermittent milling",
+    "text": "Comparison of time-domain AE features for estimating remaining useful tool life in intermittent milling (2015, journal, Journal of Manufacturing Processes and Systems).\nAuthors: Goran Mirković (R0219); Srđan Bojić (outside co-author); Ivan Marković (R0840); Bogdan Bajić (R0045); Ákos Tóth (outside co-author).\nKeywords: remaining useful life; time-domain features; support vector regression; intermittent milling; tool wear.\nIntermittent milling introduces periodic AE bursts that complicate continuous wear tracking methods designed for steady-state cutting. This work evaluates seven time-domain features — RMS, variance, peak-to-peak amplitude, crest factor, kurtosis, skewness, and signal entropy — for their ability to estimate remaining useful tool life (RUL) during slot milling of X40CrMoV5-1 steel (50 HRC). Experiments were conducted on a Haas VF-2 at three feed-per-tooth levels (0.04, 0.07, 0.10 mm/tooth). Each of 18 tool runs was continued until VB exceeded 300 µm. Features were computed from 20 ms gating windows aligned to the cutting interval. A support vector regression model trained on six runs at each feed level achieved median RUL errors of 12.4% (0.04 mm/tooth) and 17.1% (0.10 mm/tooth), with entropy and kurtosis providing the highest individual predictive power. The study provides quantitative guidance for selecting time-domain features when frequency-domain analysis is computationally prohibitive.",
+    "researcherIds": [
+      "R0219",
+      "R0840",
+      "R0045"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-00819": {
+    "id": "SYN-PUB-00819",
+    "kind": "publication",
+    "title": "Bearing and Gear Fault Signatures in a Combined Drivetrain Assembly: Mutual Interference and Separation Strategies",
+    "text": "Bearing and Gear Fault Signatures in a Combined Drivetrain Assembly: Mutual Interference and Separation Strategies (2020, journal, Journal of Mechanical Diagnostics and Reliability).\nAuthors: Nataša Pavlović (outside co-author); Stefan Weinberg (outside co-author); Dragan Milošević (outside co-author); Ljiljana Puzović (R0061); Gordana Kuzmanović (R0737).\nKeywords: drivetrain; fault interference; independent component analysis; decision fusion; multi-fault diagnosis.\nIn practical drivetrains, bearings and gears are mechanically coupled, and their fault signatures co-exist in a single vibration channel. This study characterises the interference patterns between simultaneously active bearing and gear faults using a modular drivetrain test rig. Eleven fault combination scenarios were tested, including healthy baseline, isolated bearing fault, isolated gear fault, and eight bearing–gear fault combinations of varying severity. Blind source separation using independent component analysis (ICA) is applied to a four-accelerometer array, and the separated components are individually analysed with SES and CS2. For bearing-dominated combinations, ICA recovers bearing signature SNR within 2 dB of the isolated fault case in 9 of 11 scenarios. Gear-dominated combinations are harder to separate, with residual bearing energy leaking into the gear component at levels up to −14 dB. A decision-level fusion rule combining component-level probabilities is proposed and yields 89.7% correct joint diagnosis across all 11 scenarios and 60 repeated runs.",
+    "researcherIds": [
+      "R0061",
+      "R0737"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-01851": {
+    "id": "SYN-PUB-01851",
+    "kind": "publication",
+    "title": "Cyclostationary Decomposition of Bearing Signals: Separating Deterministic and Random Components at Varying Speed",
+    "text": "Cyclostationary Decomposition of Bearing Signals: Separating Deterministic and Random Components at Varying Speed (2015, journal, Mechanical Systems and Diagnostics).\nAuthors: Gordana Kuzmanović (R0737); Jérôme Castelet (outside co-author); Aleksandar Vujić (outside co-author); Katarina Todić (R0141).\nKeywords: cyclostationary analysis; angular resampling; inner-race fault; variable speed; ICS2.\n(no abstract)",
+    "researcherIds": [
+      "R0737",
+      "R0141"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-02480": {
+    "id": "SYN-PUB-02480",
+    "kind": "publication",
+    "title": "Benchmarking Prognosis Models for Industrial Pump Bearings on a Common Multi-Site Dataset: Methodology and Preliminary Results",
+    "text": "Benchmarking Prognosis Models for Industrial Pump Bearings on a Common Multi-Site Dataset: Methodology and Preliminary Results (2026, preprint, arXiv preprint arXiv:2602.XXXXX).\nAuthors: Stefan Horvat (outside co-author); Milena Stojković (outside co-author); Konstantinos Alexiou (outside co-author); Ivan Marković (R0840); Goran Starčević (R0192); Petra Novotná (outside co-author); Ana Terzić (outside co-author); Vladana Radić (R0822).\nKeywords: benchmarking; prognosis; pump bearing; Gaussian process; evaluation metrics.\nComparisons of remaining useful life prognosis methods in the literature are often confounded by differences in experimental setup, health index definition, and evaluation metrics. This preprint describes a benchmarking protocol and a preliminary dataset collected from 31 pump bearing run-to-failure experiments across three industrial sites, standardising data format, health index construction, train/test split rules, and evaluation metrics (MAPE, scoring function, and coverage of 90% prediction intervals). Seven prognosis approaches were evaluated: Wiener-process model, particle filter with empirical degradation model, LSTM network, temporal convolutional network, Gaussian process regression, random survival forest, and a simple exponential smoothing baseline. No single method dominated across all sites and failure modes. The Gaussian process regression and random survival forest models showed the most consistent performance, while LSTM achieved the lowest MAPE on two of three sites but the widest prediction intervals. The dataset and evaluation code are provided as supplementary material.",
+    "researcherIds": [
+      "R0840",
+      "R0192",
+      "R0822"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-02957": {
+    "id": "SYN-PUB-02957",
+    "kind": "publication",
+    "title": "Predictive Maintenance Scheduling for Small Wind Turbines Using Gradient-Boosted Survival Models on Vibration and SCADA Data",
+    "text": "Predictive Maintenance Scheduling for Small Wind Turbines Using Gradient-Boosted Survival Models on Vibration and SCADA Data (2024, conference, Proceedings of the European Workshop on Predictive Maintenance in Energy Infrastructure (EWPMEI)).\nAuthors: Igor Starčević (R0738); Valentina Stojanović (R0233); Branislav Stojanović (R0641); Srđan Kovačević (outside co-author); Petra Horáková (outside co-author); Milica Đorđević (outside co-author).\nKeywords: survival analysis; wind turbine; vibration; SCADA; maintenance scheduling.\nSmall wind turbines installed on agricultural and industrial premises in Serbia are often maintained reactively due to the absence of dedicated condition monitoring. This paper fits gradient-boosted survival models—specifically, a discrete-time hazard model and a random survival forest—to a combined dataset of SCADA telemetry and tower-mounted accelerometer readings from 17 turbines over five years. Predictors include nacelle vibration root-mean-square in three frequency bands, rotor speed deviation, and nacelle temperature differential. The discrete-time hazard model achieved a concordance index of 0.73 on a held-out cohort, outperforming a Cox baseline at 0.65. Predicted 30-day failure probability was used to generate ranked maintenance schedules, which were evaluated in a retrospective simulation against actual maintenance logs, showing an estimated 22 % reduction in unscheduled downtime hours.",
+    "researcherIds": [
+      "R0738",
+      "R0233",
+      "R0641"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-03481": {
+    "id": "SYN-PUB-03481",
+    "kind": "publication",
+    "title": "A four-wire-rope passive isolation platform for a machine-vision camera on a milling machine table: design, analysis and bench test",
+    "text": "A four-wire-rope passive isolation platform for a machine-vision camera on a milling machine table: design, analysis and bench test (2024, journal, Mechatronics and Precision Engineering).\nAuthors: Filip Knežević (R0278); Dušan Vlaisavljević (R0615); Olivera Ognjanov (R0510); Dragan Milošević (outside co-author); Milena Đorđević (outside co-author); Radu Constantin (outside co-author).\nKeywords: passive isolation platform; machine-vision; wire-rope isolator; lumped-parameter model; CNC machine.\nMachine-vision cameras co-located with CNC milling machines must tolerate spindle-frequency vibrations that can blur images and introduce measurement errors. This paper describes the mechanical design and experimental validation of a compact passive isolation platform sized to carry a 3.2 kg area-scan camera. The platform uses four identical 6 mm wire-rope isolators arranged symmetrically at the corners of an aluminium base plate. A lumped-parameter model with six degrees of freedom was assembled and its natural frequencies predicted analytically; the lowest mode was placed at 11 Hz to provide at least 20 dB isolation above 35 Hz. The assembled platform was tested on a laboratory shaker with representative spindle harmonics at 25 Hz, 50 Hz, and 75 Hz. Measured isolation ratios were 18 dB, 24 dB, and 31 dB at these frequencies, agreeing with model predictions to within 2 dB. Image blur was quantified using a resolution target: MTF50 improved from 38 lp/mm on the bare machine table to 61 lp/mm on the isolated platform under 50 Hz excitation at 12 mg input amplitude.",
+    "researcherIds": [
+      "R0278",
+      "R0615",
+      "R0510"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-03662": {
+    "id": "SYN-PUB-03662",
+    "kind": "publication",
+    "title": "Sensitivity of torsional dynamics simulations to damping model choice in early-pitting planetary gearbox scenarios",
+    "text": "Sensitivity of torsional dynamics simulations to damping model choice in early-pitting planetary gearbox scenarios (2025, journal, Journal of Sound and Vibration Modelling).\nAuthors: Olivera Ognjanov (R0510); Tatjana Ranđelović (outside co-author); Petra Horáková (outside co-author); Stefan Kovačević (outside co-author); Andrea Kuzmanović (R0506); Stefan Jakovljević (R0293).\nKeywords: damping model; torsional simulation; sensitivity analysis; hysteretic damping; pitting severity.\nThe choice of damping model in multi-body torsional simulations of planetary gearboxes is examined for its effect on predicted vibration signatures when small pitting defects are present. Four damping models are compared: constant viscous mesh damping, load-dependent viscous damping, Rayleigh proportional damping, and a hysteretic damping formulation. Simulations are performed for a 3-planet gearbox at carrier speeds of 200, 400, and 800 rpm with sun gear pitting areas of 1, 3, 6, and 10 mm². The pitting severity index and its standard deviation over 50 simulated revolutions are used as comparison metrics. Hysteretic damping produces PSI values closest to experimental measurements from the department test rig, with a mean absolute error of 7.3% versus 14–22% for the other models. The sensitivity is most pronounced at low carrier speeds and small pit areas, where the difference between damping models in the PSI can reach 31%. Practical guidance for model selection based on available damping characterisation data is provided.",
+    "researcherIds": [
+      "R0510",
+      "R0506",
+      "R0293"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-04384": {
+    "id": "SYN-PUB-04384",
+    "kind": "publication",
+    "title": "Comparison of gear-mesh frequency extraction methods for planetary gearboxes under non-stationary load",
+    "text": "Comparison of gear-mesh frequency extraction methods for planetary gearboxes under non-stationary load (2019, journal, Mechanical Systems and Signal Processing — Regional Supplement).\nAuthors: Olivera Ognjanov (R0510); Darko Ninkov (R0356); Petra Horáková (outside co-author); Jovana Đorđević (outside co-author).\nKeywords: non-stationary load; synchrosqueezed wavelet; Hilbert–Huang transform; mesh frequency tracking; wind turbine gearbox.\n(no abstract)",
+    "researcherIds": [
+      "R0510",
+      "R0356"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-05517": {
+    "id": "SYN-PUB-05517",
+    "kind": "publication",
+    "title": "Torsional vibration decomposition in a two-stage helical gearbox using adaptive notch filtering",
+    "text": "Torsional vibration decomposition in a two-stage helical gearbox using adaptive notch filtering (2013, journal, Journal of Machine Dynamics and Diagnostics).\nAuthors: Olivera Ognjanov (R0510); Dragan Milosević (outside co-author); Jana Turčanová (R0463); Nemanja Vučić (outside co-author); Ksenija Ranković (R0602).\nKeywords: adaptive notch filtering; torsional vibration; helical gearbox; side-band energy; residual signal.\nThis paper presents an adaptive notch filtering approach for isolating torsional vibration components in a two-stage helical gearbox operating under steady-state conditions. Measurements were taken on a 7.5 kW test rig at shaft speeds ranging from 600 to 1800 rpm using piezoelectric accelerometers and a non-contact torque sensor. The adaptive notch filter was tuned iteratively to suppress the fundamental gear-mesh frequency and its first three harmonics, yielding residual signals used for fault feature extraction. Side-band energy ratios were computed from the residual spectra and compared against a healthy baseline. Results showed that even at an early fabricated wear stage, the side-band energy ratio increased by a factor of 2.3 relative to the healthy condition. The method was benchmarked against synchronous averaging and cepstrum pre-whitening on the same dataset. Computational cost and filter convergence time are discussed for potential real-time deployment on embedded hardware with limited processing resources.",
+    "researcherIds": [
+      "R0510",
+      "R0463",
+      "R0602"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-05845": {
+    "id": "SYN-PUB-05845",
+    "kind": "publication",
+    "title": "Fault Isolation in Multi-Stage Centrifugal Compressors Using Sparse Sensor Placement and Lasso Regression on Spectral Features",
+    "text": "Fault Isolation in Multi-Stage Centrifugal Compressors Using Sparse Sensor Placement and Lasso Regression on Spectral Features (2019, journal, Mechanical Systems Condition Assessment).\nAuthors: Aleksandar Vuković (outside co-author); Marek Svoboda (outside co-author); Đorđe Marinković (outside co-author); Vladana Radić (R0822); Andrea Kuzmanović (R0506); Saša Kosanović (R0496).\nKeywords: sensor placement; compressor diagnostics; Lasso regression; fault isolation; spectral features.\nCentrifugal compressors in natural gas processing are monitored at multiple measurement points, but sensor infrastructure is expensive to retrofit. This paper addresses fault isolation using a reduced sensor set selected by a greedy algorithm that maximises fault-class separability while minimising sensor count. Spectral features from 12 candidate accelerometer positions were computed on data from a three-stage compressor test rig under five fault conditions: surge margin reduction, impeller blade wear, seal gas leakage, misalignment, and bearing outer-race damage. A Lasso logistic regression model identified 4 sensor positions sufficient for 88.7% correct fault isolation across 480 test cases, compared with 91.3% using all 12 positions. Installation cost savings are estimated at 38% relative to full instrumentation. Sensitivity analysis shows that the selected four positions remain effective across the tested operating range of 60–100% rated speed. The generalisation of the sensor selection to other compressor geometries is discussed as a limitation.",
+    "researcherIds": [
+      "R0822",
+      "R0506",
+      "R0496"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-05995": {
+    "id": "SYN-PUB-05995",
+    "kind": "publication",
+    "title": "Multi-body torsional dynamics model for pitting fault simulation in a planetary gearbox sun gear",
+    "text": "Multi-body torsional dynamics model for pitting fault simulation in a planetary gearbox sun gear (2017, journal, Mechanism and Machine Theory — Advances in Gear Dynamics (Special Issue)).\nAuthors: Miroslav Kolar (outside co-author); Dragan Milosević (outside co-author); Olivera Ognjanov (R0510); Tatjana Ranđelović (outside co-author).\nKeywords: multi-body dynamics; torsional model; pitting simulation; sun gear; stiffness reduction.\nA six-degree-of-freedom multi-body torsional dynamics model of a planetary gearbox is developed to simulate the vibrational signature of progressive pitting damage on the sun gear tooth flanks. Pitting is represented as a time-varying stiffness reduction localised to a fraction of the meshing period, with pit area parameterised from 0.5 mm² to 12 mm² based on measured pit geometries from accelerated fatigue tests on case-hardened 18CrNiMo7-6 steel gears. Equations of motion are integrated using a variable-step Runge–Kutta solver. Simulated acceleration signals are compared with measured signals from a physical gearbox with artificially introduced pitting. The model reproduces the characteristic amplitude modulation sidebands observed in measured spectra with a frequency error below 1.2% and an amplitude ratio error below 15% for the first four sidebands. The sensitivity of the model to damping ratio uncertainty is quantified through a parameter sweep, showing that a ±20% variation in mesh damping ratio affects sideband amplitude predictions by at most 9%.",
+    "researcherIds": [
+      "R0510"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-05996": {
+    "id": "SYN-PUB-05996",
+    "kind": "publication",
+    "title": "Pitting severity index based on weighted sideband summation around gear-mesh harmonics in planetary stages",
+    "text": "Pitting severity index based on weighted sideband summation around gear-mesh harmonics in planetary stages (2020, journal, Journal of Condition Monitoring in Mechanical Engineering).\nAuthors: Olivera Ognjanov (R0510); Tatjana Ranđelović (outside co-author); Spasoje Petrović (R0868); Goran Lazić (outside co-author).\nKeywords: pitting severity index; sideband summation; gear-mesh harmonics; fault severity; conveyor drive.\nA scalar pitting severity index (PSI) is defined as a weighted sum of sideband amplitudes around the first four gear-mesh harmonics, with weights derived empirically from the torsional dynamics model published by the same group in 2017. The index is validated on two physical planetary gearboxes: a laboratory unit run to controlled pitting failure under accelerated fatigue at 1.8 times rated torque, and a repaired unit from a field-returned industrial conveyor drive. Vibration data were collected at 65.5 kHz. The PSI increased monotonically with measured pit area in the laboratory unit, with a Pearson correlation coefficient of 0.94 across 11 damage stages from healthy to 35 mm² total pit area. On the field unit, the PSI correctly ranked five gearboxes of differing service history relative to their disassembly condition grades assigned by a maintenance engineer. False alarm rate at a threshold set to three standard deviations above the healthy mean was 4% across a 48-hour continuous monitoring run.",
+    "researcherIds": [
+      "R0510",
+      "R0868"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-05997": {
+    "id": "SYN-PUB-05997",
+    "kind": "publication",
+    "title": "Effect of gear tooth profile errors on torsional dynamics and diagnostic index reliability in planetary gearboxes",
+    "text": "Effect of gear tooth profile errors on torsional dynamics and diagnostic index reliability in planetary gearboxes (2021, conference, Proceedings of the 14th International Conference on Vibrations in Rotating Machinery, Vienna).\nAuthors: Olivera Ognjanov (R0510); Miroslav Kolar (outside co-author); Vladimir Ivanović (R0851); Jovana Đorđević (outside co-author); Luka Horváth (outside co-author).\nKeywords: profile error; manufacturing tolerance; Monte Carlo simulation; detection threshold; mesh stiffness.\nManufacturing tolerances in tooth profile geometry introduce systematic variations in mesh stiffness that can mask or mimic early-stage pitting signatures. This study uses coordinate measuring machine data from twelve planetary gear sets to characterise profile deviation distributions for ISO quality grades 6, 7, and 8. The measured deviations are introduced into the multi-body torsional dynamics model as deterministic stiffness perturbations. Monte Carlo simulation with 500 realisations per quality grade quantifies the spread in the pitting severity index under healthy conditions. For grade 8 gears, the healthy-state PSI variance is 2.4 times larger than for grade 6, reducing the effective detection margin for pitting areas below 5 mm². Recommendations are formulated for adjusting detection thresholds based on the nominal manufacturing quality grade of a given gearbox, which can be retrieved from component documentation without disassembly.",
+    "researcherIds": [
+      "R0510",
+      "R0851"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-05998": {
+    "id": "SYN-PUB-05998",
+    "kind": "publication",
+    "title": "Real-time pitting detection prototype using FPGA-based gear-mesh harmonic extraction on a planetary gearbox test rig",
+    "text": "Real-time pitting detection prototype using FPGA-based gear-mesh harmonic extraction on a planetary gearbox test rig (2024, conference, Mechatronics and Embedded Systems in Industrial Applications — Proceedings of the MESA Conference, Ljubljana).\nAuthors: Olivera Ognjanov (R0510); Stefan Kovačević (outside co-author); Luka Horváth (outside co-author).\nKeywords: FPGA; real-time diagnostics; synchronous resampling; pitting detection; embedded monitoring.\nA real-time condition monitoring prototype is described in which gear-mesh harmonic extraction and pitting severity index computation are implemented on an FPGA development board (Xilinx Kria KV260) connected directly to a 24-bit delta-sigma accelerometer. The harmonic extraction algorithm performs synchronous resampling using a phase-locked loop driven by an encoder pulse train, followed by a 1024-point FFT executed on-chip at a latency of 1.1 ms per shaft revolution. The computed PSI is streamed over Ethernet to a monitoring dashboard at 10 Hz update rate. The prototype was tested on the department's planetary gearbox test rig with three implanted pitting fault levels (2 mm², 8 mm², and 20 mm² total pit area). Detection latency from fault presence to threshold crossing was below 4 shaft revolutions at all tested speeds between 300 and 900 rpm carrier speed. Power consumption of the FPGA module was 4.2 W during continuous operation.",
+    "researcherIds": [
+      "R0510"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-05999": {
+    "id": "SYN-PUB-05999",
+    "kind": "publication",
+    "title": "Threshold setting strategies for gear-mesh harmonic diagnostic indices under varying operating conditions: a survey of methods and a comparative study",
+    "text": "Threshold setting strategies for gear-mesh harmonic diagnostic indices under varying operating conditions: a survey of methods and a comparative study (2026, preprint, arXiv / engrXiv (preprint, under review at Measurement Science and Engineering)).\nAuthors: Jovana Đorđević (outside co-author); Spasoje Petrović (R0868); Ivan Marković (R0840); Olivera Ognjanov (R0510); Goran Lazić (outside co-author).\nKeywords: threshold setting; false alarm rate; receiver operating characteristic; operating conditions; condition monitoring benchmark.\nDiagnostic indices derived from gear-mesh harmonic spectra require operating-condition-dependent thresholds to maintain acceptable false alarm and missed detection rates. This preprint surveys twelve threshold-setting strategies reported in the literature between 2005 and 2025 and applies six of them to a common dataset collected on a planetary gearbox test rig under four load levels and three temperature conditions. Strategies include fixed statistical thresholds, sliding window percentile methods, Gaussian mixture model fitting, control chart approaches, and two machine learning classifiers trained on healthy-condition data. Performance is evaluated using receiver operating characteristic curves and F1 scores for five pitting severity levels. No single strategy dominates across all conditions; fixed statistical thresholds show the highest false alarm rates at partial load, while the sliding window percentile method performs most consistently but requires a longer initialisation window. The dataset used in the study is made available as a supplementary file.",
+    "researcherIds": [
+      "R0868",
+      "R0840",
+      "R0510"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-06127": {
+    "id": "SYN-PUB-06127",
+    "kind": "publication",
+    "title": "Interpretable Health State Classification for Induction Motor Bearings Using Shapelet-Based Time-Series Features",
+    "text": "Interpretable Health State Classification for Induction Motor Bearings Using Shapelet-Based Time-Series Features (2025, journal, Journal of Intelligent Maintenance Systems).\nAuthors: Nemanja Đorđević (outside co-author); Jelena Matić (outside co-author); Andrea Krstić (R0521); Vladana Radić (R0822).\nKeywords: shapelets; interpretability; induction motor; bearing health state; time-series classification.\nBlack-box classifiers for bearing health state estimation are often difficult to validate for deployment in safety-relevant applications. This paper develops an interpretable classification approach based on time-series shapelets—short subsequences whose presence discriminates between health states—extracted from raw vibration waveforms recorded from induction motor bearings under four health states: healthy, early outer-race damage, advanced outer-race damage, and inner-race damage. Shapelet discovery was performed on a training set of 2,400 labelled 0.5-second waveforms. The five most discriminative shapelets achieved 91.3% five-fold cross-validation accuracy using a nearest-shapelet distance classifier. Each shapelet was linked back to physical signal morphology (impacts, modulation patterns) and confirmed by domain-expert inspection. Comparisons with a support vector machine operating on 24 handcrafted spectral features showed equivalent accuracy (91.8%) but the shapelet approach required no manual feature engineering. Shapelet visualisation is shown to facilitate explanation of individual classifications to maintenance technicians.",
+    "researcherIds": [
+      "R0521",
+      "R0822"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-06241": {
+    "id": "SYN-PUB-06241",
+    "kind": "publication",
+    "title": "Soiling Rate Estimation on Utility-Scale PV Panels via Piecewise Linear Segmentation of Cleaned Irradiance-Normalised Output",
+    "text": "Soiling Rate Estimation on Utility-Scale PV Panels via Piecewise Linear Segmentation of Cleaned Irradiance-Normalised Output (2016, conference, Proceedings of the Central European Conference on Photovoltaics and Energy Management (CEPEM)).\nAuthors: Igor Starčević (R0738); Marija Vučković (outside co-author); István Varga (R0532).\nKeywords: soiling estimation; piecewise segmentation; PV; SCADA; Pannonian region.\nSoiling of photovoltaic panels reduces energy yield in a gradual, weather-dependent manner that is difficult to separate from other sources of degradation. This study applies piecewise linear segmentation to daily cleaned irradiance-normalised DC output records from a 1.1 MWp park monitored over 27 months. Rain events identified in co-located meteorological station data were used as natural cleaning markers, enabling segment-wise soiling rate estimation. Rates ranged from 0.04 % to 0.31 % per day depending on season and prevailing wind direction, consistent with dust transport patterns documented for the Pannonian plain. The method requires no additional soiling sensors and can be applied retrospectively to existing SCADA archives. Comparison with a reference clean-string approach showed mean absolute error below 0.09 % per day, demonstrating suitability for operational use.",
+    "researcherIds": [
+      "R0738",
+      "R0532"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-07256": {
+    "id": "SYN-PUB-07256",
+    "kind": "publication",
+    "title": "Adaptive EWMA Charts for Monitoring Autocorrelated Process Outputs: Simulation Study and Factory Trial",
+    "text": "Adaptive EWMA Charts for Monitoring Autocorrelated Process Outputs: Simulation Study and Factory Trial (2017, journal, Quality and Reliability Engineering International).\nAuthors: Nataša Jovanović (outside co-author); Christoph Wenzel (outside co-author); Nevena Bogićević (R0636); Marija Ognjanov (R0817); Branislava Ostojić (R0773).\nKeywords: EWMA; autocorrelation; adaptive smoothing; PLC; process monitoring.\nAutocorrelation in process outputs is common when sampling is faster than the process time constant. Standard EWMA charts applied to autocorrelated data produce elevated false-alarm rates. This paper proposes an adaptive EWMA scheme in which the smoothing parameter λ is updated at each time step using a gradient-descent rule that minimises the one-step-ahead prediction error over a forgetting-factor-weighted window of past residuals. The scheme is compared with three baselines—fixed-λ EWMA on raw observations, fixed-λ EWMA on residuals from a fitted ARIMA model, and a T² chart on ARIMA residuals—across an AR(1) process with ρ ∈ {0.3, 0.6, 0.9} and mean shifts of 0.5 to 2.5σ. The adaptive scheme matched or exceeded ARIMA-residual EWMA in all tested conditions and was substantially easier to implement in a production PLC environment. A six-week trial on a bottling line confirmed an 11% reduction in false alarms.",
+    "researcherIds": [
+      "R0636",
+      "R0817",
+      "R0773"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-07722": {
+    "id": "SYN-PUB-07722",
+    "kind": "publication",
+    "title": "Detecting Abrupt and Gradual Faults in Hydraulic Actuator Systems Using a Combined CUSUM–Autoencoder Approach",
+    "text": "Detecting Abrupt and Gradual Faults in Hydraulic Actuator Systems Using a Combined CUSUM–Autoencoder Approach (2022, journal, Mechanical Systems and Signal Processing).\nAuthors: Dragana Milošević (outside co-author); Branislava Ostojić (R0773); Radmila Jakovljević (R0687); Borivoj Stanković (outside co-author); Dunja Vojnović (R1002).\nKeywords: hydraulic actuators; CUSUM; autoencoder; fault detection; gradual drift.\nHydraulic actuator faults manifest as either abrupt jumps in pressure or flow or as gradual drift in actuator efficiency. Standard CUSUM charts detect the former reliably but respond slowly to the latter, while autoencoder reconstruction error captures complex multivariate deviations but is insensitive to the direction of change. This paper proposes a two-stage detector: a shallow convolutional autoencoder generates a residual vector, and a sign-constrained CUSUM statistic accumulates this residual in the direction identified by an offline fault-mode analysis. The combined statistic is evaluated on the public Hydraulic System Condition dataset (2 205 cycles, 17 sensors, four fault types) and on a laboratory actuator testbed. For gradual efficiency-loss faults, the combined scheme reduced mean detection delay from 41 cycles (autoencoder alone) to 17 cycles at a matched false-alarm rate of 1%. No improvement over plain CUSUM was observed for abrupt pressure-drop faults, confirming complementary strengths.",
+    "researcherIds": [
+      "R0773",
+      "R0687",
+      "R1002"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08170": {
+    "id": "SYN-PUB-08170",
+    "kind": "publication",
+    "title": "Envelope Spectrum Indicators for Early Detection of Outer-Race Defects in Deep-Groove Ball Bearings Under Varying Radial Load",
+    "text": "Envelope Spectrum Indicators for Early Detection of Outer-Race Defects in Deep-Groove Ball Bearings Under Varying Radial Load (2011, journal, Journal of Vibration and Condition Monitoring).\nAuthors: Gordana Kuzmanović (R0737); Dragan Milošević (outside co-author); Srđan Tomić (outside co-author).\nKeywords: envelope spectrum; BPFO; ball bearing; radial load; kurtosis.\nThis paper examines the sensitivity of squared envelope spectrum (SES) amplitude at bearing defect frequencies as a function of radial load in deep-groove ball bearings of type 6206. Accelerometer signals were recorded on a purpose-built test rig at shaft speeds of 600–1800 rpm and radial loads of 200–1200 N, with seeded outer-race defects of three severity levels (0.2, 0.5, 1.0 mm slot width). A total of 540 test runs were analysed. Results show that SES amplitude at BPFO and its first three harmonics increases monotonically with load and defect width, but that signal-to-noise ratio peaks near 800 N before degrading at higher loads due to structural resonance shifts. Crest factor and kurtosis are compared as alternative scalar indicators; kurtosis outperforms crest factor for the smallest defect class but saturates faster as severity increases. Threshold values derived from the healthy baseline allow correct binary classification in 94.6% of test cases using a fixed decision rule.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2011
+  },
+  "SYN-PUB-08171": {
+    "id": "SYN-PUB-08171",
+    "kind": "publication",
+    "title": "Cepstral Lift-Off for Removal of Transmission Path Effects in Gearbox Vibration Spectra",
+    "text": "Cepstral Lift-Off for Removal of Transmission Path Effects in Gearbox Vibration Spectra (2013, conference, Proceedings of the 6th Central European Symposium on Machinery Diagnostics, Brno).\nAuthors: Miroslav Radić (outside co-author); Gordana Kuzmanović (R0737); Tomáš Blaho (outside co-author).\nKeywords: cepstral pre-whitening; gearbox; sideband level index; transmission path; gear mesh.\nGearbox vibration measurements are corrupted by the frequency response of the structural path between gear mesh and sensor mounting point. This study applies cepstral pre-whitening—log-spectral subtraction of the smoothed log-spectrum—to signals acquired from a two-stage helical gearbox test rig at the University of Novi Sad. Measurements were made at four torque levels (25, 50, 75, 100% rated) and three shaft speeds (900, 1200, 1500 rpm), producing 36 operating conditions. Gear mesh harmonics and their sidebands were compared before and after cepstral processing. After lift-off, the ratio of sideband amplitude to mesh harmonic amplitude increases by an average factor of 3.2 across all conditions, improving the visibility of localised tooth-fault sidebands. A subsequent sideband-level index (SLI) computed from the whitened spectrum correctly identifies the faulted gear in 91 of 96 repeated test runs. The method is computationally inexpensive and suitable for online implementation on standard industrial hardware.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-08172": {
+    "id": "SYN-PUB-08172",
+    "kind": "publication",
+    "title": "Multi-Class Fault Discrimination in Rolling-Element Bearings Using Random Forest on Envelope Spectrum Features",
+    "text": "Multi-Class Fault Discrimination in Rolling-Element Bearings Using Random Forest on Envelope Spectrum Features (2017, journal, Journal of Mechanical Diagnostics and Reliability).\nAuthors: Gordana Kuzmanović (R0737); Nataša Pavlović (outside co-author); Bojan Đorđević (outside co-author).\nKeywords: random forest; multi-class classification; envelope spectrum features; rolling-element bearing; spectral kurtosis.\n(no abstract)",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-08173": {
+    "id": "SYN-PUB-08173",
+    "kind": "publication",
+    "title": "Condition Monitoring of Wind Turbine Main Bearings: Field Measurements and Spectral Trending Over 18 Months",
+    "text": "Condition Monitoring of Wind Turbine Main Bearings: Field Measurements and Spectral Trending Over 18 Months (2018, conference, Wind Energy Systems and Technology Conference, Novi Sad).\nAuthors: Ivan Petrović (outside co-author); Milena Stojanović (outside co-author); Gordana Kuzmanović (R0737).\nKeywords: wind turbine; main bearing; field measurement; spectral trending; outer-race spall.\nThis paper reports field vibration measurements from the main shaft bearing of a 850 kW horizontal-axis wind turbine located in Vojvodina, Serbia. Accelerometers and tachometers were installed on the main bearing housing, and data were collected at 10-minute intervals over 18 months using a ruggedised data acquisition unit. A total of approximately 78 000 spectral records were accumulated. Trending of SES amplitude at BPFO showed a gradual increase beginning in month 11, confirmed by lubricant debris analysis at month 13. The turbine was taken offline at month 16 for planned maintenance; inspection revealed a 2 mm spall on the outer race. Comparison of the vibration trend against manufacturer alarm thresholds shows the SES indicator preceded the threshold trigger by approximately six weeks, suggesting potential for earlier planned intervention. The study also characterises wind-speed-dependent noise floors, which must be normalised before trend comparison.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-08174": {
+    "id": "SYN-PUB-08174",
+    "kind": "publication",
+    "title": "Physics-Informed Feature Engineering for Gear Fault Classification: Embedding Kinematic Constraints into a Support Vector Machine",
+    "text": "Physics-Informed Feature Engineering for Gear Fault Classification: Embedding Kinematic Constraints into a Support Vector Machine (2019, journal, Applied Mechanical Diagnostics).\nAuthors: Gordana Kuzmanović (R0737); Radovan Krstić (outside co-author); Ana Horvat (outside co-author).\nKeywords: support vector machine; gear fault; physics-informed features; kinematic constraints; gearbox.\nStandard machine learning classifiers applied to gearbox vibration data treat feature vectors as purely empirical. This work proposes a feature construction strategy that encodes kinematic gear mesh relationships explicitly: features are defined as amplitude ratios at theoretically predicted mesh harmonics and sidebands, with sideband spacing set equal to the shaft frequency of the potentially faulted wheel. This hard-wires gear geometry into the classifier input space. A support vector machine with RBF kernel is trained on 720 labelled segments from a two-stage helical gearbox at four fault conditions (healthy, pinion tooth chip, wheel tooth crack, backlash increase) plus five operating points. Classification accuracy is 93.8% versus 88.1% for a baseline SVM using raw spectral bins as features. The physics-informed approach also improves generalisation to a second, geometrically different gearbox with only 60 additional labelled samples for fine-tuning. The method does not require differentiable physics models and adds negligible computational overhead.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-08175": {
+    "id": "SYN-PUB-08175",
+    "kind": "publication",
+    "title": "Transfer Learning for Bearing Fault Diagnosis Across Different Machine Sizes Using Domain-Adversarial Training",
+    "text": "Transfer Learning for Bearing Fault Diagnosis Across Different Machine Sizes Using Domain-Adversarial Training (2021, journal, Mechanical Systems and Diagnostics).\nAuthors: Ljiljana Vujović (outside co-author); Gordana Kuzmanović (R0737); Cosmin Dănilă (outside co-author).\nKeywords: transfer learning; domain adaptation; bearing fault; domain-adversarial neural network; machine size variation.\nFault classifiers trained on laboratory-scale test rigs often fail when deployed on larger industrial machines due to domain shift in the vibration signal statistics. This paper evaluates domain-adversarial neural networks (DANN) as a transfer learning strategy for bearing fault diagnosis across three machines of different shaft diameter (25, 50, and 80 mm) with nominally equivalent bearing types. Source-domain training data comprised 4 800 labelled segments from the 25 mm rig; target domains had 0, 10, or 50 labelled target samples available. With zero target labels, DANN achieves 78.4% accuracy on the 80 mm machine versus 54.2% for a non-adapted baseline. With 50 labelled target samples, accuracy rises to 91.6%. Gradient reversal layer weight scheduling is shown to be a critical hyperparameter; a cosine annealing schedule outperforms fixed weighting by 3–5 percentage points. The study uses publicly shared feature extraction code and a dataset deposited in the institutional repository of the Faculty of Technical Sciences.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08176": {
+    "id": "SYN-PUB-08176",
+    "kind": "publication",
+    "title": "Sparse Autoencoder Representations of Bearing Vibration for Anomaly Detection Without Fault Labels",
+    "text": "Sparse Autoencoder Representations of Bearing Vibration for Anomaly Detection Without Fault Labels (2022, conference, Proceedings of the 14th International Conference on Rotating Machinery Condition Monitoring, Split).\nAuthors: Gordana Kuzmanović (R0737); Miloš Janković (outside co-author); Ivana Mészáros (outside co-author).\nKeywords: sparse autoencoder; anomaly detection; unsupervised learning; reconstruction error; embedded deployment.\nLabelled fault data are expensive to acquire; this study explores unsupervised anomaly detection using a sparse autoencoder (SAE) trained exclusively on healthy bearing vibration. The SAE learns a compressed representation of 128-point mel-frequency spectral coefficient vectors. At inference, reconstruction error serves as an anomaly score. Experiments cover 6206 and 6308 bearing types, three fault modes, and two severity levels on the FTS rig. The area under the ROC curve (AUC) for anomaly detection across all fault types is 0.943 for the SAE against baselines of kurtosis (AUC 0.871) and RMS (AUC 0.784). Early detection threshold analysis shows that the SAE flags inner-race defects at 0.2 mm severity with a false-alarm rate of 4.3%, while kurtosis achieves the same false-alarm rate only at 0.5 mm severity. The autoencoder is compact (12 200 parameters) and executes in under 2 ms on a Raspberry Pi 4 single-board computer, demonstrating feasibility for low-cost embedded deployment.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08177": {
+    "id": "SYN-PUB-08177",
+    "kind": "publication",
+    "title": "Gear Wear Progression Monitoring Using Time-Averaged Residual Signals and Wear-Rate Indicators",
+    "text": "Gear Wear Progression Monitoring Using Time-Averaged Residual Signals and Wear-Rate Indicators (2023, journal, Applied Mechanical Diagnostics).\nAuthors: Gordana Kuzmanović (R0737); Radovan Krstić (outside co-author); Florin Muscă (outside co-author).\nKeywords: gear wear; time-synchronous averaging; residual signal; wear-rate indicator; spur gear.\nProgressive gear wear produces gradual changes in vibration that are less abrupt than tooth fracture and harder to track with threshold-based alarms. This paper presents a wear-rate indicator (WRI) derived from the time-synchronous average (TSA) residual signal—the TSA with all mesh harmonics and shaft-rate components removed. A controlled wear experiment was conducted over 240 hours of continuous operation on a spur gear pair (module 2, 40/80 tooth count) under 60 Nm torque. TSA residual RMS and the fourth statistical moment of the residual were recorded at four-hour intervals. Both indicators increase monotonically; WRI, defined as the slope of a linear fit to residual RMS over a 20-hour moving window, detects the onset of accelerated wear at hour 168, approximately 30 hours before the RMS crosses an absolute alarm threshold. Gear surface scans at 40-hour intervals correlate profile deviation (measured in µm) with WRI slope, confirming a linear relationship with R² = 0.91.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08178": {
+    "id": "SYN-PUB-08178",
+    "kind": "publication",
+    "title": "Explainability of Convolutional Neural Network Fault Classifiers for Rotating Machinery: A Gradient-Weighted Class Activation Mapping Study",
+    "text": "Explainability of Convolutional Neural Network Fault Classifiers for Rotating Machinery: A Gradient-Weighted Class Activation Mapping Study (2025, journal, Journal of Vibration and Condition Monitoring).\nAuthors: Gordana Kuzmanović (R0737); Ljiljana Vujović (outside co-author); Predrag Nikolić (outside co-author); Marta Kovačević (outside co-author).\nKeywords: convolutional neural network; Grad-CAM; explainability; fault classification; spectrogram.\nConvolutional neural networks (CNNs) trained on vibration spectrograms achieve high accuracy for bearing and gear fault diagnosis but provide limited insight into which time–frequency regions drive classification decisions. This paper applies Gradient-weighted Class Activation Mapping (Grad-CAM) to a five-class CNN trained on short-time Fourier transform spectrograms from the FTS drivetrain test rig. The network achieves 95.1% accuracy on a held-out test set of 960 segments. Grad-CAM heat maps are compared against theoretically expected defect frequency bands for each class. For outer-race faults, peak activation aligns with BPFO ± 2 sidebands in 87% of correctly classified samples; for gear tooth-chip faults, activation aligns with the second and third mesh harmonic sideband clusters. Misclassified samples show activation spread across non-diagnostic frequency bands, suggesting data leakage from structural resonances. The analysis identifies two specific resonance windows (3.2–3.8 kHz and 6.1–6.7 kHz) that the network exploits spuriously, informing band-pass pre-filtering for improved generalisation.",
+    "researcherIds": [
+      "R0737"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-08181": {
+    "id": "SYN-PUB-08181",
+    "kind": "publication",
+    "title": "Baseline Performance Ratio Modelling for Grid-Connected PV Systems Using Ordinary Least Squares Regression on One-Year SCADA Logs",
+    "text": "Baseline Performance Ratio Modelling for Grid-Connected PV Systems Using Ordinary Least Squares Regression on One-Year SCADA Logs (2014, journal, Journal of Renewable Energy Systems and Monitoring).\nAuthors: Igor Starčević (R0738); Marija Vučković (outside co-author); Dragan Ilić (outside co-author).\nKeywords: performance ratio; PV baseline; OLS regression; SCADA; degradation.\nThis paper presents a regression-based methodology for constructing performance ratio (PR) baselines for grid-connected photovoltaic installations using twelve months of five-minute SCADA records from a 2.4 MWp ground-mount park in Vojvodina. Ordinary least squares models were fitted separately for each inverter string, with irradiance, ambient temperature, and wind speed as predictors. The residual time series were then examined for systematic drift, which was taken as a proxy for gradual degradation. The fitted models explained between 91 % and 96 % of PR variance across sixteen inverter strings. A cross-validation scheme based on seasonal stratification was used to assess generalisation. Results showed that simple linear models are competitive with more complex approaches when training data cover at least eight months and include summer irradiance peaks. Limitations related to sensor calibration drift and curtailment events are discussed in detail.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2014
+  },
+  "SYN-PUB-08182": {
+    "id": "SYN-PUB-08182",
+    "kind": "publication",
+    "title": "Early Fault Classification in Photovoltaic String Inverters Using Random Forest on SCADA-Derived Statistical Features",
+    "text": "Early Fault Classification in Photovoltaic String Inverters Using Random Forest on SCADA-Derived Statistical Features (2018, journal, Journal of Industrial Condition Monitoring and Diagnostics).\nAuthors: Igor Starčević (R0738); Nemanja Petrović (outside co-author); Ágnes Kovács (outside co-author); Radovan Stanković (outside co-author).\nKeywords: fault classification; random forest; string inverter; SCADA features; domain shift.\nInverter faults in distributed PV installations often produce subtle signatures in current and voltage telemetry before they result in full failure or protection trip. This paper extracts a set of 34 statistical features—including rolling mean, standard deviation, skewness, and crossing-rate measures—from five-minute SCADA records of eleven string inverters monitored over three years at two sites in Serbia. A random forest classifier trained on labelled fault events—covering IGBT degradation, grid relay issues, and sensor faults—achieved macro-averaged F1 of 0.81 on held-out data when a detection window of 48 hours before the logged fault event was used. Permutation importance analysis identified AC-side current imbalance and temperature-normalised efficiency drop as the two most informative features. The trained model was tested on a third site without retraining to assess domain shift, yielding an acceptable F1 of 0.73.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-08183": {
+    "id": "SYN-PUB-08183",
+    "kind": "publication",
+    "title": "Anomaly Scoring for District Heating Substation Telemetry Using Isolation Forest with Temporal Resampling",
+    "text": "Anomaly Scoring for District Heating Substation Telemetry Using Isolation Forest with Temporal Resampling (2020, journal, Energy and Buildings Automation Journal).\nAuthors: Igor Starčević (R0738); Bojana Marković (outside co-author); Tomáš Novák (outside co-author).\nKeywords: isolation forest; district heating; anomaly scoring; seasonal baseline; telemetry.\nDistrict heating substations generate continuous telemetry—supply and return temperatures, flow rate, differential pressure, valve position—that reflects both normal load variation and incipient faults. This paper applies isolation forest anomaly scoring to hourly-resampled records from 38 substations in a mid-sized Serbian city, covering two full heating seasons. To reduce the influence of strong daily and weekly periodicity, features were constructed as deviations from a Fourier-smoothed seasonal baseline rather than raw sensor values. Anomaly scores were validated against a maintenance log containing 54 confirmed fault events, yielding precision of 0.69 and recall of 0.78 at the chosen score threshold. False positives were predominantly associated with demand-side events such as building renovations. The paper also discusses operational considerations for deploying the pipeline in the control room of a heat utility, where interpretability requirements constrain model complexity.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-08184": {
+    "id": "SYN-PUB-08184",
+    "kind": "publication",
+    "title": "Comparison of Univariate and Multivariate LSTM Architectures for Remaining Useful Life Prediction in PV Inverters",
+    "text": "Comparison of Univariate and Multivariate LSTM Architectures for Remaining Useful Life Prediction in PV Inverters (2021, conference, Proceedings of the Balkan Workshop on Machine Learning in Energy Systems (BWMLES)).\nAuthors: Igor Starčević (R0738); Nemanja Petrović (outside co-author); Milica Đorđević (outside co-author).\nKeywords: LSTM; remaining useful life; PV inverter; attention mechanism; label noise.\nRecurrent neural networks have been proposed for remaining useful life (RUL) estimation in power electronics, but the benefit of multivariate input over simpler univariate temperature-tracking models is not always clear in practice. This study compares four LSTM configurations—single-channel temperature, three-channel electrical, full nine-channel SCADA, and a multivariate model with attention—trained on labelled degradation sequences collected from 23 inverters across four sites over four years. RUL ground truth was derived from inverter replacement records. The univariate temperature model achieved mean absolute error of 18.3 days; the full nine-channel model with attention reduced this to 11.7 days. However, the improvement was statistically significant only for IGBT-related failures, not for capacitor or relay faults. Training data size, label noise from opportunistic rather than condition-triggered replacements, and class imbalance are examined as confounding factors.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08185": {
+    "id": "SYN-PUB-08185",
+    "kind": "publication",
+    "title": "Transfer Learning for PV Fault Detection Across Geographically Distributed Sites with Different Inverter Brands",
+    "text": "Transfer Learning for PV Fault Detection Across Geographically Distributed Sites with Different Inverter Brands (2022, journal, Renewable Energy Monitoring and Diagnostics).\nAuthors: Andrei Moldovan (outside co-author); Marija Vučković (outside co-author); Igor Starčević (R0738); Radovan Stanković (outside co-author).\nKeywords: transfer learning; fault detection; PV; gradient boosting; cross-site generalisation.\nTraining fault detection models independently for each PV installation is data-expensive and impractical for small or newly commissioned sites. This paper investigates fine-tuning a source-domain random forest and a gradient-boosted tree, both pre-trained on five Serbian PV sites, using small labelled batches from two Romanian target sites with different inverter brands and monitoring intervals. Fine-tuning with as few as 30 labelled target-domain fault windows raised F1 from a zero-shot baseline of 0.48 to 0.74 for the random forest and to 0.77 for the gradient-boosted model. Feature alignment using quantile normalisation per sensor channel proved more effective than raw standardisation. The study uses publicly documented fault taxonomies and consistent labelling criteria to enable reproducibility, and the pre-trained model weights are made available with the paper.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08186": {
+    "id": "SYN-PUB-08186",
+    "kind": "publication",
+    "title": "Threshold Selection Strategies for Operational Anomaly Detection Pipelines in Industrial SCADA Environments",
+    "text": "Threshold Selection Strategies for Operational Anomaly Detection Pipelines in Industrial SCADA Environments (2023, journal, Journal of Industrial Data Science and Process Monitoring).\nAuthors: Igor Starčević (R0738); Ágnes Kovács (outside co-author).\nKeywords: threshold selection; anomaly detection; SCADA; cost-sensitive; operational deployment.\nMost anomaly detection research reports performance at a single fixed threshold chosen post-hoc to maximise a validation metric, which does not reflect operational reality where false alarm rates carry real costs. This paper surveys and empirically compares six threshold selection strategies—fixed percentile, precision–recall curve knee-point, F-beta optimisation, cost-sensitive selection, control-chart 3-sigma rule, and manual operator calibration—applied to isolation forest and autoencoder anomaly scores on SCADA telemetry from two PV parks and one wind farm. Data cover 36 months and 112 documented fault events. Cost-sensitive selection with an asymmetric cost matrix calibrated by an operator survey consistently outperformed fixed-percentile approaches across all three sites, reducing total operational cost by 19–34 % compared to the 95th-percentile baseline. The paper provides a decision workflow for practitioners choosing among strategies given available labelled data and operator input.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08187": {
+    "id": "SYN-PUB-08187",
+    "kind": "publication",
+    "title": "Autoencoder-Based Detection of Sensor Drift in Long-Running PV Monitoring Systems",
+    "text": "Autoencoder-Based Detection of Sensor Drift in Long-Running PV Monitoring Systems (2025, journal, Sensors and Instrumentation for Industrial Monitoring).\nAuthors: Igor Starčević (R0738); Nemanja Petrović (outside co-author); Andrei Moldovan (outside co-author).\nKeywords: autoencoder; sensor drift; PV monitoring; hardware-in-the-loop; reconstruction error.\nIrradiance and temperature sensors deployed in field PV monitoring stations drift gradually due to soiling, ageing, and mechanical misalignment, introducing systematic bias into SCADA telemetry that is difficult to distinguish from true plant degradation. This paper trains a convolutional autoencoder on the first twelve months of records from twelve monitoring stations, treating this period as nominally calibrated, and then monitors reconstruction error on subsequent 36 months of data. Three types of drift—irradiance pyranometer zero-offset, temperature sensor gain shift, and voltage divider ageing—were induced artificially in a hardware-in-the-loop testbed to generate labelled validation data. The autoencoder flagged all three drift types within a two-week detection lag at an average false positive rate of 8 %. A lightweight rule-based filter using interquartile consistency across co-located sensors reduced false positives to 3 % without increasing the detection lag. The method was subsequently applied to two production archives where unconfirmed drift events were identified.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-08188": {
+    "id": "SYN-PUB-08188",
+    "kind": "publication",
+    "title": "Benchmarking Time-Series Foundation Models Against Classical Methods for Short-Horizon Anomaly Detection in Energy SCADA Telemetry",
+    "text": "Benchmarking Time-Series Foundation Models Against Classical Methods for Short-Horizon Anomaly Detection in Energy SCADA Telemetry (2026, preprint, arXiv preprint).\nAuthors: Igor Starčević (R0738); Srđan Kovačević (outside co-author); Bojana Marković (outside co-author).\nKeywords: foundation models; benchmarking; anomaly detection; SCADA; edge deployment.\nLarge pre-trained time-series models have been proposed as general-purpose tools that can be applied to downstream tasks with little or no fine-tuning. This paper benchmarks three recently published time-series foundation models against four classical methods—isolation forest, one-class SVM, ARIMA residual scoring, and a simple rolling z-score—on anomaly detection tasks drawn from five SCADA datasets covering PV parks, a small wind farm, and district heating substations. Evaluation uses a consistent labelling protocol and the same six threshold selection strategies described in earlier work by the same group. Foundation models achieved the highest AUC-ROC on two of the five datasets but were outperformed by isolation forest on the remaining three, particularly where telemetry channels exhibit strong non-stationary seasonality. Inference latency and memory footprint are also reported, as they are relevant constraints for edge deployment in substation hardware.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-08483": {
+    "id": "SYN-PUB-08483",
+    "kind": "publication",
+    "title": "A Multivariate CUSUM Scheme with Adaptive Estimation of Covariance Structure for Batch Chemical Processes",
+    "text": "A Multivariate CUSUM Scheme with Adaptive Estimation of Covariance Structure for Batch Chemical Processes (2010, journal, Journal of Quality Technology and Statistical Engineering).\nAuthors: Miroslav Vukić (outside co-author); Tatjana Lončar (outside co-author); Branislava Ostojić (R0773).\nKeywords: CUSUM; adaptive covariance; batch processes; multivariate SPC.\nClassical multivariate CUSUM charts assume a fixed in-control covariance matrix, an assumption routinely violated in batch manufacturing where operating conditions shift between phases. This paper proposes replacing the static covariance estimate with a sliding-window estimator updated at each sampling instant, with the window length selected by minimising a penalised prediction error over a rolling validation segment. The scheme was evaluated on a publicly available benchmark dataset from a simulated batch reactor (50 process variables, 1 000 batches) as well as on data collected from a plastics-extrusion line at a partner facility. On the benchmark, the average run length to detection for mean-shift magnitudes between 0.5 and 2.0 standard deviations improved by 18–34% compared with the fixed-covariance baseline, at the cost of a 7% increase in false-alarm rate. Parameter sensitivity, computational cost per sample, and the practical question of selecting the penalty coefficient are discussed in detail. The method is implemented in a freely available R package accompanying the paper.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2010
+  },
+  "SYN-PUB-08485": {
+    "id": "SYN-PUB-08485",
+    "kind": "publication",
+    "title": "Online Detection of Covariance Shifts in Industrial Sensor Arrays Using the Generalised Likelihood Ratio Test",
+    "text": "Online Detection of Covariance Shifts in Industrial Sensor Arrays Using the Generalised Likelihood Ratio Test (2013, conference, Proceedings of the 9th International Symposium on Intelligent Systems and Informatics (SISY 2013)).\nAuthors: Zoran Petrović (outside co-author); Dragana Milošević (outside co-author); Branislava Ostojić (R0773).\nKeywords: covariance change detection; GLR test; sequential analysis; sensor arrays.\nChanges in the covariance structure of a multivariate sensor stream can signal developing faults before any univariate indicator crosses a threshold. This paper applies a sequential generalised likelihood ratio (GLR) test to detect covariance shifts in an online, computationally efficient manner. The test statistic is computed over a sliding dual-window: a reference window of fixed length and a test window that grows until a detection is declared. Theoretical bounds on average run length are derived under a Wishart distribution model and confirmed by Monte Carlo simulation for dimensions p = 5, 10, 20 with 10 000 replicates each. The method is applied to a 14-channel temperature and pressure dataset from a district-heating substation, where it detected three confirmed maintenance events 40–120 seconds earlier than the plant's existing alarm system. Computational complexity is O(p²) per new sample after initial setup.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-08486": {
+    "id": "SYN-PUB-08486",
+    "kind": "publication",
+    "title": "Monitoring Nonlinear Process Dynamics with a Kernel Principal Component Analysis Control Chart: A Practical Assessment",
+    "text": "Monitoring Nonlinear Process Dynamics with a Kernel Principal Component Analysis Control Chart: A Practical Assessment (2015, journal, Chemometrics and Process Analytics).\nAuthors: Branislava Ostojić (R0773); Aleksandar Đorđević (outside co-author); Petra Kovačević (outside co-author).\nKeywords: kernel PCA; nonlinear SPC; Hotelling T²; fault detection.\nKernel principal component analysis (KPCA) projects nonlinear process data into a feature space where conventional Hotelling T² and Q statistics can be applied. Despite a substantial theoretical literature, practical guidance on kernel and hyperparameter selection for SPC purposes remains limited. This paper presents a systematic assessment of radial-basis-function and polynomial kernels across four industrial benchmark datasets (Tennessee Eastman process, simulated polymerisation reactor, rolling-mill dataset, and an in-house compressor dataset) using fault-detection rate and false-alarm rate as primary metrics. Cross-validation on in-control data was used to select the bandwidth parameter. Results show that RBF-KPCA outperforms linear PCA on three of four datasets, with the compressor data yielding the largest improvement (fault-detection rate 81% vs. 57% at a 1% false-alarm rate). The effect of the number of retained components is also analysed. An open-source Python implementation is included.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-08487": {
+    "id": "SYN-PUB-08487",
+    "kind": "publication",
+    "title": "Bayesian Change-Point Models for Multivariate Non-Stationary Time Series in Continuous Manufacturing",
+    "text": "Bayesian Change-Point Models for Multivariate Non-Stationary Time Series in Continuous Manufacturing (2016, journal, Journal of Statistical Computation and Simulation).\nAuthors: Miroslav Vukić (outside co-author); Ilona Szabo (outside co-author); Branislava Ostojić (R0773).\nKeywords: Bayesian change-point detection; BOCPD; Normal-Inverse-Wishart; continuous manufacturing.\nMany continuous manufacturing processes operate under time-varying mean and variance due to raw-material variability and gradual equipment wear. Standard SPC methods tuned on historical data deteriorate in such environments. This paper formulates a Bayesian online change-point detection model (BOCPD) extended to multivariate observations under a Normal-Inverse-Wishart conjugate prior. The model simultaneously estimates the probability of a change and updates the predictive distribution after each new sample. Two variants are compared: one with a fixed hazard rate and one with a hazard rate estimated from past inter-change intervals using empirical Bayes. On simulated data with p = 8 variables, 500 change points, and signal-to-noise ratios between 0.5 and 3.0, the empirical-Bayes variant reduced the mean detection delay by 1.8 samples at a fixed false-alarm rate of 0.5%. The method was validated on accelerometer data from a CNC milling machine spindle over a six-month period.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-08488": {
+    "id": "SYN-PUB-08488",
+    "kind": "publication",
+    "title": "Unsupervised Segmentation of Industrial Time Series via a Penalised Piecewise-Stationary Model",
+    "text": "Unsupervised Segmentation of Industrial Time Series via a Penalised Piecewise-Stationary Model (2018, journal, IEEE Transactions on Industrial Informatics).\nAuthors: Dragana Milošević (outside co-author); Borivoj Stanković (outside co-author); Ana Horvat (outside co-author); Branislava Ostojić (R0773).\nKeywords: time series segmentation; piecewise stationarity; BIC; dynamic programming; cyber-physical systems.\nLong industrial time series collected from cyber-physical systems rarely satisfy stationarity over their full length. This paper treats segmentation as a model-selection problem: a piecewise-stationary multivariate Gaussian model is fitted, and the number and positions of segments are chosen by minimising a modified BIC penalising both the number of segments and their minimum length. Optimisation uses a dynamic programming algorithm with complexity O(n²) in the number of observations. The approach is compared with binary segmentation and wild binary segmentation on 24 synthetic scenarios (varying segment lengths 50–500 and p = 4–16 variables) and on three industrial datasets: a paper-machine headbox, a wastewater treatment blower, and a refrigeration compressor. BIC-guided dynamic programming achieved the lowest mean absolute error in estimated change-point locations on 19 of 24 synthetic scenarios and recovered all manually labelled regime changes in the wastewater dataset.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-08489": {
+    "id": "SYN-PUB-08489",
+    "kind": "publication",
+    "title": "Statistical Process Control for Cyber-Physical Systems: A Survey of Methods and Open Challenges",
+    "text": "Statistical Process Control for Cyber-Physical Systems: A Survey of Methods and Open Challenges (2019, book chapter, Handbook of Industrial Data Science (Edited Volume, Springer Academic Press)).\nAuthors: Branislava Ostojić (R0773); Miroslav Vukić (outside co-author); Marta Reinhardt (outside co-author).\nKeywords: SPC survey; cyber-physical systems; online learning; anomaly detection; benchmark.\nCyber-physical systems produce streams of heterogeneous sensor data at high sampling rates, creating both opportunities and difficulties for statistical process control. This chapter surveys methods applicable to the monitoring of such systems, organising them along four dimensions: the stationarity assumption (static vs. adaptive), the observation structure (univariate vs. multivariate), the supervision level (supervised vs. unsupervised), and the computational setting (batch vs. online). For each combination, representative methods are described and their assumptions, strengths, and computational requirements are tabulated. Special attention is given to the interaction between control-chart theory and machine-learning approaches, including isolation forest, autoencoders, and one-class SVMs as anomaly scorers whose output feeds threshold-based alarms. Open challenges discussed include distribution shift under normal ageing, alarm rationalisation in dense sensor networks, and the absence of labelled fault data. The chapter concludes with a set of benchmark recommendations for the community.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-08490": {
+    "id": "SYN-PUB-08490",
+    "kind": "publication",
+    "title": "One-Class SVM Anomaly Scores as Control-Chart Statistics: Calibration, Threshold Setting, and Recalibration Frequency",
+    "text": "One-Class SVM Anomaly Scores as Control-Chart Statistics: Calibration, Threshold Setting, and Recalibration Frequency (2020, journal, Computers and Industrial Engineering).\nAuthors: Aleksandar Đorđević (outside co-author); Branislava Ostojić (R0773).\nKeywords: one-class SVM; anomaly score calibration; control chart; drift detection; edge deployment.\nOne-class support vector machines produce a real-valued decision score that can serve as a univariate control-chart statistic, enabling the combination of nonlinear pattern recognition with the interpretability of run rules and average-run-length guarantees. This paper addresses three practical questions: (1) how to calibrate raw SVM scores to approximate a false-alarm probability, (2) how to set the control limit given a desired in-control ARL, and (3) how frequently the SVM must be retrained to maintain calibration when the in-control distribution drifts slowly. Using a Platt-scaling calibration step and a bootstrap-based limit-setting procedure, the method achieves in-control ARLs within 5% of nominal across six simulated drift scenarios. Recalibration triggered by a secondary drift-detection statistic on residuals reduced worst-case ARL inflation from 43% to 9% on a simulated six-month conveyor-belt dataset with gradual load increase. The paper reports training times and discusses feasibility for edge deployment.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-08491": {
+    "id": "SYN-PUB-08491",
+    "kind": "publication",
+    "title": "Federated Learning for Distributed Statistical Process Monitoring Across Multiple Production Lines",
+    "text": "Federated Learning for Distributed Statistical Process Monitoring Across Multiple Production Lines (2021, journal, Journal of Manufacturing Systems).\nAuthors: Nataša Jovanović (outside co-author); Ilona Szabo (outside co-author); Stefan Gruber (outside co-author); Branislava Ostojić (R0773).\nKeywords: federated learning; distributed SPC; anomaly detection; heterogeneous data; production monitoring.\nWhen identical or similar machines operate at multiple plants, it is attractive to pool monitoring knowledge across sites without centralising raw sensor data for privacy or bandwidth reasons. This paper adapts federated averaging to train a shared anomaly-detection model for multivariate SPC, with each plant training locally on its own data and contributing model updates to a central aggregator. Four federated aggregation strategies are compared against a centralised baseline and a local-only baseline on a network of five simulated production lines with heterogeneous fault-type distributions. Federated averaging with client-side control-limit adjustment achieved fault-detection rates within 4 percentage points of the centralised model on three of five sites, while local-only models lagged by 11–19 percentage points. Communication overhead, convergence speed, and the influence of data heterogeneity on model drift are quantified. Limitations regarding non-IID client data are discussed.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08492": {
+    "id": "SYN-PUB-08492",
+    "kind": "publication",
+    "title": "Adaptive Threshold Selection for Streaming Anomaly Detectors Using Extreme Value Theory",
+    "text": "Adaptive Threshold Selection for Streaming Anomaly Detectors Using Extreme Value Theory (2023, journal, Reliability Engineering and System Safety).\nAuthors: Miroslav Vukić (outside co-author); Petra Kovačević (outside co-author); Marta Reinhardt (outside co-author); Branislava Ostojić (R0773).\nKeywords: extreme value theory; peaks over threshold; adaptive threshold; anomaly detection; streaming data.\n(no abstract)",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08493": {
+    "id": "SYN-PUB-08493",
+    "kind": "publication",
+    "title": "Benchmarking Change-Point Detection Algorithms on Annotated Industrial Datasets: Methodology and Initial Results",
+    "text": "Benchmarking Change-Point Detection Algorithms on Annotated Industrial Datasets: Methodology and Initial Results (2024, conference, Proceedings of the 12th International Conference on Data-Driven Process Control (DDPC 2024)).\nAuthors: Aleksandar Đorđević (outside co-author); Stefan Gruber (outside co-author); Vesna Todorović (outside co-author); Branislava Ostojić (R0773).\nKeywords: change-point detection benchmark; PELT; BOCPD; evaluation methodology; annotated datasets.\nPublished evaluations of change-point detection algorithms are difficult to compare because they use different datasets, annotation conventions, and performance metrics. This paper proposes a reproducible benchmarking protocol and applies it to eight algorithms—including BOCPD, PELT, RUPTURES binary segmentation, wild binary segmentation, BOCD with student-t likelihood, L2-cost dynamic programming, a kernel change-point detector, and an LSTM-based method—on six annotated industrial datasets contributed by the authors and three collaborating groups. Annotations were produced by domain engineers and reviewed by a second engineer; disagreements were resolved by consensus. Metrics reported include F1 score at a tolerance of five samples, mean absolute error in change-point location, and computational time per 1 000 observations. No single algorithm dominated across all datasets. PELT performed best on datasets with large between-segment variance ratios, while the kernel method was most robust on datasets with covariance-only changes. The datasets and annotation files are deposited in a public repository.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-08494": {
+    "id": "SYN-PUB-08494",
+    "kind": "publication",
+    "title": "Monitoring Concept Drift in Online Anomaly Detection Models for Industrial IoT Streams",
+    "text": "Monitoring Concept Drift in Online Anomaly Detection Models for Industrial IoT Streams (2025, journal, IEEE Internet of Things Journal).\nAuthors: Nataša Jovanović (outside co-author); Ilona Szabo (outside co-author); Branislava Ostojić (R0773).\nKeywords: concept drift; isolation forest; Page–Hinkley test; Industrial IoT; incremental learning.\nAnomaly detection models deployed in industrial IoT environments face concept drift: the statistical properties of normal operation change over months due to seasonal variation, equipment ageing, or production-mix changes. This paper proposes a two-level monitoring architecture in which a primary anomaly detector (isolation forest trained offline) is supervised by a secondary drift monitor based on the Page–Hinkley test applied to the score distribution's empirical mean and variance. When drift is confirmed, a lightweight incremental update procedure re-weights the forest using recent in-control samples without full retraining. The architecture is evaluated on 18 months of data from three IoT-connected air-compressor units at a manufacturing plant, comprising approximately 4.7 million observations per unit. The drift monitor correctly identified seven of eight documented operating-regime transitions with one false trigger. Post-update fault-detection rates recovered to within 3% of the initial model's performance within 2 000 samples of each transition.",
+    "researcherIds": [
+      "R0773"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-08925": {
+    "id": "SYN-PUB-08925",
+    "kind": "publication",
+    "title": "Envelope Spectrum Analysis for Early Bearing Fault Detection in Industrial Centrifugal Pumps",
+    "text": "Envelope Spectrum Analysis for Early Bearing Fault Detection in Industrial Centrifugal Pumps (2010, journal, Journal of Vibration Diagnostics and Machinery Health).\nAuthors: Vladana Radić (R0822); Dragan Kovačević (outside co-author).\nKeywords: envelope spectrum; bearing fault; centrifugal pump; kurtosis; bandpass filter.\nThis paper examines the use of envelope spectrum analysis applied to accelerometer signals collected from the drive-end and non-drive-end bearings of three centrifugal pumps operating under variable load conditions in a food processing facility. Vibration data were recorded at 25.6 kHz over a six-month period, accumulating approximately 1,800 hours of run-time data per unit. Bandpass filter parameters were optimised using kurtosis maximisation across 48 sub-bands. The envelope spectra reliably identified outer-race defect frequencies at signal-to-noise ratios as low as 4 dB before any audible symptom appeared. Comparisons were made between healthy and seeded-fault bearings under three load levels (25%, 50%, 75% of rated capacity). Detection lead times ranged from 11 to 34 days ahead of functional failure, depending on load severity. The study provides practical filter-selection guidelines for practitioners without access to specialised diagnostic software, and discusses limitations imposed by variable shaft speed.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2010
+  },
+  "SYN-PUB-08926": {
+    "id": "SYN-PUB-08926",
+    "kind": "publication",
+    "title": "Comparison of Time-Domain Statistical Features for Gearbox Fault Classification Under Non-Stationary Load",
+    "text": "Comparison of Time-Domain Statistical Features for Gearbox Fault Classification Under Non-Stationary Load (2012, conference, Proceedings of the 10th International Conference on Condition Monitoring and Machinery Failure Prevention Technologies, Belgrade).\nAuthors: Milena Stojković (outside co-author); Tomáš Blaho (outside co-author); Vladana Radić (R0822).\nKeywords: gearbox fault; statistical features; LDA; non-stationary load; classification.\nA systematic comparison of eighteen time-domain statistical features—including RMS, crest factor, kurtosis, skewness, and several higher-order moments—is presented for the classification of four gearbox fault types: healthy, chipped tooth, missing tooth, and worn tooth. Experiments were conducted on a back-to-back gearbox test rig operating at shaft speeds between 600 and 1,800 rpm under stepwise torque profiles. Each condition was recorded over 30 independent trials of 60 seconds each. A linear discriminant analysis classifier was trained on 70% of trials and tested on 30%. Under stationary load, kurtosis and crest factor together achieved 94.2% classification accuracy. Under non-stationary load, accuracy degraded to 78.6% using the same feature set, with the most frequent confusion occurring between chipped and worn tooth conditions. The paper concludes with recommendations for feature normalisation strategies that partially recover accuracy under variable-speed operation.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2012
+  },
+  "SYN-PUB-08927": {
+    "id": "SYN-PUB-08927",
+    "kind": "publication",
+    "title": "Simultaneous Vibration and Surface Temperature Monitoring of Rolling Element Bearings: Correlation and Complementarity",
+    "text": "Simultaneous Vibration and Surface Temperature Monitoring of Rolling Element Bearings: Correlation and Complementarity (2013, journal, Journal of Vibration Diagnostics and Machinery Health).\nAuthors: Zoran Petrović (outside co-author); Dragomir Jelić (outside co-author); Vladana Radić (R0822).\nKeywords: infrared thermometry; multimodal monitoring; bearing failure; sensor fusion; lubrication fault.\nRolling element bearings in a 37 kW induction motor test stand were instrumented with both piezoelectric accelerometers and non-contact infrared thermometers to assess whether combining both signal modalities improves early fault detection compared with either modality alone. Four bearing failure modes were induced: outer-race spall, inner-race spall, ball defect, and lubrication starvation. Data were collected over 200-hour run-to-failure experiments for each condition. Correlation coefficients between vibration kurtosis and surface temperature rise were computed at 30-minute intervals. Temperature rise alone lagged vibration-based indicators by 6 to 18 hours depending on fault type. However, for lubrication starvation faults, thermal indicators reached statistically significant thresholds 4.2 hours earlier than vibration kurtosis. A simple fusion rule based on logical OR combination reduced missed detections from 12% to 3% across all fault types, with no increase in false alarm rate.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-08928": {
+    "id": "SYN-PUB-08928",
+    "kind": "publication",
+    "title": "Remaining Useful Life Estimation for Gearbox Bearings Using Particle Filter Prognosis",
+    "text": "Remaining Useful Life Estimation for Gearbox Bearings Using Particle Filter Prognosis (2015, journal, Mechanical Systems Condition Assessment).\nAuthors: Vladana Radić (R0822); Milena Stojković (outside co-author); Aleksandar Vuković (outside co-author); Petra Novotná (outside co-author).\nKeywords: remaining useful life; particle filter; degradation model; run-to-failure; prognosis.\nThis work presents a particle filter framework for estimating the remaining useful life (RUL) of gearbox output-shaft bearings. A state-space degradation model was constructed from experimental run-to-failure data obtained from 14 identical bearing specimens tested on an accelerated life test rig at 1,500 rpm and 110% of rated radial load. The RMS of the high-frequency band (8–16 kHz) served as the health index. Particle filter parameters—number of particles, process noise covariance, and measurement noise covariance—were tuned via cross-validation on six training runs. The model was evaluated on the remaining eight runs. Mean absolute error in RUL prediction at the 50% life-consumed point was 6.3 hours against a mean actual remaining life of 41.7 hours. Prediction uncertainty bounds narrowed progressively as fault progression advanced. The approach is compared with an extended Kalman filter baseline, which yielded a mean absolute error of 9.8 hours under the same evaluation protocol.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-08929": {
+    "id": "SYN-PUB-08929",
+    "kind": "publication",
+    "title": "Thermal Imaging-Based Condition Assessment of Slow-Speed Roller Bearings in Conveyor Systems",
+    "text": "Thermal Imaging-Based Condition Assessment of Slow-Speed Roller Bearings in Conveyor Systems (2016, conference, Proceedings of the 4th South-East European Symposium on Industrial Maintenance, Novi Sad).\nAuthors: Đorđe Marinković (outside co-author); Vladana Radić (R0822).\nKeywords: infrared thermography; slow-speed bearings; conveyor; thermal threshold; emissivity.\nSlow-speed roller bearings (shaft speed 15–80 rpm) present particular challenges for vibration-based diagnostics because fault-related frequencies fall below 10 Hz and are easily masked by structural noise. This paper investigates whether infrared thermography can serve as a primary diagnostic tool in such applications. Fourteen roller bearings from operating conveyor systems in a Vojvodina grain handling facility were inspected quarterly over 18 months using a calibrated thermal camera with a 320×240 focal plane array and 0.05 °C thermal resolution. Temperature differentials between the bearing housing and ambient were logged alongside manually assessed visual condition grades. A threshold of 8 °C above ambient was found to coincide reliably with the onset of detectable surface pitting, while a 15 °C differential indicated advanced degradation requiring imminent replacement. The paper also discusses emissivity correction procedures for painted versus bare metal housings and quantifies the effect of ambient air movement on measurement repeatability.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-08930": {
+    "id": "SYN-PUB-08930",
+    "kind": "publication",
+    "title": "Multivariate Statistical Process Control for Simultaneous Monitoring of Multiple Bearing Locations in Rotating Machinery",
+    "text": "Multivariate Statistical Process Control for Simultaneous Monitoring of Multiple Bearing Locations in Rotating Machinery (2017, journal, Journal of Industrial Measurement and Control Systems).\nAuthors: Milena Stojković (outside co-author); Iosif Drăghici (outside co-author); Zoran Petrović (outside co-author); Vladana Radić (R0822).\nKeywords: PCA; Hotelling T²; multivariate SPC; gearbox; fault detection.\nIndustrial rotating machines are typically equipped with multiple bearing points whose health may degrade independently or in coupled fashion. This paper develops a multivariate statistical process control framework, based on Hotelling's T² and the Q-statistic derived from principal component analysis, applied simultaneously to vibration features extracted from four bearing positions on a two-stage gearbox test stand. Feature vectors comprising RMS, kurtosis, and spectral energy in four frequency bands were computed from 1-second data windows at 30-second intervals over 900 hours of monitored operation including 22 seeded fault events. The Hotelling T² chart detected 19 of the 22 events, with a mean detection lag of 1.4 hours and 2 false alarms during the healthy baseline period. The Q-statistic contributed complementary sensitivity for four events missed or delayed by T². The paper discusses the selection of the number of retained principal components and the impact of load variation on control limit stability.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-08931": {
+    "id": "SYN-PUB-08931",
+    "kind": "publication",
+    "title": "Transfer Learning for Bearing Fault Diagnosis When Source and Target Domains Differ in Machine Size and Speed",
+    "text": "Transfer Learning for Bearing Fault Diagnosis When Source and Target Domains Differ in Machine Size and Speed (2021, conference, Proceedings of the European Conference on Rotating Machinery Diagnostics (EuroRoMaDi), Vienna).\nAuthors: Nemanja Đorđević (outside co-author); Iosif Drăghici (outside co-author); Lukas Reindl (outside co-author); Vladana Radić (R0822).\nKeywords: transfer learning; domain adaptation; CNN; bearing fault; industrial motor.\nLabelled run-to-failure data from small laboratory test rigs are abundant, while equivalent data from large industrial machines are scarce. This paper investigates domain adaptation via fine-tuning of a convolutional neural network pre-trained on laboratory bearing data (shaft diameter 30 mm, 1,500 rpm) and applied to a 250 kW industrial motor (shaft diameter 100 mm, 750 rpm). The source dataset comprised 3,200 labelled one-second vibration windows across four fault classes; the target domain provided only 80 labelled windows per class for fine-tuning. Without adaptation, accuracy on the target domain was 61.4%. Fine-tuning the last two convolutional blocks on the small target dataset raised accuracy to 83.9%. Further improvement to 87.2% was obtained by including adversarial domain alignment of intermediate feature representations. The paper analyses which convolutional layers encode transferable versus domain-specific features, finding that the first two layers consistently transferred well regardless of machine size ratio.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08932": {
+    "id": "SYN-PUB-08932",
+    "kind": "publication",
+    "title": "Edge-Deployable Anomaly Detection for Pump Monitoring Using Autoencoder Compression of Vibration Spectra",
+    "text": "Edge-Deployable Anomaly Detection for Pump Monitoring Using Autoencoder Compression of Vibration Spectra (2022, journal, Journal of Industrial Measurement and Control Systems).\nAuthors: Nemanja Đorđević (outside co-author); Vladana Radić (R0822); Stefan Horvat (outside co-author).\nKeywords: autoencoder; edge computing; anomaly detection; pump monitoring; embedded systems.\nDeploying data-driven condition monitoring at the network edge requires models small enough to run on microcontroller-class hardware. This paper describes the design, training, and deployment of a sparse autoencoder that compresses 512-point FFT spectra from pump bearing accelerometers into 16-dimensional bottleneck representations. The autoencoder was trained exclusively on healthy operation data from six pumps over three months (approximately 4.7 million spectrum snapshots). Reconstruction error served as the anomaly score. The deployed model occupied 47 kB of flash memory on an ARM Cortex-M4 microcontroller and executed inference in 2.3 ms per spectrum. Over a subsequent 14-month monitoring period covering three pump failures and one false alarm, the system detected all three failures between 8 and 31 days before shutdown, with a false alarm rate of 0.7 events per pump per year. Power consumption of the monitoring node averaged 210 mW, enabling battery-backed installation.",
+    "researcherIds": [
+      "R0822"
+    ],
+    "year": 2022
+  },
+  "CALL:HORIZON-BRIDGING-2027-01-12": {
+    "id": "CALL:HORIZON-BRIDGING-2027-01-12",
+    "kind": "call",
+    "title": "Large-Scale piloting of next-generation AI-driven digital platforms for a more affordable, secure and sustainable European energy system (IA) - Apply AI",
+    "text": "Horizon Europe. Innovation Actions. open, deadline 2027-02-16. EU grant €15,000,000 per project, about 1 grant. keywords: Artificial intelligence, intelligent systems, multi agent systems; Cyber-physical systems; Energy end-use efficiency and energy services; Energy management; Energy systems (production, distribution, application); Energy systems, smart energy, smart grids, wireless energy transfer; Internet of Things; Machine learning, statistical data processing and applications using signal processing (e.g. speech, image, video).",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-01-12"
+  },
+  "CALL:HORIZON-MISS-2027-04-CIT-01": {
+    "id": "CALL:HORIZON-MISS-2027-04-CIT-01",
+    "kind": "call",
+    "title": "Innovative microgrids for improved energy system integration and efficiency in urban contexts",
+    "text": "Horizon Europe. Innovation Actions. opens 2027-02-09, deadline 2027-10-07. EU grant €9,000,000 per project, about 2 grants. keywords: Civil engineering; Climate change mitigation; Electricity grid systems; Energy Efficiency; Environmental engineering; Renewable energy sources - general.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-04-CIT-01"
+  },
+  "CORDIS:101284617": {
+    "id": "CORDIS:101284617",
+    "kind": "eu-project",
+    "title": "A Multi-agent Explainable Detection and Inference for Collaborative Wind Turbine Systems",
+    "text": "MEDIC, Horizon Europe, 2026–2028. topic HORIZON-MSCA-2025-PF-01-01. coordinated by UNIVERSITY OF PORTSMOUTH HIGHER EDUCATION CORPORATION (UK). 2 organisations. Wind energy is critical to achieving the European Union's carbon neutrality goal by 2050 and has experienced rapid development. Currently, there is a great challenge to large-scale wind farms due to low reliability and high operation and maintenance costs. Datadriven methods...",
+    "researcherIds": [],
+    "year": 2026,
+    "url": "https://cordis.europa.eu/project/id/101284617"
+  },
+  "CORDIS:885916": {
+    "id": "CORDIS:885916",
+    "kind": "eu-project",
+    "title": "AI for Predictive Maintenance on Wind Turbines",
+    "text": "PAVIMON, Horizon 2020, 2019–2020. topic EIC-SMEInst-2018-2020. coordinated by VERTIKAL AI APS (DK). 1 organisation. Wind power is a key component in the transition towards a society based on renewable energy. However, wind turbine operation and maintenance costs remain high and represent a third of the total costs of energy. Maintenance of critical components can be drastically reduced...",
+    "researcherIds": [],
+    "year": 2019,
+    "url": "https://cordis.europa.eu/project/id/885916"
+  },
+  "CORDIS:101284098": {
+    "id": "CORDIS:101284098",
+    "kind": "eu-project",
+    "title": "Cognitive, Baseline-Free Structural Health Monitoring using Topological Guided Wave Mode-Conversion and Neuromorphic Edge Analytics",
+    "text": "COBRAIN, Horizon Europe, 2027–2029. topic HORIZON-MSCA-2025-PF-01-01. coordinated by KAUNO TECHNOLOGIJOS UNIVERSITETAS (LT). 2 organisations. Ensuring the structural integrity of aerospace, energy, and transportation systems requires Structural Health Monitoring (SHM) solutions that are robust, scalable, and reliable in real-world conditions. Existing SHM technologies are limited by reliance on pristine baseline...",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://cordis.europa.eu/project/id/101284098"
+  }
+}
