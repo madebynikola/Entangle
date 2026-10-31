@@ -9,9 +9,10 @@ import type { RunRegistry } from "./runs"
 export function startRun(root: string, registry: RunRegistry, body: StartRunBody): Promise<string> {
 	const args = ["--import", "tsx", "src/cli.ts"]
 	if (body.mock) args.push("--mock")
-	if (body.problem) args.push("--problem", body.problem.trim())
+	// `--flag=value`: a value that starts with "-" would otherwise read as another flag.
+	if (body.problem) args.push(`--problem=${body.problem.trim()}`)
 	else if (body.companies) args.push("--companies", String(body.companies))
-	if (body.problem && body.sector?.trim()) args.push("--sector", body.sector.trim())
+	if (body.problem && body.sector?.trim()) args.push(`--sector=${body.sector.trim()}`)
 
 	const child = spawn(process.execPath, args, { cwd: root, env: process.env, stdio: ["ignore", "pipe", "pipe"] })
 	let output = ""
