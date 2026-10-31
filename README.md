@@ -28,7 +28,7 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
   </picture>
 </p>
 
-<sub>The Stage tab replaying the reference run (<code>out/golden/</code>) in real time: its first half minute, then its last. Each face is a role, each bubble an event on the Mozaik bus.</sub>
+<sub>The Stage tab replaying the reference run (<code>out/golden/</code>) in real time: its first minute, then its last half minute. Each face is a role, each bubble an event on the Mozaik bus.</sub>
 
 ![The Timeline of a real run: one row per agent, one bar per model call. Overlapping bars are agents working at the same time.](docs/screenshots/timeline.png)
 
