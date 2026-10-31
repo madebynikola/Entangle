@@ -353,3 +353,64 @@ the same answer each time.
   record that holds the detail, so the producer can cite it or drop the word.
 
 Each run writes every claim with its verdict, and the reason for a reject, to `out/critic-eval/`. Run it again after a rubric change; `--mock` costs nothing.
+
+## Where the cost goes, and what is left to cut
+
+The k 2 default (above) made a run about a quarter cheaper. To find the next cut, we split the cost of the three k 2 runs
+(`10-38-09`, `11-37-31`, `11-55-14`) by stage, from the `inference.completed` events in each `trace.jsonl`. Cost is at API
+prices; these runs ran on local Claude Code.
+
+| Stage | Model | Calls | Cost per run | Share |
+| --- | --- | --- | --- | --- |
+| Critic: pairs | Sonnet 4.6 | 39–48 | $1.25 | 17% |
+| Critic: profiles | Sonnet 4.6 | 40–47 | $1.25 | 17% |
+| Critic: proposals | Sonnet 4.6 | 25–28 | $1.08 | 15% |
+| Critic: needs | Sonnet 4.6 | 31–37 | $0.63 | 9% |
+| Matchmaker | Sonnet 4.6 | 36–42 | $1.35 | 19% |
+| Writer | Sonnet 4.6 | 15 | $0.84 | 12% |
+| Profilers | Haiku 4.5 | 41–47 | $0.52 | 7% |
+| Analysts | Haiku 4.5 | 22–27 | $0.27 | 4% |
+| Funding Scout | Haiku 4.5 | 10 | $0.08 | 1% |
+| Screen and second Critic | subq-snap-1.1 | 26 | < $0.01 | 0% |
+| **Run** | | | **$7.29** | |
+
+- **Sonnet 4.6 is 88% of the cost, and the Critic alone is 58%.** Input and output cost about the same: about 1.1M input
+  tokens ($3.40) and 0.2M output tokens ($3.00) per run.
+- **Re-reviews are $1.89 per run (26%).** That is the Critic's rounds 1 and 2, after a send-back. They check only the claims
+  that changed, but each one sends all the sources again. The fixes that the producers make cost more on top of that.
+
+### A Haiku 4.5 Critic: measured, not kept
+
+The Critic costs the most, so we ran `npm run critic:eval` with `MODEL_CRITIC=claude-haiku-4-5`. We did three runs on
+31 October, with subq-snap-1.1 as the second reviewer as before, and one Sonnet 4.6 run for comparison.
+
+| | Haiku 4.5 (3 runs) | Sonnet 4.6 (1 run) |
+| --- | --- | --- |
+| Wrong claims caught, of 23 (code checks and both reviewers) | 11, 11, 11 | 21 |
+| The model alone | 6, 6, 6 | 16 |
+| Ok claims rejected, of 98 | 2–4 | 7 |
+| Cost, time | $0.09, 21 s | $0.35, 63 s |
+
+A Haiku Critic would cost about $2.80 less per run (38%). But it misses half the wrong claims that Sonnet catches, and nearly
+all the judgements and widened claims. That is the work the Critic is for, so the Critic stays on Sonnet 4.6.
+
+### The other levers
+
+| Lever | Saving per run | Effect on quality | Status |
+| --- | --- | --- | --- |
+| Shortlist of 2 with the screen | 26% | the same over 3 runs each | done, the default |
+| subq-snap-1.1 as the second Critic, not Haiku 4.5 | about $1 | the same | done |
+| Haiku 4.5 as the Critic | 38% | catches 11 of 23 wrong claims, not 21 | measured, not kept |
+| Sonnet 5.5 for Matchmaker, Writer and Critic ($2 / $10 per MTok, not $3 / $15) | about 29% | not measured | not now: the hackathon expects Sonnet 4.6 |
+| Prompt caching of the system prompt on the Anthropic API | about 4–5% | none: the same tokens | not done (see below) |
+| Sources before claims in the Critic's prompt, so that re-reviews read the sources from the cache | up to about 8% more | must be measured with `critic:eval` | not done |
+| One send-back round, not two | about 15% | loses the artifacts that the second round saves | not kept |
+| The Batch API (half price) | about 50% | none | not for live runs: answers can take hours, and Mozaik has no batch path |
+
+- **Prompt caching helps only the Matchmaker and the Writer.** Their instructions are about 1,900 and 3,400 tokens. The
+  Critic's instruction is about 800 tokens, under the 1,024 that Sonnet 4.6 needs before it caches a prefix. The Haiku 4.5
+  roles are under its minimum of 4,096. Mozaik 4.1.0 sends the system prompt as one string with no `cache_control`, so this
+  needs a wrapper on its Anthropic endpoint. The cost accounting must change too: Mozaik reports only the uncached input
+  tokens when a cache is used. Local Claude Code runs already cache, and they bill the Claude login, not API prices.
+- **The cost at API prices is an upper bound for local runs.** `claude-code-runner.ts` counts cached input tokens at the
+  full price.
