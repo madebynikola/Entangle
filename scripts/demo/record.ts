@@ -140,7 +140,7 @@ const VO = {
 	bus: "[excited] They all talk on one Mozaik event bus. This is the real run! Five minutes, a dollar forty-six, played four times faster.",
 	parallel: "[curious] But is it really parallel? Here's the eight-company run.",
 	overlap: "Every bar is one model call... [excited] and look how they overlap! Profilers, the Matchmaker, the Writers and the Critic, all working at once.",
-	stats: "Sixty-six researchers profiled. Thirty-two pairs. Four hundred and eighty-three claims rejected. [excited] And six proposals, with every fact sourced!",
+	stats: "Forty-one researchers profiled. Twenty-eight pairs. Four hundred and one claims rejected. [excited] And six proposals, with every fact sourced!",
 	close: "[warm] Entangle. Sourced matches, approved by people.",
 } as const
 type Line = keyof typeof VO
@@ -676,9 +676,9 @@ async function scene5() {
 /** 6. Proof: the agents really run at once */
 async function scene6() {
 	const lanes = () => app.locator('section[data-slot="pane"]').filter({ hasText: "Agents at work" }).first()
-	// The 66-minute run takes seconds to load: load it behind the title, and keep the title up until it is there.
+	// The reference run takes seconds to load: load it behind the title, and keep the title up until it is there.
 	const asked = say("parallel")
-	await title({ kicker: "Is it really parallel?", lines: ["The reference run:", "*8 companies*, 20 agents, 66 minutes."], small: true }, 0, { keep: true, sound: "whoosh" })
+	await title({ kicker: "Is it really parallel?", lines: ["The reference run:", "*8 companies*, 20 agents, 25 minutes."], small: true }, 0, { keep: true, sound: "whoosh" })
 	await Promise.all([
 		wait(2400),
 		isolate(`#/runs/golden/live`, () => [lanes()], { box: { x: 40, y: 24, w: 1360, h: 666 }, pad: 0.02, max: 1.5, card: false }),
@@ -691,23 +691,23 @@ async function scene6() {
 	await caption("The Timeline", "One row per agent, one bar per model call. <b>Bars that overlap</b> are agents working at the same time.")
 	await wait(2400)
 	const lanesBox = await rect(lanes())
-	const [zero, half, row] = await Promise.all([
+	const [zero, ten, row] = await Promise.all([
 		screenOf(app.getByText("0:00", { exact: true }).first()),
-		screenOf(app.getByText("30:00", { exact: true }).first()),
+		screenOf(app.getByText("10:00", { exact: true }).first()),
 		screenOf(app.getByText("profiler-3", { exact: true }).first()),
 	])
 	await dir("showCursor", true)
 	await glide(zero.x - 4, row.y, 700)
 	await dir("press", true)
 	await page.mouse.down()
-	await glide(zero.x + (half.x - zero.x) * 0.9, row.y + 60, 1300)
+	await glide(zero.x + (ten.x - zero.x) * 1.2, row.y + 60, 1300)
 	await page.mouse.up()
 	await dir("press", false)
 	await dir("showCursor", false)
 	await wait(500)
 	const rows = await around(app.getByText("profiler-1", { exact: true }).first(), app.getByText("writer-3", { exact: true }).first())
 	await camera({ rect: { x: rows.x, y: rows.y - 10, w: lanesBox.x + lanesBox.w - rows.x, h: rows.h + 20 }, pad: 0.04, max: 1.9 }, 1500)
-	await caption("The first 27 minutes", "Profilers, the Matchmaker, Writers and the Critic, <b>all in flight together</b>.")
+	await caption("The first 12 minutes", "Profilers, the Matchmaker, Writers and the Critic, <b>all in flight together</b>.")
 	await Promise.all([wait(3400), spoken])
 	await caption(null, null)
 	await stageTo("gone")
@@ -720,13 +720,13 @@ async function scene7() {
 	await dir("panel", {
 		kind: "stats",
 		stats: [
-			{ face: "tycho", n: 66, label: "researchers profiled" },
-			{ face: "amity", n: 32, label: "pairs, each with its reasons" },
-			{ face: "fides", n: 483, label: "claims the Critic rejected" },
+			{ face: "tycho", n: 41, label: "researchers profiled" },
+			{ face: "amity", n: 28, label: "pairs, each with its reasons" },
+			{ face: "fides", n: 401, label: "claims the Critic rejected" },
 			{ face: "tinta", n: 6, label: "proposals, every fact sourced" },
 		],
 	})
-	await caption("The reference run", "8 companies in 66 minutes, for <b>$16.90</b> of Claude.")
+	await caption("The reference run", "8 companies in 25 minutes, for <b>$15.04</b> of Claude.")
 	await Promise.all([wait(4200), say("stats")])
 	await caption(null, null)
 	await dir("unpanel")
