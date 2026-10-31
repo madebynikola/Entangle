@@ -1,5 +1,5 @@
 {
-	"about": "The hand-check of 30 Oct (docs/quality.md) as data: every claim of three proposals (C001, C005, C012) from two runs, each with its cited ids and a label from reading the full text of the records it cites. The Critic passed every one. 'before' is run 2026-10-30T13-37-34 (old rubric), 'after' is run 2026-10-30T15-09-14 (new rubric). Score the Critic on it with `npm run critic:eval`.",
+	"about": "The hand-check of 30 Oct (docs/quality.md) as data: every claim of three proposals (C001, C005, C012) from two runs, and the hand-check of 31 Oct: every claim of eight proposals (C001, C005, C012, C018) from the two k 2 default runs 2026-10-31T10-38-09 and 2026-10-31T11-55-14. Each claim has its cited ids and a label from reading the full text of the records it cites. The Critic passed every one. 'before' is run 2026-10-30T13-37-34 (old rubric), 'after' is run 2026-10-30T15-09-14 (new rubric), 'k2' is the two runs of 31 Oct. Score the Critic on it with `npm run critic:eval`.",
 	"labels": {
 		"ok": "Every fact is in the cited records. The Critic should pass it. A note gives a caveat the hand-check accepted.",
 		"judgement": "Adds a judgement on how a record fits the other side, or reasoning stated as fact. The Critic should reject it.",
@@ -1184,6 +1184,1306 @@
 					"label": "ok"
 				}
 			]
+		},
+		{
+			"id": "C018-CH1-R0948",
+			"pairId": "C018-CH1:R0948",
+			"run": "2026-10-31T10-38-09",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "DriveLogic Vojvodina d.o.o. works in automotive and mobility software.",
+					"sourceIds": [
+						"C018"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Mirjana Vidaković is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0948"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "DriveLogic manually maps System Extract data to approximately 3,200 AUTOSAR SWC configuration files per project, occupying two senior engineers for three weeks.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "A competitor reportedly completed the same task in four days using automation, and DriveLogic is losing bids on price.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The company has the DaVinci API documentation and two Python-skilled engineers but cannot spare the time to build the tooling.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "System Extract documents and ARXML configuration files from the last two projects, which provide concrete inputs for building and testing the pipeline.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "judgement",
+					"note": "CH1 says only that they counted 3,200 files on the last two projects, not that they keep the System Extracts. \"Which provide concrete inputs for building and testing the pipeline\" is the Writer's judgement."
+				},
+				{
+					"n": 7,
+					"text": "Vector DaVinci Configurator and its API documentation, which the company uses and has documented.",
+					"sourceIds": [
+						"C018-CH1",
+						"C018"
+					],
+					"label": "borderline",
+					"note": "\"Which the company ... has documented\": it has the DaVinci API documentation, it did not write it."
+				},
+				{
+					"n": 8,
+					"text": "One senior engineer at approximately 40% of their working week for collaborative development and in-tool testing throughout the project.",
+					"sourceIds": [
+						"C018"
+					],
+					"label": "borderline",
+					"note": "\"For collaborative development and in-tool testing throughout the project\": C018 says \"collaborative development or research activity\" tied to tools."
+				},
+				{
+					"n": 9,
+					"text": "Vidaković co-authored toolchain-independent metamodels for AUTOSAR timing constraints with import adaptors for commercial authoring environments.",
+					"sourceIds": [
+						"SYN-PUB-09982"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "Vidaković co-authored a DSL for AUTOSAR configuration tasks including communication matrix specification via Xtext with ARXML code generation.",
+					"sourceIds": [
+						"SYN-PUB-03795"
+					],
+					"label": "widened",
+					"note": "\"A DSL for AUTOSAR configuration tasks including communication matrix specification\": ComMatDSL covers communication matrices only."
+				},
+				{
+					"n": 11,
+					"text": "Vidaković co-authored automated transformation chains for migrating AUTOSAR Classic SWC models to Adaptive Platform service skeletons using Acceleo template-based code generation.",
+					"sourceIds": [
+						"SYN-PUB-09979"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Vidaković is open to joint projects with companies on AUTOSAR toolchain development or customisation and to student internships in the Embedded Systems Laboratory.",
+					"sourceIds": [
+						"R0948"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "DriveLogic's bottleneck is parsing System Extract and generating importable ARXML in under one working day; the company has the data and DaVinci access but not the development time.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Vidaković co-authored toolchain-independent AUTOSAR timing-constraint metamodels with import adaptors for commercial authoring environments and a communication-matrix DSL with ARXML code generation.",
+					"sourceIds": [
+						"SYN-PUB-09982",
+						"SYN-PUB-03795"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Vidaković led industry-linked AUTOSAR toolchain projects with Embron d.o.o. as industrial liaison and is open to joint projects on AUTOSAR toolchain development.",
+					"sourceIds": [
+						"SYN-PRJ-0432",
+						"R0948"
+					],
+					"label": "widened",
+					"note": "\"Led industry-linked AUTOSAR toolchain projects with Embron as liaison\": it is one project (MDEVS), on verifying model transformations."
+				},
+				{
+					"n": 16,
+					"text": "The profile states that doctoral student supervision limited capacity for new long-term commitments before mid-2026.",
+					"sourceIds": [
+						"R0948"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C018-CH1-R0948",
+			"pairId": "C018-CH1:R0948",
+			"run": "2026-10-31T11-55-14",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "DriveLogic Vojvodina d.o.o. works in automotive and mobility software.",
+					"sourceIds": [
+						"C018"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Mirjana Vidaković is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0948"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "DriveLogic generates approximately 3,200 AUTOSAR SWC configuration files per project by hand over three weeks, using two senior engineers working in DaVinci Configurator.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "The manual configuration workload is causing the company to lose price-sensitive bids, and a competitor is reported to have reduced the same task to four days using automation.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The company has DaVinci Configurator API documentation and two Python-capable engineers but states that nobody has had time to build the tooling properly.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "DriveLogic plans to add a second delivery team by end of 2026 to run two large OEM projects in parallel.",
+					"sourceIds": [
+						"C018-CH1",
+						"C018"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 7,
+					"text": "DaVinci Configurator API documentation needed to implement the generation pipeline.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "borderline",
+					"note": "\"API documentation needed to implement the generation pipeline\": the fact is in CH1, the purpose clause is reasoning."
+				},
+				{
+					"n": 8,
+					"text": "One senior engineer available roughly 40% of their working week for collaborative development directly tied to active projects.",
+					"sourceIds": [
+						"C018"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "Vidaković co-authored work on metamodel-driven generation of AUTOSAR software component descriptors and ARXML artefacts using Ecore and Eclipse Modeling Framework.",
+					"sourceIds": [
+						"SYN-PUB-09973",
+						"SYN-PUB-09978"
+					],
+					"label": "borderline",
+					"note": "\"Metamodel-driven generation of AUTOSAR SWC descriptors\" is the title of the dissertation in R0948, which the claim does not cite. 09973 defines the metamodel with an ATL round trip to ARXML; 09978 generates C code. Same claim as 13."
+				},
+				{
+					"n": 10,
+					"text": "Vidaković co-authored work on consistency checking between AUTOSAR system descriptions and deployment configurations using a merged in-memory model built from multiple ARXML artefacts.",
+					"sourceIds": [
+						"SYN-PUB-06834"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Vidaković is open to joint projects with companies on AUTOSAR toolchain development or customisation and contract research on ARXML artefact processing and model transformation.",
+					"sourceIds": [
+						"R0948"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "DriveLogic has DaVinci API documentation, two Python-capable engineers, and active projects with System Extracts, but states that nobody has had time to build the tooling properly.",
+					"sourceIds": [
+						"C018-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Vidaković co-authored work on metamodel-driven generation of AUTOSAR software component descriptors and ARXML artefacts using Ecore and Eclipse Modeling Framework.",
+					"sourceIds": [
+						"SYN-PUB-09973",
+						"SYN-PUB-09978"
+					],
+					"label": "borderline",
+					"note": "Same claim as 9: the wording is the title of the dissertation in R0948, which the claim does not cite."
+				},
+				{
+					"n": 14,
+					"text": "Vidaković co-authored work on consistency checking between AUTOSAR system descriptions and deployment configurations using a merged in-memory model built from multiple ARXML artefacts.",
+					"sourceIds": [
+						"SYN-PUB-06834"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Vidaković's published generation work uses EMF, Acceleo, and Xtext toolchains; the records do not cover scripting against the DaVinci Configurator API specifically.",
+					"sourceIds": [
+						"SYN-PUB-09973",
+						"SYN-PUB-09974",
+						"SYN-PUB-09978",
+						"SYN-PUB-03795"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "Capacity for new long-term commitments is limited until mid-2026 due to doctoral supervision; short-term consulting and focused contract research are feasible.",
+					"sourceIds": [
+						"R0948"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C012-CH1-R0564",
+			"pairId": "C012-CH1:R0564",
+			"run": "2026-10-31T10-38-09",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Sentinel Byte preduzetnik works in cybersecurity.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Árpád Nagy is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "The first phase of each penetration test engagement currently takes four days; the company targets one working day.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "Existing Bash scripts are fragile: Nessus output-format changes have broken the automation twice, each time requiring manual repair.",
+					"sourceIds": [
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "Clients — including two municipalities and a regional medical supply company — are requesting retest and continuous monitoring work that the company cannot take on at current manual throughput.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "widened",
+					"note": "The three named clients \"are requesting retest and continuous monitoring work\": CH1 says they asked to retest after patches, and one wants \"something closer to monthly checks\". Same miss as the 30 Oct after run."
+				},
+				{
+					"n": 6,
+					"text": "The company can budget 3,000 to 5,000 euros for tooling or development, or accept a research arrangement whose output is a working prototype.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 7,
+					"text": "A 2024 study reports automated mapping of CVE records to MITRE ATT&CK tactics using transformer models, with SecRoBERTa achieving an F1 score of 77.81%.",
+					"sourceIds": [
+						"W4394692031"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "Existing Bash and Python scripts for reconnaissance automation and the current Nmap and Nessus toolchain are available for pipeline development.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "borderline",
+					"note": "Scripts and toolchain \"are available for pipeline development\": a purpose clause, the facts are in C012."
+				},
+				{
+					"n": 9,
+					"text": "The company's current toolchain includes Nmap and Nessus for network scanning, Burp Suite for web application testing, Metasploit Framework for exploitation validation, and Kali Linux as the primary testing environment.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "Nikola Kovačević can dedicate roughly two days per week to a collaborative development project, primarily on tooling and automation topics.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Several clients — including two municipalities and a regional medical supply company — have asked to retest after they apply patches; one has asked for monthly checks.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Árpád Nagy co-authored work on agent-based automated topology discovery using passive and active probing in heterogeneous enterprise networks.",
+					"sourceIds": [
+						"SYN-PUB-06542"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Árpád Nagy co-authored work on vulnerability data normalisation from heterogeneous sources using ontology-driven methods.",
+					"sourceIds": [
+						"SYN-PUB-03796"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Árpád Nagy co-authored work on vulnerability scanner evaluation and benchmarking against controlled testbeds with implanted vulnerabilities.",
+					"sourceIds": [
+						"SYN-PUB-06547"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Árpád Nagy provided part-time consulting on automated scanning workflows and toolchain integration to a regional managed security services provider.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "Sentinel Byte's automation has broken twice due to Nessus output-format changes, and the first engagement phase takes four days instead of the target of one.",
+					"sourceIds": [
+						"C012-CH1",
+						"C012/blog/2024-04-02/Why we wrote our own reconnaissance scripts and why we are about to stop"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "Árpád Nagy co-authored work on agent-based topology discovery with passive and active probing in heterogeneous enterprise networks and on vulnerability scanner benchmarking against controlled testbeds with implanted vulnerabilities.",
+					"sourceIds": [
+						"SYN-PUB-06542",
+						"SYN-PUB-06547"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "The published work covers network reconnaissance and data normalisation; the records do not cover scan-diff or change-detection between successive scan runs specifically.",
+					"sourceIds": [
+						"SYN-PUB-06542",
+						"SYN-PUB-03796"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 19,
+					"text": "The budget is roughly 3,000 to 5,000 euros; the company is open to a research arrangement where the output is a working prototype.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C012-CH1-R0564",
+			"pairId": "C012-CH1:R0564",
+			"run": "2026-10-31T11-55-14",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Sentinel Byte preduzetnik works in cybersecurity.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Árpád Nagy is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "Sentinel Byte's reconnaissance and vulnerability enumeration phase takes a few days within a two-week engagement, and clients are requesting continuous testing and retests after patches that the company cannot sustain at current billing rates.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "Existing Bash scripts save roughly two hours per engagement but are fragile and difficult to maintain, leaving testers without a reliable automated workflow.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The target is to reduce the initial reconnaissance and enumeration phase from four days to one working day by delivering a scheduled pipeline that flags changes between scan runs and outputs structured results for testers.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "The company must move part of its reconnaissance workflow onto an automated platform within twelve months to offer continuous monitoring as a service.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "widened",
+					"note": "\"The company must move part of its reconnaissance workflow onto an automated platform within twelve months\": C012 says \"we want to\"."
+				},
+				{
+					"n": 7,
+					"text": "A 2023 study reports that adaptive measurement schedules for change-point detection significantly outperform fixed periodic measurement schemes when verifying network behaviour shifts, including on a 5G testbed.",
+					"sourceIds": [
+						"W4389608980"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "The company uses Nmap, Nessus, and custom Bash and Python scripts for reconnaissance automation.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "A company engineer can dedicate roughly two days per week to a collaborative development project, primarily on tooling and automation topics.",
+					"sourceIds": [
+						"C012"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "The company brings a budget of €3,000–5,000 to fund the collaboration.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Árpád Nagy co-authored work on network topology discovery using hybrid active and passive reconnaissance with agent-based sensor networks.",
+					"sourceIds": [
+						"SYN-PUB-06542"
+					],
+					"label": "borderline",
+					"note": "\"Agent-based sensor networks\": 06542 has \"a coordinated set of lightweight agents\", not sensor networks."
+				},
+				{
+					"n": 12,
+					"text": "Árpád Nagy co-authored work on vulnerability scanner evaluation, benchmarking, and false-positive analysis, and on vulnerability data normalisation from heterogeneous sources using OWL 2 ontologies and SPARQL mappings.",
+					"sourceIds": [
+						"SYN-PUB-06548",
+						"SYN-PUB-06547",
+						"SYN-PUB-03796"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Árpád Nagy co-authored work on temporal attack graph construction incorporating CVE disclosure timelines and patch deployment dynamics.",
+					"sourceIds": [
+						"SYN-PUB-06550"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Árpád Nagy maintains a network-emulation laboratory with reconfigurable VLAN hardware, software-defined networking switches, and licensed vulnerability-management platforms available for external collaboration.",
+					"sourceIds": [
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Sentinel Byte's four-day manual recon phase and fragile existing scripts are the bottleneck, and the target is one working day with structured, delta-flagged output.",
+					"sourceIds": [
+						"C012-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "Árpád Nagy has published on hybrid active/passive discovery, scanner benchmarking and false-positive analysis, OWL 2 normalisation of heterogeneous vulnerability feed data, and temporal attack graph construction incorporating CVE timelines and patch dynamics.",
+					"sourceIds": [
+						"SYN-PUB-06542",
+						"SYN-PUB-06548",
+						"SYN-PUB-03796",
+						"SYN-PUB-06550"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "Under the GRAPHSEC project, Árpád Nagy conducted paid pilot assessments of internal networks for NTP Novi Sad technology companies and delivered an open-source toolchain as a project output.",
+					"sourceIds": [
+						"SYN-PRJ-0507",
+						"R0564"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "The published record covers network-level reconnaissance and scanner evaluation; it does not cover scheduled pipeline orchestration or CI/CD-style change-detection workflow tooling specifically.",
+					"sourceIds": [
+						"SYN-PUB-06542",
+						"SYN-PUB-06548"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C005-CH2-R0057",
+			"pairId": "C005-CH2:R0057",
+			"run": "2026-10-31T10-38-09",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Kardiolink a.d. works in medtech and digital health.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Lazar Šarić is an Assistant Professor in the Department of Mathematics and Informatics, Faculty of Sciences.",
+					"sourceIds": [
+						"R0057"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "Kardiolink generates approximately 2 TB of raw ECG data per month across 2,200 deployed KL-Patch 72 devices, each producing 900 MB over 72 hours at 250 Hz across three channels.",
+					"sourceIds": [
+						"C005-CH2",
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "Current lossless compression achieves only a 3:1 ratio using a modified SZ algorithm, resulting in cloud storage costs of €7,400 per month.",
+					"sourceIds": [
+						"C005-CH2",
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The company plans to grow the active fleet to 6,000 patches per month, at which point the current compression ratio makes cloud costs unsustainable against 2022 benchmarks.",
+					"sourceIds": [
+						"C005",
+						"C005-CH2"
+					],
+					"label": "widened",
+					"note": "Merges two points. C005: grow to 6,000 patches a month in two years and bring cloud costs back to 2022 levels. CH2: costs are unsustainable at 4,000 devices by Q2 next year. The claim says \"at 6,000 ... unsustainable against 2022 benchmarks\"."
+				},
+				{
+					"n": 6,
+					"text": "Regulatory constraints prevent switching to lossy compression without a new clinical validation study and amendments to the technical file.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 7,
+					"text": "A 2018 study reports a lossless ECG codec using adaptive linear prediction and Golomb-Rice entropy coding that achieves 2.83× compression on Lead V1 of the MIT-BIH arrhythmia database, running in real time on an ARM M4 processor.",
+					"sourceIds": [
+						"W2883401192"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "A labelled dataset of approximately 140,000 thirty-minute ECG segments, available under NDA for algorithm development and benchmarking.",
+					"sourceIds": [
+						"C005-CH2"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "Field recordings from approximately 2,200 KL-Patch 72 devices generating 900 MB of raw three-channel 250 Hz ECG per device over 72 hours, covering real ambulatory motion-artefact conditions.",
+					"sourceIds": [
+						"C005-CH2",
+						"C005"
+					],
+					"label": "widened",
+					"note": "Field recordings \"covering real ambulatory motion-artefact conditions\": no record says motion artefacts. CH2 says \"the noise characteristics of a wearable electrode\" and offers only the labelled dataset."
+				},
+				{
+					"n": 10,
+					"text": "Twelve people working across hardware, firmware, and algorithm development.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "The current production SZ-based lossless codec as the baseline against which the new codec is measured.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "borderline",
+					"note": "The SZ codec \"as the baseline against which the new codec is measured\": a purpose clause."
+				},
+				{
+					"n": 12,
+					"text": "Šarić co-authored work on exploitation of inter-beat redundancy in single-lead ECG via DPCM of DCT coefficients with online predictor adaptation.",
+					"sourceIds": [
+						"SYN-PUB-00757"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Šarić co-authored work on learned entropy models for ECG compression using small GRU networks that predict coefficient distributions from intra-beat spectral and inter-beat temporal context.",
+					"sourceIds": [
+						"SYN-PUB-00761",
+						"SYN-PUB-00763"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Šarić co-authored rate-distortion analysis and framing strategy comparison for ECG entropy coding, covering beat-aligned versus free-running approaches.",
+					"sourceIds": [
+						"SYN-PUB-00760"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Kardiolink's current lossless compression reaches only 3:1 using a modified SZ algorithm, and cloud costs will be unsustainable at the planned 6,000 active patches per month; regulatory constraints prevent any lossy alternative.",
+					"sourceIds": [
+						"C005-CH2",
+						"C005"
+					],
+					"label": "widened",
+					"note": "Same merge as claim 5, and \"regulatory constraints prevent any lossy alternative\": CH2 says a lossy codec needs a new clinical study, \"not something we can do quickly\"."
+				},
+				{
+					"n": 16,
+					"text": "Šarić co-authored work on inter-beat DPCM of DCT coefficients and on learned GRU entropy models for ECG compression.",
+					"sourceIds": [
+						"SYN-PUB-00757",
+						"SYN-PUB-00761",
+						"SYN-PUB-00763"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "The published work covers single-lead and multi-lead ECG from Holter and clinical recordings; coverage of wearable patch-specific noise characteristics (electrode motion artefacts at 250 Hz on a 72-hour ambulatory device) is not established in the records. (SYN-PUB-00755, SYN-PUB-00757, C005-CH2)",
+					"sourceIds": [
+						"SYN-PUB-00755",
+						"SYN-PUB-00757",
+						"C005-CH2"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "The learned entropy model work uses small GRU networks; it is not confirmed in the records whether these remain strictly lossless at all operating points, which the regulatory constraint requires. (SYN-PUB-00761, SYN-PUB-00763, C005-CH2)",
+					"sourceIds": [
+						"SYN-PUB-00761",
+						"SYN-PUB-00763",
+						"C005-CH2"
+					],
+					"label": "borderline",
+					"note": "\"Not confirmed in the records whether these remain strictly lossless\": the GRU papers report PRD 1.5% and 0.5-8%, so the records show them lossy."
+				},
+				{
+					"n": 19,
+					"text": "The records do not confirm whether the rate-distortion framing and benchmarking work covers compression ratios at the 3:1 threshold or above that Kardiolink specifically needs to exceed. (SYN-PUB-00760, C005-CH2)",
+					"sourceIds": [
+						"SYN-PUB-00760",
+						"C005-CH2"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C005-CH1-R0905",
+			"pairId": "C005-CH1:R0905",
+			"run": "2026-10-31T11-55-14",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "Kardiolink a.d. works in medtech and digital health.",
+					"sourceIds": [
+						"C005"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Filip Mijatović is an Assistant Professor in the Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R0905"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "The KL-Patch 72 draws 18 mAh per day during Bluetooth activity against a 54 mAh lithium cell, limiting continuous wear time for active patients.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "Kardiolink has already applied three optimisations — BLE advertising interval tuning, upgrade to BLE 5.0 long-range PHY, and a lower-power MCU variant — and still needs 35% further current reduction.",
+					"sourceIds": [
+						"C005-CH1",
+						"C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
+					],
+					"label": "borderline",
+					"note": "\"Upgrade to BLE 5.0 long-range PHY\": CH1 says \"for some use cases\"."
+				},
+				{
+					"n": 5,
+					"text": "The remaining reduction must come from BLE radio duty cycling, ADC configuration, and memory access patterns on the ARM Cortex-M4, while ECG sampling stays at 250 Hz or above.",
+					"sourceIds": [
+						"C005-CH1",
+						"C005",
+						"C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
+					],
+					"label": "borderline",
+					"note": "\"The remaining reduction must come from BLE radio duty cycling, ADC configuration, and memory access patterns\": CH1 asks for someone who understands those three and \"can find where the remaining headroom is\"."
+				},
+				{
+					"n": 6,
+					"text": "A 2024 study reports a 16-channel neural recording SoC in 65 nm CMOS that maintains input-referred noise at 1.1 µVrms over 0.001–1 Hz by duty-cycling the power supply at the sample level, showing that ADC duty cycling need not degrade biopotential signal quality.",
+					"sourceIds": [
+						"W4392173026"
+					],
+					"label": "judgement",
+					"note": "The paper duty-cycles the supply and keeps low noise at 0.001-1 Hz only. \"Showing that ADC duty cycling need not degrade biopotential signal quality\" is the Writer's general point."
+				},
+				{
+					"n": 7,
+					"text": "An embedded firmware engineer role focused on low-power BLE systems, with responsibilities covering the KL-Patch 72 firmware architecture.",
+					"sourceIds": [
+						"C005/job/2024-02-05/Embedded Firmware Engineer — Low-Power BLE Systems"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "Instrumented reference hardware in the company lab including a Keysight N6705C power analyser and full current profiles of the KL-Patch 72.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "Mijatović co-authored duty-cycled MAC scheduling with deadline-aware slot allocation for IEEE 802.15.4 implantable nodes, and separately co-authored ECG streaming retransmission strategies over BLE.",
+					"sourceIds": [
+						"SYN-PUB-09632",
+						"SYN-PUB-09634"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "Mijatović co-authored energy budget analysis and subsystem partitioning for an implantable glucose monitor including an 8-bit ADC and a duty-cycled OOK RF uplink.",
+					"sourceIds": [
+						"SYN-PUB-09631"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Mijatović has access to the Cadence Virtuoso IC design suite and is open to short collaborative visits for access to that suite.",
+					"sourceIds": [
+						"R0905"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "Mijatović is open to joint projects with medical device companies and to BLE protocol configuration consulting for biomedical products.",
+					"sourceIds": [
+						"R0905"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "The KL-Patch 72 draws 18 mAh/day on a 54 mAh cell and needs 35% additional reduction across BLE radio duty cycling, ADC configuration, and memory access at ≥250 Hz, after three prior optimisations are already applied.",
+					"sourceIds": [
+						"C005-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "Mijatović co-authored energy budget analysis and subsystem partitioning for implantable devices including ADC design and duty-cycled RF uplinks.",
+					"sourceIds": [
+						"SYN-PUB-09631"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "The published work covers MAC scheduling and ADC design at the circuit and protocol level; coverage of ARM Cortex-M4 firmware-level memory access optimisation and MCU state-transition profiling in an existing embedded product is not documented in the cited records.",
+					"sourceIds": [
+						"SYN-PUB-09632",
+						"SYN-PUB-09631"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "The researcher's profile states limited bandwidth for large new commitments until mid-2025.",
+					"sourceIds": [
+						"R0905"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C001-CH1-R1008",
+			"pairId": "C001-CH1:R1008",
+			"run": "2026-10-31T10-38-09",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "ArmaturaSec d.o.o. works in cybersecurity.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Krisztina Kiss is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "ArmaturaSec's ProtoSense module must detect anomalies in Modbus TCP and BACnet/IP traffic without any labelled attack examples from real deployments.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "The company holds several terabytes of unlabelled normal traffic captures from three years of client sites and zero confirmed malicious traffic, making supervised classifiers infeasible.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "Supervised classifiers trained on public ICS datasets produced false positive rates too high for production deployment when applied to real client site traffic.",
+					"sourceIds": [
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 6,
+					"text": "The ProtoSense appliance must run inference on-device at the message level without affecting packet forwarding latency, and alert findings must be understandable to plant managers in plain language.",
+					"sourceIds": [
+						"C001",
+						"C001/website/2024-01-15/What We Do — ArmaturaSec d.o.o.",
+						"C001-CH1"
+					],
+					"label": "widened",
+					"note": "Merges the website (ProtoSense parses at the message level) with C001's plan for a fifth hardware variant with a security processor \"to support on-device anomaly detection without affecting packet forwarding latency\". A plan becomes a requirement of ProtoSense."
+				},
+				{
+					"n": 7,
+					"text": "A 2022 study reports an unsupervised lightweight LSTM variational autoencoder for ICS anomaly detection that detected 82.16% of anomalies on the SWaT benchmark, demonstrating that compact deep models can be trained without attack labels on ICS data.",
+					"sourceIds": [
+						"W4224248050"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "ArmaturaSec provides several terabytes of unlabelled normal Modbus TCP and BACnet/IP traffic captures from three years of real client sites.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001",
+						"C001/website/2024-01-15/What We Do — ArmaturaSec d.o.o."
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "ArmaturaSec has a hardware-in-the-loop bench with physical PLC simulators and produces the ProtoSense passive protocol inspection module.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 10,
+					"text": "ArmaturaSec dedicates one to two engineers part-time with access to the traffic archives, hardware bench, and firmware codebase under NDA.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "Krisztina Kiss co-authored work on unsupervised ICS anomaly detection using one-class SVM, Isolation Forest, and autoencoders on Modbus and multi-protocol traffic.",
+					"sourceIds": [
+						"SYN-PUB-10477",
+						"SYN-PUB-10483",
+						"SYN-PUB-10482",
+						"SYN-PUB-10475"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 12,
+					"text": "The researcher co-authored work on incremental Gaussian mixture models for ICS anomaly detection under concept drift from process reconfiguration.",
+					"sourceIds": [
+						"SYN-PUB-00492"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "The researcher co-authored work on model compression via weight quantisation and structured pruning of autoencoder-based detectors targeting ARM-based ICS gateways.",
+					"sourceIds": [
+						"SYN-PUB-10239"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 14,
+					"text": "The researcher operates a dedicated ICS testbed with Modbus/TCP and DNP3 traffic generators and packet capture infrastructure available to industrial partners under a data-sharing agreement.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "ArmaturaSec's false positive problem arose from supervised classifiers trained on public ICS datasets, which failed when applied to real client site traffic; the company requires a method that learns site-specific normal behaviour.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "The researcher co-authored work on unsupervised ICS anomaly detection, incremental concept drift handling, and model compression for embedded gateways.",
+					"sourceIds": [
+						"SYN-PUB-10477",
+						"SYN-PUB-00492",
+						"SYN-PUB-10239"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "The researcher leads funded projects with operational infrastructure data partners and operates an ICS testbed available to industrial partners under a data-sharing agreement.",
+					"sourceIds": [
+						"SYN-PRJ-0511",
+						"SYN-PRJ-0512",
+						"R1008"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 18,
+					"text": "The researcher's protocol-specific records cover Modbus, DNP3, EtherNet/IP, and PROFINET IO; none of these records mention BACnet/IP.",
+					"sourceIds": [
+						"SYN-PUB-10483",
+						"SYN-PUB-10482",
+						"SYN-PUB-10478",
+						"SYN-PUB-10477",
+						"SYN-PUB-10476",
+						"SYN-PUB-10473",
+						"SYN-PUB-10472"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 19,
+					"text": "The company requires findings to be explainable to plant managers in plain language.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				}
+			]
+		},
+		{
+			"id": "C001-CH1-R1008",
+			"pairId": "C001-CH1:R1008",
+			"run": "2026-10-31T11-55-14",
+			"phase": "k2",
+			"claims": [
+				{
+					"n": 1,
+					"text": "ArmaturaSec d.o.o. works in cybersecurity.",
+					"sourceIds": [
+						"C001"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 2,
+					"text": "Krisztina Kiss is a Full Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+					"sourceIds": [
+						"R1008"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 3,
+					"text": "Supervised classifiers trained on public ICS datasets generated false positive rates on real client deployments that were unacceptable, causing clients to switch alerts off entirely.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/blog/2024-05-20/Why We Stopped Trying to Use Public ICS Datasets for Anomaly Detection"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 4,
+					"text": "ArmaturaSec's clients have zero confirmed breach examples, making supervised training impossible from their own operational data.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 5,
+					"text": "The anomaly detector must run inside embedded Linux firmware on ARM Cortex-A SoCs without affecting packet forwarding latency.",
+					"sourceIds": [
+						"C001/job/2024-02-05/Firmware Engineer — Network Protocols (Zrenjanin)",
+						"C001"
+					],
+					"label": "widened",
+					"note": "The job page says today's appliances use ARM Cortex-A SoCs. C001's plan is a fifth variant \"with a dedicated security processor\" for on-device detection. The plan becomes a requirement on today's SoC."
+				},
+				{
+					"n": 6,
+					"text": "Alerts must be explainable to a plant manager in plain language.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 7,
+					"text": "A 2024 study reports that a composite autoencoder trained without labelled attack data can detect anomalous value and temporal patterns in ICS data using the HAI benchmark.",
+					"sourceIds": [
+						"W4391996970"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 8,
+					"text": "A 2020 study reports an incremental unsupervised anomaly detection method that processes large-scale real-time ICS network data streams and converges to its offline counterpart on growing data.",
+					"sourceIds": [
+						"W3006480895"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 9,
+					"text": "Several terabytes of normal Modbus and BACnet traffic captures collected over three years from consenting clients, providing the unlabelled operational data the training and calibration steps require.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "borderline",
+					"note": "\"Providing the unlabelled operational data the training and calibration steps require\": a purpose clause."
+				},
+				{
+					"n": 10,
+					"text": "ProtoSense module understands Modbus TCP and BACnet/IP at message level, not just packet level.",
+					"sourceIds": [
+						"C001/website/2024-01-15/What We Do — ArmaturaSec d.o.o."
+					],
+					"label": "ok"
+				},
+				{
+					"n": 11,
+					"text": "One engineer with six months of anomaly detection study is available to support the project.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "borderline",
+					"note": "\"Is available to support the project\": CH1 says only that one engineer has read about anomaly detection for six months. C001 (not cited) gives the part-time engineers."
+				},
+				{
+					"n": 12,
+					"text": "Kiss co-authored methods for statistical baseline modelling and temporal feature extraction from Modbus TCP traffic for detecting stealthy injection attacks.",
+					"sourceIds": [
+						"SYN-PUB-10472",
+						"SYN-PUB-00722"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 13,
+					"text": "Kiss co-authored threshold calibration methods using beta mixture models and post-hoc calibration on unlabelled operational data, addressing the false-positive problem without needing attack labels.",
+					"sourceIds": [
+						"SYN-PUB-10480"
+					],
+					"label": "judgement",
+					"note": "The paper studies the gap between nominal and actual false positive rate. \"The false-positive problem\" is ArmaturaSec's, so the claim adds a judgement on how the paper fits the company."
+				},
+				{
+					"n": 14,
+					"text": "Kiss co-authored model compression methods using weight quantisation and structured pruning of autoencoders targeting ARM-based gateways.",
+					"sourceIds": [
+						"SYN-PUB-10239"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 15,
+					"text": "Kiss co-authored protocol-agnostic byte-level anomaly detection methods and multi-protocol score aggregation methods covering protocols beyond Modbus.",
+					"sourceIds": [
+						"SYN-PUB-10483",
+						"SYN-PUB-10482"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 16,
+					"text": "ArmaturaSec's clients have zero confirmed breach examples, making supervised training impossible from their own operational data; Kiss co-authored threshold calibration using beta mixture models and post-hoc calibration on unlabelled operational data.",
+					"sourceIds": [
+						"C001-CH1",
+						"SYN-PUB-10480"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 17,
+					"text": "The detector must run on ARM Cortex-A SoCs without affecting packet forwarding latency; Kiss co-authored autoencoder weight quantisation and structured pruning methods targeting ARM-based gateways.",
+					"sourceIds": [
+						"C001",
+						"C001/job/2024-02-05/Firmware Engineer — Network Protocols (Zrenjanin)",
+						"SYN-PUB-10239"
+					],
+					"label": "widened",
+					"note": "Same merge as claim 5, in the pair claim: a plan for a fifth variant becomes a requirement on today's Cortex-A SoCs."
+				},
+				{
+					"n": 18,
+					"text": "The challenge requires coverage of BACnet/IP in addition to Modbus; Kiss co-authored a protocol-agnostic byte-level detection approach that does not require protocol-specific feature engineering.",
+					"sourceIds": [
+						"C001-CH1",
+						"C001/website/2024-01-15/What We Do — ArmaturaSec d.o.o.",
+						"SYN-PUB-10483"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 19,
+					"text": "The cited publications cover statistical baseline modelling and temporal feature extraction for Modbus TCP traffic and multi-protocol score aggregation for Modbus, DNP3, and EtherNet/IP traffic; no BACnet-specific anomaly detection work appears in the record.",
+					"sourceIds": [
+						"SYN-PUB-10472",
+						"SYN-PUB-00722",
+						"SYN-PUB-10482"
+					],
+					"label": "ok"
+				},
+				{
+					"n": 20,
+					"text": "The challenge requires anomaly alerts to be explained to non-technical plant managers.",
+					"sourceIds": [
+						"C001-CH1"
+					],
+					"label": "ok"
+				}
+			]
 		}
 	],
 	"records": {
@@ -1688,6 +2988,289 @@
 				"R1015"
 			],
 			"year": 2024
+		},
+		"C018": {
+			"id": "C018",
+			"kind": "company",
+			"title": "DriveLogic Vojvodina d.o.o.",
+			"text": "DriveLogic Vojvodina d.o.o. (C018): Automotive and mobility software, Novi Sad, 27 employees, founded 2004.\nDriveLogic Vojvodina d.o.o. was founded in 2004 by Miroslav Vučić, a mechanical and electronics engineer who spent fifteen years at a German Tier-1 supplier, and his son Andrej Vučić, who joined after finishing his electrical engineering degree in Novi Sad. The two of them started with three workstations in a rented room and a single contract to port BSW modules for a mid-size European passenger car program. Twenty years later we are a team of twenty-seven engineers, all based in Novi Sad, and we have delivered software integration work on more than forty OEM projects. We focus entirely on AUTOSAR-based embedded software: configuration, integration, and V-cycle testing for powertrain, body and chassis ECUs. We do not build hardware, we do not sell IP, and we do not resell tools. Customers come to us because we do one thing and we do it carefully. Our engineers work directly inside the customer's development environment, using their toolchains and following their process rules. Our main customers are Tier-1 and Tier-2 suppliers delivering ECUs to European OEMs. We have worked with companies such as Hartfeld Automotive Systems (Germany), Rennova Electronics (Czech Republic) and Balkon Drive Solutions (Slovakia). Most contracts run between six and twenty-four months. What keeps customers coming back is straightforward: we document everything, we flag problems early, and we do not hide schedule risk.\nProducts: AUTOSAR Classic BSW configuration and software component integration; V-cycle test planning, execution and coverage reporting for ECU software; CAN, LIN and Ethernet communication stack integration and validation; ECU flashing, diagnostic tooling and UDS/OBD-II protocol support; AUTOSAR toolchain migration and legacy codebase porting.\nTech: AUTOSAR Classic (R4.x) and Vector DaVinci Configurator; CAPL scripting and CANoe/CANalyzer for network simulation and testing; TRACE32 and JTAG-based ECU debugging; Jenkins-based CI pipelines for build and static analysis; LDRA Testbed and gcov for branch and MC/DC coverage measurement; UDS (ISO 14229) and OBD-II (ISO 15031) diagnostic protocol implementation; Python scripting for test automation and report generation; MISRA-C:2012 compliance checking with PC-lint Plus.\nPlans: DriveLogic Vojvodina plans to add a second delivery team by end of 2026 so we can run two large OEM projects in parallel without resource conflicts. We are also evaluating whether to extend our service scope to cover AUTOSAR Adaptive on high-performance compute platforms, which several of our existing customers are beginning to ask about.\nR&D capacity: We can dedicate one senior engineer part-time (roughly 40% of their working week) to a collaborative development or research activity, provided it is directly tied to tools or methods we will use in active projects.\nPast collaborations: We worked informally with a controls research group at a technical institute in Subotica around 2019 on a model-based calibration study, but the output was not published and there was no formal agreement.",
+			"researcherIds": [],
+			"companyId": "C018",
+			"year": 2004
+		},
+		"R0948": {
+			"id": "R0948",
+			"kind": "researcher",
+			"title": "Mirjana Vidaković",
+			"text": "Mirjana Vidaković (R0948): Full Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Model-Driven Engineering; Embedded Systems Software; Software Architecture; Automotive Software Engineering.\nKeywords: AUTOSAR; model-driven engineering; metamodel transformation; code generation; ARXML; domain-specific language; template-based synthesis; Eclipse Modeling Framework; real-time embedded systems; toolchain integration.\nBio: Mirjana Vidaković received her Dipl.Ing. degree in computer engineering from the Faculty of Technical Sciences, University of Novi Sad in 2001, her M.Sc. in 2005, and her Ph.D. in 2011, with a dissertation on metamodel-driven generation of AUTOSAR software component descriptors. She joined the Department of Computing and Control Engineering as an assistant professor in 2012 and was promoted to full professor in 2022. Her research group focuses on model-driven engineering (MDE) for safety-relevant embedded systems, with particular emphasis on AUTOSAR-compliant architectures, ARXML artefact manipulation, template-based code synthesis, and toolchain integration. She teaches courses on embedded systems software, domain-specific languages, and software architectures for real-time systems. The group uses Eclipse Modeling Framework, Ecore-based metamodeling tools, AUTOSAR authoring environments, and hardware-in-the-loop test benches available in the Faculty's Embedded Systems Laboratory.\nOpen to: joint projects with companies on AUTOSAR toolchain development or customisation; contract research on ARXML artefact processing and model transformation; industrial PhD supervision for candidates from automotive or embedded-software companies; student internships in the Embedded Systems Laboratory; consulting on MDE toolchain architecture and AUTOSAR workflow design.\nIndustry experience: Vidaković has served as a technical consultant to Embron d.o.o., a Novi Sad-based embedded-software company, on AUTOSAR toolchain architecture over three separate engagements between 2015 and 2022. She also participated in a four-month knowledge-transfer engagement with a regional automotive Tier-1 supplier in 2018 focused on introducing MDE practices into their ECU development workflow.\nNotes: Vidaković is currently supervising three doctoral students, which limits capacity for new long-term commitments before mid-2026. She has expressed preference for collaborations that involve access to realistic industrial AUTOSAR model corpora, as the Faculty's internal model library covers only a narrow range of ECU domains. Short-term consulting or focused contract research engagements are feasible at any time.",
+			"researcherIds": [
+				"R0948"
+			]
+		},
+		"C018-CH1": {
+			"id": "C018-CH1",
+			"kind": "challenge",
+			"title": "We manually generate around 3,200 AUTOSAR software component configuration files per project and it takes two engineers three weeks; one of our competitors apparently automated this and turned around the same job in four days — at current rates we are losing bids on price.",
+			"text": "We manually generate around 3,200 AUTOSAR software component configuration files per project and it takes two engineers three weeks; one of our competitors apparently automated this and turned around the same job in four days — at current rates we are losing bids on price.\n\nEvery new project hands us a System Extract from the customer and we then have to produce AUTOSAR SWC configuration files — port definitions, inter-runnable variables, timing constraints, the lot — by hand inside DaVinci Configurator. On the last two projects we counted roughly 3,200 files each time. Two senior engineers spend three weeks doing nothing else. We have tried building Excel-based templates to speed up the repetitive parts, and that helped a little, but the real problem is that the mapping logic between the System Extract and the final ARXML is still done by a person reading a document and typing. We heard from a contact at a Romanian company that they built something — probably a script or a generator layer on top of the tool API — that brings the same volume of work down to four days. We do not know the details. We have the DaVinci API documentation and we have two engineers who write Python, but nobody has had time to build the tooling properly. We are losing price-sensitive bids. A good outcome is a generation process that gets us from a clean System Extract to a reviewable first-draft configuration set in under one working day, with engineers only doing review and exception handling.",
+			"researcherIds": [],
+			"companyId": "C018"
+		},
+		"SYN-PUB-09982": {
+			"id": "SYN-PUB-09982",
+			"kind": "publication",
+			"title": "Toolchain-Independent Representation of AUTOSAR Timing Constraints Using a Standardised Metamodel",
+			"text": "Toolchain-Independent Representation of AUTOSAR Timing Constraints Using a Standardised Metamodel (2025, journal, Embedded Systems Letters).\nAuthors: Dragan Luković (outside co-author); Tomáš Bureš (outside co-author); Milena Stanković (outside co-author); Mirjana Vidaković (R0948).\nKeywords: AUTOSAR TIMEX; timing constraints; metamodel interoperability; model exchange; Acceleo.\nTiming constraint specifications in AUTOSAR are expressed through the Timing Extensions (TIMEX) sub-schema, but the way authoring tools serialise TIMEX artefacts varies substantially, causing interoperability problems when exchanging models between organisations using different tools. This paper proposes a standardised intermediate metamodel for AUTOSAR timing constraints covering end-to-end latency constraints, synchronisation constraints, age constraints, and execution time annotations. Import adaptors were implemented for three commercial AUTOSAR authoring environments and validated on a set of 17 timing specifications of varying complexity collected from two automotive projects. The metamodel-normalised representations enabled automated comparison of semantically equivalent constraints authored in different tools; comparison detected four constraint semantics discrepancies that had gone unnoticed during manual review. An Acceleo-based exporter regenerates tool-specific ARXML from the normalised metamodel with measured round-trip fidelity of 98.6% across all constraint types.",
+			"researcherIds": [
+				"R0948"
+			],
+			"year": 2025
+		},
+		"SYN-PUB-03795": {
+			"id": "SYN-PUB-03795",
+			"kind": "publication",
+			"title": "Domain-Specific Language for Configuring AUTOSAR Communication Matrices",
+			"text": "Domain-Specific Language for Configuring AUTOSAR Communication Matrices (2016, conference, Proceedings of the Workshop on Model-Driven Engineering for Embedded Systems).\nAuthors: Borislav Đorđević (outside co-author); Vukica Grujić (R0305); Andrea Mocci (outside co-author); Strahinja Radović (R0385); Mirjana Vidaković (R0948).\nKeywords: DSL; Xtext; Xtend; communication matrix; AUTOSAR 4.2.\nCommunication matrix configuration in AUTOSAR involves mapping signals to PDUs, defining timing parameters, and assigning network identifiers, all expressed in verbose ARXML. This paper presents ComMatDSL, a textual domain-specific language designed to express communication matrix configurations concisely. The language was defined using Xtext and includes a type system aligned with AUTOSAR data types. A model-to-ARXML generator was implemented using Xtend. The language was evaluated with five engineers from a regional embedded-software consultancy, each of whom configured three bus networks of increasing complexity. Compared to direct ARXML editing, ComMatDSL configurations were on average 76% shorter in character count and contained 58% fewer syntactic errors in the first-draft stage. A round-trip test on 22 reference matrices confirmed semantic equivalence of the generated ARXML with manually authored originals. The DSL is available as an Eclipse feature and targets AUTOSAR 4.2.",
+			"researcherIds": [
+				"R0305",
+				"R0385",
+				"R0948"
+			],
+			"year": 2016
+		},
+		"SYN-PUB-09979": {
+			"id": "SYN-PUB-09979",
+			"kind": "publication",
+			"title": "A Transformation Chain for Migrating AUTOSAR Classic SWC Models to Adaptive Platform Service Skeletons",
+			"text": "A Transformation Chain for Migrating AUTOSAR Classic SWC Models to Adaptive Platform Service Skeletons (2022, conference, Proceedings of the European Conference on Software Architecture and Component Engineering).\nAuthors: Borislav Đorđević (outside co-author); Marco Gennari (outside co-author); Ján Kolář (outside co-author); Mirjana Vidaković (R0948).\nKeywords: migration; AUTOSAR Classic; AUTOSAR Adaptive; transformation chain; service skeleton.\nMigration from AUTOSAR Classic to Adaptive Platform is increasingly relevant as vehicle architectures shift toward high-performance compute nodes. This paper describes a three-step transformation chain that takes Classic SWC descriptions in ARXML 4.3 as input and produces Adaptive Platform service skeleton headers and SIMs conforming to AP 21.11. The first transformation normalises Classic port interfaces into a platform-independent intermediate model; the second maps the intermediate model to AP service interface definitions; the third generates C++ skeleton headers using Acceleo. Migration was applied to 38 SWCs from two body-domain ECU projects. Thirty-one SWCs migrated fully automatically; seven required manual completion of data type mappings that have no direct AP equivalent. The paper analyses the seven exceptions and proposes three extension points in the intermediate metamodel that would reduce manual effort in future migrations. Compilation of generated skeletons succeeded on an AP reference implementation without modifications.",
+			"researcherIds": [
+				"R0948"
+			],
+			"year": 2022
+		},
+		"SYN-PRJ-0432": {
+			"id": "SYN-PRJ-0432",
+			"kind": "project",
+			"title": "Model-Driven Engineering Methods for Verified Automotive Embedded Software",
+			"text": "MDEVS: Model-Driven Engineering Methods for Verified Automotive Embedded Software (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0948 principal investigator; R0054 team member.\nPartners: Faculty of Electronic Engineering, University of Niš; Slovak University of Technology in Bratislava; Embron d.o.o., Novi Sad.\nThe project investigates formal and semi-formal methods for verifying the correctness of model transformations used in AUTOSAR toolchains. Activities include: formalising ATL transformation semantics in a subset of Z notation, developing a property-based test generation framework for Ecore-based transformations, and building a prototype transformation verification tool integrated into the Eclipse ecosystem. The project collaborates with the Faculty of Electronic Engineering in Niš and the Slovak University of Technology in Bratislava. Industrial relevance is maintained through a liaison with a regional embedded-software consultancy that provides representative AUTOSAR model corpora for evaluation. The project supports two doctoral students and targets six journal publications over its four-year duration.",
+			"researcherIds": [
+				"R0948",
+				"R0054"
+			],
+			"year": 2021
+		},
+		"SYN-PUB-09973": {
+			"id": "SYN-PUB-09973",
+			"kind": "publication",
+			"title": "Metamodel Definition for AUTOSAR Software Component Descriptors Using Ecore",
+			"text": "Metamodel Definition for AUTOSAR Software Component Descriptors Using Ecore (2010, journal, International Journal of Embedded and Real-Time Communication Systems).\nAuthors: Dragan Luković (outside co-author); Predrag Rakić (outside co-author); Mirjana Vidaković (R0948).\nKeywords: Ecore metamodel; AUTOSAR SWC; ARXML; ATL transformation; Eclipse Modeling Framework.\nThis paper presents a structured approach to defining an Ecore-based metamodel that captures the structural semantics of AUTOSAR software component (SWC) descriptors as specified in the AUTOSAR 3.2 standard. The metamodel covers port interfaces, runnables, inter-runnable variables, and timing constraints. Conformance was verified by instantiating 14 SWC types taken from a reference body-control-module specification and checking instance validity against the AUTOSAR schema. The metamodel was implemented as an Eclipse plug-in and exposed a tree-based editor. Transformation experiments using ATL showed that round-trip consistency between the Ecore model and hand-authored ARXML could be maintained with fewer than 0.3% structural deviations across 430 tested descriptors. The contribution is a reusable metamodel layer that decouples SWC authoring from the verbose ARXML syntax and enables downstream model-to-text generation without direct schema manipulation.",
+			"researcherIds": [
+				"R0948"
+			],
+			"year": 2010
+		},
+		"SYN-PUB-09978": {
+			"id": "SYN-PUB-09978",
+			"kind": "publication",
+			"title": "Model-Driven Engineering for Automotive Embedded Software: A Practitioner's Guide",
+			"text": "Model-Driven Engineering for Automotive Embedded Software: A Practitioner's Guide (2020, book chapter, Advances in Embedded and Cyber-Physical Systems (edited volume, Springer Verlag Balkans)).\nAuthors: Dragan Luković (outside co-author); Mirjana Vidaković (R0948).\nKeywords: MDE practice; AUTOSAR; toolchain; ATL; transformation testing.\nThis book chapter provides a structured treatment of MDE practice as applied to automotive embedded software, with AUTOSAR as the primary platform. It covers the spectrum from metamodel definition through transformation authoring to final artefact generation, and situates each activity within a typical automotive development V-model. The chapter draws on case material from three ECU development projects to illustrate how metamodel granularity choices affect toolchain complexity and traceability. It includes a worked example of a complete SWC-to-C code generation pipeline using Ecore, ATL, and Acceleo, with all intermediate artefacts described in detail. A section on toolchain validation discusses coverage criteria for transformation testing and introduces a mutation-based adequacy measure adapted to ATL rules. Intended for software engineers entering the automotive domain and for academics setting up MDE courses with industrial relevance.",
+			"researcherIds": [
+				"R0948"
+			],
+			"year": 2020
+		},
+		"SYN-PUB-06834": {
+			"id": "SYN-PUB-06834",
+			"kind": "publication",
+			"title": "Consistency Checking Between ARXML System Descriptions and Deployment Configurations",
+			"text": "Consistency Checking Between ARXML System Descriptions and Deployment Configurations (2013, conference, Softversko Inženjerstvo i Primenjene Tehnologije (SIPAT)).\nAuthors: Borislav Đorđević (outside co-author); Nenad Dimitrijević (R0592); Luka Knežević (R0802); Nikola Sremčević (outside co-author); Mirjana Vidaković (R0948).\nKeywords: ARXML; OCL constraints; consistency checking; AUTOSAR deployment; Eclipse plug-in.\nAUTOSAR system descriptions and their corresponding deployment configurations are maintained as separate ARXML files and can diverge during iterative development. This paper describes a rule-based consistency checker implemented as an Eclipse plug-in that operates on a merged in-memory model assembled from multiple ARXML artefacts. Forty-three consistency rules derived from the AUTOSAR 4.1 specification were encoded as OCL constraints. The checker was applied to six industrial-style test configurations provided by a regional automotive supplier, ranging from 12 to 78 ECUs per configuration. It detected an average of 8.4 rule violations per configuration that were not flagged by the supplier's existing tooling, most relating to signal mapping mismatches and unresolved component prototype references. False positive rate was 2.1% after a calibration phase involving two domain experts. The tool reduced manual configuration review time by approximately 40% in a two-week pilot.",
+			"researcherIds": [
+				"R0592",
+				"R0802",
+				"R0948"
+			],
+			"year": 2013
+		},
+		"SYN-PUB-09974": {
+			"id": "SYN-PUB-09974",
+			"kind": "publication",
+			"title": "Template-Based Generation of AUTOSAR RTE Stubs from Port Interface Models",
+			"text": "Template-Based Generation of AUTOSAR RTE Stubs from Port Interface Models (2012, conference, Proceedings of the Eastern European Conference on Embedded Systems).\nAuthors: Mirjana Vidaković (R0948); Predrag Rakić (outside co-author); Tomáš Bureš (outside co-author).\nKeywords: Xpand; RTE stub; AUTOSAR Classic; model-to-text; MISRA-C.\nRuntime Environment (RTE) stub generation is a recurring manual effort in AUTOSAR development workflows. This work describes a model-to-text pipeline in which Xpand templates consume an Ecore-based port-interface model and produce syntactically correct RTE stub files for AUTOSAR Classic Platform 4.0. The pipeline was evaluated on three representative Electronic Control Unit (ECU) designs—a door-control unit, a seat-adjustment module, and a battery-management interface—together comprising 67 port interfaces and 112 runnables. Generation time averaged 1.4 seconds per ECU on a standard workstation. Generated stubs were compiled without modification using a commercial compiler suite and passed static analysis with no MISRA-C:2004 violations in 94% of cases; the remaining 6% required minor pointer-cast annotations. Manual effort for stub authoring was reduced from approximately four person-hours to under fifteen minutes per ECU, as measured in a controlled comparison with two experienced engineers.",
+			"researcherIds": [
+				"R0948"
+			],
+			"year": 2012
+		},
+		"W4394692031": {
+			"id": "W4394692031",
+			"kind": "work",
+			"title": "Automated Mapping of Common Vulnerabilities and Exposures to MITRE ATT&CK Tactics",
+			"text": "Information, 2024. Effectively understanding and categorizing vulnerabilities is vital in the ever-evolving cybersecurity landscape, since only one exposure can have a devastating effect on the entire system. Given the increasingly massive number of threats and the size of modern infrastructures, the need for structured, uniform cybersecurity knowledge systems arose. To tackle this challenge, the MITRE Corporation set up two powerful sources of cyber threat and vulnerability information, namely the Common Vulnerabilities and Exposures (CVEs) list focused on identifying and fixing software vulnerabilities, and the MITRE ATT&CK Enterprise Matrix, which is a framework for defining and categorizing adversary actions and ways to defend against them. At the moment, the two are not directly linked, even if such a link would have a significant positive impact on the cybersecurity community. This study aims to automatically map CVEs to the corresponding 14 MITRE ATT&CK tactics using state-of-the-art transformer-based models. Various architectures, from encoders to generative large-scale models, are employed to tackle this multilabel classification problem. Our results are promising, with a SecRoBERTa model performing best with an F1 score of 77.81%, which is closely followed by SecBERT (78.77%), CyBERT (78.54%), and TARS (78.01%), while GPT-4 showed a weak performance in zero-shot settings (22.04%). …",
+			"researcherIds": [],
+			"year": 2024,
+			"url": "https://openalex.org/W4394692031"
+		},
+		"W4389608980": {
+			"id": "W4389608980",
+			"kind": "work",
+			"title": "Change Point Detection with Adaptive Measurement Schedules for Network Performance Verification",
+			"text": "Proceedings of the ACM on Measurement and Analysis of Computing Systems, 2023. When verifying that a communications network fulfills its specified performance, it is critical to note sudden shifts in network behavior as quickly as possible. Change point detection methods can be useful in this endeavor, but classical methods rely on measuring with a fixed measurement period, which can often be suboptimal in terms of measurement costs. In this paper, we extend the existing framework of change point detection with a notion of physical time. Instead of merely deciding when to stop, agents must now also decide at which future time to take the next measurement. Agents must now minimize the necessary number of measurements pre- and post-change, while maintaining a trade-off between post-change delay and false alarm rate. We establish, through this framework, the suboptimality of typical periodic measurements and propose a simple alternative, called crisis mode agents. We show analytically that crisis mode agents significantly outperform periodic measurements schemes. We further verify this in numerical evaluation, both on an array of synthetic change point detection problems as well as on the problem of detecting traffic load changes in a 5G test bed through end-to-end RTT measurements.",
+			"researcherIds": [],
+			"year": 2023,
+			"url": "https://openalex.org/W4389608980"
+		},
+		"SYN-PUB-06548": {
+			"id": "SYN-PUB-06548",
+			"kind": "publication",
+			"title": "Mapping IPv6 Attack Surfaces: Challenges for Existing Agent-Based Scanners",
+			"text": "Mapping IPv6 Attack Surfaces: Challenges for Existing Agent-Based Scanners (2020, journal, Journal of Network and Systems Engineering).\nAuthors: Andreja Ilić (outside co-author); Borivoj Stanković (outside co-author); Árpád Nagy (R0564).\nKeywords: IPv6; host discovery; NDP; agent-based scanning; attack surface.\nIPv6's vastly larger address space makes exhaustive address-space scanning computationally infeasible, requiring fundamentally different approaches to host discovery than those used in IPv4 environments. This paper systematically evaluates six agent-based scanning architectures against dual-stack and IPv6-only testbeds of 150 hosts and analyses their host-discovery rates, false-positive counts, and scan durations. Results show that methods relying on direct address-range sweeping achieve under 12% discovery on pure IPv6 segments compared to 97% on equivalent IPv4 segments. Neighbour Discovery Protocol exploitation, DNS reverse-zone enumeration, and passive traffic observation are assessed as alternatives, with the DNS-based method achieving 78% discovery on correctly configured networks. The paper derives a prioritised pipeline combining these sources and demonstrates its integration into an existing multi-agent scanning framework, raising combined discovery to 89%.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2020
+		},
+		"SYN-PUB-06550": {
+			"id": "SYN-PUB-06550",
+			"kind": "publication",
+			"title": "Temporal Dynamics of Attack Graphs: Modelling Vulnerability Disclosure and Patch Lag",
+			"text": "Temporal Dynamics of Attack Graphs: Modelling Vulnerability Disclosure and Patch Lag (2024, journal, Journal of Computer Security and Privacy).\nAuthors: Orsolya Molnár (outside co-author); Nikola Vujović (outside co-author); Árpád Nagy (R0564).\nKeywords: temporal attack graph; patch lag; CVE lifecycle; vulnerability disclosure; network security.\nAttack graphs are typically computed as static snapshots, but the real vulnerability state of a network changes continuously as new CVEs are disclosed and patches are applied at varying rates across different asset classes. This paper introduces a temporal attack graph model in which vulnerability nodes carry activation and deactivation timestamps derived from NVD disclosure dates and patch deployment logs collected from a university IT infrastructure over a 36-month observation window. The dataset covers 214 unique hosts and 1,102 distinct CVE occurrences. Analysis of the resulting temporal sequence of graphs shows that the median window of exploitability for a newly disclosed critical vulnerability on an unpatched host is 23 days. The model is used to retrospectively identify four periods during which critical exploit paths existed that would not have appeared in any single static snapshot, underscoring the limitations of periodic scanning alone.",
+			"researcherIds": [
+				"R0564"
+			],
+			"year": 2024
+		},
+		"W2883401192": {
+			"id": "W2883401192",
+			"kind": "work",
+			"title": "An Efficient ECG Lossless Compression System for Embedded Platforms With Telemedicine Applications",
+			"text": "IEEE Access, 2018. This paper presents a method for wireless ECG compression and zero lossless decompression using a combination of three different techniques in order to increase storage space while reducing transmission time. The first technique used in the proposed algorithm is an adaptive linear prediction; it achieves high sensitivity and positive prediction. The second technique is content-adaptive Golomb-Rice coding, used with a window size to encode the residual of prediction error. The third technique is the use of a suitable packing format; this enables the real-time decoding process. The proposed algorithm is evaluated and verified using over 48 recordings from the MIT-BIH arrhythmia database, and it shown to be able to achieve a lossless bit compression rate of 2.83× in Lead V1 and 2.77× in Lead V2. The proposed algorithm shows better performance results in comparison to previous lossless ECG compression studies in real time; it can be used in data transmission methods for superior biomedical signals for bounded bandwidth across e-health devices. The overall compression system is also built with an ARM M4 processor, which ensures high accuracy performance and consistent results in the timing operation of the system.",
+			"researcherIds": [],
+			"year": 2018,
+			"url": "https://openalex.org/W2883401192"
+		},
+		"R0905": {
+			"id": "R0905",
+			"kind": "researcher",
+			"title": "Filip Mijatović",
+			"text": "Filip Mijatović (R0905): Assistant Professor, Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences, University of Novi Sad.\nFields: Microelectronics and mixed-signal circuit design; Wireless sensor networks and embedded systems; Biomedical instrumentation; Low-power communication protocols.\nKeywords: ultra-low-power design; body-area networks; mixed-signal CMOS; biopotential acquisition; duty-cycled MAC; energy harvesting; sub-threshold circuits; wireless health monitoring; impedance spectroscopy; biomedical sampling constraints.\nBio: Filip Mijatović received his B.Sc. and M.Sc. degrees in Electronics and Telecommunications from the Faculty of Technical Sciences, University of Novi Sad, in 2009 and 2012 respectively, and his Ph.D. from the same institution in 2018, with a thesis on duty-cycled MAC protocols for implantable sensor nodes. He spent fourteen months as a visiting researcher at the Graz University of Technology between 2016 and 2017. Since 2019 he has held an Assistant Professor position in the Department of Power, Electronics and Telecommunications. His group focuses on mixed-signal front-end circuits operating below 1 µA average current, low-noise amplifier topologies for biopotential acquisition, and link-layer scheduling algorithms that respect biomedical sampling timing constraints. He teaches undergraduate analogue electronics and graduate wireless sensor systems. The group uses a Cadence Virtuoso IC design suite, a Keysight parametric analyser, and a small anechoic chamber shared with the antenna laboratory.\nOpen to: joint projects with medical device companies; contract research on mixed-signal front-end design; industrial PhD supervision; student internships (M.Sc. level, hardware-oriented); consulting on BLE and 802.15.4 protocol configuration for biomedical products; access to Cadence Virtuoso design suite for short collaborative visits.\nIndustry experience: Between 2012 and 2014, Mijatović worked part-time as a hardware design consultant for a Novi Sad-based startup developing Bluetooth-connected pulse oximetry accessories, contributing to the analogue signal chain and firmware of their first product revision.\nNotes: Mijatović is currently supervising two doctoral candidates and has limited bandwidth for large new commitments before mid-2025. He has expressed interest in applied problems from companies developing wearable or implantable devices, particularly where circuit-level co-design with protocol optimisation is relevant. He is cautious about projects requiring significant regulatory or clinical-trial management, which is outside his team's expertise.",
+			"researcherIds": [
+				"R0905"
+			]
+		},
+		"W4392173026": {
+			"id": "W4392173026",
+			"kind": "work",
+			"title": "A Low-Noise Low-Power 0.001Hz–1kHz Neural Recording System-on-Chip With Sample-Level Duty-Cycling",
+			"text": "IEEE Transactions on Biomedical Circuits and Systems, 2024. Advances in brain-machine interfaces and wearable biomedical sensors for healthcare and human-computer interactions call for precision electrophysiology to resolve a variety of biopotential signals across the body that cover a wide range of frequencies, from the mHz-range electrogastrogram (EGG) to the kHz-range electroneurogram (ENG). Existing integrated wearable solutions for minimally invasive biopotential recordings are limited in detection range and accuracy due to trade-offs in bandwidth, noise, input impedance, and power consumption. This article presents a 16-channel wide-band ultra-low-noise neural recording system-on-chip (SoC) fabricated in 65nm CMOS for chronic use in mobile healthcare settings that spans a bandwidth of 0.001 Hz to 1 kHz through a featured sample-level duty-cycling (SLDC) mode. Each recording channel is implemented by a delta-sigma analog-to-digital converter (ADC) achieving 1.0$\\mu$V${}_{rms}$input-referred noise over 1Hz–1kHz bandwidth with a Noise Efficiency Factor (NEF) of 2.93 in continuous operation mode. In SLDC mode, the power supply is duty-cycled while maintaining consistently low input-referred noise levels at ultra-low frequencies (1.1$\\mu$V${}_{rms}$over 0.001Hz–1Hz) and 435 M$\\Omega$input impedance. …",
+			"researcherIds": [],
+			"year": 2024,
+			"url": "https://openalex.org/W4392173026"
+		},
+		"SYN-PUB-09632": {
+			"id": "SYN-PUB-09632",
+			"kind": "publication",
+			"title": "Duty-cycled MAC scheduling with deadline-aware slot allocation for implantable sensor nodes",
+			"text": "Duty-cycled MAC scheduling with deadline-aware slot allocation for implantable sensor nodes (2018, journal, IEEE Transactions on Biomedical Circuits and Systems).\nAuthors: Filip Mijatović (R0905); Dragan Vuković (outside co-author); Christoph Brandner (outside co-author).\nKeywords: MAC scheduling; deadline-aware; duty cycling; implantable sensor; IEEE 802.15.4.\nThis work, developed as part of the author's doctoral research, proposes a beacon-enabled superframe structure derived from IEEE 802.15.4 in which guaranteed time slots are assigned according to each sensor stream's sampling deadline rather than priority class alone. The scheduler runs on a body hub modelled as a 32-bit ARM Cortex-M3 at 4 MHz and accepts registration messages carrying a sampling period, payload size, and maximum tolerable latency for each node. A first-fit decreasing bin-packing heuristic assigns contiguous slots within each superframe. Simulation across 10,000 randomly generated workloads with 2–8 nodes showed that deadline miss rates remained below 0.3% for workloads at up to 80% superframe utilisation. Radio duty cycle for a six-node ECG plus EMG scenario was reduced to 1.8% compared with 6.4% under a fixed-slot baseline, yielding a projected 3.5-fold increase in node battery lifetime. The protocol was prototyped on a Cortex-M0 hub with four slave nodes and validated against simulated data.",
+			"researcherIds": [
+				"R0905"
+			],
+			"year": 2018
+		},
+		"SYN-PUB-09634": {
+			"id": "SYN-PUB-09634",
+			"kind": "publication",
+			"title": "Retransmission strategies for reliable ECG streaming over Bluetooth Low Energy in clinical environments with co-channel interference",
+			"text": "Retransmission strategies for reliable ECG streaming over Bluetooth Low Energy in clinical environments with co-channel interference (2022, conference, Wireless Communications in Healthcare — Proceedings of the 4th Balkan Biomedical Engineering Symposium).\nAuthors: Stefan Horvat (outside co-author); Filip Mijatović (R0905); Marija Đurić (outside co-author).\nKeywords: Bluetooth Low Energy; ECG streaming; ARQ retransmission; co-channel interference; clinical environment.\n(no abstract)",
+			"researcherIds": [
+				"R0905"
+			],
+			"year": 2022
+		},
+		"SYN-PUB-09631": {
+			"id": "SYN-PUB-09631",
+			"kind": "publication",
+			"title": "Energy budget analysis of implantable glucose monitors: from sensing front-end to RF uplink",
+			"text": "Energy budget analysis of implantable glucose monitors: from sensing front-end to RF uplink (2017, journal, Journal of Medical Engineering and Instrumentation).\nAuthors: Filip Mijatović (R0905); Nataša Ristić (outside co-author); Miroslav Petrović (outside co-author).\nKeywords: implantable glucose monitor; amperometric potentiostat; energy budget; OOK transmitter; duty cycling.\nContinuous glucose monitors intended for subcutaneous implantation face a hard energy ceiling imposed by the volume available for primary cells or inductive charging coils. This work presents a structured energy budget partitioning the 50 µW mean power allocated in a hypothetical 1 cm³ implant across four subsystems: the amperometric sensing front-end (8 µW), the 8-bit ADC (3 µW), the microcontroller running a linearisation algorithm (12 µW), and the 2.4 GHz OOK transmitter (27 µW active, duty-cycled to 0.4%). A custom switched-capacitor potentiostat operating at 100 mV applied potential consumed 6.1 µW measured on bench. The ADC was a successive-approximation design clocked at 10 kHz with an effective number of bits of 7.6. End-to-end system simulation using measured component data predicted a node lifetime of 14 days from a 4 mAh primary lithium cell, which is consistent with reported values in the literature for comparable implant geometries. Identified bottlenecks and proposed architectural changes are discussed.",
+			"researcherIds": [
+				"R0905"
+			],
+			"year": 2017
+		},
+		"C001/website/2024-01-15/What We Do — ArmaturaSec d.o.o.": {
+			"id": "C001/website/2024-01-15/What We Do — ArmaturaSec d.o.o.",
+			"kind": "page",
+			"title": "What We Do — ArmaturaSec d.o.o.",
+			"text": "ArmaturaSec builds network security appliances for operational technology environments. If you run a water treatment plant, an electricity distribution substation, or a manufacturing line and you need to control who can talk to your PLCs and whether that traffic looks legitimate, that is what our products are designed for. We are not a general-purpose cybersecurity company. We do not sell endpoint agents, email filters, or cloud security platforms. Every product we have shipped since 2008 has been a hardware device that sits inside an industrial network and inspects or controls traffic at the protocol level. Our NetGuard-OT appliance handles network access control: it enforces rules about which devices can communicate, blocks unauthorised connections, and logs everything in a format that your existing SCADA historian can ingest. The Mini variant fits on a standard DIN rail for installations where cabinet space is limited. ProtoSense is our protocol inspection module. It understands Modbus TCP and BACnet/IP at the message level, not just the packet level, so it can tell you that a device sent a write command to a coil it has never written to before — not just that traffic occurred. Our SecAudit service is a one-time on-site engagement. Two of our engineers spend two days on your site, map the network as it actually exists, identify the gaps between that and how it is supposed to be configured, and produce a written report with prioritised findings. We work with clients in Serbia, Bosnia and Herzegovina, North Macedonia, and Montenegro. Most of our installations are in the energy and water sectors. A growing share are in food and beverage manufacturing. If you want to talk about a specific installation or you have a question about whether our products fit your environment, contact our sales team in Zrenjanin.",
+			"researcherIds": [],
+			"companyId": "C001",
+			"year": 2024
+		},
+		"W4224248050": {
+			"id": "W4224248050",
+			"kind": "work",
+			"title": "Lightweight Long Short-Term Memory Variational Auto-Encoder for Multivariate Time Series Anomaly Detection in Industrial Control Systems",
+			"text": "Sensors, 2022. Heterogeneous cyberattacks against industrial control systems (ICSs) have had a strong impact on the physical world in recent decades. Connecting devices to the internet enables new attack surfaces for attackers. The intrusion of ICSs, such as the manipulation of industrial sensory or actuator data, can be the cause for anomalous ICS behaviors. This poses a threat to the infrastructure that is critical for the operation of a modern city. Nowadays, the best techniques for detecting anomalies in ICSs are based on machine learning and, more recently, deep learning. Cybersecurity in ICSs is still an emerging field, and industrial datasets that can be used to develop anomaly detection techniques are rare. In this paper, we propose an unsupervised deep learning methodology for anomaly detection in ICSs, specifically, a lightweight long short-term memory variational auto-encoder (LW-LSTM-VAE) architecture. We successfully demonstrate our solution under two ICS applications, namely, water purification and water distribution plants. Our proposed method proves to be efficient in detecting anomalies in these applications and improves upon reconstruction-based anomaly detection methods presented in previous work. For example, we successfully detected 82.16% of the anomalies in the scenario of the widely used Secure Water Treatment (SWaT) benchmark. The deep learning architecture we propose has the added advantage of being extremely lightweight.",
+			"researcherIds": [],
+			"year": 2022,
+			"url": "https://openalex.org/W4224248050"
+		},
+		"SYN-PUB-10478": {
+			"id": "SYN-PUB-10478",
+			"kind": "publication",
+			"title": "Evaluating the Effect of Protocol Encryption on Traffic-Based Anomaly Detection: OPC UA Security Mode Comparison",
+			"text": "Evaluating the Effect of Protocol Encryption on Traffic-Based Anomaly Detection: OPC UA Security Mode Comparison (2019, conference, Proceedings of the Central European Workshop on Industrial Communication Security (CEWICS)).\nAuthors: Tibor Farkas (outside co-author); Marek Novotný (outside co-author); Krisztina Kiss (R1008).\nKeywords: OPC UA; encryption; traffic features; one-class SVM; security mode.\nOPC UA supports three security modes—None, Sign, and SignAndEncrypt—and this paper evaluates how each mode affects the discriminability of traffic features used in unsupervised anomaly detectors. Experiments were conducted on a testbed comprising an OPC UA server, two client applications, and an embedded data historian. Seventeen traffic features extractable from unencrypted traffic were assessed for their availability under Sign and SignAndEncrypt modes using packet capture before and after the application layer. Under SignAndEncrypt, 11 of 17 features became unavailable or uninformative at the packet level; however, timing, packet length distribution, and session-level handshake frequency remained discriminative. A reduced 6-feature one-class SVM trained on these surviving features achieved a detection rate of 0.83 against four attack scenarios, compared with 0.91 for the full 17-feature detector on unencrypted traffic. The paper discusses the implications for passive inline monitoring architectures and proposes a broker-based decryption approach for trusted network segments.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2019
+		},
+		"SYN-PUB-10472": {
+			"id": "SYN-PUB-10472",
+			"kind": "publication",
+			"title": "Statistical Baseline Modelling of Modbus/TCP Traffic in a Substation Automation Network",
+			"text": "Statistical Baseline Modelling of Modbus/TCP Traffic in a Substation Automation Network (2010, journal, Journal of Industrial Network Security).\nAuthors: Goran Milošević (outside co-author); Tibor Farkas (outside co-author); Krisztina Kiss (R1008).\nKeywords: Modbus/TCP; statistical baseline; Mahalanobis distance; substation automation; one-class detection.\nThis paper describes the construction of per-register statistical baselines for Modbus/TCP traffic captured over six months on a live substation automation testbed. For each register address, empirical distributions of inter-request intervals, payload values, and function code sequences were estimated using kernel density estimation with a Gaussian kernel and bandwidth selected by cross-validation. A one-class detector based on Mahalanobis distance thresholding over a 20-feature vector was evaluated against 14 manually injected attack scenarios, including replay, coil-write injection, and scan sweeps. At a false positive rate of 0.5%, the detector achieved a true positive rate of 91.4% across all attack types. The paper also quantifies the effect of seasonal load variation on baseline drift and proposes a sliding-window recalibration schedule with a 72-hour update period that maintains detection performance without human intervention. Results are compared with a fixed-threshold rule-based baseline, which achieved 67% TPR at the same FPR. The testbed comprised three Siemens-compatible PLCs connected over a deterministic switched Ethernet fabric.",
+			"researcherIds": [
+				"R1008"
+			],
+			"year": 2010
+		},
+		"C001/job/2024-02-05/Firmware Engineer — Network Protocols (Zrenjanin)": {
+			"id": "C001/job/2024-02-05/Firmware Engineer — Network Protocols (Zrenjanin)",
+			"kind": "page",
+			"title": "Firmware Engineer — Network Protocols (Zrenjanin)",
+			"text": "ArmaturaSec is looking for a firmware engineer to join our core development team in Zrenjanin. We have a monthly release cycle across four hardware variants and we need someone who can contribute to protocol parsing, system integration, and the tooling that keeps the whole process running. What the work looks like day to day: you will work on the firmware that runs on our NetGuard-OT appliances — mostly C with an increasing share of Rust for new components. You will work closely with the person responsible for our Yocto build system and with the QA team that tests each release on physical hardware. We deal with Modbus TCP, BACnet/IP, and a few less common industrial protocols. You do not need to know all of them when you start. You do need to be comfortable reading protocol specifications and writing parsers from them. The hardware side: our appliances are based on ARM Cortex-A SoCs. We have a bench in the office with physical boards, PLC simulators, and packet generators. You will spend time at that bench. What we are looking for:\n— At least three years writing firmware or embedded systems software in C\n— Comfort with Linux networking internals (netfilter, raw sockets, that level)\n— Experience debugging with JTAG or serial console, not just printf\n— Some exposure to Rust is useful but not required What we are not looking for: someone who wants to work on cloud infrastructure or web services. This is hardware-close work. We offer a permanent contract, a salary in line with the Zrenjanin market for this experience level, and flexible hours within reason. The office is in the industrial zone on the north side of the city. Remote work is possible one or two days a week once you are settled in. Send a CV and a short note about something you have built to [email removed].",
+			"researcherIds": [],
+			"companyId": "C001",
+			"year": 2024
+		},
+		"W4391996970": {
+			"id": "W4391996970",
+			"kind": "work",
+			"title": "Unsupervised Learning Approach for Anomaly Detection in Industrial Control Systems",
+			"text": "Applied System Innovation, 2024. Industrial control systems (ICSs) play a crucial role in managing and monitoring critical processes across various industries, such as manufacturing, energy, and water treatment. The connection of equipment from various manufacturers, complex communication methods, and the need for the continuity of operations in a limited environment make it difficult to detect system anomalies. Traditional approaches that rely on supervised machine learning require time and expertise due to the need for labeled datasets. This study suggests an alternative approach to identifying anomalous behavior within ICSs by means of unsupervised machine learning. The approach employs unsupervised machine learning to identify anomalous behavior within ICSs. This study shows that unsupervised learning algorithms can effectively detect and classify anomalous behavior without the need for pre-labeled data using a composite autoencoder model. Based on a dataset that utilizes HIL-augmented ICSs (HAIs), this study shows that the model is capable of accurately identifying important data characteristics and detecting anomalous patterns related to both value and time. Intentional error data injection experiments could potentially be used to validate the model’s robustness in real-time monitoring and industrial process performance optimization. As a result, this approach can improve system reliability and operational efficiency, which can establish a foundation for safe and sustainable ICS operations.",
+			"researcherIds": [],
+			"year": 2024,
+			"url": "https://openalex.org/W4391996970"
+		},
+		"W3006480895": {
+			"id": "W3006480895",
+			"kind": "work",
+			"title": "Unsupervised Anomaly Detection for Network Data Streams in Industrial Control Systems",
+			"text": "Information, 2020. The development and integration of information technology and industrial control networks have expanded the magnitude of new data; detecting anomalies or discovering other valid information from them is of vital importance to the stable operation of industrial control systems. This paper proposes an incremental unsupervised anomaly detection method that can quickly analyze and process large-scale real-time data. Our evaluation on the Secure Water Treatment dataset shows that the method is converging to its offline counterpart for infinitely growing data streams.",
+			"researcherIds": [],
+			"year": 2020,
+			"url": "https://openalex.org/W3006480895"
+		},
+		"SYN-PUB-00722": {
+			"id": "SYN-PUB-00722",
+			"kind": "publication",
+			"title": "Detecting Stealthy Coil-Write Injection in Modbus Networks Using Temporal Autoencoder Ensembles",
+			"text": "Detecting Stealthy Coil-Write Injection in Modbus Networks Using Temporal Autoencoder Ensembles (2023, journal, IEEE Transactions on Industrial Informatics).\nAuthors: Mirjana Stošić (outside co-author); Veljko Pantelić (R0995); Marek Novotný (outside co-author); Krisztina Kiss (R1008); Nina Dimitrijević (R0054).\nKeywords: stealthy attacks; autoencoder ensemble; coil-write injection; Modbus; temporal features.\nStealthy coil-write injection attacks modify a small number of PLC output coils at irregular intervals designed to evade detectors sensitive only to rate or volume changes. This paper evaluates temporal autoencoder ensembles—ten autoencoders trained on temporally shuffled subsets of a 60-day Modbus/TCP capture—for detecting such attacks. Each autoencoder receives a 30-dimensional feature vector derived from 5-second windows including coil change frequency, write-to-read ratio per coil address, and inter-write interval statistics. Anomaly scores from ensemble members are aggregated by the maximum rule. Against 240 injected stealthy attack episodes of varying intensity (1 to 8 modified coils per window), the ensemble achieved recall of 0.89 at a false positive rate of 0.8 per hour, compared with 0.64 for a single autoencoder and 0.58 for a static threshold detector. Computational cost of the ensemble was 2.3× that of a single autoencoder, remaining feasible on edge hardware.",
+			"researcherIds": [
+				"R0995",
+				"R1008",
+				"R0054"
+			],
+			"year": 2023
 		}
 	}
 }

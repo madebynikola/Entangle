@@ -43,16 +43,18 @@ and project participants outside the fixture are dropped. Every id the fixture r
 ## Labelled Critic claims
 
 `critic-labels.json` is the hand-check of 30 Oct in [docs/quality.md](../../docs/quality.md) as data: all 129 claims of
-C001, C005 and C012 from runs `2026-10-30T13-37-34` (before) and `2026-10-30T15-09-14` (after), each with its cited ids,
-a label and, for every label but `ok`, a note on why. The Critic passed all of them. It also holds the 51 records they cite.
+C001, C005 and C012 from runs `2026-10-30T13-37-34` (before) and `2026-10-30T15-09-14` (after), and the 143 claims of the
+k 2 default runs `2026-10-31T10-38-09` and `2026-10-31T11-55-14` (k2), which the "After" hand-check read. That makes 272 claims
+of 14 proposals, each with its cited ids, a label and, for every label but `ok`, a note on why. The Critic passed all of them.
+It also holds the 80 records they cite.
 
-| Label | Before | After | The Critic should |
-| --- | --- | --- | --- |
-| `ok` | 55 | 43 | pass it |
-| `judgement` | 7 | 2 | reject it |
-| `uncited-detail` | 4 | 3 | reject it |
-| `widened` | 4 | 3 | reject it |
-| `borderline` | 6 | 2 | either: not scored |
+| Label | Before | After | k2 | The Critic should |
+| --- | --- | --- | --- | --- |
+| `ok` | 55 | 43 | 117 | pass it |
+| `judgement` | 7 | 2 | 3 | reject it |
+| `uncited-detail` | 4 | 3 | 0 | reject it |
+| `widened` | 4 | 3 | 10 | reject it |
+| `borderline` | 6 | 2 | 13 | either: not scored |
 
 `npm run critic:eval -- --mock` (or `--local`, or with an API key) runs only the Critic on them and prints its recall on
-the 23 wrong claims, its false rejects on the 98 ok ones, and a confusion matrix by label.
+the 36 wrong claims, its false rejects on the 215 ok ones, and a confusion matrix by label.
