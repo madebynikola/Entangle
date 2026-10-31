@@ -15,7 +15,10 @@
 	@font-face { font-family: "Source Serif 4 Variable"; font-style: italic; font-weight: 200 900; src: url(/__demo/fonts/source-serif-4-latin-wght-italic.woff2) format("woff2"); }
 
 	:root {
-		--ink: #1d1d1f; --muted: #6e6e73; --subtle: #a1a1a6; --accent: #4c5bd4; --canvas: #f5f5f7; --panel: #ffffff;
+		/* The demo is dark: the app's Night theme. */
+		color-scheme: dark;
+		--ink: #f5f5f7; --muted: #a1a1a6; --subtle: #7c7c82; --accent: #8b97f2; --canvas: #0b0b0c; --panel: #111113;
+		--chip: #1c1c1f; --ring: rgba(255, 255, 255, 0.09);
 		--ease: cubic-bezier(0.7, 0, 0.2, 1); --out: cubic-bezier(0.2, 0.8, 0.2, 1);
 		--sans: "Inter Variable", Inter, system-ui, sans-serif; --serif: "Source Serif 4 Variable", Georgia, serif;
 	}
@@ -26,18 +29,18 @@
 	/* The backdrop the framed window floats on: a soft light from above, a faint dot grid. */
 	#backdrop { position: fixed; inset: 0;
 		background:
-			radial-gradient(1100px 520px at 50% -12%, rgba(76, 91, 212, 0.13), transparent 70%),
-			radial-gradient(800px 500px at 100% 110%, rgba(76, 91, 212, 0.07), transparent 70%),
-			radial-gradient(circle at 1px 1px, rgba(29, 29, 31, 0.07) 1px, transparent 0) 0 0 / 22px 22px,
+			radial-gradient(1100px 520px at 50% -12%, rgba(139, 151, 242, 0.16), transparent 70%),
+			radial-gradient(800px 500px at 100% 110%, rgba(139, 151, 242, 0.08), transparent 70%),
+			radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.055) 1px, transparent 0) 0 0 / 22px 22px,
 			var(--canvas); }
 
-	#stage { position: fixed; inset: 0; perspective: 2600px; transition: filter 420ms var(--out), opacity 420ms var(--out), scale 420ms var(--out); }
-	#stage.blur { filter: blur(22px) saturate(1.05); opacity: 0.28; scale: 0.97; }
+	#stage { position: fixed; inset: 0; perspective: 2600px; will-change: filter, opacity, translate; }
+	#stage.blur { filter: blur(22px) saturate(1.05); opacity: 0.28; }
 	#stage.soft { filter: blur(6px); opacity: 0.7; }
 	#cam { position: absolute; left: 0; top: 0; width: 1440px; height: 810px; transform-origin: 0 0; }
 	#win { width: 100%; height: 100%; overflow: hidden; background: var(--panel); border-radius: 0;
 		transition: border-radius 600ms var(--ease), box-shadow 600ms var(--ease); }
-	#win.framed { border-radius: 14px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 30px 80px -20px rgba(29, 29, 31, 0.28), 0 12px 28px -12px rgba(29, 29, 31, 0.18); }
+	#win.framed { border-radius: 14px; box-shadow: 0 0 0 1px var(--ring), 0 30px 80px -20px rgba(0, 0, 0, 0.7), 0 12px 28px -12px rgba(0, 0, 0, 0.5); }
 	#app { display: block; width: 1440px; height: 810px; border: 0; }
 
 	/* Titles: words blur in one after another. */
@@ -47,8 +50,9 @@
 	#titles .line { font-family: var(--serif); font-weight: 500; font-size: 64px; line-height: 1.12; letter-spacing: -0.025em; }
 	#titles .line.small { font-size: 46px; }
 	#titles .sub { font-size: 22px; line-height: 1.5; color: var(--muted); max-width: 820px; }
-	#titles .code { font-size: 20px; padding: 10px 18px; border-radius: 10px; background: rgba(29, 29, 31, 0.06); }
+	#titles .code { font-size: 20px; padding: 10px 18px; border-radius: 10px; background: rgba(255, 255, 255, 0.07); }
 	#titles img.lockup { width: 400px; height: auto; }
+	#titles .w, #titles .fade, #intro .in, #panel .in { will-change: opacity, filter, transform, translate; }
 	#titles .w { display: inline-block; white-space: pre; opacity: 0; filter: blur(12px); transform: translateY(18px);
 		animation: word-in 760ms var(--out) forwards; animation-delay: calc(var(--i) * 75ms); }
 	#titles .em { color: var(--accent); }
@@ -61,8 +65,8 @@
 	/* The caption: a kicker and one sentence, low on the screen. */
 	#caption { position: fixed; left: 50%; bottom: 26px; pointer-events: none; translate: -50% 12px; display: flex; flex-direction: column; align-items: center; gap: 6px;
 		max-width: 1000px; padding: 14px 26px 15px; border-radius: 18px; text-align: center; opacity: 0;
-		background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px) saturate(1.4);
-		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 18px 40px -12px rgba(29, 29, 31, 0.22);
+		background: rgba(28, 28, 31, 0.86); backdrop-filter: blur(16px) saturate(1.4); will-change: opacity, translate;
+		box-shadow: 0 0 0 1px var(--ring), 0 18px 40px -12px rgba(0, 0, 0, 0.6);
 		transition: opacity 420ms var(--out), translate 420ms var(--out); }
 	#caption.on { opacity: 1; translate: -50% 0; }
 	#caption .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
@@ -83,43 +87,48 @@
 	/* Isolation: the app's page is hidden and only the marked components float on the backdrop (see iso()). */
 	#win.iso { background: transparent; box-shadow: none; border-radius: 0; transition: none; }
 	#stage { translate: 0 0; }
-	#stage.gone { filter: blur(14px); opacity: 0; translate: 0 26px; scale: 0.985; }
-	#stage { transition: filter 520ms var(--out), opacity 520ms var(--out), scale 520ms var(--out), translate 620ms var(--out); }
+	#stage.gone { filter: blur(14px); opacity: 0; translate: 0 26px; }
+	#stage { transition: filter 520ms var(--out), opacity 520ms var(--out), translate 620ms var(--out); }
 
 	/* An agent's introduction: its face, name, role and model, on the left. Its real work floats on the right. */
 	#intro { position: fixed; left: 96px; top: 50%; translate: 0 -50%; width: 470px; display: flex; flex-direction: column; gap: 0; pointer-events: none; }
-	#intro .face { width: 196px; height: 196px; margin: 0 0 30px -10px; opacity: 0; scale: 0.3; translate: 0 30px;
-		animation: pop 900ms cubic-bezier(0.34, 1.5, 0.6, 1) forwards; }
+	#intro .face { width: 196px; height: 196px; margin: 0 0 30px -10px; display: grid; place-items: center; }
+	#intro .face .pop { --size: 196px; width: 0; height: 0; opacity: 0; animation: pop 900ms cubic-bezier(0.34, 1.5, 0.6, 1) forwards; }
 	#intro .face svg { width: 100%; height: 100%; overflow: visible; }
 	#intro .num { font-size: 14px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--role); margin-bottom: 10px; }
 	#intro .name { font-family: var(--serif); font-weight: 500; font-size: 86px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 18px; }
 	#intro .job { font-size: 24px; line-height: 1.42; color: var(--muted); letter-spacing: -0.01em; margin-bottom: 26px; }
 	#intro .job b { color: var(--ink); font-weight: 600; }
 	#intro .model { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 13px; border-radius: 999px;
-		font-size: 17px; font-weight: 550; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 8px 20px -10px rgba(29, 29, 31, 0.25); }
+		font-size: 17px; font-weight: 550; background: var(--chip); box-shadow: 0 0 0 1px var(--ring), 0 8px 20px -10px rgba(0, 0, 0, 0.6); }
 	#intro .model i { width: 9px; height: 9px; border-radius: 50%; background: var(--role); }
 	#intro .model span { color: var(--muted); font-weight: 450; }
 	#intro .in { opacity: 0; filter: blur(10px); translate: 0 16px; animation: word-in2 700ms var(--out) forwards; animation-delay: calc(180ms + var(--i) * 90ms); }
 	#intro.out > * { animation: word-out 420ms var(--ease) forwards !important; animation-delay: calc(var(--i, 0) * 30ms) !important; }
-	@keyframes pop { to { opacity: 1; scale: 1; translate: 0 0; } }
+	/* The size itself grows, not a scale: the face is drawn sharp at every frame, so nothing snaps when it stops. */
+	@keyframes pop { from { width: calc(var(--size) * 0.3); height: calc(var(--size) * 0.3); opacity: 0; } 40% { opacity: 1; } to { width: var(--size); height: var(--size); opacity: 1; } }
 	@keyframes word-in2 { to { opacity: 1; filter: blur(0); translate: 0 0; } }
 
 	/* The roster: the nine faces in a row at the bottom, the one being introduced lit up. */
 	#roster { position: fixed; left: 50%; bottom: 30px; translate: -50% 20px; display: flex; gap: 16px; opacity: 0; pointer-events: none;
 		transition: opacity 500ms var(--out), translate 500ms var(--out); }
 	#roster.on { opacity: 1; translate: -50% 0; }
-	#roster .m { width: 34px; height: 34px; opacity: 0.28; filter: grayscale(0.6); transition: opacity 400ms var(--out), scale 500ms cubic-bezier(0.34, 1.5, 0.6, 1), filter 400ms; }
+	#roster .m { width: 34px; height: 34px; display: grid; place-items: center; opacity: 0.28; filter: grayscale(0.6); transition: opacity 400ms var(--out), filter 400ms; }
+	#roster .m svg { width: 34px; height: 34px; transition: width 500ms cubic-bezier(0.34, 1.5, 0.6, 1), height 500ms cubic-bezier(0.34, 1.5, 0.6, 1); }
+	#roster .m.on svg { width: 44px; height: 44px; }
 	#roster .m.seen { opacity: 0.55; filter: none; }
-	#roster .m.on { opacity: 1; filter: none; scale: 1.3; }
-	#roster svg { width: 100%; height: 100%; }
+	#roster .m.on { opacity: 1; filter: none; }
+
 
 	/* A row of faces on a title card. */
 	#titles .faces { display: flex; gap: 26px; margin-bottom: 18px; }
-	#titles .faces .f { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; scale: 0.3; translate: 0 30px;
-		animation: pop 800ms cubic-bezier(0.34, 1.5, 0.6, 1) forwards; animation-delay: calc(var(--i) * 85ms); }
-	#titles .faces svg { width: 96px; height: 96px; }
+	#titles .faces .f { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 96px; }
+	#titles .faces .f .box { width: 96px; height: 96px; display: grid; place-items: center; }
+	#titles .faces .f .pop { --size: 96px; width: 0; height: 0; opacity: 0; animation: pop 800ms cubic-bezier(0.34, 1.5, 0.6, 1) forwards; animation-delay: calc(var(--i) * 85ms); }
+	#titles .faces .f span { opacity: 0; animation: fade-in 600ms var(--out) forwards; animation-delay: calc(200ms + var(--i) * 85ms); }
+	#titles .faces svg { width: 100%; height: 100%; }
 	#titles .faces span { font-size: 15px; font-weight: 600; color: var(--muted); }
-	#titles.out .faces .f { animation: word-out 420ms var(--ease) forwards; animation-delay: calc(var(--i) * 25ms); opacity: 1; scale: 1; translate: 0 0; }
+	#titles.out .faces .f { animation: word-out 420ms var(--ease) forwards; animation-delay: calc(var(--i) * 25ms); }
 
 	/* A panel the director draws itself, in the component's place: Libra's count, the run's numbers. */
 	#panel { position: fixed; inset: 0; pointer-events: none; }
@@ -129,7 +138,7 @@
 	#panel .tally .lab { font-size: 24px; color: var(--muted); }
 	#panel .tally .arrow { font-size: 40px; color: var(--subtle); margin: 6px 0; }
 	#panel .grid { display: grid; grid-template-columns: repeat(4, 262px); gap: 24px; }
-	#panel .stat { padding: 30px 26px 26px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 24px 50px -24px rgba(29, 29, 31, 0.3); }
+	#panel .stat { padding: 30px 26px 26px; border-radius: 22px; background: #151517; box-shadow: 0 0 0 1px var(--ring), 0 24px 50px -24px rgba(0, 0, 0, 0.7); }
 	#panel .stat .n { font-family: var(--serif); font-size: 76px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
 	#panel .stat .l { margin-top: 12px; font-size: 20px; line-height: 1.35; color: var(--muted); }
 	#panel .stat svg { width: 58px; height: 58px; margin-bottom: 18px; }
@@ -170,19 +179,54 @@
 		html.iso body * { visibility: hidden !important; }
 		html.iso [data-iso], html.iso [data-iso] * { visibility: visible !important; }
 		[data-iso] [data-iso-hide] { display: none !important; }
-		html.iso [data-iso][data-iso-card] { background: #fff !important; border-radius: 12px;
-			box-shadow: 0 0 0 20px #fff, 0 0 0 21px rgba(0, 0, 0, 0.05), 0 40px 90px -24px rgba(29, 29, 31, 0.35) !important; }
+		html.iso [data-iso][data-iso-card] { background: var(--panel) !important; border-radius: 12px;
+			box-shadow: 0 0 0 20px var(--panel), 0 0 0 21px rgba(255, 255, 255, 0.09), 0 40px 90px -24px rgba(0, 0, 0, 0.8) !important; }
 		html.iso .stage-canvas[data-iso] { background: transparent !important; }
 		html.iso [data-sonner-toaster] { display: none !important; }`
 
-	function apply(next, ms, ease) {
+	/** cubic-bezier(x1, y1, x2, y2) as a function of time, like CSS. */
+	function bezier(x1, y1, x2, y2) {
+		const at = (a, b, t) => 3 * a * t * (1 - t) ** 2 + 3 * b * t * t * (1 - t) + t ** 3
+		return (x) => {
+			let lo = 0, hi = 1
+			for (let i = 0; i < 30; i++) {
+				const mid = (lo + hi) / 2
+				if (at(x1, x2, mid) < x) lo = mid
+				else hi = mid
+			}
+			return at(y1, y2, (lo + hi) / 2)
+		}
+	}
+	const EASE = bezier(0.7, 0, 0.2, 1)
+	const css = ({ s, tx, ty, rx, ry }) =>
+		`translate(${tx}px, ${ty}px) scale(${s})` + (rx || ry ? ` translate(${W / 2}px, ${H / 2}px) rotateX(${rx}deg) rotateY(${ry}deg) translate(${-W / 2}px, ${-H / 2}px)` : "")
+	let moving = 0
+
+	/**
+	 * Move the camera frame by frame. A CSS transition would scale a picture of the page and draw it sharp again only
+	 * when it stops, which shows as a snap at the end of every move.
+	 */
+	function apply(next, ms) {
+		const from = view
 		view = next
-		cam.style.transition = ms ? `transform ${ms}ms ${ease || "var(--ease)"}` : "none"
-		const { s, tx, ty, rx, ry } = next
-		cam.style.transform =
-			`translate(${tx}px, ${ty}px) scale(${s})` + (rx || ry ? ` translate(${W / 2}px, ${H / 2}px) rotateX(${rx}deg) rotateY(${ry}deg) translate(${-W / 2}px, ${-H / 2}px)` : "")
-		if (!ms) void cam.offsetWidth
-		return sleep(ms || 0)
+		const id = ++moving
+		if (!ms) {
+			cam.style.transform = css(next)
+			return sleep(0)
+		}
+		return new Promise((done) => {
+			const start = performance.now()
+			const step = (now) => {
+				if (id !== moving) return done()
+				const t = Math.min(1, (now - start) / ms)
+				const e = EASE(t)
+				const mix = (k) => from[k] + (next[k] - from[k]) * e
+				cam.style.transform = css({ s: mix("s"), tx: mix("tx"), ty: mix("ty"), rx: mix("rx"), ry: mix("ry") })
+				if (t < 1) requestAnimationFrame(step)
+				else done()
+			}
+			requestAnimationFrame(step)
+		})
 	}
 
 	/** The camera framings. A rect is in app px: the camera fits it to the screen, never showing past the window's edge. */
@@ -254,7 +298,7 @@
 			let i = 0
 			const line = (cls, html) => `<div class="${cls} in" style="--i:${i++}">${html}</div>`
 			intro.innerHTML =
-				`<div class="face">${faceSvg(spec.face, "idle")}</div>` +
+				`<div class="face"><div class="pop">${faceSvg(spec.face, "idle")}</div></div>` +
 				line("num", spec.kicker) +
 				line("name", spec.name) +
 				line("job", spec.job) +
@@ -333,7 +377,7 @@
 			const parts = []
 			if (spec.faces) {
 				await facesReady
-				parts.push(`<div class="faces">${spec.faces.map((id) => `<div class="f" style="--i:${i++}">${faceSvg(id, "happy")}<span>${FACE_NAME[id]}</span></div>`).join("")}</div>`)
+				parts.push(`<div class="faces">${spec.faces.map((id) => `<div class="f" style="--i:${i++}"><div class="box"><div class="pop">${faceSvg(id, "happy")}</div></div><span>${FACE_NAME[id]}</span></div>`).join("")}</div>`)
 			}
 			if (spec.lockup) parts.push(`<img class="lockup fade" style="--i:${i++}" src="/__demo/lockup.svg" alt="">`)
 			if (spec.kicker) parts.push(`<div class="kicker fade" style="--i:${i++}">${spec.kicker}</div>`)

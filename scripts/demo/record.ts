@@ -6,6 +6,11 @@
  *   npm run demo:record -- --out PATH         write the video elsewhere
  *   npm run demo:record -- --from 4 --to 4    record only scenes 4 to 4
  *   npm run demo:record -- --preview          play it live in a Chromium window, with no recording or encoding
+ *   npm run demo:record -- --remix            mix the music and sound effects onto the last recording again
+ *   npm run demo:record -- --no-audio         a silent video
+ *
+ * Sound: scripts/demo/audio/ holds the music and the sound effects (free to use, see CREDITS.md). The story logs a cue
+ * at each moment that has a sound (a title, a face, a click, typing, a stamp); ffmpeg mixes them over the music.
  *
  * Needs ffmpeg on PATH and Chromium for Playwright (`npx playwright install chromium`). No API key: it replays the two
  * committed runs, out/reverse-search/ and out/golden/. The storyboard and the voice-over are in docs/demo/storyboard.md.
@@ -21,7 +26,7 @@
  * the Stage says it is that run replayed. Approve is answered in the browser and never writes to out/.
  */
 import { spawn, spawnSync, type ChildProcess } from "node:child_process"
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs"
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 import { parseArgs } from "node:util"
 import { chromium, type FrameLocator, type Locator, type Page } from "playwright"
@@ -40,6 +45,8 @@ const { values } = parseArgs({
 	options: {
 		"keep-frames": { type: "boolean", default: false },
 		preview: { type: "boolean", default: false },
+		remix: { type: "boolean", default: false },
+		"no-audio": { type: "boolean", default: false },
 		port: { type: "string", default: "4640" },
 		from: { type: "string", default: "0" },
 		to: { type: "string", default: "99" },
@@ -91,6 +98,25 @@ let mouse = { x: VIEW.width / 2, y: VIEW.height / 2 }
 
 const wait = (ms: number) => page.waitForTimeout(ms)
 
+// ---------------------------------------------------------------------------------------------------------------
+// Sound cues
+
+type Sound = "whoosh" | "pop" | "click" | "typing" | "stamp" | "success" | "tick"
+type Cue = { sound: Sound; at: number; gain: number; ms?: number }
+const cues: Cue[] = []
+
+/** A sound at this moment of the video. `ms` plays only that long (typing). */
+function cue(sound: Sound, gain = 1, ms?: number) {
+	cues.push({ sound, at: Date.now() / 1000, gain, ms })
+}
+
+/** Type with the sound of typing under it. */
+async function type(text: string, delay: number) {
+	const start = Date.now() / 1000
+	await page.keyboard.type(text, { delay })
+	cues.push({ sound: "typing", at: start, gain: 0.55, ms: Date.now() - start * 1000 })
+}
+
 /** Call `window.director[name](...args)` in the director page. */
 function dir<T = void>(name: string, ...args: unknown[]): Promise<T> {
 	return page.evaluate(([name, args]) => (window as any).director[name](...args), [name, args] as const) as Promise<T>
@@ -100,7 +126,8 @@ const camera = (shot: Shot, ms = 1100) => dir("camera", shot, ms)
 const blur = (mode: "blur" | "soft" | "none", ms = 420) => dir("blur", mode, ms)
 const caption = (kicker: string | null, html: string | null) => dir("caption", kicker, html)
 
-async function title(spec: { kicker?: string; lines?: string[]; small?: boolean; sub?: string; code?: string; lockup?: boolean }, hold: number, keep = false) {
+async function title(spec: { kicker?: string; faces?: string[]; lines?: string[]; small?: boolean; sub?: string; code?: string; lockup?: boolean }, hold: number, keep = false) {
+	cue("whoosh", 0.45)
 	await dir("title", spec)
 	await wait(hold)
 	if (!keep) await dir("untitle")
@@ -152,6 +179,7 @@ async function hover(target: Locator, ms = 700) {
 async function click(target: Locator, ms = 700) {
 	await hover(target, ms)
 	await wait(140)
+	cue("click", 0.8)
 	await dir("press", true)
 	await page.mouse.down()
 	await wait(110)
@@ -201,7 +229,10 @@ const PROPOSAL = `${RS}/results/proposals/C999-CH1-R0822`
 const RIGHT = { x: 610, y: 48, w: 790, h: 680 }
 
 const iso = (on: boolean) => dir("iso", on)
-const stageTo = (mode: "gone" | "none", ms = 560) => dir("stage", mode, ms)
+const stageTo = (mode: "gone" | "none", ms = 560) => {
+	if (mode === "none" && ms > 0) cue("whoosh", 0.3)
+	return dir("stage", mode, ms)
+}
 
 /** The innermost <section> whose heading is `name`. */
 const block = (name: string | RegExp) =>
@@ -262,7 +293,10 @@ type Agent = {
 const HAIKU = "Claude Haiku 4.5"
 const SONNET = "Claude Sonnet 4.6"
 
-const mood = (state: string) => dir("mood", state)
+const mood = (state: string) => {
+	if (state === "reject") cue("stamp", 0.8)
+	return dir("mood", state)
+}
 
 const AGENTS: Agent[] = [
 	{
@@ -271,7 +305,7 @@ const AGENTS: Agent[] = [
 		kicker: "01 · Orchestrator",
 		job: "Plans the run and <b>hands out the work</b>. Each row is an agent, each bar a task it gave out.",
 		model: HAIKU,
-		color: "#1d1d1f",
+		color: "#a1a1a6",
 		show: () => isolate(`${RS}/live`, () => [app.locator('section[data-slot="pane"]').filter({ hasText: "Agents at work" }).first()], { box: { x: 590, y: 40, w: 830, h: 700 }, pad: 0.03, max: 1.3, card: false }),
 		act: async () => {
 			await mood("working")
@@ -286,7 +320,7 @@ const AGENTS: Agent[] = [
 		kicker: "02 · Industry Analyst",
 		job: "Reads the company's own words and <b>restates the problem</b> as a research question.",
 		model: HAIKU,
-		color: "#a46719",
+		color: "#d9954a",
 		show: () => isolate(`${PAIR}?tab=challenge`, () => [block("In the company's words"), block("As a research question")], { width: 500 }),
 		act: async () => {
 			await mood("working")
@@ -301,14 +335,16 @@ const AGENTS: Agent[] = [
 		kicker: "03 · Shortlist",
 		job: "Searches <b>every researcher</b> on EINSTEIN and keeps the few worth reading in full.",
 		model: "No model <span>· a search, in code</span>",
-		color: "#5b6b7b",
+		color: "#8b9aab",
 		// Nothing of the app: every page element hidden.
 		show: async () => {
 			await iso(false)
 			await iso(true)
 		},
 		act: async () => {
-			await dir("panel", { kind: "tally", box: RIGHT, from: 1047, fromLabel: "researchers on EINSTEIN", to: 6, toLabel: "to read, for this problem", color: "#5b6b7b" })
+			cue("tick", 0.5)
+			setTimeout(() => cue("tick", 0.5), 1500)
+			await dir("panel", { kind: "tally", box: RIGHT, from: 1047, fromLabel: "researchers on EINSTEIN", to: 6, toLabel: "to read, for this problem", color: "#8b9aab" })
 			await mood("working")
 			await wait(3200)
 			await mood("done")
@@ -322,7 +358,7 @@ const AGENTS: Agent[] = [
 		kicker: "04 · Research Profiler",
 		job: "Reads a researcher's papers and projects and writes a profile. <b>Six work at once.</b>",
 		model: `${HAIKU} <span>· ×6</span>`,
-		color: "#4c5bd4",
+		color: "#8b97f2",
 		show: () => isolate(`${PAIR}?tab=researcher`, () => [block("Expertise")], { width: 500, hide: ["li:nth-child(n+4)"] }),
 		act: async () => {
 			await mood("working")
@@ -337,7 +373,7 @@ const AGENTS: Agent[] = [
 		kicker: "05 · Critic",
 		job: "Checks <b>every claim</b> against the record it cites. What it cannot find goes back to its writer.",
 		model: SONNET,
-		color: "#c8463d",
+		color: "#f07a70",
 		show: () =>
 			isolate(`${PROPOSAL}?tab=review`, () => [app.getByRole("main").locator("li.rounded-md").filter({ has: app.locator(".line-through") }).first()], { width: 480 }),
 		act: async () => {
@@ -345,6 +381,7 @@ const AGENTS: Agent[] = [
 			await wait(2200)
 			await mood("reject")
 			await wait(2200)
+			cue("stamp", 0.6)
 			await mood("done")
 			await wait(1500)
 		},
@@ -355,7 +392,7 @@ const AGENTS: Agent[] = [
 		kicker: "06 · Matchmaker",
 		job: "Pairs the problem with the researchers who passed, and <b>says why</b>, with a source for each reason.",
 		model: SONNET,
-		color: "#8447c2",
+		color: "#b48ae8",
 		show: () => isolate(PAIR, () => [block("Why these two")], { width: 500, hide: ["li:nth-child(n+4)"] }),
 		act: async () => {
 			await mood("working")
@@ -370,7 +407,7 @@ const AGENTS: Agent[] = [
 		kicker: "07 · Proposal Writer",
 		job: "Writes the <b>joint project</b> for the pair, in plain words, with every fact cited.",
 		model: SONNET,
-		color: "#13807a",
+		color: "#3cbfb4",
 		show: () => isolate(PROPOSAL, () => [app.getByRole("main").locator("section.scroll-mt-4").first()], { width: 520 }),
 		act: async () => {
 			await mood("working")
@@ -385,7 +422,7 @@ const AGENTS: Agent[] = [
 		kicker: "08 · Funding Scout",
 		job: "Finds the <b>open EU calls</b> that could fund the pair, from the Funding &amp; Tenders portal.",
 		model: HAIKU,
-		color: "#5f7f1e",
+		color: "#a3c95a",
 		show: () => isolate(PAIR, () => [block("Where to apply")], { width: 520, hide: ["li:nth-child(n+2)", ":scope > p"] }),
 		act: async () => {
 			await mood("working")
@@ -400,7 +437,7 @@ const AGENTS: Agent[] = [
 		kicker: "09 · Human approver",
 		job: "Nobody is contacted until <b>a person approves</b> the pair.",
 		model: "A person <span>· the coordinator</span>",
-		color: "#8e8e93",
+		color: "#c7c7cc",
 		show: () =>
 			isolate(PROPOSAL, () => [app.getByRole("main").locator("header").filter({ has: app.getByRole("button", { name: "Approve", exact: true }) }).last()], {
 				width: 560,
@@ -412,6 +449,7 @@ const AGENTS: Agent[] = [
 			await wait(900)
 			await dir("showCursor", true)
 			await click(app.getByRole("button", { name: "Approve", exact: true }), 1000)
+			cue("success", 0.7)
 			await mood("done")
 			await wait(2200)
 			await dir("showCursor", false)
@@ -454,10 +492,10 @@ async function scene2() {
 	await caption("Reverse search", "A company describes <b>one problem</b> in its own words.")
 	await dir("showCursor", true)
 	await click(dialog.getByLabel("The problem"))
-	await page.keyboard.type(PROBLEM, { delay: 8 })
+	await type(PROBLEM, 8)
 	await wait(250)
 	await click(dialog.getByLabel(/^Sector/), 500)
-	await page.keyboard.type("Renewable energy", { delay: 35 })
+	await type("Renewable energy", 35)
 	const mock = dialog.getByRole("switch", { name: "Run on the mock model" })
 	if ((await mock.getAttribute("aria-checked")) === "true" && (await mock.isEnabled())) await click(mock, 500)
 	await wait(300)
@@ -482,7 +520,7 @@ async function scene4() {
 	for (const agent of AGENTS) {
 		await agent.show()
 		await Promise.all([
-			dir("meet", { face: agent.face, name: agent.name, kicker: agent.kicker, job: agent.job, model: agent.model, color: agent.color }),
+			(cue("pop", 0.7), dir("meet", { face: agent.face, name: agent.name, kicker: agent.kicker, job: agent.job, model: agent.model, color: agent.color })),
 			(async () => {
 				await wait(250)
 				await stageTo("none", 700)
@@ -503,13 +541,25 @@ async function scene5() {
 	await app.getByRole("button", { name: "Watch the replay" }).evaluate((el: HTMLElement) => el.click())
 	await wait(300)
 	await seek(58_000, RS_MS)
+	// Close the event log, so the ring of faces takes the whole width, then frame the faces themselves: the run's
+	// header and replay bar float over the stage and push the ring off centre.
+	const hideLog = app.getByRole("button", { name: "Hide the events" })
+	if (await hideLog.count()) await hideLog.first().evaluate((el: HTMLElement) => el.click())
+	await wait(900)
 	const canvas = app.locator(".stage-canvas").first()
+	const ring = await canvas.evaluate((el) => {
+		const boxes = [...el.querySelectorAll("svg.ag")].map((face) => face.getBoundingClientRect()).filter((r) => r.width > 0)
+		const x = Math.min(...boxes.map((r) => r.left))
+		const y = Math.min(...boxes.map((r) => r.top))
+		// Room for the names under the faces.
+		return { x, y, w: Math.max(...boxes.map((r) => r.right)) - x, h: Math.max(...boxes.map((r) => r.bottom)) + 34 - y }
+	})
 	await canvas.evaluate((el) => {
 		el.setAttribute("data-iso", "")
 		for (const part of el.querySelectorAll(":scope > div[aria-hidden], :scope > .z-20")) part.setAttribute("data-iso-hide", "")
 	})
 	await iso(true)
-	await camera({ rect: await rect(canvas), box: { x: 0, y: 0, w: 1440, h: 700 }, pad: 0, max: 1.05 }, 0)
+	await camera({ rect: ring, box: { x: 0, y: 10, w: 1440, h: 680 }, pad: 0.16, max: 1.3 }, 0)
 	await stageTo("none", 700)
 	await caption("The real run", "That problem, run for real in <b>5 minutes</b> for $1.46. Here it plays 4× faster.")
 	await wait(4800)
@@ -553,6 +603,7 @@ async function scene6() {
 
 /** 7. What the reference run made */
 async function scene7() {
+	for (let k = 0; k < 4; k++) setTimeout(() => cue("tick", 0.45), 300 + k * 110)
 	await dir("panel", {
 		kind: "stats",
 		stats: [
@@ -604,6 +655,7 @@ async function story(from: number, to: number) {
 // Capture and encode
 
 async function main() {
+	if (values.remix) return remix()
 	const preview = values.preview!
 	if (!preview && spawnSync("ffmpeg", ["-version"]).status !== 0) throw new Error("ffmpeg is not on PATH. Install it (brew install ffmpeg) and run again.")
 	rmSync(frameDir, { recursive: true, force: true })
@@ -617,7 +669,7 @@ async function main() {
 			? { headless: false, args: [`--window-size=${VIEW.width},${VIEW.height + 90}`] }
 			: { args: [`--force-device-scale-factor=${SCALE}`, `--window-size=${VIEW.width},${VIEW.height}`] },
 	)
-	const context = await browser.newContext({ viewport: preview ? VIEW : null, colorScheme: "light" })
+	const context = await browser.newContext({ viewport: preview ? VIEW : null, colorScheme: "dark" })
 	page = await context.newPage()
 	page.setDefaultTimeout(30_000)
 	app = page.frameLocator("#app")
@@ -626,7 +678,7 @@ async function main() {
 	await context.addInitScript({ content: "globalThis.__name = (f) => f" })
 	await context.addInitScript(() => {
 		try {
-			localStorage.setItem("entangle.theme", "light")
+			localStorage.setItem("entangle.theme", "dark")
 		} catch {}
 		// No toasts: "Reverse search started" would say a run started when this is a replay.
 		document.addEventListener("DOMContentLoaded", () => {
@@ -643,7 +695,7 @@ async function main() {
 		if (path === "/__demo/director") return req.fulfill({ contentType: "text/html", body: readFileSync(resolve(import.meta.dirname, "director.html")) })
 		const agent = path.match(/^\/__demo\/agents\/(\w+)\.svg$/)
 		if (agent) return req.fulfill({ contentType: "image/svg+xml", body: readFileSync(resolve(ROOT, "design/agents", `${agent[1]}.svg`)) })
-		if (path === "/__demo/lockup.svg") return req.fulfill({ contentType: "image/svg+xml", body: readFileSync(resolve(ROOT, "docs/brand/entangle-lockup-animated-light.svg")) })
+		if (path === "/__demo/lockup.svg") return req.fulfill({ contentType: "image/svg+xml", body: readFileSync(resolve(ROOT, "docs/brand/entangle-lockup-animated-dark.svg")) })
 		const font = path.match(/^\/__demo\/fonts\/((inter|source-serif-4)-[\w-]+\.woff2)$/)
 		if (font) return req.fulfill({ contentType: "font/woff2", body: readFileSync(join(fonts, font[2] === "inter" ? "inter" : "source-serif-4", "files", font[1])) })
 		return req.fulfill({ status: 404 })
@@ -716,13 +768,66 @@ function encode(frames: { file: string; at: number }[], end: number) {
 		[
 			"-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", listFile,
 			"-vf", `fps=${FPS},scale=1920:1080:flags=lanczos,format=yuv420p`,
-			"-c:v", "libx264", "-preset", "slow", "-crf", "18", "-movflags", "+faststart", output,
+			"-c:v", "libx264", "-preset", "slow", "-crf", "18", "-movflags", "+faststart", SILENT,
 		],
 		{ stdio: "inherit" },
 	)
 	if (result.status !== 0) throw new Error("ffmpeg failed")
 	const seconds = end - frames[0].at
+	// Kept, so --remix can mix the sound again without recording.
+	writeFileSync(CUES, JSON.stringify({ seconds, cues: cues.map((c) => ({ ...c, at: c.at - frames[0].at })) }, null, 1))
+	mix()
 	console.log(`${output}  ${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, "0")}  ${frames.length} frames`)
+}
+
+const AUDIO = resolve(import.meta.dirname, "audio")
+const SILENT = join(OUT, "silent.mp4")
+const CUES = join(OUT, "cues.json")
+/** The music sits under the sound effects. */
+const MUSIC_GAIN = 0.32
+
+function remix() {
+	if (!existsSync(SILENT) || !existsSync(CUES)) throw new Error(`Nothing to remix: record once first (${SILENT}).`)
+	mix()
+	console.log(output)
+}
+
+/** Music over the whole video, each cue's sound at its time, onto the silent video. */
+function mix() {
+	const music = join(AUDIO, "music.mp3")
+	if (values["no-audio"] || !existsSync(music)) {
+		if (!values["no-audio"]) console.warn(`No ${music}: the video is silent.`)
+		copyFileSync(SILENT, output)
+		return
+	}
+	const { seconds, cues } = JSON.parse(readFileSync(CUES, "utf8")) as { seconds: number; cues: Cue[] }
+	const sounds = [...new Set(cues.map((c) => c.sound))].filter((sound) => existsSync(join(AUDIO, `${sound}.mp3`)))
+	const inputs = ["-i", SILENT, "-stream_loop", "-1", "-i", music]
+	for (const sound of sounds) inputs.push(...(sound === "typing" ? ["-stream_loop", "-1"] : []), "-i", join(AUDIO, `${sound}.mp3`))
+	const played = cues.filter((c) => sounds.includes(c.sound) && c.at >= 0)
+	const graph: string[] = [
+		`[1:a]atrim=0:${seconds.toFixed(3)},volume=${MUSIC_GAIN},afade=t=in:d=1.5,afade=t=out:st=${Math.max(0, seconds - 3).toFixed(3)}:d=3[music]`,
+	]
+	sounds.forEach((sound, k) => {
+		const mine = played.filter((c) => c.sound === sound)
+		if (mine.length) graph.push(`[${k + 2}:a]asplit=${mine.length}${mine.map((_, i) => `[${sound}${i}]`).join("")}`)
+	})
+	const labels: string[] = []
+	const count: Record<string, number> = {}
+	played.forEach((c, j) => {
+		const i = (count[c.sound] = (count[c.sound] ?? -1) + 1)
+		const length = c.ms ? `atrim=0:${(c.ms / 1000).toFixed(3)},afade=t=out:st=${Math.max(0, c.ms / 1000 - 0.15).toFixed(3)}:d=0.15,` : ""
+		const delay = Math.round(c.at * 1000)
+		graph.push(`[${c.sound}${i}]${length}volume=${c.gain},adelay=${delay}|${delay}[c${j}]`)
+		labels.push(`[c${j}]`)
+	})
+	graph.push(`[music]${labels.join("")}amix=inputs=${labels.length + 1}:normalize=0:duration=first,alimiter=limit=0.9[out]`)
+	const result = spawnSync(
+		"ffmpeg",
+		["-y", "-loglevel", "error", ...inputs, "-filter_complex", graph.join(";"), "-map", "0:v", "-map", "[out]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", seconds.toFixed(3), "-movflags", "+faststart", output],
+		{ stdio: "inherit" },
+	)
+	if (result.status !== 0) throw new Error("ffmpeg could not mix the sound")
 }
 
 main().catch((error) => {
