@@ -9,14 +9,14 @@ The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](.
 
 - `#/`: the runs, as one table. Real runs by default; mock runs and unfinished dev runs are a click away.
   With no real runs, an intro points at the sample run.
-- `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
-- `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running).
-- `#/runs/:id/stage`: the **Stage**. It fills the panel edge to edge; the run's header, the replay bar and the
-  events log float over it as frosted cards (`shell/float.ts` shares how much they cover). The seven agent faces sit round the event bus. Each event travels from its author
+- `#/runs/:id/stage`: the **Stage**, the run's main view: `#/runs/:id` opens here, and so do new runs and "Watch the replay".
+  It fills the panel edge to edge; the run's header, the replay bar and the events log float over it as frosted cards (`shell/float.ts` shares how much they cover). The seven agent faces sit round the event bus. Each event travels from its author
   through the bus to everyone, the author says it in a bubble, and the Critic stamps what it checks ("Passed", "Sent back").
   Click an event in the log to move the playhead there. The Timeline and the Stage are the tabs with the replay bar.
   The run clock says what happened; a director (`screens/stage/director.ts`) shows it at a human pace at any speed,
   merging bursts into one line ("Checked 6 profiles. All sourced."). A seek jumps there still. Wording is in `words.ts`.
+- `#/runs/:id/live`: the **Timeline** (the tab says "Live" with a green dot while the run is running).
+- `#/runs/:id/overview`: what happened. The five steps, model calls in flight over time, what the Critic caught, the proposals.
 - `#/runs/:id/results`: pairs and proposals, as a list and a detail side by side. Deep links:
   `results/proposals/:id` (add `?tab=review` for the Critic history), `results/pairs/:pairId`, `results/challenges/:id`.
 
@@ -86,7 +86,7 @@ const records = useRun((s) => s.records) // every trace record loaded so far (Tr
 - For a smooth 50-agent view, call `useRunClock()` once near the top and pass the value down, or read
   `runClock()` in your own `requestAnimationFrame` loop.
 
-The **sample run** (`#/runs/sample/live`) is built in (`fixtures/sample-run.ts`): 16 agents over 35 s, with one
+The **sample run** (`#/runs/sample/stage`) is built in (`fixtures/sample-run.ts`): 16 agents over 35 s, with one
 Critic send-back and its fix. Use it while real runs are thin. Replaying a real run works too:
 `npm run replay -- out/tmp/2026-10-30T11-23-50-try` (4 proposals, 31 Critic reviews).
 

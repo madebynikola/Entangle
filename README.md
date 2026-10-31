@@ -42,9 +42,10 @@ npm install                      # Node 20 or newer
 npm run replay -- out/golden     # the committed reference run in the web app
 ```
 
-The app opens at http://localhost:4317 on the reference run. **Overview** tells what happened, **Timeline** replays the agents at work
-(press play, or Space), and **Results** has the pairs and proposals with every source. The run folder holds the trace,
-the results and every cited record, so the replay needs no `.env`, no API key and no dataset.
+The app opens at http://localhost:4317 on the reference run, on the **Stage**: the agents talk over the event bus
+(press play, or Space). **Timeline** shows the same replay as lanes, **Overview** tells what happened, and **Results** has
+the pairs and proposals with every source. The run folder holds the trace, the results and every cited record, so the
+replay needs no `.env`, no API key and no dataset.
 
 Run the whole team yourself on the mock model (fake latency, no keys, no cost):
 
