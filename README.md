@@ -97,6 +97,18 @@ researchers (`--k`), the Matchmaker pairs them, a Writer writes the proposal for
 whose pairs passed the Critic, best fit first, each with one reason from their own records. In the web app (`npm run dev`),
 **Describe a problem** on the Runs screen, or ⌘K, starts the same run and opens it on the Stage.
 
+**Your own data, from the app.** **New run** (in the sidebar, or on the Runs screen) does in the browser what the CLI does. Pick the
+data, then what to match: a described problem (the reverse search), or companies picked from that data. Then pick the mock or the
+real models, the shortlist size and the most proposals. The run streams in on the Stage like any other. **Add your own data** takes
+files in the dataset's format: `researchers.json` or `researchers.csv` (required), and optionally `publications.jsonl`,
+`projects.json`, `patents.json`, `companies.json` or `.csv` and `company-pages.jsonl`. Only a name or title is required per record,
+and **Download a template** gives one file with every list. The server reads the files leniently (`src/data/import.ts`), so a missing
+field is empty and a link given on one side only is made on both. It gives other ids the dataset's shape (`jdoe` → `R0001`,
+`ACME` → `C001`, `p1` → `SYN-PUB-00001`): the Critic and the app find cited ids by that shape. The upload keeps the original ids, and
+the app lists what changed. Uploads stay on your machine, in `data/uploads/<name>/` (gitignored). A run on them writes
+`dataset.json`, so the Runs screen labels it and its sources are looked up in that upload, never in the EINSTEIN data.
+From the CLI: `npm run match -- --data data/uploads/<name> --problem "..."`.
+
 The command above, with `--sector "Renewable energy"`, is committed as `out/reverse-search/` (`npm run replay -- out/reverse-search`).
 On local Claude Code it took 5 minutes and 443k tokens, about $1.46 at API prices. Over the run the Critic sent artifacts back
 17 times, and the proposal ([`out/reverse-search/proposals/`](out/reverse-search/proposals/)) passed after 2 fixes. It ends with
@@ -128,6 +140,7 @@ Everything lands in `out/<run-id>/`:
 | --- | --- | --- |
 | `--companies N \| all`, `--ids LIST` | 5 | Which companies to work on |
 | `--problem TEXT`, `--sector TEXT` | | Reverse search: find researchers for a described problem instead |
+| `--data DIR` | `data/raw/data`, else the fixture | Another dataset folder, such as your own upload in `data/uploads/<name>` |
 | `--analysts N`, `--profilers N`, `--writers N` | 4, 6, 3 | Agents per role |
 | `--k N` | 4 (2 with `SCREEN=1`, 6 with `--problem`) | Researchers shortlisted per challenge |
 | `--proposals N` | one per company | Most proposals in the run |

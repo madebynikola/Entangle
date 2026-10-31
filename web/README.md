@@ -10,7 +10,10 @@ The brand (logo, palette, type, agent faces) comes from the kit in [`design/`](.
 - `#/`: the runs, as one table. Real runs by default; mock runs and unfinished dev runs are a click away.
   With no real runs, an intro points at the sample run. **Describe a problem** (also in ⌘K) opens the reverse search
   (`shell/problem-dialog.tsx`): a company's problem in its own words, run on the mock or real models, opened on the Stage.
-  Its rows say "Reverse search" and show the problem instead of the folder name.
+  Its rows say "Reverse search" and show the problem instead of the folder name. A run on other data than EINSTEIN shows that data's name.
+- `#/new`: **New run** (`screens/new/`), the CLI in the browser. Data on top (the EINSTEIN dataset, the fixture, or your own upload
+  through **Add your own data**), then a problem or companies from that data, then the model, k and the most proposals on the right.
+  A hosted build shows how to start the app locally instead.
 - `#/runs/:id/stage`: the **Stage**, the run's main view: `#/runs/:id` opens here, and so do new runs and "Watch the replay".
   It fills the panel edge to edge; the run's header, the replay bar and the events log float over it as frosted cards (`shell/float.ts` shares how much they cover). The seven agent faces sit round the event bus. Each event travels from its author
   through the bus to everyone, the author says it in a bubble, and the Critic stamps what it checks ("Passed", "Sent back").
@@ -54,7 +57,9 @@ npm run test:web                  # open the app in headless Chromium and run a 
 `npm run test:web` (`test/e2e/`) starts the dev server on a free port and drives the app as a person would. It opens
 **Describe a problem**, checks that the box waits for a real description, and starts the mock run. It then follows the run
 to its proposal in Results and back to its "Reverse search" row on the Runs screen. It needs no key, takes about 30 s, and
-deletes the run it made. The first time on a machine, run `npx playwright install chromium`.
+deletes the run it made. `own-data.test.ts` uploads a CSV of researchers and a JSON of companies on **New run**, checks the ids they got,
+and runs the mock on that company: the run must read the upload, not the EINSTEIN data. The first time on a machine, run
+`npx playwright install chromium`.
 
 ## Who owns what
 
@@ -64,6 +69,7 @@ deletes the run it made. The first time on a machine, run `npx playwright instal
 | `web/src/screens/stage/` | #30: the Stage |
 | `design/` | The brand kit, as handed over. Regenerate with its `tools/` (see `design/HANDOFF.md`); do not edit the SVGs by hand |
 | `web/src/screens/results/` | #21: the results view |
+| `web/src/screens/new/`, `src/server/datasets.ts`, `src/data/import.ts` | #66: New run and your own data |
 | everything else in `web/` (incl. `screens/overview`, `screens/home`), and `src/server/` | #12: shell, design system, routing, run data, server |
 
 Need something in a shared file (a token, a component, a field on the run view)? Ask on #12's card, or add it
