@@ -143,6 +143,51 @@ describe("availability", () => {
 		assert.match(availabilityOf("Supervising two students, which limits capacity for new commitments before 2026.") ?? "", /limits capacity/)
 	})
 
+	it("catches limits that SubQ found and the regex missed (scripts/audit-availability.ts)", () => {
+		for (const s of [
+			"Currently supervising two PhD students, which limits availability for large new commitments until mid-2026.",
+			"Her fieldwork schedule constrains availability for intensive collaboration during those periods.",
+			"The conference will place some constraints on her availability for new project commitments.",
+			"He has limited bandwidth for projects outside his dissertation scope until mid-2026.",
+			"Supervision bandwidth is currently limited for a second PhD candidate.",
+			"Availability for larger project commitments may be limited until the dissertation is defended.",
+			"She has moderate availability for new collaborations until mid-2026.",
+			"Research group capacity is limited to one concurrent externally funded project.",
+			"He is currently at near-full capacity due to project obligations through late 2025.",
+			"She is currently fully committed to the project until the end of 2026.",
+			"His clinical workload is high and he has limited time for projects.",
+			"Workload at the Clinical Centre is high during the academic year.",
+			"She teaches a heavy undergraduate load in the spring semester.",
+			"The project occupies a substantial share of her research time until 2026.",
+			"She has roughly 30–40% of her time available for external collaborations.",
+			"He is cautious about taking on additional coordination responsibilities before mid-2026.",
+			"He is unlikely to take on a third student before 2027.",
+			"She is not seeking large consortium leadership roles in the next two years.",
+			"She prefers projects that do not require more than 20 percent time allocation.",
+			"Commitments that would require more than two days per week are not possible.",
+			"Trenutno vodi jedan projekat, pa je kapacitet za nove veće projekte ograničen do 2026.",
+			"Predaje na dva predmeta, što ograničava dostupnost za konsultacije.",
+			"Nije dostupan za nove angažmane u prvom kvartalu 2026.",
+			"Тренутно нема капацитета за велике нове пројекте пре краја 2025. године.",
+			"Доступност за дуже боравке ван факултета је ограничена у периоду фебруар–јун.",
+		])
+			assert.ok(availabilityOf(s), s)
+	})
+
+	it("does not read a limit into open capacity, a moderate load or a shared instrument", () => {
+		for (const s of [
+			"He has capacity for one additional industrial PhD candidate from autumn 2026.",
+			"His teaching load is moderate.",
+			"Workload is substantial but not limiting for new collaborations with clearly defined scope.",
+			"The pilot ohmic heating unit is available for external use; capacity is limited to campaigns of up to two weeks.",
+			"He wants casting and refining facilities not available at the university scale.",
+			"She wants proprietary credit data not available through public registries.",
+			"He is available for consulting engagements and welcomes contact from NTP companies.",
+			"Laboratorijska oprema je dostupna u ograničenom kapacitetu.",
+		])
+			assert.equal(availabilityOf(s), null, s)
+	})
+
 	it("ignores negated sabbaticals and leave", () => {
 		for (const s of [
 			"No planned sabbatical.",
