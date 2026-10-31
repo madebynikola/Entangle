@@ -237,10 +237,10 @@ const TASK_TONE: Record<TaskView["status"], StatusTone> = { queued: "idle", runn
 function TaskRow({ task }: { task: TaskView }) {
 	return (
 		<li className="flex items-center gap-2.5 border-b border-hairline py-2 text-sm last:border-b-0">
-			<StatusDot tone={TASK_TONE[task.status]} className={cn(task.status === "done" && "bg-idle")} />
+			<StatusDot tone={task.stopped ? "idle" : TASK_TONE[task.status]} className={cn(task.status === "done" && "bg-idle")} />
 			<span className="min-w-0 flex-1 truncate font-mono text-xs text-ink">{task.id}</span>
 			<span className="tabular shrink-0 text-xs text-ink-muted">
-				{task.status === "running" ? "running" : format.duration(task.endMs != null ? task.endMs - task.startMs : null)}
+				{task.stopped ? "stopped" : task.status === "running" ? "running" : format.duration(task.endMs != null ? task.endMs - task.startMs : null)}
 			</span>
 			<span className="tabular w-12 shrink-0 text-right text-xs text-ink-subtle">{task.tokens ? format.tokens(task.tokens) : "—"}</span>
 		</li>

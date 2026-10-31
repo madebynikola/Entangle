@@ -47,6 +47,7 @@ export function LiveScreen() {
 	// derive() builds new moments on every fold: a lane's list counts as the same while its keys and actions are.
 	const momentsByAgent = useStableGroups(derived.moments, (m: Moment) => m.producerId, (a, b) => a.key === b.key && a.action === b.action)
 	const calls = useMemo(() => callsNow(view.loops, hasDispatch), [view.loops, hasDispatch])
+	const stopped = useMemo(() => [...view.loops.values()].some((loop) => loop.inferences.some((call) => call.stopped)), [view.loops])
 	const notesByAgent = useStableGroups(derived.notes, (n: Note) => n.agentId, (a, b) => a.key === b.key)
 	const span = useAxisSpan(duration, liveRun)
 	const canFollow = span > FOLLOW_MS * 1.5
@@ -121,7 +122,7 @@ export function LiveScreen() {
 					onAgent={openAgent}
 					onMoment={openMoment}
 				/>
-				<Legend />
+				<Legend stopped={stopped} />
 			</Pane>
 			<Pane title="Blackboard" description="The Critic checks each item." className="h-[28rem] lg:h-auto" bodyClassName="flex flex-col">
 				<Blackboard postings={derived.postings} nameOf={nameOf} onMoment={openMoment} />
@@ -222,13 +223,19 @@ function Metric({
 	)
 }
 
-function Legend() {
+function Legend({ stopped }: { stopped: boolean }) {
 	return (
 		<div className="flex shrink-0 flex-wrap items-center gap-x-4 gap-y-1 border-t border-hairline px-4 py-2 text-xs text-ink-subtle">
 			<span className="inline-flex items-center gap-1.5">
 				<span className="h-2 w-4 rounded-[2px] bg-ink-subtle/70" />
 				Model call
 			</span>
+			{stopped && (
+				<span className="inline-flex items-center gap-1.5">
+					<span className="h-2 w-4 rounded-[2px] bg-ink-subtle/10 ring-1 ring-inset ring-ink-subtle/60" />
+					Stopped at run end
+				</span>
+			)}
 			<span className="inline-flex items-center gap-1.5">
 				<span className="h-0.5 w-4 rounded-full bg-ink-subtle/50" />
 				Waiting for a slot
@@ -268,7 +275,10 @@ function callsNow(loops: Map<string, LoopView>, hasDispatch: boolean): { flying:
 /** What an agent does at the playhead, in a word, and the task it works on. */
 function statusOf(now: AgentView | undefined, loops: LoopView[], fixTasks: Set<string>, hasDispatch: boolean): LaneStatus {
 	if (!now) return { tone: "idle", label: "Not started" }
-	if (now.activity === "idle") return { tone: "idle", label: now.leftMs != null ? "Left" : "Idle" }
+	if (now.activity === "idle") {
+		const stopped = loops.some((loop) => loop.inferences.some((call) => call.stopped))
+		return { tone: "idle", label: stopped ? "Stopped" : now.leftMs != null ? "Left" : "Idle" }
+	}
 	const open = loops.filter((loop) => loop.endMs == null)
 	const task = now.taskId && open.length > 1 ? `${now.taskId} +${open.length - 1}` : now.taskId
 	if (now.taskId && fixTasks.has(now.taskId)) return { tone: "needs", label: "Sent back", task }

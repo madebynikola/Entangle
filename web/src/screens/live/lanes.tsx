@@ -475,13 +475,16 @@ const LoopBars = memo(function LoopBars({
 						key={`c${i}`}
 						data-span={`${loop.id}:${i}`}
 						data-open={open ? start : undefined}
+						data-stopped={call.stopped || undefined}
 						className="absolute rounded-[2px]"
 						style={{
 							left: pct(start),
 							top,
 							height: bar,
 							width: open ? undefined : `max(2px, ${pct(call.endMs! - start)})`,
-							background: open ? color : `color-mix(in oklab, ${color} 72%, transparent)`,
+							// Stopped (still open when the run ended): hollow, so it reads as a call that never answered.
+							background: open ? color : call.stopped ? `color-mix(in oklab, ${color} 16%, transparent)` : `color-mix(in oklab, ${color} 72%, transparent)`,
+							boxShadow: call.stopped ? `inset 0 0 0 1px color-mix(in oklab, ${color} 60%, transparent)` : undefined,
 						}}
 					/>
 				)
@@ -694,7 +697,10 @@ function HoverInfo({ target, view, moments }: { target: HoverTarget; view: RunVi
 			const call = loop.calls[Number(index)]
 			if (!call) return null
 			title = call.name
-			lines = [call.endMs == null ? "running" : format.duration(call.endMs - call.startMs), loop.taskId ?? ""]
+			lines = [
+				call.endMs == null ? "running" : `${call.stopped ? "stopped at run end after " : ""}${format.duration(call.endMs - call.startMs)}`,
+				loop.taskId ?? "",
+			]
 		} else {
 			const call = loop.inferences[Number(index)]
 			if (!call) return null
@@ -702,7 +708,12 @@ function HoverInfo({ target, view, moments }: { target: HoverTarget; view: RunVi
 			const wait = call.dispatchedMs != null ? call.dispatchedMs - call.startMs : 0
 			title = loop.taskId ?? "Model call"
 			lines = [
-				[call.model ?? loop.model, call.endMs == null ? "in flight" : format.duration(call.endMs - start)].filter(Boolean).join(" · "),
+				[
+					call.model ?? loop.model,
+					call.endMs == null ? "in flight" : call.stopped ? `no answer, stopped at run end after ${format.duration(call.endMs - start)}` : format.duration(call.endMs - start),
+				]
+					.filter(Boolean)
+					.join(" · "),
 				call.tokens ? `${format.tokens(call.tokens)} tokens${call.costUsd ? ` · ${format.usd(call.costUsd)}` : ""}` : "",
 				wait > 250 ? `waited ${format.duration(wait)} for a free slot` : "",
 			]
