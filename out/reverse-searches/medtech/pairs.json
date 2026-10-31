@@ -1,0 +1,74 @@
+{
+  "chosen": [
+    "C999-CH1:R0906"
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0906",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0906",
+      "fit": 0.92,
+      "why": [
+        {
+          "text": "The challenge requires motion-artefact suppression in wearable ECG during walking, and the researcher co-authored work on motion-artifact suppression in wearable ECG using adaptive filtering fused with simultaneous accelerometer data.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-09638",
+            "SYN-PUB-09641"
+          ]
+        },
+        {
+          "text": "The challenge targets AF detection specifically, and the researcher co-authored work on atrial fibrillation detection from single-lead ECG using RR-interval irregularity and rhythm analysis.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-09638",
+            "SYN-PUB-09642",
+            "SYN-PUB-09639"
+          ]
+        },
+        {
+          "text": "The researcher led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term atrial fibrillation screening.",
+          "sourceIds": [
+            "SYN-PRJ-0014"
+          ]
+        },
+        {
+          "text": "The company has an annotated dataset and a deployed wearable patch (C999-CH1), and the researcher is open to industrial PhD co-supervision and joint applied research projects with technology companies.",
+          "sourceIds": [
+            "C999-CH1",
+            "R0906"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the company's annotated ECG recordings (C999-CH1), Maja Popović would apply adaptive filtering fused with accelerometer data to suppress motion artefacts and then apply AF detection methods to the cleaned signal.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-09638",
+          "SYN-PUB-09641",
+          "SYN-PUB-09639"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-09638 covers adaptive filtering and AF detection validated on volunteers performing activities including walking; whether the resulting algorithm fits within the hardware constraints of the company's deployed wearable patch is not confirmed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09643",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The embedded algorithm work covers QRS detection and integer arithmetic on microcontrollers; whether the adaptive filtering method fits within the patch's existing hardware constraints is not confirmed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09643",
+            "SYN-PUB-09639",
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "noMatches": []
+}

@@ -1,0 +1,7 @@
+{
+  "companyId": "C999",
+  "challengeId": "C999-CH1",
+  "company": "Described problem",
+  "sector": "Solar energy",
+  "text": "Our rooftop solar inverters disconnect from the grid on hot summer afternoons because the local grid voltage rises too high. We tried lowering the export limit on every site, but that loses about 8% of the yearly yield. We have five years of inverter logs and grid voltage readings from 300 sites."
+}

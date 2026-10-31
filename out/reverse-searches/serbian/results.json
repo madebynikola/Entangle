@@ -1,0 +1,1771 @@
+{
+  "needs": [
+    {
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "companyName": "Described problem",
+      "sector": "Prerada hrane",
+      "triage": "research",
+      "triageReason": "An open technical question about robust visual defect detection in apples under production conditions, where fixed-threshold methods fail; machine learning approaches must be developed and validated.",
+      "restatement": {
+        "text": "A fruit sorting line misclassifies apples with minor bark damage (drobna oštećenja kore) and early rot (početna trulež), achieving only ~88% accuracy despite using fixed-threshold camera systems (C999-CH1). The company has 40,000 labeled apple images from three harvest seasons and customers return misclassified fruit (C999-CH1).",
+        "sourceIds": [
+          "C999-CH1"
+        ]
+      },
+      "searchTerms": [
+        "apple defect detection",
+        "fruit quality classification",
+        "convolutional neural networks",
+        "image segmentation",
+        "agricultural computer vision",
+        "deep learning classification",
+        "postharvest disease detection",
+        "visual quality assessment"
+      ],
+      "assets": [
+        {
+          "text": "40,000 labeled images of apples from three harvest seasons",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Production sorting line with camera system currently deployed",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Customer feedback on misclassified fruit returns",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "text": "Current fixed-threshold camera approach achieves only ~88% accuracy and must be improved to reduce customer returns",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "System must handle apples with minor bark damage and early rot, which the company's sorting line misclassifies",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "researcherId": "R0548",
+      "aliases": [],
+      "name": "Nikola Stojanović",
+      "title": "Associate Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Computing and Control Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Few-shot learning for surface defect detection on reflective metal components, combining preprocessing with prototypical networks.",
+          "sourceIds": [
+            "SYN-PUB-06388"
+          ]
+        },
+        {
+          "text": "Anomaly detection in multi-product assembly lines using one-class contrastive learning and online embedding adaptation.",
+          "sourceIds": [
+            "SYN-PUB-06391"
+          ]
+        },
+        {
+          "text": "Model quantization for real-time defect detection on edge devices, including INT8 and mixed-precision strategies with structured pruning.",
+          "sourceIds": [
+            "SYN-PUB-06389"
+          ]
+        },
+        {
+          "text": "Knowledge distillation for deploying inspection models on heterogeneous edge hardware with hardware-aware attention-alignment losses.",
+          "sourceIds": [
+            "SYN-PUB-06392"
+          ]
+        },
+        {
+          "text": "Fedective generation using physically-based rendering and conditional GANs to create photorealistic synthetic defect images.",
+          "sourceIds": [
+            "SYN-PUB-06390"
+          ]
+        },
+        {
+          "text": "Domain randomization for cross-domain transfer in visual defect detection across different material types and manufacturing processes.",
+          "sourceIds": [
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "Temporal consistency regularization for video-based anomaly detection using recurrent networks to reduce false positives in industrial streams.",
+          "sourceIds": [
+            "SYN-PUB-06394"
+          ]
+        },
+        {
+          "text": "Active learning frameworks using ensemble model uncertainty and diversity sampling to optimize annotation effort in defect detection.",
+          "sourceIds": [
+            "SYN-PUB-06396"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Co-founded a computer vision consultancy from 2016 to 2019.",
+          "sourceIds": [
+            "R0548"
+          ]
+        },
+        {
+          "text": "Open to industrial PhD supervision and joint projects.",
+          "sourceIds": [
+            "R0548"
+          ]
+        },
+        {
+          "text": "Leads algorithm development and validation in the VISIONQC project, which develops a modular inspection platform for SMEs with minimal labeled data requirements.",
+          "sourceIds": [
+            "SYN-PRJ-0011"
+          ]
+        },
+        {
+          "text": "Conducts pilot deployments at regional manufacturing SMEs and validates algorithms for production-ready components.",
+          "sourceIds": [
+            "SYN-PRJ-0011"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0602",
+      "aliases": [],
+      "name": "Ksenija Ranković",
+      "title": "Assistant Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Mechatronics, Robotics and Automation",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "2D code detection on curved surfaces under industrial lighting conditions using open-source baseline pipelines evaluated on a dataset of cylindrical, conical and saddle-shaped surfaces.",
+          "sourceIds": [
+            "SYN-PUB-06942"
+          ]
+        },
+        {
+          "text": "Barcode localisation on cylindrical surfaces using projective rectification and embedded vision hardware at conveyor speeds up to 1.5 m/s.",
+          "sourceIds": [
+            "SYN-PAT-048",
+            "SYN-PUB-06938"
+          ]
+        },
+        {
+          "text": "Lightweight convolutional neural networks for embedded inference on NVIDIA Jetson and Xilinx Zynq platforms, including quantisation and HLS synthesis.",
+          "sourceIds": [
+            "SYN-PUB-06941",
+            "SYN-PUB-00246"
+          ]
+        },
+        {
+          "text": "Vision-guided pick-and-place robotic cells with dual-arm coordination, pose estimation and trajectory synchronisation on moving conveyors.",
+          "sourceIds": [
+            "SYN-PUB-06940",
+            "SYN-PUB-06939"
+          ]
+        },
+        {
+          "text": "Integration of conveyor vision systems with manufacturing execution systems via OPC-UA, including latency characterisation and real-time telemetry.",
+          "sourceIds": [
+            "SYN-PUB-00247"
+          ]
+        },
+        {
+          "text": "Conveyor vibration characterisation and its effect on sub-pixel barcode decode accuracy using strobe lighting and frequency-domain analysis.",
+          "sourceIds": [
+            "SYN-PUB-02252"
+          ]
+        },
+        {
+          "text": "Edge detection and illumination optimisation for industrial packaging inspection on conveyor belts under variable lighting.",
+          "sourceIds": [
+            "SYN-PUB-06937"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to contract research on embedded vision deployment and conveyor integration, consulting on lighting design and camera selection, student internships, and equipment access including a conveyor test rig with GigE cameras and Jetson cluster.",
+          "sourceIds": [
+            "R0602"
+          ]
+        },
+        {
+          "text": "Open to supervising industrial PhDs for candidates employed at NTP Novi Sad companies and joint projects with companies developing inline inspection or sorting systems.",
+          "sourceIds": [
+            "R0602"
+          ]
+        },
+        {
+          "text": "Visited a packaging machinery manufacturer in Novi Sad for four months in 2018 to adapt cylindrical-surface barcode localisation for integration into a production labelling line, and maintains advisory relationships with two local food-processing companies on inline inspection.",
+          "sourceIds": [
+            "R0602"
+          ]
+        },
+        {
+          "text": "Led the VIROCON project with industrial partner Pharmapack Solutions d.o.o. and access to two production facilities, and leads the RECUSOR project with industrial partner NovaPak Recycling d.o.o.",
+          "sourceIds": [
+            "SYN-PRJ-0460",
+            "SYN-PRJ-0461"
+          ]
+        }
+      ],
+      "availability": {
+        "text": "Capacity for new long-term commitments is limited until 2026–2027 due to co-supervision of two doctoral students expected to defend during that period.",
+        "sourceIds": [
+          "R0602"
+        ]
+      }
+    },
+    {
+      "researcherId": "R0437",
+      "aliases": [],
+      "name": "Valentina Bulatović",
+      "title": "Associate Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Computing and Control Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Few-shot learning with prototypical networks and model-agnostic meta-learning (MAML) for classification from limited labelled samples",
+          "sourceIds": [
+            "SYN-PUB-05240",
+            "SYN-PUB-05237"
+          ]
+        },
+        {
+          "text": "Domain adaptation for neural networks across production lines using class-conditional prototypes, batch normalisation adjustment, and feature alignment",
+          "sourceIds": [
+            "SYN-PUB-05241",
+            "SYN-PUB-05238",
+            "SYN-PUB-05236"
+          ]
+        },
+        {
+          "text": "Transfer learning from ImageNet-pretrained convolutional neural networks with fine-tuning strategies for low-volume defect datasets",
+          "sourceIds": [
+            "SYN-PUB-05235",
+            "SYN-PUB-05237"
+          ]
+        },
+        {
+          "text": "Visual defect classification in surface-mount technology assembly using convolutional neural networks and solder joint quality assessment",
+          "sourceIds": [
+            "SYN-PUB-01923",
+            "SYN-PUB-05240",
+            "SYN-PUB-05239"
+          ]
+        },
+        {
+          "text": "Continual learning for deep learning models deployed in evolving production environments where component portfolios and defect distributions change incrementally",
+          "sourceIds": [
+            "SYN-PUB-05243"
+          ]
+        },
+        {
+          "text": "Synthetic data generation and sim-to-real transfer using 3D rendering and domain randomisation to augment limited production datasets",
+          "sourceIds": [
+            "SYN-PUB-05239"
+          ]
+        },
+        {
+          "text": "Open-set recognition and out-of-distribution detection to reject unknown activity classes in edge-deployed inference systems",
+          "sourceIds": [
+            "SYN-PUB-05245"
+          ]
+        },
+        {
+          "text": "Benchmark dataset construction and evaluation protocols for defect labelling including annotation guidelines and inter-rater agreement measurement",
+          "sourceIds": [
+            "SYN-PRJ-0371"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Worked as technical consultant for Elektronik Produkcija d.o.o. from 2016 to 2018, advising on automated optical inspection system selection and integration and contributing to defect taxonomy for quality databases",
+          "sourceIds": [
+            "R0437"
+          ]
+        },
+        {
+          "text": "Open to joint projects with SMT equipment manufacturers or electronics assembly companies, contract research on defect classification and domain adaptation, industrial PhD supervision, and consulting on AOI system selection and deployment",
+          "sourceIds": [
+            "R0437"
+          ]
+        },
+        {
+          "text": "Led the work package on benchmark dataset construction and evaluation protocols for the CROSSQUAL Interreg bilateral project between University of Novi Sad and Budapest University of Technology and Economics, including annotation guidelines and inter-rater agreement measurement for defect labelling",
+          "sourceIds": [
+            "SYN-PRJ-0371"
+          ]
+        },
+        {
+          "text": "Operates a dedicated machine-vision laboratory equipped with a programmable X-ray inspection rig and three high-resolution industrial cameras, with the X-ray rig available for access arrangements with NTP companies on a scheduled basis",
+          "sourceIds": [
+            "R0437"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0521",
+      "aliases": [],
+      "name": "Andrea Krstić",
+      "title": "Full Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Mechatronics, Robotics and Automation",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Near-infrared hyperspectral imaging for polymer identification and sorting on moving conveyors, including sensor calibration, spectral library management, and real-time processing pipelines.",
+          "sourceIds": [
+            "SYN-PUB-06125",
+            "SYN-PUB-06124",
+            "SYN-PUB-05962",
+            "SYN-PUB-06123",
+            "SYN-PUB-06122",
+            "SYN-PUB-06121",
+            "SYN-PUB-05512",
+            "SYN-PUB-06120",
+            "SYN-PUB-06119",
+            "SYN-PUB-02799",
+            "SYN-PUB-06118",
+            "SYN-PUB-06117",
+            "SYN-PUB-06116"
+          ]
+        },
+        {
+          "text": "Machine vision classifiers for material discrimination, including spectral angle mapping, partial least squares regression, linear discriminant analysis, and convolutional neural networks with evaluation on industrial noise and label noise.",
+          "sourceIds": [
+            "SYN-PUB-05962",
+            "SYN-PUB-00591",
+            "SYN-PUB-06122",
+            "SYN-PUB-05512",
+            "SYN-PUB-06119",
+            "SYN-PUB-06118",
+            "SYN-PUB-06116"
+          ]
+        },
+        {
+          "text": "Multi-sensor fusion for material sorting, including NIR with Raman spectroscopy in a decision-fusion architecture and structured-light height measurement for geometric calibration.",
+          "sourceIds": [
+            "SYN-PUB-06123",
+            "SYN-PUB-06121"
+          ]
+        },
+        {
+          "text": "Interpretable time-series classification using shapelet-based features for bearing health monitoring and diagnostics.",
+          "sourceIds": [
+            "SYN-PUB-06127"
+          ]
+        },
+        {
+          "text": "Unsupervised concept drift compensation using kernel mean matching for maintaining classifier performance under distribution shift, and conformal prediction for regression prediction intervals in recycled content estimation.",
+          "sourceIds": [
+            "SYN-PUB-06122",
+            "SYN-PUB-06124",
+            "SYN-PAT-032"
+          ]
+        },
+        {
+          "text": "Robotic material handling with embedded vision, including bin-picking systems with snapshot hyperspectral sensors and grasp planning for unstructured waste.",
+          "sourceIds": [
+            "SYN-PUB-00591"
+          ]
+        },
+        {
+          "text": "Transfer learning from synthetic spectral data and Monte Carlo optical simulation to real conveyor classification with fine-tuning on small labelled datasets.",
+          "sourceIds": [
+            "SYN-PUB-05512"
+          ]
+        },
+        {
+          "text": "GPU-accelerated embedded classification on edge devices such as NVIDIA Jetson platforms with real-time latency constraints and low-power operation.",
+          "sourceIds": [
+            "SYN-PUB-06119",
+            "SYN-PUB-05512"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to joint projects with companies processing or recovering polymer waste, contract research on NIR sensor system design and classifier development, industrial PhD supervision, and consulting on sorting line specification and sensor integration.",
+          "sourceIds": [
+            "R0521"
+          ]
+        },
+        {
+          "text": "Co-supervised a graduate student embedded with a Novi Sad-based automation SME during a six-month placement and has carried out paid consultancy on NIR sensor selection and classifier performance specification for regional recycling equipment suppliers.",
+          "sourceIds": [
+            "R0521"
+          ]
+        },
+        {
+          "text": "Led the NIR sensor integration work package in the cross-border Interreg IPA CIRCPACK project coordinating with Hungarian and Serbian partners on pilot sorting line deployment and dataset harmonisation.",
+          "sourceIds": [
+            "SYN-PRJ-0328"
+          ]
+        },
+        {
+          "text": "Granted patent on method and apparatus for real-time spectral drift compensation in conveyor-mounted NIR sorting systems without line downtime or labelled reference samples.",
+          "sourceIds": [
+            "SYN-PAT-032"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0406",
+      "aliases": [],
+      "name": "Lidija Lukić",
+      "title": "Full Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Computing and Control Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Fine-tuning of convolutional neural networks on small labeled target-domain datasets with layer-wise learning rate schedules and low-rank weight decomposition; selective fine-tuning of vision transformers guided by attention-gate scoring.",
+          "sourceIds": [
+            "SYN-PUB-04916",
+            "SYN-PUB-04914",
+            "SYN-PUB-04910"
+          ]
+        },
+        {
+          "text": "Domain adaptation for visual inspection tasks using adversarial feature alignment for camera model shift, pseudo-label refinement for altitude-dependent resolution and shadow patterns, and contrastive pre-training on synthetic renders.",
+          "sourceIds": [
+            "SYN-PUB-04908",
+            "SYN-PUB-04911",
+            "SYN-PUB-04912"
+          ]
+        },
+        {
+          "text": "Handling class imbalance and dataset bias in structural inspection imagery through data augmentation pipelines including CutMix and Mosaic; calibration of damage severity classifiers under distributional shift.",
+          "sourceIds": [
+            "SYN-PUB-04909",
+            "SYN-PUB-04913"
+          ]
+        },
+        {
+          "text": "Batch normalisation strategies for small-batch fine-tuning in structural inspection and pre-processing protocols for variable outdoor acquisition conditions in corrosion detection.",
+          "sourceIds": [
+            "SYN-PUB-04907",
+            "SYN-PUB-04906"
+          ]
+        },
+        {
+          "text": "Curation, annotation, and benchmarking of large-scale cross-climate damage image datasets with evaluation protocols across unsupervised, semi-supervised, and fully supervised tracks.",
+          "sourceIds": [
+            "SYN-PUB-04915"
+          ]
+        },
+        {
+          "text": "Texture feature extraction for crack detection in concrete using support vector machines and shallow convolutional architectures.",
+          "sourceIds": [
+            "SYN-PUB-04904",
+            "SYN-PUB-04905"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to contract research on visual inspection automation, joint projects with industrial partners, industrial PhD supervision, and consulting on CNN fine-tuning for domain-specific industrial imaging.",
+          "sourceIds": [
+            "R0406"
+          ]
+        },
+        {
+          "text": "Has conducted two short-term consultancies for a domestic construction materials testing laboratory on image acquisition protocols and classifier deployment for automated surface quality control.",
+          "sourceIds": [
+            "R0406"
+          ]
+        },
+        {
+          "text": "Led the machine learning work package in a cross-border infrastructure project that delivered a fine-tuned segmentation model for crack and pothole detection deployed in a pilot monitoring dashboard operated by the Serbian road authority.",
+          "sourceIds": [
+            "SYN-PRJ-0129"
+          ]
+        },
+        {
+          "text": "Offers access to a GPU cluster housing sixteen NVIDIA A5000 cards and an annotated archive of approximately 140,000 damage images; expects at least one co-supervised student per active industry partnership.",
+          "sourceIds": [
+            "R0406"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0496",
+      "aliases": [],
+      "name": "Saša Kosanović",
+      "title": "Senior Research Associate",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Mechatronics, Robotics and Automation",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "In-situ defect detection in FDM printing using convolutional neural networks for layer-adhesion error classification and localization.",
+          "sourceIds": [
+            "SYN-PUB-05844",
+            "SYN-PUB-05843",
+            "SYN-PUB-05841",
+            "SYN-PUB-05840",
+            "SYN-PUB-05838",
+            "SYN-PUB-05836"
+          ]
+        },
+        {
+          "text": "Lightweight and embedded CNN architectures with attention mechanisms for real-time inference on resource-constrained hardware in manufacturing monitoring.",
+          "sourceIds": [
+            "SYN-PUB-05844",
+            "SYN-PUB-05838"
+          ]
+        },
+        {
+          "text": "Semi-supervised and unsupervised deep learning methods for defect detection with limited or exclusively normal-state training data.",
+          "sourceIds": [
+            "SYN-PUB-05844",
+            "SYN-PUB-05840"
+          ]
+        },
+        {
+          "text": "Multimodal process monitoring combining visual and acoustic signals with late fusion strategies for improved defect detection in additive manufacturing.",
+          "sourceIds": [
+            "SYN-PUB-05842"
+          ]
+        },
+        {
+          "text": "Transfer learning from heterogeneous defect inspection datasets to domain-specific FDM monitoring tasks.",
+          "sourceIds": [
+            "SYN-PUB-05837"
+          ]
+        },
+        {
+          "text": "Closed-loop feedback control of extrusion parameters driven by CNN-based defect signals to improve print quality and mechanical properties.",
+          "sourceIds": [
+            "SYN-PUB-05841"
+          ]
+        },
+        {
+          "text": "Image processing and machine vision techniques for surface texture analysis and edge detection in thermoplastic layer inspection.",
+          "sourceIds": [
+            "SYN-PUB-05835",
+            "SYN-PUB-05834"
+          ]
+        },
+        {
+          "text": "Benchmark dataset creation, annotation protocols, and standardized evaluation frameworks for reproducible comparison of manufacturing monitoring algorithms.",
+          "sourceIds": [
+            "SYN-PUB-05843"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Led a principal investigation of a Science Fund project that developed real-time FDM monitoring platform in collaboration with industrial partner Primat Inženjering d.o.o., including prototype validation in production conditions.",
+          "sourceIds": [
+            "SYN-PRJ-0239"
+          ]
+        },
+        {
+          "text": "Collaborated with Primat Inženjering d.o.o. from 2019 to 2021 on pilot deployment of quality monitoring systems in their prototyping workshop.",
+          "sourceIds": [
+            "R0496"
+          ]
+        },
+        {
+          "text": "Open to joint projects, contract research, equipment access, student internships, and consulting.",
+          "sourceIds": [
+            "R0496"
+          ]
+        },
+        {
+          "text": "Holds a granted patent on an in-situ FDM defect detection module with embedded CNN processor, monochrome camera, and serial communication interface to printer firmware.",
+          "sourceIds": [
+            "SYN-PAT-022"
+          ]
+        }
+      ],
+      "availability": null
+    }
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0548",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0548",
+      "fit": 0.88,
+      "why": [
+        {
+          "text": "The challenge requires replacing fixed-threshold rules with a machine learning visual defect classifier that generalises across seasons (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored work on few-shot learning for surface defect detection on reflective metal parts using prototypical networks (SYN-PUB-06388) and on anomaly detection in multi-product assembly lines using one-class contrastive learning (SYN-PUB-06391).",
+          "sourceIds": [
+            "SYN-PUB-06388",
+            "SYN-PUB-06391"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored work on domain randomisation for cross-domain transfer in visual defect detection across different material types and manufacturing processes (SYN-PUB-06393).",
+          "sourceIds": [
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "The VISIONQC project develops modular AI-powered inspection platforms for SME manufacturers with minimal labeled data requirements and includes pilot deployments at regional manufacturing SMEs (SYN-PRJ-0011).",
+          "sourceIds": [
+            "SYN-PRJ-0011"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Stojanović and the company would train and validate a deep learning defect classifier on the 40,000 labeled apple images (C999-CH1), applying domain randomisation and cross-domain transfer techniques (SYN-PUB-06393) to handle seasonal appearance variation, and using active learning (SYN-PUB-06396) to prioritise re-annotation of the hardest bark-damage and early-rot cases, with the goal of exceeding the current ~88% accuracy on the deployed sorting line.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-06393",
+          "SYN-PUB-06396",
+          "SYN-PRJ-0011"
+        ]
+      },
+      "risks": [
+        {
+          "text": "All cited defect detection work covers industrial metal and assembly-line components; no publication covers organic produce or food-surface texture, so the class-overlap characteristics specific to bark damage and rot may require additional domain work.",
+          "sourceIds": [
+            "SYN-PUB-06388",
+            "SYN-PUB-06391",
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "The active learning framework (SYN-PUB-06396) is validated with industrial partners producing metal stampings and injection-moulded plastic components; the record does not cover multi-season labeled datasets of organic produce.",
+          "sourceIds": [
+            "SYN-PUB-06396"
+          ]
+        }
+      ]
+    }
+  ],
+  "chosen": [
+    "C999-CH1:R0548"
+  ],
+  "noMatches": [],
+  "proposals": [
+    {
+      "id": "C999-CH1-R0548",
+      "pairId": "C999-CH1:R0548",
+      "kind": "joint-project",
+      "title": "Domain-Adaptive Deep Classifier to Reduce Misgraded Apple Returns on a Sorting Line",
+      "markdown": "## Domain-Adaptive Deep Classifier to Reduce Misgraded Apple Returns on a Sorting Line\n\n**Company:** Described problem works in prerada hrane. [C999] Challenge C999-CH1.  \n**Researcher:** Nikola Stojanović is an Associate Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences. [R0548]  \n**Format:** joint project, one page.\n\n### The problem\nThe company's sorting line uses a fixed-threshold camera system that reaches only ~88% accuracy on apple grading, causing customer returns of misclassified fruit. [C999-CH1] The two defect types driving misclassification are minor bark damage and early rot, which the current rule-based thresholds cannot reliably separate. [C999-CH1] The company holds 40,000 labeled apple images collected across three harvest seasons, but the fixed-threshold system does not exploit them. [C999-CH1]\n\n### Prior work\n- A 2022 study reports 92.42% average accuracy on apple defect classification using semantic segmentation combined with a pruned YOLO V4 detector on a conveyor system. [W4304128474]\n- A 2022 study reports 94.8% accuracy in classifying apple decay and bruise under uneven illumination using texture features and an SVM model. [W4206192560]\n\n### Research questions\n1. Can a deep classifier trained with domain randomisation on the three-season image archive exceed 88% accuracy on bark-damage and early-rot cases, measured by precision, recall and F1 against the company's labelled hold-out set from the most recent season?\n2. Can active learning, applied to the existing 40,000 labelled images, identify and prioritise the hardest bark-damage and early-rot cases so that a targeted re-annotation round of under 2,000 images yields a measurable accuracy gain over the baseline classifier?\n\n### Approach\n- Train a baseline deep classifier on the full 40,000-image archive, stratified by harvest season, to establish the current accuracy ceiling and identify which defect classes and seasonal splits drive the most errors.\n- Apply domain randomisation techniques—colour-jitter, lighting simulation and texture augmentation—to the training data to reduce the seasonal appearance shift that causes the fixed-threshold system to fail across harvests.\n- Use the active learning framework based on ensemble uncertainty and diversity sampling to score the existing labelled set, surface the hardest bark-damage and early-rot images, and run a targeted re-annotation pass of the highest-uncertainty cases.\n- Evaluate the final classifier on the sorting-line camera stream, measuring accuracy, precision and recall per defect class against the labelled hold-out set, with the target of exceeding the current 88% accuracy baseline.\n\n### Plan\n\n| Period | Work | Result |\n| --- | --- | --- |\n| Months 1–3 | A master's student from the researcher's group, supervised by Stojanović and one company engineer (20% time), audits and splits the 40,000-image archive by season and defect class, trains a baseline CNN classifier, and logs per-class error rates. | Baseline accuracy report; stratified train/validation/test splits; ranked list of failure modes by defect class and season. |\n| Months 4–6 | The master's student applies domain randomisation augmentations and retrains the classifier; the active learning pipeline scores the full labelled archive and surfaces the top uncertain bark-damage and early-rot cases for a company re-annotation pass. | Improved classifier exceeding 88% accuracy on the hold-out test set; shortlist of up to 2,000 images flagged for re-annotation. |\n| Months 7–9 | The retrained model (using re-annotated hard cases) is validated against the sorting-line camera stream; the company engineer integrates the model into the existing camera software; final accuracy, precision and recall are recorded per defect class. | Production-ready model deployed on the sorting line; technical report with per-class metrics; one joint conference or journal paper submitted. |\n\n### First six months\n- Week 1–2: The company transfers the 40,000 labeled images (with season and defect-class metadata) to the researcher's group under a signed data-sharing agreement; the master's student sets up the training environment.\n- Month 1: The master's student audits label quality, splits the archive into season-stratified train/validation/test sets, and confirms the class distribution of bark-damage and early-rot images.\n- Month 2–3: Baseline CNN classifier trained and evaluated; per-class and per-season error rates documented and shared with the company engineer for review.\n- Month 4–5: Domain randomisation augmentations applied; active learning pipeline run on the full labelled archive; company engineer reviews the flagged hard cases and confirms re-annotation priority list.\n\n### What each side brings\n- **Company:** 40,000 labeled apple images from three harvest seasons, with defect-class annotations, available for model training and validation. [C999-CH1]\n- **Faculty:** Stojanović co-authored domain randomisation methods for cross-domain transfer in visual defect detection across different material types and manufacturing processes. [SYN-PUB-06393] Stojanović co-authored an active learning framework using ensemble uncertainty and diversity sampling to optimise annotation effort in defect detection. [SYN-PUB-06396] Stojanović co-authored few-shot surface defect detection combining preprocessing with prototypical networks on reflective metal parts. [SYN-PUB-06388] Stojanović leads algorithm development and validation in the VISIONQC project, which develops a modular inspection platform for SMEs with minimal labeled data requirements and includes pilot deployments at regional manufacturing SMEs. [SYN-PRJ-0011]\n\n### Why this pair\nThe company has a well-defined accuracy gap (88%), three seasons of labelled data, and a sorting line with a camera system—the conditions needed to train and test a classifier. Stojanović brings domain randomisation for cross-domain transfer in visual defect detection and active learning to prioritise annotation effort on the hard bark-damage and early-rot cases in the existing archive. Neither side could do it alone: the company provides the only asset that makes the result credible on a real sorting line (production images and live camera hardware), while the researcher provides the methods that turn that archive into a classifier that generalises.\n\n- The sorting line's fixed-threshold system reaches only ~88% accuracy, and Stojanović co-authored domain randomisation for cross-domain visual transfer in defect detection. [C999-CH1, SYN-PUB-06393]\n- Bark-damage and early-rot are the defect types driving misclassification on the sorting line, and Stojanović co-authored an active learning framework that prioritises uncertain cases to optimise annotation effort. [C999-CH1, SYN-PUB-06396]\n- The VISIONQC project develops a modular inspection platform for SMEs with minimal labelled data requirements and includes pilot deployments at regional manufacturing SMEs. [SYN-PRJ-0011]\n\n### Risks and constraints\n- Stojanović's cited defect detection publications cover reflective metal parts, polymer assembly-line components, and manufacturing processes; none covers organic produce or food-surface texture. [SYN-PUB-06388, SYN-PUB-06391, SYN-PUB-06393]\n- The active learning framework (SYN-PUB-06396) is validated with industrial partners producing metal stampings and injection-moulded plastic components; the record does not cover multi-season labeled datasets of organic produce. [SYN-PUB-06396]\n\n### Agreed up front (proposed)\n- Publication: results may be published after a 30-day review by the company; the company may request removal of commercially sensitive sorting-line parameters before submission.\n- Ownership: the company owns the trained model weights and any integrated software; the researcher's group retains the domain randomisation and active learning code as general-purpose research tools.\n- Data access: the company provides the 40,000-image archive to the researcher's group for the duration of the project under a data-sharing agreement; images are stored on the researcher's institutional servers and deleted or returned at project close.\n- Preconditions: the data-sharing agreement is signed and the image archive is transferred before the master's student begins Month 1 work; the company names one engineer as the day-to-day contact for re-annotation and camera integration.\n\n### Sources\n- C999: Described problem\n- C999-CH1: Naša linija za sortiranje voća često pogrešno razvrstava jabuke sa sitnim oštećenjima kore i početnom truleži.\n- R0548: Nikola Stojanović\n- SYN-PRJ-0011: VISIONQC: AI quality control for SMEs (2023)\n- SYN-PUB-06388: Few-shot surface defect detection on reflective metal parts (2024)\n- SYN-PUB-06391: Adaptive anomaly detection for multi-product assembly lines using one-class contrastive learning (2024)\n- SYN-PUB-06393: Domain randomization strategies for cross-industry transfer in visual defect detection (2022)\n- SYN-PUB-06396: Active learning with model uncertainty sampling for efficient annotation in industrial inspection pipelines (2021)\n- W4206192560: Extraction and classification of apple defects under uneven illumination based on machine vision (2022) https://openalex.org/W4206192560\n- W4304128474: Real-Time Grading of Defect Apples Using Semantic Segmentation Combination with a Pruned YOLO V4 Network (2022) https://openalex.org/W4304128474\n",
+      "claims": [
+        {
+          "text": "Described problem works in prerada hrane.",
+          "sourceIds": [
+            "C999"
+          ]
+        },
+        {
+          "text": "Nikola Stojanović is an Associate Professor in the Department of Computing and Control Engineering, Faculty of Technical Sciences.",
+          "sourceIds": [
+            "R0548"
+          ]
+        },
+        {
+          "text": "The company's sorting line uses a fixed-threshold camera system that reaches only ~88% accuracy on apple grading, causing customer returns of misclassified fruit.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The two defect types driving misclassification are minor bark damage and early rot, which the current rule-based thresholds cannot reliably separate.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The company holds 40,000 labeled apple images collected across three harvest seasons, but the fixed-threshold system does not exploit them.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "A 2022 study reports 92.42% average accuracy on apple defect classification using semantic segmentation combined with a pruned YOLO V4 detector on a conveyor system.",
+          "sourceIds": [
+            "W4304128474"
+          ]
+        },
+        {
+          "text": "A 2022 study reports 94.8% accuracy in classifying apple decay and bruise under uneven illumination using texture features and an SVM model.",
+          "sourceIds": [
+            "W4206192560"
+          ]
+        },
+        {
+          "text": "40,000 labeled apple images from three harvest seasons, with defect-class annotations, available for model training and validation.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored domain randomisation methods for cross-domain transfer in visual defect detection across different material types and manufacturing processes.",
+          "sourceIds": [
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored an active learning framework using ensemble uncertainty and diversity sampling to optimise annotation effort in defect detection.",
+          "sourceIds": [
+            "SYN-PUB-06396"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored few-shot surface defect detection combining preprocessing with prototypical networks on reflective metal parts.",
+          "sourceIds": [
+            "SYN-PUB-06388"
+          ]
+        },
+        {
+          "text": "Stojanović leads algorithm development and validation in the VISIONQC project, which develops a modular inspection platform for SMEs with minimal labeled data requirements and includes pilot deployments at regional manufacturing SMEs.",
+          "sourceIds": [
+            "SYN-PRJ-0011"
+          ]
+        },
+        {
+          "text": "The sorting line's fixed-threshold system reaches only ~88% accuracy, and Stojanović co-authored domain randomisation for cross-domain visual transfer in defect detection.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "Bark-damage and early-rot are the defect types driving misclassification on the sorting line, and Stojanović co-authored an active learning framework that prioritises uncertain cases to optimise annotation effort.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-06396"
+          ]
+        },
+        {
+          "text": "The VISIONQC project develops a modular inspection platform for SMEs with minimal labelled data requirements and includes pilot deployments at regional manufacturing SMEs.",
+          "sourceIds": [
+            "SYN-PRJ-0011"
+          ]
+        },
+        {
+          "text": "Stojanović's cited defect detection publications cover reflective metal parts, polymer assembly-line components, and manufacturing processes; none covers organic produce or food-surface texture.",
+          "sourceIds": [
+            "SYN-PUB-06388",
+            "SYN-PUB-06391",
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "The active learning framework (SYN-PUB-06396) is validated with industrial partners producing metal stampings and injection-moulded plastic components; the record does not cover multi-season labeled datasets of organic produce.",
+          "sourceIds": [
+            "SYN-PUB-06396"
+          ]
+        }
+      ],
+      "revision": 2
+    }
+  ],
+  "needsHuman": [],
+  "verdicts": [
+    {
+      "proposalId": "C999-CH1",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "System must handle apples with minor bark damage and early rot, which are difficult to distinguish from acceptable fruit",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states the line misclassifies apples with minor bark damage and early rot, but it does not say these are 'difficult to distinguish from acceptable fruit' — that characterisation is not in the source.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Training data spans three harvest seasons, suggesting seasonal variation in appearance may affect model generalization",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states only that the images come from three harvest seasons; it does not mention or imply seasonal variation in appearance or its effect on model generalization — that inference is added beyond what the text states.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "need",
+      "taskId": "critique-2",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0548",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Leads the VISIONQC project, which develops modular AI-powered inspection platforms for SME manufacturers with minimal labeled data requirements.",
+            "sourceIds": [
+              "SYN-PRJ-0011"
+            ]
+          },
+          "reason": "SYN-PRJ-0011 states that VISIONQC develops a modular inspection platform for SMEs with minimal labeled data, but it does not say Stojanović 'leads' the project—it says he is the academic partner who leads algorithm development and validation; the claim that he 'leads the VISIONQC project' overstates his role as described.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-10",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0437",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Automated optical inspection system selection, integration, and benchmarking methodology for electronics manufacturing quality control",
+            "sourceIds": [
+              "SYN-PUB-05242",
+              "SYN-PRJ-0371"
+            ]
+          },
+          "reason": "SYN-PUB-05242 surveys few-shot and transfer learning for visual inspection in electronics manufacturing but does not cover AOI system selection, integration, or benchmarking methodology; SYN-PRJ-0371 covers benchmark dataset construction and evaluation protocols but not AOI system selection or integration — neither cited source supports 'system selection, integration, and benchmarking methodology' as a combined topic.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Operates a dedicated machine-vision laboratory equipped with a programmable X-ray inspection rig, three high-resolution industrial cameras, and a GPU cluster available for access arrangements with NTP companies on a scheduled basis",
+            "sourceIds": [
+              "R0437"
+            ]
+          },
+          "reason": "R0437 states the group operates a dedicated machine-vision laboratory equipped with a programmable X-ray inspection rig, three high-resolution industrial cameras, and a cluster of GPU workstations, and that the X-ray rig is available for access arrangements with NTP companies on a scheduled basis — but the record says 'GPU cluster' is for training/evaluation, not explicitly listed as available for NTP access arrangements (only the X-ray rig is mentioned for NTP access), and the claim says 'GPU cluster available for access arrangements' which adds a fact not directly in the text for the GPU cluster specifically.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-13",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "need",
+      "taskId": "critique-18",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0602",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "2D code detection on curved surfaces under industrial lighting conditions using deep learning and signal processing.",
+            "sourceIds": [
+              "SYN-PUB-06942",
+              "SYN-PUB-06938"
+            ]
+          },
+          "reason": "Neither SYN-PUB-06942 nor SYN-PUB-06938 mentions 'deep learning' or 'signal processing'; SYN-PUB-06942 reports baseline results from open-source pipelines (e.g., ZXing-C++) and SYN-PUB-06938 uses projective rectification and adaptive thresholding, so these two methods named in the claim are not in the cited texts.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Real-time barcode localisation on cylindrical and curved packaging using projective rectification and embedded vision hardware.",
+            "sourceIds": [
+              "SYN-PAT-048",
+              "SYN-PUB-06938"
+            ]
+          },
+          "reason": "SYN-PAT-048 covers cylindrical containers only, and SYN-PUB-06938 covers cylindrical beverage cans only; neither cited source mentions 'curved packaging' as a distinct surface type beyond cylindrical, so the claim widens the scope beyond what the texts state.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-12",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0521",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Multi-sensor fusion for material sorting, including combination of NIR with Raman spectroscopy and structured-light height measurement, with decision-level and signal-level fusion architectures.",
+            "sourceIds": [
+              "SYN-PUB-06123",
+              "SYN-PUB-06121",
+              "SYN-PRJ-0328"
+            ]
+          },
+          "reason": "SYN-PUB-06123 covers NIR with Raman decision fusion; SYN-PUB-06121 covers structured-light height measurement combined with NIR; SYN-PRJ-0328 covers sensor fusion strategies including NIR, Raman, and XRF; however, the claim states both 'decision-level and signal-level fusion architectures' but SYN-PUB-06121 covers spatial/geometric calibration using structured light rather than signal-level fusion of NIR with structured light for material classification, and SYN-PRJ-0328 mentions a 'comparative evaluation report on sensor fusion architectures' without specifying decision-level vs signal-level fusion.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Unsupervised domain adaptation and concept drift compensation using kernel mean matching and conformal prediction for maintaining classifier performance under distribution shift.",
+            "sourceIds": [
+              "SYN-PUB-06122",
+              "SYN-PUB-06124",
+              "SYN-PAT-032"
+            ]
+          },
+          "reason": "SYN-PUB-06122 covers unsupervised drift compensation using kernel mean matching; SYN-PUB-06124 covers conformal prediction for recycled content estimation (regression), not classifier performance under distribution shift; SYN-PAT-032 covers kernel mean matching for spectral drift compensation; however, the claim pairs conformal prediction with 'concept drift compensation for maintaining classifier performance under distribution shift,' but SYN-PUB-06124 applies conformal prediction to regression prediction intervals for recycled content, not to domain adaptation or distribution shift compensation.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Led the NIR sensor integration work package in the cross-border Interreg IPA CIRCPACK project coordinating with Hungarian and Serbian waste management partners on pilot sorting line deployment and spectral library harmonisation.",
+            "sourceIds": [
+              "SYN-PRJ-0328"
+            ]
+          },
+          "reason": "SYN-PRJ-0328 identifies Krstić (R0521) as work package leader on NIR sensor integration in the Interreg IPA CIRCPACK project coordinating with Hungarian partners, but the project description mentions Hungarian and Serbian partners on dataset harmonisation and shared spectral libraries — it does not describe the partners as 'waste management partners' specifically for the Hungarian side (Óbuda University is a university, not a waste management company), and 'spectral library harmonisation' maps to 'shared spectral libraries' and 'dataset harmonisation,' but the claim says 'Hungarian and Serbian waste management partners' when Óbuda University is not a waste management company.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-14",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0406",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Crack, spalling, corrosion, efflorescence, and impact damage detection and segmentation in reinforced concrete, masonry, and steel structures using ResNet, EfficientNet, DeepLabV3+, and VGG-16 backbones.",
+            "sourceIds": [
+              "SYN-PUB-04914",
+              "SYN-PUB-04911",
+              "SYN-PUB-04910",
+              "SYN-PUB-04909",
+              "SYN-PUB-04546"
+            ]
+          },
+          "reason": "\"16 backbones\" is not in SYN-PUB-04914, SYN-PUB-04911, SYN-PUB-04910, SYN-PUB-04909 or SYN-PUB-04546 but is in SYN-PUB-04916, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "Fine-tuning and partial training of convolutional neural networks and vision transformers on small labeled target-domain datasets with attention-gate selection, layer-wise learning rate schedules, and low-rank weight decomposition.",
+            "sourceIds": [
+              "SYN-PUB-04916",
+              "SYN-PUB-04914",
+              "SYN-PUB-04910"
+            ]
+          },
+          "reason": "SYN-PUB-04916 covers attention-gate selection for partial fine-tuning of vision transformers; SYN-PUB-04914 covers low-rank weight decomposition for CNN fine-tuning; SYN-PUB-04910 covers layer-wise learning rate schedules for CNN fine-tuning — but none of these three records mentions 'convolutional neural networks and vision transformers' together in a single unified framework, nor does any record mention all three techniques together; more critically, no cited record mentions 'partial training' as a distinct concept from fine-tuning, and the claim groups all three techniques as a single combined method which is not stated in any cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Domain adaptation for visual inspection tasks using adversarial feature alignment, pseudo-label refinement, and contrastive pre-training on synthetic renders to address distributional shift between camera models, collection conditions, and geographic regions.",
+            "sourceIds": [
+              "SYN-PUB-04908",
+              "SYN-PUB-04911",
+              "SYN-PUB-04912"
+            ]
+          },
+          "reason": "SYN-PUB-04908 covers adversarial feature alignment for camera-model domain shift; SYN-PUB-04911 covers pseudo-label refinement for drone vs ground-level shift; SYN-PUB-04912 covers contrastive pre-training on synthetic renders — however, no cited record mentions 'geographic regions' as a source of distributional shift, and SYN-PUB-04908 addresses camera models and collection conditions but not geographic regions, making that added fact unsupported.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Batch normalisation strategies and pre-processing protocols for small-batch fine-tuning and variable outdoor acquisition conditions in drone-based and terrestrial inspection systems.",
+            "sourceIds": [
+              "SYN-PUB-04907",
+              "SYN-PUB-04906"
+            ]
+          },
+          "reason": "SYN-PUB-04907 covers batch normalisation strategies for small-batch fine-tuning in structural inspection (railway tunnel linings, not drone-based systems), and SYN-PUB-04906 covers pre-processing protocols for variable outdoor acquisition conditions for corrosion detection — but neither record mentions 'drone-based' inspection systems, and SYN-PUB-04907 is about tunnel inspection, making 'drone-based and terrestrial inspection systems' unsupported by the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-15",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0548",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-21",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0496",
+      "revision": 0,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-16",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0437",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-25",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0602",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Real-time barcode localisation on cylindrical surfaces using projective rectification and embedded vision hardware.",
+            "sourceIds": [
+              "SYN-PAT-048",
+              "SYN-PUB-06938"
+            ]
+          },
+          "reason": "Neither SYN-PAT-048 nor SYN-PUB-06938 uses the term 'real-time'; SYN-PAT-048 describes operation at conveyor speeds up to 1.5 m/s and ARM-class embedded controllers, but 'real-time' is not stated or directly implied in either cited source.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-26",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0521",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-27",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0406",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Domain adaptation for visual inspection tasks using adversarial feature alignment for camera model shift, pseudo-label refinement for altitude-dependent resolution and collection condition shift, and contrastive pre-training on synthetic renders.",
+            "sourceIds": [
+              "SYN-PUB-04908",
+              "SYN-PUB-04911",
+              "SYN-PUB-04912"
+            ]
+          },
+          "reason": "SYN-PUB-04911 describes pseudo-label refinement for altitude-dependent resolution and shadow patterns, but the claim adds 'collection condition shift' as a separate cause for pseudo-label refinement, which is not stated in that source.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Crack, spalling, corrosion, efflorescence, and impact damage detection and segmentation in reinforced concrete, masonry, and steel structures using ResNet, EfficientNet, DeepLabV3+, and VGG-16 architectures.",
+            "sourceIds": [
+              "SYN-PUB-04908",
+              "SYN-PUB-04910",
+              "SYN-PUB-04911",
+              "SYN-PUB-04914",
+              "SYN-PUB-04546"
+            ]
+          },
+          "reason": "None of the five cited sources mention 'impact damage' or 'corrosion' as a damage category, and none explicitly mention 'steel structures' as an inspection target, so these facts are not supported.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-28",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0602",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-30",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0406",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Lukić and the company would fine-tune CNN and vision-transformer backbones on the 40,000 labeled apple images (C999-CH1), applying domain adaptation techniques such as adversarial feature alignment and pseudo-label refinement (SYN-PUB-04908, SYN-PUB-04911) to handle cross-season distributional shift, and using CutMix and Mosaic augmentation pipelines (SYN-PUB-04909) to address class imbalance between defective and acceptable fruit, targeting improved classification of minor bark damage and early rot.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-04908",
+              "SYN-PUB-04911",
+              "SYN-PUB-04909"
+            ]
+          },
+          "reason": "\"CNN\" is not in C999-CH1, SYN-PUB-04908, SYN-PUB-04911 or SYN-PUB-04909 but is in R0406, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "The challenge requires a model that generalises across three harvest seasons of appearance variation (C999-CH1), which maps to distributional shift across collection conditions.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states the company has 40,000 labelled apple images from three harvest seasons and mentions errors in sorting apples with minor skin damage and early rot, but does not use the phrase 'distributional shift across collection conditions' — however the claim that the challenge requires a model generalising across three harvest seasons of appearance variation maps to distributional shift is a direct inference from the text, and the challenge text does state 'three harvest seasons' and the problem of a fixed-threshold camera failing; the claim adds 'distributional shift across collection conditions' as an interpretation, which is a characterisation not stated in the text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Lukić co-authored work on domain adaptation for visual inspection using adversarial feature alignment, pseudo-label refinement, and contrastive pre-training to address distributional shift between camera models, collection conditions, and geographic regions (SYN-PUB-04908, SYN-PUB-04911, SYN-PUB-04912).",
+            "sourceIds": [
+              "SYN-PUB-04908",
+              "SYN-PUB-04911",
+              "SYN-PUB-04912"
+            ]
+          },
+          "reason": "SYN-PUB-04908 covers adversarial domain adaptation for camera model shift, SYN-PUB-04911 covers pseudo-label refinement for drone vs. ground-level collection conditions, and SYN-PUB-04912 covers contrastive pre-training — but none of these records mentions 'geographic regions' as a dimension addressed; SYN-PUB-04908 addresses camera models, SYN-PUB-04911 addresses altitude/collection conditions, and SYN-PUB-04912 addresses synthetic-to-real domain gap, so the claim that the work addresses 'geographic regions' is not stated in any of the three cited records.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "All published defect detection and segmentation work covers reinforced concrete, masonry, and steel structures (SYN-PUB-04914, SYN-PUB-04911, SYN-PUB-04909); no record covers organic produce or food-surface classification.",
+            "sourceIds": [
+              "SYN-PUB-04914",
+              "SYN-PUB-04911",
+              "SYN-PUB-04909"
+            ]
+          },
+          "reason": "SYN-PUB-04914 covers concrete damage, SYN-PUB-04911 covers road crack segmentation, and SYN-PUB-04909 covers facade damage (masonry structures implied); however, the claim states the work covers 'reinforced concrete, masonry, and steel structures' — none of the three cited records mentions 'steel structures', and the claim that 'no record covers organic produce or food-surface classification' is a negative assertion about the dataset that goes beyond what the cited texts state.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The profile notes an expectation of at least one co-supervised student per active industry partnership (R0406); the company would need to accommodate this condition.",
+            "sourceIds": [
+              "R0406"
+            ]
+          },
+          "reason": "R0406 states that Lukić 'expects at least one co-supervised student per active industry partnership', but the claim adds 'the company would need to accommodate this condition', which is a judgement about the company not found in the cited record.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-32",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0548",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Stojanović co-authored work on few-shot learning for surface defect detection on reflective components using prototypical networks (SYN-PUB-06388) and on anomaly detection in multi-product assembly lines using one-class contrastive learning (SYN-PUB-06391), covering the core difficulty of distinguishing subtle defects from acceptable items.",
+            "sourceIds": [
+              "SYN-PUB-06388",
+              "SYN-PUB-06391"
+            ]
+          },
+          "reason": "SYN-PUB-06388 confirms Stojanović co-authored few-shot surface defect detection on reflective metal parts using prototypical networks, and SYN-PUB-06391 confirms Stojanović co-authored anomaly detection in multi-product assembly lines using one-class contrastive learning; however, neither record states that this work covers 'the core difficulty of distinguishing subtle defects from acceptable items' as a characterisation — that is an added judgement not stated in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Stojanović co-authored work on domain randomisation for cross-domain transfer in visual defect detection across different material types and manufacturing processes (SYN-PUB-06393), directly applicable to seasonal distributional shift in apple appearance.",
+            "sourceIds": [
+              "SYN-PUB-06393"
+            ]
+          },
+          "reason": "SYN-PUB-06393 confirms Stojanović co-authored work on domain randomisation for cross-domain transfer in visual defect detection across different material types and manufacturing processes, but the claim adds that this is 'directly applicable to seasonal distributional shift in apple appearance,' which is a judgement about fit to the company challenge not stated in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The active learning framework (SYN-PUB-06396) is described for annotation optimisation; it is not yet validated for a dataset already labeled across three seasons, so re-annotation scope would need to be agreed upfront.",
+            "sourceIds": [
+              "SYN-PUB-06396"
+            ]
+          },
+          "reason": "SYN-PUB-06396 describes an active learning framework validated with two industrial partners producing metal stampings and injection-moulded plastic components; it does not describe validation on a dataset already labeled across multiple seasons, so the claim that it 'is not yet validated for a dataset already labeled across three seasons' adds a negative fact not stated in the cited text, going beyond what the record says.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-31",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0437",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Bulatović led the work package on benchmark dataset construction and evaluation protocols for the CROSSQUAL project, including annotation guidelines and inter-rater agreement measurement for defect labelling (SYN-PRJ-0371), relevant to validating the company's 40,000-image labeled dataset.",
+            "sourceIds": [
+              "SYN-PRJ-0371"
+            ]
+          },
+          "reason": "\"40,000\" is not in SYN-PRJ-0371 but is in C999-CH1, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "The challenge requires a classifier that remains accurate as apple appearance shifts across harvest seasons (C999-CH1), which corresponds to an evolving production environment where defect distributions change incrementally.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states the fruit sorting line misclassifies apples with minor bark damage and early rot, with a 12% error rate, and mentions 40,000 labeled images from three harvest seasons, but does not use the phrase 'evolving production environment' or describe defect distributions changing 'incrementally' — those characterizations are added by the claim, not stated in the source.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Bulatović co-authored work on domain adaptation for neural networks across production lines using class-conditional prototypes and feature alignment (SYN-PUB-05241, SYN-PUB-05238, SYN-PUB-05236).",
+            "sourceIds": [
+              "SYN-PUB-05241",
+              "SYN-PUB-05238",
+              "SYN-PUB-05236"
+            ]
+          },
+          "reason": "SYN-PUB-05241 covers domain adaptation with class-conditional prototypes and feature alignment for multi-line SMT inspection (authored by R0437); SYN-PUB-05238 covers batch normalisation adaptation strategies for cross-domain CNN deployment in solder inspection (authored by R0437); SYN-PUB-05236 covers domain shift across PCB assembly lines using unsupervised domain adaptation (authored by R0437) — but SYN-PUB-05236 does not mention 'class-conditional prototypes', and the claim attributes that method to all three papers collectively, overstating the scope of SYN-PUB-05236 and SYN-PUB-05238.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Bulatović and the company would develop a continual-learning and domain-adaptation pipeline on the 40,000 labeled apple images (C999-CH1), using class-conditional prototypes and batch normalisation adjustment (SYN-PUB-05241, SYN-PUB-05238) to adapt the classifier across harvest seasons, and applying transfer learning from ImageNet-pretrained CNNs with fine-tuning (SYN-PUB-05235) to improve discrimination of minor bark damage and early rot under production conditions.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-05241",
+              "SYN-PUB-05238",
+              "SYN-PUB-05235"
+            ]
+          },
+          "reason": "This is a proposal claim about what Bulatović and the company 'would develop'; C999-CH1 does cite 40,000 labeled apple images, SYN-PUB-05241 covers class-conditional prototypes, SYN-PUB-05238 covers batch normalisation adjustment, and SYN-PUB-05235 covers transfer learning from ImageNet-pretrained CNNs with fine-tuning — however, SYN-PUB-05235 concerns low-volume SMT defect datasets (200–800 images per class), not the company's 40,000 apple images, and the claim states 'improve discrimination of minor bark damage and early rot under production conditions' which is a result not stated in any cited record.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The profile states openness to joint projects with SMT equipment manufacturers or electronics assembly companies (R0437); the food-processing sector is outside the stated primary engagement scope, which may affect priority and resourcing.",
+            "sourceIds": [
+              "R0437"
+            ]
+          },
+          "reason": "R0437 states Bulatović is open to 'joint projects with SMT equipment manufacturers or electronics assembly companies', but the claim's conclusion that 'the food-processing sector is outside the stated primary engagement scope' and that 'this may affect priority and resourcing' are interpretive judgments not stated in R0437.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-33",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0406",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-35",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0548",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-39",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0406",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Lukić and the company would fine-tune convolutional neural network and vision-transformer backbones (R0406) on the 40,000 labeled apple images (C999-CH1), applying domain adaptation techniques such as adversarial feature alignment and pseudo-label refinement (SYN-PUB-04908, SYN-PUB-04911) to handle cross-season variation, and using CutMix and Mosaic augmentation pipelines (SYN-PUB-04909) to address class imbalance between defective and acceptable fruit, targeting improved classification of minor bark damage and early rot.",
+            "sourceIds": [
+              "C999-CH1",
+              "R0406",
+              "SYN-PUB-04908",
+              "SYN-PUB-04911",
+              "SYN-PUB-04909"
+            ]
+          },
+          "reason": "The claim that Lukić and the company 'would fine-tune convolutional neural network and vision-transformer backbones' is a proposal, which is acceptable, but R0406 mentions only convolutional neural networks and does not mention vision-transformer backbones, making that fact unsupported by the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-40",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0437",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Bulatović led the work package on benchmark dataset construction and evaluation protocols for the CROSSQUAL project, including annotation guidelines and inter-rater agreement measurement for defect labelling (SYN-PRJ-0371); the company holds 40,000 labeled apple images from three harvest seasons (C999-CH1) that would require comparable labelling validation.",
+            "sourceIds": [
+              "SYN-PRJ-0371",
+              "C999-CH1"
+            ]
+          },
+          "reason": "The claim merges two separate points — SYN-PRJ-0371 confirms Bulatović led the work package on benchmark dataset construction and evaluation protocols including annotation guidelines and inter-rater agreement for defect labelling, and C999-CH1 confirms the 40,000 labeled apple images from three harvest seasons — but the claim then adds that these images 'would require comparable labelling validation,' which is a judgement about how the company's data relates to Bulatović's work that is not stated in either cited record.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Bulatović and the company would develop a continual-learning and domain-adaptation pipeline on the 40,000 labeled apple images (C999-CH1), using class-conditional prototypes and batch normalisation adjustment (SYN-PUB-05241, SYN-PUB-05238) to adapt the classifier across the three harvest seasons represented in the dataset (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-05241",
+              "SYN-PUB-05238"
+            ]
+          },
+          "reason": "This is a proposal about what Bulatović and the company 'would develop together'; the planned pipeline (continual-learning and domain-adaptation on the apple images) is not a fact found in any cited record, but as a proposal it must be checked against the company's need and the researcher's methods — however, 'continual-learning' is not mentioned in any of the cited sources (SYN-PUB-05241, SYN-PUB-05238, C999-CH1), making it an added fact not supported by the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-41",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0406",
+      "revision": 2,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Lukić and the company would fine-tune convolutional neural network backbones (R0406, SYN-PUB-04914, SYN-PUB-04916) and vision-transformer backbones (SYN-PUB-04910) on the 40,000 labeled apple images (C999-CH1), applying domain adaptation techniques such as adversarial feature alignment and pseudo-label refinement (SYN-PUB-04908, SYN-PUB-04911) to handle cross-season variation, and using CutMix and Mosaic augmentation pipelines (SYN-PUB-04909) to address class imbalance between defective and acceptable fruit, targeting improved classification of minor bark damage and early rot.",
+            "sourceIds": [
+              "C999-CH1",
+              "R0406",
+              "SYN-PUB-04914",
+              "SYN-PUB-04916",
+              "SYN-PUB-04910",
+              "SYN-PUB-04908",
+              "SYN-PUB-04911",
+              "SYN-PUB-04909"
+            ]
+          },
+          "reason": "The claim contains multiple mis-citations: SYN-PUB-04916 covers vision transformers (ViT-B/16), not CNN backbones as stated; SYN-PUB-04910 covers CNN fine-tuning (EfficientNet-B2), not vision-transformer backbones as stated; SYN-PUB-04911 covers only pseudo-label refinement, not adversarial feature alignment; SYN-PUB-04908 covers only adversarial adaptation, not pseudo-label refinement; and SYN-PUB-04909 discusses class imbalance in facade damage datasets, not between defective and acceptable fruit.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-43",
+      "action": "drop"
+    },
+    {
+      "proposalId": "C999-CH1:R0437",
+      "revision": 2,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Bulatović and the company would develop a domain-adaptation pipeline on the 40,000 labeled apple images (C999-CH1), using class-conditional prototypes and batch normalisation adjustment (SYN-PUB-05241, SYN-PUB-05238) to adapt the classifier across the three harvest seasons represented in the dataset (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-05241",
+              "SYN-PUB-05238"
+            ]
+          },
+          "reason": "While C999-CH1 mentions the 40,000 labeled apple images and three harvest seasons, and the publications confirm class-conditional prototypes and batch normalisation adaptation, the claim that these methods would be used to 'adapt the classifier across the three harvest seasons' ties the publications' SMT/solder-line domain-adaptation methods specifically to harvest-season domain gaps, a connection not stated in any cited record.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-45",
+      "action": "drop"
+    },
+    {
+      "proposalId": "C999-CH1-R0548",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "A production sorting line with a deployed camera system that the validated model will be integrated into.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 describes a fruit sorting line with a deployed camera system, but does not state that a validated model 'will be integrated into' it — the claim adds a forward-looking integration plan not stated in the text.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Customer return records that provide ground-truth evidence of which misclassified categories cause commercial losses.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 mentions customers returning goods ('kupci vraćaju robu') but does not mention 'customer return records' as a dataset or 'ground-truth evidence' of misclassified categories causing commercial losses; this adds facts not in the text. critic-2: 42% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The sorting line's fixed-threshold system fails across seasons, and Stojanović co-authored domain randomisation for cross-domain visual transfer in defect detection.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-06393"
+            ]
+          },
+          "reason": "critic: C999-CH1 describes fixed thresholds failing (12% error) but does not say the system 'fails across seasons'; SYN-PUB-06393 covers cross-domain transfer for defect detection, but the claim adds 'fails across seasons' which is not stated in either cited source.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Bark-damage and early-rot cases are the hardest to label correctly, and Stojanović co-authored an active learning framework that prioritises uncertain cases to optimise annotation effort.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-06396"
+            ]
+          },
+          "reason": "critic: C999-CH1 names bark-damage and early-rot as misclassified defects but does not say they are 'the hardest to label correctly'; the claim adds a labeling-difficulty characterisation not present in the cited text. critic-2: 46% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The VISIONQC project validates Stojanović's methods in pilot deployments at SME manufacturers with minimal labelled data, matching the company's production-line context.",
+            "sourceIds": [
+              "SYN-PRJ-0011",
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: The claim adds the judgement that VISIONQC 'matches the company's production-line context', which is an editorial assessment connecting the two records that neither SYN-PRJ-0011 nor C999-CH1 states.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "All cited defect detection work covers industrial metal and assembly-line components; no publication covers organic produce or food-surface texture, so the class-overlap characteristics specific to bark damage and rot may require additional domain work.",
+            "sourceIds": [
+              "SYN-PUB-06388",
+              "SYN-PUB-06391",
+              "SYN-PUB-06393"
+            ]
+          },
+          "reason": "critic: SYN-PUB-06391 covers polymer assembly-line components, not exclusively metal; moreover the claim draws a conclusion about 'class-overlap characteristics specific to bark damage and rot' requiring additional domain work, which is editorial inference not stated in any cited record.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "but no machine learning methods to replace the fixed-threshold rules",
+            "sourceIds": []
+          },
+          "reason": "C999-CH1 states the company uses a fixed-threshold camera system with ~12% error, but does not state that the company has no machine learning methods; claim 5 says the archive is not exploited by the fixed-threshold system, not that the company lacks ML capability entirely.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-49",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-49",
+          "rejected": 6
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-50",
+          "rejected": 2
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0548",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "A production sorting line with a deployed camera system, available as the integration target for any validated model.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 mentions a camera system on a sorting line but says nothing about it being 'deployed' in the sense of a finalized production-ready system available as an 'integration target for any validated model'; it only states they tried a camera with fixed colour thresholds.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Customer feedback on misclassified fruit returns, available as evidence of which defect categories affect commercial outcomes.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 states 'customers return goods' (kupci vraćaju robu) as a consequence of errors, but does not mention 'customer feedback on misclassified fruit returns' as a documented evidence resource available for analysis of defect categories.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The company has a well-defined accuracy gap (88%), three seasons of labelled data, and a live camera line—everything needed to train and test a classifier— Stojanović brings the two methods the problem most needs: domain randomisation to close the seasonal appearance gap, and active learning to find the hard bark-damage and early-rot cases in the existing archive without collecting new data.",
+            "sourceIds": []
+          },
+          "reason": "The phrase 'domain randomisation to close the seasonal appearance gap' presents a seasonal appearance gap as the identified cause of sorting-line failures, but C999-CH1 does not mention a seasonal appearance gap and SYN-PUB-06393 covers cross-domain transfer across different material types and manufacturing processes, not seasonal appearance variation in produce; this adds a fact not stated in either source.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-53",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-53",
+          "rejected": 2
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-54",
+          "rejected": 0
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0548",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "proposal",
+      "taskId": "critique-57",
+      "action": "accept",
+      "trimmed": [
+        {
+          "claim": {
+            "text": "A sorting line with a camera system using fixed colour thresholds, available for testing any improved classifier under production conditions.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 confirms a sorting line and a camera with fixed colour thresholds, but says nothing about the line being available for testing an improved classifier under production conditions.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Customers return misclassified fruit, creating a commercial consequence that defines the accuracy target for any replacement classifier.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 confirms customers return goods due to misclassification, but the text does not state that this defines an accuracy target for any replacement classifier — that judgement is not in the cited text.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        }
+      ],
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-57",
+          "rejected": 2
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-58",
+          "rejected": 0
+        }
+      ]
+    }
+  ],
+  "approvals": {},
+  "funding": [
+    {
+      "pairId": "C999-CH1:R0548",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0548",
+      "queries": [
+        "ai fruit quality sorting",
+        "deep learning agricultural vision",
+        "postharvest defect detection tool",
+        "machine learning food processing",
+        "apple defect detection",
+        "fruit quality classification",
+        "convolutional neural networks",
+        "image segmentation",
+        "prerada hrane"
+      ],
+      "considered": 24,
+      "taskId": "scout-48",
+      "calls": [
+        {
+          "call": {
+            "id": "CALL:HORIZON-BRIDGING-2027-02-05",
+            "identifier": "HORIZON-BRIDGING-2027-02-05",
+            "title": "Advancing promising results from Pillar II collaborative research through the innovation journey",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-BRIDGING-2027-02",
+            "action": "Innovation Actions",
+            "status": "open",
+            "deadline": "2027-01-28",
+            "grant": {
+              "max": 2500000,
+              "expected": 13
+            },
+            "keywords": [
+              "Aeronautics",
+              "Agricultural biotechnology",
+              "Agricultural engineering, food safety",
+              "Agriculture related to crop production, soil biology and cultivation, applied plant biology",
+              "Agriculture, Forestry, and Fisheries",
+              "Agro-forestry",
+              "Agroecology",
+              "Agroindustry"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-02-05"
+          },
+          "reason": "The call supports innovation actions advancing collaborative research results through the innovation journey. The pair's work on a deep learning classifier for fruit sorting aligns with advancing machine learning research into a production-ready system for agricultural automation.",
+          "check": "Whether the call accepts two-partner projects (one researcher, one company) and confirms that improving existing deployed systems qualifies as advancing 'promising results' through innovation."
+        }
+      ],
+      "projects": [
+        {
+          "project": {
+            "id": "CORDIS:101135704",
+            "projectId": "101135704",
+            "acronym": "HORTIQD",
+            "title": "Automated monitoring in horticulture through spectral analysis with quantum dot detectors and high-resolution optical filters",
+            "summary": "The HortiQD project aims to develop an affordable and easy-to-use machine vision system for precision farming. The objective is to build a hyperspectral Short-Wave Infra Red camera working in the wavelength range of 1 - 2 µm with integrated point detection at smaller...",
+            "status": "ongoing",
+            "start": "2024-01-01",
+            "end": "2026-12-31",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-CL4-2023-DIGITAL-EMERGING-01-57",
+            "coordinator": {
+              "name": "FRAUNHOFER GESELLSCHAFT ZUR FORDERUNG DER ANGEWANDTEN FORSCHUNG EV",
+              "country": "DE"
+            },
+            "organisations": 13,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101135704"
+          },
+          "reason": "HortiQD develops an automated machine vision system for precision farming using spectral analysis and optical detection, targeting similar crop monitoring and classification challenges in horticulture."
+        },
+        {
+          "project": {
+            "id": "CORDIS:101156480",
+            "projectId": "101156480",
+            "acronym": "WHEATWATCHER",
+            "title": "Safe Wheat Agriculture Towards Sustainable Health: Innovative Sensing Techniques, and Holistic Spectroscopy Traceability for Improved Soil, plant Health and safe wheat grain",
+            "summary": "In a world grappling with complex global challenges such as population growth, climate change, and environmental degradation, ensuring security, sustainability, and food safety is paramount. Agricultural practices and food production processes are integral to public health...",
+            "status": "ongoing",
+            "start": "2024-10-01",
+            "end": "2028-09-30",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-MISS-2023-SOIL-01-03",
+            "coordinator": {
+              "name": "UNIVERSITEIT GENT",
+              "country": "BE"
+            },
+            "organisations": 15,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101156480"
+          },
+          "reason": "WheatWatcher applies sensing techniques and spectral analysis to assess crop and plant health, addressing quality assessment and safe production through automated monitoring similar to the pair's sorting-line vision approach."
+        },
+        {
+          "project": {
+            "id": "CORDIS:867535",
+            "projectId": "867535",
+            "acronym": "UniMind",
+            "title": "SaaS platform applying Artificial Intelligence and collaborative learning to the automation of Machine Vision-based manufacturing processes",
+            "summary": "UniMind is a Deep Learning SaaS platform for the intelligent automation of manufacturing processes, minimizing the combination of low-value+high-repetitiveness tasks for human workers. Automating these processes is expensive (i.e. unattainable for SMEs), time-consuming and...",
+            "status": "closed",
+            "start": "2019-03-01",
+            "end": "2019-08-31",
+            "programme": "Horizon 2020",
+            "topic": "EIC-SMEInst-2018-2020",
+            "coordinator": {
+              "name": "PIPLUS SERVICIOS PROFESIONALES SL",
+              "country": "ES"
+            },
+            "organisations": 1,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/867535"
+          },
+          "reason": "UniMind is a deep learning SaaS platform for automating manufacturing processes using machine vision, demonstrating how deep learning can replace manual quality assessment in production environments."
+        }
+      ]
+    }
+  ]
+}

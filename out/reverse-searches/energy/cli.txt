@@ -1,0 +1,27 @@
+run 2026-10-31T15-18-45 · local Claude Code · critic-2 on subq-snap-1.1 · shortlist filter on subq-snap-1.1 · prior work from OpenAlex · reverse search on C999-CH1
+   7s  C999  read · 1 need(s)
+  31s  6 task(s) running · 10 done · 0 failed · $0.09
+  62s  3 task(s) running · 22 done · 0 failed · $0.40
+  92s  4 task(s) running · 27 done · 0 failed · $0.57
+ 123s  2 task(s) running · 38 done · 0 failed · $0.83
+ 148s  C999  2 pair(s) accepted · writing C999-CH1-R0696 (writer-1)
+ 153s  2 task(s) running · 44 done · 0 failed · $0.96
+ 184s  1 task(s) running · 45 done · 0 failed · $0.98
+ 214s  2 task(s) running · 47 done · 0 failed · $1.06
+ 244s  1 task(s) running · 48 done · 0 failed · $1.10
+ 275s  1 task(s) running · 49 done · 0 failed · $1.15
+ 305s  2 task(s) running · 55 done · 0 failed · $1.34
+ 323s  C999-CH1-R0696  needs human review after 2 fix(es)
+
+done in 5 min 23 s · 417,016 tokens · $1.41 at API prices
+1 companies · 1 needs · 6 profiles · 2 pairs · 0 proposals accepted · 1 need human review · 0 no match
+critic: 25 reviews · 14 sent back · 1 dropped · 1 escalated · 2 splits · 44 claims rejected · 1 kept after cutting a claim
+needs human review: C999-CH1-R0696
+out: out/2026-10-31T15-18-45
+
+reverse search · C999-CH1 · triage: research
+  R0696  fit 0.93  Aleksandar Jeremić, Assistant Professor, Faculty of Technical Sciences · proposal
+         Jeremić's work covers hosting capacity assessment and probabilistic mapping for photovoltaic integration in low-voltage distribution networks using stochastic simulation (SYN-PUB-07801, SYN-PUB-07799, SYN-PUB-07796).
+  R0904  fit 0.61  Tamara Simić, Associate Professor, Faculty of Technical Sciences
+         Simić co-authored work on day-ahead photovoltaic power forecasting for distribution networks using satellite cloud imagery and hybrid neural network architectures (SYN-PUB-09619).
+  Pairs, not people: each fit is for this problem only. A coordinator approves a pair before anyone is contacted.

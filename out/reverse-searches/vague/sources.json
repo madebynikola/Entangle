@@ -1,0 +1,18 @@
+{
+  "C999": {
+    "id": "C999",
+    "kind": "company",
+    "title": "Described problem",
+    "text": "Described problem (C999).\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "C999-CH1": {
+    "id": "C999-CH1",
+    "kind": "challenge",
+    "title": "Our customers are not happy and some of them leave us.",
+    "text": "Our customers are not happy and some of them leave us.\n\nWe think our product should be smarter, but we do not know where to start.",
+    "researcherIds": [],
+    "companyId": "C999"
+  }
+}

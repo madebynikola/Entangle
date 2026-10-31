@@ -1,0 +1,847 @@
+{
+  "C999": {
+    "id": "C999",
+    "kind": "company",
+    "title": "Described problem",
+    "text": "Described problem (C999): Agriculture.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "C999-CH1": {
+    "id": "C999-CH1",
+    "kind": "challenge",
+    "title": "Our irrigation controllers in apple orchards overwater after rain because the soil moisture probes react slowly.",
+    "text": "Our irrigation controllers in apple orchards overwater after rain because the soil moisture probes react slowly.\n\nWe tried a fixed pause after each rainfall, but young trees still show root stress and the water bill keeps growing. We have three seasons of probe readings, weather station data and yield records from 60 hectares.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "R0218": {
+    "id": "R0218",
+    "kind": "researcher",
+    "title": "Spasoje Orlović",
+    "text": "Spasoje Orlović (R0218): Senior Research Associate, Data Science and Bioinformatics Group, BioSense Institute, University of Novi Sad.\nFields: Machine Learning and Pattern Recognition; Agricultural Informatics; Environmental Sensor Data Analysis; Bioinformatics.\nKeywords: time-series feature extraction; supervised classification; phenology prediction; agrometeorology; random forests; sensor data fusion; crop stress detection; imbalanced datasets; gradient boosting; cross-validation.\nBio: Spasoje Orlović received his BSc and MSc in Computer Science from the University of Novi Sad, Faculty of Sciences, in 2005 and 2008 respectively, and completed his PhD in Computational Intelligence at the same institution in 2013. He joined the BioSense Institute in 2014 as a Research Associate and was promoted to Senior Research Associate in 2019. The Data Science and Bioinformatics Group focuses on extracting actionable information from large heterogeneous sensor archives collected across agricultural landscapes in the Pannonian region. Orlović's work centres on time-series feature engineering, ensemble classifiers, and regression pipelines applied to crop phenology and agrometeorological event detection. He supervises MSc students and delivers occasional guest lectures on applied machine learning at the Faculty of Sciences. The group operates a local HPC cluster and maintains archives of multi-year data from soil moisture, microclimate, and hyperspectral imaging networks.\nOpen to: joint projects on agricultural data analytics; contract research on sensor data processing and predictive modelling; industrial PhD supervision for candidates with machine learning or data engineering background; student internships involving time-series data and Python-based ML pipelines; consulting on deployment and retraining strategies for operational agronomic ML systems; equipment access to hyperspectral radiometry and microclimate sensor infrastructure.\nIndustry experience: During the CROPWATCH project Orlović collaborated with two commercial farming operations in Vojvodina to pilot the early warning dashboard, providing informal technical advice on sensor placement and alert interpretation. He has no formal prior employment outside academia.\nNotes: Orlović prefers collaborations where real sensor data are available from the company side; he has limited interest in purely synthetic benchmark problems. He is available for new industry contracts from mid-2025 onward following the conclusion of CROPWATCH.",
+    "researcherIds": [
+      "R0218"
+    ]
+  },
+  "R0553": {
+    "id": "R0553",
+    "kind": "researcher",
+    "title": "Branka Grujić",
+    "text": "Branka Grujić (R0553): Research Associate, Department of Field and Vegetable Crops, Faculty of Agriculture, University of Novi Sad.\nFields: Soil Science; Agricultural Engineering; Crop Agronomy; Environmental Hydrology.\nKeywords: soil porosity; soil compaction; water retention; no-till farming; unsaturated hydraulic conductivity; pore size distribution; Chernozem; conservation tillage; cone penetrometer; Vojvodina soils.\nBio: Branka Grujić completed her Bachelor's and Master's degrees in Agronomy at the Faculty of Agriculture, University of Novi Sad, in 2008 and 2011 respectively, and defended her PhD in soil science in 2017 with a dissertation on water retention dynamics in no-till Chernozem soils of Vojvodina. She joined the Department of Field and Vegetable Crops as a Research Associate in 2018. Her work focuses on soil physical properties under conservation tillage systems, particularly pore size distribution, compaction depth profiling, and unsaturated hydraulic conductivity. The group maintains a soil physics laboratory equipped with a pressure plate apparatus, a TDR moisture measurement system, and a portable cone penetrometer for field campaigns. She teaches practical courses in soil science and agrotechnology at undergraduate level.\nOpen to: joint projects on soil physical monitoring for precision agriculture; contract research involving field compaction assessment and soil hydraulic characterisation; consulting for agricultural machinery companies on compaction impact evaluation; student internships in soil physics laboratory and field campaigns; equipment access: pressure plate apparatus, TDR soil moisture system, electronic cone penetrometer.\nIndustry experience: Grujić has provided paid advisory services to two Vojvodina-based agricultural production companies on compaction diagnostic surveys, interpreting penetrometer profiles, and recommending tillage intervention depths. These engagements were conducted as Faculty-mediated contract work in 2021 and 2023.\nNotes: Prefers collaborative arrangements that include genuine field measurement components rather than purely desk-based or modelling work. Available for short consultancy visits to company sites in Vojvodina without extended notice.",
+    "researcherIds": [
+      "R0553"
+    ]
+  },
+  "R0608": {
+    "id": "R0608",
+    "kind": "researcher",
+    "title": "Momčilo Pekez",
+    "text": "Momčilo Pekez (R0608): Associate Professor, Department of Water Management, Faculty of Agriculture, University of Novi Sad.\nFields: Hydrology and Water Resources; Environmental and Climate Sciences; Statistical and Probabilistic Methods; Agricultural and Land-Use Engineering.\nKeywords: flood frequency analysis; non-stationary hydrology; ungauged catchments; stochastic hydrological modelling; extreme value distributions; Vojvodina lowlands; regional frequency analysis; climate change impacts on floods; L-moments; drainage basin regionalisation.\nBio: Momčilo Pekez received his B.Sc. and M.Sc. degrees in Water Management from the Faculty of Agriculture, University of Novi Sad, in 2003 and 2007 respectively, and his Ph.D. from the same institution in 2013, with a dissertation on non-stationary flood frequency analysis for ungauged lowland catchments of Vojvodina. He joined the Department of Water Management as an Assistant Professor in 2014 and was promoted to Associate Professor in 2019. His research group focuses on stochastic modelling of extreme hydrological events, regional flood frequency estimation, and quantifying the effects of land-use and climate change on flood return periods in data-scarce environments. He teaches undergraduate courses in Engineering Hydrology and Drainage Systems, and a postgraduate course on Statistical Methods in Water Resources. The group works with an automated weather station network, a HEC-RAS hydraulic modelling workstation, and R- and Python-based environments for probabilistic analysis.\nOpen to: joint research projects on flood risk analytics or hydrological data products; contract research on design flood estimation and drainage capacity assessment; consulting on flood frequency analysis for infrastructure planning and environmental permitting; industrial PhD supervision for candidates working on water infrastructure risk or hydroclimatic data analysis; student internships involving hydrological data processing and statistical computing; equipment access: automated weather station data, HEC-RAS modelling workstation, drone-survey datasets for test catchments.\nIndustry experience: Pekez has provided consulting services to the Provincial Directorate for Water Management of Vojvodina on two drainage capacity studies (2016, 2020), contributing flood frequency estimates and uncertainty assessments used in infrastructure upgrade decision documents. He has also participated in a feasibility study for a private agricultural land developer requiring drainage exceedance probability assessments for crop insurance purposes.\nNotes: Pekez has a strong preference for partnerships where real operational data (gauge records, drainage operation logs, canal geometry surveys) can be shared under a data agreement, rather than projects that rely entirely on publicly available datasets. He is particularly interested in connecting with companies that manage or monitor hydrological infrastructure and could benefit from probabilistic risk quantification tools. He has no current sabbatical plans. Teaching load is moderate (two undergraduate courses, one postgraduate course) with lighter commitments in June–August.",
+    "researcherIds": [
+      "R0608"
+    ]
+  },
+  "R0662": {
+    "id": "R0662",
+    "kind": "researcher",
+    "title": "Nenad Ilić",
+    "text": "Nenad Ilić (R0662): Associate Professor, Department of Field and Vegetable Crops, Faculty of Agriculture, University of Novi Sad.\nFields: agronomy; irrigation; decision support systems.\nKeywords: drip irrigation; evapotranspiration; irrigation scheduling; soil moisture sensors; sugar beet.\nBio: Nenad Ilić is an Associate Professor at the Faculty of Agriculture, University of Novi Sad, where he is a member of the Department of Field and Vegetable Crops. His research focuses on agronomy, irrigation management, and decision support systems for crop production, with particular emphasis on drip irrigation, evapotranspiration modelling, and soil moisture sensing technologies. He has led provincial-funded projects aimed at delivering practical irrigation advice to smallholder farmers and holds a granted patent for a multi-depth capacitive soil moisture probe. Prof. Ilić has published in journals and conference proceedings covering agricultural water use, precision agriculture, and sustainable field crop management. He is actively seeking industrial PhD supervision opportunities and joint research projects with technology-oriented companies.\nOpen to: industrial PhD supervision; joint projects.",
+    "researcherIds": [
+      "R0662"
+    ]
+  },
+  "R0765": {
+    "id": "R0765",
+    "kind": "researcher",
+    "title": "Milica Stanković",
+    "text": "Milica Stanković (R0765): Research Professor, Remote Sensing and GIS Group, BioSense Institute, University of Novi Sad.\nFields: remote sensing; precision agriculture; machine learning.\nKeywords: Sentinel-2; crop yield prediction; hyperspectral imaging; time series; soil moisture.\nBio: Milica Stanković is a Research Professor at the BioSense Institute, University of Novi Sad, where she leads the Remote Sensing and GIS Group. Her research sits at the intersection of satellite Earth observation, precision agriculture, and machine learning, with a particular focus on crop monitoring and soil health assessment across the Vojvodina lowlands and the broader Pannonian region. She has coordinated national and European research projects, supervised doctoral researchers, and advised agri-tech startups on the design and deployment of satellite data pipelines. Prof. Stanković is internationally recognized for her contributions to Sentinel-2 time-series analysis, hyperspectral imaging, and data-fusion methods that combine optical and radar imagery for agricultural decision support.\nOpen to: industrial PhD supervision; joint projects.\nIndustry experience: Advised two agri-tech startups on satellite data pipelines.",
+    "researcherIds": [
+      "R0765"
+    ]
+  },
+  "R1047": {
+    "id": "R1047",
+    "kind": "researcher",
+    "title": "Milena Pantelić",
+    "text": "Milena Pantelić (R1047): Research Associate, Department of Water Management, Faculty of Agriculture, University of Novi Sad.\nFields: Agricultural Water Management; Hydrology and Soil Science; Crop Modelling; Environmental Engineering.\nKeywords: reference evapotranspiration; FAO Penman-Monteith; soil water balance; irrigation scheduling; AquaCrop; CROPWAT; field water deficit; agro-hydrology; water use efficiency; maize water stress.\nBio: Milena Pantelić diplomirala je na Poljoprivrednom fakultetu Univerziteta u Novom Sadu 2011. godine, a doktorsku disertaciju iz oblasti agrohidrologije odbranila je 2018. godine na istom fakultetu. Od 2013. zaposlena je kao istraživač-saradnik na Katedri za uređenje voda, gde se bavi modeliranjem vodnog bilansa na nivou parcele, procenom referentne evapotranspiracije metodom FAO Penman-Monteith i simulacijom potrošnje vode iz zemljišta za potrebe navodnjavanja. Grupa kojoj pripada redovno prikuplja mikrometeorološke podatke na eksperimentalnim parcelama u Rimskim Šančevima. U nastavi učestvuje na predmetima Navodnjavanje i odvodnjavanje i Hidropedologija. Laboratorija raspolaže oprema za merenje vlažnosti zemljišta (FDR sonde), automatskim meteorološkim stanicama i licencom za softver CROPWAT i AquaCrop.\nOpen to: contract research on irrigation scheduling and field water balance assessment; consulting on CROPWAT and AquaCrop model setup and calibration; equipment access (automatic weather stations, FDR soil moisture probes); student internships in agro-hydrological field monitoring; joint projects with agri-tech companies developing sensor-based irrigation management tools.\nIndustry experience: Pantelić je 2022. godine kao konsultant učestvovala u projektu kompanije AgroSens d.o.o. (Novi Sad) koji se bavio testiranjem prototipskog sistema za bežično praćenje vlažnosti zemljišta na komercijalnim gazdinstvima u Bačkoj. Saradnja je trajala četiri meseca i obuhvatala je terenska merenja i statističku analizu performansi senzora.\nNotes: Istraživač je trenutno angažovana kao rukovodilac radnog paketa na projektu SORBWATER (do 2026), što ograničava dostupnost za veće nove projekte, ali je otvorena za manje industrijske ugovore i konsultantske angažmane koji se tematski nadovezuju na tekuće istraživanje.",
+    "researcherIds": [
+      "R1047"
+    ]
+  },
+  "SYN-PAT-001": {
+    "id": "SYN-PAT-001",
+    "kind": "patent",
+    "title": "Capacitive soil moisture probe with a multi-depth sensing array",
+    "text": "Capacitive soil moisture probe with a multi-depth sensing array (2021, granted).\nInventors: Nenad Ilić (R0662).\n(no abstract)",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0001": {
+    "id": "SYN-PRJ-0001",
+    "kind": "project",
+    "title": "AGROSAT: satellite monitoring of field crops in Vojvodina",
+    "text": "AGROSAT: satellite monitoring of field crops in Vojvodina (Science Fund of the Republic of Serbia, 2022–2025).\nParticipants: R0765 principal investigator.\nAGROSAT addresses the need for timely, spatially detailed monitoring of field crops across Vojvodina, the dominant agricultural zone of Serbia. Led by Prof. Stanković as principal investigator, the project develops an end-to-end satellite analytics platform that ingests Sentinel-1 and Sentinel-2 imagery in near real time and produces a suite of agronomically relevant maps at the parcel level, including crop type, phenological stage, above-ground biomass, and early-season yield forecasts. The system is designed for direct integration with national agricultural advisory infrastructure and with the digital farming platforms of participating agri-tech partners. A key objective is to benchmark satellite-derived estimates against an instrumented field network of 60 monitoring sites distributed across the main soil types of Vojvodina, ensuring traceability and operational accuracy standards. AGROSAT also includes a citizen-science component in which farmers contribute ground-truth observations via a mobile application, creating a self-sustaining label acquisition mechanism for ongoing model refinement.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0002": {
+    "id": "SYN-PRJ-0002",
+    "kind": "project",
+    "title": "SOILSCAN: soil health indicators from space",
+    "text": "SOILSCAN: soil health indicators from space (Horizon Europe, 2023–2026).\nParticipants: R0765 work package leader.\nSOILSCAN is a Horizon Europe collaborative project that develops novel remote sensing indicators of soil health by exploiting the synergy between multi-source satellite observations and advanced soil biogeochemical modelling. Prof. Stanković leads the work package responsible for producing spatially continuous maps of soil organic carbon, nitrogen mineralisation potential, and compaction risk across the Pannonian lowlands and two additional European pilot regions. The project integrates Sentinel-1 SAR, Sentinel-2 multispectral, and EMIT hyperspectral satellite data with a harmonised in-situ soil sampling dataset contributed by six partner institutions across four countries. Machine learning emulators trained on process-based soil model outputs are used to propagate satellite observations into subsurface soil health indicators not directly observable from space. SOILSCAN outputs will be made freely available through a FAIR-compliant open data portal and are designed to directly inform the EU Soil Health Law monitoring framework currently under development.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2023
+  },
+  "SYN-PRJ-0003": {
+    "id": "SYN-PRJ-0003",
+    "kind": "project",
+    "title": "WATERWISE: irrigation advice for smallholders",
+    "text": "WATERWISE: irrigation advice for smallholders (Provincial Secretariat for Higher Education, 2021–2023).\nParticipants: R0662 principal investigator.\nWATERWISE was a two-year applied research project funded by the Provincial Secretariat for Higher Education, led by Nenad Ilić as principal investigator. The project aimed to develop and validate a low-cost, user-friendly irrigation advisory system tailored specifically to smallholder farmers in Vojvodina who lack access to agronomic consultancy services. The core output was a mobile decision support application integrating Penman–Monteith evapotranspiration calculations with readings from inexpensive capacitive soil moisture probes. The system was piloted on 20 smallholder farms growing vegetables and sugar beet across three municipalities. Training workshops were delivered to participating farmers, and feedback was incorporated into iterative improvements of the interface. The project also produced calibrated crop coefficient datasets for key Vojvodina crops and a publicly accessible guide to affordable soil moisture monitoring, disseminated through the provincial agricultural extension service.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0139": {
+    "id": "SYN-PRJ-0139",
+    "kind": "project",
+    "title": "Data-Driven Early Warning System for Crop Stress Events in Vojvodina",
+    "text": "CROPWATCH: Data-Driven Early Warning System for Crop Stress Events in Vojvodina (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0218 principal investigator.\nPartners: BioSense Institute, University of Novi Sad; Institute of Field and Vegetable Crops, Novi Sad; Provincial Directorate for Agriculture, Water Management and Forestry, Novi Sad.\nCROPWATCH developed and field-validated a modular early warning system for four agronomically significant crop stress events — frost, drought, powdery mildew onset, and waterlogging — affecting the principal field crops grown in Vojvodina. The project combined multi-source sensor data fusion, transfer learning across station networks, and conformal prediction for uncertainty-aware alert generation. A prototype web dashboard was built and tested with agronomic advisors from two regional agricultural extension services during the 2023 and 2024 seasons. The system issued alerts at least 24 hours in advance for 79 % of observed events across the pilot fields. The project also trained two MSc students who contributed to the machine-learning pipeline development.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-1274": {
+    "id": "SYN-PRJ-1274",
+    "kind": "project",
+    "title": "Integrated Flood and Drainage Risk Assessment for Cross-Border Agricultural Catchments in the Pannonian Basin",
+    "text": "DRAINPAN: Integrated Flood and Drainage Risk Assessment for Cross-Border Agricultural Catchments in the Pannonian Basin (Interreg IPA Hungary–Serbia, 2022–2025).\nParticipants: R0608 work package leader.\nPartners: National Water Directorate of Hungary (OVF), Budapest; Faculty of Civil Engineering, Budapest University of Technology; Lower Tisza District Water Directorate, Szeged; Provincial Directorate for Water Management, Novi Sad.\nDRAINPAN addresses cross-border flood risk in the Tisza–Maros confluence zone where Serbian and Hungarian drainage systems interact hydraulically. The Serbian team, led by Pekez, is responsible for Work Package 3: stochastic flood scenario generation and infrastructure stress-testing on the Serbian side of the border. Joint activities include harmonisation of hydrological databases across the two countries, a shared EURO-CORDEX downscaling exercise, and development of a binational flood early-warning indicator based on spatially correlated stochastic event generation. A joint drought–flood risk decision-support tool is being developed for use by drainage management authorities on both sides of the border. Three cross-border field campaigns for discharge gauging and geomorphological mapping are planned.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-1816": {
+    "id": "SYN-PRJ-1816",
+    "kind": "project",
+    "title": "Soil Physical Degradation Pathways and Recovery Under Conservation Agriculture in the Pannonian Plain",
+    "text": "SOILWAY: Soil Physical Degradation Pathways and Recovery Under Conservation Agriculture in the Pannonian Plain (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0553 principal investigator.\nPartners: Institute of Field and Vegetable Crops, Novi Sad; Faculty of Agriculture, University of Belgrade.\nThe project examines mechanisms and rates of soil physical degradation — primarily compaction and structural breakdown — on Chernozem and Fluvisol soils across Vojvodina under conservation and conventional tillage systems. Field campaigns at five long-term experiment sites combine cone penetrometry, tension infiltrometry, and undisturbed core sampling with laboratory retention and conductivity measurements. A sub-task quantifies the contribution of controlled versus random wheel traffic to compaction depth distribution. The project also tests the capacity of freeze–thaw cycles and biological activity to restore soil structure in the absence of mechanical loosening. Final outputs include site-specific recovery trajectories and a decision-support worksheet for farm advisors recommending periodic subsoil intervention thresholds.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-1817": {
+    "id": "SYN-PRJ-1817",
+    "kind": "project",
+    "title": "Cross-Border Assessment of Tillage Impacts on Soil Water Dynamics and Crop Productivity in the Hungarian–Serbian Border Region",
+    "text": "PANNO-TILL: Cross-Border Assessment of Tillage Impacts on Soil Water Dynamics and Crop Productivity in the Hungarian–Serbian Border Region (Interreg IPA Hungary–Serbia, 2019–2022).\nParticipants: R0553 team member.\nPartners: Department of Soil Sciences, Hungarian University of Agriculture and Life Sciences, Gödöllő; Vojvodina Agricultural Extension Service, Novi Sad; Chamber of Agriculture of Bács-Kiskun County, Kecskemét, Hungary.\nPANNO-TILL compared soil water retention, compaction, and infiltration characteristics across eight paired farm sites straddling the Hungarian–Serbian border, where similar soil parent material and climate allow isolation of management effects from pedological variability. Branka Grujić was responsible for all Serbian field sampling campaigns, laboratory retention curve analysis, and co-authorship of the joint comparative report. Results showed that Hungarian farms in the sample applied deeper tillage on average, resulting in lower CPR in the 20–35 cm layer, whereas Serbian no-till sites exhibited higher surface macroporosity. An agronomic cost–benefit worksheet for tillage intensity choices under Pannonian climate variability was produced as a policy output.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-02157": {
+    "id": "SYN-PUB-02157",
+    "kind": "publication",
+    "title": "Benchmarking tabular deep learning against gradient boosting for agronomic event prediction on small heterogeneous sensor datasets",
+    "text": "Benchmarking tabular deep learning against gradient boosting for agronomic event prediction on small heterogeneous sensor datasets (2022, conference, Proceedings of the 14th Balkan Conference on Machine Learning and Data Analysis).\nAuthors: Spasoje Orlović (R0218); Nemanja Grahovac (outside co-author); Огњен Бошковић (R0165); Bojana Krstić (outside co-author); Igor Čolić (R1009).\nKeywords: TabNet; FT-Transformer; LightGBM; tabular deep learning; benchmarking.\nTabular deep learning architectures such as TabNet and FT-Transformer have been proposed as alternatives to gradient boosting on structured data. This paper evaluates both families on six agronomic event prediction tasks drawn from BioSense Institute sensor archives, covering frost occurrence, soil moisture regime classification, phenological stage identification, drought stress onset, mildew infection level, and irrigation demand. Dataset sizes range from 890 to 4 200 labelled instances with 12 to 61 input features derived from environmental sensor records. Gradient boosting (XGBoost and LightGBM) outperformed TabNet and FT-Transformer on four of six tasks by statistically significant margins according to paired Wilcoxon signed-rank tests at α = 0.05. The two tasks where deep models matched gradient boosting involved the largest datasets and highest feature counts. Training time for gradient boosting was two to three orders of magnitude shorter. The paper concludes that, for the dataset scales typical in single-network agronomic sensor deployments, gradient boosting remains the preferred default and tabular deep learning does not yet justify the additional computational cost and tuning effort.",
+    "researcherIds": [
+      "R0218",
+      "R0165",
+      "R1009"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-02775": {
+    "id": "SYN-PUB-02775",
+    "kind": "publication",
+    "title": "Comparative evaluation of temporal feature sets for frost event detection using surface microclimate loggers",
+    "text": "Comparative evaluation of temporal feature sets for frost event detection using surface microclimate loggers (2013, journal, Journal of Agricultural Informatics and Remote Sensing).\nAuthors: Spasoje Orlović (R0218); Miroslav Kecojević (outside co-author); Tatjana Bogdanović (outside co-author).\nKeywords: frost detection; time-series features; random forest; SMOTE; microclimate.\nFrost events cause substantial yield losses in early-season vegetable cultivation across the Pannonian plain. This study compared six families of time-series features — including autocorrelation coefficients, entropy measures, wavelet sub-band energies, slope statistics, rolling quantiles, and tsfresh-style catch22 descriptors — extracted from 15-minute air and soil temperature records collected at 23 stations over four growing seasons (2009–2012). Binary classifiers (logistic regression, k-nearest neighbours, random forest, and support vector machine with RBF kernel) were trained and evaluated using stratified 10-fold cross-validation. The dataset contained 1 847 station-days, of which 214 were labelled frost days, creating notable class imbalance. SMOTE oversampling was applied before each training fold. The random forest trained on wavelet plus slope features achieved the highest F1 score of 0.81 on the held-out test set, compared to 0.63 for logistic regression on raw temperature statistics. Feature importance analysis identified minimum overnight temperature slope and 4-hour wavelet detail energy as the two most discriminative descriptors. Results suggest that simple distributional statistics underperform relative to dynamical features for frost detection at short time horizons.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-02777": {
+    "id": "SYN-PUB-02777",
+    "kind": "publication",
+    "title": "Phenological stage detection in winter wheat from combined air temperature and photoperiod records: a gradient boosting approach",
+    "text": "Phenological stage detection in winter wheat from combined air temperature and photoperiod records: a gradient boosting approach (2016, journal, Acta Agriculturae et Bioinformatica Danubiana).\nAuthors: Spasoje Orlović (R0218); Jovana Milošević (outside co-author); Klemen Bergant (outside co-author); Predrag Ranđelović (outside co-author).\nKeywords: phenology detection; BBCH stages; XGBoost; winter wheat; growing degree days.\n(no abstract)",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-02778": {
+    "id": "SYN-PUB-02778",
+    "kind": "publication",
+    "title": "Handling sensor dropout in agricultural time-series archives: a structured comparison of imputation strategies",
+    "text": "Handling sensor dropout in agricultural time-series archives: a structured comparison of imputation strategies (2017, conference, Data Quality in Environmental Monitoring — Proceedings of the 4th Central European Workshop).\nAuthors: Spasoje Orlović (R0218); Nemanja Grahovac (outside co-author).\nKeywords: missing data; imputation; LSTM; sensor archive; humidity.\nLong-term environmental sensor archives frequently contain gaps caused by power outages, transmission errors, and hardware failures. This study benchmarked seven imputation strategies on a 6-year hourly temperature and relative-humidity archive from 27 Vojvodina stations: last-observation carry-forward, linear interpolation, seasonal decomposition with LOESS residual filling, k-nearest-neighbour spatial borrowing, matrix factorisation, a regression tree trained on auxiliary weather model output, and a recurrent neural network (LSTM). Gaps were simulated by masking known complete records at three gap lengths: 1 hour, 6 hours, and 24 hours. Performance was measured by RMSE and mean absolute error against the held-out true values, averaged across 500 independent random masking trials. LSTM achieved the lowest RMSE for 24-hour gaps (0.41 °C) but required substantially more computation than spatial k-NN (RMSE 0.58 °C). For 1-hour gaps, linear interpolation was within 0.05 °C RMSE of the best method. The study provides practical guidance on method selection given gap length and available computational budget, and is accompanied by a Python package deposited on the institutional repository.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-02779": {
+    "id": "SYN-PUB-02779",
+    "kind": "publication",
+    "title": "Feature stability across growing seasons for machine-learning models in precision agriculture: a replication study",
+    "text": "Feature stability across growing seasons for machine-learning models in precision agriculture: a replication study (2018, journal, Acta Agriculturae et Bioinformatica Danubiana).\nAuthors: Spasoje Orlović (R0218); Jovana Milošević (outside co-author); Marija Pejić (outside co-author); Stefan Varga (outside co-author).\nKeywords: model stability; feature importance; Shapley values; retraining; precision agriculture.\nMachine-learning models for agronomic prediction are typically evaluated on held-out data from the same or adjacent seasons as the training set. This study examined whether feature importances and classification boundaries remain stable when models are applied to data collected two to five seasons after training. Five previously published random forest and gradient boosting models addressing frost, drought stress, phenological stage, irrigation regime, and pest pressure were retrained on data from 2010–2013 and prospectively applied to 2014–2018 records from the same sensor networks. Shapley value profiles were computed annually for each model. Rank correlation between feature importance in the training period and each subsequent season was calculated; median Spearman ρ across models was 0.74 in year one post-training, declining to 0.51 by year five. Classification accuracy declined by a mean of 6.3 percentage points per season for models that did not undergo any retraining. Annual partial retraining on 10 % new labelled data recovered most of the performance loss. The study argues for embedding retraining schedules into operational deployment pipelines rather than treating trained models as static artefacts.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-02780": {
+    "id": "SYN-PUB-02780",
+    "kind": "publication",
+    "title": "Drought stress onset prediction in sunflower from multi-depth soil moisture and canopy temperature: an ensemble regression study",
+    "text": "Drought stress onset prediction in sunflower from multi-depth soil moisture and canopy temperature: an ensemble regression study (2020, journal, Journal of Agricultural Informatics and Remote Sensing).\nAuthors: Sonja Filipović (outside co-author); Spasoje Orlović (R0218); Luca Ferrarese (outside co-author); Nenad Živković (outside co-author).\nKeywords: drought stress; sunflower; soil moisture; canopy temperature; gradient boosting.\nEarly prediction of drought stress onset in sunflower allows irrigation to be applied before yield-limiting physiological damage occurs. This study combined multi-depth capacitance soil moisture readings (10, 30, 60, and 90 cm) with infrared canopy temperature measured by stationary radiometers at 14 instrumented plots in Vojvodina across three growing seasons (2016–2018). The target variable was time-to-stress onset in days, defined as the first day leaf water potential fell below −0.8 MPa as measured weekly by pressure chamber. Features were extracted over a rolling 5-day window: mean, variance, linear trend, and cross-depth Pearson correlation coefficients of soil moisture, plus the canopy-minus-air temperature differential. Five regression algorithms were evaluated — ridge regression, random forest, gradient boosting, k-NN regression, and a Gaussian process regressor — via 5-fold cross-validation. Gradient boosting achieved the lowest mean absolute error of 1.3 days against measured stress onset. Cross-depth soil moisture correlation emerged as the most informative feature class according to permutation importance. The model was deployed experimentally on two commercial farms in the 2019 season and issued stress warnings between one and two days before observed wilting symptoms in 11 of 14 monitored plots.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-02781": {
+    "id": "SYN-PUB-02781",
+    "kind": "publication",
+    "title": "Time-series classification of hyperspectral reflectance trajectories for early detection of powdery mildew in winter wheat",
+    "text": "Time-series classification of hyperspectral reflectance trajectories for early detection of powdery mildew in winter wheat (2021, journal, Precision Agriculture and Remote Sensing Letters).\nAuthors: Spasoje Orlović (R0218); Ana Bajić (outside co-author); Goran Tmušić (outside co-author); Miroslava Šarić (outside co-author).\nKeywords: hyperspectral; powdery mildew; SVM; dynamic time warping; disease detection.\nPowdery mildew caused by Blumeria graminis reduces winter wheat yields by 5–15 % in epidemic years in Vojvodina. Hyperspectral reflectance time series were collected at weekly intervals from 32 field plots across the 2017 and 2018 growing seasons using a ground-mounted spectroradiometer covering 400–2 500 nm at 1 nm resolution. Disease severity ratings were assigned by plant pathologists on the same weekly schedule. After dimensionality reduction by principal component analysis retaining 95 % of spectral variance, temporal features including derivatives of PC scores, area under the reflectance curve in the red-edge region, and dynamic time warping distances to a healthy reference trajectory were computed. A multiclass SVM with radial basis function kernel was trained to distinguish healthy, mildly infected (1–10 % leaf area affected), and severely infected (> 10 %) canopy states. Leave-one-season-out accuracy was 74 %, compared to 58 % for a single-date spectral classifier. The temporal derivative of the red-edge PC score provided the largest gain in F1 relative to the static baseline. The method detected onset of mild infection on average 8 days before visual symptoms were rated as actionable by field agronomists.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-02782": {
+    "id": "SYN-PUB-02782",
+    "kind": "publication",
+    "title": "Sensor fusion from heterogeneous archive types for crop water stress index estimation: aligning satellite revisit cycles with ground sensor intervals",
+    "text": "Sensor fusion from heterogeneous archive types for crop water stress index estimation: aligning satellite revisit cycles with ground sensor intervals (2023, journal, International Journal of Applied Earth Observation and Agroinformatics).\nAuthors: Spasoje Orlović (R0218); Ana Bajić (outside co-author); Tamás Kovács (outside co-author); Dejan Arsenović (outside co-author).\nKeywords: sensor fusion; CWSI; Sentinel-3; Gaussian process; maize water stress.\nSatellite-derived thermal infrared data and ground-based microclimate sensor records operate on incompatible temporal grids: satellite revisit cycles of 5–16 days versus hourly ground observations. This study developed a temporal alignment and fusion pipeline for estimating the crop water stress index (CWSI) across a 3 000-hectare maize-growing area in southern Vojvodina using Sentinel-3 land surface temperature composites and a network of 19 ground stations recording air temperature, relative humidity, and wind speed at hourly resolution. Gaussian process regression with a time-warping kernel was used to interpolate ground measurements to satellite overpass times. CWSI estimates from fused data were compared against reference values computed from eddy covariance flux tower measurements at two locations. Fusion-derived CWSI tracked the flux-tower reference with Pearson r = 0.83 and RMSE of 0.07 index units across the 2019 and 2020 seasons, compared to r = 0.61 when satellite data alone was used. The pipeline processes a new satellite scene in under four minutes on standard workstation hardware. Code is available under a permissive open licence.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-02783": {
+    "id": "SYN-PUB-02783",
+    "kind": "publication",
+    "title": "Conformal prediction intervals for agronomic event classifiers: coverage guarantees on temporally autocorrelated sensor data",
+    "text": "Conformal prediction intervals for agronomic event classifiers: coverage guarantees on temporally autocorrelated sensor data (2024, journal, Journal of Agricultural Informatics and Remote Sensing).\nAuthors: Spasoje Orlović (R0218); Bojana Krstić (outside co-author); Matej Horvat (outside co-author); Vera Vuković (R0263).\nKeywords: conformal prediction; uncertainty quantification; autocorrelation; coverage guarantee; phenology.\nStandard conformal prediction methods assume exchangeability of calibration and test samples, an assumption violated by temporally autocorrelated environmental sensor data. This paper adapts split conformal prediction to produce marginal and conditional coverage guarantees for agronomic event classifiers trained on sequential sensor records. The adaptation uses a block-hold-out calibration scheme that respects the autocorrelation structure of daily and weekly sensor cycles. Four classifiers — random forest, XGBoost, ridge logistic regression, and a 1-D convolutional neural network — were wrapped with the adapted conformal layer and evaluated on phenological stage and frost event datasets from BioSense Institute archives. Empirical coverage of 90 % prediction sets was 89.1 % to 90.8 % across classifiers and datasets, compared to 84.3 % to 87.9 % under naive exchangeable conformal calibration. Prediction set sizes were larger in periods of high sensor noise and smaller in meteorologically stable periods, which corresponds to intuitive uncertainty behaviour. The method requires no modification of the underlying classifier and adds negligible inference-time overhead.",
+    "researcherIds": [
+      "R0218",
+      "R0263"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-02784": {
+    "id": "SYN-PUB-02784",
+    "kind": "publication",
+    "title": "Multi-site transfer learning for phenological event detection when labelled target-domain data are scarce",
+    "text": "Multi-site transfer learning for phenological event detection when labelled target-domain data are scarce (2025, conference, Proceedings of the AgriML Symposium, Prague 2025).\nAuthors: Spasoje Orlović (R0218); Jovana Milošević (outside co-author); Stefan Varga (outside co-author); Raluca Ionescu (outside co-author).\nKeywords: transfer learning; domain adaptation; phenology; scarce labels; multi-site.\nObtaining labelled phenological observations at new sensor network sites is costly and time-consuming, creating a barrier to deploying trained prediction models in new regions. This study evaluated four transfer learning strategies — direct transfer, feature normalisation followed by direct transfer, fine-tuning on small labelled target sets, and domain-adversarial training — for phenological stage classifiers moving from a Vojvodina source network of 31 stations to three target networks located in Hungary (12 stations), Romania (8 stations), and Slovenia (6 stations). Transfer was tested at labelled-target-data budgets of 0, 10, 30, and 100 instances. At zero labelled target data, fine-tuning was not applicable; domain-adversarial transfer yielded macro-F1 of 0.61 on the Hungarian target compared to 0.70 for a fully supervised in-domain model. At 30 labelled instances, fine-tuning matched in-domain performance for the Hungarian and Romanian targets. The Slovenian target remained consistently harder to transfer to due to greater climatic divergence. Results suggest that investing effort in collecting 20–40 labelled instances in a new deployment region is more cost-effective than pursuing zero-shot domain adaptation for this application.",
+    "researcherIds": [
+      "R0218"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-02785": {
+    "id": "SYN-PUB-02785",
+    "kind": "publication",
+    "title": "Temporal Alignment of Multi-Site Electronic Health Record Data: Challenges and a Case Study from Three Vojvodina Hospitals",
+    "text": "Temporal Alignment of Multi-Site Electronic Health Record Data: Challenges and a Case Study from Three Vojvodina Hospitals (2018, book chapter, Clinical Data Quality in Central and Eastern Europe (edited volume, IOS Press)).\nAuthors: Bojana Ninković (outside co-author); Spasoje Orlović (R0218); Sándor Varga (outside co-author); Vera Vuković (R0263).\nKeywords: temporal alignment; data quality; multi-site EHR; artefact correction; Vojvodina.\nWhen aggregating EHR data from multiple hospitals for longitudinal analysis, differences in timestamping conventions, fiscal-year resets, and local workflow patterns produce artefactual temporal patterns that can bias any time-sensitive model. This case study documents alignment problems encountered while merging discharge records from three Vojvodina hospitals (combined n = 22 600 admissions, 2010–2016) and describes rule-based and statistical correction procedures for eight identified artefact classes. A particularly common issue was duplicate admissions split across calendar-year system resets, affecting 3.1 % of records. Corrective procedures raised within-hospital event sequence consistency scores from a median of 0.81 to 0.96, measured by a proposed rank-correlation-based consistency index. The chapter situates these problems in the broader EHR data quality literature and offers a reproducible data-quality reporting template adaptable to similar regional settings.",
+    "researcherIds": [
+      "R0218",
+      "R0263"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-03057": {
+    "id": "SYN-PUB-03057",
+    "kind": "publication",
+    "title": "Seasonal variation in nutrient load from subsurface tile drains under conventional cereal production in the southern Pannonian Plain",
+    "text": "Seasonal variation in nutrient load from subsurface tile drains under conventional cereal production in the southern Pannonian Plain (2016, conference, Proceedings of the 7th Regional Conference on Drainage and Water Management in Southeastern Europe, Novi Sad).\nAuthors: Vladana Erić (R0967); Miroslav Tešić (outside co-author); Borislav Vranješ (R0240); Momčilo Pekez (R0608); Jelena Marković (outside co-author).\nKeywords: tile drainage; nitrate export; phosphorus export; Pannonian Plain; nutrient loading.\nTile drain outflow chemistry was monitored over two complete hydrological years (2013–2015) at four 5–12 ha cereal production fields in Bačka and Banat districts. Automatic samplers and continuous flow sensors recorded drainage volumes and captured time-proportional samples during all significant drainage events. Nitrate-N export ranged from 12 to 47 kg ha⁻¹ yr⁻¹ across sites, with peak concentrations of 28–41 mg NO₃-N L⁻¹ occurring in late autumn and early spring following fertiliser application events. Dissolved reactive phosphorus export was lower (0.08–0.31 kg P ha⁻¹ yr⁻¹) but showed strong event-driven pulses coinciding with heavy rainfall on recently fertilised soils. Inter-site variability was explained in part by soil texture and drain depth. The dataset provides empirical loading estimates for sizing constructed wetland treatment systems at farm scale in the region, where such field-specific data had previously been scarce.",
+    "researcherIds": [
+      "R0967",
+      "R0240",
+      "R0608"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-06435": {
+    "id": "SYN-PUB-06435",
+    "kind": "publication",
+    "title": "Bulk Density and Pore Size Distribution in Conventionally Tilled vs. No-Till Chernozem After Five Years of Continuous Maize Cropping",
+    "text": "Bulk Density and Pore Size Distribution in Conventionally Tilled vs. No-Till Chernozem After Five Years of Continuous Maize Cropping (2012, journal, Acta Agriculturae et Pedologica Balcanica).\nAuthors: Branka Grujić (R0553); Miroslav Stanković (outside co-author); Svetlana Đurić (outside co-author).\nKeywords: bulk density; pore size distribution; no-till; Chernozem; maize.\nA five-year field trial on two adjacent plots under conventional mouldboard ploughing and no-till management was established in 2007 on a Haplic Chernozem near Srbobran, Vojvodina. Undisturbed soil cores were sampled at 0–10, 10–20, and 20–40 cm depths in autumn of each year. Bulk density was determined gravimetrically and pore size distribution was derived from water retention curves measured with a pressure plate apparatus at matric potentials of −0.01, −0.033, −0.1, −0.3, and −1.5 MPa. After five years, bulk density in the 0–10 cm layer under no-till was 1.41 Mg m⁻³ compared with 1.28 Mg m⁻³ under conventional tillage. Macroporosity (pores >30 µm) decreased by 18% in no-till topsoil, while mesopore volume (0.2–30 µm) increased by 11%, suggesting a redistribution rather than a net loss of pore space. No significant differences were found below 20 cm depth. Results indicate that short-term no-till adoption shifts the pore network toward finer pores, with implications for infiltration capacity and seedbed preparation for sunflower and soybean rotations.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2012
+  },
+  "SYN-PUB-06436": {
+    "id": "SYN-PUB-06436",
+    "kind": "publication",
+    "title": "Seasonal Variation in Soil Water Retention Parameters Under Strip-Till and No-Till Sugar Beet Production in Northern Vojvodina",
+    "text": "Seasonal Variation in Soil Water Retention Parameters Under Strip-Till and No-Till Sugar Beet Production in Northern Vojvodina (2014, journal, Journal of Central European Soil and Crop Research).\nAuthors: Branka Grujić (R0553); Attila Varga (outside co-author); Miroslav Stanković (outside co-author); Nikoleta Bosanac (outside co-author).\nKeywords: strip-till; sugar beet; TDR; van Genuchten; plant-available water.\nSugar beet fields on silty clay loam soils in the Subotica–Horgoš region were monitored over two growing seasons (2012–2013) to compare soil water retention under strip-till and full-width no-till treatments. Soil moisture was recorded continuously at 10, 30, and 60 cm depths using TDR probes installed in four replicate plots per treatment. Retention curve parameters (van Genuchten α and n) were fitted from weekly sampled cores and laboratory drainage measurements. Under strip-till, the van Genuchten n parameter at 10 cm depth averaged 1.38 compared with 1.22 under no-till, reflecting a broader pore size distribution in the loosened strips. Plant-available water capacity across the 0–60 cm profile was approximately 7 mm higher in strip-till plots during the driest July period. These differences translated to a 4.2% higher sugar beet fresh root yield in strip-till, though inter-annual variability was substantial and confounded by rainfall distribution. The study argues for further multi-year replication before firm agronomic recommendations can be made.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2014
+  },
+  "SYN-PUB-06437": {
+    "id": "SYN-PUB-06437",
+    "kind": "publication",
+    "title": "Cone Penetration Resistance Profiles Across a Tillage Intensity Gradient on Vojvodina Loam Soils",
+    "text": "Cone Penetration Resistance Profiles Across a Tillage Intensity Gradient on Vojvodina Loam Soils (2016, conference, Proceedings of the 4th Pannonian Symposium on Soil and Water Management, Novi Sad).\nAuthors: Branka Grujić (R0553); Radovan Jevtić (outside co-author).\nKeywords: cone penetration resistance; tillage pan; compaction; root restriction; sunflower.\nCone penetration resistance (CPR) was measured on four commercial farms in Vojvodina representing a gradient from deep subsoil loosening to continuous no-till, each with at least eight years of documented management history. Measurements were taken in spring and autumn of 2015 using a hand-pushed electronic cone penetrometer at 5 cm depth intervals to 70 cm. At least 20 insertions per plot were averaged per sampling date. No-till plots showed a distinct compaction peak between 12 and 22 cm depth, with CPR values reaching 2.8–3.3 MPa in spring under dry conditions, exceeding the commonly cited 2.0 MPa root restriction threshold. Subsoil-loosened plots showed peak CPR below 40 cm and lower resistance throughout the upper horizon. Gravimetric soil moisture at sampling was co-recorded to allow partial normalisation. The data support the conclusion that no-till systems on these medium-texture soils develop a tillage-pan analogue within a decade without periodic intervention, with potential consequences for deep-rooted crops such as sunflower.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-06438": {
+    "id": "SYN-PUB-06438",
+    "kind": "publication",
+    "title": "Long-Term No-Till Effects on Saturated and Unsaturated Hydraulic Conductivity of a Calcic Chernozem: A 12-Year Dataset",
+    "text": "Long-Term No-Till Effects on Saturated and Unsaturated Hydraulic Conductivity of a Calcic Chernozem: A 12-Year Dataset (2018, journal, Geoderma Regional Reports).\nAuthors: Branka Grujić (R0553); Miroslav Stanković (outside co-author); Corinna Hallmann (outside co-author); Svetlana Đurić (outside co-author).\nKeywords: saturated hydraulic conductivity; tension infiltrometer; macropores; biopores; earthworms.\nThis study presents hydraulic conductivity data collected annually from 2005 to 2016 on a long-term field experiment maintained by the Institute of Field and Vegetable Crops in Rimski Šančevi. Saturated hydraulic conductivity (Ks) was determined in situ with a tension infiltrometer at matric potential heads of 0, −20, and −60 mm H₂O, allowing simultaneous estimation of the macropore-flow contribution. No-till plots exhibited Ks values at the soil surface approximately 35% higher than ploughed controls in 2016, up from negligible differences in 2007, attributed to a progressive development of continuous biopores from earthworm activity and root channels. Unsaturated conductivity at −60 mm head showed little difference between treatments across all years. Earthworm density counts, conducted in parallel on a subset of years, correlated positively with macropore Ks (r = 0.71, p < 0.01). The findings highlight a temporal trajectory in which biological macropore formation compensates for reduced tillage-induced aeration in established no-till systems, though this benefit appears restricted to the surface 15 cm.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-06439": {
+    "id": "SYN-PUB-06439",
+    "kind": "publication",
+    "title": "Shrink–Swell Behaviour and Crack Formation in No-Till Clay Loam Soils of the South Bačka Region During Summer Drought",
+    "text": "Shrink–Swell Behaviour and Crack Formation in No-Till Clay Loam Soils of the South Bačka Region During Summer Drought (2020, journal, Soil and Tillage Research Bulletin).\nAuthors: Branka Grujić (R0553); Dragana Milošević (outside co-author); Tamás Kézdi (outside co-author).\nKeywords: shrink-swell; desiccation cracks; preferential flow; drought; clay loam.\nSoils with moderate clay content (28–34% clay fraction) in the South Bačka administrative district were monitored during the drought summer of 2017 for desiccation crack development under no-till management with a soybean–maize rotation and under conventional tillage. Crack width, depth, and areal density were mapped using a grid-frame photographic method at two-week intervals from late June to early September. Volumetric moisture content was monitored with TDR probes at 10 and 30 cm. Cracks first appeared in no-till plots at a mean volumetric moisture content of 0.22 m³ m⁻³ compared with 0.19 m³ m⁻³ in tilled plots, suggesting an earlier onset of shrinkage possibly linked to higher organic matter in the surface horizon. Maximum crack depth reached 41 cm in no-till versus 29 cm in tilled plots. Crack volume represented up to 6.8% of total soil volume at peak drought. The paper discusses implications for preferential flow, topsoil drying feedback, and re-wetting dynamics in autumn rainfall events, noting that rapid crack closure was observed after the first 20 mm rain event in early September.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-06440": {
+    "id": "SYN-PUB-06440",
+    "kind": "publication",
+    "title": "Soil Physical Quality Indices Under Three Decades of Contrasting Tillage on Vojvodina Chernozem: A Comparison of S-Index, Air Capacity, and LLWR",
+    "text": "Soil Physical Quality Indices Under Three Decades of Contrasting Tillage on Vojvodina Chernozem: A Comparison of S-Index, Air Capacity, and LLWR (2022, journal, European Journal of Agropedology).\nAuthors: Branka Grujić (R0553); Miroslav Stanković (outside co-author); Petra Novotná (outside co-author); Jovana Ćirić (outside co-author).\nKeywords: S-index; LLWR; air capacity; soil physical quality; long-term experiment.\nThree integrated soil physical quality indices — the S-index (slope of the log–log water retention curve at the inflection point), air-filled porosity at field capacity, and the least limiting water range (LLWR) — were evaluated on archived soil cores and current field samples from a long-term experiment initiated in 1991 at Rimski Šančevi. Three treatments were compared: mouldboard ploughing to 30 cm, chisel ploughing to 25 cm, and continuous no-till. By 2021, the no-till treatment showed S-index values of 0.041 in the 0–5 cm layer (above the 0.035 critical threshold) but declined to 0.028 at 10–20 cm, indicating degraded structure at the critical transition depth. The LLWR was 0.09 m³ m⁻³ under no-till versus 0.13 m³ m⁻³ under mouldboard ploughing at the same depth, implying a narrower range of conditions suitable for field operations and root growth. Air capacity at field capacity was adequate (>0.10 m³ m⁻³) only in the surface 5 cm of no-till. Results are interpreted in the context of maize and wheat yield records from the same experiment, showing a moderate but consistent yield penalty for no-till in wetter-than-average years.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06441": {
+    "id": "SYN-PUB-06441",
+    "kind": "publication",
+    "title": "Effect of Tractor Wheel Traffic Frequency on Subsoil Compaction Persistence in a No-Till Maize System: Two-Year Recovery Monitoring",
+    "text": "Effect of Tractor Wheel Traffic Frequency on Subsoil Compaction Persistence in a No-Till Maize System: Two-Year Recovery Monitoring (2024, journal, Soil Use and Conservation Letters).\nAuthors: Bojan Škorić (outside co-author); Branka Grujić (R0553); Maja Vukosavljević (outside co-author).\nKeywords: wheel traffic; subsoil compaction; recovery; controlled traffic farming; freeze-thaw.\nA controlled wheel-traffic experiment was conducted in 2022–2023 on a no-till field in Temerin municipality. Four traffic intensity levels (0, 2, 4, and 8 tractor passes of a 9-tonne axle load) were applied in spring 2022 to 6 × 40 m plots. Cone penetration resistance and bulk density at 5 cm intervals to 60 cm were measured immediately after trafficking, and then in autumn 2022, spring 2023, and autumn 2023. Immediately after trafficking, CPR at 30–40 cm exceeded 3.5 MPa for the 8-pass treatment. After two full growing seasons with no further disturbance, CPR at 30–40 cm remained at 2.9 MPa, indicating limited natural recovery at depth. The 0–10 cm layer showed partial recovery, reaching pre-treatment CPR values by autumn 2022, likely driven by freeze–thaw cycles and biological activity. A simple linear model explained 68% of variance in CPR recovery using initial compaction magnitude and depth as predictors. The results suggest that a single severe trafficking event causes subsoil compaction that persists well beyond the measurement period under no-till, reinforcing the agronomic value of controlled traffic farming.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-06442": {
+    "id": "SYN-PUB-06442",
+    "kind": "publication",
+    "title": "Mapping Topsoil Compaction Risk Across Vojvodina Using Terrain Attributes, Soil Texture, and Traffic Load Data",
+    "text": "Mapping Topsoil Compaction Risk Across Vojvodina Using Terrain Attributes, Soil Texture, and Traffic Load Data (2026, preprint, Geoderma Regional Reports).\nAuthors: Branka Grujić (R0553); Lazar Pušić (outside co-author); Petra Novotná (outside co-author); Jovana Ćirić (outside co-author); Dragana Milošević (outside co-author).\nKeywords: compaction risk mapping; spatial modelling; topographic wetness index; soil survey; Vojvodina.\nA spatial compaction risk model was developed for the Vojvodina region using a 25 m digital elevation model, provincial soil survey texture data (clay and silt fractions), reported machinery axle loads from a farm survey conducted in 2023 (n = 114 farms), and long-term cropping system data from the agricultural census. Risk scores were computed by combining normalised layers for soil susceptibility (derived from texture and organic matter content), traffic frequency (workload index per ha), and topographic wetness index as a proxy for antecedent moisture. Validation was performed against 88 field CPR measurements taken across 22 sites in spring 2024. The model correctly classified compaction risk level (low/medium/high) in 74% of validation points. High-risk zones were concentrated in the flat, low-permeability soils of southern Bačka and along major crop production corridors. The study provides a reproducible, low-cost framework for prioritising on-farm compaction monitoring and for informing municipal land use planning in the context of heavy machinery use.",
+    "researcherIds": [
+      "R0553"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-06709": {
+    "id": "SYN-PUB-06709",
+    "kind": "publication",
+    "title": "Long-term changes in soil alkalinity following combined gypsum and organic matter amendments on reclaimed solonetz in the Banat plain",
+    "text": "Long-term changes in soil alkalinity following combined gypsum and organic matter amendments on reclaimed solonetz in the Banat plain (2017, journal, Geoderma).\nAuthors: Miroslav Bogdanović (outside co-author); Péter Halász (R0974); Tibor Janda (outside co-author); Rada Petrović (outside co-author); Milena Pantelić (R1047); Ljubomir Filipović (R0579).\nKeywords: long-term monitoring; ESP; organic matter; aggregate stability; re-alkalisation.\nA 15-year monitoring dataset (2001–2015) from a reclaimed solonetz site near Zrenjanin was used to analyse trajectories of pH, ESP, and aggregate stability following three amendment treatments: gypsum alone (10 t ha⁻¹), gypsum combined with green manure (5 t ha⁻¹ dry matter), and untreated control. Soil was sampled every three years at six depths to 120 cm. In the gypsum-only treatment, surface ESP declined from 28% to 11% by year six and stabilised near 14% at year fifteen, suggesting partial re-alkalisation from capillary Na ascent. The combined treatment maintained ESP below 12% throughout and yielded mean aggregate stability (wet sieving, MWD) 40% higher than gypsum alone after year nine. pH in the 60–90 cm layer remained above 9.2 in all treatments, confirming that single surface applications do not reclaim the subsoil alkalinity horizon within a 15-year window. Annual organic carbon inputs from crop residues were identified as the principal factor in sustaining surface-layer improvements.",
+    "researcherIds": [
+      "R0974",
+      "R1047",
+      "R0579"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-06717": {
+    "id": "SYN-PUB-06717",
+    "kind": "publication",
+    "title": "Impact of inter-annual rainfall variability on rainfed maize water stress in Vojvodina: a 30-year simulation study",
+    "text": "Impact of inter-annual rainfall variability on rainfed maize water stress in Vojvodina: a 30-year simulation study (2019, journal, Journal of Irrigation and Drainage Engineering).\nAuthors: Borivoj Pejić (outside co-author); Ljubomir Filipović (R0579); Milena Pantelić (R1047); Mirjam Vuković (outside co-author); Vladana Erić (R0967); Dragan Milošević (outside co-author).\nKeywords: maize; water stress; SPEI; AquaCrop; rainfed agriculture; Vojvodina.\nLong-term records from four synoptic stations in Vojvodina (1986–2015) were used to drive the AquaCrop model for rainfed maize in order to quantify inter-annual variability in crop water stress. The 30-year simulation showed that water stress during silking (growth stage GS-2) occurred in more than 60% of years at the most southern station (Sombor), compared to 42% at the northern station (Subotica). Mean simulated yield under rainfed conditions ranged from 5.9 t/ha (Sombor, dry years) to 9.4 t/ha (Subotica, wet years). The relationship between the standardised precipitation-evapotranspiration index (SPEI-3 for June–August) and simulated relative yield loss was statistically significant (r = −0.71, p < 0.001), confirming the utility of SPEI as a proxy indicator for irrigation need assessments at the planning level. Results suggest that supplemental irrigation of 60–80 mm applied at silking would reduce yield losses by approximately 35% in dry years.",
+    "researcherIds": [
+      "R0579",
+      "R1047",
+      "R0967"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-06971": {
+    "id": "SYN-PUB-06971",
+    "kind": "publication",
+    "title": "Regional Flood Frequency Analysis of Small Ungauged Catchments in the Bačka Plain Using L-Moments",
+    "text": "Regional Flood Frequency Analysis of Small Ungauged Catchments in the Bačka Plain Using L-Moments (2011, journal, Journal of Hydrology and Hydromechanics).\nAuthors: Momčilo Pekez (R0608); Dragan Miloradović (outside co-author); Slavica Tomić (outside co-author).\nKeywords: L-moments; regional frequency analysis; ungauged catchments; Vojvodina; generalised logistic distribution.\nFlood frequency estimation for ungauged basins in the flat agricultural landscape of Vojvodina is constrained by sparse gauging networks and short record lengths. This study applies L-moment-based regional frequency analysis to 34 small catchments (areas 15–320 km²) across the Bačka plain, grouping them into homogeneous regions through a combination of cluster analysis on catchment physiographic descriptors and the Hosking–Wallis discordancy test. The generalised logistic (GL) distribution was selected as the regional parent distribution based on L-kurtosis diagrams and Z-statistics. Regional growth curves were derived and validated against annual maximum instantaneous peak discharges from 1971 to 2008. The index-flood method was used to scale regional curves to individual sites via drainage area and mean annual precipitation regressions. For 100-year return periods, the regional estimates showed coefficient of variation reductions of 18–31% relative to at-site fitting. Uncertainty bounds were quantified by a 5000-iteration bootstrap procedure. The approach provides a transferable framework for ungauged design flood estimation in lowland agricultural drainage systems.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2011
+  },
+  "SYN-PUB-06974": {
+    "id": "SYN-PUB-06974",
+    "kind": "publication",
+    "title": "Non-Stationary Flood Frequency Analysis Using Time-Varying GEV Parameters: A Case Study on the Krivaja Sub-Catchment",
+    "text": "Non-Stationary Flood Frequency Analysis Using Time-Varying GEV Parameters: A Case Study on the Krivaja Sub-Catchment (2017, journal, Hydrological Sciences Journal).\nAuthors: Momčilo Pekez (R0608); Ildikó Fehér (outside co-author); Zbigniew Kundzewicz (outside co-author); Slavica Tomić (outside co-author).\nKeywords: non-stationary GEV; time-varying parameters; covariate selection; Krivaja catchment; SPEI.\nAccounting for non-stationarity in flood frequency analysis requires models in which distribution parameters are allowed to vary with time or climatic covariates. This study applies the time-varying GEV framework to a 54-year annual maximum discharge record (1961–2014) from the Krivaja sub-catchment, a 1 430 km² lowland watershed in central Vojvodina. Location and scale parameters are modelled as linear and log-linear functions of time, large-scale atmospheric indices (North Atlantic Oscillation, standardised precipitation evapotranspiration index), and local drainage area expansions. Models are fitted by maximum likelihood and compared via AIC and BIC. The best-fitting model incorporates a log-linear trend in the location parameter driven by SPEI-12. At the 100-year return level, non-stationary estimates for the period 2000–2014 are 14–22% higher than those from a stationary GEV fitted to the full record. Confidence intervals for non-stationary quantiles are derived by parametric bootstrap. The results illustrate both the promise and the sensitivity of covariate-driven non-stationary models to covariate selection in data-limited lowland settings.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-06976": {
+    "id": "SYN-PUB-06976",
+    "kind": "publication",
+    "title": "Bayesian Inference for GEV Flood Quantiles Under Non-Stationarity: Informative Priors from Regional Data",
+    "text": "Bayesian Inference for GEV Flood Quantiles Under Non-Stationarity: Informative Priors from Regional Data (2019, journal, Stochastic Environmental Research and Risk Assessment).\nAuthors: Momčilo Pekez (R0608); Ildikó Fehér (outside co-author); Dávid Kovács (outside co-author); Slavica Tomić (outside co-author).\nKeywords: Bayesian GEV; MCMC; informative priors; non-stationary flood quantiles; regional data pooling.\nBayesian approaches to flood frequency analysis allow incorporation of regional information through prior distributions, which is particularly valuable for short records. This paper presents a Bayesian GEV framework in which informative priors for shape and scale parameters are derived from regional L-moment estimates pooled across 28 stations in Vojvodina with records of 25–68 years. Markov Chain Monte Carlo sampling (Metropolis–Hastings algorithm, 100 000 iterations after 20 000 burn-in) is used to obtain posterior parameter distributions at 12 target sites. The non-stationary extension allows the location parameter to vary linearly with a 30-year running mean of April–June precipitation totals. Posterior predictive distributions for 50- and 100-year quantiles are compared with maximum likelihood GEV estimates and regional growth curve scaling. The Bayesian non-stationary model reduces 100-year quantile uncertainty by 19–27% relative to at-site ML fitting for records shorter than 30 years. The sensitivity of posteriors to prior specification is evaluated with a weakly informative Cauchy prior alternative.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-06977": {
+    "id": "SYN-PUB-06977",
+    "kind": "publication",
+    "title": "Sensitivity of Flood Frequency Estimates to Catchment Delineation Errors in Flat Terrain: Vojvodina Lowlands",
+    "text": "Sensitivity of Flood Frequency Estimates to Catchment Delineation Errors in Flat Terrain: Vojvodina Lowlands (2020, journal, Journal of Hydrology and Hydromechanics).\nAuthors: Momčilo Pekez (R0608); Nemanja Bošnjak (outside co-author); Miroslav Plavšić (outside co-author).\nKeywords: catchment delineation; DEM uncertainty; lidar; index flood; flat terrain.\nCatchment delineation in flat terrain is prone to error because small differences in DEM resolution and depression-filling algorithms propagate into significant changes in drainage area and shape descriptors. This study systematically evaluates how delineation uncertainty translates into uncertainty in index-flood estimates for 16 ungauged sub-catchments in Vojvodina. Four DEM sources are compared: SRTM 30 m, Copernicus DEM 10 m, national 5 m lidar-derived DEM, and a 2 m drone-survey DEM over a 180 km² test area. Drainage area discrepancies between SRTM and lidar delineations range from 4% to 31%, with largest errors in catchments smaller than 50 km². These area differences translate to 6–24% changes in index-flood estimates under the regional regression equation derived from 34 gauged catchments. The lidar-derived DEM reduces mean delineation error to below 3% relative to field-surveyed boundaries. Practical recommendations are given for DEM selection in drainage planning studies under Serbian regulatory frameworks.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-06978": {
+    "id": "SYN-PUB-06978",
+    "kind": "publication",
+    "title": "Climate Change Projections for Extreme Precipitation and Flood Frequencies in Vojvodina: Ensemble Downscaling from EURO-CORDEX",
+    "text": "Climate Change Projections for Extreme Precipitation and Flood Frequencies in Vojvodina: Ensemble Downscaling from EURO-CORDEX (2021, journal, Climate Dynamics).\nAuthors: Cristian Moldovan (outside co-author); Ildikó Fehér (outside co-author); Anastazija Vuković (outside co-author); Momčilo Pekez (R0608); Katrin Müller (outside co-author).\nKeywords: EURO-CORDEX; quantile delta mapping; HBV model; RCP scenarios; future flood quantiles.\nCredible projections of future flood frequencies require downscaled climate model output that preserves the tail behaviour of precipitation distributions. This study uses a 12-member EURO-CORDEX ensemble (EUR-11, RCP4.5 and RCP8.5) to drive a semi-distributed rainfall–runoff model (HBV-light) calibrated for five representative Vojvodina catchments covering the range of soil types and drainage densities in the province. Bias correction is applied using quantile delta mapping, which preserves projected changes in extreme quantiles better than standard quantile mapping. For the period 2071–2100, ensemble median 100-year flood quantiles increase by 11–28% under RCP8.5 relative to a 1971–2000 baseline, with inter-model spread spanning −5% to +46%. Under RCP4.5, the median increase is 6–17%. Changes are smallest in the northern Bačka sub-catchments with high groundwater influence and largest in the tile-drained Srem catchments. Uncertainty decomposition attributes approximately 55% of total spread to model structure, 30% to internal variability, and 15% to scenario choice at the 2080s horizon.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-06979": {
+    "id": "SYN-PUB-06979",
+    "kind": "publication",
+    "title": "Stochastic Simulation of Synthetic Flood Event Series for Drainage Infrastructure Stress-Testing in Vojvodina",
+    "text": "Stochastic Simulation of Synthetic Flood Event Series for Drainage Infrastructure Stress-Testing in Vojvodina (2022, journal, Advances in Water Resources).\nAuthors: Momčilo Pekez (R0608); Dávid Kovács (outside co-author); Nemanja Bošnjak (outside co-author).\nKeywords: stochastic flood simulation; Gaussian copula; drainage network; stress testing; infrastructure planning.\nDrainage infrastructure design in Vojvodina conventionally relies on a single design flood derived from frequency analysis. This study develops a stochastic event-based generator that produces long synthetic annual maximum series (10 000 years) preserving observed first and second moments, L-skewness, and inter-annual autocorrelation structure. The generator couples a Gaussian copula to marginal GEV distributions fitted individually to 22 catchments, thus reproducing spatial dependence in concurrent flood peaks across the drainage network. The synthetic series are used to stress-test a 14-node drainage canal network under current design capacity and two upgrade scenarios. Results show that the 1% annual exceedance probability event causes capacity exceedance at 6 of 14 nodes under current infrastructure, rising to 9 nodes if 100-year quantiles increase by 20% as projected under RCP8.5. Upgrade scenario 2, which enlarges the three highest-flow bottleneck reaches, reduces exceedance nodes to 2 under the climate-adjusted series. The framework provides a transparent basis for probabilistic infrastructure investment prioritisation.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06980": {
+    "id": "SYN-PUB-06980",
+    "kind": "publication",
+    "title": "Flood Frequency Analysis Methods for Agricultural Drainage Systems: A Comparative Review for Practitioners in the Pannonian Basin",
+    "text": "Flood Frequency Analysis Methods for Agricultural Drainage Systems: A Comparative Review for Practitioners in the Pannonian Basin (2023, book chapter, Flood Risk and Agricultural Drainage in the Pannonian Region, Springer Water (edited volume)).\nAuthors: Momčilo Pekez (R0608); Dávid Kovács (outside co-author); Miroslav Plavšić (outside co-author).\nKeywords: flood frequency methods; Pannonian Basin; drainage design; regulatory practice; decision support.\nPractitioners in the Pannonian Basin face practical choices between stationary and non-stationary methods, at-site and regional approaches, and classical and Bayesian estimation when conducting flood frequency analysis for drainage design. This book chapter provides a structured comparison of seven methods with respect to data requirements, computational burden, regulatory compatibility, and performance under short records and non-stationarity. Methods are illustrated using worked examples from Vojvodina and Hungarian drainage case studies. The discussion addresses the gap between research advances and the methods permitted under current Serbian and Hungarian design standards, which still require stationary GEV or Pearson III fitting in most regulatory contexts. Guidance is given on when non-stationary or regional methods are justified by record length and detected non-stationarity, and how their outputs can be presented to regulators. The chapter concludes with a decision flowchart intended for engineers without specialist statistical training.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-06981": {
+    "id": "SYN-PUB-06981",
+    "kind": "publication",
+    "title": "Record-Length Effects on L-Moment Ratio Diagrams for Identifying Flood Frequency Distributions: A Simulation Study",
+    "text": "Record-Length Effects on L-Moment Ratio Diagrams for Identifying Flood Frequency Distributions: A Simulation Study (2024, journal, Journal of Hydrology).\nAuthors: Momčilo Pekez (R0608); Ildikó Fehér (outside co-author); Zbigniew Kundzewicz (outside co-author).\nKeywords: L-moment ratio diagram; record length; Monte Carlo simulation; distribution selection; regional analysis.\nL-moment ratio diagrams are widely used to identify the best-fitting parent distribution for annual maximum flood series, but their reliability degrades for short records. This simulation study quantifies sampling variability on L-skewness–L-kurtosis diagrams for five candidate distributions (GL, GEV, GNO, PE3, Wakeby) across record lengths of 15, 25, 40, and 60 years using 20 000 Monte Carlo replicates per combination. For n = 15, the 90% confidence ellipses of all five distributions overlap substantially, making unambiguous selection impractical. At n = 40, GL and GEV can be distinguished with about 70% power when the true distribution is GL with shape parameter k = −0.15. Practical implications for the 18–35-year records typical of Vojvodina drainage stations are evaluated: at these lengths, regional pooling of L-moment ratios across homogeneous groups is more reliable than at-site diagram fitting. Recommended minimum homogeneous-region sizes as a function of target discrimination power are tabulated.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-06982": {
+    "id": "SYN-PUB-06982",
+    "kind": "publication",
+    "title": "Towards a Continuous Probability Framework for Agricultural Drainage Failure Risk in Vojvodina Under Changing Flood Regimes",
+    "text": "Towards a Continuous Probability Framework for Agricultural Drainage Failure Risk in Vojvodina Under Changing Flood Regimes (2026, preprint, EarthArXiv).\nAuthors: Momčilo Pekez (R0608); Ildikó Fehér (outside co-author); Katrin Müller (outside co-author); Luka Radovanović (outside co-author).\nKeywords: agricultural drainage risk; non-stationary Poisson model; expected annual damage; R package; climate change.\nAgricultural drainage failure causes direct crop losses and soil saturation damage that accumulate over multiple flood seasons. This preprint proposes a continuous risk framework in which annual drainage exceedance probability is treated as a time-varying quantity driven by non-stationary flood frequency estimates and projected shifts in the seasonal distribution of peak flows under climate change. A Poisson arrival model with non-stationary rate parameter is coupled to a crop loss function calibrated from reported drainage failure events in Vojvodina between 1990 and 2022. Three damage metrics are computed: expected annual damage (EAD), probability of at least one drainage exceedance in a 10-year planning horizon, and value-at-risk at the 95th percentile of annual loss. Under RCP8.5 mid-century conditions, EAD increases by 31–44% relative to the stationary baseline. The framework is implemented in a publicly available R package (PannonDrainRisk) with documented functions for non-stationary rate estimation, copula-based spatial dependence, and damage aggregation across network nodes. Results are preliminary pending peer review.",
+    "researcherIds": [
+      "R0608"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-06983": {
+    "id": "SYN-PUB-06983",
+    "kind": "publication",
+    "title": "Calibration of the AquaCrop model for sunflower under deficit irrigation conditions in the Pannonian Plain",
+    "text": "Calibration of the AquaCrop model for sunflower under deficit irrigation conditions in the Pannonian Plain (2016, journal, Agricultural Water Management).\nAuthors: Milena Pantelić (R1047); Momčilo Pekez (R0608); Atila Bezdan (outside co-author); Péter Kovács (outside co-author); Ljiljana Đurđić (outside co-author).\nKeywords: AquaCrop; sunflower; deficit irrigation; canopy cover; Pannonian Plain.\nAquaCrop (FAO version 6.1) was calibrated and validated for sunflower (Helianthus annuus L.) using three seasons of field trial data (2012–2014) collected at the experimental station in Rimski Šančevi, Serbia. Four deficit irrigation treatments (100%, 75%, 50%, and 25% of full irrigation dose) were applied in a randomised block design across twelve plots. Canopy cover, soil water content (measured with FDR probes at 20, 40, and 60 cm depth), and final biomass and seed yield were used for model calibration. After calibration, the model reproduced observed yield with a root mean square error of 0.31 t/ha and an index of agreement of 0.94 across validation treatments. Simulated soil water depletion at the 0–60 cm layer matched gravimetric measurements within ±12 mm. The calibrated parameter set is suitable for seasonal scheduling exercises in the northern Serbian lowlands and is provided in full as supplementary material.",
+    "researcherIds": [
+      "R1047",
+      "R0608"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-06984": {
+    "id": "SYN-PUB-06984",
+    "kind": "publication",
+    "title": "Comparison of two low-cost soil moisture sensor networks for irrigation scheduling support in sugar beet production",
+    "text": "Comparison of two low-cost soil moisture sensor networks for irrigation scheduling support in sugar beet production (2023, journal, Computers and Electronics in Agriculture).\nAuthors: Milena Pantelić (R1047); Aleksandra Nišević (outside co-author); Tomáš Šimůnek (outside co-author); Momčilo Pekez (R0608).\nKeywords: soil moisture sensors; capacitance sensors; irrigation scheduling; sugar beet; sensor drift.\nTwo commercially available low-cost capacitance sensor systems (FieldSens-200 and AgroMoist Pro, both fictional) were evaluated against a gravimetric reference and a calibrated FDR system over one full sugar beet growing season (April–October 2022) on a Calcic Chernozem soil in Bačka. Each system was installed in three plots with six sensors per plot at depths of 20, 40, and 60 cm. Sensor readings were logged at 30-minute intervals and transmitted via GSM to a cloud platform. Against the gravimetric reference, the FieldSens-200 yielded a mean absolute error (MAE) of 0.028 m³/m³, while AgroMoist Pro showed MAE of 0.041 m³/m³. Both systems tracked depletion dynamics sufficiently to trigger irrigation at the 50% allowable depletion threshold within ±1 day of the reference schedule in 78% and 64% of cases, respectively. Sensor drift of up to 0.015 m³/m³ was observed after 90 days for AgroMoist Pro, requiring periodic re-calibration. The results provide a practical basis for cost–benefit selection of sensor technology for precision irrigation management on medium-sized farms.",
+    "researcherIds": [
+      "R1047",
+      "R0608"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-06985": {
+    "id": "SYN-PUB-06985",
+    "kind": "publication",
+    "title": "Long-term phosphorus accumulation in sediments of a constructed wetland treating tile drainage: implications for system renewal",
+    "text": "Long-term phosphorus accumulation in sediments of a constructed wetland treating tile drainage: implications for system renewal (2021, journal, Ecological Engineering and Environmental Technology).\nAuthors: Vladana Erić (R0967); Anita Kovačević (outside co-author); Momčilo Pekez (R0608); Tomáš Vymazal (outside co-author); Stefan Milošević (outside co-author).\nKeywords: phosphorus fractionation; sediment accumulation; substrate renewal; long-term performance; phosphorus release.\nSediment cores were extracted from a 12-year-old HSSF-CW at the Rimski Šančevi station to characterise phosphorus fractionation and estimate residual sorption capacity. Sequential extraction following the Psenner–Bostrom procedure distinguished loosely bound, iron-associated, aluminium-associated, and calcium-associated phosphorus fractions. Total sediment phosphorus increased from an initial value of 180 mg P kg⁻¹ (fresh gravel reference) to 2,340 mg P kg⁻¹ in the most loaded inlet zone. Iron-associated fractions dominated (52–61% of total P) in the upper 10 cm. Residual sorption capacity estimated from Freundlich isotherms on intact sediment samples was less than 15% of original in the inlet third of the bed, compared with 63% in the outlet third. Annual phosphorus mass balance indicated the wetland had entered a net phosphorus release phase in years 10–12 under elevated summer temperatures. These results indicate a need to define substrate renewal intervals and point to inlet-zone hot-spots as priority targets for partial media replacement.",
+    "researcherIds": [
+      "R0967",
+      "R0608"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-07490": {
+    "id": "SYN-PUB-07490",
+    "kind": "publication",
+    "title": "Evapotranspiration-based irrigation scheduling for sugar beet on chernozem",
+    "text": "Evapotranspiration-based irrigation scheduling for sugar beet on chernozem (2023, journal, Agricultural Water Use).\nAuthors: Nenad Ilić (R0662); Mirjana Dobričević (outside co-author); Slobodan Vuković (outside co-author).\nAccurate irrigation scheduling is critical for maximising sugar beet yields while minimising water use on chernozem soils, which dominate the agricultural landscape of Vojvodina. This study evaluated a Penman–Monteith-based evapotranspiration (ET₀) model for generating irrigation recommendations across three growing seasons on experimental plots near Novi Sad. Reference evapotranspiration values were computed daily using meteorological data from an on-site automatic weather station and adjusted by crop coefficients (Kc) determined for local sugar beet cultivars at four distinct growth stages. Soil water status was monitored continuously using multi-depth capacitive probes to validate model outputs. Results demonstrated that ET-based scheduling reduced seasonal irrigation water application by 18–24% compared with calendar-based farmer practice, without a statistically significant reduction in root yield or sugar content. The irrigation scheduling algorithm was subsequently integrated into a web-based decision support tool accessible via mobile devices. The findings confirm that ET-driven scheduling is both technically feasible and economically advantageous for sugar beet production on chernozem, and provide locally calibrated Kc values that can be adopted directly by advisory services operating in the region.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-07491": {
+    "id": "SYN-PUB-07491",
+    "kind": "publication",
+    "title": "Low-cost capacitive soil moisture probes: calibration across soil types",
+    "text": "Low-cost capacitive soil moisture probes: calibration across soil types (2021, journal, Sensors in Agronomy).\nAuthors: Nenad Ilić (R0662); Tatjana Krstović (outside co-author); Aleksandar Petrović (outside co-author).\nCapacitive soil moisture sensors offer a low-cost alternative to time-domain reflectometry (TDR) probes for continuous soil water monitoring, but their accuracy is strongly dependent on soil-specific calibration. This paper presents a systematic calibration procedure applied to a prototype capacitive probe across five soil types commonly encountered in Vojvodina: chernozem, humogley, sandy loam, silty clay loam, and saline solonetz. Laboratory calibration curves were developed by measuring probe output voltage against gravimetrically determined volumetric water content (VWC) across a range from air-dry to field saturation. Separate polynomial regression models were fitted for each soil type, and their coefficients of determination (R²) ranged from 0.94 to 0.98. Field validation was performed by co-locating calibrated capacitive probes with TDR probes in irrigated maize and sunflower plots. Mean absolute error across all soil types was below 0.024 m³ m⁻³, which is sufficient for practical irrigation scheduling applications. The study also assessed probe performance at three installation depths (15, 35, and 60 cm), confirming that calibration coefficients must be depth-specific in stratified soil profiles. The calibration methodology described here is directly applicable to the multi-depth probe array described in the authors' associated patent.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-07492": {
+    "id": "SYN-PUB-07492",
+    "kind": "publication",
+    "title": "Deficit irrigation of vegetables in a changing climate",
+    "text": "Deficit irrigation of vegetables in a changing climate (2020, conference, Conference on Sustainable Field Crops).\nAuthors: Dragana Simić (outside co-author); Nenad Ilić (R0662); Jovana Marković (outside co-author).\nDeficit irrigation—deliberate application of water below full crop evapotranspiration demand—is increasingly proposed as a strategy for adapting vegetable production to reduced water availability under climate change scenarios. This conference paper synthesises three years of field trial data from pepper, tomato, and courgette crops grown under regulated deficit irrigation (RDI) in an open-field system in northern Serbia. Treatments ranged from 100% ET replacement (full irrigation) to 50% ET replacement applied at different phenological stages. Yield, water use efficiency (WUE), and selected quality parameters were measured for each combination. Results indicated that mild deficit (70–80% ET) applied during vegetative growth stages did not significantly reduce marketable yield of pepper or courgette, whereas tomato showed greater sensitivity, particularly during fruit set. WUE improved by up to 31% under the best-performing deficit regime relative to full irrigation. Climate projections for the Pannonian Plain suggest that summer precipitation deficits will intensify, making deficit irrigation protocols an essential component of future farm adaptation strategies. Practical guidelines for deficit scheduling using inexpensive sensor-based feedback are proposed.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-07493": {
+    "id": "SYN-PUB-07493",
+    "kind": "publication",
+    "title": "A smartphone-based decision support application for real-time irrigation scheduling in smallholder vegetable production",
+    "text": "A smartphone-based decision support application for real-time irrigation scheduling in smallholder vegetable production (2022, journal, Computers and Electronics in Agriculture Reports).\nAuthors: Nenad Ilić (R0662); Tatjana Krstović (outside co-author); Branislav Ostojić (outside co-author); Mirjana Dobričević (outside co-author).\nKeywords: decision support system; irrigation scheduling; smartphone application; smallholder; Penman–Monteith.\nSmallholder vegetable growers frequently lack access to reliable, timely irrigation advice, resulting in both over- and under-irrigation with associated yield and water losses. This paper describes the design, implementation, and on-farm evaluation of IrriAdvisor, a smartphone application that delivers real-time irrigation recommendations based on a combined ET-model and soil moisture feedback loop. The application retrieves daily meteorological data from a national weather service API and calculates crop-specific water demand using locally calibrated Penman–Monteith equations. Users can supplement model outputs with readings from low-cost capacitive soil moisture probes connected via Bluetooth to the mobile device. Recommendations are expressed as practical irrigation volumes and timing windows. Field evaluation was conducted across 14 smallholder farms in Vojvodina growing pepper, onion, and cucumber over a single growing season. Farmers using IrriAdvisor reduced water application by 21% on average compared with a control group, while marketable yields were statistically equivalent or higher. User acceptance surveys indicated high satisfaction with interface simplicity and notification reliability. The application architecture is described in sufficient detail to support replication and adaptation in other semi-arid regions with comparable data infrastructure.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-07494": {
+    "id": "SYN-PUB-07494",
+    "kind": "publication",
+    "title": "Drip versus furrow irrigation of processing tomato: water productivity, yield components, and soil water distribution",
+    "text": "Drip versus furrow irrigation of processing tomato: water productivity, yield components, and soil water distribution (2022, journal, Irrigation and Drainage Science).\nAuthors: Nenad Ilić (R0662); Slobodan Vuković (outside co-author); Dragana Simić (outside co-author).\nKeywords: drip irrigation; furrow irrigation; processing tomato; water productivity; soil water distribution.\nProcessing tomato is an economically significant crop in Vojvodina, yet comparative data on drip and furrow irrigation systems under local edaphoclimatic conditions remain limited. A two-season field experiment compared subsurface drip irrigation (SDI), surface drip irrigation (DI), and furrow irrigation (FI) at two water supply levels (100% and 80% ET replacement) on a chernozem soil. Soil water distribution was mapped weekly using a multi-depth capacitive probe array installed at representative locations within each treatment. Yield components—fruit number per plant, average fruit weight, and total marketable yield—as well as lycopene content and dry matter were measured at harvest. SDI achieved the highest water productivity (8.4 kg m⁻³) and uniform soil water distribution, while FI showed the highest deep percolation losses estimated from soil water balance calculations. Under the 80% ET treatment, SDI yield was not significantly different from full-irrigation SDI, suggesting strong potential for deficit management with this system. Energy requirements for pumping were also assessed and found to favour surface DI for small farm units. The results support a transition from furrow to drip systems as a water-saving strategy for the processing tomato sector.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-07495": {
+    "id": "SYN-PUB-07495",
+    "kind": "publication",
+    "title": "Calibration and long-term stability of a multi-depth capacitive soil moisture probe array under field conditions",
+    "text": "Calibration and long-term stability of a multi-depth capacitive soil moisture probe array under field conditions (2023, journal, Biosystems Engineering).\nAuthors: Nenad Ilić (R0662); Tatjana Krstović (outside co-author); Aleksandar Petrović (outside co-author).\nKeywords: soil moisture sensor; sensor drift; capacitive probe; field calibration; long-term stability.\nThe long-term reliability of capacitive soil moisture probes is a critical concern for continuous irrigation monitoring systems. This paper reports an 18-month field stability assessment of the capacitive multi-depth probe array described in patent SYN-PAT-001, installed in a chernozem profile under irrigated sugar beet and winter wheat rotation. Probe output was compared monthly against gravimetric sampling at corresponding depths (15, 35, and 60 cm). Drift in probe response was quantified using a linear drift model fitted to paired datasets, and a simple field recalibration procedure requiring only three gravimetric reference measurements was developed and tested. Drift rates were below 0.003 m³ m⁻³ per month at the 15 and 35 cm depths, but reached 0.007 m³ m⁻³ per month at 60 cm, attributed to seasonal shrink-swell cycles in the subsoil. Temperature compensation using a co-located thermistor reduced residual drift by 62%. The recalibration procedure restored mean absolute error to below 0.020 m³ m⁻³ at all depths. These results demonstrate that the probe array is suitable for multi-season deployment with periodic recalibration and inform recommended maintenance protocols for commercial deployment of the sensor system.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-07496": {
+    "id": "SYN-PUB-07496",
+    "kind": "publication",
+    "title": "Towards IoT-enabled irrigation management: integration of wireless soil moisture sensor networks with cloud-based decision support",
+    "text": "Towards IoT-enabled irrigation management: integration of wireless soil moisture sensor networks with cloud-based decision support (2024, journal, Smart Agricultural Technology).\nAuthors: Nenad Ilić (R0662); Branislav Ostojić (outside co-author); Mirjana Dobričević (outside co-author); Lazar Filipović (outside co-author).\nKeywords: IoT; LoRaWAN; irrigation automation; soil moisture sensor network; cloud decision support.\nThe proliferation of low-cost wireless sensor nodes and cloud computing platforms creates new opportunities for scalable, automated irrigation management at the farm level. This paper presents an architecture for integrating a network of capacitive soil moisture sensor nodes with a cloud-based irrigation decision support engine. Each node transmits volumetric water content readings at configurable intervals over a LoRaWAN protocol to a gateway, from which data are forwarded to a cloud platform for storage, visualisation, and scheduling computation. The scheduling engine combines incoming sensor data with ET₀ forecasts derived from a regional numerical weather prediction model to issue valve-control commands to a drip irrigation controller via MQTT messaging. The system was deployed at a 4-hectare experimental plot at the Faculty of Agriculture, University of Novi Sad, and operated continuously for one full growing season of sugar beet. Automated scheduling reduced irrigation labour time by approximately 85% compared with manual sensor reading and scheduling. Water savings of 17% were achieved relative to a sensor-monitored manual scheduling control. Latency, packet loss, and battery consumption of sensor nodes are characterised, and design recommendations for scaling the architecture to larger farms are discussed.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-07497": {
+    "id": "SYN-PUB-07497",
+    "kind": "publication",
+    "title": "Crop coefficient determination for sugar beet under drip irrigation in the Pannonian Plain",
+    "text": "Crop coefficient determination for sugar beet under drip irrigation in the Pannonian Plain (2021, journal, Agricultural Water Management).\nAuthors: Nenad Ilić (R0662); Slobodan Vuković (outside co-author); Jovana Marković (outside co-author).\nKeywords: crop coefficient; sugar beet; evapotranspiration; FAO-56; drip irrigation.\nLocally determined crop coefficients (Kc) are essential inputs for evapotranspiration-based irrigation scheduling, yet published FAO-56 values may not adequately represent cultivar performance and micro-climate in the Pannonian Plain. This study determined single and dual crop coefficients for four commercially grown sugar beet cultivars under drip-irrigated conditions across two experimental sites on chernozem in Vojvodina. Actual crop evapotranspiration (ETc) was measured using a soil water balance approach supported by continuous multi-depth soil moisture monitoring. Reference ET₀ was calculated from an automatic weather station. Kc values were derived for four growth stages: initial, development, mid-season, and late season. The locally determined mid-season Kc ranged from 1.17 to 1.23 across cultivars, exceeding the FAO-56 tabulated value of 1.05 by 11–17%. Using locally derived Kc values in the scheduling algorithm reduced irrigation over-application by 14% without yield penalty. The dual Kc approach, separating basal crop and soil evaporation components, provided additional accuracy during canopy development phases. A simple lookup table of locally calibrated Kc values by growth stage and cultivar group is provided for immediate use by agricultural advisors.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-07498": {
+    "id": "SYN-PUB-07498",
+    "kind": "publication",
+    "title": "Effects of regulated deficit irrigation at critical growth stages on sunflower yield and oil content in semi-arid conditions",
+    "text": "Effects of regulated deficit irrigation at critical growth stages on sunflower yield and oil content in semi-arid conditions (2020, journal, Field Crops Research).\nAuthors: Dragana Simić (outside co-author); Nenad Ilić (R0662); Mirjana Dobričević (outside co-author).\nKeywords: sunflower; deficit irrigation; regulated deficit irrigation; oil content; water use efficiency.\nSunflower is among the most drought-tolerant field crops cultivated in Vojvodina, yet supplemental irrigation during critical growth stages can substantially improve both yield and oil content. This paper investigates the effects of regulated deficit irrigation (RDI) applied selectively at four growth stages—vegetative, bud formation, flowering, and grain filling—on yield components and seed oil content of a mid-maturity sunflower hybrid. A split-plot factorial experiment was conducted over three growing seasons at an experimental station near Zrenjanin. Deficit levels of 100%, 75%, and 50% ET replacement were applied at each stage, while other stages received full irrigation. Water use efficiency and oil yield per unit area were used as primary performance indices. Deficit irrigation at the vegetative stage had the smallest yield penalty, while deficit at flowering caused a 19–27% reduction in achene yield regardless of the water level tested. Oil content showed greater resilience, declining significantly only under the most severe deficit at flowering. The study concludes that sunflower irrigation strategies should protect the flowering stage and may safely reduce water application during vegetative growth, providing practical guidance for farmers facing water allocation constraints.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-07499": {
+    "id": "SYN-PUB-07499",
+    "kind": "publication",
+    "title": "Precision irrigation in field crops: a review of sensor-based feedback systems and decision support frameworks applicable to Vojvodina",
+    "text": "Precision irrigation in field crops: a review of sensor-based feedback systems and decision support frameworks applicable to Vojvodina (2023, journal, European Journal of Agronomy Reviews).\nAuthors: Nenad Ilić (R0662); Tatjana Krstović (outside co-author); Aleksandar Petrović (outside co-author); Jovana Marković (outside co-author).\nKeywords: precision irrigation; soil moisture sensors; decision support systems; review; Vojvodina.\nPrecision irrigation represents a convergence of sensor technology, data analytics, and agronomy aimed at delivering the right amount of water to the right location at the right time. This review systematically examines published sensor-based feedback systems and decision support frameworks for field crop irrigation, with a focus on applicability to the Pannonian Plain agro-ecological context. Technologies reviewed include capacitive and TDR soil moisture sensors, electromagnetic induction soil mapping, UAV-mounted thermal cameras for crop water stress indices, and lysimeter-based evapotranspiration measurement. Decision support frameworks are evaluated across three categories: threshold-based scheduling, model-driven scheduling, and machine learning-assisted forecasting. Strengths and limitations of each approach are assessed in terms of data requirements, cost, scalability, and suitability for smallholder versus large commercial operations. A gap analysis identifies the limited availability of locally validated crop coefficient databases and the absence of standardised sensor calibration protocols for Vojvodina's diverse soil types as key barriers to adoption. The review concludes with a research agenda prioritising low-cost IoT sensor integration, open-access scheduling tools, and participatory co-design with farmers and advisory services.",
+    "researcherIds": [
+      "R0662"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08409": {
+    "id": "SYN-PUB-08409",
+    "kind": "publication",
+    "title": "Early-season maize yield prediction from Sentinel-2 time series at parcel level",
+    "text": "Early-season maize yield prediction from Sentinel-2 time series at parcel level (2024, journal, Journal of Applied Earth Observation in Agriculture).\nAuthors: Milica Stanković (R0765); Dragan Petković (outside co-author); Sonja Vukić (outside co-author); Lars Meinhardt (outside co-author).\nAccurate early-season prediction of maize yield is critical for guiding agronomic decisions and regional food-security planning. This study presents a machine learning framework that ingests dense Sentinel-2 time-series data collected from early April through late June to generate parcel-level yield forecasts across 1,200 fields in the Vojvodina region of northern Serbia. Vegetation indices derived from ten spectral bands, including NDVI, EVI, and red-edge chlorophyll index, were computed at five-day intervals and used as input features to a gradient-boosted tree ensemble. Phenological curve fitting was applied to handle cloud-contaminated observations, retaining 87 % of parcels without manual gap-filling. Cross-validation on independent parcels yielded an RMSE of 0.41 t/ha and an R² of 0.83. Importantly, forecast skill was already statistically significant six weeks before anthesis, giving farmers and agricultural insurers a meaningful planning window. Sensitivity analysis showed that red-edge band combinations contributed most to prediction accuracy, outperforming traditional broadband indices. The approach was validated against official municipal yield statistics, confirming its scalability from field to regional scale. These findings support operational integration of Sentinel-2 time series into national crop-monitoring systems.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-08410": {
+    "id": "SYN-PUB-08410",
+    "kind": "publication",
+    "title": "Hyperspectral indices for nitrogen stress in winter wheat under variable irrigation",
+    "text": "Hyperspectral indices for nitrogen stress in winter wheat under variable irrigation (2023, journal, Precision Farming Letters).\nAuthors: Milica Stanković (R0765); Tamara Ilić (outside co-author); Nikola Đorđević (outside co-author); Petra Varga (outside co-author).\nNitrogen stress is a primary limiter of winter wheat productivity, yet its early detection remains challenging with broadband multispectral sensors. This study evaluates a set of hyperspectral indices computed from airborne imaging spectroscopy data acquired over experimental plots in Vojvodina subjected to four irrigation regimes and three nitrogen application rates. Fifteen candidate indices spanning the visible, red-edge, and short-wave infrared regions were assessed for their sensitivity to leaf nitrogen concentration measured destructively at tillering, stem elongation, and heading stages. Results showed that indices combining reflectance near 705 nm and 750 nm consistently outperformed chlorophyll-based broadband proxies, especially under moderate water deficit conditions where the interaction between nitrogen and water stress confounds standard NDVI-based estimates. A partial least squares regression model trained on the full hyperspectral dataset achieved a cross-validated RMSE of 1.8 g N kg⁻¹ dry mass. Critically, model performance degraded only modestly when inputs were resampled to the spectral resolution of the upcoming HyperSERB spaceborne instrument, suggesting a viable path to operational mapping. These results have direct implications for variable-rate nitrogen management in precision farming systems.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08411": {
+    "id": "SYN-PUB-08411",
+    "kind": "publication",
+    "title": "Fusing radar and optical imagery for soil moisture mapping in the Pannonian plain",
+    "text": "Fusing radar and optical imagery for soil moisture mapping in the Pannonian plain (2022, conference, International Symposium on Agricultural Remote Sensing).\nAuthors: Milica Stanković (R0765); Uroš Marković (outside co-author); Zoltán Fehér (outside co-author); Claudia Reiter (outside co-author).\nMapping soil moisture at high spatial resolution over large agricultural areas requires the complementary strengths of synthetic aperture radar and optical Earth observation. This paper presents a data-fusion workflow that combines Sentinel-1 C-band backscatter with Sentinel-2 surface reflectance to estimate volumetric soil moisture content across the Pannonian plain. The approach uses a change-detection algorithm applied to multi-temporal Sentinel-1 imagery to isolate the soil moisture signal from vegetation and surface roughness contributions, with Sentinel-2 derived vegetation indices used to constrain the vegetation correction. Validation against a network of 24 in-situ TDR sensors distributed across arable fields in Serbia and Hungary showed a root-mean-square error of 0.034 m³/m³ and a correlation coefficient of 0.79. Spatial patterns were consistent with topographic wetness index maps and irrigation scheduling records. The ten-metre fusion product outperformed standalone radar retrievals, particularly during the growing season when canopy effects are strongest. Operational daily latency of the processing chain was demonstrated using cloud-based infrastructure, making the product suitable for near-real-time agricultural advisory services.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08412": {
+    "id": "SYN-PUB-08412",
+    "kind": "publication",
+    "title": "Transfer learning for crop type maps when labels are scarce",
+    "text": "Transfer learning for crop type maps when labels are scarce (2021, journal, Remote Sensing Methods).\nAuthors: Bojana Filipović (outside co-author); Milica Stanković (R0765); Mihajlo Lazić (outside co-author); Andrej Kovač (outside co-author).\nSupervised crop type mapping with satellite imagery typically requires large quantities of geolocated field labels, a resource that is costly and temporally limited. This paper investigates the application of transfer learning to reduce label requirements for crop type classification in data-scarce target regions using multi-temporal Sentinel-2 imagery. A convolutional neural network pre-trained on a densely labelled source domain in central Hungary is fine-tuned with progressively smaller labelled subsets drawn from a target domain in northern Serbia. Classification accuracy for the six dominant crop types plateaued at a macro-averaged F1 score of 0.81 when only 5 % of the original target labels were used, compared to 0.76 achieved by a baseline random forest trained from scratch on the same reduced set. Domain adaptation was further improved by a novel spectral normalisation step that accounts for inter-regional differences in atmospheric correction residuals. Experiments with simulated label scarcity down to 50 labelled parcels demonstrate that the transfer approach remains viable even under extreme data poverty. The method generalises across two growing seasons, indicating robustness to phenological variability. These results offer a practical solution for extending crop mapping services into regions where systematic ground-truth collection programmes do not yet exist.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08413": {
+    "id": "SYN-PUB-08413",
+    "kind": "publication",
+    "title": "Sentinel-2 phenological metrics as predictors of sunflower oil content in Vojvodina",
+    "text": "Sentinel-2 phenological metrics as predictors of sunflower oil content in Vojvodina (2024, journal, European Journal of Agronomy and Remote Sensing).\nAuthors: Dragan Petković (outside co-author); Milica Stanković (R0765); Ana Veselinović (outside co-author); Markus Brenner (outside co-author).\nKeywords: sunflower; oil content; phenology metrics; Sentinel-2; random forest; Vojvodina.\nSunflower is a dominant oilseed crop in the Vojvodina region of Serbia, yet remote sensing-based prediction of grain quality traits such as oil content remains largely unexplored. This study examines whether land surface phenology metrics extracted from dense Sentinel-2 time series can serve as meaningful predictors of harvest-time oil content measured in a multi-year field trial dataset spanning 340 parcels. Seven phenological indicators—including the timing of maximum NDVI, the integrated growing season NDVI, and the rate of senescence-phase greenness decline—were derived using a double-logistic fitting procedure. A random forest regression model trained on these features achieved a leave-one-season-out RMSE of 1.9 percentage points for oil content and an R² of 0.71. Feature importance analysis highlighted the senescence rate and the timing of peak red-edge reflectance as the most informative predictors, consistent with physiological understanding of lipid accumulation dynamics. The model was also tested on an independent hold-out region in southern Banat, where performance degraded only marginally. These results suggest that Sentinel-2 phenological metrics can complement traditional crop scouting for quality-oriented precision management and downstream contract pricing in the oilseed value chain.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-08414": {
+    "id": "SYN-PUB-08414",
+    "kind": "publication",
+    "title": "Automated parcel boundary delineation from multi-temporal Sentinel-1 and Sentinel-2 imagery using graph-cut segmentation",
+    "text": "Automated parcel boundary delineation from multi-temporal Sentinel-1 and Sentinel-2 imagery using graph-cut segmentation (2023, journal, ISPRS Journal of Photogrammetry and Earth Observation).\nAuthors: Mihajlo Lazić (outside co-author); Milica Stanković (R0765); Uroš Marković (outside co-author); Giulia Tonetti (outside co-author).\nKeywords: parcel delineation; graph-cut segmentation; Sentinel-1; multi-temporal fusion; cadastral update.\nAccurate and up-to-date agricultural parcel boundaries are a fundamental prerequisite for precision agriculture services, subsidy administration, and crop area statistics. Existing cadastral datasets in the Western Balkans are often outdated or geometrically inconsistent with current land use, motivating automated boundary delineation directly from satellite imagery. This paper presents an end-to-end pipeline that fuses multi-temporal Sentinel-1 SAR coherence and Sentinel-2 NDVI stacks within a graph-cut segmentation framework to delineate parcel boundaries at ten-metre resolution. The method exploits the temporal contrast between crop rotation patterns in neighbouring parcels rather than relying solely on single-date spectral differences, making it robust to within-field heterogeneity. Evaluation against a manually digitised reference dataset of 4,800 parcels in Vojvodina yielded a boundary F1 score of 0.84 and a mean parcel area error of 3.2 %. Performance was superior to both single-date optical segmentation and standalone SAR-based methods. The automated boundaries proved sufficient for downstream crop type classification, reducing label mismatch errors by 18 % compared to cadastral polygon inputs. The pipeline is fully cloud-compatible and processes a 1,000 km² tile in under 20 minutes, demonstrating operational scalability.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08415": {
+    "id": "SYN-PUB-08415",
+    "kind": "publication",
+    "title": "Assessing drought stress in soybean using UAV-borne hyperspectral imaging and machine learning",
+    "text": "Assessing drought stress in soybean using UAV-borne hyperspectral imaging and machine learning (2023, journal, Biosystems Engineering).\nAuthors: Milica Stanković (R0765); Tamara Ilić (outside co-author); Jovana Rančić (outside co-author); Stephan Hübner (outside co-author).\nKeywords: drought stress; soybean; UAV hyperspectral; support vector regression; canopy water content.\nDrought stress in soybean causes significant yield penalties in continental climates such as that of the Pannonian plain, and its early detection is essential for timely irrigation triggering. This study presents a workflow combining UAV-borne hyperspectral imaging at five-centimetre ground sampling distance with supervised machine learning to map canopy water stress indices at the within-field scale. Imagery was acquired weekly over a 14-week growing season at an experimental station near Rimski Šančevi, Serbia, under four controlled deficit irrigation treatments. A support vector regression model trained on hyperspectral features selected by recursive feature elimination achieved a cross-validated R² of 0.87 for leaf relative water content and 0.82 for stomatal conductance estimated from concurrent porometry measurements. Short-wave infrared bands between 1,380 and 1,480 nm and the water absorption feature near 970 nm were the most discriminative spectral regions. Temporal trajectories of stress severity aligned well with volumetric soil moisture profiles from buried sensors, providing independent validation. Upscaling experiments demonstrated that the UAV-derived stress maps retained 74 % of their information content when resampled to the spatial resolution of simulated HyperSERB data, underpinning the relevance of the approach for future operational spaceborne monitoring.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08416": {
+    "id": "SYN-PUB-08416",
+    "kind": "publication",
+    "title": "Long-term trends in crop calendars across Vojvodina inferred from a 20-year Landsat time series",
+    "text": "Long-term trends in crop calendars across Vojvodina inferred from a 20-year Landsat time series (2022, journal, Agricultural and Forest Meteorology).\nAuthors: Milica Stanković (R0765); Sonja Vukić (outside co-author); Lars Meinhardt (outside co-author); Aleksandar Simić (outside co-author).\nKeywords: phenology trends; Landsat time series; climate change; Vojvodina; crop calendar.\nUnderstanding how crop phenology has shifted in response to climate change is essential for adaptive agricultural management in the Pannonian region. This study reconstructs 20-year trends in planting, peak growth, and harvest dates for the four dominant arable crops—maize, winter wheat, sunflower, and sugar beet—across Vojvodina, using a harmonised Landsat 5, 7, and 8 surface reflectance archive from 2000 to 2020. A robust double-logistic curve was fitted pixel-wise to annual NDVI trajectories, and phenological transition dates were derived at the parcel level using field-boundary polygons digitised from topographic maps. Statistically significant trends were found for all four crops: maize silking advanced by an average of 6.3 days per decade, while winter wheat heading advanced by 4.1 days per decade. These shifts correlated strongly with April–May temperature anomalies derived from regional gridded climate reanalysis data. Sugar beet exhibited the smallest phenological shifts, consistent with its flexible sowing window. Spatial heterogeneity in trend magnitude was partly explained by soil texture, with lighter sandy soils showing earlier and more pronounced advancement. These findings provide an empirical baseline for calibrating crop growth models under future climate scenarios and for redesigning crop rotation strategies in the region.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08417": {
+    "id": "SYN-PUB-08417",
+    "kind": "publication",
+    "title": "Semi-supervised contrastive learning for crop stress detection from satellite imagery with limited annotations",
+    "text": "Semi-supervised contrastive learning for crop stress detection from satellite imagery with limited annotations (2024, journal, IEEE Transactions on Geoscience and Remote Sensing).\nAuthors: Milica Stanković (R0765); Bojana Filipović (outside co-author); Nikola Đorđević (outside co-author); Rolf Steinmann (outside co-author).\nKeywords: contrastive learning; semi-supervised; crop stress detection; temporal transformer; Sentinel-2.\nLabelling crop stress events in satellite image time series is labour-intensive, as it requires field validation campaigns that are both costly and weather-dependent. This paper introduces a semi-supervised learning framework based on contrastive pre-training to detect multiple stress categories—drought, nutrient deficiency, and waterlogging—from Sentinel-2 multi-temporal imagery using a fraction of labelled examples. The model pre-trains a temporal transformer encoder on 800,000 unlabelled parcel time series from four Vojvodina counties by maximising agreement between augmented views of the same parcel. Fine-tuning with as few as 200 labelled stress events per class yields a macro-averaged F1 score of 0.77, compared to 0.61 for a fully supervised baseline trained on the same labelled subset. Ablation studies confirm that both the temporal attention mechanism and the augmentation strategy—which applies random cloud masking and band dropout—are critical to performance. The framework also generalises to an unseen Hungarian test region with minimal performance loss after five-shot domain adaptation. By dramatically reducing annotation requirements, this approach makes satellite-based crop stress monitoring accessible to national agricultural advisory services with limited resources for systematic field data collection.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-08418": {
+    "id": "SYN-PUB-08418",
+    "kind": "publication",
+    "title": "Remote sensing-based estimation of above-ground biomass in heterogeneous arable fields: a comparative benchmark",
+    "text": "Remote sensing-based estimation of above-ground biomass in heterogeneous arable fields: a comparative benchmark (2022, book chapter, Advances in Agricultural Remote Sensing: Methods and Applications (Springer)).\nAuthors: Milica Stanković (R0765); Uroš Marković (outside co-author); Claudia Reiter (outside co-author); Petra Varga (outside co-author).\nKeywords: above-ground biomass; retrieval benchmark; radiative transfer; Sentinel-1; Gaussian process regression.\nAbove-ground biomass is a key variable for carbon accounting, crop insurance, and site-specific fertilisation, yet benchmark comparisons of retrieval methods across diverse sensor configurations are lacking for Pannonian agroecosystems. This book chapter presents a systematic comparison of six retrieval approaches—empirical vegetation index regression, radiative transfer model inversion, Gaussian process regression, random forest, gradient boosting, and a hybrid physical-statistical method—applied to estimating above-ground dry biomass in wheat, maize, and rapeseed fields in Vojvodina. Input data span Sentinel-2 multispectral imagery, Sentinel-1 radar backscatter, and airborne hyperspectral imaging, enabling assessment of sensor-specific advantages. Ground-truth biomass was measured destructively at 312 sampling points across two growing seasons. Results show that the hybrid physical-statistical approach consistently outperforms purely empirical methods, achieving an overall RMSE of 420 kg/ha and reducing bias under extreme biomass conditions. Sentinel-1 contributed most to accuracy for maize at late growth stages when optical saturation limits multispectral retrievals. The chapter concludes with practical guidelines for selecting retrieval methods depending on available sensor data, computational resources, and accuracy requirements in operational agricultural monitoring contexts.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08419": {
+    "id": "SYN-PUB-08419",
+    "kind": "publication",
+    "title": "Towards operational yield gap assessment in Vojvodina using integrated Earth observation and crop simulation modelling",
+    "text": "Towards operational yield gap assessment in Vojvodina using integrated Earth observation and crop simulation modelling (2020, journal, Field Crops Research).\nAuthors: Milica Stanković (R0765); Dragan Petković (outside co-author); Zoltán Fehér (outside co-author); Ivana Ostojić (outside co-author).\nKeywords: yield gap; data assimilation; ensemble Kalman filter; crop simulation; precision agriculture.\nYield gaps—the difference between attainable and actual farm yields—represent the primary target for sustainable intensification of agriculture. Quantifying yield gaps at parcel resolution across a large region requires combining the spatial detail of satellite Earth observation with the physiological realism of process-based crop models. This paper presents a framework that assimilates Sentinel-2 leaf area index retrievals into the APSERNA crop simulation model via an ensemble Kalman filter to generate spatially explicit attainable yield surfaces for winter wheat and maize across Vojvodina. Satellite-derived actual yields from a calibrated spectral reflectance model serve as the observed counterpart. The yield gap was estimated at 1.8 t/ha for maize and 1.2 t/ha for wheat on average, with marked spatial clustering: gaps were largest in fields with heavy clay soils and absent drainage infrastructure. Hotspot analysis identified 14 % of the agricultural area as high-priority zones where management improvements could close more than 60 % of the gap. Sensitivity analysis showed that nitrogen management and sowing date were the dominant controllable drivers. The framework is designed to interface directly with national agricultural advisory portals, providing actionable, field-level recommendations.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-08420": {
+    "id": "SYN-PUB-08420",
+    "kind": "publication",
+    "title": "Cloud-native processing architectures for continental-scale agricultural remote sensing: lessons from the Pannonian AgriCloud experiment",
+    "text": "Cloud-native processing architectures for continental-scale agricultural remote sensing: lessons from the Pannonian AgriCloud experiment (2021, conference, Proceedings of the International Workshop on Cloud Platforms for Earth Observation).\nAuthors: Milica Stanković (R0765); Mihajlo Lazić (outside co-author); Andrej Kovač (outside co-author); Tomáš Blaho (outside co-author).\nKeywords: cloud-native; serverless; Sentinel; agricultural monitoring; scalability; Pannonian.\nThe shift from desktop-based to cloud-native processing is transforming operational agricultural remote sensing, yet published accounts of real-world deployment challenges for continental-scale workflows remain sparse. This conference paper reports lessons learned from the Pannonian AgriCloud experiment, in which a suite of Sentinel-1 and Sentinel-2 based agricultural monitoring products—covering crop type mapping, soil moisture, phenology, and yield forecasting—was deployed as a cloud-native service across a 200,000 km² domain spanning Serbia, Hungary, and Croatia. The architecture adopted a serverless function design with parallelised tile-level processing, an object storage backend, and a vector tile API for downstream client applications. End-to-end latency from Sentinel data availability to dashboard update was reduced from 48 hours in a prototype on-premise system to 4.2 hours in the cloud deployment. Bottlenecks were identified in the atmospheric correction step and in vector rendering of parcel-level outputs. Cost modelling showed that cloud processing became economically favourable over on-premise infrastructure at an annual processing volume exceeding 12,000 Sentinel-2 tiles. The paper discusses implications for national agricultural monitoring agencies and commercial precision agriculture service providers seeking scalable satellite analytics capacity.",
+    "researcherIds": [
+      "R0765"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-10775": {
+    "id": "SYN-PUB-10775",
+    "kind": "publication",
+    "title": "Procena referentne evapotranspiracije primenom metode FAO Penman-Monteith u uslovima ograničenih meteoroloških podataka u Vojvodini",
+    "text": "Procena referentne evapotranspiracije primenom metode FAO Penman-Monteith u uslovima ograničenih meteoroloških podataka u Vojvodini (2013, journal, Vodoprivreda – časopis za vodnu privredu Srbije).\nAuthors: Milena Pantelić (R1047); Dragan Milošević (outside co-author); Branislav Kurjački (outside co-author).\nKeywords: referentna evapotranspiracija; FAO Penman-Monteith; nedostajući meteorološki podaci; Vojvodina.\nMetoda FAO Penman-Monteith (FAO-PM) smatra se standardnim pristupom za procenu referentne evapotranspiracije (ETo), ali zahteva niz meteoroloških ulaznih podataka koji u praksi često nisu dostupni. U radu je ispitana mogućnost zamene nedostajućih podataka o vlažnosti vazduha i brzini vetra vrednostima preuzetim iz regionalne klimatološke baze za period 2000–2011. na osam meteoroloških stanica u Vojvodini. Rezultati su upoređeni sa merenjima na lizimetarskoj stanici u Rimskim Šančevima. Utvrđeno je da zamena podataka o vlažnosti klimatološkim prosecima unosi grešku ETo od prosečno 4,1% na mesečnom nivou, dok zamena podataka o brzini vetra povećava grešku na 7,8%. Kombinovana zamena oba parametra daje ukupnu mesečnu grešku ispod 9%, što se ocenjuje prihvatljivim za potrebe operativnog zakazivanja navodnjavanja. Preporučuje se primena korekcijskih faktora izvedenih za svaku stanicu posebno.",
+    "researcherIds": [
+      "R1047"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-10776": {
+    "id": "SYN-PUB-10776",
+    "kind": "publication",
+    "title": "Modeliranje vodnog bilansa parcele soje primenom modela CROPWAT 8.0 i verifikacija na osnovu terenskih merenja vlažnosti zemljišta",
+    "text": "Modeliranje vodnog bilansa parcele soje primenom modela CROPWAT 8.0 i verifikacija na osnovu terenskih merenja vlažnosti zemljišta (2017, conference, Zbornik radova, 48. savetovanje agronoma Srbije, Zlatibor).\nAuthors: Milena Pantelić (R1047); Nataša Moravčević (outside co-author).\nKeywords: CROPWAT; soja; vodni bilans; FDR sonde; pedotransferne funkcije.\nU radu je prikazana primena modela CROPWAT 8.0 za simulaciju dekadnog vodnog bilansa parcele soje (sorta NS Maximus) tokom vegetacijske sezone 2015. godine na području Bačke. Ulazni meteorološki podaci preuzeti su sa automatske stanice u Bečeju, a karakteristike zemljišta određene su laboratorijskim analizama uzoraka sa dubine do 90 cm. Simulirani sadržaj vode u zemljištu upoređen je sa FDR merenjima na četiri dubine u nedeljnim intervalima. Modelom je u proseku precenjen sadržaj vode za 6,4 mm u fazi vegetativnog porasta, što se pripisuje izostanku parametrizacije kapilarnog uspona u modelu. Primenom korekcije na osnovu pedotransfernih funkcija za glinasta ilovača tla, greška je smanjena na 3,1 mm. Zaključuje se da CROPWAT može biti pouzdan alat za operativno navodnjavnje u regionu uz adekvatno podešavanje parametara tla.",
+    "researcherIds": [
+      "R1047"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-10777": {
+    "id": "SYN-PUB-10777",
+    "kind": "publication",
+    "title": "Prostorna interpolacija referentne evapotranspiracije u Vojvodini korišćenjem kriging metode i digitalnog modela reljefa",
+    "text": "Prostorna interpolacija referentne evapotranspiracije u Vojvodini korišćenjem kriging metode i digitalnog modela reljefa (2021, journal, Melioracije – naučno-stručni časopis za uređenje, korišćenje i zaštitu zemljišta i voda).\nAuthors: Stefan Varga (outside co-author); Daniela Horvat (outside co-author); Milena Pantelić (R1047).\nKeywords: prostorna interpolacija; kriging; referentna evapotranspiracija; DEM; Vojvodina.\nReferentna evapotranspiracija (ETo) procenjena metodom FAO-PM izračunata je na osnovu dnevnih podataka sa mreže od 12 meteoroloških stanica u Vojvodini za period 2010–2019. Na osnovu godišnjih suma ETo izvršena je prostorna interpolacija primenom obične kriging metode i kriging sa spoljašnjim trendom, gde je nadmorska visina iz digitalnog modela reljefa (SRTM, 30 m) korišćena kao pomoćna promenljiva. Unakrsna validacija pokazala je da kriging sa spoljašnjim trendom daje RMSE od 11,3 mm/godišnje ETo, u poređenju sa 18,7 mm kod obične kriging metode. Razlike u prostornoj raspodeli ETo unutar ravničarskog dela Vojvodine su relativno male (maksimalna amplituda 42 mm/god.), ali postaju značajne u pojasu Fruške Gore (razlika do 87 mm/god.), što ukazuje na potrebu za zasebnom parametrizacijom pri regionalnom planiranju navodnjavanja.",
+    "researcherIds": [
+      "R1047"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-10778": {
+    "id": "SYN-PUB-10778",
+    "kind": "publication",
+    "title": "Sensitivity of FAO-PM evapotranspiration estimates to systematic biases in input climate variables: a Monte Carlo approach applied to Pannonian lowland conditions",
+    "text": "Sensitivity of FAO-PM evapotranspiration estimates to systematic biases in input climate variables: a Monte Carlo approach applied to Pannonian lowland conditions (2025, journal, Agricultural and Forest Meteorology).\nAuthors: Mirjam Vuković (outside co-author); Péter Kovács (outside co-author); Milena Pantelić (R1047); Daniela Horvat (outside co-author).\nKeywords: FAO Penman-Monteith; sensitivity analysis; Monte Carlo; measurement uncertainty; Pannonian lowland.\nSystematic measurement biases in temperature, humidity, wind speed, and solar radiation affect the accuracy of FAO Penman-Monteith evapotranspiration (ETo) calculations, but their relative importance under Pannonian lowland climate conditions has not been quantified comprehensively. A Monte Carlo framework was constructed in which each of the four input variables was independently perturbed with normally distributed errors parameterised from documented sensor calibration uncertainties. A total of 10,000 realisations were run for each of three representative months (April, July, October) using baseline data from Novi Sad station (2010–2022). Results indicate that ETo is most sensitive to air temperature biases in spring (a +1 °C bias causes a +3.8% change in monthly ETo), while wind speed biases dominate uncertainty in summer months (a +0.5 m/s bias causes +6.2%). Relative humidity biases contribute less than 2.5% across all months under the tested range. These findings support prioritisation of anemometer maintenance in operational agrometeorological networks used for irrigation advisory services.",
+    "researcherIds": [
+      "R1047"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-10779": {
+    "id": "SYN-PUB-10779",
+    "kind": "publication",
+    "title": "Procena efekta malčiranja na smanjenje evaporacije iz zemljišta i ukupnih potreba za navodnjavanjem paprike u uslovima Bačke",
+    "text": "Procena efekta malčiranja na smanjenje evaporacije iz zemljišta i ukupnih potreba za navodnjavanjem paprike u uslovima Bačke (2026, journal, Acta Agriculturae Serbica).\nAuthors: Milena Pantelić (R1047); Đorđe Savić (outside co-author); Aleksandra Nišević (outside co-author).\nKeywords: malčiranje; evaporacija; navodnjavanje paprike; FAO-56 dvofazni model; vodni bilans.\nTerenski ogled sproveden je tokom dve vegetacijske sezone (2023. i 2024.) na Oglednom polju Rimski Šančevi s ciljem kvantifikacije uticaja polietilenskog malča na evaporaciju iz zemljišta i potrebe za navodnjavanjem paprike (Capsicum annuum L., sorta Zlatni medal). Postavljeno je šest tretmana u tri ponavljanja: crni PE malč, beli PE malč i kontrola (bez malča), uz dve norme navodnjavanja (puno i ograničeno – 70% ET). Evaporacija iz zemljišta procenjena je primenom jednačine FAO-56 dvofaznog modela, a vlažnost zemljišta praćena FDR sondama. U prvoj godini, crni malč smanjio je sezonu evaporacije za 41% u poređenju sa kontrolom; u drugoj godini efekat je iznosio 37%. Ukupna norma navodnjavanja pri punoj ET bila je manja za 58 mm (crni malč) i 41 mm (beli malč) u odnosu na kontrolu. Prinos paprike u tretmanu crni malč–puna ET bio je za 12% viši od kontrole.",
+    "researcherIds": [
+      "R1047"
+    ],
+    "year": 2026
+  },
+  "W2896715775": {
+    "id": "W2896715775",
+    "kind": "work",
+    "title": "Dynamic Neural Network Modelling of Soil Moisture Content for Predictive Irrigation Scheduling",
+    "text": "Sensors, 2018. Sustainable freshwater management is underpinned by technologies which improve the efficiency of agricultural irrigation systems. Irrigation scheduling has the potential to incorporate real-time feedback from soil moisture and climatic sensors. However, for robust closed-loop decision support, models of the soil moisture dynamics are essential in order to predict crop water needs while adapting to external perturbation and disturbances. This paper presents a Dynamic Neural Network approach for modelling of the temporal soil moisture fluxes. The models are trained to generate a one-day-ahead prediction of the volumetric soil moisture content based on past soil moisture, precipitation, and climatic measurements. Using field data from three sites, a R 2 value above 0.94 was obtained during model evaluation in all sites. The models were also able to generate robust soil moisture predictions for independent sites which were not used in training the models. The application of the Dynamic Neural Network models in a predictive irrigation scheduling system was demonstrated using AQUACROP simulations of the potato-growing season. The predictive irrigation scheduling system was evaluated against a rule-based system that applies irrigation based on predefined thresholds. Results indicate that the predictive system achieves a water saving ranging between 20 and 46% while realizing a yield and water use efficiency similar to that of the rule-based system.",
+    "researcherIds": [],
+    "year": 2018,
+    "url": "https://openalex.org/W2896715775"
+  },
+  "W2924508481": {
+    "id": "W2924508481",
+    "kind": "work",
+    "title": "Irrigation Factor Approach Based on Soil Water Content: A Nectarine Orchard Case Study",
+    "text": "Water, 2019. Precision agriculture requires irrigation supported by an accurate knowledge of the crop water requirements. In this paper, a novel approach for drip irrigation scheduling of fruit trees is presented based on the results obtained during a full growing season in an early-maturing nectarine orchard growing in a clay loam soil in a Mediterranean environment. Real-time water content was monitored in the soil profile of the main root exploration zone by means of capacitance probes; in addition, plant water status (midday stem water potential and leaf gas exchange) and canopy development were frequently measured throughout the vegetative cycle. The reference evapotranspiration (ET0) values, taken from a nearby automatic meteorological station, and the measured irrigation values allowed the determination of the irrigation factors once irrigation drainage during the season was assumed to be negligible and plant water status was proved to be adequate. The proposed irrigation factors offer a hands-on approach as an easy tool for irrigation management based on suitable soil water deficits, allowing the water requirements of nectarine trees under precision irrigation to be determined in semi-arid agrosystems where water resources are limited.",
+    "researcherIds": [],
+    "year": 2019,
+    "url": "https://openalex.org/W2924508481"
+  },
+  "CALL:HORIZON-CL6-2027-02-FARM2FORK-01": {
+    "id": "CALL:HORIZON-CL6-2027-02-FARM2FORK-01",
+    "kind": "call",
+    "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
+    "text": "Horizon Europe. Research and Innovation Actions. opens 2027-04-20, deadline 2027-09-23. EU grant €6,000,000 per project, about 2 grants. keywords: Area 3 from Work Programme; Artificial intelligence, intelligent systems, multi agent systems; Big data; Biophysics; Cell biology, Microbiology; Computer and information sciences; Environmental biology; Farm economics.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-01"
+  },
+  "CALL:HORIZON-CL6-2027-03-GOVERNANCE-04": {
+    "id": "CALL:HORIZON-CL6-2027-03-GOVERNANCE-04",
+    "kind": "call",
+    "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability",
+    "text": "Horizon Europe. Innovation Actions. opens 2027-02-04, deadline 2027-05-11. EU grant €4,500,000 per project, about 1 grant. keywords: Agriculture related to crop production, soil biology and cultivation, applied plant biology; Agriculture, Rural Development, Fisheries; Artificial Intelligence & Decision support; Artificial intelligence, intelligent systems, multi agent systems; Digital data; Digital skills; Forestry; Interaction, Multimodal, Brain-Computer-Interfaces, Assistive Technologies.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-03-GOVERNANCE-04"
+  },
+  "CALL:HORIZON-CL6-2027-02-CLIMATE-01-two-stage": {
+    "id": "CALL:HORIZON-CL6-2027-02-CLIMATE-01-two-stage",
+    "kind": "call",
+    "title": "Open topic: Innovative solutions for the European Water Resilience Strategy",
+    "text": "Horizon Europe. Innovation Actions. opens 2027-02-04, deadline 2027-04-08. EU grant €6,000,000 per project, about 2 grants. keywords: Disaster resilience and crisis management; Fresh water ecosystems; Hydrology (Water science); Integrated management of water; Plant water relations; Resilience aspects; Urban water management; Utilities (water, electricity, waste).",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-01-two-stage"
+  },
+  "CORDIS:101135533": {
+    "id": "CORDIS:101135533",
+    "kind": "eu-project",
+    "title": "Future Agricultural Resource Management and Water Innovations for a Sustainable Europe",
+    "text": "FARMWISE, Horizon Europe, 2024–2026. topic HORIZON-CL6-2023-ZEROPOLLUTION-01-1. coordinated by LUNDS UNIVERSITET (SE). 20 organisations. FARMWISE transforms the EU agricultural sector by empowering farmers and decision-makers with a state-of-the-art decision support system, combining precision agriculture, Artificial Intelligence, and remote sensing. FARMWISE provides new insights into water quality, quantity...",
+    "researcherIds": [],
+    "year": 2024,
+    "url": "https://cordis.europa.eu/project/id/101135533"
+  },
+  "CORDIS:101181572": {
+    "id": "CORDIS:101181572",
+    "kind": "eu-project",
+    "title": "Green dEal cOmpliant iRriGation Increasing Europe’s Agriculture resilience to drought",
+    "text": "GEORGIA, Horizon Europe, 2025–2028. topic HORIZON-CL6-2024-CLIMATE-01-1. coordinated by SYNELIXIS LYSEIS PLIROFORIKIS AUTOMATISMOU & TILEPIKOINONION ANONIMI ETAIRIA (EL). 17 organisations. from Serbia: TERRA LITTERA DOO. GEORGIA (Green dEal cOmpliant iRriGation Increasing Europe’s Agriculture resilience to drought) consortium, consisting of 16 partners from 9 European countries and led by Synelixis SA (the provider of SynField smart agriculture platform), has joined forces to increasing the...",
+    "researcherIds": [],
+    "year": 2025,
+    "url": "https://cordis.europa.eu/project/id/101181572"
+  },
+  "CORDIS:848361": {
+    "id": "CORDIS:848361",
+    "kind": "eu-project",
+    "title": "A precise irrigation monitoring system to provide an accurate measurement of water status in crops",
+    "text": "StemSense, Horizon 2020, 2019–2021. topic EIC-SMEInst-2018-2020. coordinated by SATURAS LTD (IL). 1 organisation. There is an increasing global pressure on water resources and ensuring there is a sufficient supply in the face of climate change. This is of particular prevalence within the agriculture industry where irrigation is becoming increasingly important. Farmers typically overwater...",
+    "researcherIds": [],
+    "year": 2019,
+    "url": "https://cordis.europa.eu/project/id/848361"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "chosen": [
+    "C999-CH1:R0548"
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0548",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0548",
+      "fit": 0.88,
+      "why": [
+        {
+          "text": "The challenge requires replacing fixed-threshold rules with a machine learning visual defect classifier that generalises across seasons (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored work on few-shot learning for surface defect detection on reflective metal parts using prototypical networks (SYN-PUB-06388) and on anomaly detection in multi-product assembly lines using one-class contrastive learning (SYN-PUB-06391).",
+          "sourceIds": [
+            "SYN-PUB-06388",
+            "SYN-PUB-06391"
+          ]
+        },
+        {
+          "text": "Stojanović co-authored work on domain randomisation for cross-domain transfer in visual defect detection across different material types and manufacturing processes (SYN-PUB-06393).",
+          "sourceIds": [
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "The VISIONQC project develops modular AI-powered inspection platforms for SME manufacturers with minimal labeled data requirements and includes pilot deployments at regional manufacturing SMEs (SYN-PRJ-0011).",
+          "sourceIds": [
+            "SYN-PRJ-0011"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Stojanović and the company would train and validate a deep learning defect classifier on the 40,000 labeled apple images (C999-CH1), applying domain randomisation and cross-domain transfer techniques (SYN-PUB-06393) to handle seasonal appearance variation, and using active learning (SYN-PUB-06396) to prioritise re-annotation of the hardest bark-damage and early-rot cases, with the goal of exceeding the current ~88% accuracy on the deployed sorting line.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-06393",
+          "SYN-PUB-06396",
+          "SYN-PRJ-0011"
+        ]
+      },
+      "risks": [
+        {
+          "text": "All cited defect detection work covers industrial metal and assembly-line components; no publication covers organic produce or food-surface texture, so the class-overlap characteristics specific to bark damage and rot may require additional domain work.",
+          "sourceIds": [
+            "SYN-PUB-06388",
+            "SYN-PUB-06391",
+            "SYN-PUB-06393"
+          ]
+        },
+        {
+          "text": "The active learning framework (SYN-PUB-06396) is validated with industrial partners producing metal stampings and injection-moulded plastic components; the record does not cover multi-season labeled datasets of organic produce.",
+          "sourceIds": [
+            "SYN-PUB-06396"
+          ]
+        }
+      ]
+    }
+  ],
+  "noMatches": []
+}

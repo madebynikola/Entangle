@@ -1,0 +1,82 @@
+{
+  "needs": [
+    {
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "companyName": "Described problem",
+      "sector": "",
+      "triage": "not-research",
+      "triageReason": "Customer dissatisfaction and retention are business and product management problems, not open technical or scientific questions that research can address.",
+      "restatement": {
+        "text": "Some customers leave because the product lacks desired capabilities, and the company suspects it should be smarter but has not identified what aspects to improve (C999-CH1).",
+        "sourceIds": [
+          "C999-CH1"
+        ]
+      },
+      "searchTerms": [],
+      "assets": [],
+      "constraints": [
+        {
+          "text": "The company does not know where to start in addressing the problem (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [],
+  "pairs": [],
+  "chosen": [],
+  "noMatches": [
+    {
+      "challengeId": "C999-CH1",
+      "reason": "Not a research problem: Customer dissatisfaction and retention are business and product management problems, not open technical or scientific questions that research can address."
+    }
+  ],
+  "proposals": [],
+  "needsHuman": [],
+  "verdicts": [
+    {
+      "proposalId": "C999-CH1",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "The company has customers with feedback on product performance (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "The source says customers are not happy, but it does not mention customers providing 'feedback on product performance' — the claim adds a detail (feedback) not present in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The company has not yet diagnosed which product features or capabilities are causing customer dissatisfaction (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "The source states 'we do not know where to start', but it does not mention 'product features' or 'customer dissatisfaction' as a diagnostic framing — the claim adds specificity ('features or capabilities causing dissatisfaction') not stated in the text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "need",
+      "taskId": "critique-2",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "need",
+      "taskId": "critique-5",
+      "action": "accept"
+    }
+  ],
+  "approvals": {},
+  "funding": []
+}

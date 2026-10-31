@@ -1,0 +1,28 @@
+run 2026-10-31T15-04-51 · local Claude Code · critic-2 on subq-snap-1.1 · shortlist filter on subq-snap-1.1 · prior work from OpenAlex · reverse search on C999-CH1
+  13s  C999  read · 1 need(s)
+  30s  6 task(s) running · 7 done · 0 failed · $0.06
+  61s  7 task(s) running · 12 done · 0 failed · $0.21
+  91s  7 task(s) running · 20 done · 0 failed · $0.39
+ 122s  6 task(s) running · 26 done · 0 failed · $0.54
+ 152s  4 task(s) running · 33 done · 0 failed · $0.68
+ 183s  1 task(s) running · 42 done · 0 failed · $0.88
+ 192s  C999  2 pair(s) accepted · writing C999-CH1-R0696 (writer-1)
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: false == true
+    at Parser.finish (node:internal/deps/undici/undici:6157:9)
+    at TLSSocket.<anonymous> (node:internal/deps/undici/undici:6491:36)
+    at TLSSocket.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.0

@@ -1,0 +1,841 @@
+{
+  "C999": {
+    "id": "C999",
+    "kind": "company",
+    "title": "Described problem",
+    "text": "Described problem (C999): Solar energy.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "C999-CH1": {
+    "id": "C999-CH1",
+    "kind": "challenge",
+    "title": "Our rooftop solar inverters disconnect from the grid on hot summer afternoons because the local grid voltage rises too high.",
+    "text": "Our rooftop solar inverters disconnect from the grid on hot summer afternoons because the local grid voltage rises too high.\n\nWe tried lowering the export limit on every site, but that loses about 8% of the yearly yield. We have five years of inverter logs and grid voltage readings from 300 sites.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "R0298": {
+    "id": "R0298",
+    "kind": "researcher",
+    "title": "Sonja Kovačević",
+    "text": "Sonja Kovačević (R0298): Assistant Professor, Department of Energy and Process Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Energy Storage Systems; Power Systems Engineering; Stochastic Optimisation; Electrochemical Engineering.\nKeywords: battery energy storage; optimal sizing; dispatch optimisation; cycle ageing; stochastic load profiles; residential photovoltaics; lithium-ion degradation; Monte Carlo simulation; mixed-integer linear programming; demand-side management.\nBio: Sonja Kovačević received her B.Sc. and M.Sc. degrees in Energy Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2010 and 2012 respectively, and her Ph.D. from the same institution in 2018, with a dissertation on stochastic sizing of residential battery storage under uncertain photovoltaic generation. She completed a research stay at the Karlsruhe Institute of Technology in 2016–2017. Since 2019 she has held an Assistant Professor position in the Department of Energy and Process Engineering. Her group focuses on electrochemical storage modelling, optimal dispatch under uncertainty, and cycle-ageing quantification for lithium-ion and lead-acid systems. She teaches courses on Energy Systems Analysis and Renewable Energy Integration. Laboratory work is conducted in the Faculty's Power Systems and Storage Laboratory, which is equipped with battery cycling test benches, impedance spectroscopy instruments, and a real-time hardware-in-the-loop simulation platform.\nOpen to: joint projects with companies developing or deploying residential battery storage products; contract research on battery sizing, dispatch algorithm development, and ageing assessment; access to battery cycling test benches and impedance spectroscopy equipment for collaborative experiments; industrial PhD supervision for candidates working on storage optimisation or ageing modelling; student internships in battery testing or optimisation coding; consulting on techno-economic feasibility of storage projects.\nIndustry experience: Kovačević carried out a three-month technical consultancy for a regional photovoltaic installer in 2021, assessing the sizing methodology used in their residential PV-plus-storage packages and recommending adjustments to account for local load variability. She has participated as an expert reviewer in two calls for proposals under the Innovation Fund of Serbia evaluating storage-related projects.\nNotes: Kovačević is on leave for part of 2026 and requests that project start dates before October 2026 account for reduced availability. She prefers collaboration with companies that can provide field measurement data, as access to real operational battery data is the principal bottleneck for her current research programme.",
+    "researcherIds": [
+      "R0298"
+    ]
+  },
+  "R0530": {
+    "id": "R0530",
+    "kind": "researcher",
+    "title": "Nataša Milošević",
+    "text": "Nataša Milošević (R0530): Full Professor, Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences, University of Novi Sad.\nFields: Electric Power Systems; Demand-Side Management and Smart Grids; Optimization and Control; Energy Informatics.\nKeywords: demand response; electric vehicle charging scheduling; real-time pricing; residential flexible loads; distribution network management; aggregation; stochastic optimization; thermostatically controlled loads; peak load reduction; smart metering.\nBio: Nataša Milošević received her B.Sc. and M.Sc. degrees in Electrical Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2001 and 2004, respectively, and her Ph.D. from the same institution in 2009. She joined the Department of Power, Electronics and Telecommunications as an Assistant Professor in 2010 and was promoted to Full Professor in 2021. Her research group focuses on demand-side management in low-voltage distribution networks, with particular emphasis on coordinated scheduling of thermostatically controlled loads, heat pumps, and electric vehicle charging under dynamic tariff structures. She teaches courses on electric power systems and smart grid technologies. The group operates a real-time grid simulation laboratory equipped with a RTDS simulator, power hardware-in-the-loop test bench, and a small EV charging testbed with three AC wallboxes.\nOpen to: joint projects with companies developing EV charging management software or hardware; contract research on demand response scheduling and tariff analysis; industrial PhD supervision for candidates from energy or mobility companies; student internships (BSc and MSc level) involving data analysis or control system prototyping; consulting on distribution network impact assessments for EV fleet operators; equipment access: RTDS simulator and EV charging testbed available under formal access agreement.\nIndustry experience: From 2017 to 2019 Milošević worked under a consultancy contract with Elektrovojvodina d.o.o. to evaluate the distribution network impact of a proposed residential EV charging pilot programme in three municipalities in Vojvodina. She has also provided technical review for two Smart City project proposals submitted to the City of Novi Sad.\nNotes: Milošević is committed to the ADRIAFLEX project through 2026 and has limited capacity for new large-scale coordinatorroles until 2027. She is particularly interested in partnering with companies that have access to real operational EV or smart meter datasets, which remain the primary bottleneck for her group's experimental validation work.",
+    "researcherIds": [
+      "R0530"
+    ]
+  },
+  "R0611": {
+    "id": "R0611",
+    "kind": "researcher",
+    "title": "Danijela Ninkov",
+    "text": "Danijela Ninkov (R0611): Full Professor, Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences, University of Novi Sad.\nFields: Electromagnetic Compatibility; Power Electronics; Power Systems and Power Quality; Signal Processing in Electrical Engineering.\nKeywords: electromagnetic compatibility; conducted emissions; time-domain modelling; low-voltage power networks; power electronic loads; harmonic distortion; line impedance stabilisation network; grid-connected inverters; power quality; conducted disturbance propagation.\nBio: Danijela Ninkov received her Dipl.Ing. and M.Sc. degrees in Electrical Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 1998 and 2003 respectively, and her Ph.D. from the same institution in 2008. She has held a Full Professor position since 2019 in the Department of Power, Electronics and Telecommunications. Her research group focuses on electromagnetic compatibility in low-voltage distribution networks, with particular attention to time-domain modelling of conducted disturbances, harmonic propagation, and the interaction between power electronic loads and grid regulation equipment. She teaches undergraduate and postgraduate courses in electromagnetic compatibility and power quality. The group operates a dedicated EMC measurement laboratory equipped with a line impedance stabilisation network, conducted emission analysers calibrated to CISPR standards, and a real-time power network emulator.\nOpen to: contract research on EMC characterisation of industrial or consumer power electronic equipment; consulting on conducted emission compliance and power quality assessment; joint projects on supraharmonic emissions and smart grid EMC; industrial PhD supervision for candidates from companies with relevant measurement or simulation needs; equipment access: LISN-based conducted emission measurement, power quality class A monitoring, network impedance characterisation up to 30 MHz; student internships in the EMC laboratory.\nIndustry experience: Danijela Ninkov has provided technical consulting to a regional distribution system operator on power quality measurement methodology and has assisted two domestic equipment manufacturers with pre-compliance conducted emission testing. She has no long-term industrial employment.\nNotes: Prefers projects with a clear measurement component rather than purely theoretical work. The EMC laboratory is shared with two other research groups and access scheduling should be discussed early in any collaboration. Available for new project commitments from early 2026 onward.",
+    "researcherIds": [
+      "R0611"
+    ]
+  },
+  "R0696": {
+    "id": "R0696",
+    "kind": "researcher",
+    "title": "Aleksandar Jeremić",
+    "text": "Aleksandar Jeremić (R0696): Assistant Professor, Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences, University of Novi Sad.\nFields: Electric Power Systems; Distribution Network Analysis; Renewable Energy Integration; Power Electronics.\nKeywords: bidirectional power flow; low-voltage distribution networks; distributed generation; hosting capacity; voltage regulation; reactive power compensation; prosumers; photovoltaic integration; power quality; smart inverters.\nBio: Aleksandar Jeremić received his B.Sc. and M.Sc. degrees in Electrical Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2009 and 2012 respectively, and his Ph.D. from the same institution in 2018, with a dissertation on voltage regulation in low-voltage feeders under high photovoltaic penetration. Since 2019 he has held an Assistant Professor position in the Department of Power, Electronics and Telecommunications. His research group focuses on power flow modelling, reactive power compensation, and hosting capacity assessment in distribution networks with significant prosumer activity. He teaches courses on electric power systems and power electronics at undergraduate and master level. The group regularly uses the laboratory for power systems simulation equipped with RTDS real-time digital simulator hardware and maintains access to measurement equipment for field data collection on urban low-voltage feeders.\nOpen to: joint projects with companies developing smart inverter control or energy management software; contract research on hosting capacity assessment for distribution system operators; consulting on photovoltaic connection applications and grid impact studies; industrial PhD supervision for candidates with an electrical engineering background; student internships in power systems simulation and field measurement.\nIndustry experience: Jeremić performed a six-month consultancy engagement with Elektrovojvodina d.o.o. between 2019 and 2020, supporting their technical team in developing internal procedures for evaluating distributed generation connection requests at the low-voltage level.\nNotes: Jeremić has an established working relationship with Elektrovojvodina d.o.o. and can facilitate data-sharing agreements for companies that require real feeder topology or smart meter data for product validation. He is not currently on sabbatical and is available for new collaborations starting from mid-2025.",
+    "researcherIds": [
+      "R0696"
+    ]
+  },
+  "R0738": {
+    "id": "R0738",
+    "kind": "researcher",
+    "title": "Igor Starčević",
+    "text": "Igor Starčević (R0738): Assistant Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Machine Learning and Data Mining; Industrial Control and SCADA Systems; Predictive Maintenance and Condition Monitoring; Renewable Energy Systems.\nKeywords: anomaly detection; predictive maintenance; time-series classification; SCADA telemetry; performance ratio; soiling estimation; photovoltaic systems; fault detection; regression modelling; distributed energy assets.\nBio: Igor Starčević received his B.Sc. and M.Sc. degrees in Computer Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2009 and 2012 respectively, and his Ph.D. in Technical Sciences from the same institution in 2018, with a dissertation on regression-based fault indicators for photovoltaic SCADA telemetry. He joined the Department of Computing and Control Engineering as a teaching assistant in 2013 and was appointed Assistant Professor in 2019. His group focuses on time-series anomaly detection, predictive maintenance pipelines, and performance degradation modelling for distributed energy assets including solar parks, small wind installations, and district heating substations. He teaches courses in machine learning and industrial data systems. The group regularly works with real SCADA datasets and uses a GPU-equipped workstation cluster and the university's HIL (hardware-in-the-loop) test bench for validation experiments.\nOpen to: joint projects with companies operating PV parks, wind farms, or district heating networks that can provide SCADA data access; contract research on anomaly detection pipeline development and validation; industrial PhD co-supervision with companies in the energy or industrial IoT sector; student internships focused on data engineering and model deployment tasks; consulting on threshold selection, sensor quality assessment, and maintenance scheduling frameworks.\nIndustry experience: Starčević provided a six-month consultancy to a regional solar asset management company in 2022–2023, assisting with the specification and partial implementation of an automated performance reporting system based on methods developed in the DIASOLAR project.\nNotes: He has an active doctoral student finishing in late 2026, so capacity for new project coordination is limited until 2027; work package participation or contract research roles are more feasible in the near term. He has expressed a preference for collaborations that include data sharing agreements, as access to labelled fault telemetry from new asset types remains the main bottleneck for his group's research.",
+    "researcherIds": [
+      "R0738"
+    ]
+  },
+  "R0904": {
+    "id": "R0904",
+    "kind": "researcher",
+    "title": "Tamara Simić",
+    "text": "Tamara Simić (R0904): Associate Professor, Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences, University of Novi Sad.\nFields: smart grids; renewable integration; forecasting.\nKeywords: PV forecasting; demand response; distribution system operators; short-term load forecasting; flexibility.\nBio: Tamara Simić is an Associate Professor in the Department of Power, Electronics and Telecommunications at the Faculty of Technical Sciences, University of Novi Sad. Her research focuses on smart grids, renewable energy integration, and power system forecasting, with particular expertise in photovoltaic output prediction, demand response mechanisms, and short-term load forecasting for distribution networks. She actively collaborates with distribution system operators and industrial stakeholders to advance flexibility markets and grid modernisation in Serbia and the wider region. Prof. Simić currently participates in the Horizon Europe project FLEXGRID-RS and is open to supervising industrial PhD candidates and establishing joint research initiatives with technology companies operating in the energy sector.\nOpen to: industrial PhD supervision; joint projects.",
+    "researcherIds": [
+      "R0904"
+    ]
+  },
+  "SYN-PRJ-0010": {
+    "id": "SYN-PRJ-0010",
+    "kind": "project",
+    "title": "FLEXGRID-RS: flexibility markets for Serbia",
+    "text": "FLEXGRID-RS: flexibility markets for Serbia (Horizon Europe, 2023–2026).\nParticipants: R0904 researcher.\nFLEXGRID-RS: Flexibility Markets for Serbia is a Horizon Europe research project running from 2023 to 2026 that aims to design, pilot, and evaluate flexibility market mechanisms tailored to the institutional and technical context of the Serbian power system. The project addresses the full value chain of demand-side flexibility, from the characterisation of available flexibility assets at industrial, commercial, and residential sites, through aggregation and virtual power plant architectures, to the clearing algorithms and settlement rules of local flexibility markets operated by distribution system operators. Prof. Simić contributes her expertise in renewable forecasting and demand response modelling to the project's workpackage on forecast-driven flexibility scheduling, developing probabilistic tools that allow DSOs to procure flexibility resources in response to anticipated renewable generation imbalances. The project maintains active links with Serbian energy regulators and a regional DSO partner.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2023
+  },
+  "SYN-PRJ-0295": {
+    "id": "SYN-PRJ-0295",
+    "kind": "project",
+    "title": "Residential Storage Sizing Under Heterogeneous Ageing and Demand Uncertainty",
+    "text": "RESHADE: Residential Storage Sizing Under Heterogeneous Ageing and Demand Uncertainty (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2022–2025).\nParticipants: R0298 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Engineering, University of Kragujevac; Institute for Power Systems and Electrification, Belgrade.\nRESHADE addresses the gap between idealised laboratory-based battery degradation models and the irregular operating conditions experienced by residential storage systems in Serbia and the broader Western Balkans region. The project combines a field measurement campaign across 45 instrumented households with accelerated cycling experiments on commercially available lithium iron phosphate and NMC modules. The experimental data are used to calibrate and validate degradation models of graduated complexity. These models are then embedded in stochastic sizing and dispatch optimisation frameworks, and the resulting tools are tested on the hardware-in-the-loop platform at the Faculty of Technical Sciences. Expected outputs include an open-access sizing tool and a dataset of residential load profiles and battery test results.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0297": {
+    "id": "SYN-PRJ-0297",
+    "kind": "project",
+    "title": "Conducted Disturbance Characterisation and Unified Time-domain Simulation for Low-Voltage Smart Grids",
+    "text": "CONDUCTS: Conducted Disturbance Characterisation and Unified Time-domain Simulation for Low-Voltage Smart Grids (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0611 principal investigator; R0637 team member; R0028 team member.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Elektrotehnički fakultet, University of Belgrade; Elektrodistribucija Srbije d.o.o. – Regional Centre Novi Sad.\nThe project builds a validated simulation and measurement infrastructure for analysing conducted disturbances in low-voltage distribution networks with high penetration of power electronic loads. Key activities include: extended characterisation of emission sources (EV chargers, PV inverters, smart meters, LED drivers) using LISN measurements and Norton equivalent extraction; development of a time-domain feeder simulation library in MATLAB/Simulink with open-licence distribution; a 12-month field monitoring campaign on two suburban feeders; and a probabilistic compliance assessment tool. Results feed into a position paper on Serbian national transposition of IEC 61000-3 limits for aggregated loads.",
+    "researcherIds": [
+      "R0611",
+      "R0637",
+      "R0028"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0311": {
+    "id": "SYN-PRJ-0311",
+    "kind": "project",
+    "title": "Diagnostic Analytics for Solar Asset Performance in the Western Balkans",
+    "text": "DIASOLAR: Diagnostic Analytics for Solar Asset Performance in the Western Balkans (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0738 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Electrical Engineering and Information Technologies, Ss. Cyril and Methodius University in Skopje; Institute for Power Systems and Energy, Novi Sad.\nThe project collected and harmonised SCADA telemetry from eleven PV installations totalling approximately 18 MWp across Serbia and one site in North Macedonia. The main research objectives were to develop site-agnostic fault classifiers, validate soiling estimation methods under Pannonian climate conditions, and build an open benchmark dataset for researchers in the region. The project funded two doctoral students, equipment for the HIL testbed, and a series of joint workshops with the partner university. A public data repository was established at the end of the project period containing anonymised telemetry and fault labels from six consenting site operators.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0312": {
+    "id": "SYN-PRJ-0312",
+    "kind": "project",
+    "title": "Cross-Border Predictive Maintenance Frameworks for Distributed Renewable Energy Infrastructure",
+    "text": "MAINTAIN-IPA: Cross-Border Predictive Maintenance Frameworks for Distributed Renewable Energy Infrastructure (Interreg IPA Hungary–Serbia, 2023–2026).\nParticipants: R0738 work package leader.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Faculty of Engineering and Information Technology, University of Pécs; SunField Energy Kft., Kecskemét; Vojvodina Renewables d.o.o., Novi Sad.\nMAINTAIN-IPA is a cross-border cooperation project addressing the fragmented and predominantly reactive maintenance practices applied to small and medium renewable energy installations on both sides of the Hungarian–Serbian border. Igor Starčević leads the work package on data integration and machine learning pipeline development, which involves aligning heterogeneous SCADA data from Hungarian and Serbian partners into a common schema and training shared predictive maintenance models. The project includes a pilot deployment at two sites—one wind farm in Bács-Kiskun county and one PV park in the Vojvodina region—with live anomaly alerting integrated into each operator's existing SCADA dashboard.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2023
+  },
+  "SYN-PRJ-0315": {
+    "id": "SYN-PRJ-0315",
+    "kind": "project",
+    "title": "Prosumer-Ready Low-Voltage Grid Planning Tools for Vojvodina Distribution Networks",
+    "text": "PROSO-GRID: Prosumer-Ready Low-Voltage Grid Planning Tools for Vojvodina Distribution Networks (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2023).\nParticipants: R0696 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Elektrovojvodina d.o.o. Novi Sad (regional distribution system operator).\nThe project developed a suite of open-source planning tools for distribution system operators in Serbia to assess and manage the integration of prosumers into existing 0.4 kV infrastructure. Work included development of the stochastic hosting capacity framework, a feeder classification methodology, and an interface for visualising results at municipal scale. Field data were collected from two pilot distribution areas in the Vojvodina region in collaboration with the regional distribution system operator. The project produced four journal papers, one conference paper, and a publicly available software repository. Two master thesis students completed their work within the project activities.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0694": {
+    "id": "SYN-PRJ-0694",
+    "kind": "project",
+    "title": "Flexibility Resources in Residential Distribution Networks: Aggregation, Optimisation, and Market Integration",
+    "text": "FLEXRES: Flexibility Resources in Residential Distribution Networks: Aggregation, Optimisation, and Market Integration (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0530 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; School of Electrical Engineering, University of Belgrade; Elektrovojvodina d.o.o. (distribution system operator, Novi Sad).\nFLEXRES developed methods for quantifying, aggregating, and commercially deploying the flexibility of residential electric loads—primarily heat pumps and EV chargers—in the Serbian distribution system. The project produced validated virtual battery models for three appliance classes, a distributed MPC scheduler for multi-feeder networks, and a market-readiness assessment for demand response aggregators under the post-2021 Serbian balancing market rules. An instrumented testbed at the Faculty of Technical Sciences monitored 65 EV charging sessions and 120 smart meter endpoints over 18 months. Results were shared with the Serbian Energy Agency through two workshops and contributed to a public consultation on aggregator access rules.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0695": {
+    "id": "SYN-PRJ-0695",
+    "kind": "project",
+    "title": "Adriatic–Danubian Corridor Flexibility Exchange for Residential and Commercial Prosumers",
+    "text": "ADRIAFLEX: Adriatic–Danubian Corridor Flexibility Exchange for Residential and Commercial Prosumers (Horizon Europe, 2023–2026).\nParticipants: R0530 work package leader.\nPartners: Faculty of Technical Sciences, University of Novi Sad (Serbia); Faculty of Electrical Engineering, Politehnica University Timișoara (Romania); Faculty of Electrical Engineering, University of Ljubljana (Slovenia); Istituto di Ricerca per le Energie Rinnovabili, Bolzano (Italy); School of Electrical and Computer Engineering, Aristotle University of Thessaloniki (Greece); GridFlex Solutions S.R.L. (Romania, SME); EnergoBaltic d.o.o. (Serbia, SME).\nADRIAFLEX is a Horizon Europe research and innovation action involving seven partners from Serbia, Romania, Slovenia, Italy, and Greece. The project develops cross-border flexibility exchange mechanisms for prosumer aggregators operating in different national regulatory contexts. Nataša Milošević leads Work Package 3, which covers optimal scheduling algorithms and aggregator decision support tools. The Novi Sad team contributes the virtual battery aggregation library developed in FLEXRES and conducts hardware-in-the-loop validation experiments. The project aims to produce open-source scheduling software and policy briefs for three national regulators by 2026.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-00834": {
+    "id": "SYN-PUB-00834",
+    "kind": "publication",
+    "title": "Empirical Characterisation of Residential Electricity Load Variability in Central Serbia Using Clustering Techniques",
+    "text": "Empirical Characterisation of Residential Electricity Load Variability in Central Serbia Using Clustering Techniques (2015, conference, Balkan Energy and Environment Conference Proceedings).\nAuthors: Sonja Kovačević (R0298); Nikola Petrović (outside co-author); Tatjana Varga (outside co-author); Ratko Pejić (R0062).\nKeywords: load profiling; smart meter data; clustering; residential demand; Serbia.\nAccurate load profile models are a prerequisite for storage sizing studies, yet data from Serbian distribution networks remain scarce in the open literature. This paper presents analysis of smart meter records collected from 214 residential customers connected to a low-voltage feeder in the Šumadija region over 18 months. Data gaps of up to 6% were imputed using a k-nearest-neighbour approach. Hierarchical agglomerative clustering with Ward linkage identified six representative daily load archetypes, distinguished primarily by morning peak timing, evening ramp steepness, and weekend flattening. Seasonal modulation coefficients are provided for each archetype. The resulting synthetic profile library was validated against an independent set of 40 metered households achieving a mean absolute percentage error below 9% on daily energy totals. The dataset and clustering code are made available as supplementary material for use in sizing and simulation studies.",
+    "researcherIds": [
+      "R0298",
+      "R0062"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-01514": {
+    "id": "SYN-PUB-01514",
+    "kind": "publication",
+    "title": "Interaction between grid-following inverter current control bandwidth and conducted emission levels: a parametric study",
+    "text": "Interaction between grid-following inverter current control bandwidth and conducted emission levels: a parametric study (2024, journal, IEEE Transactions on Electromagnetic Compatibility).\nAuthors: Nataša Vuković (outside co-author); Tomáš Blaho (outside co-author); Danijela Ninkov (R0611); Dragana Pekez (R0115); Ana Mamužić (R0283).\nKeywords: grid-following inverter; current control; LCL filter; conducted emissions; CISPR 11.\nThe relationship between the current control loop bandwidth of grid-following single-phase inverters and their conducted emission characteristics in the 150 kHz to 2 MHz range is examined through a parametric simulation study validated by laboratory measurements. A full-cycle time-domain inverter model is implemented in PLECS and exercised across current controller bandwidths from 500 Hz to 8 kHz, LCL filter corner frequencies from 4 kHz to 20 kHz, and DC bus voltages of 200 V, 350 V and 600 V. Conducted emission spectra at the AC terminals are extracted via an embedded LISN model and compared with CISPR 11 Class B limits. Increasing controller bandwidth from 1 kHz to 5 kHz reduces low-frequency distortion but increases emissions in the 200 kHz to 600 kHz band by 3 to 11 dB depending on LCL corner frequency. A low-pass post-filter of 47 µH/10 nF placed after the LCL filter reduces peak emission levels by 8 dB with less than 0.3% increase in fundamental voltage drop. Laboratory validation on a 2 kW prototype confirms simulation trends with deviations below 4 dB across 90% of the measured frequency range.",
+    "researcherIds": [
+      "R0611",
+      "R0115",
+      "R0283"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-01665": {
+    "id": "SYN-PUB-01665",
+    "kind": "publication",
+    "title": "Sensitivity of LLC Converter Efficiency to Resonant Tank Component Tolerances: A Monte Carlo Study",
+    "text": "Sensitivity of LLC Converter Efficiency to Resonant Tank Component Tolerances: A Monte Carlo Study (2024, conference, Proceedings of the 18th International Symposium on Power Electronics – Ee 2024, Novi Sad).\nAuthors: Dejan Hadžić (R0126); Nebojša Urošević (R0523); Aleksandra Mitrović (outside co-author); Marco Bellini (outside co-author); Aleksandar Jeremić (R0696).\nKeywords: Monte Carlo; component tolerance; LLC converter; ZVS coverage; manufacturing variability.\nResonant tank components—capacitors and inductors—carry manufacturing tolerances that shift the resonant frequency and quality factor away from their designed values. This paper presents a Monte Carlo analysis of the impact of ±5 % and ±10 % tolerance bands on resonant capacitance and inductance on the efficiency and ZVS coverage of a 3 kW LLC converter operating at a nominal resonant frequency of 130 kHz. The FHA gain model was solved for 10,000 randomly sampled component combinations under three load conditions (20 %, 60 %, 100 % of rated power). The probability of losing ZVS on the primary switches at 20 % load exceeded 14 % when both components carried ±10 % tolerances simultaneously, compared to 3.1 % with ±5 % tolerances. Efficiency at rated load was degraded by more than 0.5 percentage points in 8 % of Monte Carlo draws for ±10 % tolerances. Component sorting and post-assembly impedance measurement are evaluated as mitigation strategies, with their cost–benefit trade-off discussed for a small-series production context.",
+    "researcherIds": [
+      "R0126",
+      "R0523",
+      "R0696"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-02130": {
+    "id": "SYN-PUB-02130",
+    "kind": "publication",
+    "title": "Modelling conducted emissions from LED drivers: comparison of behavioural and circuit-level approaches",
+    "text": "Modelling conducted emissions from LED drivers: comparison of behavioural and circuit-level approaches (2016, conference, EMC Europe 2016 – Proceedings of the European Symposium on Electromagnetic Compatibility, Wrocław).\nAuthors: Nataša Vuković (outside co-author); Andrija Šarić (R0163); Petra Sedláček (outside co-author); Đorđe Petrović (outside co-author); Danijela Ninkov (R0611); Veljko Bulatović (R0306).\nKeywords: LED driver; conducted emissions; behavioural model; circuit-level model; aggregation.\nTwo modelling strategies for predicting conducted emissions from LED retrofit lamp drivers are compared: a behavioural model based on measured Thevenin equivalent source impedance and voltage, and a circuit-level model derived from the reverse-engineered schematic of three driver types with rated power of 7 W, 12 W and 18 W. Both models are embedded in a low-voltage network simulation and evaluated against LISN measurements over 150 kHz to 30 MHz. The behavioural approach reproduces measured emission profiles with an average RMS error of 3.1 dB but requires individual characterisation of each unit. The circuit-level model achieves 4.7 dB average error without unit-specific measurement but is sensitive to uncertainty in parasitic component values. A hybrid procedure combining measured impedance data with a simplified circuit skeleton reduces average error to 2.6 dB. The study covers 15 driver samples from four unnamed market sources. Implications for aggregated emission prediction when large numbers of LED luminaires are installed on a single feeder are discussed, with a Monte Carlo analysis of 50 to 500 simultaneous loads.",
+    "researcherIds": [
+      "R0163",
+      "R0611",
+      "R0306"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-02957": {
+    "id": "SYN-PUB-02957",
+    "kind": "publication",
+    "title": "Predictive Maintenance Scheduling for Small Wind Turbines Using Gradient-Boosted Survival Models on Vibration and SCADA Data",
+    "text": "Predictive Maintenance Scheduling for Small Wind Turbines Using Gradient-Boosted Survival Models on Vibration and SCADA Data (2024, conference, Proceedings of the European Workshop on Predictive Maintenance in Energy Infrastructure (EWPMEI)).\nAuthors: Igor Starčević (R0738); Valentina Stojanović (R0233); Branislav Stojanović (R0641); Srđan Kovačević (outside co-author); Petra Horáková (outside co-author); Milica Đorđević (outside co-author).\nKeywords: survival analysis; wind turbine; vibration; SCADA; maintenance scheduling.\nSmall wind turbines installed on agricultural and industrial premises in Serbia are often maintained reactively due to the absence of dedicated condition monitoring. This paper fits gradient-boosted survival models—specifically, a discrete-time hazard model and a random survival forest—to a combined dataset of SCADA telemetry and tower-mounted accelerometer readings from 17 turbines over five years. Predictors include nacelle vibration root-mean-square in three frequency bands, rotor speed deviation, and nacelle temperature differential. The discrete-time hazard model achieved a concordance index of 0.73 on a held-out cohort, outperforming a Cox baseline at 0.65. Predicted 30-day failure probability was used to generate ranked maintenance schedules, which were evaluated in a retrospective simulation against actual maintenance logs, showing an estimated 22 % reduction in unscheduled downtime hours.",
+    "researcherIds": [
+      "R0738",
+      "R0233",
+      "R0641"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-03497": {
+    "id": "SYN-PUB-03497",
+    "kind": "publication",
+    "title": "Frequency-Selective Impedance Measurement as an Indirect Indicator of Partial Discharge Onset Voltage in Oil-Paper Insulation",
+    "text": "Frequency-Selective Impedance Measurement as an Indirect Indicator of Partial Discharge Onset Voltage in Oil-Paper Insulation (2020, journal, IEEE Transactions on Dielectrics and Electrical Insulation).\nAuthors: Ivana Novaković (R0280); Dragan Milošević (outside co-author); Danijela Ninkov (R0611); Katarzyna Walczak (outside co-author).\nKeywords: impedance spectroscopy; oil-paper insulation; partial discharge inception; thermal ageing; dielectric diagnostics.\nThis study investigates whether changes in the complex impedance spectrum of oil-paper insulation at frequencies between 1 Hz and 1 MHz can serve as a precursor to partial discharge inception, measured by conventional IEC 60270 methods. Flat test cells consisting of three layers of thermally aged kraft paper impregnated with mineral oil were subjected to a step-ramp voltage protocol while simultaneous impedance spectra were recorded with a four-terminal impedance analyser at 50 V signal amplitude. For cells aged at 110 °C for periods of 0, 250, 500, and 1000 hours, the partial discharge inception voltage decreased from 12.1 kV to 7.4 kV while the loss tangent at 1 kHz increased from 0.0031 to 0.019. A peak in the derivative of the imaginary impedance component with respect to voltage, observable at frequencies above 10 kHz, consistently preceded electrical PD inception by 3–8% of the inception voltage in all 27 tested specimens. The method is proposed as a non-disruptive complement to acoustic PD monitoring during field transformer inspections.",
+    "researcherIds": [
+      "R0280",
+      "R0611"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-03706": {
+    "id": "SYN-PUB-03706",
+    "kind": "publication",
+    "title": "A Rainflow-Counting Degradation Model for Lithium-Ion Cells Calibrated Against Accelerated Ageing Data",
+    "text": "A Rainflow-Counting Degradation Model for Lithium-Ion Cells Calibrated Against Accelerated Ageing Data (2017, journal, Electrochemical Systems and Energy Storage).\nAuthors: Lars Fiedler (outside co-author); Petra Bauer-Schindler (outside co-author); Sonja Kovačević (R0298).\nKeywords: rainflow counting; cycle ageing; NMC; capacity fade; degradation model.\nAccurate prediction of capacity fade in lithium-ion cells under irregular residential duty cycles requires degradation models that can handle variable depth-of-discharge and state-of-charge ranges. This paper presents a rainflow-counting framework calibrated against capacity measurements from 28 NMC pouch cells cycled under 14 distinct protocols covering depths-of-discharge from 10% to 90% and temperatures from 15 °C to 40 °C. A weighted Ah-throughput damage accumulation function with two exponential terms is fitted to the data using nonlinear least squares; the root mean square error on held-out test cells is 1.4% of nominal capacity at end of test. The model is formulated as a computationally tractable auxiliary constraint for inclusion in dispatch optimisation problems. Comparison with a simpler equivalent full-cycle model shows that rainflow counting reduces overestimation of remaining cycle life by up to 31% for highly irregular profiles.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-03707": {
+    "id": "SYN-PUB-03707",
+    "kind": "publication",
+    "title": "Optimal Sizing of Grid-Connected Residential Photovoltaic–Battery Systems Incorporating Electrochemical Ageing Constraints",
+    "text": "Optimal Sizing of Grid-Connected Residential Photovoltaic–Battery Systems Incorporating Electrochemical Ageing Constraints (2019, journal, Energy Conversion and Systems).\nAuthors: Dragan Milošević (outside co-author); Ana Horváth (outside co-author); Sonja Kovačević (R0298).\nKeywords: MILP; PV-battery sizing; ageing constraint; Vojvodina; scenario optimisation.\nThis paper formulates a mixed-integer linear programming model for the joint optimisation of photovoltaic panel capacity and battery storage capacity for grid-connected single-family houses. The ageing model derived from accelerated cycling experiments is linearised and embedded as a constraint limiting cumulative cycle damage over the planning horizon of 15 years. Stochastic load and irradiance inputs are represented by 50 scenarios generated via Latin hypercube sampling from empirical distributions. The model is applied to three house archetypes in the Vojvodina region using measured irradiance data from a rooftop station at the Faculty of Technical Sciences. Optimal photovoltaic capacity ranges from 3.2 to 5.8 kWp and optimal battery capacity from 4.1 to 9.3 kWh depending on archetype and tariff structure. Including the ageing constraint increases optimal battery capacity by 12–19% compared with a degradation-free formulation, reflecting the need to reduce per-cycle stress.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-03708": {
+    "id": "SYN-PUB-03708",
+    "kind": "publication",
+    "title": "Stochastic Dispatch Strategies for Residential Battery Storage Under Time-of-Use Tariffs: A Monte Carlo Approach",
+    "text": "Stochastic Dispatch Strategies for Residential Battery Storage Under Time-of-Use Tariffs: A Monte Carlo Approach (2020, journal, International Journal of Energy Economics and Planning).\nAuthors: Sonja Kovačević (R0298); Tatjana Varga (outside co-author); Attila Varga (R0825); Cristian Moldovan (outside co-author).\nKeywords: Monte Carlo; dispatch optimisation; time-of-use tariff; model predictive control; battery arbitrage.\nTime-of-use electricity tariffs create an incentive for residential battery storage to perform price arbitrage, but the profitability depends heavily on the realised load profile, which varies significantly from day to day. This study applies Monte Carlo simulation with 10 000 annual scenarios, drawn from the clustered load profile library developed in earlier work, to assess the distribution of annual savings achievable by three dispatch heuristics: greedy peak shaving, price-threshold arbitrage, and a model predictive control policy with a 24-hour look-ahead. A degradation penalty derived from the rainflow counting model is incorporated into the economic accounting. Results show that the model predictive control policy achieves median annual savings of 187 EUR per household at a battery size of 7 kWh but has a 90th-percentile loss of 43 EUR in adverse load years. The greedy heuristic is more robust but yields savings 22% lower on average. Sensitivity to forecast horizon length and tariff spread is quantified.",
+    "researcherIds": [
+      "R0298",
+      "R0825"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-03709": {
+    "id": "SYN-PUB-03709",
+    "kind": "publication",
+    "title": "Battery Sizing and Ageing Modelling for Residential Storage: Methods, Data Requirements, and Practical Limitations",
+    "text": "Battery Sizing and Ageing Modelling for Residential Storage: Methods, Data Requirements, and Practical Limitations (2021, book chapter, Advances in Residential Energy Storage Systems (edited volume, Springer-Verlag equivalent, invented)).\nAuthors: Sonja Kovačević (R0298); Lars Fiedler (outside co-author).\nKeywords: review; ageing models; sizing methods; single-particle model; calendar ageing.\nThis book chapter reviews the state of practice in optimal sizing and dispatch modelling for residential battery energy storage with an emphasis on electrochemical ageing. The chapter covers three families of ageing models—equivalent full-cycle counting, rainflow-based damage accumulation, and physics-based single-particle models—and assesses their tractability when embedded in optimisation frameworks. Data requirements for each approach are discussed, including the number of laboratory cycling tests needed to achieve calibration uncertainty below 5% capacity fade error. Practical limitations arising from the mismatch between laboratory cell data and module-level behaviour in field installations are addressed, with reference to reported case studies from Germany, Italy, and Serbia. The chapter concludes with a structured comparison table mapping model complexity to computational cost and recommends research priorities for the integration of temperature effects and calendar ageing into sizing workflows.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-03710": {
+    "id": "SYN-PUB-03710",
+    "kind": "publication",
+    "title": "Effect of Temperature Variation on Optimal Dispatch Policy for Residential Lithium-Ion Storage in Continental Climate Zones",
+    "text": "Effect of Temperature Variation on Optimal Dispatch Policy for Residential Lithium-Ion Storage in Continental Climate Zones (2022, journal, Applied Energy Modelling).\nAuthors: Sonja Kovačević (R0298); Nikola Petrović (outside co-author); Julija Stanković (outside co-author); Ana Horváth (outside co-author).\nKeywords: thermal modelling; calendar ageing; Arrhenius; continental climate; C-rate control.\nMost residential battery dispatch models assume isothermal operation, which is not representative of systems installed in unheated utility rooms in continental climates where ambient temperature ranges from −5 °C in winter to 35 °C in summer. This study augments an existing dispatch model with a lumped thermal model of a 10 kWh lithium-ion module and a temperature-dependent degradation rate derived from Arrhenius fitting to calendar ageing data at five temperatures. A year-long simulation using measured ambient temperatures from ten sites in Vojvodina and a 24-hour model predictive control policy is performed. Results indicate that ignoring temperature effects underestimates annual capacity fade by 8–14% at sites with prolonged summer periods and overestimates it by 4–7% at cooler upland sites. An adjusted dispatch policy that limits C-rate at high temperatures reduces total annual degradation by 6% at a cost of 3% reduction in annual arbitrage savings.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-03711": {
+    "id": "SYN-PUB-03711",
+    "kind": "publication",
+    "title": "Economic Feasibility of Second-Life Lithium-Ion Batteries in Residential Storage Under Serbian Regulatory Conditions",
+    "text": "Economic Feasibility of Second-Life Lithium-Ion Batteries in Residential Storage Under Serbian Regulatory Conditions (2023, journal, Journal of Sustainable Energy Systems and Technologies).\nAuthors: Sonja Kovačević (R0298); Milica Đorđević (outside co-author); Cristian Moldovan (outside co-author); Vuk Antonić (outside co-author).\nKeywords: second-life battery; state of health; two-stage stochastic programme; net metering; Serbia.\nRepurposed electric vehicle battery modules offer a lower upfront cost than new cells but arrive with heterogeneous state of health, typically in the range 70–82% of original capacity based on data from three domestic automotive service centres. This paper develops a sizing and dispatch model that explicitly accounts for initial state-of-health uncertainty using a two-stage stochastic programme. In the first stage, battery capacity procurement is decided under uncertainty; in the second stage, dispatch is optimised for each state-of-health scenario. A set of 30 representative scenarios is generated by fitting a beta distribution to measured state-of-health data from 47 retired modules. Under current Serbian net-metering regulations and a 30% cost discount relative to new cells, second-life systems reach breakeven in 9–11 years for high-utilisation households. Breakeven extends beyond 15 years for low-consumption households, making second-life storage financially marginal in that segment without additional policy support.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-03712": {
+    "id": "SYN-PUB-03712",
+    "kind": "publication",
+    "title": "Benchmarking Stochastic Optimisation Formulations for Residential Battery Sizing: Scenario Trees Versus Chance Constraints",
+    "text": "Benchmarking Stochastic Optimisation Formulations for Residential Battery Sizing: Scenario Trees Versus Chance Constraints (2025, journal, Optimisation and Decision Making in Energy Systems).\nAuthors: Sonja Kovačević (R0298); Tatjana Varga (outside co-author); Marek Svoboda (outside co-author).\nKeywords: scenario tree; chance constraints; stochastic programming; battery sizing; benchmarking.\nStochastic programmes for battery sizing can be formulated either by explicit enumeration of load and generation scenarios or by imposing chance constraints that bound the probability of constraint violation. This paper provides a systematic comparison of both approaches applied to a standardised residential sizing problem with a 15-year planning horizon, five house types, and three Serbian climate zones. Scenario tree formulations with 20, 50, and 200 scenarios are tested alongside chance-constrained formulations at reliability levels of 90%, 95%, and 99%. Computational times, optimal battery capacities, and out-of-sample economic performance are evaluated across 1 000 test scenarios. The scenario tree approach with 50 scenarios achieves near-identical out-of-sample performance to the 200-scenario version while reducing solution time by a factor of 3.8. Chance constraints at 95% reliability yield solutions with 7–11% larger battery capacities than corresponding scenario formulations and exhibit higher variance in out-of-sample cost.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-03713": {
+    "id": "SYN-PUB-03713",
+    "kind": "publication",
+    "title": "Integrated Cycle-Ageing and Dispatch Co-optimisation for Residential Battery Storage with Rooftop Photovoltaics: A Receding-Horizon Framework",
+    "text": "Integrated Cycle-Ageing and Dispatch Co-optimisation for Residential Battery Storage with Rooftop Photovoltaics: A Receding-Horizon Framework (2026, journal, IEEE Transactions on Sustainable Energy Systems (invented equivalent)).\nAuthors: Sonja Kovačević (R0298); Nikola Petrović (outside co-author); Milica Đorđević (outside co-author); Lars Fiedler (outside co-author).\nKeywords: receding-horizon optimisation; co-optimisation; hardware-in-the-loop; LFP battery; dispatch.\nPrevious work has typically treated battery ageing either as an offline constraint in the sizing phase or as a penalty term in heuristic dispatch rules. This paper presents a receding-horizon optimisation framework in which a linearised cycle-ageing submodel is included as a dynamic constraint within a 48-hour dispatch problem solved every 24 hours. The framework is implemented in Python using an open-source MILP solver and tested on a hardware-in-the-loop platform connected to a 7.2 kWh lithium iron phosphate module and a 4.8 kWp PV emulator. Experiments spanning 90 simulated operating days show that the co-optimised policy extends projected end-of-life by 1.3 years relative to a price-threshold dispatch policy while sacrificing less than 4% of annual electricity bill savings. Computational time per optimisation step averages 11 seconds on a standard desktop processor, which is compatible with embedded controller deployment.",
+    "researcherIds": [
+      "R0298"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-03969": {
+    "id": "SYN-PUB-03969",
+    "kind": "publication",
+    "title": "Coordinated Reactive Power Dispatch in Low-Voltage Networks Using a Two-Stage Optimisation Framework",
+    "text": "Coordinated Reactive Power Dispatch in Low-Voltage Networks Using a Two-Stage Optimisation Framework (2022, journal, Energies – Special Issue on Distribution Network Optimisation).\nAuthors: Aleksandar Jeremić (R0696); Luka Petrović (outside co-author); Tibor Farkaš (outside co-author); Danijela Ninkov (R0611); Vera Knežević (R0320); Cristina Moldovan (outside co-author).\nKeywords: reactive power dispatch; two-stage optimisation; voltage control; on-load tap changer; distribution system operator.\nThis paper proposes a two-stage optimisation framework for coordinating reactive power resources in low-voltage distribution networks, combining a day-ahead scheduling stage based on forecast generation and load profiles with a real-time correction stage executed at 15-minute intervals. Reactive power resources considered include smart photovoltaic inverters, a single on-load tap changer at the MV/LV transformer, and a switched capacitor bank at the feeder midpoint. The day-ahead stage minimises total reactive power losses subject to voltage band constraints using a linear programming relaxation of the power flow equations. The correction stage applies a rule-based droop adjustment using local voltage measurements only, requiring no communication infrastructure. The framework is tested on a 52-node low-voltage benchmark network and validated on a real feeder topology from Novi Sad obtained from the distribution system operator. Simulation over a 30-day period shows average voltage deviation reduction of 34 % and reactive energy import reduction of 41 % relative to a no-control baseline. Computational time for the day-ahead stage is under 8 seconds on standard hardware.",
+    "researcherIds": [
+      "R0696",
+      "R0611",
+      "R0320"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-04229": {
+    "id": "SYN-PUB-04229",
+    "kind": "publication",
+    "title": "Reinforcement Learning for Real-Time EV Charging Control Under Stochastic Arrivals and Price Uncertainty",
+    "text": "Reinforcement Learning for Real-Time EV Charging Control Under Stochastic Arrivals and Price Uncertainty (2021, journal, Electric Power Systems Research).\nAuthors: Jovana Đorđević (outside co-author); Luca Andreotti (outside co-author); Nataša Milošević (R0530); Radomir Bogdanović (R0344).\nKeywords: deep Q-network; reinforcement learning; EV charging; stochastic arrivals; real-time control.\nModel-based optimisation of EV charging requires accurate forecasts of vehicle arrivals and electricity prices that are often unavailable in real time. This paper applies a deep Q-network (DQN) agent to control the charging power of a 50-space public car park in Novi Sad in a simulated environment. The state space encodes queue state, current price, time of day, and remaining time windows; the action space discretises charger power into five levels between 0 and 22 kW. The reward function balances charging cost minimisation against a penalty for unmet energy demand at departure. The agent is trained over 10 000 simulated days using historical price data from a regional day-ahead market and arrival statistics derived from a six-month car park monitoring campaign. After training, the DQN policy reduces average cost per vehicle by 13.7% compared with greedy immediate-charge, and by 5.2% compared with a model predictive control baseline that uses perfect forecasts degraded with realistic noise. Robustness to sudden price spikes is demonstrated through stress testing.",
+    "researcherIds": [
+      "R0530",
+      "R0344"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-05444": {
+    "id": "SYN-PUB-05444",
+    "kind": "publication",
+    "title": "Gate driver propagation delay and its impact on dead-time setting in a 500 kHz GaN synchronous rectifier",
+    "text": "Gate driver propagation delay and its impact on dead-time setting in a 500 kHz GaN synchronous rectifier (2017, journal, IEEE Transactions on Power Electronics).\nAuthors: Milica Đurić (outside co-author); Rastko Milić (R0456); Aleksandar Jeremić (R0696); Zoran Todić (R0660); Andrei Moldovan (outside co-author).\nKeywords: dead time; gate driver delay; synchronous rectifier; GaN; shoot-through.\nDead-time management in GaN synchronous rectifiers is constrained by propagation delay spread in the gate-driver path and by device turn-off speed. This paper characterises the propagation delay distribution of a commercial isolated gate driver IC over supply voltage (4.5–6 V), temperature (−20 to 150 °C), and input signal slew rate (1–50 V/ns). Mean propagation delay was 18.4 ns with a three-sigma spread of 5.1 ns. A statistical dead-time design methodology is derived, incorporating delay spread, device fall-time distribution, and converter-level shoot-through current risk. Experimental validation on a 48 V / 5 V, 300 W, 500 kHz synchronous buck converter showed that the statistically derived minimum dead time of 23 ns reduced body-diode conduction loss by 1.8 W compared to a conservative 50 ns dead time, improving full-load efficiency from 95.1 % to 95.9 %. An adaptive dead-time control loop based on drain-voltage zero-crossing detection is also evaluated.",
+    "researcherIds": [
+      "R0456",
+      "R0696",
+      "R0660"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-05526": {
+    "id": "SYN-PUB-05526",
+    "kind": "publication",
+    "title": "Voltage fluctuation propagation from 35 kV to 110 kV: attenuation factors observed during arc furnace operation",
+    "text": "Voltage fluctuation propagation from 35 kV to 110 kV: attenuation factors observed during arc furnace operation (2018, journal, Electric Power Systems Research).\nAuthors: Dragan Stanković (outside co-author); Vesna Malešević (R0465); Danijela Ninkov (R0611); Miloš Perić (outside co-author); Radomír Fišer (outside co-author).\nKeywords: flicker propagation; voltage attenuation; 35 kV; 110 kV; short-circuit power.\nFlicker disturbances generated by arc furnace installations at medium voltage propagate upstream to the high-voltage transmission network, but the attenuation experienced during this propagation is seldom quantified from simultaneous measurements at both voltage levels. This paper presents synchronised measurements at the 35 kV and 110 kV busbars of two substations that supply arc furnace plants in northern Serbia, covering a combined monitoring period of 26 weeks. Simultaneous Pst and Plt indices were computed from class-A instruments with GPS time-synchronisation. The ratio Plt(110 kV)/Plt(35 kV) ranged from 0.31 to 0.68, with a median of 0.47. Attenuation was found to increase with short-circuit power at the 110 kV bus. A simple linear regression model predicts the 110 kV Plt from the 35 kV Plt and the short-circuit impedance ratio with an R² of 0.79. The model supports planning engineers in estimating upstream flicker impact without additional instrumentation.",
+    "researcherIds": [
+      "R0465",
+      "R0611"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-06148": {
+    "id": "SYN-PUB-06148",
+    "kind": "publication",
+    "title": "Comparison of Metaheuristic Solvers for Large-Scale Residential Demand Response Scheduling",
+    "text": "Comparison of Metaheuristic Solvers for Large-Scale Residential Demand Response Scheduling (2017, conference, Proceedings of the 13th International Conference on Applied Optimization in Energy Systems (APOES)).\nAuthors: Jovana Đorđević (outside co-author); Nataša Milošević (R0530); Filip Mijatović (R0905); Nebojša Urošević (R0523).\nKeywords: metaheuristics; genetic algorithm; differential evolution; large-scale scheduling; smart meter data.\nCoordinating thousands of flexible loads simultaneously renders exact mixed-integer programming intractable within the time windows required for operational scheduling. This paper benchmarks four metaheuristic approaches—genetic algorithm, particle swarm optimisation, differential evolution, and simulated annealing—on a demand response scheduling problem involving 1 000 heterogeneous residential loads including dishwashers, washing machines, and plug-in hybrid vehicles. Test instances are generated from smart meter recordings of 230 households monitored over six months in 2015–2016 in the Novi Sad area. Metaheuristics are evaluated on solution quality relative to a relaxed LP bound, convergence speed, and robustness across 30 independent runs. Differential evolution achieves the best mean gap of 2.1% from the LP bound within a 60-second wall clock limit. Genetic algorithm and particle swarm optimisation settle near 3.5% gap. Simulated annealing shows high variance and is considered unsuitable for operational use. Parameter tuning guidelines for distribution-network-scale instances are provided.",
+    "researcherIds": [
+      "R0530",
+      "R0905",
+      "R0523"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-06204": {
+    "id": "SYN-PUB-06204",
+    "kind": "publication",
+    "title": "Stochastic Scheduling of Thermostatically Controlled Loads Under Uncertain Outdoor Temperature Forecasts",
+    "text": "Stochastic Scheduling of Thermostatically Controlled Loads Under Uncertain Outdoor Temperature Forecasts (2014, journal, European Transactions on Electrical Power Systems).\nAuthors: Nataša Milošević (R0530); Aleksandra Ćirković (outside co-author); Marco Ferretti (outside co-author).\nKeywords: stochastic programming; heat pumps; temperature uncertainty; two-stage optimisation; scenario generation.\nThermostatically controlled loads such as air conditioners and heat pumps introduce forecast uncertainty into demand response programmes because their flexibility depends on ambient temperature. This paper formulates a two-stage stochastic integer programme in which first-stage decisions commit a population of 200 simulated residential heat pumps to an hourly schedule one day ahead, while second-stage recourse actions correct deviations as temperature scenarios are realised. Fifty temperature scenarios are generated by a first-order autoregressive model fitted to ten years of meteorological data from Novi Sad. The stochastic model is compared with a deterministic benchmark that uses point forecasts. The stochastic approach reduces expected energy cost by 6.3% and decreases the frequency of comfort bound violations by 44% relative to the deterministic schedule. Scenario reduction via fast-forward selection is applied to keep the problem tractable; the reduced 12-scenario model retains 94% of the value of the full 50-scenario problem. The model is solved with a branch-and-bound solver within 90 seconds.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2014
+  },
+  "SYN-PUB-06206": {
+    "id": "SYN-PUB-06206",
+    "kind": "publication",
+    "title": "Day-Ahead Optimal Charging Schedules for a Fleet of Private Electric Vehicles Under Real-Time Pricing Signals",
+    "text": "Day-Ahead Optimal Charging Schedules for a Fleet of Private Electric Vehicles Under Real-Time Pricing Signals (2016, journal, International Journal of Electrical Power and Energy Systems Research).\nAuthors: Nikola Bošnjak (outside co-author); Péter Varjú (outside co-author); Nataša Milošević (R0530).\nKeywords: EV charging scheduling; mixed-integer quadratic programming; real-time pricing; feeder capacity; travel survey.\nThis paper presents an optimisation framework for scheduling overnight charging of a fleet of 80 private electric vehicles connected to a residential distribution feeder. Vehicle availability windows and required state-of-charge targets are treated as deterministic inputs derived from a travel survey of commuters in Novi Sad conducted in 2015. The objective minimises total charging cost under an hourly real-time price signal modelled on the day-ahead market prices from the regional power exchange. A mixed-integer quadratic programme enforces feeder capacity constraints, transformer thermal limits, and individual charger ratings of 3.7 kW and 7.4 kW. Compared with uncontrolled charging, the optimised schedule reduces peak feeder load by 28.7% and lowers total charging cost by 11.3%. The model is also solved under a simplified convex relaxation, which yields a cost within 0.4% of the exact solution at one-tenth of the computation time. Sensitivity analysis shows that results are robust to ±10% variation in vehicle arrival times.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-06207": {
+    "id": "SYN-PUB-06207",
+    "kind": "publication",
+    "title": "Quantifying Demand Flexibility in Aggregated Residential Portfolios Using a Virtual Battery Model",
+    "text": "Quantifying Demand Flexibility in Aggregated Residential Portfolios Using a Virtual Battery Model (2018, journal, IET Smart Grid).\nAuthors: Miroslav Lazić (outside co-author); Cristina Badea (outside co-author); Stefan Huber (outside co-author); Nataša Milošević (R0530).\nKeywords: virtual battery; demand flexibility; aggregation; heat pumps; receding-horizon control.\nThe virtual battery abstraction represents the aggregate flexibility of a population of deferrable loads as a single storage device characterised by equivalent capacity, charge/discharge rate limits, and efficiency. This paper derives virtual battery parameters analytically for three load classes—electric vehicle chargers, heat pumps, and washing machines—and validates the model against detailed appliance-level simulations of a 500-household portfolio. Validation data are drawn from a monitoring campaign conducted in three residential estates in Novi Sad in 2016–2017. The virtual battery model achieves demand tracking errors below 4.2% for time steps of 15 minutes or longer, but errors exceed 9% at 5-minute resolution due to unmodelled switching transients. An extension handles heterogeneous fleets by compositing individual virtual batteries. The model is lightweight enough to be embedded in distribution management system software and is demonstrated in a receding-horizon control scenario over a 48-hour test period. Comparison with the appliance-level model shows a computational speed-up of three orders of magnitude.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-06208": {
+    "id": "SYN-PUB-06208",
+    "kind": "publication",
+    "title": "Distributed Model Predictive Control for Coordinated EV Charging in Multi-Feeder Residential Networks",
+    "text": "Distributed Model Predictive Control for Coordinated EV Charging in Multi-Feeder Residential Networks (2019, journal, IEEE Transactions on Smart Grid (Balkan Regional Special Issue)).\nAuthors: Aleksandra Ćirković (outside co-author); Goran Stanković (outside co-author); Ioannis Papadakis (outside co-author); Nataša Milošević (R0530).\nKeywords: distributed MPC; ADMM; EV charging coordination; multi-feeder; communication robustness.\nCentralised optimisation of electric vehicle charging across multiple feeders sharing a medium-voltage/low-voltage substation raises scalability and data privacy concerns. This paper proposes a distributed model predictive control (DMPC) scheme in which each feeder-level controller optimises local EV charging over a rolling two-hour horizon and exchanges only aggregated power setpoints with a substation coordinator via an alternating direction method of multipliers (ADMM) decomposition. The test network comprises four radial feeders with 60 EVs each, totalling 240 vehicles, parameterised from field measurements at a residential estate in Petrovaradin. Real-time price signals are taken from synthetic hourly price sequences calibrated to SEEPEX market data. After 15 ADMM iterations the substation transformer overload constraint is satisfied with a residual primal infeasibility of 0.3%. Total charging cost is within 1.8% of the centralised optimum. The DMPC scheme is also evaluated under 20% communication packet loss, showing graceful performance degradation without instability.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-06210": {
+    "id": "SYN-PUB-06210",
+    "kind": "publication",
+    "title": "Coordinated Scheduling of Heat Pumps and EV Chargers in a Residential Microgrid with Battery Storage Under Dynamic Tariffs",
+    "text": "Coordinated Scheduling of Heat Pumps and EV Chargers in a Residential Microgrid with Battery Storage Under Dynamic Tariffs (2022, journal, Applied Energy).\nAuthors: Miroslav Lazić (outside co-author); Nataša Milošević (R0530); Cristina Badea (outside co-author).\nKeywords: microgrid scheduling; heat pump; battery storage; MILP; dynamic tariff.\nThis paper addresses the joint day-ahead scheduling of heat pumps, EV chargers, and a 100 kWh lithium-ion battery storage unit in a residential microgrid serving 40 dwellings in Novi Sad. A mixed-integer linear programme minimises electricity procurement cost under an hourly dynamic tariff while respecting thermal comfort bounds, battery cycle-life constraints modelled via a throughput counter, and a 160 kVA grid connection limit. Demand-side flexibility from heat pumps and EVs is represented using the validated virtual battery model from prior work. The scheduling problem is solved for all 365 days of 2019 using actual hourly temperature, occupancy, and price data. Annual electricity cost is reduced by 22.4% compared with uncontrolled operation. Battery degradation is limited to 1.8% capacity loss per year by capping daily throughput at 1.2 cycles. The interaction between heat pump and EV flexibility is analysed: scheduling them jointly rather than sequentially reduces cost by an additional 4.1% by exploiting temporal complementarity in their flexibility windows.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06212": {
+    "id": "SYN-PUB-06212",
+    "kind": "publication",
+    "title": "Data-Driven Estimation of EV Charging Flexibility Envelopes from Smart Meter Records",
+    "text": "Data-Driven Estimation of EV Charging Flexibility Envelopes from Smart Meter Records (2024, journal, IEEE Transactions on Transportation Electrification).\nAuthors: Jovana Đorđević (outside co-author); Balázs Németh (outside co-author); Dragana Peić (outside co-author); Nataša Milošević (R0530); Rastko Mijatović (R0887).\nKeywords: EV flexibility envelope; hidden Markov model; gradient boosting; smart meter inference; aggregator.\nAccurate characterisation of EV charging flexibility requires knowledge of vehicle departure times and required state-of-charge, which are rarely directly observable by a grid operator. This paper develops a data-driven method to infer charging flexibility envelopes from smart meter current measurements at 1-minute resolution without explicit vehicle telemetry. A hidden Markov model detects charging session boundaries and estimates session energy demand from the measured current integral. Departure time is predicted by a gradient-boosted regression tree trained on 14 months of session records from 65 private EV owners participating in a monitoring trial in Novi Sad. The predicted flexibility envelope—defined as the set of feasible charging power trajectories from session start to predicted departure—is compared against ground-truth GPS-derived departure times. Envelope feasibility rate is 89.3% at a 95% confidence level. The method enables aggregators to construct flexibility bids without requiring direct vehicle communication and is computationally suitable for deployment on a distribution management server handling up to 5 000 concurrent sessions.",
+    "researcherIds": [
+      "R0530",
+      "R0887"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-06213": {
+    "id": "SYN-PUB-06213",
+    "kind": "publication",
+    "title": "Volt/VAR Optimisation Coupled with Flexible Load Scheduling in Low-Voltage Networks with High EV Penetration",
+    "text": "Volt/VAR Optimisation Coupled with Flexible Load Scheduling in Low-Voltage Networks with High EV Penetration (2025, journal, International Journal of Electrical Power and Energy Systems).\nAuthors: Aleksandra Ćirković (outside co-author); Goran Stanković (outside co-author); Ioannis Papadakis (outside co-author); Nataša Milošević (R0530).\nKeywords: Volt/VAR optimisation; EV charger reactive power; second-order cone relaxation; AC OPF; loss minimisation.\nHigh EV penetration raises both active power demand and reactive power fluctuations in low-voltage distribution networks. This paper integrates Volt/VAR optimisation (VVO) with flexible load scheduling in a joint AC optimal power flow formulation applied to a 94-node test feeder representative of a mixed residential–commercial area near Novi Sad. EV chargers are modelled as controllable complex power injections, exploiting the ability of modern off-board chargers to operate at adjustable power factor. A second-order cone relaxation of the AC OPF is solved hourly over a 24-hour horizon. The joint VVO–scheduling approach reduces total active power losses by 11.8% and keeps all bus voltages within ±5% of nominal throughout the day, compared with 7.2% loss reduction and three voltage violations under active-power-only EV scheduling. Reactive power support from EV chargers contributes 34% of total reactive compensation, reducing on-load tap changer operations by 40%. The formulation scales to 200-node feeders within a two-minute solve time.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-06214": {
+    "id": "SYN-PUB-06214",
+    "kind": "publication",
+    "title": "Rolling-Horizon Scheduling of Aggregated Residential Loads Under Intraday Price Revisions: A Receding-Horizon MPC Benchmark Study",
+    "text": "Rolling-Horizon Scheduling of Aggregated Residential Loads Under Intraday Price Revisions: A Receding-Horizon MPC Benchmark Study (2026, conference, Proceedings of the 24th Power Systems Computation Conference (PSCC 2026)).\nAuthors: Miroslav Lazić (outside co-author); Dragana Peić (outside co-author); Stefan Huber (outside co-author); Nataša Milošević (R0530).\nKeywords: receding-horizon MPC; intraday scheduling; stochastic MPC; hardware-in-the-loop; flexible load aggregation.\nDay-ahead EV and flexible load schedules must be revised intraday as electricity prices, vehicle arrivals, and weather conditions deviate from forecasts. This paper benchmarks four receding-horizon model predictive control (MPC) strategies—open-loop optimal, closed-loop robust, scenario-based stochastic MPC, and a lightweight rule-based corrector—on a 15-minute-resolution intraday scheduling problem for a 150-household residential portfolio with 60 EVs. Intraday price revisions are modelled using an ARIMA process fitted to 18 months of regional day-ahead and intraday price differences. Stochastic MPC achieves the lowest mean daily cost (within 2.3% of a clairvoyant oracle) but requires 8× more computation than open-loop optimal. The rule-based corrector, requiring less than one second per revision cycle, achieves costs within 5.1% of the oracle and is considered the practical default for resource-constrained controllers. All four strategies are evaluated on a hardware-in-the-loop testbed using the laboratory's RTDS simulator interfaced with a physical 7.4 kW EV charger, confirming simulation results within measurement uncertainty.",
+    "researcherIds": [
+      "R0530"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-06241": {
+    "id": "SYN-PUB-06241",
+    "kind": "publication",
+    "title": "Soiling Rate Estimation on Utility-Scale PV Panels via Piecewise Linear Segmentation of Cleaned Irradiance-Normalised Output",
+    "text": "Soiling Rate Estimation on Utility-Scale PV Panels via Piecewise Linear Segmentation of Cleaned Irradiance-Normalised Output (2016, conference, Proceedings of the Central European Conference on Photovoltaics and Energy Management (CEPEM)).\nAuthors: Igor Starčević (R0738); Marija Vučković (outside co-author); István Varga (R0532).\nKeywords: soiling estimation; piecewise segmentation; PV; SCADA; Pannonian region.\nSoiling of photovoltaic panels reduces energy yield in a gradual, weather-dependent manner that is difficult to separate from other sources of degradation. This study applies piecewise linear segmentation to daily cleaned irradiance-normalised DC output records from a 1.1 MWp park monitored over 27 months. Rain events identified in co-located meteorological station data were used as natural cleaning markers, enabling segment-wise soiling rate estimation. Rates ranged from 0.04 % to 0.31 % per day depending on season and prevailing wind direction, consistent with dust transport patterns documented for the Pannonian plain. The method requires no additional soiling sensors and can be applied retrospectively to existing SCADA archives. Comparison with a reference clean-string approach showed mean absolute error below 0.09 % per day, demonstrating suitability for operational use.",
+    "researcherIds": [
+      "R0738",
+      "R0532"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-06789": {
+    "id": "SYN-PUB-06789",
+    "kind": "publication",
+    "title": "Supraharmonic emissions (2–150 kHz) from grid-connected photovoltaic inverters: field measurements and spectral characterisation",
+    "text": "Supraharmonic emissions (2–150 kHz) from grid-connected photovoltaic inverters: field measurements and spectral characterisation (2017, journal, Renewable Energy and Power Quality Journal).\nAuthors: Aleksandar Simić (outside co-author); Rossella Fantozzi (outside co-author); Martin Bartoš (R0587); Danijela Ninkov (R0611).\nKeywords: supraharmonics; photovoltaic inverter; grid-connected; spectral characterisation; 2–150 kHz.\n(no abstract)",
+    "researcherIds": [
+      "R0587",
+      "R0611"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-07001": {
+    "id": "SYN-PUB-07001",
+    "kind": "publication",
+    "title": "Time-domain simulation of conducted disturbances generated by single-phase rectifiers in low-voltage residential networks",
+    "text": "Time-domain simulation of conducted disturbances generated by single-phase rectifiers in low-voltage residential networks (2010, journal, Serbian Journal of Electrical Engineering).\nAuthors: Miroslav Čabarkapa (outside co-author); Đorđe Petrović (outside co-author); Danijela Ninkov (R0611).\nKeywords: conducted emissions; time-domain simulation; single-phase rectifier; LISN; low-voltage network.\nA time-domain simulation framework is developed to predict conducted emissions from single-phase uncontrolled rectifiers connected to a simplified residential low-voltage network. The network is represented by a ladder model with frequency-dependent line parameters derived from measurements on a 230 V, 50 Hz test feeder of approximately 120 m length. Rectifier loads ranging from 100 W to 2 kW are modelled as nonlinear voltage-dependent current sources parameterised from laboratory measurements. Simulated disturbance voltages at the mains terminal are compared against LISN-based measurements following CISPR 16-1-1 procedures over the 9 kHz to 30 MHz range. Agreement within 4 dB is achieved across the 150 kHz to 2 MHz sub-band, with larger deviations at higher frequencies attributed to parasitic capacitances not included in the ladder model. The study identifies the 450 kHz to 600 kHz interval as the most sensitive to load power level, with peak quasi-peak levels increasing by up to 11 dB when aggregate load increases from 500 W to 2 kW. The results suggest that existing CISPR limits may be approached under dense residential loading conditions.",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2010
+  },
+  "SYN-PUB-07002": {
+    "id": "SYN-PUB-07002",
+    "kind": "publication",
+    "title": "Frequency-dependent impedance characterisation of low-voltage cable types used in Serbian urban distribution networks",
+    "text": "Frequency-dependent impedance characterisation of low-voltage cable types used in Serbian urban distribution networks (2011, conference, Proceedings of the 8th International Symposium on Electromagnetic Compatibility and Electromagnetic Ecology (EMCEE), Belgrade).\nAuthors: Tatjana Kovačević (outside co-author); Luca Marchetti (outside co-author); Danijela Ninkov (R0611).\nKeywords: cable impedance; frequency-dependent parameters; transmission-line model; SPICE; conducted emission.\nThe per-unit-length impedance and admittance parameters of four cable types commonly deployed in Serbian urban low-voltage distribution networks are characterised over the 10 kHz to 30 MHz frequency range using a two-port vector network analyser. Cable lengths between 10 m and 80 m are measured in open-circuit and short-circuit configurations, and results are fitted to a standard transmission-line model augmented with a skin-effect correction term. Measured propagation constants are compared to values predicted by IEC 60228-based geometric calculations, revealing deviations of up to 18% in the attenuation constant above 1 MHz for flat-conductor aluminium cables. The characterised parameters are incorporated into a SPICE-compatible model library intended for conducted emission simulations. Sensitivity analysis shows that uncertainty in conductor geometry translates to a maximum 6 dB uncertainty in predicted disturbance voltage at a 30 m cable termination at 10 MHz. The data set covers NYY, NAYY, NYM and NYFGbY cable types in cross-sections from 1.5 mm² to 25 mm².",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2011
+  },
+  "SYN-PUB-07003": {
+    "id": "SYN-PUB-07003",
+    "kind": "publication",
+    "title": "Impact of variable-speed drives on harmonic voltage distortion in industrial low-voltage busbars",
+    "text": "Impact of variable-speed drives on harmonic voltage distortion in industrial low-voltage busbars (2013, journal, Electrical Power Systems Research).\nAuthors: Aleksandar Simić (outside co-author); Danijela Ninkov (R0611); Bojan Ristić (outside co-author).\nKeywords: harmonic distortion; variable-speed drives; power quality; harmonic load flow; EN 50160.\nHarmonic voltage measurements are carried out on three low-voltage industrial busbars (400 V, 50 Hz) in a metalworking facility over a seven-day continuous recording period using a class A power quality analyser. Variable-speed drives of 5.5 kW to 90 kW nameplate ratings account for between 40% and 70% of connected load depending on the shift schedule. Total harmonic distortion of voltage (THDV) consistently exceeds the EN 50160 indicative limit of 8% during peak production hours, reaching up to 12.3%. The fifth and seventh voltage harmonics dominate, with average magnitudes of 4.1% and 3.6% of fundamental respectively. Measured current spectra from individual drives are used to construct aggregated injection models following IEC 61000-3-6 guidelines, and harmonic load flow calculations are performed on a network model validated against field measurements. Simulations reproduce measured THDV values within 1.5 percentage points. Mitigation options including passive fifth-harmonic filters and increased feeder conductor cross-section are evaluated, with the former reducing THDV to below 6% under peak load.",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-07004": {
+    "id": "SYN-PUB-07004",
+    "kind": "publication",
+    "title": "Conducted emission test reproducibility for switch-mode power supplies: influence of LISN topology and mains impedance variation",
+    "text": "Conducted emission test reproducibility for switch-mode power supplies: influence of LISN topology and mains impedance variation (2014, journal, IEEE Transactions on Electromagnetic Compatibility).\nAuthors: Klaus Hoffmeister (outside co-author); Miroslav Čabarkapa (outside co-author); Danijela Ninkov (R0611).\nKeywords: LISN; CISPR 32; switch-mode power supply; test reproducibility; mains impedance.\nSwitch-mode power supplies (SMPS) are tested for conducted emissions according to CISPR 32 using three commercially available line impedance stabilisation networks (LISNs) of nominally identical 50 Ω/50 µH topology but from different manufacturers. Tests are performed on five SMPS samples with rated power between 30 W and 250 W. Measured quasi-peak levels at the same SMPS unit differ by up to 7.2 dB across LISNs in the 150 kHz to 500 kHz band, exceeding the 3 dB reproducibility figure often cited in the literature. The observed discrepancies are traced to differences in the LISN high-frequency impedance characteristic, particularly a self-resonance near 1.4 MHz in one unit. An additional test campaign varies the mains source impedance from 0.05 Ω to 0.8 Ω at 50 Hz by inserting series inductors, demonstrating that SMPS peak emission levels shift by up to 5 dB due to changes in rectifier operating point. These findings have implications for compliance margins and for the interpretation of borderline-pass test results.",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2014
+  },
+  "SYN-PUB-07005": {
+    "id": "SYN-PUB-07005",
+    "kind": "publication",
+    "title": "Interference between ripple control signals and supraharmonic emissions in distribution networks: a time-domain case study",
+    "text": "Interference between ripple control signals and supraharmonic emissions in distribution networks: a time-domain case study (2018, journal, International Journal of Electrical Power and Energy Systems).\nAuthors: Stefan Horvat (outside co-author); Gábor Fekete (outside co-author); Nataša Vuković (outside co-author); Danijela Ninkov (R0611).\nKeywords: ripple control; supraharmonics; interference; time-domain model; distribution network.\nRipple control systems operating at 316.7 Hz and 750 Hz are widely used by distribution system operators in central Europe for remote load switching. This study investigates the extent to which supraharmonic emissions from switch-mode loads corrupt ripple control telegram reception in a 400 V test feeder modelled from parameters measured in a suburban distribution area near Novi Sad. A full time-domain model is built in MATLAB/Simulink incorporating a ripple control transmitter, feeder impedance, and four classes of switching loads: SMPS, LED drivers, PV micro-inverters, and EV on-board chargers. At 15% feeder loading with mixed loads, signal-to-interference ratio at the receiver input drops below the 20 dB design threshold assumed in EN 61000-5-1 for ripple control. Worst-case degradation of 28 dB is observed when multiple PV micro-inverters synchronise their switching near the ripple control frequency. Temporal correlation between load power cycles and interference bursts is demonstrated. The model is validated against a 4-hour measurement record from the test feeder with 4.5% mean absolute error in receiver input voltage.",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-07006": {
+    "id": "SYN-PUB-07006",
+    "kind": "publication",
+    "title": "Common-mode and differential-mode separation of conducted emissions: measurement method comparison and uncertainty analysis",
+    "text": "Common-mode and differential-mode separation of conducted emissions: measurement method comparison and uncertainty analysis (2019, journal, Metrology and Measurement Systems).\nAuthors: Miroslav Čabarkapa (outside co-author); Ida Lerch (outside co-author); Danijela Ninkov (R0611).\nKeywords: common mode; differential mode; conducted emissions; measurement uncertainty; LISN.\nFour methods for separating common-mode (CM) and differential-mode (DM) conducted emissions from single-phase equipment are compared: a commercial CM/DM separator, a home-built balun-based separator, a two-LISN simultaneous measurement approach, and a post-processing technique applied to standard LISN recordings. Measurements are performed on five reference loads including a 100 W SMPS, a 40 W LED driver array, and a 1.5 kW motor controller in the 150 kHz to 30 MHz band. Separator insertion loss and balance-to-unbalance conversion ratio are characterised by network analyser, revealing that the commercial unit maintains 40 dB mode separation only below 5 MHz. Uncertainty budgets are constructed according to JCGM 100:2008 for each method. Total standard uncertainty ranges from 1.1 dB to 3.8 dB depending on method and frequency, with the two-LISN method providing the lowest uncertainty above 10 MHz. Practical guidance is provided on method selection depending on available equipment and required accuracy.",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-07008": {
+    "id": "SYN-PUB-07008",
+    "kind": "publication",
+    "title": "Conducted disturbance propagation from EV on-board chargers: network impedance dependency and phase-to-phase coupling",
+    "text": "Conducted disturbance propagation from EV on-board chargers: network impedance dependency and phase-to-phase coupling (2021, journal, IEEE Transactions on Power Delivery).\nAuthors: Stefan Horvat (outside co-author); Jasmina Jokić (R0769); Marta Johansson (outside co-author); Tatjana Kovačević (outside co-author); Danijela Ninkov (R0611).\nKeywords: EV charger; conducted emissions; three-phase feeder; phase coupling; charging infrastructure.\nThree-phase low-voltage feeders serving residential parking areas with electric vehicle charging infrastructure are studied using a combination of laboratory measurements and network simulation. On-board chargers of 3.3 kW, 7.4 kW and 11 kW rated power are characterised individually on a LISN test bench, and their emission spectra exported as Norton equivalent sources. A three-phase feeder model of 60 m length is parameterised from field impedance measurements and loaded with up to 12 simultaneous charger connections distributed across phases. Phase-to-phase coupling via the neutral conductor and earth return path is analysed and shown to introduce cross-phase disturbance voltages up to 8 dB below the directly driven phase in the 150 kHz to 500 kHz band. Feeder impedance variation due to the connection of reactive compensation capacitors shifts dominant emission peaks by up to 40 kHz. Compliance margins relative to EN 61000-3-11 group emission limits shrink by 6 dB when six or more chargers of the same type operate simultaneously. Results are discussed in the context of planned charging hub deployments.",
+    "researcherIds": [
+      "R0769",
+      "R0611"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-07010": {
+    "id": "SYN-PUB-07010",
+    "kind": "publication",
+    "title": "Statistical characterisation of supraharmonic emission levels in a low-voltage feeder over a 12-month monitoring campaign",
+    "text": "Statistical characterisation of supraharmonic emission levels in a low-voltage feeder over a 12-month monitoring campaign (2023, journal, Electric Power Systems Research).\nAuthors: Stefan Horvat (outside co-author); Rossella Fantozzi (outside co-author); Gábor Fekete (outside co-author); Danijela Ninkov (R0611).\nKeywords: supraharmonics; long-term monitoring; statistical characterisation; low-voltage feeder; lognormal distribution.\nContinuous monitoring of supraharmonic current and voltage emissions at the 400 V low-voltage busbar of a suburban distribution substation near Novi Sad is carried out over twelve consecutive months using a purpose-built acquisition system with 1 MS/s sampling and 90 dB dynamic range. The feeder supplies a mixture of residential and small commercial loads. Emission spectra are computed in 200 Hz bins from 2 kHz to 150 kHz on a ten-minute aggregation basis in accordance with the draft measurement protocol of IEC/TR 61000-2-1-2 Ed.2. Statistical distributions of emission levels are fitted to lognormal models at selected spectral bins; the 95th percentile levels at 16 kHz and 40 kHz are 12.1% and 6.3% of the fundamental current respectively. Clear diurnal and weekly patterns are observed, with evening peaks 4 to 9 dB above overnight minima. Seasonal variation is modest (less than 2 dB) except at 16 kHz, where a 5 dB increase in winter is attributed to increased LED and SMPS loading. The data set is made available as a supplementary repository and is intended for validation of aggregation models.",
+    "researcherIds": [
+      "R0611"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-07794": {
+    "id": "SYN-PUB-07794",
+    "kind": "publication",
+    "title": "Steady-State Voltage Profile Analysis in Radial Low-Voltage Feeders with Rooftop Photovoltaic Systems",
+    "text": "Steady-State Voltage Profile Analysis in Radial Low-Voltage Feeders with Rooftop Photovoltaic Systems (2013, conference, Proceedings of the International Symposium on Industrial Electronics and Applications, Osijek).\nAuthors: Aleksandar Jeremić (R0696); Dragan Vuković (outside co-author); Miroslav Stanić (outside co-author).\nKeywords: voltage profile; radial feeder; backward-forward sweep; photovoltaic; EN 50160.\nThis paper presents a steady-state power flow analysis of a 0.4 kV radial distribution feeder in an urban residential area of Novi Sad, incorporating measured generation profiles from twelve rooftop photovoltaic installations aggregating 48 kWp of installed capacity. A backward–forward sweep load flow algorithm was implemented and validated against one week of SCADA measurements. Voltage profiles were computed under three penetration scenarios: 20 %, 50 %, and 80 % of feeder customers operating as prosumers. Results indicate that reverse power flow emerges at penetration levels above 35 % under peak irradiance conditions, causing end-of-feeder voltage to exceed the EN 50160 upper limit of 1.10 p.u. for approximately 4.2 % of annual hours at 80 % penetration. The sensitivity of voltage rise to feeder impedance ratio X/R was quantified, showing that resistive-dominant cables characteristic of low-voltage grids amplify voltage deviations by a factor of 1.6 compared to equivalent medium-voltage lines. The study provides a benchmark dataset and simulation framework subsequently used in follow-up hosting capacity work.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-07795": {
+    "id": "SYN-PUB-07795",
+    "kind": "publication",
+    "title": "Reactive Power Compensation Using Fixed Capacitor Banks in Distribution Feeders with Variable Generation: A Sensitivity Study",
+    "text": "Reactive Power Compensation Using Fixed Capacitor Banks in Distribution Feeders with Variable Generation: A Sensitivity Study (2015, journal, Serbian Journal of Electrical Engineering).\nAuthors: Aleksandar Jeremić (R0696); Dragan Vuković (outside co-author); Katarina Blagojević (outside co-author).\nKeywords: reactive power compensation; capacitor banks; power factor; voltage constraint; Vojvodina.\nFixed shunt capacitor banks remain common in Serbian low-voltage distribution infrastructure. This paper evaluates their effectiveness under variable photovoltaic generation using a sensitivity analysis approach applied to a representative 0.4 kV test feeder parameterised from field measurements in the Vojvodina region. Thirty-two daily generation profiles collected over two seasons were used as input. Power factor correction was assessed at three placement positions along the feeder, and the interaction between capacitor injection and reverse power flow was examined. The analysis shows that fixed capacitor banks installed at the mid-feeder position reduce reactive power import by 22 % on average but cause overvoltage exceedances of up to 0.04 p.u. during midday peak generation periods, a finding that is absent in purely passive feeder conditions. The paper quantifies the trade-off between power factor improvement and voltage constraint violation as a function of installed photovoltaic capacity, providing practical guidelines for distribution system operators considering retrofit compensation strategies without active voltage control.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-07796": {
+    "id": "SYN-PUB-07796",
+    "kind": "publication",
+    "title": "Hosting Capacity Assessment for Photovoltaic Systems in Low-Voltage Urban Networks: Deterministic and Stochastic Approaches Compared",
+    "text": "Hosting Capacity Assessment for Photovoltaic Systems in Low-Voltage Urban Networks: Deterministic and Stochastic Approaches Compared (2018, journal, Electric Power Systems Research – Balkan Regional Edition).\nAuthors: Aleksandar Jeremić (R0696); Miroslav Stanić (outside co-author); Tibor Farkaš (outside co-author); Ivana Jović (outside co-author).\nKeywords: hosting capacity; Monte Carlo; deterministic assessment; urban feeder; prosumer connection.\n(no abstract)",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-07797": {
+    "id": "SYN-PUB-07797",
+    "kind": "publication",
+    "title": "Smart Inverter Volt–Var Control for Voltage Regulation in Prosumer-Integrated Low-Voltage Feeders",
+    "text": "Smart Inverter Volt–Var Control for Voltage Regulation in Prosumer-Integrated Low-Voltage Feeders (2020, journal, IET Renewable Power Generation).\nAuthors: Aleksandar Jeremić (R0696); Luka Petrović (outside co-author); Andrea Rossi (outside co-author); Miroslav Stanić (outside co-author).\nKeywords: smart inverter; Volt-VAr control; Q(U) characteristic; hardware-in-the-loop; RTDS.\nGrid-connected photovoltaic inverters with programmable Volt–VAr (Q(U)) characteristic functions can absorb or inject reactive power in response to local voltage measurements, providing a distributed voltage regulation mechanism without centralised communication. This paper implements and tests three Q(U) characteristic shapes—linear, piecewise linear with deadband, and cosφ(P)—on a hardware-in-the-loop test bench using an RTDS real-time simulator interfaced with a commercial 5 kW single-phase inverter. Feeder parameters replicate a 380 m urban cable section. Simulations and hardware experiments were conducted for 120 irradiance scenarios generated from one year of meteorological data for Novi Sad. The piecewise linear characteristic with a ±2 % voltage deadband reduces voltage violations at the feeder end by 87 % compared to unity power factor operation while increasing inverter reactive current by no more than 18 % of rated current. Additional reactive losses of 1.1 % of annual energy yield are recorded, representing the compensation cost. The experimental setup and parameter tuning procedure are described in sufficient detail for replication.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-07798": {
+    "id": "SYN-PUB-07798",
+    "kind": "publication",
+    "title": "Impact of Electric Vehicle Charging on Voltage Quality and Hosting Capacity in Residential Low-Voltage Feeders",
+    "text": "Impact of Electric Vehicle Charging on Voltage Quality and Hosting Capacity in Residential Low-Voltage Feeders (2021, conference, Proceedings of the IEEE International Energy Conference, Split).\nAuthors: Ivana Jović (outside co-author); Aleksandar Jeremić (R0696); Nenad Đorđević (outside co-author).\nKeywords: electric vehicle charging; hosting capacity; voltage quality; stochastic modelling; residential feeder.\nThe simultaneous rollout of rooftop photovoltaics and private electric vehicle (EV) charging in residential areas creates competing and sometimes complementary effects on feeder voltage profiles. This paper extends an existing hosting capacity framework to include EV load as a stochastic variable characterised by charging start time, state-of-charge on arrival, and rated charger power. Input distributions were estimated from a mobility survey of 340 respondents in the greater Novi Sad area conducted in 2019. Three charging strategies are compared: uncontrolled immediate charging, night-valley charging, and solar-matched daytime charging. Results on a 0.4 kV feeder model show that uncontrolled charging during evening hours reduces hosting capacity by up to 9 kWp relative to the no-EV baseline because voltage drop from EV load adds to end-of-feeder sag during low-generation periods, restricting the permissible generation envelope. Daytime solar-matched charging, by contrast, partially offsets voltage rise and increases median hosting capacity by 6 kWp. The paper identifies feeder impedance as the dominant factor moderating these interactions.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-07799": {
+    "id": "SYN-PUB-07799",
+    "kind": "publication",
+    "title": "Feeder Reconfiguration as a Hosting Capacity Enhancement Tool in Meshed Low-Voltage Networks",
+    "text": "Feeder Reconfiguration as a Hosting Capacity Enhancement Tool in Meshed Low-Voltage Networks (2023, journal, Electric Power Systems Research).\nAuthors: Miroslav Stanić (outside co-author); Aleksandar Jeremić (R0696); Ivana Jović (outside co-author).\nKeywords: feeder reconfiguration; normally-open point; meshed network; hosting capacity; impedance balancing.\nLow-voltage distribution networks in newer urban developments in Serbia are built with a meshed cable topology but operated radially through normally-open points. Switching the normally-open point changes feeder lengths, impedance distributions, and load sharing, all of which affect hosting capacity for distributed generation. This study systematically evaluates feeder reconfiguration as a low-cost hosting capacity enhancement measure for a 0.4 kV meshed network of 84 nodes representing a residential district in Novi Sad. A brute-force enumeration of all 12 candidate normally-open point positions is combined with the stochastic hosting capacity assessment method from previous work. Results show that the optimal normally-open point configuration raises the network-wide hosting capacity by 23 % compared to the default as-built configuration, without any hardware investment. The improvement is driven primarily by impedance balancing across two parallel cable routes. The sensitivity of results to load growth assumptions of 1 % and 2 % annual increase is also reported, showing that reconfiguration benefits persist over a 10-year horizon under both scenarios.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-07800": {
+    "id": "SYN-PUB-07800",
+    "kind": "publication",
+    "title": "Battery Storage Sizing for Voltage Support in Low-Voltage Feeders: A Cost–Benefit Approach",
+    "text": "Battery Storage Sizing for Voltage Support in Low-Voltage Feeders: A Cost–Benefit Approach (2024, journal, Journal of Energy Storage).\nAuthors: Luka Petrović (outside co-author); Aleksandar Jeremić (R0696); Andrea Rossi (outside co-author); Stefan Kovačević (outside co-author).\nKeywords: battery storage; sizing optimisation; voltage support; prosumer; cost-benefit analysis.\nBehind-the-meter battery energy storage systems can flatten prosumer net load profiles and provide reactive power support to the local feeder. This paper addresses the problem of selecting storage capacity and power rating to maximise a combined economic and technical objective consisting of prosumer electricity bill reduction, avoided distribution system operator penalty costs for voltage violations, and degradation cost of the battery over a 10-year planning horizon. A mixed-integer linear programming formulation is developed and applied to four prosumer archetypes derived from clustering 18 months of smart meter data collected from 210 customers in Novi Sad. Storage sizes in the range 3–12 kWh are evaluated with lithium iron phosphate chemistry. Results indicate that economically optimal storage sizes for the studied archetypes fall between 4.5 kWh and 7 kWh, constrained primarily by battery degradation cost rather than voltage benefit. Sensitivity to electricity tariff structure shows that time-of-use tariffs with a peak-to-off-peak ratio above 2.4 significantly shift optimal sizes upward.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-07801": {
+    "id": "SYN-PUB-07801",
+    "kind": "publication",
+    "title": "Probabilistic Hosting Capacity Maps for Low-Voltage Distribution Networks: A Methodology for Municipal-Scale Assessment",
+    "text": "Probabilistic Hosting Capacity Maps for Low-Voltage Distribution Networks: A Methodology for Municipal-Scale Assessment (2025, journal, IEEE Transactions on Power Delivery).\nAuthors: Aleksandar Jeremić (R0696); Stefan Kovačević (outside co-author); Cristina Moldovan (outside co-author); Tibor Farkaš (outside co-author); Nenad Đorđević (outside co-author).\nKeywords: hosting capacity mapping; probabilistic assessment; feeder classification; municipal scale; spatial analysis.\nDistribution system operators and municipal planners require spatially aggregated information on available photovoltaic hosting capacity to guide permitting decisions and grid investment planning. This paper proposes a methodology for producing probabilistic hosting capacity maps at the level of an entire municipal distribution network by applying a stratified feeder sampling approach. Feeders are classified into six morphological types based on cable length, cross-section, and customer density. For each type, 500 stochastic hosting capacity assessments are performed. The resulting per-type distributions are spatially assigned to all 1 140 low-voltage feeders in a medium-sized municipality in the Vojvodina region, producing a rasterised map with 100 m resolution. The map is validated against 23 actual photovoltaic connection applications processed by the distribution system operator in 2022–2023, showing that 91 % of accepted connections fell within the predicted feasible range. Limitations of the stratification approach and data requirements from the distribution system operator are discussed in detail.",
+    "researcherIds": [
+      "R0696"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-08181": {
+    "id": "SYN-PUB-08181",
+    "kind": "publication",
+    "title": "Baseline Performance Ratio Modelling for Grid-Connected PV Systems Using Ordinary Least Squares Regression on One-Year SCADA Logs",
+    "text": "Baseline Performance Ratio Modelling for Grid-Connected PV Systems Using Ordinary Least Squares Regression on One-Year SCADA Logs (2014, journal, Journal of Renewable Energy Systems and Monitoring).\nAuthors: Igor Starčević (R0738); Marija Vučković (outside co-author); Dragan Ilić (outside co-author).\nKeywords: performance ratio; PV baseline; OLS regression; SCADA; degradation.\nThis paper presents a regression-based methodology for constructing performance ratio (PR) baselines for grid-connected photovoltaic installations using twelve months of five-minute SCADA records from a 2.4 MWp ground-mount park in Vojvodina. Ordinary least squares models were fitted separately for each inverter string, with irradiance, ambient temperature, and wind speed as predictors. The residual time series were then examined for systematic drift, which was taken as a proxy for gradual degradation. The fitted models explained between 91 % and 96 % of PR variance across sixteen inverter strings. A cross-validation scheme based on seasonal stratification was used to assess generalisation. Results showed that simple linear models are competitive with more complex approaches when training data cover at least eight months and include summer irradiance peaks. Limitations related to sensor calibration drift and curtailment events are discussed in detail.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2014
+  },
+  "SYN-PUB-08182": {
+    "id": "SYN-PUB-08182",
+    "kind": "publication",
+    "title": "Early Fault Classification in Photovoltaic String Inverters Using Random Forest on SCADA-Derived Statistical Features",
+    "text": "Early Fault Classification in Photovoltaic String Inverters Using Random Forest on SCADA-Derived Statistical Features (2018, journal, Journal of Industrial Condition Monitoring and Diagnostics).\nAuthors: Igor Starčević (R0738); Nemanja Petrović (outside co-author); Ágnes Kovács (outside co-author); Radovan Stanković (outside co-author).\nKeywords: fault classification; random forest; string inverter; SCADA features; domain shift.\nInverter faults in distributed PV installations often produce subtle signatures in current and voltage telemetry before they result in full failure or protection trip. This paper extracts a set of 34 statistical features—including rolling mean, standard deviation, skewness, and crossing-rate measures—from five-minute SCADA records of eleven string inverters monitored over three years at two sites in Serbia. A random forest classifier trained on labelled fault events—covering IGBT degradation, grid relay issues, and sensor faults—achieved macro-averaged F1 of 0.81 on held-out data when a detection window of 48 hours before the logged fault event was used. Permutation importance analysis identified AC-side current imbalance and temperature-normalised efficiency drop as the two most informative features. The trained model was tested on a third site without retraining to assess domain shift, yielding an acceptable F1 of 0.73.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-08183": {
+    "id": "SYN-PUB-08183",
+    "kind": "publication",
+    "title": "Anomaly Scoring for District Heating Substation Telemetry Using Isolation Forest with Temporal Resampling",
+    "text": "Anomaly Scoring for District Heating Substation Telemetry Using Isolation Forest with Temporal Resampling (2020, journal, Energy and Buildings Automation Journal).\nAuthors: Igor Starčević (R0738); Bojana Marković (outside co-author); Tomáš Novák (outside co-author).\nKeywords: isolation forest; district heating; anomaly scoring; seasonal baseline; telemetry.\nDistrict heating substations generate continuous telemetry—supply and return temperatures, flow rate, differential pressure, valve position—that reflects both normal load variation and incipient faults. This paper applies isolation forest anomaly scoring to hourly-resampled records from 38 substations in a mid-sized Serbian city, covering two full heating seasons. To reduce the influence of strong daily and weekly periodicity, features were constructed as deviations from a Fourier-smoothed seasonal baseline rather than raw sensor values. Anomaly scores were validated against a maintenance log containing 54 confirmed fault events, yielding precision of 0.69 and recall of 0.78 at the chosen score threshold. False positives were predominantly associated with demand-side events such as building renovations. The paper also discusses operational considerations for deploying the pipeline in the control room of a heat utility, where interpretability requirements constrain model complexity.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-08184": {
+    "id": "SYN-PUB-08184",
+    "kind": "publication",
+    "title": "Comparison of Univariate and Multivariate LSTM Architectures for Remaining Useful Life Prediction in PV Inverters",
+    "text": "Comparison of Univariate and Multivariate LSTM Architectures for Remaining Useful Life Prediction in PV Inverters (2021, conference, Proceedings of the Balkan Workshop on Machine Learning in Energy Systems (BWMLES)).\nAuthors: Igor Starčević (R0738); Nemanja Petrović (outside co-author); Milica Đorđević (outside co-author).\nKeywords: LSTM; remaining useful life; PV inverter; attention mechanism; label noise.\nRecurrent neural networks have been proposed for remaining useful life (RUL) estimation in power electronics, but the benefit of multivariate input over simpler univariate temperature-tracking models is not always clear in practice. This study compares four LSTM configurations—single-channel temperature, three-channel electrical, full nine-channel SCADA, and a multivariate model with attention—trained on labelled degradation sequences collected from 23 inverters across four sites over four years. RUL ground truth was derived from inverter replacement records. The univariate temperature model achieved mean absolute error of 18.3 days; the full nine-channel model with attention reduced this to 11.7 days. However, the improvement was statistically significant only for IGBT-related failures, not for capacitor or relay faults. Training data size, label noise from opportunistic rather than condition-triggered replacements, and class imbalance are examined as confounding factors.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08185": {
+    "id": "SYN-PUB-08185",
+    "kind": "publication",
+    "title": "Transfer Learning for PV Fault Detection Across Geographically Distributed Sites with Different Inverter Brands",
+    "text": "Transfer Learning for PV Fault Detection Across Geographically Distributed Sites with Different Inverter Brands (2022, journal, Renewable Energy Monitoring and Diagnostics).\nAuthors: Andrei Moldovan (outside co-author); Marija Vučković (outside co-author); Igor Starčević (R0738); Radovan Stanković (outside co-author).\nKeywords: transfer learning; fault detection; PV; gradient boosting; cross-site generalisation.\nTraining fault detection models independently for each PV installation is data-expensive and impractical for small or newly commissioned sites. This paper investigates fine-tuning a source-domain random forest and a gradient-boosted tree, both pre-trained on five Serbian PV sites, using small labelled batches from two Romanian target sites with different inverter brands and monitoring intervals. Fine-tuning with as few as 30 labelled target-domain fault windows raised F1 from a zero-shot baseline of 0.48 to 0.74 for the random forest and to 0.77 for the gradient-boosted model. Feature alignment using quantile normalisation per sensor channel proved more effective than raw standardisation. The study uses publicly documented fault taxonomies and consistent labelling criteria to enable reproducibility, and the pre-trained model weights are made available with the paper.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08186": {
+    "id": "SYN-PUB-08186",
+    "kind": "publication",
+    "title": "Threshold Selection Strategies for Operational Anomaly Detection Pipelines in Industrial SCADA Environments",
+    "text": "Threshold Selection Strategies for Operational Anomaly Detection Pipelines in Industrial SCADA Environments (2023, journal, Journal of Industrial Data Science and Process Monitoring).\nAuthors: Igor Starčević (R0738); Ágnes Kovács (outside co-author).\nKeywords: threshold selection; anomaly detection; SCADA; cost-sensitive; operational deployment.\nMost anomaly detection research reports performance at a single fixed threshold chosen post-hoc to maximise a validation metric, which does not reflect operational reality where false alarm rates carry real costs. This paper surveys and empirically compares six threshold selection strategies—fixed percentile, precision–recall curve knee-point, F-beta optimisation, cost-sensitive selection, control-chart 3-sigma rule, and manual operator calibration—applied to isolation forest and autoencoder anomaly scores on SCADA telemetry from two PV parks and one wind farm. Data cover 36 months and 112 documented fault events. Cost-sensitive selection with an asymmetric cost matrix calibrated by an operator survey consistently outperformed fixed-percentile approaches across all three sites, reducing total operational cost by 19–34 % compared to the 95th-percentile baseline. The paper provides a decision workflow for practitioners choosing among strategies given available labelled data and operator input.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08187": {
+    "id": "SYN-PUB-08187",
+    "kind": "publication",
+    "title": "Autoencoder-Based Detection of Sensor Drift in Long-Running PV Monitoring Systems",
+    "text": "Autoencoder-Based Detection of Sensor Drift in Long-Running PV Monitoring Systems (2025, journal, Sensors and Instrumentation for Industrial Monitoring).\nAuthors: Igor Starčević (R0738); Nemanja Petrović (outside co-author); Andrei Moldovan (outside co-author).\nKeywords: autoencoder; sensor drift; PV monitoring; hardware-in-the-loop; reconstruction error.\nIrradiance and temperature sensors deployed in field PV monitoring stations drift gradually due to soiling, ageing, and mechanical misalignment, introducing systematic bias into SCADA telemetry that is difficult to distinguish from true plant degradation. This paper trains a convolutional autoencoder on the first twelve months of records from twelve monitoring stations, treating this period as nominally calibrated, and then monitors reconstruction error on subsequent 36 months of data. Three types of drift—irradiance pyranometer zero-offset, temperature sensor gain shift, and voltage divider ageing—were induced artificially in a hardware-in-the-loop testbed to generate labelled validation data. The autoencoder flagged all three drift types within a two-week detection lag at an average false positive rate of 8 %. A lightweight rule-based filter using interquartile consistency across co-located sensors reduced false positives to 3 % without increasing the detection lag. The method was subsequently applied to two production archives where unconfirmed drift events were identified.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-08188": {
+    "id": "SYN-PUB-08188",
+    "kind": "publication",
+    "title": "Benchmarking Time-Series Foundation Models Against Classical Methods for Short-Horizon Anomaly Detection in Energy SCADA Telemetry",
+    "text": "Benchmarking Time-Series Foundation Models Against Classical Methods for Short-Horizon Anomaly Detection in Energy SCADA Telemetry (2026, preprint, arXiv preprint).\nAuthors: Igor Starčević (R0738); Srđan Kovačević (outside co-author); Bojana Marković (outside co-author).\nKeywords: foundation models; benchmarking; anomaly detection; SCADA; edge deployment.\nLarge pre-trained time-series models have been proposed as general-purpose tools that can be applied to downstream tasks with little or no fine-tuning. This paper benchmarks three recently published time-series foundation models against four classical methods—isolation forest, one-class SVM, ARIMA residual scoring, and a simple rolling z-score—on anomaly detection tasks drawn from five SCADA datasets covering PV parks, a small wind farm, and district heating substations. Evaluation uses a consistent labelling protocol and the same six threshold selection strategies described in earlier work by the same group. Foundation models achieved the highest AUC-ROC on two of the five datasets but were outperformed by isolation forest on the remaining three, particularly where telemetry channels exhibit strong non-stationary seasonality. Inference latency and memory footprint are also reported, as they are relevant constraints for edge deployment in substation hardware.",
+    "researcherIds": [
+      "R0738"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-09619": {
+    "id": "SYN-PUB-09619",
+    "kind": "publication",
+    "title": "Day-ahead PV forecasting for distribution feeders with satellite cloud data",
+    "text": "Day-ahead PV forecasting for distribution feeders with satellite cloud data (2024, journal, Renewable Grid Integration).\nAuthors: Tamara Simić (R0904); Milena Đorđević (outside co-author); Kristijan Varga (outside co-author); Andrei Moldovan (outside co-author).\nThis paper presents a day-ahead photovoltaic (PV) power forecasting methodology for distribution feeders that integrates high-resolution satellite cloud motion imagery with numerical weather prediction data. The proposed framework applies a hybrid convolutional–recurrent neural network architecture to extract spatiotemporal cloud patterns and translate them into irradiance estimates at feeder level. Case studies are conducted on five medium-voltage distribution feeders in Vojvodina, covering a cumulative installed PV capacity of approximately 18 MW. The model is benchmarked against persistence, smart persistence, and a standard multilayer perceptron baseline. Results demonstrate a reduction of 17–23% in normalised root mean square error compared with the best-performing baseline across all test feeders. Probabilistic forecast intervals derived via conformal prediction are also evaluated using coverage and sharpness metrics. The methodology is designed to support intraday dispatch decisions by distribution system operators (DSOs) seeking to accommodate high shares of behind-the-meter solar generation while maintaining voltage profiles within statutory limits.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-09620": {
+    "id": "SYN-PUB-09620",
+    "kind": "publication",
+    "title": "Demand response potential of industrial consumers in Vojvodina",
+    "text": "Demand response potential of industrial consumers in Vojvodina (2022, conference, European Energy Markets Conference).\nAuthors: Bojan Kostadinović (outside co-author); Vesna Ilić (outside co-author); Tamara Simić (R0904); Dragana Petrović (outside co-author).\nIndustrial consumers represent a largely untapped source of demand-side flexibility in South-East European electricity systems. This paper quantifies the demand response (DR) potential of manufacturing and agri-food processing facilities located in the Vojvodina region of Serbia through a combination of on-site energy audits, smart meter time-series analysis, and structured interviews with energy managers. Flexible loads are categorised by response speed, duration, and recovery constraints, yielding a total dispatchable capacity of 47 MW across the surveyed sample. The analysis reveals that refrigeration systems, compressed-air networks, and irrigation pumps collectively account for more than 60% of the identified flexibility. Barriers to market participation are examined, including the absence of a formalised balancing market product compatible with small aggregators and limited metering infrastructure at sub-hourly resolution. Policy recommendations are offered for aligning Serbian regulatory frameworks with EU demand response directives, and a roadmap for pilot aggregator programmes is outlined. The findings are directly relevant to distribution system operators and the emerging flexibility procurement landscape in the Western Balkans.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-09621": {
+    "id": "SYN-PUB-09621",
+    "kind": "publication",
+    "title": "Probabilistic short-term load forecasting with gradient boosting",
+    "text": "Probabilistic short-term load forecasting with gradient boosting (2021, journal, Journal of Energy Forecasting).\nAuthors: Tamara Simić (R0904); Nemanja Vuković (outside co-author); Szabolcs Fekete (outside co-author); Aleksandra Marinović (outside co-author).\nAccurate probabilistic short-term load forecasting (STLF) is essential for efficient energy scheduling, reserve dimensioning, and distribution network planning. This paper proposes a probabilistic STLF framework based on gradient boosting regression trees augmented with quantile loss functions, enabling simultaneous estimation of multiple prediction intervals without parametric distributional assumptions. A comprehensive feature engineering pipeline incorporates lagged consumption values, calendar effects, temperature dew-point interactions, and holiday indicators derived from Serbian public calendars. The model is trained and validated on two years of hourly active power measurements from 12 distribution substations supplied by a regional DSO in northern Serbia. Probabilistic calibration is assessed using the continuous ranked probability score (CRPS) and reliability diagrams across 10%, 50%, and 90% quantiles. The gradient boosting approach outperforms Gaussian process regression and quantile random forests on CRPS by margins of 8–14%, while maintaining sub-second inference times suitable for operational deployment. Practical guidance for hyperparameter tuning and rolling-window retraining schedules is also discussed.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-09622": {
+    "id": "SYN-PUB-09622",
+    "kind": "publication",
+    "title": "Intraday solar irradiance nowcasting using sky-imager optical flow for urban distribution networks",
+    "text": "Intraday solar irradiance nowcasting using sky-imager optical flow for urban distribution networks (2023, journal, Solar Energy and Power Systems Journal (fictional)).\nAuthors: Tamara Simić (R0904); Milena Đorđević (outside co-author); Róbert Szabó (outside co-author); Ivan Stanković (outside co-author).\nKeywords: irradiance nowcasting; sky imager; optical flow; PV forecasting; distribution network.\nVery short-term solar irradiance nowcasting is critical for real-time balancing of distribution networks with high rooftop PV penetration. This paper introduces an optical-flow-based nowcasting method that processes sequences of ground-level sky images captured at one-minute intervals by a network of low-cost all-sky cameras installed across the city of Novi Sad. Cloud motion vectors are estimated using a pyramidal Lucas–Kanade algorithm and projected onto a ground irradiance map via a geometric sky-to-plane transformation. The resulting irradiance field is aggregated to feeder level and evaluated against pyranometer measurements and smart inverter telemetry. Forecast horizons of 5, 15, and 30 minutes are examined. The optical flow model reduces mean absolute error by 21% relative to a persistence baseline at the 15-minute horizon. Uncertainty quantification is incorporated through an ensemble of perturbed optical flow fields, producing calibrated prediction intervals. Results demonstrate that sky-imager networks can complement satellite-based products and provide actionable nowcasts for DSO control room operators managing curtailment and reactive power compensation in real time.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-09623": {
+    "id": "SYN-PUB-09623",
+    "kind": "publication",
+    "title": "Flexibility aggregation framework for residential prosumers in Serbian distribution grids",
+    "text": "Flexibility aggregation framework for residential prosumers in Serbian distribution grids (2023, conference, International Conference on Smart Energy Systems and Technologies – SEST 2023 (fictional proceedings)).\nAuthors: Bojan Kostadinović (outside co-author); Tamara Simić (R0904); Lidija Marković (outside co-author); Christoph Reiner (outside co-author).\nKeywords: flexibility aggregation; prosumer; virtual power plant; distribution system operator; demand response.\nThe proliferation of rooftop solar panels, home battery storage, and smart appliances is creating a new category of residential prosumers capable of providing grid flexibility services. However, aggregating small distributed resources into market-ready products remains technically and contractually complex, particularly in regulatory environments that have not yet fully transposed EU Clean Energy Package provisions. This paper proposes a hierarchical aggregation framework tailored to the Serbian distribution context, in which a virtual power plant (VPP) operator coordinates prosumer flexibility bids submitted to a day-ahead local flexibility market operated by the DSO. A mixed-integer linear programming dispatch model accounts for prosumer comfort constraints, battery state-of-charge limits, and network congestion thresholds. The framework is validated through a simulation study on a realistic 34-bus low-voltage feeder parameterised with data from a pilot neighbourhood in Novi Sad. Results show that coordinated prosumer dispatch reduces peak feeder loading by 18% while delivering measurable economic benefits to participants. Regulatory gaps and recommended amendments to Serbian energy bylaws are discussed.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-09624": {
+    "id": "SYN-PUB-09624",
+    "kind": "publication",
+    "title": "Transfer learning for PV power forecasting across climate zones in the Western Balkans",
+    "text": "Transfer learning for PV power forecasting across climate zones in the Western Balkans (2022, journal, Applied Energy Modelling (fictional journal)).\nAuthors: Nemanja Vuković (outside co-author); Andrei Moldovan (outside co-author); Marija Bjelić (outside co-author); Tamara Simić (R0904).\nKeywords: transfer learning; PV forecasting; domain adaptation; Western Balkans; renewable integration.\nBuilding accurate machine learning forecasting models for photovoltaic installations typically requires extensive historical generation data, which is unavailable for newly commissioned plants. Transfer learning offers a principled approach to knowledge reuse across sites with differing climatic and topographic characteristics. This study investigates domain adaptation strategies for day-ahead PV power forecasting across seven sites spanning the Western Balkans, representing Mediterranean, continental, and highland climate zones. A source-domain model pre-trained on a data-rich coastal site is fine-tuned using limited target-domain data through three transfer protocols: full network fine-tuning, feature extraction with frozen convolutional layers, and adversarial domain adaptation. Performance is assessed using normalised RMSE and skill score relative to smart persistence. Adversarial domain adaptation achieves the best generalisation with as few as 30 days of target-site observations, reducing normalised RMSE by up to 19% compared with a model trained from scratch on the same limited dataset. The results have practical implications for DSOs and project developers commissioning new solar farms where historical data are scarce.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-09625": {
+    "id": "SYN-PUB-09625",
+    "kind": "publication",
+    "title": "Congestion management in active distribution networks through DSO-operated local flexibility markets",
+    "text": "Congestion management in active distribution networks through DSO-operated local flexibility markets (2024, journal, IEEE Transactions on Smart Grid (fictional)).\nAuthors: Tamara Simić (R0904); Vesna Ilić (outside co-author); Aleksandra Marinović (outside co-author); Pieter van den Berg (outside co-author).\nKeywords: local flexibility market; congestion management; active distribution network; optimal power flow; DSO.\nActive distribution networks with significant renewable generation increasingly face congestion events that traditional grid reinforcement cannot address cost-effectively in the short term. Local flexibility markets (LFMs) operated by distribution system operators offer an alternative mechanism in which prosumers and aggregators submit bids to resolve specific network constraints. This paper presents an LFM clearing algorithm based on an optimal power flow formulation with linearised branch flow equations, designed to accommodate the computational constraints of DSO operational systems. The algorithm is embedded within a co-simulation platform coupling a distribution grid model with an agent-based market simulator. Three congestion scenarios are evaluated on a 69-bus synthetic network calibrated to reflect a peri-urban feeder topology typical of northern Serbia. Comparative analysis against classical curtailment orders demonstrates that the LFM approach reduces total flexibility procurement costs by 31% on average while maintaining voltage and thermal compliance. Scalability to real DSO systems and interoperability with national balancing market products are discussed in the context of forthcoming Serbian grid code revisions.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-09627": {
+    "id": "SYN-PUB-09627",
+    "kind": "publication",
+    "title": "Smart metering data analytics for non-technical loss detection in Serbian distribution feeders",
+    "text": "Smart metering data analytics for non-technical loss detection in Serbian distribution feeders (2020, journal, IET Smart Grid (fictional journal)).\nAuthors: Tamara Simić (R0904); Nemanja Vuković (outside co-author); Szabolcs Fekete (outside co-author); Jovana Ristić (outside co-author).\nKeywords: non-technical loss detection; smart metering; anomaly detection; random forest; distribution system operator.\nNon-technical losses (NTL) arising from electricity theft and meter tampering represent a significant financial burden for distribution system operators in South-East Europe, with estimates suggesting NTL rates of 4–9% in parts of Serbia. Advanced metering infrastructure deployments are generating large volumes of smart meter data that, if properly analysed, can provide early detection signals for NTL events. This paper develops a supervised anomaly detection pipeline that combines feature extraction from half-hourly consumption profiles—including load shape indices, phase imbalance ratios, and night-time baseload metrics—with a random forest classifier trained on labelled NTL incidents documented by a regional DSO. The classifier is augmented with a SHAP-based explainability module to assist field inspection teams in prioritising investigation visits. A retrospective study on 4,200 metering points over 18 months demonstrates a true positive rate of 78% at a false positive rate of 5%, substantially outperforming the DSO's existing rule-based detection system. The approach is designed to integrate with standard DSO SCADA and meter data management architectures without requiring proprietary data formats.",
+    "researcherIds": [
+      "R0904"
+    ],
+    "year": 2020
+  },
+  "W3177274304": {
+    "id": "W3177274304",
+    "kind": "work",
+    "title": "Comparison of Reactive Power Control Techniques for Solar PV Inverters to Mitigate Voltage Rise in Low-Voltage Grids",
+    "text": "Electronics, 2021. The greater integration of solar photovoltaic (PV) systems into low-voltage (LV) distribution networks has posed new challenges for the operation of power systems. The violation of voltage limits attributed to reverse power flow has been recognized as one of the significant consequences of high PV penetration. Thus, the reactive power control of PV inverters has emerged as a viable solution for localized voltage regulation. This paper presents a detailed study on a typical Malaysian LV distribution network to demonstrate the effectiveness of different reactive power control techniques in mitigating overvoltage issues due to high PV integration. The performance of four reactive power control techniques namely, fixed power factor control, scheduled power factor control, power factor control as a function of injected active power, and voltage-dependent reactive power control were analyzed and compared in terms of the number of customers with voltage violations, reactive power compensation, and network losses. Three-phase, time-series, high-resolution power-flow simulations were performed to investigate the potential overvoltage issues and to assess the performance of the adoption of reactive power controls in the network. The simulation results revealed that the incorporation of reactive power controls of solar PV inverters aids in successfully mitigating the overvoltage issues of typical Malaysian networks. …",
+    "researcherIds": [],
+    "year": 2021,
+    "url": "https://openalex.org/W3177274304"
+  },
+  "CALL:HORIZON-CL5-2027-07-D3-26": {
+    "id": "CALL:HORIZON-CL5-2027-07-D3-26",
+    "kind": "call",
+    "title": "Advanced Distribution Management Systems (ADSM) for more efficient and flexible distribution grids",
+    "text": "Horizon Europe. Innovation Actions. opens 2027-08-04, deadline 2027-12-01. EU grant €6,000,000 per project, about 1 grant.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-26"
+  },
+  "CALL:HORIZON-MISS-2027-04-CIT-01": {
+    "id": "CALL:HORIZON-MISS-2027-04-CIT-01",
+    "kind": "call",
+    "title": "Innovative microgrids for improved energy system integration and efficiency in urban contexts",
+    "text": "Horizon Europe. Innovation Actions. opens 2027-02-09, deadline 2027-10-07. EU grant €9,000,000 per project, about 2 grants. keywords: Civil engineering; Climate change mitigation; Electricity grid systems; Energy Efficiency; Environmental engineering; Renewable energy sources - general.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-04-CIT-01"
+  },
+  "CORDIS:101269972": {
+    "id": "CORDIS:101269972",
+    "kind": "eu-project",
+    "title": "Photovoltaic inverter for Virtualised operation and transformation",
+    "text": "PiVot, Horizon Europe, 2026–2029. topic HORIZON-CL5-2025-02-D3-11. coordinated by TECHNISCHE UNIVERSITEIT DELFT (NL). 16 organisations. This project will develop and demonstrate a next-generation smart multilevel inverter to accelerate PV integration and deliver EUPI-PV outcomes: (i) improved energy yield, (ii) optimal energy use, and (iii) enhanced flexibility and interoperability. Extending the single-phase...",
+    "researcherIds": [],
+    "year": 2026,
+    "url": "https://cordis.europa.eu/project/id/101269972"
+  },
+  "CORDIS:101266587": {
+    "id": "CORDIS:101266587",
+    "kind": "eu-project",
+    "title": "INverter Systems for Power Integration and Resilient Energy Systems",
+    "text": "IN.SPIRE, Horizon Europe, 2026–2029. topic HORIZON-CL5-2025-02-D3-11. coordinated by TH!NK E (BE). 13 organisations. INSPIRE redefines the role of the solar inverter as the intelligent backbone of future PV systems. It develops two complementary inverter platforms, one at low voltage and one at medium voltage, that together cover commercial, industrial, and utility-scale needs. Both are...",
+    "researcherIds": [],
+    "year": 2026,
+    "url": "https://cordis.europa.eu/project/id/101266587"
+  },
+  "CORDIS:101269501": {
+    "id": "CORDIS:101269501",
+    "kind": "eu-project",
+    "title": "Coherent control and operation tools for RES-based energy systems",
+    "text": "Co4RES, Horizon Europe, 2026–2029. topic HORIZON-CL5-2025-02-D3-17. coordinated by DANMARKS TEKNISKE UNIVERSITET (DK). 39 organisations. The objective of Co4RES is to develop and demonstrate innovative control and operation tools enabling secure, efficient, and coordinated integration of very high shares of renewable energy into Europe’s power systems. The project addresses the full range of challenges posed...",
+    "researcherIds": [],
+    "year": 2026,
+    "url": "https://cordis.europa.eu/project/id/101269501"
+  }
+}

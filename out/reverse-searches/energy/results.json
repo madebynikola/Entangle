@@ -1,0 +1,1762 @@
+{
+  "needs": [
+    {
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "companyName": "Described problem",
+      "sector": "Solar energy",
+      "triage": "research",
+      "triageReason": "The root cause of grid voltage rise during peak solar hours is an open question requiring analysis of grid conditions, inverter behavior, and the interaction between distributed generation and grid infrastructure.",
+      "restatement": {
+        "text": "Rooftop solar inverters at 300 sites disconnect from the grid on hot summer afternoons when local grid voltage rises too high. Lowering the export limit reduces yearly yield by about 8%. The company has five years of inverter logs and grid voltage readings from 300 sites (C999-CH1).",
+        "sourceIds": [
+          "C999-CH1"
+        ]
+      },
+      "searchTerms": [
+        "grid voltage rise",
+        "rooftop solar inverter",
+        "photovoltaic penetration",
+        "voltage regulation",
+        "distributed generation",
+        "grid stability",
+        "demand forecasting",
+        "reactive power control"
+      ],
+      "assets": [
+        {
+          "text": "Five years of inverter logs and grid voltage readings from 300 sites (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "text": "Lowering the export limit to prevent disconnections reduces yearly yield by about 8% (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "researcherId": "R0904",
+      "aliases": [],
+      "name": "Tamara Simić",
+      "title": "Associate Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Power, Electronics and Telecommunications",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Day-ahead photovoltaic power forecasting for distribution networks using satellite cloud imagery and hybrid neural network architectures.",
+          "sourceIds": [
+            "SYN-PUB-09619"
+          ]
+        },
+        {
+          "text": "Very short-term solar irradiance nowcasting with ground-level sky imagery and optical flow methods for intraday distribution network balancing.",
+          "sourceIds": [
+            "SYN-PUB-09622"
+          ]
+        },
+        {
+          "text": "Transfer learning and domain adaptation for photovoltaic forecasting across sites with different climate zones.",
+          "sourceIds": [
+            "SYN-PUB-09624"
+          ]
+        },
+        {
+          "text": "Probabilistic short-term load forecasting using gradient boosting and quantile regression for distribution networks.",
+          "sourceIds": [
+            "SYN-PUB-09621"
+          ]
+        },
+        {
+          "text": "Local flexibility market design and congestion management in active distribution networks through optimal power flow algorithms.",
+          "sourceIds": [
+            "SYN-PUB-09625"
+          ]
+        },
+        {
+          "text": "Flexibility aggregation frameworks and virtual power plant coordination for residential prosumers in distribution grids.",
+          "sourceIds": [
+            "SYN-PUB-09623"
+          ]
+        },
+        {
+          "text": "Demand response characterisation and flexibility quantification from industrial loads including refrigeration, compressed-air and irrigation systems.",
+          "sourceIds": [
+            "SYN-PUB-09620"
+          ]
+        },
+        {
+          "text": "Non-technical loss detection in distribution feeders using smart meter data analytics and anomaly detection.",
+          "sourceIds": [
+            "SYN-PUB-09627"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to supervising industrial PhD candidates and establishing joint research projects with technology companies in the energy sector.",
+          "sourceIds": [
+            "R0904"
+          ]
+        },
+        {
+          "text": "Actively collaborates with distribution system operators and industrial stakeholders on flexibility markets and grid modernisation.",
+          "sourceIds": [
+            "R0904"
+          ]
+        },
+        {
+          "text": "Contributes to the Horizon Europe project FLEXGRID-RS on flexibility market mechanisms for the Serbian power system.",
+          "sourceIds": [
+            "SYN-PRJ-0010"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0696",
+      "aliases": [],
+      "name": "Aleksandar Jeremić",
+      "title": "Assistant Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Power, Electronics and Telecommunications",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Hosting capacity assessment and probabilistic mapping for photovoltaic integration in low-voltage distribution networks using stochastic simulation and feeder classification.",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "SYN-PUB-07798",
+            "SYN-PUB-07796",
+            "SYN-PRJ-0315"
+          ]
+        },
+        {
+          "text": "Smart inverter Volt–Var control design and hardware-in-the-loop testing with real-time digital simulators for distributed voltage regulation.",
+          "sourceIds": [
+            "SYN-PUB-07797",
+            "SYN-PUB-03969"
+          ]
+        },
+        {
+          "text": "Reactive power compensation coordination using two-stage optimisation combining day-ahead scheduling with real-time rule-based droop control.",
+          "sourceIds": [
+            "SYN-PUB-03969",
+            "SYN-PUB-07795"
+          ]
+        },
+        {
+          "text": "Battery energy storage sizing for prosumers using mixed-integer linear programming to optimise storage capacity and power rating for bill reduction and voltage support.",
+          "sourceIds": [
+            "SYN-PUB-07800"
+          ]
+        },
+        {
+          "text": "Feeder reconfiguration optimisation via normally-open point switching to enhance hosting capacity in meshed low-voltage cable networks.",
+          "sourceIds": [
+            "SYN-PUB-07799"
+          ]
+        },
+        {
+          "text": "Stochastic modelling of electric vehicle charging impact on feeder voltage profiles and hosting capacity under three charging strategies.",
+          "sourceIds": [
+            "SYN-PUB-07798"
+          ]
+        },
+        {
+          "text": "Steady-state power flow analysis of radial feeders with photovoltaic systems using backward–forward sweep algorithms and sensitivity analysis of voltage constraints.",
+          "sourceIds": [
+            "SYN-PUB-07794",
+            "SYN-PUB-07795"
+          ]
+        },
+        {
+          "text": "Monte Carlo tolerance analysis of power electronic circuits including LLC converters and gate driver propagation delay characterisation under variable operating conditions.",
+          "sourceIds": [
+            "SYN-PUB-01665",
+            "SYN-PUB-05444"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Performed six-month consultancy with Elektrovojvodina d.o.o. between 2019 and 2020 supporting development of internal procedures for distributed generation connection evaluation.",
+          "sourceIds": [
+            "R0696"
+          ]
+        },
+        {
+          "text": "Open to joint projects with companies developing smart inverter control and energy management software, contract research on hosting capacity assessment, and consulting on photovoltaic connection applications and grid impact studies.",
+          "sourceIds": [
+            "R0696"
+          ]
+        },
+        {
+          "text": "Open to supervising industrial PhDs for candidates with electrical engineering background and student internships in power systems simulation and field measurement.",
+          "sourceIds": [
+            "R0696"
+          ]
+        },
+        {
+          "text": "Has access to real-time digital simulator hardware and field measurement equipment, and can facilitate data-sharing agreements with regional distribution system operator for product validation against real feeder topologies and smart meter data.",
+          "sourceIds": [
+            "R0696"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0298",
+      "aliases": [],
+      "name": "Sonja Kovačević",
+      "title": "Assistant Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Energy and Process Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Stochastic optimisation for battery sizing under uncertain load and generation, using scenario trees and chance constraints.",
+          "sourceIds": [
+            "SYN-PUB-03712",
+            "SYN-PUB-03707"
+          ]
+        },
+        {
+          "text": "Mixed-integer linear programming models for joint photovoltaic and battery capacity optimisation with electrochemical ageing constraints.",
+          "sourceIds": [
+            "SYN-PUB-03707",
+            "SYN-PRJ-0295"
+          ]
+        },
+        {
+          "text": "Cycle-ageing modelling and degradation quantification for lithium-ion batteries using rainflow-counting and Arrhenius methods.",
+          "sourceIds": [
+            "SYN-PUB-03706",
+            "SYN-PUB-03710",
+            "SYN-PUB-03709"
+          ]
+        },
+        {
+          "text": "Receding-horizon dispatch co-optimisation incorporating linearised cycle-ageing submodels solved with hardware-in-the-loop testing.",
+          "sourceIds": [
+            "SYN-PUB-03713",
+            "SYN-PRJ-0295"
+          ]
+        },
+        {
+          "text": "Monte Carlo simulation of residential battery dispatch strategies under time-of-use tariffs and model predictive control policies.",
+          "sourceIds": [
+            "SYN-PUB-03708"
+          ]
+        },
+        {
+          "text": "Thermal modelling of battery systems in continental climates and temperature-dependent degradation rate calibration.",
+          "sourceIds": [
+            "SYN-PUB-03710"
+          ]
+        },
+        {
+          "text": "Load profile characterisation and clustering from smart meter data to generate synthetic demand archetypes for residential storage applications.",
+          "sourceIds": [
+            "SYN-PUB-00834",
+            "SYN-PUB-03707"
+          ]
+        },
+        {
+          "text": "State-of-health uncertainty quantification in second-life battery sizing using two-stage stochastic programming.",
+          "sourceIds": [
+            "SYN-PUB-03711"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to joint projects with companies developing or deploying residential battery storage products, contract research on battery sizing and dispatch algorithm development, and consulting on techno-economic feasibility of storage projects.",
+          "sourceIds": [
+            "R0298"
+          ]
+        },
+        {
+          "text": "Open to industrial PhD supervision for candidates working on storage optimisation or ageing modelling.",
+          "sourceIds": [
+            "R0298"
+          ]
+        },
+        {
+          "text": "Provides access to battery cycling test benches and impedance spectroscopy equipment for collaborative experiments and can offer student internships in battery testing or optimisation coding.",
+          "sourceIds": [
+            "R0298"
+          ]
+        },
+        {
+          "text": "Carried out three-month technical consultancy for a regional photovoltaic installer assessing residential PV-plus-storage sizing methodology, and participated as expert reviewer in two calls for proposals under the Innovation Fund of Serbia evaluating storage-related projects.",
+          "sourceIds": [
+            "R0298"
+          ]
+        }
+      ],
+      "availability": {
+        "text": "On leave for part of 2026; project start dates before October 2026 should account for reduced availability.",
+        "sourceIds": [
+          "R0298"
+        ]
+      }
+    },
+    {
+      "researcherId": "R0530",
+      "aliases": [],
+      "name": "Nataša Milošević",
+      "title": "Full Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Power, Electronics and Telecommunications",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Distributed model predictive control for coordinated EV charging across multi-feeder residential networks.",
+          "sourceIds": [
+            "SYN-PUB-06208"
+          ]
+        },
+        {
+          "text": "Real-time EV charging control under stochastic arrivals and uncertain electricity prices using reinforcement learning.",
+          "sourceIds": [
+            "SYN-PUB-04229"
+          ]
+        },
+        {
+          "text": "Data-driven inference of EV charging flexibility from smart meter measurements using hidden Markov models and gradient boosting.",
+          "sourceIds": [
+            "SYN-PUB-06212"
+          ]
+        },
+        {
+          "text": "Virtual battery aggregation models for residential flexible loads including electric vehicle chargers, heat pumps, and washing machines.",
+          "sourceIds": [
+            "SYN-PUB-06207"
+          ]
+        },
+        {
+          "text": "Volt/VAR optimization integrated with flexible load scheduling in low-voltage distribution networks with high EV penetration.",
+          "sourceIds": [
+            "SYN-PUB-06213"
+          ]
+        },
+        {
+          "text": "Stochastic optimization of thermostatically controlled loads under temperature forecast uncertainty.",
+          "sourceIds": [
+            "SYN-PUB-06204"
+          ]
+        },
+        {
+          "text": "Metaheuristic approaches—genetic algorithm, differential evolution, particle swarm optimization, and simulated annealing—for large-scale demand response scheduling.",
+          "sourceIds": [
+            "SYN-PUB-06148"
+          ]
+        },
+        {
+          "text": "Rolling-horizon model predictive control strategies for intraday EV and flexible load rescheduling under price revisions.",
+          "sourceIds": [
+            "SYN-PUB-06214"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to joint projects with companies developing EV charging management software and hardware; has operated an EV charging testbed with three AC wallboxes and access to an RTDS real-time grid simulator.",
+          "sourceIds": [
+            "R0530"
+          ]
+        },
+        {
+          "text": "Open to contract research on demand response scheduling and tariff analysis; worked under a consultancy contract from 2017 to 2019 with Elektrovojvodina d.o.o. to evaluate distribution network impact of a residential EV charging pilot programme in Vojvodina.",
+          "sourceIds": [
+            "R0530"
+          ]
+        },
+        {
+          "text": "Open to industrial PhD supervision for candidates from energy or mobility companies.",
+          "sourceIds": [
+            "R0530"
+          ]
+        },
+        {
+          "text": "Leads Work Package 3 of the Horizon Europe project ADRIAFLEX, developing cross-border flexibility exchange mechanisms for prosumer aggregators; led the FLEXRES project on aggregation and market integration of residential flexibility.",
+          "sourceIds": [
+            "SYN-PRJ-0695",
+            "SYN-PRJ-0694"
+          ]
+        }
+      ],
+      "availability": {
+        "text": "Committed to the ADRIAFLEX project through 2026; has limited capacity for new large-scale coordinator roles until 2027.",
+        "sourceIds": [
+          "R0530"
+        ]
+      }
+    },
+    {
+      "researcherId": "R0611",
+      "aliases": [],
+      "name": "Danijela Ninkov",
+      "title": "Full Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Power, Electronics and Telecommunications",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Time-domain modelling of conducted disturbances in low-voltage networks from power electronic loads including rectifiers, switch-mode supplies, EV chargers, PV inverters and LED drivers.",
+          "sourceIds": [
+            "SYN-PUB-07001",
+            "SYN-PUB-07005",
+            "SYN-PUB-07008",
+            "SYN-PUB-02130",
+            "SYN-PRJ-0297"
+          ]
+        },
+        {
+          "text": "Measurement and characterisation of conducted emissions up to 30 MHz using line impedance stabilisation networks, with focus on LISN topology effects, reproducibility and uncertainty analysis.",
+          "sourceIds": [
+            "SYN-PUB-07006",
+            "SYN-PUB-07004",
+            "SYN-PUB-01514"
+          ]
+        },
+        {
+          "text": "Supraharmonic emissions (2–150 kHz) from grid-connected equipment: field monitoring, statistical characterisation, spectral analysis and long-term variability patterns.",
+          "sourceIds": [
+            "SYN-PUB-06789",
+            "SYN-PUB-07010",
+            "SYN-PUB-07005"
+          ]
+        },
+        {
+          "text": "Interaction between grid-following inverter control design (current loop bandwidth, LCL filter parameters) and conducted emission compliance via parametric simulation and laboratory validation.",
+          "sourceIds": [
+            "SYN-PUB-01514"
+          ]
+        },
+        {
+          "text": "Frequency-dependent network impedance characterisation in the 10 kHz to 30 MHz range for cable types used in urban distribution networks.",
+          "sourceIds": [
+            "SYN-PUB-07002"
+          ]
+        },
+        {
+          "text": "Harmonic distortion analysis in industrial low-voltage busbars with variable-speed drives, using aggregated injection models and harmonic load flow calculation.",
+          "sourceIds": [
+            "SYN-PUB-07003"
+          ]
+        },
+        {
+          "text": "Voltage fluctuation propagation from medium to high voltage: attenuation measurement and linear regression modelling of flicker indices.",
+          "sourceIds": [
+            "SYN-PUB-05526"
+          ]
+        },
+        {
+          "text": "Impedance spectroscopy of aged oil-paper insulation from 1 Hz to 1 MHz as a precursor to partial discharge inception.",
+          "sourceIds": [
+            "SYN-PUB-03497"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to contract research on EMC characterisation of industrial or consumer power electronic equipment and consulting on conducted emission compliance and power quality assessment.",
+          "sourceIds": [
+            "R0611"
+          ]
+        },
+        {
+          "text": "Has provided technical consulting to a regional distribution system operator on power quality measurement methodology and assisted domestic equipment manufacturers with pre-compliance conducted emission testing.",
+          "sourceIds": [
+            "R0611"
+          ]
+        },
+        {
+          "text": "Open to supervising industrial PhDs for candidates from companies with measurement or simulation needs in this domain.",
+          "sourceIds": [
+            "R0611"
+          ]
+        },
+        {
+          "text": "Offers access to dedicated EMC measurement laboratory with line impedance stabilisation network, conducted emission analysers calibrated to CISPR standards, and real-time power network emulator.",
+          "sourceIds": [
+            "R0611"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0738",
+      "aliases": [],
+      "name": "Igor Starčević",
+      "title": "Assistant Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Computing and Control Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Anomaly detection in industrial SCADA telemetry using isolation forest and autoencoders on real-world data from PV parks, wind farms, and district heating systems.",
+          "sourceIds": [
+            "SYN-PUB-08188",
+            "SYN-PUB-08187",
+            "SYN-PUB-08186",
+            "SYN-PUB-08183"
+          ]
+        },
+        {
+          "text": "Predictive maintenance scheduling for wind turbines using gradient-boosted survival models on vibration and SCADA data to estimate 30-day failure probability and generate ranked maintenance schedules.",
+          "sourceIds": [
+            "SYN-PUB-02957"
+          ]
+        },
+        {
+          "text": "Transfer learning for PV fault detection across geographically distributed sites using random forest and gradient-boosted models with quantile normalisation for feature alignment and fine-tuning on small labelled samples.",
+          "sourceIds": [
+            "SYN-PUB-08185"
+          ]
+        },
+        {
+          "text": "Sensor drift detection in long-running monitoring stations using convolutional autoencoders trained on hardware-in-the-loop testbed data with labelled degradation sequences.",
+          "sourceIds": [
+            "SYN-PUB-08187"
+          ]
+        },
+        {
+          "text": "Soiling estimation on PV panels via piecewise linear segmentation of irradiance-normalised output and performance ratio modelling using ordinary least squares regression.",
+          "sourceIds": [
+            "SYN-PUB-06241",
+            "SYN-PUB-08181"
+          ]
+        },
+        {
+          "text": "Threshold selection strategies for operational anomaly detection pipelines balancing false alarms and missed faults using cost-sensitive optimization and control-chart methods.",
+          "sourceIds": [
+            "SYN-PUB-08186"
+          ]
+        },
+        {
+          "text": "Benchmarking time-series foundation models against classical methods for short-horizon anomaly detection on SCADA telemetry with attention to inference latency and edge deployment.",
+          "sourceIds": [
+            "SYN-PUB-08188"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Provided six-month consultancy to a regional solar asset management company during 2022–2023 on specification and partial implementation of an automated performance reporting system.",
+          "sourceIds": [
+            "R0738"
+          ]
+        },
+        {
+          "text": "Open to joint projects with companies operating PV parks, wind farms, or district heating networks that can provide SCADA data access, and to contract research on anomaly detection pipeline development and validation.",
+          "sourceIds": [
+            "R0738"
+          ]
+        },
+        {
+          "text": "Open to industrial PhD co-supervision with companies in the energy or industrial IoT sector, and to student internships on data engineering and model deployment.",
+          "sourceIds": [
+            "R0738"
+          ]
+        },
+        {
+          "text": "Led the DIASOLAR project establishing a public benchmark dataset of anonymised SCADA telemetry and fault labels from six PV site operators, and leads the MAINTAIN-IPA cross-border work package on data integration and machine learning pipeline development with industry partners.",
+          "sourceIds": [
+            "SYN-PRJ-0311",
+            "SYN-PRJ-0312"
+          ]
+        }
+      ],
+      "availability": {
+        "text": "Capacity for new project coordination is limited until 2027 due to an active doctoral student finishing in late 2026; work package participation or contract research roles are more feasible in the near term.",
+        "sourceIds": [
+          "R0738"
+        ]
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0696",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0696",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "The challenge is rooftop solar inverters disconnecting due to grid voltage rising too high on hot summer afternoons; the company's attempted fix of lowering the export limit loses about 8% of yearly yield (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Jeremić's work covers hosting capacity assessment and probabilistic mapping for photovoltaic integration in low-voltage distribution networks using stochastic simulation (SYN-PUB-07801, SYN-PUB-07799, SYN-PUB-07796).",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "SYN-PUB-07796"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored work on smart inverter Volt-Var control design and hardware-in-the-loop testing with a real-time digital simulator for distributed voltage regulation (SYN-PUB-07797).",
+          "sourceIds": [
+            "SYN-PUB-07797"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored work on reactive power coordination using a two-stage optimisation framework combining day-ahead scheduling with real-time rule-based droop correction (SYN-PUB-03969).",
+          "sourceIds": [
+            "SYN-PUB-03969"
+          ]
+        },
+        {
+          "text": "Jeremić performed six-month consultancy with Elektrovojvodina d.o.o. supporting development of internal procedures for distributed generation connection evaluation (R0696).",
+          "sourceIds": [
+            "R0696"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Jeremić would apply hosting capacity assessment and Volt-Var smart inverter control methods (SYN-PUB-07801, SYN-PUB-07799, SYN-PUB-07797, SYN-PUB-03969) to diagnose the overvoltage mechanism on the affected feeders and design a reactive power control strategy that prevents disconnections without curtailing active power export.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-07801",
+          "SYN-PUB-07799",
+          "SYN-PUB-07797",
+          "SYN-PUB-03969"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The records cover feeder-level simulation and hosting capacity methodology; whether the five-year multi-site log dataset from 300 sites requires additional data-engineering work not covered by the existing publications is not stated.",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The steady-state power flow and Volt-Var work covers LV feeder analysis, but the records do not describe experience with proprietary inverter log formats or data integration pipelines at the scale of 300 sites (SYN-PUB-07794, SYN-PUB-07797).",
+          "sourceIds": [
+            "SYN-PUB-07794",
+            "SYN-PUB-07797"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R0904",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0904",
+      "fit": 0.61,
+      "why": [
+        {
+          "text": "The challenge is that rooftop solar inverters disconnect from the grid on hot summer afternoons when local grid voltage rises too high, and the company has five years of inverter logs and grid voltage readings from 300 sites available (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Simić co-authored work on day-ahead photovoltaic power forecasting for distribution networks using satellite cloud imagery and hybrid neural network architectures (SYN-PUB-09619).",
+          "sourceIds": [
+            "SYN-PUB-09619"
+          ]
+        },
+        {
+          "text": "Simić co-authored work on local flexibility market design and congestion management in active distribution networks through optimal power flow algorithms (SYN-PUB-09625).",
+          "sourceIds": [
+            "SYN-PUB-09625"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the inverter logs and grid voltage readings from 300 sites (C999-CH1), Simić would apply day-ahead PV power forecasting methods (SYN-PUB-09619) and optimal power flow and congestion management methods from active distribution network research (SYN-PUB-09625) to the company's dataset.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-09619",
+          "SYN-PUB-09625"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The congestion management work covers flexibility market mechanisms (SYN-PUB-09625); whether this translates to a deployable voltage regulation strategy within the inverter hardware already installed at the 300 sites is not addressed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09625",
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "chosen": [
+    "C999-CH1:R0696"
+  ],
+  "noMatches": [],
+  "proposals": [],
+  "needsHuman": [
+    {
+      "id": "C999-CH1-R0696",
+      "pairId": "C999-CH1:R0696",
+      "kind": "joint-project",
+      "title": "Volt-Var Smart Inverter Control to Eliminate Overvoltage Disconnections at 300 Solar Sites",
+      "markdown": "## Volt-Var Smart Inverter Control to Eliminate Overvoltage Disconnections at 300 Solar Sites\n\n**Company:** Described problem works in solar energy. [C999] Challenge C999-CH1.  \n**Researcher:** Aleksandar Jeremić is an Assistant Professor in the Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences. [R0696]  \n**Format:** joint project, one page.\n\n### The problem\nRooftop solar inverters at 300 sites disconnect from the grid on hot summer afternoons when local grid voltage rises too high, and the company has tried lowering the export limit to address this. [C999-CH1] The company's current workaround — reducing the export limit — recovers grid connectivity but costs approximately 8% of yearly energy yield across the portfolio. [C999-CH1] The company holds five years of inverter logs and grid voltage readings from 300 sites. [C999-CH1]\n\n### Prior work\n- A 2021 study compared four reactive power control techniques for solar PV inverters in a low-voltage network and found that incorporating reactive power controls of solar PV inverters aids in successfully mitigating overvoltage issues. [W3177274304]\n\n### Research questions\n1. Can a Volt-Var or droop-based reactive power control strategy, parameterised from the five-year inverter and voltage log dataset, prevent inverter disconnections at peak-generation hours — measured as the number of disconnection events in a held-out summer season reduced to zero, with no reduction in active power export relative to the uncurtailed baseline?\n2. Which feeder segments and site clusters drive the majority of overvoltage events — measured by hosting capacity analysis against the 300-site voltage logs, producing a ranked map of congestion severity?\n3. Does a two-stage control scheme (day-ahead Volt-Var scheduling plus real-time droop correction) outperform a fixed power-factor strategy on the same feeders — measured by peak voltage exceedance margin and reactive power losses across the simulated summer period?\n\n### Approach\n- Parse and quality-screen five years of inverter logs and grid voltage readings from 300 sites; reconstruct feeder topology and load/generation time series to build a validated steady-state power-flow model using backward–forward sweep analysis as in the researcher's feeder studies.\n- Apply probabilistic hosting capacity assessment — using stochastic simulation and feeder classification — to rank the 300 sites by overvoltage contribution and identify the feeders where reactive power headroom is sufficient to substitute for active power curtailment.\n- Design Volt-Var control curves and a two-stage reactive power coordination scheme (day-ahead scheduling with real-time droop correction) calibrated to the identified feeders; validate the design against the five-year dataset using time-series power-flow simulation, targeting zero disconnection events with no export reduction.\n- Test the preferred control parameterisation in a hardware-in-the-loop environment using the researcher's real-time digital simulator to confirm dynamic stability before the company configures inverters in the field.\n\n### Plan\n\n| Period | Work | Result |\n| --- | --- | --- |\n| Months 1–3 | A master's student from the researcher's group, supported by the company's engineer (30% time), parses the five-year log dataset, reconstructs feeder topologies, and builds a validated power-flow model for the ten worst-performing sites. Jeremić supervises model setup and data validation. | Validated feeder models for ten sites; ranked map of overvoltage severity across 300 sites; data-quality report. |\n| Months 4–6 | Hosting capacity assessment extended to all 300 sites using stochastic simulation; reactive power headroom quantified per feeder. Volt-Var control curves and two-stage coordination parameters designed and tested in time-series power-flow simulation against the five-year dataset. | Control parameter set that eliminates simulated disconnections with no active power curtailment; comparison report against fixed power-factor baseline. |\n| Months 7–9 | Preferred control scheme validated on the real-time digital simulator using hardware-in-the-loop testing. Company engineer integrates the validated parameters into inverter configuration files for a pilot group of sites. | Hardware-in-the-loop validation report; inverter configuration files ready for field pilot; one journal or conference paper submitted. |\n\n### First six months\n- Week 1–2: the company transfers five years of inverter logs and voltage readings (anonymised per data-sharing agreement) to a secure repository accessible to the researcher's group; the company's engineer provides feeder topology diagrams for the 20 sites with the most recorded disconnections.\n- Month 1: the master's student sets up the power-flow modelling environment and runs a data-quality audit; disconnection events are extracted and linked to voltage exceedance timestamps across all 300 sites.\n- Months 2–3: feeder models for the ten highest-severity sites are built and validated against historical voltage readings; hosting capacity is assessed for these sites and results reviewed jointly by Jeremić and the company's engineer.\n- Months 4–6: stochastic hosting capacity assessment scales to all 300 sites; Volt-Var control curves are designed and first time-series simulations run; interim results presented to the company with a go/no-go recommendation on the control approach before hardware-in-the-loop work begins.\n\n### What each side brings\n- **Company:** Five years of inverter logs and grid voltage readings from 300 sites, held by the company. [C999-CH1]\n- **Faculty:** Jeremić co-authored hosting capacity assessment and probabilistic mapping methods for low-voltage distribution networks using stochastic simulation and feeder classification. [SYN-PUB-07801, SYN-PUB-07799, SYN-PUB-07796] Jeremić co-authored smart inverter Volt-Var control design and hardware-in-the-loop testing with a real-time digital simulator for distributed voltage regulation. [SYN-PUB-07797] Jeremić co-authored a two-stage reactive power coordination framework combining day-ahead scheduling with real-time rule-based droop correction. [SYN-PUB-03969] Jeremić has access to real-time digital simulator hardware and field measurement equipment, and can facilitate data-sharing agreements with a regional distribution system operator for validation against real feeder topologies. [R0696]\n\n### Why this pair\nThe company brings five years of multi-site operational data from 300 sites; Jeremić brings the hosting capacity methodology and hardware-in-the-loop testing capability needed to turn that data into a validated control design. Jeremić brings the published Volt-Var and reactive power coordination methods and the real-time digital simulator needed to validate the design before field deployment; the company brings the operational dataset from 300 sites and the inverter fleet on which the validated design would run. Together they can close the loop from diagnosis to field-ready configuration within nine months.\n\n- The company has five years of inverter logs and grid voltage readings from 300 sites and a quantified yield cost of 8% from the current export-limit workaround. [C999-CH1]\n- Jeremić co-authored Volt-Var control design and hardware-in-the-loop testing methods and two-stage reactive power coordination targeting overvoltage in low-voltage distribution networks. [SYN-PUB-07797, SYN-PUB-03969]\n- Jeremić performed consultancy with Elektrovojvodina d.o.o. on distributed generation connection evaluation, demonstrating prior engagement with Serbian distribution grid practice. [R0696]\n\n### Risks and constraints\n- The records cover feeder-level simulation and hosting capacity methodology; whether the five-year multi-site log dataset from 300 sites requires additional data-engineering work not covered by the existing publications is not stated. [SYN-PUB-07801, SYN-PUB-07799, C999-CH1]\n- The steady-state power flow and Volt-Var work covers LV feeder analysis, but the records do not describe experience with proprietary inverter log formats or data integration pipelines at the scale of 300 sites (SYN-PUB-07794, SYN-PUB-07797). [SYN-PUB-07794, SYN-PUB-07797]\n\n### Agreed up front (proposed)\n- Publication: the researcher's group may submit findings for publication after a 45-day review period during which the company may request removal of commercially sensitive feeder or site details.\n- Ownership: the company owns the inverter configuration files, calibrated control parameters, and field pilot results; the University of Novi Sad retains the right to use the methodology and anonymised simulation results for further research and teaching.\n- Data access: the company provides the five-year log dataset under a data-sharing agreement signed before work begins; the dataset is stored on infrastructure accessible only to named project members and is deleted or returned at project end.\n- Preconditions: the data-sharing agreement and any required consent from the regional distribution system operator must be in place before the master's student begins data processing in Month 1.\n\n### Sources\n- C999: Described problem\n- C999-CH1: Our rooftop solar inverters disconnect from the grid on hot summer afternoons because the local grid voltage rises to...\n- R0696: Aleksandar Jeremić\n- SYN-PUB-03969: Coordinated Reactive Power Dispatch in Low-Voltage Networks Using a Two-Stage Optimisation Framework (2022)\n- SYN-PUB-07794: Steady-State Voltage Profile Analysis in Radial Low-Voltage Feeders with Rooftop Photovoltaic Systems (2013)\n- SYN-PUB-07796: Hosting Capacity Assessment for Photovoltaic Systems in Low-Voltage Urban Networks: Deterministic and Stochastic Appr... (2018)\n- SYN-PUB-07797: Smart Inverter Volt–Var Control for Voltage Regulation in Prosumer-Integrated Low-Voltage Feeders (2020)\n- SYN-PUB-07799: Feeder Reconfiguration as a Hosting Capacity Enhancement Tool in Meshed Low-Voltage Networks (2023)\n- SYN-PUB-07801: Probabilistic Hosting Capacity Maps for Low-Voltage Distribution Networks: A Methodology for Municipal-Scale Assessment (2025)\n- W3177274304: Comparison of Reactive Power Control Techniques for Solar PV Inverters to Mitigate Voltage Rise in Low-Voltage Grids (2021) https://openalex.org/W3177274304\n",
+      "claims": [
+        {
+          "text": "Described problem works in solar energy.",
+          "sourceIds": [
+            "C999"
+          ]
+        },
+        {
+          "text": "Aleksandar Jeremić is an Assistant Professor in the Department of Power, Electronics and Telecommunications, Faculty of Technical Sciences.",
+          "sourceIds": [
+            "R0696"
+          ]
+        },
+        {
+          "text": "Rooftop solar inverters at 300 sites disconnect from the grid on hot summer afternoons when local grid voltage rises too high, and the company has tried lowering the export limit to address this.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The company's current workaround — reducing the export limit — recovers grid connectivity but costs approximately 8% of yearly energy yield across the portfolio.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The company holds five years of inverter logs and grid voltage readings from 300 sites.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "A 2021 study compared four reactive power control techniques for solar PV inverters in a low-voltage network and found that incorporating reactive power controls of solar PV inverters aids in successfully mitigating overvoltage issues.",
+          "sourceIds": [
+            "W3177274304"
+          ]
+        },
+        {
+          "text": "Five years of inverter logs and grid voltage readings from 300 sites, held by the company.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored hosting capacity assessment and probabilistic mapping methods for low-voltage distribution networks using stochastic simulation and feeder classification.",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "SYN-PUB-07796"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored smart inverter Volt-Var control design and hardware-in-the-loop testing with a real-time digital simulator for distributed voltage regulation.",
+          "sourceIds": [
+            "SYN-PUB-07797"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored a two-stage reactive power coordination framework combining day-ahead scheduling with real-time rule-based droop correction.",
+          "sourceIds": [
+            "SYN-PUB-03969"
+          ]
+        },
+        {
+          "text": "Jeremić has access to real-time digital simulator hardware and field measurement equipment, and can facilitate data-sharing agreements with a regional distribution system operator for validation against real feeder topologies.",
+          "sourceIds": [
+            "R0696"
+          ]
+        },
+        {
+          "text": "The company has five years of inverter logs and grid voltage readings from 300 sites and a quantified yield cost of 8% from the current export-limit workaround.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored Volt-Var control design and hardware-in-the-loop testing methods and two-stage reactive power coordination targeting overvoltage in low-voltage distribution networks.",
+          "sourceIds": [
+            "SYN-PUB-07797",
+            "SYN-PUB-03969"
+          ]
+        },
+        {
+          "text": "Jeremić performed consultancy with Elektrovojvodina d.o.o. on distributed generation connection evaluation, demonstrating prior engagement with Serbian distribution grid practice.",
+          "sourceIds": [
+            "R0696"
+          ]
+        },
+        {
+          "text": "The records cover feeder-level simulation and hosting capacity methodology; whether the five-year multi-site log dataset from 300 sites requires additional data-engineering work not covered by the existing publications is not stated.",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The steady-state power flow and Volt-Var work covers LV feeder analysis, but the records do not describe experience with proprietary inverter log formats or data integration pipelines at the scale of 300 sites (SYN-PUB-07794, SYN-PUB-07797).",
+          "sourceIds": [
+            "SYN-PUB-07794",
+            "SYN-PUB-07797"
+          ]
+        }
+      ],
+      "revision": 2
+    }
+  ],
+  "verdicts": [
+    {
+      "proposalId": "C999-CH1",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Rooftop solar inverters at 300 sites disconnect from the grid on hot summer afternoons when local grid voltage exceeds the inverter's limit. Lowering the export limit to prevent disconnections reduces yearly yield by about 8%. The company has five years of inverter logs and grid voltage readings from 300 sites (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "The source states disconnection occurs because 'local grid voltage rises too high,' not because it 'exceeds the inverter's limit' — that characterisation is added by the claim and is not in C999-CH1.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Lowering the export limit to prevent disconnections reduces yearly yield by about 8%, indicating that a solution must maintain generation while respecting grid voltage limits (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states the ~8% yield loss fact, but the conclusion that 'a solution must maintain generation while respecting grid voltage limits' is a judgement/inference not present in the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "need",
+      "taskId": "critique-2",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "need",
+      "taskId": "critique-15",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0904",
+      "revision": 0,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-11",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0298",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Cycle-ageing modelling and degradation quantification for lithium-ion and lead-acid batteries using rainflow-counting and Arrhenius methods.",
+            "sourceIds": [
+              "SYN-PUB-03706",
+              "SYN-PUB-03710",
+              "SYN-PUB-03709"
+            ]
+          },
+          "reason": "SYN-PUB-03706 covers rainflow-counting degradation for lithium-ion cells; SYN-PUB-03710 covers Arrhenius-based temperature-dependent degradation; however, neither cited source mentions lead-acid batteries, and SYN-PUB-03709 mentions rainflow-based damage accumulation and reviews ageing models but does not specifically cover lead-acid degradation quantification with rainflow-counting or Arrhenius methods.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-13",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0530",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Coordinated scheduling of electric vehicle charging and flexible residential loads under dynamic tariffs using model predictive control and distributed optimization.",
+            "sourceIds": [
+              "SYN-PUB-06208",
+              "SYN-PUB-06210",
+              "SYN-PUB-06206"
+            ]
+          },
+          "reason": "SYN-PUB-06208 covers distributed MPC for coordinated EV charging; SYN-PUB-06210 covers joint scheduling of heat pumps and EV chargers under dynamic tariffs using MILP (not MPC or distributed optimization); SYN-PUB-06206 covers day-ahead optimal EV charging under real-time pricing using MIQP—neither SYN-PUB-06210 nor SYN-PUB-06206 use model predictive control or distributed optimization, so the claim overstates the methods across all three papers.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Aggregation of residential flexible loads into equivalent virtual battery models for demand response portfolio management.",
+            "sourceIds": [
+              "SYN-PUB-06207"
+            ]
+          },
+          "reason": "SYN-PUB-06207 describes deriving virtual battery parameters for EV chargers, heat pumps, and washing machines and validating the model for a 500-household portfolio, but the claim adds 'demand response portfolio management' which is not explicitly stated in that record—the record describes the virtual battery abstraction and a receding-horizon control demonstration, not specifically 'portfolio management'.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Metaheuristic approaches—genetic algorithm, differential evolution, particle swarm optimization—for large-scale demand response scheduling.",
+            "sourceIds": [
+              "SYN-PRJ-0695",
+              "SYN-PUB-06148"
+            ]
+          },
+          "reason": "SYN-PUB-06148 covers genetic algorithm, differential evolution, and particle swarm optimization (as well as simulated annealing) for large-scale demand response scheduling, but SYN-PRJ-0695 (ADRIAFLEX) does not mention metaheuristic approaches; the claim attributes the metaheuristic topic partly to SYN-PRJ-0695, which does not contain that fact.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-14",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0696",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Maintains access to real-time digital simulator hardware, field measurement equipment, and established data-sharing relationship with regional distribution system operator for validation of products against real feeder topologies and smart meter data.",
+            "sourceIds": [
+              "R0696"
+            ]
+          },
+          "reason": "R0696 states the group uses RTDS real-time digital simulator hardware and maintains access to field measurement equipment, and that Jeremić has an established working relationship with Elektrovojvodina d.o.o. and can facilitate data-sharing agreements for companies requiring real feeder topology or smart meter data for product validation — however, the claim says 'established data-sharing relationship' whereas R0696 says he 'can facilitate data-sharing agreements', meaning no such relationship currently exists; the text describes the ability to facilitate agreements, not an established data-sharing relationship.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-12",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0611",
+      "revision": 0,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-16",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0298",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-22",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0696",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-23",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0530",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Virtual battery aggregation models for residential flexible loads including EV chargers, heat pumps, and washing machines.",
+            "sourceIds": [
+              "SYN-PUB-06207"
+            ]
+          },
+          "reason": "\"EV\" is not in SYN-PUB-06207 but is in SYN-PUB-06208, SYN-PUB-04229, SYN-PUB-06212, SYN-PUB-06213, SYN-PUB-06214, R0530 and SYN-PRJ-0694, which the claim does not cite.",
+          "check": "uncited-detail"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-24",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0738",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Anomaly detection in industrial SCADA telemetry using isolation forest, autoencoders, and LSTM architectures on real-world data from PV parks, wind farms, and district heating systems.",
+            "sourceIds": [
+              "SYN-PUB-08188",
+              "SYN-PUB-08187",
+              "SYN-PUB-08186",
+              "SYN-PUB-08183"
+            ]
+          },
+          "reason": "\"LSTM\" is not in SYN-PUB-08188, SYN-PUB-08187, SYN-PUB-08186 or SYN-PUB-08183 but is in SYN-PUB-08184, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "Predictive maintenance scheduling using survival analysis, gradient-boosted trees, and random forests on vibration and SCADA data to estimate remaining useful life and rank maintenance priorities.",
+            "sourceIds": [
+              "SYN-PUB-02957",
+              "SYN-PUB-08184",
+              "SYN-PUB-08182"
+            ]
+          },
+          "reason": "SYN-PUB-08184 uses LSTM (not gradient-boosted trees or random forests) for RUL prediction, and SYN-PUB-08182 uses random forest for fault classification (not RUL estimation or maintenance scheduling), so the claim's assertion that gradient-boosted trees and random forests are used to estimate remaining useful life is not supported by the cited texts.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Fault detection and classification in photovoltaic inverters and string arrays using feature extraction, transfer learning across sites, and domain adaptation with small labelled samples.",
+            "sourceIds": [
+              "SYN-PUB-08185",
+              "SYN-PUB-08182"
+            ]
+          },
+          "reason": "SYN-PUB-08185 does not use the term 'domain adaptation' — it describes feature alignment via quantile normalisation for cross-site transfer — and neither cited source explicitly mentions 'string arrays' as a target (SYN-PUB-08182 covers string inverters, not string arrays), so the claim adds terms not found in the cited texts.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Provided six-month consultancy to a regional solar asset management company during 2022–2023 on specification and implementation of automated performance reporting systems.",
+            "sourceIds": [
+              "R0738"
+            ]
+          },
+          "reason": "R0738 states the consultancy involved 'partial implementation' of the automated performance reporting system, whereas the claim states 'implementation' without 'partial', overstating what the record says.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-17",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0530",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-26",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0738",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Predictive maintenance scheduling using gradient-boosted survival models on vibration and SCADA data to estimate remaining useful life and rank maintenance priorities.",
+            "sourceIds": [
+              "SYN-PUB-02957"
+            ]
+          },
+          "reason": "SYN-PUB-02957 describes gradient-boosted survival models on vibration and SCADA data used to estimate failure probability and generate ranked maintenance schedules, but the claim states 'remaining useful life' whereas the paper estimates '30-day failure probability' and uses a 'discrete-time hazard model' — remaining useful life is not mentioned in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Fault detection and classification in photovoltaic inverters using feature extraction, transfer learning across sites with quantile normalisation for feature alignment, and fine-tuning on small labelled samples.",
+            "sourceIds": [
+              "SYN-PUB-08185",
+              "SYN-PUB-08182"
+            ]
+          },
+          "reason": "SYN-PUB-08185 covers transfer learning across sites with quantile normalisation for feature alignment and fine-tuning on small labelled samples for PV fault detection, and SYN-PUB-08182 covers feature extraction (statistical features) and fault classification in PV string inverters — however, neither paper mentions 'photovoltaic inverters' as the shared subject of transfer learning; SYN-PUB-08185 uses random forest and gradient-boosted trees (not described as applied specifically to inverters), and SYN-PUB-08182 does not involve transfer learning or quantile normalisation, so combining them into a single unified claim about inverter fault detection using all three methods together overstates what the cited records jointly say.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-28",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0738",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Starčević co-authored work on anomaly detection in industrial SCADA telemetry using isolation forest, autoencoders, and LSTM architectures on real-world data from PV parks (SYN-PUB-08188, SYN-PUB-08183).",
+            "sourceIds": [
+              "SYN-PUB-08188",
+              "SYN-PUB-08183"
+            ]
+          },
+          "reason": "SYN-PUB-08188 covers anomaly detection in SCADA telemetry using isolation forest (among other methods) on datasets covering PV parks and links to R0738, but neither SYN-PUB-08188 nor SYN-PUB-08183 mentions autoencoders or LSTM architectures — SYN-PUB-08188 lists isolation forest, one-class SVM, ARIMA residual scoring, and rolling z-score, while SYN-PUB-08183 covers isolation forest only.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Starčević co-authored work on fault detection and classification in photovoltaic inverters and string arrays using feature extraction and transfer learning across sites (SYN-PUB-08185).",
+            "sourceIds": [
+              "SYN-PUB-08185"
+            ]
+          },
+          "reason": "SYN-PUB-08185 covers fault detection in PV systems using transfer learning across sites with different inverter brands, and links to R0738, but the record describes random forest and gradient-boosted trees with feature alignment — not 'feature extraction and classification in photovoltaic inverters and string arrays' specifically; 'string arrays' and 'feature extraction' as named methods are not in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Starčević would apply anomaly detection and fault classification methods on PV inverter SCADA data (SYN-PUB-08188, SYN-PUB-08185, SYN-PUB-08183) to identify the patterns and site conditions that precede overvoltage disconnections, providing a diagnostic foundation for a subsequent voltage control intervention.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-08188",
+              "SYN-PUB-08185",
+              "SYN-PUB-08183"
+            ]
+          },
+          "reason": "The proposal sentence ('Starčević would apply…') describes planned work, so it is supported when the company's need and every fact about either side are in the cited text; however, the claim adds 'providing a diagnostic foundation for a subsequent voltage control intervention,' which is a judgment connecting the researcher's methods to the company's problem in a way that goes beyond what any cited record states.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The records cover fault detection and anomaly detection in PV inverter SCADA data; they do not cover voltage regulation, reactive power control, or power flow analysis, which are required to design a solution that recovers the 8% yield loss (SYN-PUB-08185, SYN-PUB-08188).",
+            "sourceIds": [
+              "SYN-PUB-08185",
+              "SYN-PUB-08188"
+            ]
+          },
+          "reason": "The claim adds a judgment that the records 'do not cover voltage regulation, reactive power control, or power flow analysis, which are required to design a solution that recovers the 8% yield loss' — the characterization of what is 'required' to recover the yield loss is an interpretive assertion not stated in either SYN-PUB-08185 or SYN-PUB-08188.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-31",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0904",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "The challenge requires understanding when and why overvoltage occurs across 300 sites during peak solar hours, with five years of inverter logs and grid voltage readings available (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states the problem is inverters disconnecting due to high grid voltage on hot summer afternoons, with five years of inverter logs and grid voltage readings from 300 sites available, but does not mention 'peak solar hours' or frame the challenge as understanding 'when and why overvoltage occurs across 300 sites during peak solar hours'—those phrasings add facts not in the text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Simić would apply day-ahead PV power forecasting and optimal power flow methods (SYN-PUB-09619, SYN-PUB-09625) to predict peak-generation overvoltage events and design a proactive congestion management strategy that reduces inverter disconnections without requiring a permanent export-limit reduction.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-09619",
+              "SYN-PUB-09625"
+            ]
+          },
+          "reason": "This claim describes a proposal for what Simić 'would' do, which is permissible, but it states she would 'design a proactive congestion management strategy that reduces inverter disconnections without requiring a permanent export-limit reduction'—the phrase 'without requiring a permanent export-limit reduction' is a specific result not stated in any of the cited records, adding a fact beyond what the texts contain.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The records cover PV generation forecasting and congestion management via flexibility markets; they do not cover reactive power control or Volt-Var inverter behaviour, which is the primary mechanism for resolving overvoltage without active power curtailment (SYN-PUB-09619, SYN-PUB-09625).",
+            "sourceIds": [
+              "SYN-PUB-09619",
+              "SYN-PUB-09625"
+            ]
+          },
+          "reason": "Neither SYN-PUB-09619 nor SYN-PUB-09625 mention reactive power control or Volt-Var inverter behaviour; the claim that the records 'do not cover' these topics is a meta-observation about absence, but it also adds the characterisation that Volt-Var is 'the primary mechanism for resolving overvoltage without active power curtailment,' which is a judgement not found in any cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-30",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0738",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-33",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0696",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "The challenge is rooftop solar inverters disconnecting due to grid overvoltage during peak generation hours, with a hard constraint of not accepting the 8% yield loss from lowering the export limit (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states that inverters disconnect due to grid voltage rising too high on hot summer afternoons, that lowering the export limit loses about 8% of yearly yield, and that the company has five years of inverter logs and grid voltage readings from 300 sites — but the challenge does not describe this 8% yield loss as a 'hard constraint' that the company refuses to accept; it only states the loss figure as a consequence of their attempted fix.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Jeremić co-authored work on smart inverter Volt-Var control design and hardware-in-the-loop testing with real-time digital simulators for distributed voltage regulation (SYN-PUB-07797, SYN-PUB-03969).",
+            "sourceIds": [
+              "SYN-PUB-07797",
+              "SYN-PUB-03969"
+            ]
+          },
+          "reason": "SYN-PUB-07797 (authored by R0696) covers smart inverter Volt-Var (Q(U)) control design and hardware-in-the-loop testing with an RTDS real-time simulator for distributed voltage regulation; SYN-PUB-03969 (authored by R0696) covers coordinated reactive power dispatch using a two-stage optimisation framework including smart PV inverters, but does not describe hardware-in-the-loop testing — the HIL claim for SYN-PUB-03969 is not supported by that record.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Jeremić co-authored work on reactive power compensation coordination using two-stage optimisation combining day-ahead scheduling with real-time rule-based droop control (SYN-PUB-03969, SYN-PUB-07795).",
+            "sourceIds": [
+              "SYN-PUB-03969",
+              "SYN-PUB-07795"
+            ]
+          },
+          "reason": "SYN-PUB-03969 describes a two-stage optimisation framework combining a day-ahead scheduling stage with a real-time rule-based droop correction stage for reactive power coordination; SYN-PUB-07795 covers reactive power compensation using fixed capacitor banks — the claim about 'two-stage optimisation combining day-ahead scheduling with real-time rule-based droop control' matches SYN-PUB-03969, but SYN-PUB-07795 does not describe two-stage optimisation or droop control, making the citation of it as co-authoring that specific work unsupported.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-29",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0904",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Simić would apply day-ahead PV power forecasting and optimal power flow methods (SYN-PUB-09619, SYN-PUB-09625) to predict overvoltage events on hot summer afternoons and design a congestion management strategy aimed at reducing inverter disconnections.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-09619",
+              "SYN-PUB-09625"
+            ]
+          },
+          "reason": "SYN-PUB-09619 covers day-ahead PV power forecasting and SYN-PUB-09625 covers congestion management via optimal power flow, but neither record mentions predicting 'overvoltage events on hot summer afternoons' or designing a 'congestion management strategy aimed at reducing inverter disconnections' — these are added judgements linking the researcher's methods to the company's specific problem, which the cited records do not state.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The records cover PV generation forecasting and congestion management via flexibility markets and optimal power flow (SYN-PUB-09619, SYN-PUB-09625); neither record addresses inverter-level voltage regulation techniques.",
+            "sourceIds": [
+              "SYN-PUB-09619",
+              "SYN-PUB-09625"
+            ]
+          },
+          "reason": "SYN-PUB-09619 covers PV generation forecasting and SYN-PUB-09625 covers congestion management via local flexibility markets and optimal power flow, but the claim's negative assertion that 'neither record addresses inverter-level voltage regulation techniques' is an added evaluative judgement about what the records do not cover, going beyond what the cited text states.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-37",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0696",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-39",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0738",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Starčević co-authored work on anomaly detection in industrial SCADA telemetry using isolation forest, one-class SVM, ARIMA residual scoring, and rolling z-score on datasets covering PV parks (SYN-PUB-08188, SYN-PUB-08183).",
+            "sourceIds": [
+              "SYN-PUB-08188",
+              "SYN-PUB-08183"
+            ]
+          },
+          "reason": "SYN-PUB-08188 confirms Starčević co-authored anomaly detection in SCADA using all four methods on datasets covering PV parks, but SYN-PUB-08183 covers only district heating substations using only isolation forest — not PV parks or the other three methods — so the parenthetical attribution of PV parks and all four methods to both records is not supported.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Starčević would apply anomaly detection and fault classification methods on PV inverter SCADA data (SYN-PUB-08188, SYN-PUB-08185, SYN-PUB-08183) to identify the patterns and site conditions that precede overvoltage disconnections.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-08188",
+              "SYN-PUB-08185",
+              "SYN-PUB-08183"
+            ]
+          },
+          "reason": "SYN-PUB-08183 covers district heating substations, not PV inverter SCADA data, so the claim's attribution of anomaly detection and fault classification methods 'on PV inverter SCADA data' to all three publications (including SYN-PUB-08183) is not supported by the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-38",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0904",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-41",
+      "action": "accept",
+      "trimmed": [
+        {
+          "claim": {
+            "text": "SYN-PUB-09619 covers day-ahead PV power forecasting for distribution networks; SYN-PUB-09625 covers local flexibility market design and congestion management through optimal power flow algorithms.",
+            "sourceIds": [
+              "SYN-PUB-09619",
+              "SYN-PUB-09625"
+            ]
+          },
+          "reason": "SYN-PUB-09619 covers day-ahead PV forecasting for distribution feeders ✓; SYN-PUB-09625 covers congestion management and optimal power flow ✓, but the claim characterises SYN-PUB-09625 as covering 'local flexibility market design' whereas the paper presents an LFM clearing algorithm — 'design' is not a term the paper uses to describe its own scope, adding a characterisation not stated in the cited text.",
+          "check": "unsupported"
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1:R0738",
+      "revision": 2,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Starčević co-authored work on anomaly detection in industrial SCADA telemetry using isolation forest, one-class SVM, ARIMA residual scoring, and rolling z-score on datasets covering PV parks (SYN-PUB-08188).",
+            "sourceIds": [
+              "SYN-PUB-08188"
+            ]
+          },
+          "reason": "SYN-PUB-08188 describes 'Energy SCADA Telemetry', not 'industrial SCADA telemetry' as the claim states; the word 'industrial' does not appear in the source, making it an unsupported qualifier.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Starčević would apply anomaly detection and fault classification methods on PV inverter SCADA data (SYN-PUB-08188, SYN-PUB-08185) to identify the patterns and site conditions that precede overvoltage disconnections.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-08188",
+              "SYN-PUB-08185"
+            ]
+          },
+          "reason": "Neither SYN-PUB-08188 nor SYN-PUB-08185 mentions overvoltage disconnections, patterns preceding them, or site conditions linked to overvoltage, so the claim adds a result ('identify the patterns and site conditions that precede overvoltage disconnections') that is not in the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-43",
+      "action": "drop"
+    },
+    {
+      "proposalId": "C999-CH1-R0696",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Jeremić co-authored hosting capacity assessment and probabilistic mapping methods for PV in low-voltage distribution networks using stochastic simulation and feeder classification.",
+            "sourceIds": [
+              "SYN-PUB-07801",
+              "SYN-PUB-07799",
+              "SYN-PUB-07796"
+            ]
+          },
+          "reason": "\"PV\" is not in SYN-PUB-07801, SYN-PUB-07799 or SYN-PUB-07796 but is in W3177274304, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "Jeremić co-authored Volt-Var control design and hardware-in-the-loop testing methods and two-stage reactive power coordination directly targeting overvoltage in low-voltage PV feeders.",
+            "sourceIds": [
+              "SYN-PUB-07797",
+              "SYN-PUB-03969"
+            ]
+          },
+          "reason": "\"PV\" is not in SYN-PUB-07797 or SYN-PUB-03969 but is in W3177274304, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "Rooftop solar inverters at 300 sites disconnect from the grid on hot summer afternoons when local feeder voltage exceeds the upper statutory limit due to reverse power flow from simultaneous peak generation.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic-2: 8% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Five years of inverter logs and grid voltage readings from 300 sites are held by the company but have not been used to diagnose the overvoltage mechanism or design an alternative control strategy.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 states the company has five years of inverter logs and grid voltage readings from 300 sites, but it does not say these 'have not been used to diagnose the overvoltage mechanism or design an alternative control strategy' — that claim adds facts not found in the cited text. critic-2: 25% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "A 2021 study compared four reactive power control techniques for solar PV inverters in a low-voltage network and found that voltage-dependent reactive power control successfully eliminated overvoltage violations without active power curtailment.",
+            "sourceIds": [
+              "W3177274304"
+            ]
+          },
+          "reason": "critic: W3177274304 states four reactive power control techniques were compared on a typical Malaysian LV distribution network, and that 'the incorporation of reactive power controls of solar PV inverters aids in successfully mitigating the overvoltage issues,' but the record does not state that voltage-dependent reactive power control 'successfully eliminated overvoltage violations without active power curtailment' — 'eliminated' and 'without active power curtailment' are not in the cited text. critic-2: 32% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Five years of inverter logs and grid voltage readings from 300 sites, which are the primary dataset for feeder modelling, hosting capacity assessment, and control validation.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 states the company has five years of inverter logs and grid voltage readings from 300 sites, but describes them as data held by the company, not as 'the primary dataset for feeder modelling, hosting capacity assessment, and control validation' — that characterisation is not in the cited text. critic-2: 20% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Field access to the 300 inverter sites and the ability to configure and deploy updated inverter control parameters for a field pilot.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 does not mention field access to the 300 inverter sites or the ability to configure and deploy updated inverter control parameters for a field pilot; these facts are not in the cited text. critic-2: 8% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "An engineer available to provide feeder topology documentation, interpret operational constraints, and integrate validated control parameters into inverter firmware.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 does not mention an engineer available to provide feeder topology documentation, interpret operational constraints, or integrate validated control parameters into inverter firmware; these facts are not in the cited text. critic-2: 1% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Jeremić co-authored a two-stage reactive power coordination framework combining day-ahead scheduling with real-time rule-based droop correction, directly applicable to the control design phase.",
+            "sourceIds": [
+              "SYN-PUB-03969"
+            ]
+          },
+          "reason": "critic: SYN-PUB-03969 states Jeremić co-authored a two-stage optimisation framework combining day-ahead scheduling with a real-time correction stage using rule-based droop adjustment, which matches the claim; however the claim adds 'directly applicable to the control design phase,' which is a judgement about fit to the company's challenge not stated in the cited record.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "converting those logs into a validated Volt-Var design requires hosting capacity methodology and hardware-in-the-loop testing that the company does not have in-house",
+            "sourceIds": []
+          },
+          "reason": "No claim or source states that the company lacks in-house hosting capacity methodology or hardware-in-the-loop testing capability; this is a factual assertion about the company's internal capabilities that is not found in C999, C999-CH1, or any other cited record.",
+          "check": "free-text"
+        },
+        {
+          "claim": {
+            "text": "Jeremić brings exactly those published methods and the real-time digital simulator needed to validate the design before field deployment, but cannot reach the scale or operational realism that the company's dataset and field access provide",
+            "sourceIds": []
+          },
+          "reason": "The clause 'cannot reach the scale or operational realism' asserts a limitation of Jeremić not stated in R0696 or any cited publication; no source says what Jeremić's methods or equipment cannot do.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-47",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-47",
+          "rejected": 6
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-48",
+          "rejected": 6
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0696",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Rooftop solar inverters at 300 sites disconnect from the grid on hot summer afternoons when local grid voltage rises too high, and the company's only current remedy is to lower the export limit.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 states that rooftop solar inverters disconnect on hot summer afternoons because local grid voltage rises too high, and that the company tried lowering the export limit on every site — but the record does not say lowering the export limit is the company's 'only current remedy,' merely that it is something they tried.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The company holds a uniquely large five-year, 300-site dataset that makes it possible to move beyond generic simulation and calibrate a control strategy to real feeder conditions — but the company brings five years of multi-site operational data; Jeremić brings the hosting capacity methodology and hardware-in-the-loop testing capability needed to turn that data into a validated control design.",
+            "sourceIds": []
+          },
+          "reason": "The characterisation 'uniquely large' is a factual claim about the dataset's standing relative to others, and neither C999-CH1 nor any other cited source describes the dataset in those terms.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-51",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-51",
+          "rejected": 1
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-52",
+          "rejected": 0
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0696",
+      "revision": 2,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "The company brings five years of multi-site operational data from 300 sites; Jeremić brings the hosting capacity methodology and hardware-in-the-loop testing capability needed to turn that data into a validated control design.",
+            "sourceIds": []
+          },
+          "reason": "The phrase 'needed to turn that data into a validated control design' is an editorial judgement on how Jeremić's methods fit the company's situation; no cited record about Jeremić (R0696, SYN-PUB-07801, SYN-PUB-07797) says anything about what the company's data requires or that his capabilities are what is needed to produce a validated design from it.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-55",
+      "action": "human-review",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-55",
+          "rejected": 0
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-56",
+          "rejected": 0
+        }
+      ]
+    }
+  ],
+  "approvals": {},
+  "funding": [
+    {
+      "pairId": "C999-CH1:R0696",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0696",
+      "queries": [
+        "smart inverter voltage control",
+        "grid integration distributed solar",
+        "reactive power management method",
+        "overvoltage prevention pilot",
+        "grid voltage rise",
+        "rooftop solar inverter",
+        "photovoltaic penetration",
+        "voltage regulation",
+        "solar energy"
+      ],
+      "considered": 24,
+      "taskId": "scout-46",
+      "calls": [
+        {
+          "call": {
+            "id": "CALL:HORIZON-CL5-2027-07-D3-26",
+            "identifier": "HORIZON-CL5-2027-07-D3-26",
+            "title": "Advanced Distribution Management Systems (ADSM) for more efficient and flexible distribution grids",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-CL5-2027-07",
+            "action": "Innovation Actions",
+            "status": "forthcoming",
+            "deadline": "2027-12-01",
+            "opens": "2027-08-04",
+            "grant": {
+              "min": 6000000,
+              "max": 6000000,
+              "expected": 1
+            },
+            "keywords": [],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2027-07-D3-26"
+          },
+          "reason": "Advanced Distribution Management Systems align with the pair's need to diagnose overvoltage mechanisms on grid feeders and design voltage control strategies for solar-rich distribution networks.",
+          "check": "Whether the call accepts innovation projects led by a research institution in partnership with a single company rather than requiring large multi-partner consortia."
+        },
+        {
+          "call": {
+            "id": "CALL:HORIZON-MISS-2027-04-CIT-01",
+            "identifier": "HORIZON-MISS-2027-04-CIT-01",
+            "title": "Innovative microgrids for improved energy system integration and efficiency in urban contexts",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-MISS-2027-04",
+            "action": "Innovation Actions",
+            "status": "forthcoming",
+            "deadline": "2027-10-07",
+            "opens": "2027-02-09",
+            "grant": {
+              "min": 9000000,
+              "max": 9000000,
+              "expected": 2
+            },
+            "keywords": [
+              "Civil engineering",
+              "Climate change mitigation",
+              "Electricity grid systems",
+              "Energy Efficiency",
+              "Environmental engineering",
+              "Renewable energy sources - general"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-04-CIT-01"
+          },
+          "reason": "Microgrids for energy system integration and efficiency covers distributed solar integration and voltage management in urban distribution networks where rooftop PV systems operate.",
+          "check": "Whether the microgrid focus includes management of rooftop solar and grid voltage stability as eligible topics, and if two-partner projects fit the expected consortium size."
+        }
+      ],
+      "projects": [
+        {
+          "project": {
+            "id": "CORDIS:101269972",
+            "projectId": "101269972",
+            "acronym": "PiVot",
+            "title": "Photovoltaic inverter for Virtualised operation and transformation",
+            "summary": "This project will develop and demonstrate a next-generation smart multilevel inverter to accelerate PV integration and deliver EUPI-PV outcomes: (i) improved energy yield, (ii) optimal energy use, and (iii) enhanced flexibility and interoperability. Extending the single-phase...",
+            "status": "ongoing",
+            "start": "2026-06-01",
+            "end": "2029-11-30",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-CL5-2025-02-D3-11",
+            "coordinator": {
+              "name": "TECHNISCHE UNIVERSITEIT DELFT",
+              "country": "NL"
+            },
+            "organisations": 16,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101269972"
+          },
+          "reason": "PiVot develops smart multilevel inverters for improved PV integration, optimal energy use, and flexibility—directly addressing the pair's Volt-Var control and hosting capacity challenges."
+        },
+        {
+          "project": {
+            "id": "CORDIS:101266587",
+            "projectId": "101266587",
+            "acronym": "IN.SPIRE",
+            "title": "INverter Systems for Power Integration and Resilient Energy Systems",
+            "summary": "INSPIRE redefines the role of the solar inverter as the intelligent backbone of future PV systems. It develops two complementary inverter platforms, one at low voltage and one at medium voltage, that together cover commercial, industrial, and utility-scale needs. Both are...",
+            "status": "ongoing",
+            "start": "2026-05-01",
+            "end": "2029-10-31",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-CL5-2025-02-D3-11",
+            "coordinator": {
+              "name": "TH!NK E",
+              "country": "BE"
+            },
+            "organisations": 13,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101266587"
+          },
+          "reason": "IN.SPIRE redefines inverter systems as the intelligent backbone for PV integration across voltage levels, developing inverter platforms for commercial to utility-scale applications relevant to the pair's control strategy."
+        },
+        {
+          "project": {
+            "id": "CORDIS:101269501",
+            "projectId": "101269501",
+            "acronym": "Co4RES",
+            "title": "Coherent control and operation tools for RES-based energy systems",
+            "summary": "The objective of Co4RES is to develop and demonstrate innovative control and operation tools enabling secure, efficient, and coordinated integration of very high shares of renewable energy into Europe’s power systems. The project addresses the full range of challenges posed...",
+            "status": "ongoing",
+            "start": "2026-09-01",
+            "end": "2029-08-31",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-CL5-2025-02-D3-17",
+            "coordinator": {
+              "name": "DANMARKS TEKNISKE UNIVERSITET",
+              "country": "DK"
+            },
+            "organisations": 39,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101269501"
+          },
+          "reason": "Co4RES develops control and operation tools for secure integration of high renewable energy shares, addressing the coordination and voltage stability challenges the pair faces at multiple grid-connected sites."
+        }
+      ]
+    }
+  ]
+}

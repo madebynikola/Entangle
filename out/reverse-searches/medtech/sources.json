@@ -1,0 +1,441 @@
+{
+  "C999": {
+    "id": "C999",
+    "kind": "company",
+    "title": "Described problem",
+    "text": "Described problem (C999): Medical devices.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "C999-CH1": {
+    "id": "C999-CH1",
+    "kind": "challenge",
+    "title": "Our wearable ECG patch misses atrial fibrillation episodes when patients walk or move during the day.",
+    "text": "Our wearable ECG patch misses atrial fibrillation episodes when patients walk or move during the day.\n\nWe remove motion artefacts with a fixed band-pass filter, but sensitivity drops below 80% while the patient walks. We have 1,200 hours of cardiologist-annotated recordings from 90 patients.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "R0179": {
+    "id": "R0179",
+    "kind": "researcher",
+    "title": "Vera Đukić",
+    "text": "Vera Đukić (R0179): Full Professor, Department of Biomedical Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Biomedical Engineering; Signal Processing; Embedded Systems; Ambient Assisted Living.\nKeywords: acoustic event detection; non-stationary noise; wearable sensors; embedded signal processing; low-power DSP; noise-robust feature extraction; respiratory sound analysis; fall detection; ambient health monitoring; adaptive filtering.\nBio: Vera Đukić received her BSc and MSc degrees in Electrical Engineering from the University of Novi Sad in 2001 and 2004, respectively, and her PhD in Biomedical Engineering from the same university in 2009, with a dissertation on adaptive noise suppression for wearable acoustic sensors. She joined the Faculty of Technical Sciences as an assistant professor in 2010 and was promoted to full professor in 2021. Her research group focuses on low-power signal processing algorithms for event detection in non-stationary acoustic environments, with applications in wearable health monitors, fall detection, respiratory sound analysis, and ambient-assisted living systems. She teaches courses in digital signal processing and embedded systems at both undergraduate and graduate levels. The group operates a dedicated embedded-systems laboratory equipped with development boards, acoustic measurement chambers, and a small clinical data collection setup maintained in collaboration with the Clinical Centre of Vojvodina.\nOpen to: joint projects; contract research; industrial PhD supervision; student internships; consulting; equipment access.\nIndustry experience: Đukić completed a three-month consultancy engagement in 2018 with a Novi Sad medical device startup developing a consumer sleep monitor, advising on microcontroller selection and embedded algorithm optimisation. She has also provided informal technical advice to two NTP Novi Sad residents on audio front-end design.\nNotes: Đukić is particularly interested in collaboration with companies that have access to clinical or real-world acoustic datasets, as data collection remains the primary bottleneck for her group. She prefers partnerships that include at least one doctoral student position. She is not available for new commitments during the first half of 2027 due to a planned research visit to Delft.",
+    "researcherIds": [
+      "R0179"
+    ]
+  },
+  "R0721": {
+    "id": "R0721",
+    "kind": "researcher",
+    "title": "Goran Tomić",
+    "text": "Goran Tomić (R0721): Full Professor, Department of Internal Medicine (Cardiology), Faculty of Medicine, University of Novi Sad.\nFields: cardiology; clinical research.\nKeywords: heart failure; telemonitoring; clinical trials; atrial fibrillation; ethics approval.\nBio: Goran Tomić is a Full Professor at the University of Novi Sad, Faculty of Medicine, Department of Internal Medicine (Cardiology). With over two decades of clinical and research experience, he specialises in heart failure management, telemonitoring, and the detection of atrial fibrillation in high-risk populations. Professor Tomić leads the TELECARE-HF project, a multi-centre clinical study examining remote patient monitoring technologies in post-hospitalisation heart failure care. He has authored numerous peer-reviewed publications and has served on ethics committees for several national clinical trials. His work bridges cardiology practice and digital health innovation, and he actively seeks collaboration with medical device manufacturers and health-technology companies to co-fund and co-design prospective clinical validation studies.\nOpen to: industrial PhD supervision; joint projects.\nNotes: Leads clinical validation studies; needs device makers to cover study costs.",
+    "researcherIds": [
+      "R0721"
+    ]
+  },
+  "R0906": {
+    "id": "R0906",
+    "kind": "researcher",
+    "title": "Maja Popović",
+    "text": "Maja Popović (R0906): Associate Professor, Department of Biomedical Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: biomedical signal processing; wearables.\nKeywords: ECG; atrial fibrillation; arrhythmia detection; false alarms; accelerometer.\nBio: Maja Popović is an Associate Professor in the Department of Biomedical Engineering at the Faculty of Technical Sciences, University of Novi Sad. Her research focuses on biomedical signal processing and wearable sensing systems, with a particular emphasis on cardiac monitoring, arrhythmia detection, and the reduction of false alarms in ambulatory ECG devices. She develops embedded signal-processing algorithms suitable for deployment on resource-constrained microcontrollers and wearable patch sensors. Professor Popović leads the HEARTWATCH project, which investigates remote cardiac monitoring solutions for long-term atrial fibrillation screening. She has authored multiple peer-reviewed publications on ECG classification, motion-artifact suppression, and accelerometer-based activity recognition. She is actively seeking industrial PhD co-supervision arrangements and joint applied research projects with technology companies.\nOpen to: industrial PhD supervision; joint projects.",
+    "researcherIds": [
+      "R0906"
+    ]
+  },
+  "SYN-PAT-019": {
+    "id": "SYN-PAT-019",
+    "kind": "patent",
+    "title": "Method and Embedded Device for Noise-Adaptive Acoustic Event Detection in Non-Stationary Environments",
+    "text": "Method and Embedded Device for Noise-Adaptive Acoustic Event Detection in Non-Stationary Environments (2022, granted).\nInventors: Vera Đukić (R0179).\nThe patent describes a two-stage detection architecture implemented on a microcontroller in which a first stage continuously estimates the non-stationary noise floor using a recursive minimum statistics algorithm and updates a bank of frequency-weighted detection thresholds. A second stage applies a compact fixed-point classifier only when the first stage signals a candidate event, reducing average power consumption compared with continuous classification. The architecture is designed for wearable and ambient health monitoring devices operating on batteries with capacities below 1000 mAh and is validated for respiratory and fall-impact event classes.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0014": {
+    "id": "SYN-PRJ-0014",
+    "kind": "project",
+    "title": "HEARTWATCH: remote cardiac monitoring",
+    "text": "HEARTWATCH: remote cardiac monitoring (Science Fund of the Republic of Serbia, 2022–2025).\nParticipants: R0906 principal investigator.\nHEARTWATCH is a three-year research project funded by the Science Fund of the Republic of Serbia, running from 2022 to 2025, with Associate Professor Maja Popović serving as principal investigator. The project addresses the clinical need for reliable, long-term remote cardiac monitoring outside hospital settings, targeting particularly the early detection of atrial fibrillation in high-risk populations. The core technical objective is the development of a complete algorithmic stack—spanning signal quality assessment, motion-artifact suppression, real-time arrhythmia classification, and adaptive false-alarm reduction—capable of executing on a low-power wearable ECG patch. A secondary objective is the creation of a clinically annotated benchmark dataset in partnership with the Clinical Centre of Vojvodina. By project completion, HEARTWATCH aims to deliver open-source firmware validated in a prospective pilot study involving at least 120 participants, providing a translational foundation for commercialization through collaboration with medical device companies.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0015": {
+    "id": "SYN-PRJ-0015",
+    "kind": "project",
+    "title": "TELECARE-HF",
+    "text": "TELECARE-HF (Ministry of Health, 2021–2024).\nParticipants: R0721 principal investigator.\nThe TELECARE-HF project is a prospective, multi-centre randomised controlled trial investigating the impact of structured telemonitoring on clinical outcomes in patients discharged after acute heart failure hospitalisation. Funded by the Ministry of Health and running from 2021 to 2024, the study enrols patients at three cardiology centres across Vojvodina, comparing a daily remote monitoring intervention—encompassing weight, blood pressure, heart rate, and symptom reporting via a dedicated application—against standard outpatient follow-up. Primary endpoints include all-cause mortality and unplanned rehospitalisation at six months, with secondary endpoints covering quality of life, medication adherence, and healthcare resource utilisation. Professor Tomić serves as principal investigator, overseeing study design, ethics approval, site coordination, and data analysis. The project also functions as a platform for validating patient-reported outcome instruments and for assessing the feasibility of integrating telemonitoring infrastructure within the regional public health system. Industry co-funding for device procurement and connectivity infrastructure is a central component of the project's sustainability model.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0215": {
+    "id": "SYN-PRJ-0215",
+    "kind": "project",
+    "title": "Wearable Acoustic Computing for Elderly Health Monitoring",
+    "text": "WEARABLE-ACE: Wearable Acoustic Computing for Elderly Health Monitoring (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2020–2023).\nParticipants: R0179 principal investigator.\nPartners: Institute of Pulmonology, Clinical Centre of Vojvodina; Institute of Gerontology, Belgrade; Faculty of Sciences, University of Novi Sad.\nThe project developed a prototype wearable tracheal sound monitor targeting three clinical events—wheeze, cough, and apnoea—that can operate autonomously for at least seven days on a single battery charge. Research tasks included design of the analogue front end, implementation of noise-robust feature extraction on a Cortex-M4 platform, collection of annotated clinical recordings at the Clinical Centre of Vojvodina, and validation of the detection algorithms in a simulated home environment. A secondary workstream produced personalised threshold adaptation algorithms validated on data from 54 older adults. The project trained two doctoral students and produced six journal and conference publications. A functional prototype was demonstrated at the Institute of Gerontology, Belgrade.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2020
+  },
+  "SYN-PRJ-0216": {
+    "id": "SYN-PRJ-0216",
+    "kind": "project",
+    "title": "Acoustic Remote Observation Systems for Cross-Border Healthcare Applications",
+    "text": "ACROS-IPA: Acoustic Remote Observation Systems for Cross-Border Healthcare Applications (Interreg IPA Hungary–Serbia, 2022–2025).\nParticipants: R0179 work package leader.\nPartners: University of Pécs, Faculty of Engineering and Information Technology, Hungary; Primary Health Care Centre Subotica; Primary Health Care Institute Pécs, Hungary.\nA cross-border collaboration between the University of Novi Sad and the University of Pécs focused on deploying low-power acoustic sensor networks in rural primary health care centres in Vojvodina and southern Hungary. The Novi Sad team, led by Đukić, is responsible for the embedded signal processing workpackage: developing and validating classifiers for respiratory and activity-monitoring events that operate on sub-milliwatt hardware without cloud connectivity. The project includes a pilot installation in four health centres involving continuous 30-day deployments. Results feed into a jointly maintained open dataset and a clinical protocol for acoustic-based pre-screening of respiratory conditions in underserved communities.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-00915": {
+    "id": "SYN-PUB-00915",
+    "kind": "publication",
+    "title": "Personalised Threshold Adaptation for Acoustic Fall Detection Using Short Calibration Sequences",
+    "text": "Personalised Threshold Adaptation for Acoustic Fall Detection Using Short Calibration Sequences (2023, journal, Journal of Ambient Intelligence and Biomedical Engineering (fictional)).\nAuthors: Stefan Lukač (outside co-author); Olivera Todorović (outside co-author); Mladen Tošić (R0067); Pieter van den Berg (outside co-author); Vera Đukić (R0179).\nKeywords: fall detection; personalised threshold; online adaptation; older adults; wearable acoustics.\nPopulation-level thresholds for acoustic fall detection generalise poorly across individuals due to differences in gait, body mass, footwear, and floor type. This paper proposes a simple online threshold adaptation scheme that updates the detection threshold using a two-minute calibration walk at the start of each monitoring session. Data from 54 community-dwelling older adults (mean age 73, range 65–84) were collected in their homes; each participant performed 10 scripted near-falls (controlled lowering to a mat) and 10 actual daily living sessions with continuous wear. The calibration walk yields per-person energy and spectral centroid statistics used to shift a Gaussian discriminant boundary. Adapted thresholds reduced false positive rate from 4.1 per hour to 1.7 per hour, with sensitivity maintained above 0.90 across 88% of participants. The adaptation algorithm requires 1.1 kB RAM and 2 ms computation on a Cortex-M4 at 80 MHz. The paper discusses the minimum calibration duration (below 90 s adaptation quality degrades substantially) and the effect of floor covering on detection reliability.",
+    "researcherIds": [
+      "R0067",
+      "R0179"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-02306": {
+    "id": "SYN-PUB-02306",
+    "kind": "publication",
+    "title": "Energy-Based Acoustic Event Detection on Cortex-M3 Microcontrollers for Ambient Monitoring",
+    "text": "Energy-Based Acoustic Event Detection on Cortex-M3 Microcontrollers for Ambient Monitoring (2012, conference, Proceedings of the Central European Conference on Embedded Systems and Signal Processing (CECESS)).\nAuthors: Dušan Petrović (outside co-author); Sonja Marković (outside co-author); Vera Đukić (R0179).\nKeywords: acoustic event detection; energy-based segmentation; Cortex-M3; low-power; ambient monitoring.\nAmbient acoustic monitoring in residential settings for elderly care requires event detectors that can run continuously on coin-cell batteries. This paper describes an energy-based segmentation scheme paired with a short-time Fourier transform feature extractor implemented on a Cortex-M3 microcontroller clocked at 8 MHz. The target events are door closing, glass breaking, and a distress-call vocalisation. A dataset of 1,240 labelled clips was collected in three furnished rooms with varying reverberation times (RT60 between 0.18 s and 0.51 s). The detector uses a two-threshold hysteresis comparator operating on a 20 ms frame energy estimate, consuming an average of 1.4 mA in active mode and dropping to 0.08 mA during silence periods. On the collected dataset, the system achieved an F1 score of 0.83 for door closing, 0.79 for glass breaking, and 0.71 for distress vocalisation under background television noise. Total battery life in a simulated 24-hour deployment was estimated at 11 days with a 650 mAh cell. The paper discusses the trade-off between sensitivity threshold and false-alarm rate in detail, providing receiver operating characteristic curves for each event class.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2012
+  },
+  "SYN-PUB-02308": {
+    "id": "SYN-PUB-02308",
+    "kind": "publication",
+    "title": "Real-Time Wheeze Detection on a Low-Power ARM Processor Using a Hidden Markov Model",
+    "text": "Real-Time Wheeze Detection on a Low-Power ARM Processor Using a Hidden Markov Model (2015, journal, Journal of Respiratory Monitoring Technology).\nAuthors: Ljiljana Bogdanović (outside co-author); Tibor Sabo (outside co-author); Anita Varga (outside co-author); Vera Đukić (R0179).\nKeywords: wheeze detection; hidden Markov model; contact microphone; ARM Cortex-M4; lung sounds.\nWheeze detection from tracheal sounds recorded with a contact microphone is examined using a discrete-state hidden Markov model (HMM) implemented in C on an ARM Cortex-M4 processor operating at 16 MHz. Tracheal recordings from 41 patients with obstructive lung disease and 20 healthy controls were collected during spirometry-guided breathing manoeuvres at the Institute of Pulmonology in Novi Sad. Each 30-second recording was segmented into inspiration and expiration phases using a hand-labelled reference; wheezes were identified by a pulmonologist. The HMM used eight states and was trained on 70% of recordings using the Baum–Welch algorithm offline; the decoder ran in real time. Features consisted of 10 LPC coefficients computed over 20 ms frames. On the test set, the system achieved sensitivity 0.88, specificity 0.85, and an average detection latency of 62 ms. Current consumption in continuous operation was 1.9 mA at 3.3 V, giving an estimated runtime of eight hours on a 600 mAh lithium polymer cell. The study discusses misclassification caused by swallowing artefacts and proposes a simple artefact rejection rule based on energy spike duration.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-02310": {
+    "id": "SYN-PUB-02310",
+    "kind": "publication",
+    "title": "Compressed Sensing Reconstruction for Sparse Acoustic Feature Vectors on Resource-Constrained Nodes",
+    "text": "Compressed Sensing Reconstruction for Sparse Acoustic Feature Vectors on Resource-Constrained Nodes (2017, journal, IEEE Embedded Signal Processing Letters (fictional)).\nAuthors: Branko Ilić (outside co-author); Nikola Šešlija (outside co-author); Vera Đukić (R0179).\nKeywords: compressed sensing; wireless sensor node; feature compression; log-mel features; energy efficiency.\nTransmitting raw audio from a wireless sensor node to a base station for event classification is energetically prohibitive for battery-powered devices. This paper investigates whether compressed sensing can reduce the communication payload while preserving sufficient information for a support vector machine classifier. Log-mel filter bank vectors (40 channels, 25 ms frames) from the NovSAL dataset are treated as the sparse signal; measurement matrices of sizes 10×40, 15×40, and 20×40 are tested. Reconstruction uses the LASSO algorithm on a host processor; the compressed measurements are transmitted over IEEE 802.15.4 radio. At a compression ratio of 2.7 (15 measurements), reconstruction error (normalised MSE) was 0.034, and classifier F1 on the 12 NovSAL classes dropped by only 0.03 points relative to the uncompressed baseline, while radio energy per classification was reduced by 41%. At ratio 4.0 the F1 drop grew to 0.09, making it impractical. The paper provides a theoretical bound on the number of measurements required as a function of feature sparsity and validates it empirically on four event subsets. The approach is implemented and timed on a Cortex-M0+ node to confirm that measurement projection is affordable at 4 kHz equivalent frame rate.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-02311": {
+    "id": "SYN-PUB-02311",
+    "kind": "publication",
+    "title": "Acoustic Event Detection in Noisy Embedded Systems",
+    "text": "Acoustic Event Detection in Noisy Embedded Systems (2018, book chapter, Embedded Systems for Health and Safety Monitoring, Springer (fictional edited volume)).\nAuthors: Radovan Cvejić (outside co-author); Vera Đukić (R0179).\nKeywords: embedded systems; acoustic event detection; fixed-point arithmetic; noise estimation; low-power classifier.\nThis book chapter provides a systematic treatment of the signal processing pipeline for acoustic event detection when the target platform is a microcontroller or low-power DSP. Topics covered include noise estimation in non-stationary environments (minimum statistics, MMSE-based estimators), feature extraction at fixed-point arithmetic precision, classifier selection criteria under memory and latency constraints, and quantisation-aware training for small neural networks. Each stage is illustrated with worked examples drawn from the authors' own experimental work on domestic event detection and wearable respiratory monitoring. The chapter discusses failure modes specific to embedded deployments—clock jitter, interrupt latency, and analogue front-end noise—and their measurable impact on detection performance. A practical guide to profiling energy consumption at each pipeline stage is included, with data from three representative microcontroller families. The intended audience is graduate students and practitioners entering the field of embedded health monitoring.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-02312": {
+    "id": "SYN-PUB-02312",
+    "kind": "publication",
+    "title": "Evaluating Quantisation Schemes for Convolutional Neural Network Acoustic Classifiers on ARM Cortex-M7",
+    "text": "Evaluating Quantisation Schemes for Convolutional Neural Network Acoustic Classifiers on ARM Cortex-M7 (2019, conference, Proceedings of the European Workshop on Embedded and Real-Time Signal Processing (EWERTSP)).\nAuthors: Tibor Sabo (outside co-author); Marija Knežević (outside co-author); Pieter van den Berg (outside co-author); Vera Đukić (R0179); Gordana Hadžić (R0993).\nKeywords: neural network quantisation; CNN; Cortex-M7; acoustic classification; model compression.\nDeploying convolutional neural networks (CNNs) for acoustic event classification on microcontrollers requires aggressive model compression. This paper systematically evaluates four quantisation schemes—float32, float16, int8 post-training, and int8 quantisation-aware training (QAT)—for a three-layer 1-D CNN applied to the NovSAL 12-class dataset. The target processor is an ARM Cortex-M7 running at 216 MHz with 512 KB SRAM and 1 MB flash. Model size ranged from 280 KB (float32) to 71 KB (int8 QAT). Inference time per 25 ms frame was 4.1 ms for float32 and 1.8 ms for int8 QAT, leaving sufficient headroom for audio capture and feature extraction at 16 kHz. Macro-average F1 was 0.87 for float32 and 0.85 for int8 QAT, a statistically non-significant drop (paired permutation test, p=0.11). Float16 showed unexpected numerical instability in two event classes attributed to narrow dynamic range in the second-layer activations. Energy measurements taken with a bench power analyser showed a 34% reduction in per-inference energy for int8 QAT versus float32. The paper recommends int8 QAT as the default for this class of target hardware.",
+    "researcherIds": [
+      "R0179",
+      "R0993"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-02313": {
+    "id": "SYN-PUB-02313",
+    "kind": "publication",
+    "title": "Effect of Microphone Placement on Contact-Microphone Respiratory Sound Quality for Embedded Detection",
+    "text": "Effect of Microphone Placement on Contact-Microphone Respiratory Sound Quality for Embedded Detection (2020, journal, Biomedical Acoustics and Signal Analysis).\nAuthors: Ljiljana Bogdanović (outside co-author); Vera Đukić (R0179); Zlata Urošević (R0762); Anita Varga (outside co-author).\nKeywords: contact microphone; respiratory sounds; placement variability; equalisation; classifier generalisation.\n(no abstract)",
+    "researcherIds": [
+      "R0179",
+      "R0762"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-02314": {
+    "id": "SYN-PUB-02314",
+    "kind": "publication",
+    "title": "Battery-Free Acoustic Event Detector Powered by Piezoelectric Energy Harvesting",
+    "text": "Battery-Free Acoustic Event Detector Powered by Piezoelectric Energy Harvesting (2021, journal, Journal of Biomedical Signal Processing and Measurement).\nAuthors: Branko Ilić (outside co-author); Vera Đukić (R0179); Stefan Lukač (outside co-author); Helena Körmendi (outside co-author).\nKeywords: energy harvesting; battery-free; piezoelectric; acoustic event detection; supercapacitor; Cortex-M0+.\nMaintenance of coin-cell batteries in distributed ambient monitoring nodes is a significant practical barrier. This paper presents a battery-free acoustic event detector node that harvests energy from mechanical vibrations using a 30×15 mm bimorph piezoelectric element attached to a ventilation duct. A custom power management circuit stores harvested charge in a 1 mF supercapacitor and releases it to a Cortex-M0+ processor only when the terminal voltage exceeds 2.8 V. The processor wakes, captures 500 ms of audio, extracts MFCC features, classifies the event using a pre-loaded decision tree, and transmits a one-byte label over a 433 MHz radio before returning to deep sleep. Available harvested power in the target installation was measured at 18–42 µW depending on duct airflow. The system achieved 97% duty availability during operating hours (07:00–20:00) and correctly classified four event classes (occupancy sound, mechanical fault click, door slam, silence) with macro-F1 of 0.79 in a two-week building trial. The paper provides a detailed energy budget and discusses the effect of supercapacitor self-discharge on detection latency.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-02315": {
+    "id": "SYN-PUB-02315",
+    "kind": "publication",
+    "title": "Combining On-Device and Edge Processing for Wearable Respiratory Monitoring: Latency and Power Trade-offs",
+    "text": "Combining On-Device and Edge Processing for Wearable Respiratory Monitoring: Latency and Power Trade-offs (2022, conference, Proceedings of the Balkan Conference on Signal Processing and Communications (BALSPC)).\nAuthors: Marija Knežević (outside co-author); Gregor Benedikt (outside co-author); Vera Đukić (R0179).\nKeywords: hybrid architecture; edge computing; wearable; respiratory monitoring; BLE; latency.\nHybrid architectures that perform lightweight event detection on a wearable node and offload complex classification to a nearby edge server offer a middle path between full on-device and fully cloud-based approaches. This paper characterises the trade-off space using a wearable respiratory monitor (Cortex-M4, BLE 5.0) communicating with a Raspberry Pi 4 edge server. The on-device first stage uses a fixed-threshold energy detector on the 100–2500 Hz band to gate audio upload, transmitting only when breath-sound activity is detected. Three second-stage classifiers—linear discriminant analysis, random forest, and a four-layer MLP—run on the edge server and classify wheeze, stridor, and normal breath sounds. In a 24-hour simulated home deployment with 18 participants, gating reduced BLE transmission time by 73%, extending wearable battery life from 9 h to 31 h. End-to-end 95th-percentile latency was 210 ms for all second-stage classifiers. Macro-F1 on a held-out night-time subset was 0.84 for the MLP, with the largest error between wheeze and normal in high-ambient-noise conditions (bedroom fan noise above 45 dB SPL). The paper presents a latency breakdown by pipeline stage and a power consumption model.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-02316": {
+    "id": "SYN-PUB-02316",
+    "kind": "publication",
+    "title": "Noise-Robust Feature Extraction Using Perceptually Weighted Spectral Entropy for Embedded Health Monitoring",
+    "text": "Noise-Robust Feature Extraction Using Perceptually Weighted Spectral Entropy for Embedded Health Monitoring (2024, journal, Biomedical Acoustics and Signal Analysis).\nAuthors: Marija Knežević (outside co-author); Gregor Benedikt (outside co-author); Nikola Šešlija (outside co-author); Vera Đukić (R0179).\nKeywords: spectral entropy; perceptual weighting; Bark scale; MMSE; noise robustness; feature extraction.\nStandard spectral features degrade rapidly when the ambient noise floor rises above 60 dB SPL, a condition common in clinical waiting rooms, home kitchens, and outdoor settings. This paper introduces a perceptually weighted spectral entropy (PWSE) feature computed from a Bark-scale filter bank with MMSE gain function pre-processing, designed to remain stable across noise levels from 40 to 80 dB SPL. The PWSE computation requires 14% fewer multiply-accumulate operations per frame than a comparable MFCC pipeline on a Cortex-M33, confirmed by cycle-accurate simulation. Evaluation was performed on three tasks drawn from published datasets: cough versus non-cough (2,200 clips), wheeze versus normal breath (3,100 clips), and fall impact versus domestic transient (1,800 clips). PWSE achieved or exceeded MFCC F1 at all tested noise levels; the gap was largest at 75 dB SPL, where PWSE outperformed MFCC by 0.07 F1 points on the cough task and 0.09 on wheeze. The paper provides open-source fixed-point C implementation benchmarked on three microcontroller families.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-02317": {
+    "id": "SYN-PUB-02317",
+    "kind": "publication",
+    "title": "Apnoea Episode Detection from Tracheal Contact Microphone Signals on a Sub-mW Wearable Node",
+    "text": "Apnoea Episode Detection from Tracheal Contact Microphone Signals on a Sub-mW Wearable Node (2026, journal, Journal of Sleep Engineering and Biomedical Devices (fictional)).\nAuthors: Stefan Lukač (outside co-author); Dragana Milošević (outside co-author); Helena Körmendi (outside co-author); Vera Đukić (R0179).\nKeywords: sleep apnoea; tracheal microphone; ultra-low-power; event detection; home monitoring; polysomnography.\nObstructive sleep apnoea affects a large fraction of the adult population but remains substantially undiagnosed partly because laboratory polysomnography is resource-intensive. This paper describes a wearable tracheal contact microphone node targeting apnoea episode detection during unsupervised home sleep. The hardware is built around an ultra-low-power DSP co-processor consuming 0.42 mW during active detection, paired with a rechargeable 100 mAh cell sufficient for nine nights of continuous operation. The detection algorithm uses a 1-second frame energy ratio between the 150–600 Hz respiratory band and the 600–2000 Hz noise estimation band, with a context window of seven frames to identify absence-of-breath episodes longer than 10 seconds. Validation was performed against overnight polysomnography records from 29 participants (14 with confirmed moderate-to-severe OSA, 15 healthy sleepers) at the Sleep Disorders Unit, Clinical Centre of Vojvodina. The algorithm detected apnoea episodes with sensitivity 0.84 and specificity 0.88 per 30-second epoch. Hypopnoeas were not targeted. False positives concentrated in the body-position-change transitions; a 3-axis accelerometer signal used as a gating veto reduced false positives by 31%. The paper provides a full energy budget and compares detection latency against a reference pulse-oximetry system.",
+    "researcherIds": [
+      "R0179"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-08040": {
+    "id": "SYN-PUB-08040",
+    "kind": "publication",
+    "title": "Telemonitoring after heart failure hospitalisation: a randomised study",
+    "text": "Telemonitoring after heart failure hospitalisation: a randomised study (2023, journal, Cardiology Practice Journal).\nAuthors: Milena Vuković (outside co-author); Dragan Petrović (outside co-author); Goran Tomić (R0721); Ana Jovanović (outside co-author).\nThis randomised controlled trial evaluated the clinical efficacy and safety of a structured telemonitoring programme in patients discharged following acute heart failure hospitalisation. A total of 214 patients were enrolled across three cardiology centres in Vojvodina and randomised to either a standard follow-up group or a telemonitoring intervention group over a six-month period. The intervention arm received daily automated transmissions of body weight, blood pressure, heart rate, and symptom questionnaires via a dedicated patient-facing application, with alerts reviewed by a dedicated cardiology nurse coordinator. The primary endpoint was a composite of all-cause mortality and unplanned rehospitalisation. Results demonstrated a statistically significant 28% reduction in the composite endpoint in the telemonitoring group (HR 0.72, 95% CI 0.54–0.96, p=0.024). Secondary outcomes including quality of life, measured by the Kansas City Cardiomyopathy Questionnaire, and medication adherence also favoured the intervention group. Subgroup analyses suggested particularly pronounced benefit in patients over 70 years and those with reduced ejection fraction. These findings support the integration of structured telemonitoring into standard post-discharge heart failure care pathways and highlight the importance of nurse coordinator involvement in programme success.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08041": {
+    "id": "SYN-PUB-08041",
+    "kind": "publication",
+    "title": "Screening for silent atrial fibrillation in older adults",
+    "text": "Screening for silent atrial fibrillation in older adults (2021, conference, Congress of Cardiology).\nAuthors: Goran Tomić (R0721); Svetlana Radić (outside co-author); Nikola Đorđević (outside co-author); Katarina Simić (outside co-author).\nSilent atrial fibrillation (AF) in older adults represents a significant yet underdiagnosed public health challenge, associated with elevated stroke risk and adverse cardiovascular outcomes. This congress presentation reported interim findings from a cross-sectional screening programme conducted in primary care settings across the South Bačka District. Participants aged 65 years and older without a prior AF diagnosis underwent single-lead electrocardiographic screening using a handheld device during routine visits. Among 892 participants screened, newly detected AF was identified in 7.4% of individuals, with a further 3.1% showing irregular rhythm patterns requiring confirmatory 24-hour Holter monitoring. Detection rates were significantly higher in males, individuals with hypertension, and those with a history of ischaemic heart disease. The presentation discussed implementation challenges including patient acceptance, primary care physician training requirements, and referral pathway optimisation. The authors argued for inclusion of opportunistic AF screening within the national preventive cardiology programme and outlined a proposed protocol for ethics-approved large-scale validation, emphasising the need for standardised reporting and digital integration with regional electronic health record systems.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08042": {
+    "id": "SYN-PUB-08042",
+    "kind": "publication",
+    "title": "Adherence to guideline-directed medical therapy in ambulatory heart failure patients: a single-centre audit",
+    "text": "Adherence to guideline-directed medical therapy in ambulatory heart failure patients: a single-centre audit (2022, journal, Serbian Journal of Cardiology).\nAuthors: Milena Vuković (outside co-author); Tamara Lukić (outside co-author); Bojan Marković (outside co-author); Goran Tomić (R0721).\nKeywords: heart failure; guideline-directed therapy; medication adherence; HFrEF; outpatient cardiology.\nGuideline-directed medical therapy (GDMT) remains underutilised in heart failure with reduced ejection fraction (HFrEF) despite robust evidence supporting its mortality benefit. This single-centre audit assessed the prevalence and predictors of GDMT adherence among 310 ambulatory HFrEF patients attending the cardiology outpatient clinic of the Clinical Centre of Vojvodina over a 12-month period. Adherence was defined as prescription of all four pillars of GDMT at target or maximally tolerated doses. Overall complete four-pillar adherence was achieved in only 31% of patients. Beta-blockers were the most frequently prescribed agent (87%), while mineralocorticoid receptor antagonists and SGLT2 inhibitors were least often prescribed at target doses (44% and 28%, respectively). Multivariate logistic regression identified younger age, absence of chronic kidney disease, and follow-up by a dedicated heart failure nurse as independent predictors of full adherence. The audit identified systemic barriers including polypharmacy concerns, patient intolerance, reimbursement restrictions, and insufficient structured titration protocols. The authors propose a nurse-led GDMT optimisation pathway integrated with telemonitoring infrastructure to improve uptake and facilitate timely dose titration in the outpatient setting.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08043": {
+    "id": "SYN-PUB-08043",
+    "kind": "publication",
+    "title": "Patient-reported outcomes in telemonitored heart failure: validation of the Serbian version of the Kansas City Cardiomyopathy Questionnaire",
+    "text": "Patient-reported outcomes in telemonitored heart failure: validation of the Serbian version of the Kansas City Cardiomyopathy Questionnaire (2023, journal, European Journal of Cardiovascular Nursing Research).\nAuthors: Ana Jovanović (outside co-author); Ivana Nikolić (outside co-author); Petra Horvat (outside co-author); Goran Tomić (R0721).\nKeywords: patient-reported outcomes; heart failure; KCCQ; validation; telemonitoring; clinical trials.\nPatient-reported outcome measures (PROMs) are increasingly incorporated into heart failure clinical trials and routine care, yet validated Serbian-language instruments remain scarce. This study reports the cross-cultural adaptation and psychometric validation of the Serbian version of the Kansas City Cardiomyopathy Questionnaire (KCCQ-S) in a cohort of 178 heart failure patients enrolled in the TELECARE-HF programme. The translation process followed standard forward-backward methodology with a reconciliation panel. Internal consistency, test-retest reliability, construct validity, and responsiveness to clinical change were evaluated over a three-month follow-up period. Cronbach's alpha for the overall summary score was 0.89, indicating excellent internal consistency. Intraclass correlation coefficient for test-retest reliability was 0.91. Convergent validity was confirmed by significant correlations with six-minute walk distance and NT-proBNP levels. The KCCQ-S demonstrated sensitivity to change, with meaningful score improvements observed in patients who avoided rehospitalisation during follow-up. These findings establish the KCCQ-S as a reliable and valid tool for use in Serbian-speaking heart failure populations, supporting its incorporation into both clinical research protocols and routine cardiology practice settings where telemonitoring programmes are active.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-08044": {
+    "id": "SYN-PUB-08044",
+    "kind": "publication",
+    "title": "Ethics committee considerations for digital health clinical trials: a practical framework for cardiology researchers",
+    "text": "Ethics committee considerations for digital health clinical trials: a practical framework for cardiology researchers (2022, book chapter, Digital Cardiology: From Research to Practice (Edited Volume, MedPress Academic)).\nAuthors: Jelena Stanković (outside co-author); Dragan Petrović (outside co-author); Goran Tomić (R0721).\nKeywords: ethics approval; clinical trials; digital health; cardiology; informed consent; GDPR.\nThe rapid proliferation of digital health technologies—including wearable sensors, smartphone applications, and remote monitoring platforms—has introduced novel ethical challenges that conventional clinical trial frameworks are ill-equipped to address. This book chapter provides a structured practical framework for cardiology researchers navigating ethics approval processes for studies involving digital health interventions. Drawing on the author's experience chairing and presenting before institutional review boards in Serbia and participating in multi-centre European studies, the chapter addresses key ethical domains including informed digital consent, data privacy under GDPR principles, algorithmic accountability, risk stratification of software-based interventions, and the management of incidental clinical findings generated by continuous monitoring. Special attention is given to the regulatory classification of software as a medical device and its implications for trial design. The chapter also outlines documentation requirements for ethics submissions involving novel monitoring technologies and proposes a checklist for cardiology research teams preparing ethics dossiers. Case vignettes drawn from heart failure and atrial fibrillation telemonitoring studies illustrate common pitfalls and their resolution. The framework is intended to be adaptable across Eastern European research environments where regulatory guidance on digital health remains evolving.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-08045": {
+    "id": "SYN-PUB-08045",
+    "kind": "publication",
+    "title": "Long-term outcomes of patients with atrial fibrillation and concurrent heart failure: a five-year registry analysis",
+    "text": "Long-term outcomes of patients with atrial fibrillation and concurrent heart failure: a five-year registry analysis (2024, journal, Cardiology and Vascular Medicine (International)).\nAuthors: Bojan Marković (outside co-author); Svetlana Radić (outside co-author); Mihajlo Cvejić (outside co-author); Lena Farkas (outside co-author); Goran Tomić (R0721).\nKeywords: atrial fibrillation; heart failure; registry; outcomes; anticoagulation; telemonitoring.\nThe coexistence of atrial fibrillation (AF) and heart failure (HF) represents a particularly adverse clinical phenotype associated with accelerated functional decline and increased mortality. This retrospective registry analysis examined five-year outcomes in 524 patients diagnosed with both conditions at the Institute of Cardiovascular Diseases of Vojvodina between 2016 and 2021. Patients were stratified by ejection fraction category (HFrEF, HFmrEF, HFpEF) and AF burden (paroxysmal, persistent, long-standing persistent). The primary composite outcome was cardiovascular death, stroke, or hospitalisation for worsening HF. Kaplan-Meier survival analysis demonstrated significantly worse outcomes in the HFrEF subgroup with long-standing persistent AF compared to all other subgroups (5-year event rate 64.3% vs 41.7%, log-rank p<0.001). Rate control strategy, anticoagulation completeness, and participation in a structured HF management programme were independently associated with improved outcomes in multivariable Cox regression models. The analysis also revealed that patients enrolled in a telemonitoring follow-up pathway had a 22% lower risk of unplanned HF hospitalisation. These real-world data reinforce the importance of integrated AF-HF management pathways and provide a basis for prospective interventional study design targeting this high-risk population.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-08046": {
+    "id": "SYN-PUB-08046",
+    "kind": "publication",
+    "title": "Wearable patch sensors for continuous cardiac rhythm monitoring: a feasibility and acceptability study in Serbian outpatients",
+    "text": "Wearable patch sensors for continuous cardiac rhythm monitoring: a feasibility and acceptability study in Serbian outpatients (2021, journal, Balkan Journal of Cardiovascular Research).\nAuthors: Nikola Đorđević (outside co-author); Ana Jovanović (outside co-author); Tamara Lukić (outside co-author); Goran Tomić (R0721).\nKeywords: wearable sensors; atrial fibrillation; Holter monitoring; cardiac rhythm; clinical research; feasibility.\nContinuous ambulatory cardiac rhythm monitoring via adhesive patch sensors offers significant advantages over conventional 24-hour Holter recordings in terms of monitoring duration, patient comfort, and diagnostic yield for paroxysmal arrhythmias. This prospective feasibility study evaluated the use of a commercially available single-lead patch monitor worn for up to 14 days in 95 outpatient cardiology patients with suspected or confirmed arrhythmias at the Clinical Centre of Vojvodina. Primary feasibility outcomes included device adherence rate, data transmission completeness, and patient-reported acceptability measured via structured questionnaire. The diagnostic yield for newly detected AF was 18.9%, compared to 6.3% with standard 24-hour Holter in the same cohort. Mean wear duration was 11.4 days, with 91% of patients reporting the device as comfortable or very comfortable. Skin irritation was the most commonly reported adverse effect (14%). Clinician-reported utility was high, with 84% of cardiologists indicating the extended monitoring data changed their clinical management decision. The study also assessed workflow integration challenges including alert notification latency and electronic record compatibility. Findings support the feasibility of integrating extended patch monitoring into routine outpatient practice and provide a foundation for a larger ethics-approved randomised diagnostic study.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-08048": {
+    "id": "SYN-PUB-08048",
+    "kind": "publication",
+    "title": "Predictors of 30-day readmission following acute decompensated heart failure: insights from a prospective Vojvodina cohort",
+    "text": "Predictors of 30-day readmission following acute decompensated heart failure: insights from a prospective Vojvodina cohort (2023, journal, Central European Heart Journal).\nAuthors: Ivana Nikolić (outside co-author); Bojan Marković (outside co-author); Katarina Simić (outside co-author); Dragan Petrović (outside co-author); Goran Tomić (R0721).\nKeywords: heart failure; readmission; telemonitoring; clinical research; transitional care; risk stratification.\nEarly readmission following acute decompensated heart failure (ADHF) is a major quality indicator and economic burden for healthcare systems. This prospective cohort study analysed 30-day readmission rates and their predictors in 387 patients discharged following ADHF from three hospitals in the Vojvodina region between January 2020 and December 2021. The overall 30-day readmission rate was 22.5%. Univariate analysis identified prior heart failure hospitalisation within 12 months, renal insufficiency, absence of post-discharge follow-up appointment within seven days, and non-participation in a telemonitoring programme as significant predictors. In multivariable logistic regression, prior hospitalisation (OR 2.41, 95% CI 1.63–3.57), absence of early follow-up (OR 1.98, 95% CI 1.24–3.17), and NT-proBNP at discharge above 3500 pg/mL (OR 2.07, 95% CI 1.38–3.10) remained independently associated with readmission. Patients enrolled in the TELECARE-HF telemonitoring pathway had a significantly lower readmission risk (OR 0.54, 95% CI 0.33–0.88). These findings have direct implications for discharge planning protocols, reinforcing the evidence base for structured telemonitoring as a component of transitional care. The study also highlights the need for risk stratification tools applicable at the point of discharge in regional hospital settings with limited specialist outpatient capacity.",
+    "researcherIds": [
+      "R0721"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-09638": {
+    "id": "SYN-PUB-09638",
+    "kind": "publication",
+    "title": "Cutting false atrial fibrillation alarms in patch ECG with motion-aware filtering",
+    "text": "Cutting false atrial fibrillation alarms in patch ECG with motion-aware filtering (2024, journal, Journal of Biomedical Signal Analysis).\nAuthors: Maja Popović (R0906); Dragan Ilić (outside co-author); Sonja Vukić (outside co-author); Luka Horvat (outside co-author).\nPatch-based ECG monitors are increasingly deployed for continuous ambulatory cardiac surveillance, yet their clinical utility is severely limited by high false-positive rates for atrial fibrillation (AF) alarms, largely attributable to motion artifacts. This paper presents a motion-aware filtering framework that fuses single-lead ECG signals with three-axis accelerometer data recorded simultaneously by the same wearable patch. The proposed method employs an adaptive notch filter whose coefficients are dynamically updated according to a motion-intensity index derived from accelerometer magnitude. A subsequent AF detector based on RR-interval irregularity metrics is applied to the cleaned signal. The system was evaluated on a dataset of 312 twenty-four-hour recordings collected from 89 volunteers performing standardized daily activities including walking, stair climbing, and cycling. Compared with a baseline detector operating on raw ECG, the proposed approach reduced false AF alarms by 61% while maintaining sensitivity above 94% on confirmed AF episodes verified by a board-certified cardiologist. Processing latency was benchmarked on an ARM Cortex-M4 platform, confirming real-time feasibility. The results demonstrate that tightly coupled motion-aware signal conditioning is essential for trustworthy AF screening in free-living conditions.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-09639": {
+    "id": "SYN-PUB-09639",
+    "kind": "publication",
+    "title": "Single-lead ECG arrhythmia classification on a microcontroller",
+    "text": "Single-lead ECG arrhythmia classification on a microcontroller (2022, conference, Conference on Medical Devices Engineering).\nAuthors: Nemanja Đorđević (outside co-author); Maja Popović (R0906); Tijana Marković (outside co-author).\nArrhythmia classification in wearable cardiac monitors demands algorithms compact enough to execute entirely on the sensor node, eliminating reliance on continuous cloud connectivity. This paper describes the design and validation of a single-lead ECG arrhythmia classifier implemented on a low-power 32-bit microcontroller (ARM Cortex-M0+, 48 MHz, 32 kB RAM). The classifier distinguishes five rhythm classes—normal sinus rhythm, atrial fibrillation, premature ventricular contractions, supraventricular tachycardia, and noise—using a lightweight feature set comprising RR-interval statistics, QRS morphology descriptors, and a three-stage decision-tree ensemble. Memory-efficient quantization reduces all floating-point parameters to 8-bit fixed-point representations without measurable accuracy loss. Evaluated on a held-out split of 4,200 annotated 30-second segments, the on-device model achieved a macro-averaged F1 score of 0.87 and consumed an average of 1.4 mW during inference, enabling operation for more than 72 hours on a 180 mAh coin cell. The work demonstrates a practical pathway toward fully autonomous, battery-powered cardiac monitors suitable for remote patient monitoring in resource-limited settings.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-09640": {
+    "id": "SYN-PUB-09640",
+    "kind": "publication",
+    "title": "Activity recognition from chest-worn accelerometers",
+    "text": "Activity recognition from chest-worn accelerometers (2021, journal, Wearable Sensing Review).\nAuthors: Maja Popović (R0906); Ana Stevanović (outside co-author); Miloš Radović (outside co-author).\nAccurate activity recognition from chest-worn inertial measurement units is a prerequisite for context-aware physiological monitoring, yet most published benchmarks rely on wrist or hip placements. This study investigates the suitability of a single chest-mounted accelerometer for recognizing twelve daily-life activities including rest, walking, jogging, stair ascent and descent, cycling, and six sedentary postures. Features extracted in the time and frequency domains from three-axis acceleration signals were used to train and compare a k-nearest neighbor classifier, a random forest, and a support vector machine with radial basis function kernel. Data were collected from 45 healthy adults across a structured protocol lasting approximately 90 minutes per participant. The random forest achieved the highest overall accuracy of 92.3% in leave-one-subject-out cross-validation. A confusion analysis revealed that the chest location provides particularly strong discrimination between static postures, outperforming wrist placement on that sub-task. The findings support the integration of chest-worn accelerometers into ECG patch monitors for simultaneous cardiac and activity monitoring without additional sensor hardware.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-09641": {
+    "id": "SYN-PUB-09641",
+    "kind": "publication",
+    "title": "Benchmark dataset for motion-corrupted patch ECG and simultaneous accelerometry in free-living adults",
+    "text": "Benchmark dataset for motion-corrupted patch ECG and simultaneous accelerometry in free-living adults (2023, journal, Data in Biomedical Engineering (Open Access Journal)).\nAuthors: Maja Popović (R0906); Sonja Vukić (outside co-author); Dragan Ilić (outside co-author); Petra Kovač (outside co-author).\nKeywords: benchmark dataset; patch ECG; accelerometry; atrial fibrillation; motion artifact; open data.\nHigh-quality annotated datasets pairing ambulatory ECG recordings with synchronised inertial data from the same wearable patch remain scarce, hampering reproducible research on motion-artifact suppression and context-aware cardiac monitoring. This paper describes the NovaSAD-PatchECG dataset: 128 recordings of 48 hours each, collected from 64 healthy volunteers and 64 patients with known arrhythmia history. Each recording includes single-lead ECG sampled at 500 Hz, three-axis accelerometer data at 100 Hz, and ground-truth rhythm annotations produced by two independent cardiologists with inter-annotator agreement reported via Cohen's kappa. Participants performed a standardized protocol encompassing controlled laboratory activities and unrestricted daily life. The dataset captures a diverse range of motion intensities, electrode contact qualities, and arrhythmia types. Baseline performance figures for three published AF detectors are reported to facilitate fair future comparisons. The dataset is released under an open-access licence and accompanied by Python-based loading utilities. We anticipate that this resource will accelerate development and fair benchmarking of wearable cardiac monitoring algorithms, particularly those addressing false-alarm reduction and real-time on-device inference.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-09642": {
+    "id": "SYN-PUB-09642",
+    "kind": "publication",
+    "title": "Federated learning for atrial fibrillation detection across heterogeneous wearable ECG devices",
+    "text": "Federated learning for atrial fibrillation detection across heterogeneous wearable ECG devices (2024, journal, IEEE Transactions on Biomedical Engineering).\nAuthors: Luka Horvat (outside co-author); Maja Popović (R0906); Radovan Bešlin (outside co-author); Elena Ferreira (outside co-author).\nKeywords: federated learning; atrial fibrillation; ECG; wearable; privacy-preserving; domain adaptation.\nTraining robust atrial fibrillation detectors on data pooled from multiple clinical sites raises significant patient privacy concerns. Federated learning (FL) offers a privacy-preserving alternative by training shared model parameters without centralizing raw recordings. This work presents a federated AF detection framework tailored to the heterogeneous signal characteristics encountered when aggregating data from four distinct wearable ECG patch platforms with differing sampling rates, electrode configurations, and noise profiles. A domain-adaptive normalization layer is inserted before each local model head to compensate for device-specific distributional shifts. Communication efficiency is improved through gradient sparsification with a threshold calibrated per round. Experiments conducted on data partitioned across five simulated client nodes demonstrate that the federated model achieves within 2.1 percentage points of a centrally trained oracle in terms of F1 score for AF detection, while keeping raw data entirely local. Convergence analysis shows stable training within 35 communication rounds. The proposed approach is directly applicable to collaborative model development between hospitals and medical device manufacturers operating under strict data governance constraints.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-09643": {
+    "id": "SYN-PUB-09643",
+    "kind": "publication",
+    "title": "Energy-efficient QRS detection on ultra-low-power microcontrollers for long-term cardiac patches",
+    "text": "Energy-efficient QRS detection on ultra-low-power microcontrollers for long-term cardiac patches (2022, journal, Biomedical Microdevices and Embedded Systems Journal).\nAuthors: Maja Popović (R0906); Nemanja Đorđević (outside co-author); Marko Tešić (outside co-author).\nKeywords: QRS detection; ultra-low-power; microcontroller; wearable ECG; integer arithmetic; cardiac patch.\nBattery life is the dominant constraint for wearable cardiac patches intended for multi-week arrhythmia screening. This paper presents an ultra-low-power QRS detection algorithm specifically designed for deployment on a 16-bit microcontroller operating at 8 MHz with 4 kB of available SRAM. The algorithm adapts the classical Pan–Tompkins pipeline by replacing floating-point operations with integer arithmetic and replacing the bandpass filter with a computationally cheaper differentiator-squarer cascade whose coefficients are pre-quantized to powers of two, enabling shift-based multiplication. Threshold adaptation is reformulated as a recursive integer update requiring no division. The implementation is benchmarked on five publicly available ECG databases totalling over 120,000 annotated beats, achieving a detection sensitivity of 99.1% and positive predictivity of 98.9%. On the target microcontroller, the algorithm consumes 87 μW at 500 Hz input, extending projected patch lifetime from 9 to 21 days compared with a floating-point baseline at equivalent sampling rate. The source code is released openly to support reproducibility and adoption in resource-constrained medical device development.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-09644": {
+    "id": "SYN-PUB-09644",
+    "kind": "publication",
+    "title": "Combining heart rate variability and accelerometer features for stress detection in free-living conditions",
+    "text": "Combining heart rate variability and accelerometer features for stress detection in free-living conditions (2023, conference, Sensors and Wearable Systems Conference).\nAuthors: Maja Popović (R0906); Ana Stevanović (outside co-author); Katarina Lukić (outside co-author).\nKeywords: stress detection; heart rate variability; accelerometer; wearable; free-living; multimodal.\nContinuous stress monitoring in everyday life has attracted growing interest as a tool for preventive mental health management, yet most validated methods require laboratory-controlled conditions. This paper investigates a multimodal approach that fuses heart rate variability (HRV) indices derived from a chest-worn ECG patch with accelerometer-based activity features to infer subjective stress levels in free-living adults. Thirty-six participants wore the sensor system continuously for five days while self-reporting stress events via a smartphone application. A total of 41 time-domain, frequency-domain, and nonlinear HRV features were extracted over non-overlapping five-minute windows and combined with six activity context features capturing posture and movement intensity. A random forest classifier trained with leave-one-day-out cross-validation achieved a binary stress/non-stress accuracy of 76.4%, improving by 8.3 percentage points over HRV-only baselines. Analysis of feature importance revealed that low-frequency HRV power and accelerometer-derived posture class were the two most discriminative predictors. The study highlights that activity context is an important confound in wearable stress detection and should be accounted for in algorithm design.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-09645": {
+    "id": "SYN-PUB-09645",
+    "kind": "publication",
+    "title": "Signal quality assessment for single-lead wearable ECG: a survey and comparative study",
+    "text": "Signal quality assessment for single-lead wearable ECG: a survey and comparative study (2021, journal, Biomedical Signal Processing and Control).\nAuthors: Maja Popović (R0906); Dragan Ilić (outside co-author); Milena Vujović (outside co-author).\nKeywords: signal quality assessment; wearable ECG; single-lead; arrhythmia detection; survey; embedded systems.\nReliable automatic interpretation of single-lead wearable ECG recordings is contingent upon accurate signal quality assessment (SQA), yet no consensus exists on the best methodology for this task. This survey reviews 38 SQA algorithms published between 2010 and 2022, categorizing them by feature type (statistical, spectral, template-based, and learned), classification strategy, and target application domain. We implement and comparatively evaluate nine representative approaches on two independent ECG datasets collected with chest-worn patches under both controlled and free-living conditions. Evaluation metrics include per-segment quality classification accuracy, computational cost on an ARM Cortex-M4 platform, and downstream impact on AF detector performance when SQA-based segment rejection is applied as a pre-processing gate. Results show that lightweight spectral flatness combined with kurtosis achieves the best accuracy-to-cost trade-off for real-time embedded use, while deep-learning approaches yield superior accuracy at much higher computational expense. The survey concludes with a discussion of open challenges including cross-device generalization and labelling inconsistencies across public datasets.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-09646": {
+    "id": "SYN-PUB-09646",
+    "kind": "publication",
+    "title": "Wearable biomedical systems: signal acquisition, processing and clinical translation",
+    "text": "Wearable biomedical systems: signal acquisition, processing and clinical translation (2023, book chapter, Advances in Wearable Health Technology (Springer)).\nAuthors: Maja Popović (R0906); Dragan Ilić (outside co-author); Petra Kovač (outside co-author); Sonja Vukić (outside co-author).\nKeywords: wearable systems; biomedical signal processing; ECG; clinical translation; medical device regulation; embedded algorithms.\nThis book chapter provides a comprehensive overview of the engineering challenges involved in translating wearable biomedical sensing systems from laboratory prototypes to clinically validated devices. The chapter covers the full signal chain from electrode–skin interface physics and analog front-end design through digital signal processing pipelines to clinical validation methodology. Particular attention is paid to the interplay between hardware constraints—power budget, memory, communication bandwidth—and algorithm design choices for cardiac and motion signals. The ECG acquisition and arrhythmia detection pipeline is used as a running example throughout, illustrating how design decisions at each layer propagate to end-to-end system performance. A dedicated section addresses regulatory considerations under the European Medical Device Regulation (MDR 2017/745) relevant to software-as-a-medical-device classification of on-device diagnostic algorithms. The chapter concludes with a roadmap for future research directions including personalized adaptive algorithms, multi-sensor fusion, and privacy-preserving distributed learning. It is intended as a graduate-level reference for students and practitioners entering the field of wearable medical technology.",
+    "researcherIds": [
+      "R0906"
+    ],
+    "year": 2023
+  },
+  "W3129854657": {
+    "id": "W3129854657",
+    "kind": "work",
+    "title": "Motion artefact removal in electroencephalography and electrocardiography by using multichannel inertial measurement units and adaptive filtering",
+    "text": "Healthcare Technology Letters, 2021. This paper presents a new active electrode design for electroencephalogram (EEG) and electrocardiogram (ECG) sensors based on inertial measurement units to remove motion artefacts during signal acquisition. Rather than measuring motion data from a single source for the entire recording unit, inertial measurement units are attached to each individual EEG or ECG electrode to collect local movement data. This data is then used to remove the motion artefact by using normalised least mean square adaptive filtering. Results show that the proposed active electrode design can reduce motion contamination from EEG and ECG signals in chest movement and head swinging motion scenarios. However, it is found that the performance varies, necessitating the need for the algorithm to be paired with more sophisticated signal processing to identify scenarios where it is beneficial in terms of improving signal quality. The new instrumentation hardware allows data driven artefact removal to be performed, providing a new data driven approach compared to widely used blind-source separation methods, and helps enable in the wild EEG recordings to be performed.",
+    "researcherIds": [],
+    "year": 2021,
+    "url": "https://openalex.org/W3129854657"
+  },
+  "CALL:HORIZON-HLTH-2027-03-TOOL-04": {
+    "id": "CALL:HORIZON-HLTH-2027-03-TOOL-04",
+    "kind": "call",
+    "title": "Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis",
+    "text": "Horizon Europe. Research and Innovation Actions. opens 2027-06-03, deadline 2027-09-16. EU grant €2,900,000 per project, about 1 grant. keywords: Artificial intelligence, intelligent systems, multi agent systems; Basic medicine; Big data; Clinical medicine; Computational biology; Computational modelling; Machine learning, statistical data processing and applications using signal processing (e.g. speech, image, video); Medical engineering, biomedical engineering and technology.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-03-TOOL-04"
+  },
+  "CALL:HORIZON-HLTH-2027-02-IND-02-two-stage": {
+    "id": "CALL:HORIZON-HLTH-2027-02-IND-02-two-stage",
+    "kind": "call",
+    "title": "Portable and versatile Point-of-care diagnostics",
+    "text": "Horizon Europe. Innovation Actions. open, deadline 2027-02-17. EU grant €6,000,000–€8,000,000 per project, about 6 grants. keywords: Clinical management; Clinical trials; Diagnostics; Integrated care; Pathology.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-IND-02-two-stage"
+  },
+  "CALL:HORIZON-HLTH-2027-03-TOOL-08": {
+    "id": "CALL:HORIZON-HLTH-2027-03-TOOL-08",
+    "kind": "call",
+    "title": "Towards the next generation of frontier Artificial Intelligence models for healthcare",
+    "text": "Horizon Europe. Coordination and Support Actions. opens 2027-06-03, deadline 2027-09-16. EU grant €2,900,000 per project, about 1 grant. keywords: Artificial Intelligence & Decision support; Artificial intelligence, intelligent systems, multi agent systems; Basic medicine; Big data; Clinical medicine; Data protection and privacy; Health sciences; Machine learning, statistical data processing and applications using signal processing (e.g. speech, image, video).",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-03-TOOL-08"
+  },
+  "CORDIS:101154104": {
+    "id": "CORDIS:101154104",
+    "kind": "eu-project",
+    "title": "MultimoDal tEnsor fuSion and Completion foR patient-taIlored catheter aBlation of persistEnt atrial fibrillation",
+    "text": "DESCRIBE, Horizon Europe, 2025–2025. topic HORIZON-MSCA-2023-PF-01-01. coordinated by CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE CNRS (FR). 1 organisation. Tensor analysis plays a central role in signal processing and machine learning for the representation, analysis, fusion, and classification of data. Responsible for up to 25% of brain strokes, atrial fibrillation (AF) is the most prevalent sustained cardiac arrhythmia and...",
+    "researcherIds": [],
+    "year": 2025,
+    "url": "https://cordis.europa.eu/project/id/101154104"
+  },
+  "CORDIS:101029808": {
+    "id": "CORDIS:101029808",
+    "kind": "eu-project",
+    "title": "Unobtrusive Health Monitoring System for the Early Detection of Heart- and Micturition-Related Diseases",
+    "text": "EarlyCare, Horizon 2020, 2021–2023. topic MSCA-IF-2020. coordinated by N-VISION SYSTEMS AND TECHNOLOGIES SL (ES). 1 organisation. EarlyCare project aims at developing and implementing cutting-edge sensing technologies and advanced Artificial Intelligence (AI) techniques to create a Health Monitoring System enabling early prediction of Diabetes Mellitus (DM) and Congestive Heart Failure (CHF), through the...",
+    "researcherIds": [],
+    "year": 2021,
+    "url": "https://cordis.europa.eu/project/id/101029808"
+  },
+  "CORDIS:847770": {
+    "id": "CORDIS:847770",
+    "kind": "eu-project",
+    "title": "DIGITAL, RISK-BASED SCREENING FOR ATRIAL FIBRILLATION IN THE EUROPEAN COMMUNITY",
+    "text": "AFFECT-EU, Horizon 2020, 2020–2024. topic SC1-BHC-30-2019. coordinated by UNIVERSITAETSKLINIKUM HAMBURG-EPPENDORF (DE). 26 organisations. from Serbia: FACULTY OF MEDICINE, UNIVERSITY OF BELGRADE. Atrial fibrillation (AF) is an increasingly common arrhythmia in the aging European population. Its prevalence will more than double by the year 2050 affecting 5% of EU women and men aged ≥65 years. AF carries a high risk of stroke, heart failure, and dementia, which result...",
+    "researcherIds": [],
+    "year": 2020,
+    "url": "https://cordis.europa.eu/project/id/847770"
+  }
+}

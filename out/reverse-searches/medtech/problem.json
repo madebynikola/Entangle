@@ -1,0 +1,7 @@
+{
+  "companyId": "C999",
+  "challengeId": "C999-CH1",
+  "company": "Described problem",
+  "sector": "Medical devices",
+  "text": "Our wearable ECG patch misses atrial fibrillation episodes when patients walk or move during the day. We remove motion artefacts with a fixed band-pass filter, but sensitivity drops below 80% while the patient walks. We have 1,200 hours of cardiologist-annotated recordings from 90 patients."
+}

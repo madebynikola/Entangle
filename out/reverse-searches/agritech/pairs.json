@@ -1,0 +1,194 @@
+{
+  "chosen": [
+    "C999-CH1:R0662"
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0662",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0662",
+      "fit": 0.87,
+      "why": [
+        {
+          "text": "The challenge requires compensating for soil moisture probe dynamics in an irrigation feedback loop; the company has three seasons of probe and weather data and has already tried a fixed pause without success (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Nenad Ilić has published on capacitive soil moisture sensor calibration across soil types (SYN-PUB-07491) and long-term field stability assessment of a multi-depth capacitive probe array (SYN-PUB-07495), and holds a granted patent for a multi-depth capacitive soil moisture probe array (SYN-PAT-001).",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495",
+            "SYN-PAT-001"
+          ]
+        },
+        {
+          "text": "The researcher has published on sensor-based feedback systems and decision frameworks for precision irrigation (SYN-PUB-07499) and on IoT cloud-based architectures with wireless sensor networks for irrigation scheduling (SYN-PUB-07493, SYN-PUB-07496).",
+          "sourceIds": [
+            "SYN-PUB-07499",
+            "SYN-PUB-07493",
+            "SYN-PUB-07496"
+          ]
+        },
+        {
+          "text": "The researcher led WATERWISE, a provincial-funded applied research project delivering a mobile decision support application for irrigation advice across 20 farms (SYN-PRJ-0003).",
+          "sourceIds": [
+            "SYN-PRJ-0003"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the three-season probe and weather archive from C999-CH1, develop a sensor-based feedback decision framework that corrects for probe lag after rainfall, drawing on capacitive sensor calibration methods (SYN-PUB-07491, SYN-PUB-07495, SYN-PAT-001) and sensor-driven irrigation decision logic (SYN-PUB-07499, SYN-PUB-07493) to suppress false irrigation events in the apple orchard controller.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-07491",
+          "SYN-PUB-07495",
+          "SYN-PAT-001",
+          "SYN-PUB-07499",
+          "SYN-PUB-07493"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-07491 covers sensor calibration across five Vojvodina soil types in irrigated maize and sunflower plots; SYN-PUB-07495 covers long-term stability in a chernozem profile under irrigated sugar beet and winter wheat; neither record covers orchard conditions, so the company's apple orchard soil may require separate recalibration.",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495"
+          ]
+        },
+        {
+          "text": "The decision framework record covers field crops in Vojvodina (SYN-PUB-07499), and other irrigation records cover vegetables and sunflower (SYN-PUB-07492, SYN-PUB-07498); none of these records covers perennial tree crops or apple-specific root stress physiology.",
+          "sourceIds": [
+            "SYN-PUB-07499",
+            "SYN-PUB-07492",
+            "SYN-PUB-07498"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R0218",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0218",
+      "fit": 0.81,
+      "why": [
+        {
+          "text": "The challenge requires building a predictive model from a multi-year sensor archive; the company has three seasons of probe readings and weather data from 60 hectares (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Spasoje Orlović has published on time-series feature extraction from environmental sensor data using statistical, wavelet, and autocorrelation-based descriptors (SYN-PUB-02775) and on gradient boosting and random forest classifiers for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780).",
+          "sourceIds": [
+            "SYN-PUB-02775",
+            "SYN-PUB-02777",
+            "SYN-PUB-02780"
+          ]
+        },
+        {
+          "text": "The researcher has published on sensor fusion combining satellite thermal data and ground microclimate networks using Gaussian process regression to estimate crop water stress index (SYN-PUB-02782).",
+          "sourceIds": [
+            "SYN-PUB-02782"
+          ]
+        },
+        {
+          "text": "The researcher has published on conformal prediction for uncertainty quantification on temporally autocorrelated environmental sensor data with block-holdout calibration (SYN-PUB-02783).",
+          "sourceIds": [
+            "SYN-PUB-02783"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the three-season soil moisture probe and weather station archive from C999-CH1, build a predictive model of post-rainfall soil moisture trajectories to detect when the root zone has absorbed sufficient water before the probe equilibrates, drawing on time-series feature extraction from environmental sensor data (SYN-PUB-02775), gradient boosting for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780), and sensor fusion with Gaussian process regression (SYN-PUB-02782), so the irrigation controller can suppress unneeded events.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-02775",
+          "SYN-PUB-02777",
+          "SYN-PUB-02780",
+          "SYN-PUB-02782"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published sensor fusion and agronomic event detection records cover field crops and phenological classification; there is no evidence of work on soil moisture probe lag compensation or irrigation control logic for orchards.",
+          "sourceIds": [
+            "SYN-PUB-02777",
+            "SYN-PUB-02780",
+            "SYN-PUB-02782"
+          ]
+        },
+        {
+          "text": "The predictive model alone would need to be integrated into the existing irrigation controller; the records cover data analytics pipelines and dashboards (SYN-PRJ-0139), not embedded or real-time irrigation control systems.",
+          "sourceIds": [
+            "SYN-PRJ-0139"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R1047",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R1047",
+      "fit": 0.62,
+      "why": [
+        {
+          "text": "The challenge requires understanding soil water dynamics after rainfall events; the company has three seasons of field probe and weather data (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Milena Pantelić has published on soil water balance modelling at field scale using CROPWAT with FDR probe verification for soy (SYN-PUB-10776) and AquaCrop calibration and validation with FDR probes for sunflower (SYN-PUB-06983).",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983"
+          ]
+        },
+        {
+          "text": "The researcher has published on evaluation and comparison of commercial low-cost capacitance soil moisture sensor systems, including accuracy against reference methods (SYN-PUB-06984).",
+          "sourceIds": [
+            "SYN-PUB-06984"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the three-season probe and weather archive from C999-CH1, calibrate and validate a soil water balance model (CROPWAT or AquaCrop) with FDR probe readings (SYN-PUB-10776, SYN-PUB-06983, SYN-PUB-06984) to characterise post-rainfall soil water redistribution dynamics and define thresholds for a revised irrigation hold signal that avoids root stress in young apple trees.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-10776",
+          "SYN-PUB-06983",
+          "SYN-PUB-06984"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The researcher leads a work package on the SORBWATER project until 2026 and is open only to smaller industrial contracts and consulting aligned with ongoing research (R1047).",
+          "sourceIds": [
+            "R1047"
+          ]
+        },
+        {
+          "text": "The published soil water balance modelling records cover vegetable and field crops; there is no evidence of work on apple orchards or perennial tree root stress physiology.",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983",
+            "SYN-PUB-06984"
+          ]
+        },
+        {
+          "text": "The published water balance modelling records cover seasonal irrigation scheduling for soy and sunflower; there is no evidence of work on post-rainfall sensor response dynamics or feedback control for irrigation systems.",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983"
+          ]
+        }
+      ]
+    }
+  ],
+  "noMatches": []
+}

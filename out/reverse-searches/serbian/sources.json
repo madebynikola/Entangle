@@ -1,0 +1,923 @@
+{
+  "C999": {
+    "id": "C999",
+    "kind": "company",
+    "title": "Described problem",
+    "text": "Described problem (C999): Prerada hrane.\nThis problem was described in the reverse search. Only its text is known: no company profile, products or pages.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "C999-CH1": {
+    "id": "C999-CH1",
+    "kind": "challenge",
+    "title": "Naša linija za sortiranje voća često pogrešno razvrstava jabuke sa sitnim oštećenjima kore i početnom truleži.",
+    "text": "Naša linija za sortiranje voća često pogrešno razvrstava jabuke sa sitnim oštećenjima kore i početnom truleži.\n\nProbali smo kameru sa fiksnim pragovima boje, ali greška je i dalje oko 12% i kupci vraćaju robu. Imamo 40.000 označenih slika jabuka iz tri sezone berbe.",
+    "researcherIds": [],
+    "companyId": "C999"
+  },
+  "R0406": {
+    "id": "R0406",
+    "kind": "researcher",
+    "title": "Lidija Lukić",
+    "text": "Lidija Lukić (R0406): Full Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Machine Learning and Deep Learning; Computer Vision; Structural Health Monitoring; Image Processing.\nKeywords: domain adaptation; transfer learning; convolutional neural networks; visual damage assessment; fine-tuning; small datasets; distributional shift; image classification; crack detection; feature alignment.\nBio: Lidija Lukić received her Dipl.-Ing. degree in Computer Engineering from the Faculty of Technical Sciences, University of Novi Sad in 2001, followed by an M.Sc. in 2005 and a Ph.D. in 2011, both from the same institution. She joined the Department of Computing and Control Engineering as a teaching assistant in 2002, advancing through the ranks to Full Professor in 2021. Her research group focuses on convolutional neural network adaptation for visual inspection tasks, with particular emphasis on fine-tuning strategies when labelled target-domain data are scarce and distributional shift is pronounced. The group collaborates with structural engineering and civil infrastructure laboratories, regularly using a GPU cluster housing sixteen NVIDIA A5000 cards and a photographic archive of approximately 140,000 annotated damage images assembled over a decade of fieldwork.\nOpen to: joint projects; contract research on visual inspection automation; industrial PhD supervision; student internships; consulting on CNN fine-tuning for domain-specific industrial imaging; equipment access (GPU cluster, annotated damage image archive).\nIndustry experience: Lidija Lukić has conducted two short-term consultancies for a domestic construction materials testing laboratory, advising on image acquisition protocols and classifier deployment for automated surface quality control. She has also served as a technical reviewer for a startup developing drone-based inspection software through the Innovation Fund of Serbia.\nNotes: Lukić is particularly interested in collaborations where the industry partner can provide access to unlabelled or partially labelled inspection imagery; her group has established workflows for rapid annotation and can contribute dataset curation as part of a joint project. She prefers structured collaboration agreements over informal arrangements and expects at least one co-supervised student per active industry partnership.",
+    "researcherIds": [
+      "R0406"
+    ]
+  },
+  "R0437": {
+    "id": "R0437",
+    "kind": "researcher",
+    "title": "Valentina Bulatović",
+    "text": "Valentina Bulatović (R0437): Associate Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: Machine Learning and Deep Learning; Computer Vision and Image Processing; Quality Control and Industrial Automation; Electronics Manufacturing.\nKeywords: few-shot learning; transfer learning; convolutional neural networks; domain adaptation; solder joint inspection; surface-mount technology; automated optical inspection; visual defect classification; domain shift; prototype networks.\nBio: Valentina Bulatović received her B.Sc. and M.Sc. degrees in Computer Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2008 and 2010, respectively, and her Ph.D. in Technical Sciences from the same institution in 2016. She joined the Department of Computing and Control Engineering as a Teaching Assistant in 2011 and was promoted to Associate Professor in 2022. Her research group focuses on deep learning-based visual inspection systems, with particular emphasis on few-shot and transfer learning methods for classifying solder joints in surface-mount technology assembly lines under varying component geometries and imaging conditions. She teaches courses in machine learning, digital image processing, and embedded systems. The group operates a dedicated machine-vision laboratory equipped with a programmable X-ray inspection rig, three high-resolution industrial cameras, and a cluster of GPU workstations used for neural network training and evaluation.\nOpen to: joint projects with SMT equipment manufacturers or electronics assembly companies; contract research on defect classification and domain adaptation for specific production environments; industrial PhD supervision for candidates employed at NTP Novi Sad companies; student internships for final-year and master's students; equipment access to GPU cluster and X-ray inspection rig for NTP partner companies; consulting on AOI system selection and deployment.\nIndustry experience: Between 2016 and 2018 Bulatović worked part-time as a technical consultant for Elektronik Produkcija d.o.o., a contract electronics manufacturer in Novi Sad, advising on the selection and integration of an automated optical inspection system and contributing to the internal defect taxonomy used in their quality database.\nNotes: Bulatović has expressed a preference for collaborations that provide access to real production data, even in anonymised or aggregated form, rather than purely methodological partnerships. She is co-supervising three doctoral students and can take on one additional industrial PhD candidate. The X-ray inspection rig in her lab is available for access arrangements with NTP companies on a scheduled basis.",
+    "researcherIds": [
+      "R0437"
+    ]
+  },
+  "R0496": {
+    "id": "R0496",
+    "kind": "researcher",
+    "title": "Saša Kosanović",
+    "text": "Saša Kosanović (R0496): Senior Research Associate, Department of Mechatronics, Robotics and Automation, Faculty of Technical Sciences, University of Novi Sad.\nFields: Aditivna proizvodnja i 3D štampa; Mašinsko učenje i računarska vizija; Mehatronika i automatizacija; Kontrola kvaliteta u proizvodnji.\nKeywords: fused deposition modelling; in-situ monitoring; anomaly detection; convolutional neural networks; layer adhesion defects; machine vision; additive manufacturing quality; deep learning; process monitoring; defect classification.\nBio: Saša Kosanović je diplomirao mašinstvo na Fakultetu tehničkih nauka Univerziteta u Novom Sadu 2009. godine, a doktorirao 2016. godine s tezom o automatizovanoj detekciji grešaka u procesima aditivne proizvodnje primenom konvolucionih neuronskih mreža. Od 2017. godine zaposlen je kao viši istraživački saradnik na Katedri za mehatroniku, robotiku i automatizaciju FTN-a. Bavi se razvojem sistema mašinskog vida za praćenje kvaliteta tokom procesa 3D štampe, s fokusom na FDM tehnologiju i detekciju grešaka adhezije između slojeva. Učestvuje u nastavi na predmetima robotike i automatizacije. Grupa koristi nekoliko FDM štampača opremljenih in-situ kamerama, industrijsku računarsku viziju i klaster za treniranje modela dubokog učenja.\nOpen to: joint projects; contract research; equipment access; student internships; consulting.\nIndustry experience: Saša Kosanović je od 2019. do 2021. godine povremeno sarađivao s kompanijom Primat Inženjering d.o.o. iz Novog Sada na pilotnom uvođenju sistema za praćenje kvaliteta štampe u njihovoj prototipskoj radionici, što je rezultiralo validacijom prototipa razvijenog u okviru istraživačke grupe.\nNotes: Istraživač ima pristup laboratoriji za aditivnu proizvodnju FTN-a koja raspolaže sa šest FDM štampača opremljenih in-situ kamerama i GPU klasterom za obuku modela. Posebno je zainteresovan za saradnju s kompanijama koje koriste FDM za serijsku ili poluserijsku proizvodnju i suočavaju se s troškovima post-process inspekcije. Ne traži administrativno-koordinatorske uloge u novim projektima u kratkoročnom periodu zbog tekućih obaveza na projektu ADMOVIZ.",
+    "researcherIds": [
+      "R0496"
+    ]
+  },
+  "R0521": {
+    "id": "R0521",
+    "kind": "researcher",
+    "title": "Andrea Krstić",
+    "text": "Andrea Krstić (R0521): Full Professor, Department of Mechatronics, Robotics and Automation, Faculty of Technical Sciences, University of Novi Sad.\nFields: Mechatronics and Automation; Machine Vision and Image Processing; Spectroscopy and Sensing; Waste Management and Circular Economy.\nKeywords: hyperspectral imaging; near-infrared spectroscopy; polymer identification; real-time classification; conveyor-based sorting; machine vision; material recovery; principal component analysis; convolutional neural networks; embedded processing.\nBio: Andrea Krstić received her Dipl.Ing. degree in Electrical Engineering from the University of Novi Sad in 2001 and her Ph.D. in Mechatronics from the same university in 2007, with a dissertation on sensor fusion for automated sorting lines. After a postdoctoral stay at the Technische Universität Dresden (2008–2009), she joined the Faculty of Technical Sciences in Novi Sad, where she has been a Full Professor since 2018. Her group focuses on hyperspectral near-infrared imaging, real-time signal processing, and machine vision pipelines for identifying polymer types in industrial material recovery. She teaches courses on robotics, image processing, and embedded systems. The laboratory operates two line-scan NIR hyperspectral cameras (900–2500 nm range), a high-speed conveyor test rig, and GPU-accelerated classification hardware.\nOpen to: joint projects with companies processing or recovering polymer waste; contract research on NIR sensor system design and classifier development; industrial PhD supervision for candidates from NTP Novi Sad companies; equipment access to conveyor test rig and NIR hyperspectral cameras for feasibility tests; consulting on sorting line specification and sensor integration; student internships focused on machine vision and embedded processing.\nIndustry experience: Krstić has carried out two paid consultancy engagements for regional recycling equipment suppliers on NIR sensor selection and classifier performance specification. She has also co-supervised a graduate student embedded with a Novi Sad-based automation SME during a six-month placement.\nNotes: Krstić is on reduced teaching load in the 2025–2026 academic year due to her role as Deputy Head of Department, which gives her somewhat more time for project work. She prefers industry collaborations that include at least one PhD or master's student position to ensure knowledge transfer.",
+    "researcherIds": [
+      "R0521"
+    ]
+  },
+  "R0548": {
+    "id": "R0548",
+    "kind": "researcher",
+    "title": "Nikola Stojanović",
+    "text": "Nikola Stojanović (R0548): Associate Professor, Department of Computing and Control Engineering, Faculty of Technical Sciences, University of Novi Sad.\nFields: computer vision; machine learning; edge computing.\nKeywords: defect detection; industrial inspection; few-shot learning; edge inference; anomaly detection.\nBio: Nikola Stojanović is an Associate Professor in the Department of Computing and Control Engineering at the Faculty of Technical Sciences, University of Novi Sad. His research focuses on computer vision, machine learning, and edge computing, with particular emphasis on defect detection, anomaly detection, and industrial visual inspection. He has pioneered work on few-shot learning methods adapted for constrained manufacturing environments, as well as model quantization techniques that enable real-time inference on resource-limited edge devices. Before returning to academia full-time, Stojanović co-founded a computer vision consultancy (2016–2019), gaining hands-on industry experience in automated inspection systems. He currently leads academic activities within the VISIONQC project and supervises graduate and doctoral students in applied AI for industrial quality control.\nOpen to: industrial PhD supervision; joint projects.\nIndustry experience: Co-founded a computer vision consultancy (2016–2019).",
+    "researcherIds": [
+      "R0548"
+    ]
+  },
+  "R0602": {
+    "id": "R0602",
+    "kind": "researcher",
+    "title": "Ksenija Ranković",
+    "text": "Ksenija Ranković (R0602): Assistant Professor, Department of Mechatronics, Robotics and Automation, Faculty of Technical Sciences, University of Novi Sad.\nFields: Machine Vision and Image Processing; Robotics and Automation; Embedded and Real-Time Systems; Industrial Control Engineering.\nKeywords: machine vision; robotic manipulation; conveyor systems; barcode localisation; object classification; embedded vision; real-time control; pose estimation; pick-and-place; FPGA image processing.\nBio: Ksenija Ranković received her B.Sc. and M.Sc. degrees in Mechatronics Engineering from the Faculty of Technical Sciences, University of Novi Sad, in 2011 and 2013 respectively, and her Ph.D. from the same faculty in 2019, with a dissertation on real-time barcode localisation on cylindrical and curved packaging surfaces using embedded vision hardware. She joined the Department of Mechatronics, Robotics and Automation as a Teaching Assistant in 2014 and was appointed Assistant Professor in 2020. Her research group focuses on machine vision pipelines for industrial manipulation tasks, including object pose estimation, classifier deployment on FPGA and ARM-based platforms, and closed-loop pick-and-place control on high-speed conveyor lines. She teaches undergraduate courses in Digital Control Systems and Robot Programming, and a graduate course in Industrial Machine Vision. The group operates a conveyor test rig equipped with two six-axis collaborative arms, GigE and USB3 monochrome cameras, and an NVIDIA Jetson-based embedded processing cluster.\nOpen to: joint projects with companies developing inline inspection or sorting systems; contract research on embedded vision deployment and conveyor integration; industrial PhD supervision for candidates employed at NTP Novi Sad companies; student internships on conveyor test rig and embedded platform projects; equipment access (conveyor rig, GigE cameras, Jetson cluster, Zynq boards) for collaborative trials; consulting on lighting design and camera selection for industrial vision cells.\nIndustry experience: Ranković spent four months in 2018 as a visiting engineer at a packaging machinery manufacturer in Novi Sad, where she adapted the cylindrical-surface barcode pipeline for integration into a production labelling line. She has since maintained an informal advisory relationship with two local food-processing companies regarding their inline inspection setups.\nNotes: Ranković is co-supervising two doctoral students expected to defend in 2026–2027, so capacity for new long-term commitments is limited until then. She prefers collaborations that include access to real production environments for dataset collection and validation, as the lab conveyor rig does not fully replicate the vibration and contamination conditions of food and pharmaceutical factories.",
+    "researcherIds": [
+      "R0602"
+    ]
+  },
+  "SYN-PAT-022": {
+    "id": "SYN-PAT-022",
+    "kind": "patent",
+    "title": "Modul za in-situ detekciju grešaka adhezije slojeva u FDM štampačima zasnovan na ugradbenom CNN procesoru",
+    "text": "Modul za in-situ detekciju grešaka adhezije slojeva u FDM štampačima zasnovan na ugradbenom CNN procesoru (2023, granted).\nInventors: Saša Kosanović (R0496).\nPatent opisuje hardverski modul koji se montira na kućište FDM štampača i koji integriše monohromatsku kameru rezolucije 5 MP, ugradbeni računar s namenskim neuronim procesorom i serijsko komunikaciono sučelje prema upravljačkoj elektronici štampača. Modul vrši inferenciju CNN modela za detekciju grešaka adhezije na svakom završenom sloju i šalje strukturirani signal upozorenja sa koordinatama defektne regije. Zaštita se odnosi na specifičnu mehaničku konfiguraciju nosača kamere, elektronsku shemu za napajanje modula iz štampačevog napona i protokol razmene poruka s firmware-om štampača.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2023
+  },
+  "SYN-PAT-032": {
+    "id": "SYN-PAT-032",
+    "kind": "patent",
+    "title": "Method and Apparatus for Real-Time Spectral Drift Compensation in Conveyor-Mounted Near-Infrared Sorting Systems",
+    "text": "Method and Apparatus for Real-Time Spectral Drift Compensation in Conveyor-Mounted Near-Infrared Sorting Systems (2023, granted).\nInventors: Andrea Krstić (R0521).\nThe invention relates to a method for automatically compensating spectral drift in a line-scan NIR sensor mounted above a moving conveyor belt, caused by illumination ageing and lens contamination. A drift detection module continuously monitors the statistical distribution of incoming unlabelled spectra and triggers a normalisation parameter update when the detected distribution shift exceeds a preset threshold, without requiring labelled reference samples or line downtime. The apparatus comprises the NIR sensor, an embedded processing unit, and a software module implementing kernel mean matching for distribution alignment. The method maintains classification accuracy within 2 percentage points of the initial calibration value over periods of at least six months under industrial operating conditions.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2023
+  },
+  "SYN-PAT-048": {
+    "id": "SYN-PAT-048",
+    "kind": "patent",
+    "title": "Method and apparatus for projective surface rectification of cylindrical container barcodes in motion",
+    "text": "Method and apparatus for projective surface rectification of cylindrical container barcodes in motion (2021, granted).\nInventors: Ksenija Ranković (R0602).\nA machine vision method for decoding linear barcodes on moving cylindrical containers by estimating the visible arc width from a single camera frame, applying a piece-wise projective rectification to map the curved label region to a planar image, and then decoding with a standard 1D barcode engine. The method operates without prior knowledge of container diameter by deriving a radius estimate from the detected silhouette edges. It is suitable for implementation on industrial PCs and ARM-class embedded controllers at conveyor speeds up to 1.5 m/s. Filed with the Intellectual Property Office of the Republic of Serbia; national application number retained by the University of Novi Sad.",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0011": {
+    "id": "SYN-PRJ-0011",
+    "kind": "project",
+    "title": "VISIONQC: AI quality control for SMEs",
+    "text": "VISIONQC: AI quality control for SMEs (Innovation Fund, 2023–2025).\nParticipants: R0548 academic partner.\nVISIONQC aims to bring AI-powered quality control capabilities within reach of small and medium enterprises that lack the data infrastructure and machine learning expertise of large manufacturers. The project develops a modular inspection platform combining few-shot defect detection, synthetic data augmentation, and edge-deployable quantized models, enabling SMEs to configure reliable inspection pipelines with minimal labeled data and without cloud dependency. As academic partner, Stojanović leads algorithm development and validation, ensuring that research outputs are translated into production-ready components. Pilot deployments are conducted at two regional manufacturing SMEs producing metal and polymer components, with key performance indicators targeting detection accuracy above 90% and setup time under two working days per new product type. The project runs from 2023 to 2025 under the Innovation Fund (synthetic) program.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2023
+  },
+  "SYN-PRJ-0129": {
+    "id": "SYN-PRJ-0129",
+    "kind": "project",
+    "title": "Visual Damage Monitoring for Cross-Border Transport Infrastructure",
+    "text": "VISDAM-IPA: Visual Damage Monitoring for Cross-Border Transport Infrastructure (Interreg IPA Hungary–Serbia, 2022–2025).\nParticipants: R0406 work package leader.\nPartners: Faculty of Technical Sciences, University of Novi Sad; National Directorate General for Roads, Pécs, Hungary; Public Enterprise Roads of Serbia; Faculty of Engineering, University of Szeged, Hungary.\nThis cross-border project addressed automated visual monitoring of road and bridge infrastructure along the Hungary–Serbia corridor. Lidija Lukić leads the machine learning work package responsible for adapting pre-trained damage classifiers to the joint image archive assembled by Hungarian and Serbian road maintenance authorities. The work package delivered a shared annotation scheme, a harmonised dataset of 18,000 images from both sides of the border, and a fine-tuned segmentation model for crack and pothole detection deployed in a pilot monitoring dashboard operated by the Serbian project partner. Results feed into policy recommendations for cross-border road maintenance protocols.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0239": {
+    "id": "SYN-PRJ-0239",
+    "kind": "project",
+    "title": "Automatizovano praćenje aditivne proizvodnje vizuelnom inteligencijom",
+    "text": "ADMOVIZ: Automatizovano praćenje aditivne proizvodnje vizuelnom inteligencijom (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0496 principal investigator.\nPartners: Fakultet tehničkih nauka, Univerzitet u Novom Sadu; Tehniška fakulteta, Univerza v Mariboru; Primat Inženjering d.o.o., Novi Sad.\nProjekat je imao za cilj razvoj modularne, hardverski nezavisne platforme za praćenje kvaliteta u realnom vremenu tokom FDM štampe, zasnovane na kombinaciji konvolucionih neuronskih mreža i višemodalnih senzorskih sistema. U okviru projekta razvijen je i javno objavljen skup podataka FDMLayerBench, implementiran prototip zatvorene upravljačke petlje zasnovan na signalima CNN detektora, kao i biblioteka za treniranje modela na ograničenim anotiranim skupovima. Projekat je uključivao saradnju s industrijskim partnerima radi validacije prototipa u realnim proizvodnim uslovima. Finansiran je u okviru programa PROMIS Fonda za nauku Republike Srbije, s budžetom od 4,2 miliona dinara.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0328": {
+    "id": "SYN-PRJ-0328",
+    "kind": "project",
+    "title": "Sensor Fusion Strategies for Circular Economy Packaging Recovery Across the Danube Region",
+    "text": "CIRCPACK: Sensor Fusion Strategies for Circular Economy Packaging Recovery Across the Danube Region (Interreg IPA Hungary–Serbia, 2022–2025).\nParticipants: R0521 work package leader.\nPartners: Óbuda University, Budapest, Hungary; Faculty of Technical Sciences, University of Novi Sad; Hajdú-Bihar County Waste Management Company, Debrecen, Hungary; NTP Novi Sad — Centre for Environmental Technologies (fictional tenant).\nCIRCPACK is a cross-border cooperation project examining complementary sensor technologies — NIR hyperspectral, Raman, and X-ray fluorescence — for high-purity recovery of post-consumer packaging from joint Hungarian-Serbian waste streams. Krstić leads the work package on NIR sensor integration and real-time classification, coordinating with Hungarian partners on dataset harmonisation and shared spectral libraries. The project has installed a joint pilot sorting line at the Óbuda University campus and a corresponding test facility in Novi Sad. Deliverables include a comparative evaluation report on sensor fusion architectures, three peer-reviewed papers, and a training curriculum for sorting facility operators delivered in both countries.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2022
+  },
+  "SYN-PRJ-0371": {
+    "id": "SYN-PRJ-0371",
+    "kind": "project",
+    "title": "Cross-Border Quality Intelligence for Electronics Assembly: Shared Methods and Benchmarks",
+    "text": "CROSSQUAL: Cross-Border Quality Intelligence for Electronics Assembly: Shared Methods and Benchmarks (Interreg IPA Hungary–Serbia, 2023–2026).\nParticipants: R0437 work package leader.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Budapest University of Technology and Economics, Hungary; Szerb-Magyar Elektronika Kft., Subotica; Precíziós Gyártás Zrt., Pécs, Hungary.\nCROSSQUAL is a bilateral Interreg project between the University of Novi Sad and Budapest University of Technology and Economics, targeting shared methodological infrastructure for AI-based quality inspection in electronics assembly. Bulatović leads the work package on benchmark dataset construction and evaluation protocols, which involves defining annotation guidelines, cross-site data collection procedures, and inter-rater agreement measurement for defect labelling. The project also includes a researcher exchange programme and joint training workshops for industry personnel from SMT facilities in both countries. A shared data platform is being developed to allow secure, privacy-preserving access to multi-site inspection data across the national border.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2023
+  },
+  "SYN-PRJ-0460": {
+    "id": "SYN-PRJ-0460",
+    "kind": "project",
+    "title": "Vision-Integrated Robotic Control for High-Speed Conveyor Sorting",
+    "text": "VIROCON: Vision-Integrated Robotic Control for High-Speed Conveyor Sorting (Science Fund of the Republic of Serbia (PROMIS, IDEAS, Prizma), 2021–2024).\nParticipants: R0602 principal investigator; R0531 team member.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Institute of Automation and Robotics, Belgrade; Pharmapack Solutions d.o.o., Novi Sad.\nVIROCON addressed the gap between laboratory-grade machine vision results and reliable performance under the vibration, variable illumination and throughput demands of real production conveyor lines. The project built and instrumented a conveyor test platform with configurable roller spacing, variable-speed drives and interchangeable lighting rigs. Research tasks covered strobe-synchronised image acquisition, embedded CNN deployment on ARM and FPGA targets, closed-loop trajectory correction for a six-axis arm, and OPC-UA integration with a pilot MES. Four M.Sc. theses and one doctoral thesis were completed within the project. Partners provided access to two production facilities for field validation trials on pharmaceutical and food packaging lines.",
+    "researcherIds": [
+      "R0602",
+      "R0531"
+    ],
+    "year": 2021
+  },
+  "SYN-PRJ-0461": {
+    "id": "SYN-PRJ-0461",
+    "kind": "project",
+    "title": "Embedded Recognition for Curved-Surface Code Reading in Recycling and Logistics",
+    "text": "RECUSOR: Embedded Recognition for Curved-Surface Code Reading in Recycling and Logistics (Provincial Secretariat for Higher Education and Scientific Research, 2023–2025).\nParticipants: R0602 principal investigator.\nPartners: Faculty of Technical Sciences, University of Novi Sad; Czech Technical University in Prague, Faculty of Electrical Engineering; NovaPak Recycling d.o.o., Subotica.\nRECUSOR targets the specific problem of decoding 1D and 2D codes printed or embossed on non-planar packaging such as beverage cans, cosmetic tubes and plastic bottles, for use in automated recycling sorting and warehouse logistics. The project develops curvature-aware rectification algorithms, evaluates strobe duration and exposure trade-offs documented in companion experimental work, and assembles the open dataset described in the 2026 preprint. A demonstrator sorter cell using a Jetson-based classifier and a three-axis Cartesian gantry is being constructed at the Faculty of Technical Sciences lab. Collaboration with the Czech Technical University in Prague provides access to additional annotated image data from a European logistics operator.",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-00246": {
+    "id": "SYN-PUB-00246",
+    "kind": "publication",
+    "title": "A convolutional classifier for packaging defect detection deployed on a Zynq-7000 SoC",
+    "text": "A convolutional classifier for packaging defect detection deployed on a Zynq-7000 SoC (2019, journal, Journal of Embedded Computing and Control).\nAuthors: Ksenija Ranković (R0602); Dušan Tošić (R0174); Nemanja Ćirić (outside co-author); Andrej Kovačević (outside co-author); Petra Blažič (outside co-author); Vukica Stevanović (R0021).\nKeywords: FPGA deployment; convolutional network; defect classification; Zynq SoC; HLS synthesis; blister pack.\nDeploying a trained convolutional neural network for surface defect classification directly onto an FPGA-based system-on-chip avoids the latency associated with PCIe-attached GPU cards and allows integration into existing programmable logic control architectures. This paper describes the quantisation, pruning and HLS synthesis workflow used to map a six-layer network, originally trained on 18 000 labelled images of pharmaceutical blister packs, onto a Xilinx Zynq-7000 device. The network identifies four defect classes—missing tablet, cracked seal, mislabelled pocket and correct—at a sustained throughput of 120 classifications per second per camera lane. Compared with a floating-point GPU baseline, the FPGA implementation achieved within 2.1 percentage points of classification accuracy (92.6% vs 94.7%) while reducing power consumption from 85 W to 6.3 W. Latency from image capture to classification output was 8.2 ms. The paper includes a discussion of fixed-point precision trade-offs at 8-bit and 12-bit configurations.",
+    "researcherIds": [
+      "R0602",
+      "R0174",
+      "R0021"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-00247": {
+    "id": "SYN-PUB-00247",
+    "kind": "publication",
+    "title": "Integrating a vision-guided pick-and-place cell with an MES via OPC-UA: implementation and latency characterisation",
+    "text": "Integrating a vision-guided pick-and-place cell with an MES via OPC-UA: implementation and latency characterisation (2024, journal, International Journal of Industrial Informatics and Cyber-Physical Systems).\nAuthors: Ksenija Ranković (R0602); Nemanja Ćirić (outside co-author); Vukica Stevanović (R0021); Nada Jeremić (R0410); Lucia Ferrarini (outside co-author).\nKeywords: OPC-UA; MES integration; robotic cell; industrial IoT; latency characterisation.\nManufacturing execution systems increasingly demand real-time telemetry from autonomous robotic cells, yet most published work addresses the vision and motion layers in isolation from the factory IT layer. This paper describes the integration of a vision-guided pick-and-place cell—comprising a conveyor, two cameras, an embedded classifier and a six-axis arm—with a pilot MES instance using the OPC-UA publish-subscribe protocol. The integration covers object classification events, arm cycle timestamps, reject counts and camera health diagnostics. End-to-end message latency from classification event to MES database commit was measured at 14.2 ms median and 31.8 ms at the 99th percentile under continuous production load. The paper identifies the OPC-UA encoding step as the dominant latency contributor (38% of median) and evaluates binary vs JSON encoding options. A reference architecture diagram and sample information model are provided as supplementary material.",
+    "researcherIds": [
+      "R0602",
+      "R0021",
+      "R0410"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-00591": {
+    "id": "SYN-PUB-00591",
+    "kind": "publication",
+    "title": "Compact Snapshot Hyperspectral Sensor for On-Robot Plastic Waste Grasping in Unstructured Bins",
+    "text": "Compact Snapshot Hyperspectral Sensor for On-Robot Plastic Waste Grasping in Unstructured Bins (2023, journal, Robotics and Autonomous Systems).\nAuthors: Marija Lukić (outside co-author); Bogdan Bajić (R0045); Andrea Krstić (R0521); Ivan Horvat (outside co-author); Péter Vásárhelyi (outside co-author); Olivera Bošković (R0531).\nKeywords: snapshot hyperspectral; robot grasping; bin picking; random forest; collaborative robot.\nFixed conveyor-based NIR sorting systems cannot directly address bin-picking scenarios where objects are piled and stationary. This paper integrates a snapshot mosaic-filter hyperspectral sensor (16 spectral bands, 470–950 nm) with a collaborative robot arm for material-type-aware grasping of mixed plastic waste in a 400 × 400 mm bin. The sensor, mounted at the robot wrist, captures a full hyperspectral image in a single 8 ms exposure. A lightweight random forest classifier trained on 12 000 patch samples from 8 polymer classes achieved 88.6% per-patch accuracy; aggregated object-level predictions reached 94.1%. Grasp planning used a depth map from a co-registered structured-light sensor. In 200 pick-and-sort trials on a bin with 15–25 randomly placed objects, the system achieved 91.5% material-correct sorting with a cycle time of 4.2 s per object. Failure analysis identified gloss saturation and very small fragments below 15 mm as the main error sources.",
+    "researcherIds": [
+      "R0045",
+      "R0521",
+      "R0531"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-01923": {
+    "id": "SYN-PUB-01923",
+    "kind": "publication",
+    "title": "Convolutional Neural Networks for Automated Optical Inspection of SMT Solder Joints: A Comparative Study of Shallow and Deep Architectures",
+    "text": "Convolutional Neural Networks for Automated Optical Inspection of SMT Solder Joints: A Comparative Study of Shallow and Deep Architectures (2015, conference, Workshop on Deep Learning for Industrial Vision, co-located with CVVIA).\nAuthors: Valentina Bulatović (R0437); Rastko Zorić (R0148); Miroslava Topalović (outside co-author); Ivan Blanuša (outside co-author); Nebojša Ristić (R0454).\nKeywords: CNN; automated optical inspection; solder joint defects; architecture comparison; SMT.\nFive CNN architectures ranging from three to sixteen convolutional layers were trained and evaluated on a dataset of 28,400 labelled top-view AOI images of 0402 and 0603 passive components, spanning four defect categories: bridging, insufficient solder, tombstoning, and acceptable. Architectures were trained from random initialisation on 80% of the data and tested on a held-out 20% set collected from a separate production shift to introduce mild distribution shift. The deepest tested architecture (16 layers) did not outperform a seven-layer network on this dataset, with both achieving approximately 94.1% overall accuracy. The seven-layer model required 2.1× less training time. Confusion analysis showed that bridging and insufficient-solder categories were most frequently interchanged, motivating future work on domain adaptation. All models were implemented in Theano and experiments were conducted on a single NVIDIA GPU workstation. Training durations ranged from 2.4 h to 11.7 h.",
+    "researcherIds": [
+      "R0437",
+      "R0148",
+      "R0454"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-02252": {
+    "id": "SYN-PUB-02252",
+    "kind": "publication",
+    "title": "Effect of conveyor vibration on sub-pixel barcode localisation accuracy: a frequency-domain analysis",
+    "text": "Effect of conveyor vibration on sub-pixel barcode localisation accuracy: a frequency-domain analysis (2023, journal, Measurement Science and Industrial Instrumentation).\nAuthors: Ksenija Ranković (R0602); Milena Stojanović (outside co-author); Sándor Fekete (outside co-author); Gregor Mlakar (outside co-author); Dušan Tošić (R0174).\nKeywords: conveyor vibration; strobe lighting; barcode decoding; sub-pixel accuracy; vibrometry.\nConveyor frames in food and pharmaceutical factories transmit vibration from motors and rollers to the belt surface, producing micro-displacements during image exposure that degrade barcode decode rates even when gross motion blur is controlled by strobe lighting. This study uses a laser vibrometer to characterise the dominant vibration frequencies (18–140 Hz) at six points on a standard roller conveyor under three load conditions. High-speed video at 2 000 fps was used to measure actual belt displacement amplitude during strobe flashes of 50, 100 and 200 µs duration. A simulation framework then predicts the resulting barcode element-width measurement error as a function of element width, exposure duration and vibration amplitude. Empirical decode-rate measurements across 7 200 trials confirmed the simulation predictions with a mean absolute error of 1.4 percentage points. The analysis provides a method for selecting strobe duration given a site vibration measurement, without requiring trial-and-error camera installation.",
+    "researcherIds": [
+      "R0602",
+      "R0174"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-02799": {
+    "id": "SYN-PUB-02799",
+    "kind": "publication",
+    "title": "Hyperspectral Imaging in Industrial Waste Sorting: Sensor Technologies, Processing Chains, and Open Challenges",
+    "text": "Hyperspectral Imaging in Industrial Waste Sorting: Sensor Technologies, Processing Chains, and Open Challenges (2015, book chapter, Handbook of Automation in Resource Recovery, Springer).\nAuthors: Tomáš Novotný (outside co-author); Darko Zarić (R0248); Miroslav Tešić (outside co-author); Goran Mirković (R0219); Andrea Krstić (R0521).\nKeywords: survey; pushbroom; snapshot hyperspectral; waste sorting; deployment constraints.\nThis book chapter surveys the state of hyperspectral near-infrared sensing as applied to solid waste sorting, covering sensor architectures (pushbroom, snapshot, acousto-optic), illumination strategies, and computational pipelines from raw datacube to actuation signal. The chapter discusses calibration protocols, spectral library management, and the impact of particle geometry, surface gloss, and moisture on identification accuracy. Processing approaches reviewed include classical chemometric methods, support vector machines, and early convolutional architectures. Deployment constraints specific to industrial sorting — throughput requirements, dust and vibration, low-latency control interfaces — are analysed alongside reported field performance figures from 14 published studies. The chapter concludes with a structured discussion of open problems: black polymer identification, multi-layer laminate discrimination, and real-time adaptation to feed composition drift. Written for an audience of automation engineers and environmental technologists, it bridges laboratory research and industrial practice.",
+    "researcherIds": [
+      "R0248",
+      "R0219",
+      "R0521"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-04546": {
+    "id": "SYN-PUB-04546",
+    "kind": "publication",
+    "title": "Transfer learning from ImageNet to pavement distress classification: which layers to freeze?",
+    "text": "Transfer learning from ImageNet to pavement distress classification: which layers to freeze? (2016, journal, IEEE Transactions on Intelligent Transportation Imaging).\nAuthors: Nemanja Grujić (outside co-author); Pavol Čáni (R0371); Ivana Szabo (outside co-author); Nina Despotović (R0961); Lidija Lukić (R0406).\nKeywords: transfer learning; fine-tuning; pavement distress; VGG-16; freeze depth.\nPre-trained ImageNet weights provide a useful initialisation for pavement distress classifiers, but the appropriate depth at which to stop fine-tuning the source model is not well understood in this application domain. This study systematically freezes all layers up to each of the five convolutional blocks of a standard VGG-16 architecture and records classification accuracy across seven pavement distress categories on a dataset of 11,400 images collected from urban roads in Novi Sad and Subotica. The smallest target-domain training subsets tested contain 200 images per class. A clear interaction between available labelled data and optimal freeze depth emerges: with fewer than 400 images per class, freezing the first three blocks outperforms full fine-tuning by 7.2 percentage points on average. The paper quantifies this relationship and proposes a simple selection heuristic depending on per-class sample count.",
+    "researcherIds": [
+      "R0371",
+      "R0961",
+      "R0406"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-04904": {
+    "id": "SYN-PUB-04904",
+    "kind": "publication",
+    "title": "Texture gradient features for early crack detection in concrete bridge decks using support vector machines",
+    "text": "Texture gradient features for early crack detection in concrete bridge decks using support vector machines (2010, journal, Journal of Image and Signal Processing in Engineering).\nAuthors: Lidija Lukić (R0406); Miloš Vranić (outside co-author); Dragana Petrović (outside co-author).\nKeywords: crack detection; texture features; SVM; bridge deck; concrete.\nEarly-stage crack detection in reinforced concrete bridge decks relies on subtle texture discontinuities that are difficult to capture with simple intensity thresholding. This study proposes a texture gradient descriptor computed over multi-scale Gaussian filter responses and feeds the resulting feature vectors into a support vector machine classifier. A dataset of 2,840 greyscale images collected from five highway bridges in Vojvodina was used, with 70 % for training and 30 % for independent testing. The SVM kernel was selected by five-fold cross-validation over RBF and polynomial options. The proposed descriptor achieved 87.3 % accuracy on the held-out test set, outperforming a histogram-of-oriented-gradients baseline by 6.1 percentage points. The study also reports a confusion matrix analysis revealing that hairline cracks under 0.2 mm width remain the principal source of misclassification. These findings guided subsequent data collection campaigns by identifying the most informative camera standoff distances.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2010
+  },
+  "SYN-PUB-04905": {
+    "id": "SYN-PUB-04905",
+    "kind": "publication",
+    "title": "Comparative evaluation of pooling strategies in shallow convolutional architectures for spalling classification",
+    "text": "Comparative evaluation of pooling strategies in shallow convolutional architectures for spalling classification (2013, conference, Proceedings of the Central European Conference on Computer Vision and Pattern Recognition).\nAuthors: Tamara Bogdanović (outside co-author); Lidija Lukić (R0406).\nKeywords: pooling; CNN; spalling; image classification; concrete.\nShallow convolutional networks trained from scratch were evaluated for the binary classification of concrete spalling in industrial facility images. Three pooling configurations—max pooling, average pooling, and a learnable weighted pooling layer—were compared across architectures with two to five convolutional stages. Experiments were conducted on a proprietary dataset of 6,200 labelled images captured in a precast concrete manufacturing plant in Novi Sad, with balanced class splits. Results show that average pooling in the penultimate feature map consistently produced the lowest validation loss across all depth configurations, reducing misclassification by 9 % relative to max pooling at five convolutional stages. The authors document training instability at depths beyond four layers with the available data volume and recommend regularisation schedules for practitioners working with similarly constrained industrial image collections.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-04906": {
+    "id": "SYN-PUB-04906",
+    "kind": "publication",
+    "title": "Influence of image acquisition conditions on CNN-based corrosion detection performance",
+    "text": "Influence of image acquisition conditions on CNN-based corrosion detection performance (2015, journal, Machine Vision and Industrial Inspection Letters).\nAuthors: Aleksandar Ninković (outside co-author); Emilija Vranješ (R0749); Petra Kovačević (outside co-author); Lidija Lukić (R0406).\nKeywords: corrosion detection; domain shift; illumination; CNN; image acquisition.\nCorrosion detection models trained under controlled laboratory lighting frequently degrade when deployed on images collected under variable outdoor illumination. This paper systematically characterises the performance drop of a five-layer CNN classifier across twelve combinations of solar elevation angle, cloud cover category, and camera exposure compensation. A controlled outdoor testbed was constructed at the Faculty of Technical Sciences campus using steel plate specimens with six standardised corrosion grades according to ISO 8501-1. Results indicate that models trained exclusively on overcast images suffer a 14.8 percentage point accuracy drop when evaluated on direct-sunlight images with automatic exposure. Histogram equalisation applied as a preprocessing step reduces this gap to 5.3 percentage points. The paper provides a structured recommendation for data collection protocols aimed at minimising photometric domain shift.",
+    "researcherIds": [
+      "R0749",
+      "R0406"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-04907": {
+    "id": "SYN-PUB-04907",
+    "kind": "publication",
+    "title": "Batch normalisation behaviour under small-batch fine-tuning for structural inspection networks",
+    "text": "Batch normalisation behaviour under small-batch fine-tuning for structural inspection networks (2018, journal, Pattern Recognition and Machine Intelligence).\nAuthors: Bojan Marković (outside co-author); Sunčica Filipović (outside co-author); Lidija Lukić (R0406).\nKeywords: batch normalisation; fine-tuning; small datasets; tunnel inspection; domain adaptation.\nWhen fine-tuning convolutional networks on small domain-specific datasets, updating batch normalisation statistics from the source domain may harm or improve performance depending on dataset characteristics. This paper studies the effect of three batch normalisation update strategies—frozen source statistics, live re-estimation from small batches, and exponential moving average of mixed statistics—on networks fine-tuned for crack and delamination classification in railway tunnel linings. Experiments use a dataset of 3,600 images from three tunnels in Serbia and Croatia, with batch sizes ranging from 8 to 64. Frozen source-domain statistics coupled with per-channel affine rescaling delivered the most stable results, reducing variance across random seeds by a factor of 2.4 compared with live re-estimation. The paper includes an ablation identifying the interaction between batch size and update strategy.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-04908": {
+    "id": "SYN-PUB-04908",
+    "kind": "publication",
+    "title": "Adversarial domain adaptation for bridge railing damage detection across camera models",
+    "text": "Adversarial domain adaptation for bridge railing damage detection across camera models (2019, conference, Proceedings of the Balkan Conference on Machine Learning and Vision).\nAuthors: Rastko Ilić (outside co-author); Zoltán Fekete (outside co-author); Claudia Stănescu (outside co-author); Lidija Lukić (R0406).\nKeywords: adversarial adaptation; domain alignment; bridge inspection; ResNet; camera shift.\nDomain shift caused by differences between camera sensor models is a practical obstacle in deploying visual inspection systems across heterogeneous inspection fleets. This paper applies a gradient-reversal adversarial domain adaptation framework to bridge railing damage detection, where source images were collected with a Canon industrial camera and target images with a Sony mirrorless device. The backbone is a ResNet-50 fine-tuned on 4,800 source images covering four damage classes; the target domain contains 320 unlabelled and 80 labelled images. Adversarial alignment of intermediate feature maps at the third residual block reduces target-domain classification error from 31.4 % to 18.7 % relative to standard fine-tuning without adaptation. Ablations isolate the contribution of the domain discriminator at different feature resolutions.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-04909": {
+    "id": "SYN-PUB-04909",
+    "kind": "publication",
+    "title": "Data augmentation strategies for mitigating class imbalance in facade damage datasets",
+    "text": "Data augmentation strategies for mitigating class imbalance in facade damage datasets (2020, journal, Journal of Visual Inspection and Structural Informatics).\nAuthors: Milena Horvat (outside co-author); Goran Vučković (outside co-author); Lidija Lukić (R0406).\nKeywords: data augmentation; class imbalance; facade damage; MobileNetV2; fine-tuning.\nBuilding facade inspection datasets frequently exhibit severe class imbalance, with rare high-severity damage categories representing fewer than 3 % of all samples. This paper benchmarks nine augmentation pipelines—including geometric transforms, colour jitter, CutMix, and Mosaic—applied during fine-tuning of a MobileNetV2 backbone on a 7,200-image facade dataset assembled from pre- and post-flood inspections in Vojvodina. Macro-averaged F1 score is used as the primary metric to avoid bias toward the majority class. CutMix combined with mild colour jitter yields the highest macro-F1 of 0.74 compared with 0.61 for no augmentation, a gain attributable primarily to improved recall on the two rarest damage categories. The paper also reports that excessive geometric distortion hurts performance when structural orientation is a discriminative cue.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-04910": {
+    "id": "SYN-PUB-04910",
+    "kind": "publication",
+    "title": "Layer-wise learning rate schedules for CNN fine-tuning on seismically damaged masonry images",
+    "text": "Layer-wise learning rate schedules for CNN fine-tuning on seismically damaged masonry images (2021, journal, Engineering Applications of Artificial Intelligence Review).\nAuthors: Antea Babić (outside co-author); Lidija Lukić (R0406); Srđan Janković (outside co-author); Tamara Bogdanović (outside co-author).\nKeywords: layer-wise learning rate; fine-tuning; masonry; seismic damage; EfficientNet.\nAfter seismic events, rapid assessment of masonry damage depends on classifiers that must be re-trained quickly from limited post-event imagery. This paper investigates the use of layer-wise learning rate decay—assigning lower rates to early convolutional layers and higher rates to classification heads—during fine-tuning of an EfficientNet-B2 backbone. Experiments are conducted using source data from 12,000 images of undamaged and earthquake-damaged masonry buildings in Croatia collected after the 2020 Zagreb earthquake, and target data consisting of 540 images from a 2021 Vojvodina minor seismic event. A systematic grid over five decay ratios and three learning rate magnitudes is reported. The optimal layer-wise schedule reduces top-1 error on the target domain by 11.3 percentage points compared with a uniform learning rate baseline and converges 38 % faster.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-04911": {
+    "id": "SYN-PUB-04911",
+    "kind": "publication",
+    "title": "Domain adaptation for drone-based road crack segmentation using pseudo-label refinement",
+    "text": "Domain adaptation for drone-based road crack segmentation using pseudo-label refinement (2022, journal, Remote Sensing and Civil Infrastructure Imaging).\nAuthors: Lidija Lukić (R0406); Nemanja Grujić (outside co-author); Katarzyna Wiśniewska (outside co-author).\nKeywords: pseudo-labelling; domain adaptation; semantic segmentation; drone; crack detection.\nSemantic segmentation of road cracks from drone imagery is challenged by altitude-dependent resolution and shadow patterns absent from ground-level training data. This paper presents a pseudo-label refinement loop in which a DeepLabV3+ network pre-trained on ground-level crack images generates initial pseudo-labels for unlabelled drone frames; a confidence filter retains only predictions exceeding a calibrated threshold, and the network is iteratively re-trained on accepted pseudo-labels. Experiments use 9,600 ground-level labelled images and 2,200 unlabelled drone images collected over 18 km of regional roads in Serbia. After three refinement iterations, mean intersection-over-union on a drone test split of 480 labelled images reaches 0.71, versus 0.52 for direct application of the source model without adaptation. The paper analyses threshold sensitivity and documents the per-iteration change in pseudo-label acceptance rate.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-04912": {
+    "id": "SYN-PUB-04912",
+    "kind": "publication",
+    "title": "Contrastive pre-training on synthetic damage renders for improved target-domain fine-tuning",
+    "text": "Contrastive pre-training on synthetic damage renders for improved target-domain fine-tuning (2023, conference, Proceedings of the European Workshop on Structural Health Monitoring and Vision).\nAuthors: Đorđe Milošević (outside co-author); Lucia Ferrara (outside co-author); Rastko Ilić (outside co-author); Lidija Lukić (R0406); Predrag Nedić (R1020).\nKeywords: contrastive learning; synthetic data; pre-training; domain gap; structural damage.\nCollecting labelled real-world damage images is expensive, motivating the use of physically based renders as a pre-training source. This paper investigates whether contrastive self-supervised pre-training on a library of 28,000 synthetically rendered concrete crack and spalling images produced with a physically based renderer improves downstream supervised fine-tuning on real inspection photographs. A SimCLR framework is used for pre-training, followed by linear evaluation and full fine-tuning on three real datasets of sizes 200, 600, and 2,000 images. Contrastive pre-training on synthetic renders consistently outperforms ImageNet-supervised initialisation at 200 and 600 real samples, with gains of 5.8 and 3.2 percentage points respectively, but the advantage disappears at 2,000 samples. The paper discusses the role of render photorealism and augmentation policy alignment in determining this crossover point.",
+    "researcherIds": [
+      "R0406",
+      "R1020"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-04913": {
+    "id": "SYN-PUB-04913",
+    "kind": "publication",
+    "title": "Calibration of damage severity classifiers under distributional shift: temperature scaling revisited",
+    "text": "Calibration of damage severity classifiers under distributional shift: temperature scaling revisited (2023, journal, Journal of Uncertainty Quantification in Vision Systems).\nAuthors: Milena Horvat (outside co-author); Vladimír Novák (outside co-author); Lidija Lukić (R0406).\nKeywords: calibration; temperature scaling; distributional shift; damage classification; ECE.\n(no abstract)",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-04914": {
+    "id": "SYN-PUB-04914",
+    "kind": "publication",
+    "title": "Low-rank adaptation of ResNet backbones for cross-dataset concrete damage classification",
+    "text": "Low-rank adaptation of ResNet backbones for cross-dataset concrete damage classification (2024, journal, Pattern Analysis and Machine Intelligence Quarterly).\nAuthors: Đorđe Milošević (outside co-author); Eleni Papadaki (outside co-author); Aleksandar Ninković (outside co-author); Lidija Lukić (R0406).\nKeywords: low-rank adaptation; fine-tuning; ResNet; small datasets; concrete damage.\nLow-rank matrix decomposition applied to weight updates during fine-tuning—an approach recently popularised in large language models—is adapted here to ResNet-50 backbones for concrete damage classification. The paper asks whether constraining weight updates to low-rank increments reduces overfitting on small target datasets while preserving source-domain representations. Four target datasets of sizes 180 to 1,400 labelled images are used, covering crack, delamination, efflorescence, and spalling categories sourced from different European inspection projects. At ranks 4 and 8, the low-rank approach reduces test error relative to standard full fine-tuning by 8.1 and 6.3 percentage points on the 180-image dataset, with negligible differences at 1,400 images. The parameter count during adaptation is reduced to 2.3 % of full fine-tuning. The paper provides an analysis of singular value spectra before and after adaptation.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-04915": {
+    "id": "SYN-PUB-04915",
+    "kind": "publication",
+    "title": "Benchmark dataset and evaluation protocol for cross-climate damage recognition in central and southeastern Europe",
+    "text": "Benchmark dataset and evaluation protocol for cross-climate damage recognition in central and southeastern Europe (2025, journal, IEEE Transactions on Pattern Analysis and Structural Inspection).\nAuthors: Tamara Bogdanović (outside co-author); Claudia Stănescu (outside co-author); Antea Babić (outside co-author); Zoltán Fekete (outside co-author); Lidija Lukić (R0406).\nKeywords: benchmark; dataset; cross-climate; domain adaptation; evaluation protocol.\nThe absence of a standardised benchmark impedes reproducible comparison of domain adaptation methods for visual damage assessment in climatic zones across central and southeastern Europe. This paper describes the construction and release of a benchmark dataset comprising 43,600 annotated images drawn from 22 inspection campaigns in seven countries, spanning continental, semi-arid, and humid subtropical microclimate zones. Damage categories include cracks, spalling, efflorescence, corrosion, and impact damage across reinforced concrete, masonry, and steel substrates. An evaluation protocol is defined specifying three experimental tracks: unsupervised, semi-supervised with ten labels per class, and fully supervised with 200 labels per class. Baseline results for eight published domain adaptation methods are reported on all three tracks. The dataset and evaluation scripts are made publicly available under a CC BY 4.0 licence. The paper also characterises distributional shift quantitatively using maximum mean discrepancy between all climate zone pairs.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-04916": {
+    "id": "SYN-PUB-04916",
+    "kind": "publication",
+    "title": "Attention-gate selection for partial fine-tuning of vision transformers on structural damage imagery",
+    "text": "Attention-gate selection for partial fine-tuning of vision transformers on structural damage imagery (2026, journal, Computer Vision for Infrastructure and Built Environment).\nAuthors: Đorđe Milošević (outside co-author); Lidija Lukić (R0406); Srećko Dragović (outside co-author).\nKeywords: vision transformer; partial fine-tuning; attention gates; structural damage; small data.\nVision transformer architectures trained on large general-purpose corpora offer strong representations for downstream visual tasks, but their scale makes full fine-tuning impractical when target datasets contain fewer than 500 images. This paper studies selective fine-tuning guided by gradient-based attention gate scores, which rank transformer blocks by their sensitivity to target-domain inputs and update only the top-k ranked blocks. Experiments cover three structural damage datasets with 150 to 480 labelled target images, using a ViT-B/16 backbone. Updating the top-4 blocks identified by attention gate scoring achieves accuracy within 1.8 percentage points of full fine-tuning at one quarter of the trainable parameter count and reduces catastrophic forgetting on source-domain validation by 17 %. The paper compares this strategy against adapter modules and prompt tuning across all three datasets.",
+    "researcherIds": [
+      "R0406"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-05235": {
+    "id": "SYN-PUB-05235",
+    "kind": "publication",
+    "title": "Transfer Learning from ImageNet-Pretrained Networks for Low-Volume SMT Defect Datasets",
+    "text": "Transfer Learning from ImageNet-Pretrained Networks for Low-Volume SMT Defect Datasets (2017, journal, International Journal of Computer-Aided Quality Engineering).\nAuthors: Valentina Bulatović (R0437); Dragan Milošević (outside co-author); Petra Szekeres (outside co-author); Nikola Živković (outside co-author); Branislav Stojanović (R0641).\nKeywords: transfer learning; fine-tuning; low-data regime; solder joint defects; batch normalisation.\nIn surface-mount technology inspection scenarios, labelled defect images are often scarce because certain defect types appear rarely in production. This paper examines whether features extracted from networks pretrained on a large general-purpose image corpus can be repurposed for solder joint classification when only 200–800 labelled domain images per class are available. Three pretrained backbone architectures were fine-tuned with varying proportions of frozen layers on a proprietary dataset of 5,600 images covering five defect classes. Fine-tuning only the final two convolutional blocks consistently produced higher validation F1 scores than full-network fine-tuning when fewer than 400 images per class were available, with improvements of 4.2 to 7.8 percentage points. The gain diminished and reversed beyond 600 samples per class. Experiments also reveal that batch normalisation statistics inherited from pretraining create a measurable calibration mismatch when applied to X-ray images, which differ texturally from optical images. Recommendations for practitioners are provided.",
+    "researcherIds": [
+      "R0437",
+      "R0641"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-05236": {
+    "id": "SYN-PUB-05236",
+    "kind": "publication",
+    "title": "Domain Shift in AOI Systems: Quantifying the Performance Degradation When Models Are Deployed Across Different PCB Assembly Lines",
+    "text": "Domain Shift in AOI Systems: Quantifying the Performance Degradation When Models Are Deployed Across Different PCB Assembly Lines (2018, journal, IEEE Transactions on Industrial Informatics (regional special issue on smart manufacturing)).\nAuthors: Aleksandar Kovačević (outside co-author); Valentina Bulatović (R0437); Florin Dănilă (outside co-author).\nKeywords: domain shift; domain adaptation; AOI; manufacturing deployment; maximum mean discrepancy.\nAutomated optical inspection models trained on data from one SMT production line frequently underperform when deployed on a different line, even within the same factory, due to differences in camera optics, illumination geometry, and conveyor vibration. This study measures that degradation empirically using models trained on data from Line A and tested on Lines B and C, where all three lines produce nominally identical assemblies. Overall accuracy dropped from 94.3% (same-line evaluation) to 78.1% and 71.6% for the two target lines. Per-class analysis showed that class-conditional feature distributions shifted significantly for reflective component types (measured by maximum mean discrepancy). Four unsupervised domain adaptation strategies—instance reweighting, subspace alignment, correlation alignment, and adversarial feature alignment—were then applied without accessing target-domain labels. Adversarial alignment recovered 10.8 percentage points of the accuracy drop on Line C, while subspace alignment was most effective on Line B. The findings motivate a line-specific adaptation protocol.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-05237": {
+    "id": "SYN-PUB-05237",
+    "kind": "publication",
+    "title": "Prototype Networks for One-Shot Solder Joint Classification Under Component Morphology Variation",
+    "text": "Prototype Networks for One-Shot Solder Joint Classification Under Component Morphology Variation (2019, conference, Proceedings of the European Conference on Computer Vision Applications in Industry (ECCVAI)).\nAuthors: Valentina Bulatović (R0437); Miroslava Topalović (outside co-author); Luca Ferretti (outside co-author); Ivan Blanuša (outside co-author).\nKeywords: prototypical networks; few-shot learning; meta-learning; component package variation; solder joint classification.\nPrototype-based meta-learning was applied to the problem of classifying solder joints for component package types that were absent during model training. A meta-training set was constructed from images of 23 component package types (SOT-23, QFN, TQFP, SOP, and others), and the model was evaluated in 5-way 1-shot and 5-way 5-shot episodes on four held-out package types not seen during meta-training. The prototypical network reached 71.4% accuracy in the 1-shot setting and 83.2% in the 5-shot setting, compared to 58.9% and 76.1% for a fine-tuned baseline requiring the same number of support samples. Ablation experiments indicate that the choice of distance metric (cosine vs. Euclidean) had a larger effect on performance than the embedding backbone depth, within the range tested. The study uses a dataset of 41,000 images collected from two production facilities and provides split specifications for reproducibility.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-05238": {
+    "id": "SYN-PUB-05238",
+    "kind": "publication",
+    "title": "Batch Normalisation Adaptation Strategies for Cross-Domain CNN Deployment in Solder Inspection",
+    "text": "Batch Normalisation Adaptation Strategies for Cross-Domain CNN Deployment in Solder Inspection (2020, journal, Journal of Machine Vision and Applications in Manufacturing).\nAuthors: Valentina Bulatović (R0437); Dragan Milošević (outside co-author); Tamara Horváth (outside co-author).\nKeywords: batch normalisation; domain adaptation; cross-domain deployment; unlabelled data; inference-time adaptation.\nBatch normalisation layers accumulate running statistics during training that are mismatched to target-domain data at inference time, contributing to accuracy degradation in cross-line and cross-factory deployments. This paper compares four lightweight adaptation strategies that adjust BN statistics using small unlabelled batches from the target domain: (1) full statistics reset using target data, (2) exponential moving average update with varying momentum, (3) per-layer selective reset guided by domain discrepancy scores, and (4) no adaptation baseline. Experiments were conducted across three source–target line pairs with domain gap sizes ranging from small to large, quantified by the A-distance proxy. Selective per-layer reset using a domain discrepancy threshold of 0.15 provided the best trade-off, recovering between 6.1 and 13.4 accuracy points with as few as 64 unlabelled target images. The method requires no retraining and adds negligible inference latency. Practical deployment guidelines are included.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-05239": {
+    "id": "SYN-PUB-05239",
+    "kind": "publication",
+    "title": "Sim-to-Real Transfer for SMT Inspection: Evaluating Synthetic Training Data Generated from 3D Component Models",
+    "text": "Sim-to-Real Transfer for SMT Inspection: Evaluating Synthetic Training Data Generated from 3D Component Models (2021, conference, Proceedings of the International Symposium on Machine Vision for Quality Assurance (MVQA)).\nAuthors: Valentina Bulatović (R0437); Marko Jovanović (outside co-author); Florin Dănilă (outside co-author); Petra Szekeres (outside co-author).\nKeywords: synthetic data; sim-to-real; data augmentation; 3D rendering; domain randomisation.\nAcquiring large labelled datasets from real production lines is slow and expensive. This study evaluates whether synthetic AOI images rendered from parametric 3D models of SMT components and solder joints can supplement or replace real training data. A renderer was configured with randomised lighting direction, camera angle perturbations of ±5°, and procedurally varied solder fillet shapes parameterised by contact angle and height drawn from production measurement distributions. Three experimental conditions were compared: training on synthetic only, training on real only (10,000 images), and training on combined data. On a real-image test set, synthetic-only training yielded 67.3% accuracy, real-only yielded 91.8%, and combined training reached 93.6%, suggesting a complementary role for synthetic data when real data volume is limited. Per-defect analysis shows synthetic data helps most for tombstoning, where real defect examples are underrepresented. Renderer parameter sensitivity is analysed.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-05240": {
+    "id": "SYN-PUB-05240",
+    "kind": "publication",
+    "title": "Few-Shot Learning for X-Ray Solder Joint Inspection: Benchmark and Baseline Results",
+    "text": "Few-Shot Learning for X-Ray Solder Joint Inspection: Benchmark and Baseline Results (2022, journal, Pattern Recognition and Machine Intelligence Letters).\nAuthors: Valentina Bulatović (R0437); Nikola Živković (outside co-author); Luca Ferretti (outside co-author); Marko Jovanović (outside co-author).\nKeywords: X-ray inspection; few-shot learning; BGA; MAML; benchmark dataset.\nX-ray imaging reveals internal voids, cold joints, and bridging defects invisible to optical AOI, but labelled X-ray datasets are even scarcer than optical ones due to equipment cost and radiation-safety constraints on continuous acquisition. This paper introduces a benchmark dataset of 9,800 2D X-ray images of BGAs and QFNs with per-joint labels verified by cross-sectional destructive analysis on a 5% sample. Six few-shot learning methods—prototypical networks, matching networks, MAML, relation networks, and two fine-tuning baselines—are evaluated in 5-way 1-shot, 5-shot, and 10-shot episodes. Across all episode configurations, MAML achieved the highest accuracy (up to 87.1% at 10-shot) but required 4.3× more meta-training computation than prototypical networks. The benchmark protocol, episode sampling code, and all baseline model weights are released under an open licence to facilitate comparisons.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-05241": {
+    "id": "SYN-PUB-05241",
+    "kind": "publication",
+    "title": "Domain-Adaptive Feature Alignment with Class-Conditional Prototypes for Multi-Line SMT Inspection",
+    "text": "Domain-Adaptive Feature Alignment with Class-Conditional Prototypes for Multi-Line SMT Inspection (2023, journal, IEEE Transactions on Industrial Informatics).\nAuthors: Valentina Bulatović (R0437); Miroslava Topalović (outside co-author); Aleksandar Kovačević (outside co-author); Tamara Horváth (outside co-author); Ioana Brânzei (outside co-author).\nKeywords: domain adaptation; Wasserstein distance; class-conditional prototypes; multi-line deployment; feature alignment.\nThis paper proposes a domain adaptation method that aligns feature distributions across multiple SMT production lines while preserving class-discriminative structure. The approach maintains a set of class-conditional prototype vectors updated online from labelled source data and unlabelled target batches. Alignment is enforced by minimising the Wasserstein distance between source and target prototype neighborhoods rather than aligning marginal distributions globally, which avoids collapsing class boundaries. Experiments span five source–target line pair combinations with varying degrees of domain gap. The method achieves mean accuracy of 91.2% across target lines compared to 88.7% for adversarial domain adaptation and 84.3% for no adaptation. The prototype update mechanism requires no additional labelled target samples. Computational overhead at inference is under 3 ms per image on the test GPU. An ablation study examines the sensitivity to prototype momentum and Wasserstein regularisation weight.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-05242": {
+    "id": "SYN-PUB-05242",
+    "kind": "publication",
+    "title": "Few-Shot and Transfer Learning for Visual Inspection in Electronics Manufacturing",
+    "text": "Few-Shot and Transfer Learning for Visual Inspection in Electronics Manufacturing (2024, book chapter, Advances in Deep Learning for Industrial Quality Systems, edited volume, Springer).\nAuthors: Valentina Bulatović (R0437); Dragan Milošević (outside co-author); Luca Ferretti (outside co-author).\nKeywords: survey; few-shot learning; transfer learning; visual inspection; electronics manufacturing.\nThis book chapter surveys the application of few-shot learning and transfer learning to automated visual inspection tasks in electronics manufacturing, with a focus on PCB assembly and SMT processes. The text is structured around three themes: (i) the taxonomy of data-scarcity scenarios that arise in production—new product introductions, rare defect classes, equipment changeovers—and how each maps to a different learning problem; (ii) a review of published methods categorised by inductive bias and data requirement; and (iii) practical implementation considerations including dataset construction, annotation strategies, and calibration of deployed models. Results from the authors' own production-environment studies are used as running examples throughout. The chapter concludes with an analysis of open problems, including the lack of standardised benchmarks, the treatment of class imbalance in meta-learning episodes, and the integration of inspection models into closed-loop process control systems.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-05243": {
+    "id": "SYN-PUB-05243",
+    "kind": "publication",
+    "title": "Continual Learning Strategies for SMT Inspection Models Facing Gradual Component Portfolio Changes",
+    "text": "Continual Learning Strategies for SMT Inspection Models Facing Gradual Component Portfolio Changes (2025, conference, Proceedings of the International Conference on Quality and Reliability in Intelligent Manufacturing Systems (QRIMS)).\nAuthors: Marko Jovanović (outside co-author); Valentina Bulatović (R0437); Nikola Živković (outside co-author).\nKeywords: continual learning; catastrophic forgetting; SMT inspection; incremental learning; production deployment.\nSMT inspection systems must cope with gradual portfolio changes as product lines evolve: new component packages are introduced, old ones are retired, and existing defect distributions shift with supplier changes. This paper evaluates five continual learning strategies—elastic weight consolidation, progressive neural networks, replay buffers, learning-without-forgetting, and a fine-tuning lower bound—on a longitudinal dataset spanning 18 months of production from a single factory, covering 31 incremental data release events. Metrics include accuracy on the current task, backwards transfer (forgetting), and forward transfer to new classes. Replay-based methods controlled forgetting most effectively, keeping backwards transfer loss below 3.1% across all event sequences, but required a memory buffer storing 4.8% of historical images. EWC degraded on later tasks when the number of accumulated constraints grew large. The study provides a timeline-respecting evaluation protocol that avoids leaking future data into earlier training periods.",
+    "researcherIds": [
+      "R0437"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-05245": {
+    "id": "SYN-PUB-05245",
+    "kind": "publication",
+    "title": "Continuous activity recognition under open-set conditions: rejecting unknown classes in wrist IMU streams",
+    "text": "Continuous activity recognition under open-set conditions: rejecting unknown classes in wrist IMU streams (2026, conference, Proceedings of the European Conference on Wearable Computing and Sensing (ECWCS)).\nAuthors: Svetlana Kapor (R1033); Luka Cvejić (outside co-author); Valentina Bulatović (R0437); Radovan Ðorić (outside co-author).\nKeywords: open-set recognition; out-of-distribution detection; activity recognition; wrist IMU; edge deployment.\nMost deployed activity recognition models operate under the closed-set assumption, meaning every inference window is assigned to one of the training classes. In practice, wrist-worn devices encounter movement patterns absent from training data. This paper evaluates four open-set rejection strategies—softmax thresholding, OpenMax, energy-based scoring, and a lightweight prototype-distance classifier—applied to a 1-D depthwise-separable CNN. The evaluation uses a dataset of ten known activities augmented with six unknown activity classes recorded from 20 additional subjects, totalling 31 hours. AUROC for distinguishing known from unknown windows ranges from 0.76 (softmax threshold) to 0.88 (energy-based scoring). Prototype-distance rejection achieves AUROC 0.86 with 4% lower known-class accuracy cost than energy scoring and adds only 6 KB of RAM overhead, making it suitable for Cortex-M deployment. Rejection thresholds calibrated at 5% false-rejection rate on a validation set are provided.",
+    "researcherIds": [
+      "R1033",
+      "R0437"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-05512": {
+    "id": "SYN-PUB-05512",
+    "kind": "publication",
+    "title": "Transfer Learning from a Spectral CNN Trained on Synthetic Datacubes to Real Conveyor Data",
+    "text": "Transfer Learning from a Spectral CNN Trained on Synthetic Datacubes to Real Conveyor Data (2019, journal, Journal of Chemometrics and Intelligent Laboratory Systems).\nAuthors: Aleksandra Đorđević (outside co-author); Filip Balogh (outside co-author); Jana Turčanová (R0463); Andrea Krstić (R0521).\nKeywords: transfer learning; synthetic data; Monte Carlo simulation; CNN; domain adaptation.\nLabelling large hyperspectral datasets for training convolutional classifiers is expensive. This paper explores whether a CNN trained entirely on physically simulated spectral datacubes — generated from measured pure-material spectra combined with a Monte Carlo optical mixing model — can be fine-tuned with a small number of real labels to achieve competitive accuracy on a six-class polymer sorting task. The simulated training set comprised 50 000 synthetic spectra per class; fine-tuning used 200 real labelled spectra per class collected on a laboratory conveyor. After fine-tuning, the model reached 95.2% accuracy on a 9 000-sample real test set, compared to 97.1% for a fully supervised baseline trained on 2 000 real labels per class and 78.4% for zero-shot transfer without fine-tuning. Model size was 1.2 M parameters. Inference ran at 3 200 spectra/s on a Jetson Xavier NX. The simulation pipeline and model architecture are made publicly available.",
+    "researcherIds": [
+      "R0463",
+      "R0521"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-05834": {
+    "id": "SYN-PUB-05834",
+    "kind": "publication",
+    "title": "Detekcija grešaka adhezije slojeva u FDM procesu primenom statičkih kamera i pragova intenziteta",
+    "text": "Detekcija grešaka adhezije slojeva u FDM procesu primenom statičkih kamera i pragova intenziteta (2012, conference, Zbornik radova 3. nacionalne konferencije o mehatronici i robotici, Beograd).\nAuthors: Miroslav Đurić (outside co-author); Olivera Bošković (R0531); Saša Kosanović (R0496); Spasoje Petrović (R0868); Tatjana Vulić (outside co-author).\nKeywords: FDM; detekcija grešaka; segmentacija; mašinski vid; PLA.\nU ovom radu ispitana je mogućnost detekcije grešaka adhezije između slojeva u procesu modeliranja topljenim depozitom (FDM) korišćenjem jedne stacionarne USB kamere rezolucije 5 MP i jednostavnih algoritama segmentacije zasnovanih na pragu intenziteta. Eksperimenti su sprovedeni na uzorcima od PLA materijala štampanim na kućnom FDM štampaču modifikovanom za prihvat kamere. Prikupljeno je 840 slika slojeva, od kojih je 23% sadržalo vidljive greške odvajanja. Rezultati su pokazali da pragovi intenziteta u sivim tonovima postižu tačnost od svega 61% pri detekciji grešaka, što ukazuje na nedovoljnost prostih metoda segmentacije u uslovima varijabilnog osvetljenja i refleksije filamenata. Rad definiše referentni skup podataka i metodologiju anotacije koji su korišćeni u kasnijim studijama grupe, te identifikuje ključne izvore lažno pozitivnih i lažno negativnih rezultata kao što su senke usled glave štampača i nejednoličan sjaj materijala.",
+    "researcherIds": [
+      "R0531",
+      "R0496",
+      "R0868"
+    ],
+    "year": 2012
+  },
+  "SYN-PUB-05835": {
+    "id": "SYN-PUB-05835",
+    "kind": "publication",
+    "title": "Comparison of edge-detection filters for surface texture analysis in FDM-printed thermoplastic layers",
+    "text": "Comparison of edge-detection filters for surface texture analysis in FDM-printed thermoplastic layers (2014, journal, Journal of Manufacturing Measurement and Inspection).\nAuthors: Tatjana Vulić (outside co-author); Saša Kosanović (R0496); Andrej Horvat (outside co-author).\nKeywords: edge detection; FDM; surface texture; illumination; image processing.\nThis study systematically evaluates five classical edge-detection filters—Sobel, Prewitt, Laplacian of Gaussian, Canny, and Scharr—for characterising surface texture in thermoplastic layers produced by fused deposition modelling. A controlled dataset of 1,200 grayscale images was acquired under three lighting configurations (diffuse, directional, and co-axial) using a monochrome camera mounted perpendicular to the build platform. Ground truth labels were assigned by two independent operators and reconciled through majority vote. Canny filtering under co-axial illumination yielded the highest F1 score of 0.74 for delamination boundary localisation, outperforming the next best method (Scharr, F1 = 0.69) by a statistically significant margin (p < 0.01, paired t-test). Directional lighting consistently degraded all methods by introducing asymmetric shadow artefacts. The findings provide practical guidance for illumination setup in in-situ monitoring rigs and establish a reproducible baseline for subsequent machine-learning approaches.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2014
+  },
+  "SYN-PUB-05836": {
+    "id": "SYN-PUB-05836",
+    "kind": "publication",
+    "title": "Automatska klasifikacija grešaka u FDM slojevima primenom konvolucionih neuronskih mreža na malim skupovima podataka",
+    "text": "Automatska klasifikacija grešaka u FDM slojevima primenom konvolucionih neuronskih mreža na malim skupovima podataka (2016, conference, Zbornik radova međunarodne konferencije ICIST, Kopaonik).\nAuthors: Saša Kosanović (R0496); Miroslav Đurić (outside co-author); Petra Kovačević (outside co-author).\nKeywords: CNN; klasifikacija grešaka; FDM; mali skupovi podataka; augmentacija.\nRad istražuje primenu konvolucionih neuronskih mreža (CNN) za klasifikaciju četiri kategorije grešaka u slojevima FDM štampe: potpuna adhezija, parcijalno odvajanje, warpingа i void. Skup podataka obuhvata 3.200 označenih isečaka slika dimenzija 64×64 piksela prikupljenih in-situ tokom štampe 18 različitih geometrija. Ispitane su tri arhitekture: plitka CNN sa tri konvoluciona sloja, prilagođena LeNet varijanta i jednostavna rezidijalna mreža. Obuka je sprovedena na 70% podataka, validacija na 15% i testiranje na 15%. Rezidualna mreža je dostigla tačnost od 88,4% na testnom skupu, a plitka CNN svega 74,1%. Analiza konfuzione matrice pokazuje da su greške tipa void najtežje za detekciju zbog vizuelne sličnosti sa senkom ekstrudera. Rad naglašava važnost augmentacije podataka rotacijom i horizontalnim preslikavanjem pri radu s ograničenim skupovima.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-05837": {
+    "id": "SYN-PUB-05837",
+    "kind": "publication",
+    "title": "Transfer learning from optical inspection datasets to FDM layer monitoring: a feasibility study",
+    "text": "Transfer learning from optical inspection datasets to FDM layer monitoring: a feasibility study (2018, journal, International Journal of Advanced Manufacturing Research).\nAuthors: Saša Kosanović (R0496); Dragan Simić (outside co-author); Lena Brückner (outside co-author); Nikola Radović (outside co-author).\nKeywords: transfer learning; defect detection; FDM; CNN; real-time monitoring.\nPublicly available image datasets from printed circuit board (PCB) and textile defect inspection contain large numbers of labelled anomaly images and share certain visual characteristics with surface defects in FDM-printed layers. This study investigates whether CNN models pre-trained on such heterogeneous inspection data can be fine-tuned effectively for FDM layer-adhesion defect detection. Six source dataset configurations were tested, ranging from single-domain PCB data to a mixed corpus of 42,000 images. Fine-tuning was performed on an FDM-specific set of 2,800 images using three frozen-layer strategies. The best configuration—pre-training on a mixed corpus with the first four convolutional blocks frozen—achieved an area under the ROC curve of 0.91 on held-out FDM data, compared to 0.83 for training from scratch on the same data. Inference time per layer image was 14 ms on a GPU and 210 ms on CPU, both compatible with real-time monitoring at standard FDM print speeds. The study demonstrates the practical value of cross-domain transfer even when source and target visual domains are only loosely related.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2018
+  },
+  "SYN-PUB-05838": {
+    "id": "SYN-PUB-05838",
+    "kind": "publication",
+    "title": "Embedded single-board-computer platform for real-time CNN inference in FDM printer monitoring",
+    "text": "Embedded single-board-computer platform for real-time CNN inference in FDM printer monitoring (2019, conference, Proceedings of the 11th International Symposium on Intelligent Manufacturing Systems, Novi Sad).\nAuthors: Saša Kosanović (R0496); Bojan Marković (outside co-author); Aleksandar Tešić (outside co-author).\nKeywords: embedded inference; SBC; quantisation; FDM monitoring; real-time.\nDeploying convolutional neural network inference on embedded hardware is essential for cost-effective in-situ monitoring in industrial FDM printers. This paper describes the design, implementation, and evaluation of a monitoring module based on a single-board computer (SBC) with an attached neural processing unit. A ResNet-18 architecture, quantised to 8-bit integer weights, was deployed on the module and evaluated on a stream of 416×416 pixel images captured at one frame per completed layer. On a test sequence of 6,400 layer images, the embedded system achieved 91.2% accuracy for the binary delamination/no-delamination task at a throughput of 4.3 frames per second, within the latency budget imposed by typical layer completion times. Power consumption during inference was 3.8 W. The module communicates defect alerts to the printer controller via a serial interface, enabling automatic pause-and-notify behaviour. Bill-of-materials cost is estimated at €47 per unit at low-volume production.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2019
+  },
+  "SYN-PUB-05840": {
+    "id": "SYN-PUB-05840",
+    "kind": "publication",
+    "title": "Anomaly detection in FDM using autoencoder networks trained exclusively on defect-free layer images",
+    "text": "Anomaly detection in FDM using autoencoder networks trained exclusively on defect-free layer images (2021, journal, Journal of Quality Engineering in Advanced Manufacturing).\nAuthors: Saša Kosanović (R0496); Dragan Simić (outside co-author); Olivera Bošković (R0531); Lena Brückner (outside co-author).\nKeywords: autoencoder; unsupervised anomaly detection; FDM; reconstruction error; cross-printer.\nStandard supervised defect classifiers require large labelled datasets of both normal and anomalous samples. In many production settings, defective prints are rare and costly to produce intentionally. This paper proposes an unsupervised approach using a convolutional autoencoder trained exclusively on 9,600 images of defect-free FDM layers from four different printer models. During inference, reconstruction error is computed per image patch; patches exceeding a threshold calibrated on a held-out normal validation set are flagged as anomalous. On an independent test set of 1,200 images containing five defect categories, the method achieved a detection rate of 84.7% at a false positive rate of 6.3%. Performance degraded by less than 2 percentage points when the model trained on one printer was applied to a different printer of the same manufacturer, suggesting acceptable cross-printer generalisation. The approach reduces annotation burden substantially while maintaining practically useful detection performance.",
+    "researcherIds": [
+      "R0496",
+      "R0531"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-05841": {
+    "id": "SYN-PUB-05841",
+    "kind": "publication",
+    "title": "Closed-loop extrusion-rate correction driven by in-situ CNN defect signals in FDM",
+    "text": "Closed-loop extrusion-rate correction driven by in-situ CNN defect signals in FDM (2022, journal, Additive Manufacturing Process Engineering).\nAuthors: Saša Kosanović (R0496); Bojan Marković (outside co-author); Aleksandar Tešić (outside co-author); Matej Oblak (outside co-author).\nKeywords: closed-loop control; extrusion rate; FDM; CNN feedback; tensile strength.\nThis study presents and evaluates a feedback control strategy that adjusts the extrusion multiplier of an FDM printer in response to defect signals generated by a deployed CNN monitor. The controller reduces the extrusion rate by 2% increments when delamination is detected on two or more consecutive layers, and restores the nominal rate when three consecutive clean layers are observed. Experiments were conducted on an open-architecture FDM platform with firmware modified to accept serial commands from the monitoring module. Sixty-four multi-layer prints of standardised tensile-test coupons in PETG were produced under the closed-loop condition and compared with 64 prints at fixed nominal settings. The closed-loop group showed a 31% reduction in measured delamination area assessed by post-print cross-section imaging and a 9% improvement in mean tensile strength at break. No statistically significant difference in total print time was observed. The work demonstrates the viability of CNN-driven closed-loop process control without requiring a detailed process model.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-05842": {
+    "id": "SYN-PUB-05842",
+    "kind": "publication",
+    "title": "Višemodalni pristup praćenju kvaliteta FDM štampe: kombinovanje vizuelnih i akustičnih signala",
+    "text": "Višemodalni pristup praćenju kvaliteta FDM štampe: kombinovanje vizuelnih i akustičnih signala (2023, conference, Zbornik radova 15. konferencije o inteligentnim sistemima i računarskoj inteligenciji, Subotica).\nAuthors: Jovana Filipović (outside co-author); Saša Kosanović (R0496); Radomír Šimánek (outside co-author).\nKeywords: višemodalno praćenje; akustična emisija; MFCC; FDM; spajanje modaliteta.\nOvaj rad istražuje da li se akustična emisija, snimana mikrofonom postavljenim na okvir štampača, može kombinovati s vizuelnim signalima kamere kako bi se povećala tačnost detekcije grešaka u odnosu na pristup koji se oslanja samo na jedan modalitet. Prikupljeni su simultani audio i video podaci tokom 120 višeslojnih štampi uz namerno unošenje četiri vrste grešaka. Akustični signal je segmentiran na prozore od 0,5 s i opisan melodičnim koeficijentima kepstra (MFCC). Vizuelne karakteristike su dobijene iz prethodno opisane CNN arhitekture. Srednje i kasno spajanje oba modaliteta ispitano je u poređenju s jednomodalnim baznim linijama. Kasno spajanje s naučenim vektorom težina postiglo je makro F1 od 0,89 u poređenju s 0,82 (samo vizuelno) i 0,71 (samo akustično). Rezultati sugerišu da akustični modalitet doprinosi naročito pri detekciji klizanja filamenata, koje je teško vizuelno razlikovati od normalnog površinskog sjaja.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-05843": {
+    "id": "SYN-PUB-05843",
+    "kind": "publication",
+    "title": "Benchmark dataset for in-situ FDM layer defect detection: acquisition protocol, annotation guidelines, and baseline results",
+    "text": "Benchmark dataset for in-situ FDM layer defect detection: acquisition protocol, annotation guidelines, and baseline results (2024, journal, Data in Manufacturing and Process Engineering).\nAuthors: Saša Kosanović (R0496); Dragan Simić (outside co-author); Lena Brückner (outside co-author); Cristian Moldovan (outside co-author); Radomír Šimánek (outside co-author).\nKeywords: benchmark dataset; FDM; layer defects; annotation; mean average precision.\nThe absence of a standardised, publicly available image dataset has hampered reproducible comparison of in-situ monitoring methods for fused deposition modelling. This paper describes FDMLayerBench, a dataset of 18,400 annotated layer images collected across six printer models, four thermoplastic materials, and twelve print geometries, under three controlled illumination conditions. Defect categories follow a taxonomy of seven types defined in consultation with manufacturing quality engineers. Inter-annotator agreement, measured by Fleiss' kappa, reached 0.81 for major categories and 0.63 for subcategories. Baseline results are reported for five published CNN architectures evaluated under a standardised five-fold cross-validation protocol. The best-performing baseline (a lightweight ResNet variant) achieved a mean average precision of 0.79 across all defect categories. The dataset, annotation tool, and evaluation scripts are released under an open licence to support community benchmarking. Known limitations include an over-representation of PLA material and limited variation in printer manufacturers.",
+    "researcherIds": [
+      "R0496"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-05844": {
+    "id": "SYN-PUB-05844",
+    "kind": "publication",
+    "title": "Lightweight attention-augmented CNN for on-device FDM defect localisation with limited labelled data",
+    "text": "Lightweight attention-augmented CNN for on-device FDM defect localisation with limited labelled data (2026, journal, IEEE Transactions on Industrial Machine Vision).\nAuthors: Saša Kosanović (R0496); Aleksandra Nešić (outside co-author); Filip Đorđević (R1034); Miloš Jokić (R0731); Matej Oblak (outside co-author).\nKeywords: attention mechanism; semi-supervised learning; embedded CNN; defect localisation; FDM.\nIndustrial FDM monitoring deployments often face constraints in labelled data volume and computational resources simultaneously. This paper proposes a CNN architecture with a lightweight channel-and-spatial attention module inserted after the third convolutional block, designed to run on embedded hardware while matching the localisation accuracy of heavier models. The architecture has 1.4 million parameters, compared to 11.2 million for the ResNet-18 baseline. Training used a semi-supervised strategy combining 600 labelled and 4,800 unlabelled images via consistency regularisation. On the FDMLayerBench test partition, the proposed model achieved a mean intersection over union of 0.73 for defect region localisation, one point below ResNet-18 (0.74), while reducing inference time from 14 ms to 6 ms on the same embedded hardware. Ablation experiments confirm that the attention module contributes 3.1 points of mean IoU over an equivalent model without attention. Failure cases are concentrated in defect boundaries and thin delamination lines narrower than four pixels.",
+    "researcherIds": [
+      "R0496",
+      "R1034",
+      "R0731"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-05962": {
+    "id": "SYN-PUB-05962",
+    "kind": "publication",
+    "title": "Benchmarking Seven Spectral Classifiers for Six-Class Polymer Sorting Under Industrial Noise Conditions",
+    "text": "Benchmarking Seven Spectral Classifiers for Six-Class Polymer Sorting Under Industrial Noise Conditions (2024, journal, Journal of Analytical and Applied Spectroscopy).\nAuthors: Aleksandra Đorđević (outside co-author); Nikola Jeremić (outside co-author); Corinna Wehner (outside co-author); Andrea Krstić (R0521); Andrea Kuzmanović (R0506).\nKeywords: benchmarking; 1-D CNN; transformer; industrial noise; label noise; open dataset.\nPublished accuracy figures for NIR polymer classifiers are often obtained under controlled laboratory conditions that do not reflect industrial environments. This paper presents a systematic benchmark of seven classifiers — LDA, k-NN, SVM with RBF kernel, random forest, gradient boosting, a 1-D CNN, and a transformer with 4 attention heads — evaluated on a dataset of 72 000 spectra collected on an operational pilot line with realistic noise sources: vibration, conveyor belt reflectance variation, ambient temperature cycling (18–34 °C), and 6% label noise. Data were split by acquisition day to prevent information leakage. Under these conditions, the 1-D CNN achieved the highest macro F1 of 0.944, followed by the transformer at 0.938 and SVM at 0.931. LDA dropped to 0.871. Training time, inference latency, and memory footprint are reported alongside accuracy. The dataset and evaluation scripts are released under an open licence.",
+    "researcherIds": [
+      "R0521",
+      "R0506"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-06116": {
+    "id": "SYN-PUB-06116",
+    "kind": "publication",
+    "title": "Reflectance Characteristics of Common Thermoplastics in the 1000–2200 nm Range Under Conveyor Illumination Conditions",
+    "text": "Reflectance Characteristics of Common Thermoplastics in the 1000–2200 nm Range Under Conveyor Illumination Conditions (2010, journal, Journal of Spectroscopy and Sensor Systems).\nAuthors: Miroslav Tešić (outside co-author); Helmut Brandauer (outside co-author); Andrea Krstić (R0521).\nKeywords: thermoplastics; NIR reflectance; conveyor imaging; linear discriminant analysis; contamination.\nThis study characterises the diffuse reflectance spectra of six common thermoplastics — HDPE, LDPE, PP, PET, PVC, and PS — measured on a laboratory conveyor rig under halogen line illumination at belt speeds of 0.5–2.0 m/s. A line-scan InGaAs camera with a spectral resolution of 10 nm was used to acquire 1200 spectra per material class under controlled and variable soiling conditions. Spectral preprocessing included standard normal variate correction and Savitzky–Golay smoothing. Principal component analysis showed that the first three components captured 94.7% of interclass variance for clean samples, dropping to 81.3% for samples with 3% surface contamination by mass. A linear discriminant classifier trained on clean data achieved 97.1% accuracy on clean test samples and 88.4% on contaminated ones. The results establish baseline spectral signatures and identify the 1650–1750 nm window as most discriminating for polyolefin separation, providing a practical reference dataset for subsequent classifier development.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2010
+  },
+  "SYN-PUB-06117": {
+    "id": "SYN-PUB-06117",
+    "kind": "publication",
+    "title": "Effect of Belt Speed on Spectral Data Quality in Line-Scan NIR Imaging of Mixed Plastic Flakes",
+    "text": "Effect of Belt Speed on Spectral Data Quality in Line-Scan NIR Imaging of Mixed Plastic Flakes (2012, conference, Proceedings of the 9th International Conference on Automated Optical Inspection, Zagreb).\nAuthors: Dragana Vuković (outside co-author); Andrea Krstić (R0521).\nKeywords: belt speed; integration time; SNR; line-scan; PET; PP.\nIncreasing throughput on automated sorting lines requires higher belt speeds, which reduce per-pixel integration time and degrade signal-to-noise ratio in line-scan NIR systems. This work quantifies the relationship between belt speed (0.3–3.5 m/s), integration time (0.1–2.0 ms), and classification accuracy for a binary PET/PP discrimination task using a 256-element InGaAs array. At 2.5 m/s with 0.4 ms integration, SNR fell by 38% relative to the 0.5 m/s reference, and classification accuracy dropped from 96.8% to 89.1% using a fixed LDA model. Adaptive gain scheduling and dark-current correction recovered accuracy to 94.3%. Experiments were conducted with 2 400 flake samples across three size classes (20–50 mm, 50–80 mm, 80–120 mm). The paper provides empirical guidelines for integration-time selection as a function of belt velocity and flake geometry, directly applicable to industrial line design.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2012
+  },
+  "SYN-PUB-06118": {
+    "id": "SYN-PUB-06118",
+    "kind": "publication",
+    "title": "Partial Least Squares Regression for Additive Content Estimation in Recycled Polyolefin Streams",
+    "text": "Partial Least Squares Regression for Additive Content Estimation in Recycled Polyolefin Streams (2013, journal, Polymer Testing and Analysis).\nAuthors: Sanja Popović (outside co-author); Lukas Mayer (outside co-author); Andrea Krstić (R0521).\nKeywords: PLSR; additive quantification; polyolefin; flame retardants; recycling quality.\nRecycled polyolefin batches often contain unknown quantities of flame retardants, plasticisers, and colorants that alter NIR absorption profiles and reduce sorting purity. This study applies partial least squares regression (PLSR) to estimate the concentration of two common additives — decabromodiphenyl ether (0–3% w/w) and dioctyl phthalate (0–5% w/w) — from NIR spectra of HDPE pellet samples. A calibration set of 320 samples with laboratory-verified additive concentrations was used to build PLSR models with 8 and 6 latent variables, respectively. Cross-validated RMSECV values were 0.18% for the brominated additive and 0.31% for the plasticiser. Prediction on an independent set of 80 samples gave RMSEP of 0.22% and 0.38%. The models were robust to pellet colour variation after scatter correction but degraded when carbon-black-pigmented samples exceeded 5% of the batch. Practical implications for quality-control integration in recycling facilities are discussed.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2013
+  },
+  "SYN-PUB-06119": {
+    "id": "SYN-PUB-06119",
+    "kind": "publication",
+    "title": "GPU-Accelerated Spectral Angle Mapping for Real-Time Polymer Classification at 2 m/s Belt Speed",
+    "text": "GPU-Accelerated Spectral Angle Mapping for Real-Time Polymer Classification at 2 m/s Belt Speed (2016, journal, Mechatronics and Real-Time Systems).\nAuthors: Nikola Jeremić (outside co-author); Ivan Horvat (outside co-author); Andrea Krstić (R0521).\nKeywords: spectral angle mapping; GPU; Jetson; real-time; latency; ejector trigger.\nSpectral angle mapping (SAM) is computationally straightforward but rarely benchmarked on embedded GPU hardware for industrial conveyor timing constraints. This paper implements SAM on an NVIDIA Jetson TX1 platform connected to a 320-pixel line-scan NIR camera operating at 1 000 lines/s. The processing pipeline — dark subtraction, flat-field correction, spectral angle computation against a 9-class reference library, and binary ejector trigger generation — was profiled for latency on batches of 1, 4, and 16 simultaneous spectral lines. End-to-end latency from line capture to trigger output was 1.8 ms for single-line mode and 4.1 ms for 16-line batch mode, both within the 8 ms actuation window at 2 m/s. Classification accuracy on 4 500 test flakes across six polymer types was 93.7%. Power consumption was 9.2 W, compatible with 24 V cabinet installation. The implementation is described with enough detail to enable replication.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2016
+  },
+  "SYN-PUB-06120": {
+    "id": "SYN-PUB-06120",
+    "kind": "publication",
+    "title": "Discriminating Black Plastics by Short-Wave NIR Spectroscopy: Carbon Black Interference and Mitigation Strategies",
+    "text": "Discriminating Black Plastics by Short-Wave NIR Spectroscopy: Carbon Black Interference and Mitigation Strategies (2017, journal, Sensors and Actuators B: Spectral Applications).\nAuthors: Petra Holzmann (outside co-author); Dragana Vuković (outside co-author); Bojan Simić (outside co-author); Andrea Krstić (R0521).\nKeywords: black plastics; carbon black; photoacoustics; time-resolved reflectance; LWIR extension.\nCarbon-black-pigmented plastics present a persistent challenge in NIR-based sorting because carbon black strongly absorbs across the entire NIR range, masking polymer-specific overtone bands. This study evaluates three mitigation strategies: (1) extension of the measurement window into the 2200–2500 nm long-wave NIR region where carbon black absorption is relatively lower, (2) photoacoustic excitation at 1064 nm with NIR emission detection, and (3) time-resolved reflectance using a pulsed laser to isolate subsurface signal. Experiments used 180 black-pigmented samples spanning PP, ABS, PA6, and PC with carbon black concentrations of 0.5–4.0% w/w. Long-wave NIR extension improved classification accuracy from 61.3% to 79.4% for the four-class task; photoacoustic detection reached 86.1% but required a 120 ms dwell time, incompatible with high-speed lines. Time-resolved reflectance achieved 82.7% at 12 ms dwell. Practical trade-offs between accuracy and throughput are quantified, and a hybrid sensor layout is proposed.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-06121": {
+    "id": "SYN-PUB-06121",
+    "kind": "publication",
+    "title": "Spatial Calibration of Line-Scan NIR Systems for Variable-Thickness Polymer Flakes on Moving Belts",
+    "text": "Spatial Calibration of Line-Scan NIR Systems for Variable-Thickness Polymer Flakes on Moving Belts (2020, conference, Proceedings of the 14th IFAC Symposium on Robot Control, Novi Sad).\nAuthors: Nikola Jeremić (outside co-author); Andrea Krstić (R0521).\nKeywords: spatial calibration; structured light; thickness correction; segmentation; geometric distortion.\nLine-scan NIR cameras acquire spectra along a single spatial axis perpendicular to belt motion. When flakes vary in thickness (1–12 mm), the focal plane offset shifts the effective pixel pitch and introduces geometric distortion in reconstructed hyperspectral images, degrading spatial segmentation prior to per-pixel classification. This paper proposes a structured-light height measurement module mounted upstream of the NIR camera to estimate per-flake thickness and apply a perspective correction to the spectral image in real time. A dataset of 600 flakes with ground-truth thickness measured by contact gauge was used to evaluate calibration accuracy; mean thickness error after correction was 0.4 mm. Integration with a SAM classifier improved segmentation IoU from 0.74 to 0.89 for flakes thicker than 6 mm. The additional processing latency introduced by the correction step was 0.9 ms on the Jetson Xavier platform.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-06122": {
+    "id": "SYN-PUB-06122",
+    "kind": "publication",
+    "title": "Online Drift Compensation in NIR Polymer Classifiers Using Unlabelled Production Data",
+    "text": "Online Drift Compensation in NIR Polymer Classifiers Using Unlabelled Production Data (2021, journal, Computers and Electronics in Industry).\nAuthors: Marija Lukić (outside co-author); Corinna Wehner (outside co-author); Aleksandra Đorđević (outside co-author); Andrea Krstić (R0521).\nKeywords: concept drift; kernel mean matching; unsupervised adaptation; production data; F1 maintenance.\nSpectral classifiers deployed on industrial sorting lines experience performance drift over weeks to months due to lamp ageing, lens fouling, and seasonal temperature variation. Periodic manual recalibration is costly and requires line downtime. This paper proposes an unsupervised drift compensation procedure based on kernel mean matching between batches of unlabelled in-production spectra and the original training distribution, updating the classifier's normalisation parameters without requiring new labelled samples. Experiments were conducted on a six-month operational log from a pilot sorting line processing post-consumer packaging, comprising 1.4 million spectra. Without compensation, macro-averaged F1 declined from 0.953 to 0.891 over 24 weeks. With monthly drift compensation triggered automatically when a distribution shift detector exceeded a threshold, F1 was maintained above 0.941 throughout. Computational overhead of the compensation step was less than 2 minutes on a standard industrial PC.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-06123": {
+    "id": "SYN-PUB-06123",
+    "kind": "publication",
+    "title": "Identification of PVC in Mixed Post-Consumer Rigids Using a Two-Stage NIR-Raman Decision Fusion Approach",
+    "text": "Identification of PVC in Mixed Post-Consumer Rigids Using a Two-Stage NIR-Raman Decision Fusion Approach (2022, journal, Resources, Conservation and Recycling).\nAuthors: Bojan Simić (outside co-author); Lukas Mayer (outside co-author); Tatjana Milošević (outside co-author); Andrea Krstić (R0521).\nKeywords: PVC detection; Raman spectroscopy; sensor fusion; decision fusion; contamination control.\nPVC contamination in polyolefin recycling streams causes hydrogen chloride emissions during reprocessing and must be removed to below 50 ppm. NIR sorting alone misclassifies PVC as PE at rates up to 4.2% due to spectral overlap near 1730 nm. This paper evaluates a two-stage approach in which a fast NIR pre-screen flags suspect objects for secondary laser Raman interrogation at 785 nm. The NIR stage operated at 2 m/s on a full-width belt; Raman interrogation was triggered only for the 8–12% of items flagged as ambiguous, with a 40 ms dwell. On a test set of 3 200 PVC and 4 800 polyolefin items, the two-stage system achieved PVC recall of 99.2% and precision of 97.8%, compared to 94.3% recall and 96.1% precision for NIR alone. Throughput reduction from Raman dwell was 6.3% at the tested PVC concentration. Cost implications of the additional sensor are discussed.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06124": {
+    "id": "SYN-PUB-06124",
+    "kind": "publication",
+    "title": "Estimating Recycled Content Fraction in Polymer Blends from NIR Spectra Using Conformal Prediction Intervals",
+    "text": "Estimating Recycled Content Fraction in Polymer Blends from NIR Spectra Using Conformal Prediction Intervals (2025, preprint, arXiv / TechRxiv preprint).\nAuthors: Andrea Krstić (R0521); Marija Lukić (outside co-author); Dragana Vuković (outside co-author).\nKeywords: recycled content; conformal prediction; PLSR; HDPE blend; prediction intervals.\nQuantifying the recycled content fraction in a polymer blend is commercially relevant for compliance with EU recycled content targets. This preprint presents a regression approach combining PLSR baseline estimates with conformal prediction to produce statistically valid prediction intervals rather than point estimates. A dataset of 480 HDPE/rHDPE blend samples with recycled content varying from 0 to 100% in 5% increments was prepared gravimetrically. The conformal prediction wrapper, calibrated on 96 samples, produced 90% prediction intervals with empirical coverage of 91.2% on the 120-sample test set. Interval width averaged 8.4 percentage points at 90% confidence. The method is model-agnostic and adds negligible computational cost. Preliminary results suggest that NIR alone can certify recycled content to ±5% only for blends below 30% or above 70% recycled material; intermediate fractions require supplementary measurement. Full data and code are available on the university repository.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-06125": {
+    "id": "SYN-PUB-06125",
+    "kind": "publication",
+    "title": "Multi-Line NIR Sensing for Orientation-Independent Classification of Elongated Plastic Profiles on High-Speed Conveyors",
+    "text": "Multi-Line NIR Sensing for Orientation-Independent Classification of Elongated Plastic Profiles on High-Speed Conveyors (2026, journal, IEEE Transactions on Instrumentation and Measurement).\nAuthors: Andrea Krstić (R0521); Bojan Simić (outside co-author); Péter Vásárhelyi (outside co-author); Aleksandra Đorđević (outside co-author).\nKeywords: multi-line sensing; elongated profiles; orientation independence; majority vote; PVC; sensor array.\nElongated polymer profiles such as window frame sections and pipe offcuts arrive on sorting conveyors at arbitrary orientations, causing single-line NIR measurements to sample only a narrow cross-section of the object and increasing misclassification for materials with spatially heterogeneous surface coatings. This study evaluates a sensor array of five parallel line-scan NIR cameras spaced 40 mm apart, with their outputs fused by a majority-vote scheme operating on per-object spectra aggregated across all five lines. Experiments used 1 100 elongated profiles across PVC, PP, and fibre-reinforced PA6, arriving at 1.8 m/s with randomised in-plane orientations. The five-line fusion system achieved 96.3% three-class accuracy, compared to 87.1% for the best single-line configuration. False-positive PVC detection rate fell from 3.8% to 0.7%, which is relevant given PVC removal targets. Hardware synchronisation, spatial co-registration of the five cameras, and the added cost relative to accuracy gain are analysed.",
+    "researcherIds": [
+      "R0521"
+    ],
+    "year": 2026
+  },
+  "SYN-PUB-06127": {
+    "id": "SYN-PUB-06127",
+    "kind": "publication",
+    "title": "Interpretable Health State Classification for Induction Motor Bearings Using Shapelet-Based Time-Series Features",
+    "text": "Interpretable Health State Classification for Induction Motor Bearings Using Shapelet-Based Time-Series Features (2025, journal, Journal of Intelligent Maintenance Systems).\nAuthors: Nemanja Đorđević (outside co-author); Jelena Matić (outside co-author); Andrea Krstić (R0521); Vladana Radić (R0822).\nKeywords: shapelets; interpretability; induction motor; bearing health state; time-series classification.\nBlack-box classifiers for bearing health state estimation are often difficult to validate for deployment in safety-relevant applications. This paper develops an interpretable classification approach based on time-series shapelets—short subsequences whose presence discriminates between health states—extracted from raw vibration waveforms recorded from induction motor bearings under four health states: healthy, early outer-race damage, advanced outer-race damage, and inner-race damage. Shapelet discovery was performed on a training set of 2,400 labelled 0.5-second waveforms. The five most discriminative shapelets achieved 91.3% five-fold cross-validation accuracy using a nearest-shapelet distance classifier. Each shapelet was linked back to physical signal morphology (impacts, modulation patterns) and confirmed by domain-expert inspection. Comparisons with a support vector machine operating on 24 handcrafted spectral features showed equivalent accuracy (91.8%) but the shapelet approach required no manual feature engineering. Shapelet visualisation is shown to facilitate explanation of individual classifications to maintenance technicians.",
+    "researcherIds": [
+      "R0521",
+      "R0822"
+    ],
+    "year": 2025
+  },
+  "SYN-PUB-06388": {
+    "id": "SYN-PUB-06388",
+    "kind": "publication",
+    "title": "Few-shot surface defect detection on reflective metal parts",
+    "text": "Few-shot surface defect detection on reflective metal parts (2024, journal, Journal of Industrial Vision).\nAuthors: Jovana Milovanović (outside co-author); Gregor Vesel (outside co-author); Nikola Stojanović (R0548); Tamara Đurić (outside co-author).\nDetecting surface defects on highly reflective metal components remains a significant challenge for automated visual inspection systems, primarily because specular reflections obscure subtle anomalies and corrupt standard feature representations. This paper presents a few-shot learning framework tailored specifically to reflective surfaces, combining a reflection-aware preprocessing pipeline with a prototypical network backbone trained on a curated set of metallic defect categories. A novel data augmentation strategy simulates varying illumination angles and reflection intensities, substantially increasing intra-class diversity without requiring large annotated datasets. The proposed method is evaluated on a newly introduced benchmark—ReflectDefect-M—comprising five metallic material types and twelve defect classes, collected in cooperation with regional SME manufacturing partners. Experimental results demonstrate that the framework achieves a mean average precision of 87.3% using only five support examples per defect class, outperforming seven competitive baselines by margins ranging from 4.1 to 11.6 percentage points. Ablation studies confirm the contribution of each pipeline stage. The work establishes a practical pathway for deploying few-shot defect detectors in small-batch production settings where collecting large labeled datasets is economically infeasible.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-06389": {
+    "id": "SYN-PUB-06389",
+    "kind": "publication",
+    "title": "Quantized detectors for real-time inspection on edge devices",
+    "text": "Quantized detectors for real-time inspection on edge devices (2023, conference, Embedded AI Conference).\nAuthors: Nikola Stojanović (R0548); Rastko Petrović (outside co-author); Lena Hofmann (outside co-author); Miloš Cvejić (outside co-author).\nReal-time visual inspection on embedded and edge hardware demands detectors that are simultaneously accurate and computationally lean. This paper investigates the application of post-training and quantization-aware training techniques to a family of convolutional defect detectors intended for deployment on low-power edge devices used in industrial conveyor-line inspection. We evaluate INT8 and mixed-precision INT4/INT8 quantization strategies across four detector architectures, measuring the trade-off between inference latency, memory footprint, and detection accuracy on three public industrial defect benchmarks. A structured pruning step preceding quantization is shown to recover accuracy losses for the most aggressive quantization settings. On a representative ARM Cortex-M55 target platform, the best-performing quantized detector achieves 34 frames per second with less than 2% mAP degradation relative to the full-precision baseline, satisfying the real-time constraint of most conveyor inspection scenarios. We further provide deployment guidelines and an open-source model-conversion toolkit compatible with common edge inference runtimes, lowering the barrier for practitioners in small and medium manufacturing enterprises to adopt AI-based inspection.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-06390": {
+    "id": "SYN-PUB-06390",
+    "kind": "publication",
+    "title": "Synthetic defect generation for visual quality control",
+    "text": "Synthetic defect generation for visual quality control (2022, journal, Machine Vision Applications Review).\nAuthors: Nikola Stojanović (R0548); Jovana Milovanović (outside co-author); Aleksandar Vuković (outside co-author); Petra Kovačević (outside co-author).\nThe scarcity of labeled defect images is a persistent bottleneck in training robust visual quality control models, particularly for rare or newly introduced defect types. This paper explores procedural and generative approaches to synthetic defect generation, proposing a unified pipeline that combines physically based rendering (PBR) with a conditional generative adversarial network (cGAN) fine-tuned on a small set of real defect exemplars. The pipeline produces photorealistic defect images across six categories—scratches, pits, cracks, stains, delamination, and inclusion—on both metallic and polymer substrates. A systematic evaluation protocol measures the downstream impact of synthetic augmentation on detection model performance using three standard industrial datasets. Models trained with a 70% synthetic / 30% real mixture achieve accuracy within 3.2% of fully supervised baselines trained on complete real datasets, while reducing annotation effort by approximately 80%. The study also benchmarks the realism of generated images using FID and a domain-expert perceptual rating study. The findings support synthetic data generation as a cost-effective strategy for bootstrapping quality control systems in low-data manufacturing environments.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06391": {
+    "id": "SYN-PUB-06391",
+    "kind": "publication",
+    "title": "Adaptive anomaly detection for multi-product assembly lines using one-class contrastive learning",
+    "text": "Adaptive anomaly detection for multi-product assembly lines using one-class contrastive learning (2024, journal, IEEE Transactions on Industrial Informatics).\nAuthors: Jovana Milovanović (outside co-author); Dragana Ilić (outside co-author); Nikola Stojanović (R0548); Stefan Brandt (outside co-author).\nKeywords: anomaly detection; one-class learning; contrastive learning; multi-product inspection; edge inference.\nModern assembly lines frequently switch between product variants, requiring inspection systems that adapt rapidly to new normal-appearance distributions without collecting defect examples in advance. This paper presents an adaptive one-class contrastive learning framework for unsupervised anomaly detection in multi-product settings. The approach uses a momentum-updated reference encoder and an online memory bank of normal embeddings that is refreshed at product changeover events, enabling the model to track appearance shifts without full retraining. A self-supervised pretext task based on synthetic local masking strengthens the encoder's sensitivity to subtle textural and structural anomalies. The framework is evaluated on a novel multi-variant industrial benchmark—PolyAssembly-7—covering seven polymer component types across four product families. It achieves an average AUROC of 93.1% across all variants and demonstrates adaptation in fewer than 50 unlabeled normal samples per changeover, outperforming five established one-class detection baselines. Inference runs at 28 fps on an NVIDIA Jetson edge module. The results highlight the viability of continual anomaly detection for flexible manufacturing without persistent human annotation effort.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2024
+  },
+  "SYN-PUB-06392": {
+    "id": "SYN-PUB-06392",
+    "kind": "publication",
+    "title": "Knowledge distillation for lightweight surface inspection models on heterogeneous edge hardware",
+    "text": "Knowledge distillation for lightweight surface inspection models on heterogeneous edge hardware (2023, journal, Journal of Real-Time Image Processing).\nAuthors: Nikola Stojanović (R0548); Rastko Petrović (outside co-author); Lena Hofmann (outside co-author).\nKeywords: knowledge distillation; edge computing; model compression; surface inspection; heterogeneous hardware.\nDeploying high-accuracy surface inspection models on heterogeneous edge hardware—spanning microcontrollers, FPGAs, and GPU-equipped single-board computers—requires models that balance computational cost with detection performance across very different hardware profiles. This paper proposes a hardware-aware knowledge distillation pipeline in which a large teacher network transfers representational knowledge to a suite of student architectures of varying capacities, each targeting a specific hardware tier. A novel attention-alignment distillation loss aligns intermediate feature maps at multiple scales, preserving fine-grained defect discriminability in the student networks. Experiments on three industrial surface inspection datasets show that the distilled lightweight students retain 95–98% of teacher mAP while reducing multiply-accumulate operations by 4× to 11× depending on the target hardware. We further present a hardware profiling methodology that automates student architecture selection given user-defined latency and accuracy constraints. The complete pipeline is released as an open-source toolkit, enabling non-expert practitioners to generate inspection-ready models for their specific edge deployment targets.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2023
+  },
+  "SYN-PUB-06393": {
+    "id": "SYN-PUB-06393",
+    "kind": "publication",
+    "title": "Domain randomization strategies for cross-industry transfer in visual defect detection",
+    "text": "Domain randomization strategies for cross-industry transfer in visual defect detection (2022, journal, Computer Vision and Image Understanding).\nAuthors: Nikola Stojanović (R0548); Petra Kovačević (outside co-author); Aleksandar Vuković (outside co-author); Marc Delacroix (outside co-author).\nKeywords: domain randomization; transfer learning; defect detection; synthetic data; industrial inspection.\nVisual defect detection models trained on one industrial domain often fail to generalize when transferred to a different material type, surface finish, or manufacturing process. This paper systematically investigates domain randomization as a transfer-enabling strategy, examining how randomization of texture, illumination, background clutter, and camera parameters during synthetic training data generation affects cross-domain transferability. A large-scale factorial experiment is conducted across six source-target domain pairs spanning metallic, ceramic, and textile substrates. Results show that targeted randomization of illumination direction and surface reflectance parameters yields the largest gains in target-domain detection accuracy, while excessive geometric randomization can degrade performance. Building on these findings, we propose an adaptive randomization curriculum that progressively increases domain diversity during training, guided by a domain-gap estimator computed from unlabeled target samples. The curriculum approach achieves a 6.8% average mAP improvement over static randomization across all transfer pairs, demonstrating a principled path toward generalizable industrial vision systems that require minimal target-domain labeling.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06394": {
+    "id": "SYN-PUB-06394",
+    "kind": "publication",
+    "title": "Temporal consistency regularization for video-based industrial anomaly detection",
+    "text": "Temporal consistency regularization for video-based industrial anomaly detection (2021, conference, International Conference on Machine Vision and Applications (ICMVA)).\nAuthors: Nikola Stojanović (R0548); Tamara Đurić (outside co-author); Ivana Radovanović (outside co-author).\nKeywords: anomaly detection; video inspection; temporal consistency; industrial vision; recurrent networks.\nFrame-level anomaly detectors applied to industrial video streams often produce temporally inconsistent predictions, flagging and clearing the same defect region across successive frames due to minor illumination or motion changes. This paper introduces a temporal consistency regularization scheme that enforces smooth anomaly score trajectories across video frames without requiring ground-truth temporal annotations. A recurrent scoring head aggregates frame-level embeddings over a short sliding window, and a consistency loss penalizes abrupt score oscillations that are inconsistent with the physical persistence of genuine defects. The approach is evaluated on a new video inspection dataset—ConveyorVID—capturing three product types under realistic factory floor conditions including vibration, partial occlusion, and varying conveyor speed. The regularized model reduces the false-positive rate by 31% and improves temporal F1 score by 8.4 points compared to a strong frame-level baseline, with a negligible increase in computational overhead. Qualitative results confirm that the detector maintains stable anomaly localization across frames, a property that is critical for downstream alarm-triggering logic in automated quality control systems.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-06396": {
+    "id": "SYN-PUB-06396",
+    "kind": "publication",
+    "title": "Active learning with model uncertainty sampling for efficient annotation in industrial inspection pipelines",
+    "text": "Active learning with model uncertainty sampling for efficient annotation in industrial inspection pipelines (2021, journal, International Journal of Advanced Manufacturing Technology).\nAuthors: Nikola Stojanović (R0548); Dragana Ilić (outside co-author); Gregor Vesel (outside co-author).\nKeywords: active learning; annotation efficiency; defect detection; model uncertainty; industrial inspection.\nLabeling defect images in industrial settings is expensive and requires domain expertise, making the efficient allocation of annotation effort a critical practical concern. This paper proposes an active learning framework for industrial defect detection that uses ensemble-based model uncertainty to prioritize the most informative unlabeled samples for expert annotation. A Monte Carlo dropout ensemble estimates epistemic uncertainty at the instance and region levels, and a diversity-aware sampling strategy prevents the selection of redundant near-duplicate crops from the same production batch. The framework is integrated into a realistic annotation pipeline validated with two industrial partners producing metal stampings and injection-molded plastic components. Across both domains, the active learning approach achieves 90% of fully supervised baseline performance using only 35% of the total available labeled data, reducing annotation cost by an estimated 58% in practitioner time. A user study with three quality control engineers confirms that the uncertainty-guided sample ordering significantly reduces the cognitive load of the labeling process compared to random sample presentation.",
+    "researcherIds": [
+      "R0548"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-06937": {
+    "id": "SYN-PUB-06937",
+    "kind": "publication",
+    "title": "Gradient-based edge detection performance on low-contrast food packaging under variable conveyor illumination",
+    "text": "Gradient-based edge detection performance on low-contrast food packaging under variable conveyor illumination (2015, journal, Journal of Manufacturing and Automation Research).\nAuthors: Ksenija Ranković (R0602); Miroslav Tešić (outside co-author); Ivan Marković (R0840); Dragana Vuković (outside co-author).\nKeywords: edge detection; conveyor vision; illumination; embedded ARM; food packaging inspection.\nThis paper evaluates four gradient-based edge detectors—Sobel, Prewitt, Scharr and a tuned Canny implementation—applied to grey-scale images of plastic food containers acquired on a laboratory conveyor belt running at speeds between 0.3 and 1.2 m/s. Illumination was varied systematically using diffuse dome lighting, coaxial lighting and combined side-plus-coaxial setups. A dataset of 4 200 images was collected across six packaging types. Edge continuity, F1 score against manually annotated ground truth, and processing latency on an ARM Cortex-A9 processor were measured. The Scharr operator combined with adaptive histogram equalisation achieved the highest mean F1 of 0.83 at 1.0 m/s under coaxial illumination, at a frame throughput of 47 fps. Diffuse dome lighting reduced F1 variance across packaging colours by 18% compared with single-source setups. The results provide practical guidance for lighting selection in low-budget inline inspection cells without dedicated machine-vision controllers.",
+    "researcherIds": [
+      "R0602",
+      "R0840"
+    ],
+    "year": 2015
+  },
+  "SYN-PUB-06938": {
+    "id": "SYN-PUB-06938",
+    "kind": "publication",
+    "title": "Localisation of 1D barcodes on cylindrical beverage cans using projective rectification and adaptive thresholding",
+    "text": "Localisation of 1D barcodes on cylindrical beverage cans using projective rectification and adaptive thresholding (2017, conference, International Conference on Industrial Automation and Vision Systems (IAVS)).\nAuthors: Miroslav Tešić (outside co-author); Ksenija Ranković (R0602); Lucia Ferrarini (outside co-author).\nKeywords: barcode localisation; cylindrical surface; projective rectification; adaptive thresholding; GigE camera.\n(no abstract)",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2017
+  },
+  "SYN-PUB-06939": {
+    "id": "SYN-PUB-06939",
+    "kind": "publication",
+    "title": "Pose estimation accuracy for randomly oriented small metallic parts on a moving belt using structured-light depth sensing",
+    "text": "Pose estimation accuracy for randomly oriented small metallic parts on a moving belt using structured-light depth sensing (2020, journal, Robotics and Flexible Manufacturing Systems).\nAuthors: Ksenija Ranković (R0602); Dragana Vuković (outside co-author); Sándor Fekete (outside co-author).\nKeywords: pose estimation; structured light; metallic parts; point-pair features; robotic grasping.\nThis study assesses the suitability of a low-cost structured-light depth sensor for estimating the 6-DOF pose of small metallic workpieces on a conveyor belt moving at 0.4 m/s. Eighty part instances across four geometry classes were tested; each class included reflective surfaces that are known to produce depth artefacts in time-of-flight and structured-light sensors. A preprocessing step using infrared-band filtering and surface normal smoothing reduced invalid pixel ratios from 31% to 9%. Pose estimation used a point-pair feature algorithm with a RANSAC verification stage. Mean position error was 1.8 mm and mean orientation error was 2.3° over 2 400 trials. A downstream six-axis collaborative arm successfully grasped parts in 91.4% of trials at the given belt speed. The paper quantifies the dependence of pose error on part shininess measured by a calibrated reflectance standard and discusses the minimum acceptable surface roughness for reliable sensing.",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2020
+  },
+  "SYN-PUB-06940": {
+    "id": "SYN-PUB-06940",
+    "kind": "publication",
+    "title": "Synchronisation of image acquisition and robot trajectory planning in a dual-arm pick-and-place cell",
+    "text": "Synchronisation of image acquisition and robot trajectory planning in a dual-arm pick-and-place cell (2021, conference, European Conference on Robotics and Mechatronics (ECRM)).\nAuthors: Ksenija Ranković (R0602); Nemanja Ćirić (outside co-author); Ivan Polić (outside co-author).\nKeywords: dual-arm robotics; EtherCAT; trajectory synchronisation; pick-and-place; ROS 2.\nCoordinating two six-axis arms sharing a single conveyor pick zone requires tight synchronisation between the vision system's object-position updates and each arm's trajectory planner. This paper presents a time-stamped message-passing architecture implemented over EtherCAT that allows position corrections to be injected into a running trajectory up to 35 ms before the arm reaches the pick point. Experiments were conducted with 12 object types of varying size and aspect ratio at conveyor speeds of 0.5 and 0.9 m/s. The dual-arm cell achieved a combined throughput of 58 picks per minute with a collision-free rate of 99.7% over 10 000 continuous operating cycles. Cycle time improved by 22% compared with a token-passing arbitration baseline. Latency budgets for each pipeline stage—capture, classification, coordinate transform, trajectory update—are reported individually. The architecture was implemented on a ROS 2-based controller running on a real-time Linux kernel.",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2021
+  },
+  "SYN-PUB-06941": {
+    "id": "SYN-PUB-06941",
+    "kind": "publication",
+    "title": "Comparison of lightweight CNN architectures for real-time object sorting on an NVIDIA Jetson platform",
+    "text": "Comparison of lightweight CNN architectures for real-time object sorting on an NVIDIA Jetson platform (2022, journal, Journal of Real-Time Image Processing and Embedded Systems).\nAuthors: Ksenija Ranković (R0602); Milena Stojanović (outside co-author); Andrej Kovačević (outside co-author); Tomáš Novotný (outside co-author).\nKeywords: lightweight CNN; Jetson Xavier; TensorRT; recycling sorter; embedded inference; INT8 quantisation.\nThis paper benchmarks five lightweight convolutional architectures—MobileNetV2, EfficientNet-B0, SqueezeNet 1.1, ShuffleNetV2 and a custom four-block network designed for the task—on an NVIDIA Jetson Xavier NX module used as an embedded sorter controller. The test scenario involves classifying thirteen categories of mixed municipal recyclables on a conveyor running at 0.7 m/s, where objects may overlap partially. A dataset of 26 000 labelled single-object images and 8 400 partially occluded multi-object frames was assembled in-house. TensorRT-optimised INT8 models were compared on throughput, top-1 accuracy and power draw. EfficientNet-B0 achieved 88.4% top-1 accuracy at 68 fps and 9.1 W; the custom network reached 85.1% at 94 fps and 7.4 W. Occlusion degraded accuracy by 8–14 percentage points depending on architecture. The paper discusses trade-offs relevant to selecting a model for battery-powered or thermally constrained inspection units.",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2022
+  },
+  "SYN-PUB-06942": {
+    "id": "SYN-PUB-06942",
+    "kind": "publication",
+    "title": "Dataset and baseline results for curved-surface 2D code detection under industrial lighting conditions",
+    "text": "Dataset and baseline results for curved-surface 2D code detection under industrial lighting conditions (2026, preprint, arXiv (cs.CV)).\nAuthors: Milena Stojanović (outside co-author); Tomáš Novotný (outside co-author); Ksenija Ranković (R0602); Darija Pejić (outside co-author).\nKeywords: dataset; 2D code detection; QR code; DataMatrix; curved surface; industrial imaging.\nPublicly available datasets for 2D code (QR and DataMatrix) detection on curved surfaces are scarce, and those that exist rarely include the range of industrial lighting conditions encountered in practice. This preprint describes a dataset of 11 400 images collected on cylindrical, conical and saddle-shaped surfaces under eight distinct lighting configurations, including high-pressure sodium emulation, LED ring, telecentric backlight and mixed ambient. Images were captured at three conveyor speeds (0, 0.6 and 1.1 m/s) with two camera models. Each image is annotated with code location polygons, surface curvature class, lighting type and belt speed. Baseline detection results are reported for four open-source pipelines. ZXing-C++ achieved the highest overall decode rate of 81.3%, dropping to 64.7% on saddle surfaces. The dataset is released under a CC BY 4.0 licence and is intended to support reproducible comparison of detection methods in this under-studied setting.",
+    "researcherIds": [
+      "R0602"
+    ],
+    "year": 2026
+  },
+  "W4206192560": {
+    "id": "W4206192560",
+    "kind": "work",
+    "title": "Extraction and classification of apple defects under uneven illumination based on machine vision",
+    "text": "Journal of Food Process Engineering, 2022. Abstract The extraction and classification of different kinds of defects can achieve a more sophisticated classification of apples. In this study, a region of interest (ROI) extraction algorithm based on background separation, brightness correction, and the global threshold was designed for the extraction of apple decay and bruise under uneven light conditions. After brightness correction, we calculate the average gray value of the apple region and multiply the value by 0.8 as the threshold. In this way, the threshold of different apple images can be determined automatically without a manual setting. After extracting ROI, we realized the classification of the two kinds of defects by extracting texture features. Based on the selected texture features, the support vector machine discriminant models were established. The accuracy of the model based on angular second moment was 94.8% and the model based on entropy was 94.7%. The total time from ROI extraction to classification was approximately 1.2 s. The results showed that this extraction and classification process had application prospects in practical detection classification. Practical Applications Ungraded fruits were not easy to store, transport, or sell at a price based on quality. The classification was directly related to fruit packaging, transportation, storage and sales of the results, and benefits, so it was very important to carry out fruit classification. …",
+    "researcherIds": [],
+    "year": 2022,
+    "url": "https://openalex.org/W4206192560"
+  },
+  "W4304128474": {
+    "id": "W4304128474",
+    "kind": "work",
+    "title": "Real-Time Grading of Defect Apples Using Semantic Segmentation Combination with a Pruned YOLO V4 Network",
+    "text": "Foods, 2022. At present, the apple grading system usually conveys apples by a belt or rollers. This usually leads to low hardness or expensive fruits being bruised, resulting in economic losses. In order to realize real-time detection and classification of high-quality apples, separate fruit trays were designed to convey apples and used to prevent apples from being bruised during image acquisition. A semantic segmentation method based on the BiSeNet V2 deep learning network was proposed to segment the defective parts of defective apples. BiSeNet V2 for apple defect detection obtained a slightly better result in MPA with a value of 99.66%, which was 0.14 and 0.19 percentage points higher than DAnet and Unet, respectively. A model pruning method was used to optimize the structure of the YOLO V4 network. The detection accuracy of defect regions in apple images was further improved by the pruned YOLO V4 network. Then, a surface mapping method between the defect area in apple images and the actual defect area was proposed to accurately calculate the defect area. Finally, apples on separate fruit trays were sorted according to the number and area of defects in the apple images. The experimental results showed that the average accuracy of apple classification was 92.42%, and the F1 score was 94.31. In commercial separate fruit tray grading and sorting machines, it has great application potential.",
+    "researcherIds": [],
+    "year": 2022,
+    "url": "https://openalex.org/W4304128474"
+  },
+  "CALL:HORIZON-BRIDGING-2027-02-05": {
+    "id": "CALL:HORIZON-BRIDGING-2027-02-05",
+    "kind": "call",
+    "title": "Advancing promising results from Pillar II collaborative research through the innovation journey",
+    "text": "Horizon Europe. Innovation Actions. open, deadline 2027-01-28. EU grant €2,500,000 per project, about 13 grants. keywords: Aeronautics; Agricultural biotechnology; Agricultural engineering, food safety; Agriculture related to crop production, soil biology and cultivation, applied plant biology; Agriculture, Forestry, and Fisheries; Agro-forestry; Agroecology; Agroindustry.",
+    "researcherIds": [],
+    "year": 2027,
+    "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-02-05"
+  },
+  "CORDIS:101135704": {
+    "id": "CORDIS:101135704",
+    "kind": "eu-project",
+    "title": "Automated monitoring in horticulture through spectral analysis with quantum dot detectors and high-resolution optical filters",
+    "text": "HORTIQD, Horizon Europe, 2024–2026. topic HORIZON-CL4-2023-DIGITAL-EMERGING-01-57. coordinated by FRAUNHOFER GESELLSCHAFT ZUR FORDERUNG DER ANGEWANDTEN FORSCHUNG EV (DE). 13 organisations. The HortiQD project aims to develop an affordable and easy-to-use machine vision system for precision farming. The objective is to build a hyperspectral Short-Wave Infra Red camera working in the wavelength range of 1 - 2 µm with integrated point detection at smaller...",
+    "researcherIds": [],
+    "year": 2024,
+    "url": "https://cordis.europa.eu/project/id/101135704"
+  },
+  "CORDIS:101156480": {
+    "id": "CORDIS:101156480",
+    "kind": "eu-project",
+    "title": "Safe Wheat Agriculture Towards Sustainable Health: Innovative Sensing Techniques, and Holistic Spectroscopy Traceability for Improved Soil, plant Health and safe wheat grain",
+    "text": "WHEATWATCHER, Horizon Europe, 2024–2028. topic HORIZON-MISS-2023-SOIL-01-03. coordinated by UNIVERSITEIT GENT (BE). 15 organisations. In a world grappling with complex global challenges such as population growth, climate change, and environmental degradation, ensuring security, sustainability, and food safety is paramount. Agricultural practices and food production processes are integral to public health...",
+    "researcherIds": [],
+    "year": 2024,
+    "url": "https://cordis.europa.eu/project/id/101156480"
+  },
+  "CORDIS:867535": {
+    "id": "CORDIS:867535",
+    "kind": "eu-project",
+    "title": "SaaS platform applying Artificial Intelligence and collaborative learning to the automation of Machine Vision-based manufacturing processes",
+    "text": "UniMind, Horizon 2020, 2019–2019. topic EIC-SMEInst-2018-2020. coordinated by PIPLUS SERVICIOS PROFESIONALES SL (ES). 1 organisation. UniMind is a Deep Learning SaaS platform for the intelligent automation of manufacturing processes, minimizing the combination of low-value+high-repetitiveness tasks for human workers. Automating these processes is expensive (i.e. unattainable for SMEs), time-consuming and...",
+    "researcherIds": [],
+    "year": 2019,
+    "url": "https://cordis.europa.eu/project/id/867535"
+  }
+}

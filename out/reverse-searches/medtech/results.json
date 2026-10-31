@@ -1,0 +1,1202 @@
+{
+  "needs": [
+    {
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "companyName": "Described problem",
+      "sector": "Medical devices",
+      "triage": "research",
+      "triageReason": "The company faces an open technical problem in signal processing: motion artefact removal from ECG during patient movement requires novel methods beyond standard fixed filtering to maintain diagnostic sensitivity.",
+      "restatement": {
+        "text": "A wearable ECG patch using fixed band-pass filtering fails to detect atrial fibrillation episodes during patient walking and movement, with sensitivity dropping below 80% (C999-CH1). The company has 1,200 hours of cardiologist-annotated ECG recordings from 90 patients (C999-CH1).",
+        "sourceIds": [
+          "C999-CH1"
+        ]
+      },
+      "searchTerms": [
+        "motion artefact removal",
+        "ECG signal processing",
+        "adaptive filtering",
+        "atrial fibrillation detection",
+        "wearable biosignal",
+        "accelerometer noise rejection",
+        "artifact suppression",
+        "cardiac arrhythmia recognition"
+      ],
+      "assets": [
+        {
+          "text": "1,200 hours of cardiologist-annotated ECG recordings from 90 patients.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "A wearable ECG patch device in use.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "text": "Sensitivity drops below 80% while the patient walks.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Current fixed band-pass filter approach is insufficient for this operating condition.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "researcherId": "R0721",
+      "aliases": [],
+      "name": "Goran Tomić",
+      "title": "Full Professor",
+      "faculty": "Faculty of Medicine",
+      "department": "Department of Internal Medicine (Cardiology)",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Long-term clinical outcomes of concurrent atrial fibrillation and heart failure across ejection fraction categories.",
+          "sourceIds": [
+            "SYN-PUB-08045"
+          ]
+        },
+        {
+          "text": "Telemonitoring programmes for heart failure patients after hospital discharge, including remote vital sign and symptom monitoring.",
+          "sourceIds": [
+            "SYN-PUB-08040",
+            "SYN-PRJ-0015"
+          ]
+        },
+        {
+          "text": "Validation of patient-reported outcome measures in heart failure clinical trials, including cross-cultural adaptation methodology.",
+          "sourceIds": [
+            "SYN-PUB-08043"
+          ]
+        },
+        {
+          "text": "Risk stratification and predictors of early readmission following acute decompensated heart failure.",
+          "sourceIds": [
+            "SYN-PUB-08048"
+          ]
+        },
+        {
+          "text": "Guideline-directed medical therapy adherence and optimization in outpatient heart failure management.",
+          "sourceIds": [
+            "SYN-PUB-08042"
+          ]
+        },
+        {
+          "text": "Screening and detection of silent atrial fibrillation in older adults using portable electrocardiographic devices.",
+          "sourceIds": [
+            "SYN-PUB-08041",
+            "SYN-PUB-08046"
+          ]
+        },
+        {
+          "text": "Wearable patch sensors for continuous cardiac rhythm monitoring in clinical practice.",
+          "sourceIds": [
+            "SYN-PUB-08046"
+          ]
+        },
+        {
+          "text": "Ethics approval processes and informed consent frameworks for digital health clinical trials in cardiology.",
+          "sourceIds": [
+            "SYN-PUB-08044"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to supervising industrial PhDs and joint projects with medical device manufacturers and health-technology companies.",
+          "sourceIds": [
+            "R0721"
+          ]
+        },
+        {
+          "text": "Leads multi-centre randomised clinical trials for clinical validation of digital health interventions in heart failure.",
+          "sourceIds": [
+            "SYN-PRJ-0015"
+          ]
+        },
+        {
+          "text": "Actively seeks collaboration with medical device manufacturers and health-technology companies to co-fund and co-design prospective clinical validation studies.",
+          "sourceIds": [
+            "R0721"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0906",
+      "aliases": [],
+      "name": "Maja Popović",
+      "title": "Associate Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Biomedical Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Atrial fibrillation detection from single-lead ECG using RR-interval irregularity and rhythm analysis.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09642",
+            "SYN-PUB-09639"
+          ]
+        },
+        {
+          "text": "Motion-artifact suppression in wearable ECG using adaptive filtering fused with simultaneous accelerometer data.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09641"
+          ]
+        },
+        {
+          "text": "Federated learning for privacy-preserving atrial fibrillation detection across heterogeneous ECG devices with domain adaptation.",
+          "sourceIds": [
+            "SYN-PUB-09642"
+          ]
+        },
+        {
+          "text": "Ultra-low-power QRS detection algorithms using integer arithmetic for long-term cardiac patches on microcontrollers.",
+          "sourceIds": [
+            "SYN-PUB-09643"
+          ]
+        },
+        {
+          "text": "Signal quality assessment for single-lead wearable ECG with comparative evaluation of spectral and learned features.",
+          "sourceIds": [
+            "SYN-PUB-09645"
+          ]
+        },
+        {
+          "text": "Activity recognition from chest-worn accelerometers using time-domain and frequency-domain features with machine learning.",
+          "sourceIds": [
+            "SYN-PUB-09640",
+            "SYN-PUB-09644"
+          ]
+        },
+        {
+          "text": "Multimodal stress detection by fusing heart rate variability and accelerometer-based activity features in free-living conditions.",
+          "sourceIds": [
+            "SYN-PUB-09644"
+          ]
+        },
+        {
+          "text": "Clinical translation of wearable biomedical systems from prototype to device, including embedded algorithm design and regulatory considerations.",
+          "sourceIds": [
+            "SYN-PUB-09646"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to industrial PhD co-supervision and joint applied research projects with technology companies.",
+          "sourceIds": [
+            "R0906"
+          ]
+        },
+        {
+          "text": "Led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term atrial fibrillation screening.",
+          "sourceIds": [
+            "SYN-PRJ-0014"
+          ]
+        },
+        {
+          "text": "Developed embedded signal-processing algorithms for deployment on resource-constrained microcontrollers and wearable patch sensors.",
+          "sourceIds": [
+            "SYN-PUB-09639",
+            "SYN-PUB-09643"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0179",
+      "aliases": [],
+      "name": "Vera Đukić",
+      "title": "Full Professor",
+      "faculty": "Faculty of Technical Sciences",
+      "department": "Department of Biomedical Engineering",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Noise-robust acoustic feature extraction for embedded systems using perceptually weighted spectral entropy and Bark-scale filter banks.",
+          "sourceIds": [
+            "SYN-PUB-02316"
+          ]
+        },
+        {
+          "text": "Real-time acoustic event detection on low-power microcontrollers using energy-based segmentation, hidden Markov models, and fixed-point signal processing.",
+          "sourceIds": [
+            "SYN-PUB-02306",
+            "SYN-PUB-02308",
+            "SYN-PUB-02311"
+          ]
+        },
+        {
+          "text": "Wearable tracheal acoustic monitoring for apnoea episode detection operating at sub-milliwatt power consumption.",
+          "sourceIds": [
+            "SYN-PUB-02317"
+          ]
+        },
+        {
+          "text": "Personalised threshold adaptation for acoustic fall detection using short calibration sequences in older adults.",
+          "sourceIds": [
+            "SYN-PUB-00915"
+          ]
+        },
+        {
+          "text": "Hybrid on-device and edge processing for wearable health monitoring using lightweight event detection and offloaded classification.",
+          "sourceIds": [
+            "SYN-PUB-02315"
+          ]
+        },
+        {
+          "text": "Battery-free acoustic event detection using piezoelectric energy harvesting with supercapacitor power management.",
+          "sourceIds": [
+            "SYN-PUB-02314"
+          ]
+        },
+        {
+          "text": "Quantisation schemes for convolutional neural networks on ARM Cortex-M7 microcontrollers for acoustic classification with memory and latency constraints.",
+          "sourceIds": [
+            "SYN-PUB-02312"
+          ]
+        },
+        {
+          "text": "Compressed sensing for acoustic feature compression on wireless sensor nodes to reduce radio transmission energy.",
+          "sourceIds": [
+            "SYN-PUB-02310"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Completed a three-month consultancy in 2018 with a medical device startup on microcontroller selection and embedded algorithm optimisation for a consumer sleep monitor.",
+          "sourceIds": [
+            "R0179"
+          ]
+        },
+        {
+          "text": "Open to joint projects, contract research, industrial PhD supervision, student internships, consulting, and equipment access to the embedded-systems laboratory.",
+          "sourceIds": [
+            "R0179"
+          ]
+        },
+        {
+          "text": "Led a work package on embedded signal processing for a cross-border healthcare project (ACROS-IPA) deploying low-power acoustic sensor networks in rural primary health care centres with pilot installations in four health centres.",
+          "sourceIds": [
+            "SYN-PRJ-0216"
+          ]
+        },
+        {
+          "text": "Holds a granted patent on noise-adaptive acoustic event detection for wearable and ambient health monitoring devices operating on batteries below 1000 mAh.",
+          "sourceIds": [
+            "SYN-PAT-019"
+          ]
+        }
+      ],
+      "availability": {
+        "text": "Not available for new commitments during the first half of 2027.",
+        "sourceIds": [
+          "R0179"
+        ]
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0906",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0906",
+      "fit": 0.92,
+      "why": [
+        {
+          "text": "The challenge requires motion-artefact suppression in wearable ECG during walking, and the researcher co-authored work on motion-artifact suppression in wearable ECG using adaptive filtering fused with simultaneous accelerometer data.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-09638",
+            "SYN-PUB-09641"
+          ]
+        },
+        {
+          "text": "The challenge targets AF detection specifically, and the researcher co-authored work on atrial fibrillation detection from single-lead ECG using RR-interval irregularity and rhythm analysis.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-09638",
+            "SYN-PUB-09642",
+            "SYN-PUB-09639"
+          ]
+        },
+        {
+          "text": "The researcher led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term atrial fibrillation screening.",
+          "sourceIds": [
+            "SYN-PRJ-0014"
+          ]
+        },
+        {
+          "text": "The company has an annotated dataset and a deployed wearable patch (C999-CH1), and the researcher is open to industrial PhD co-supervision and joint applied research projects with technology companies.",
+          "sourceIds": [
+            "C999-CH1",
+            "R0906"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the company's annotated ECG recordings (C999-CH1), Maja Popović would apply adaptive filtering fused with accelerometer data to suppress motion artefacts and then apply AF detection methods to the cleaned signal.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-09638",
+          "SYN-PUB-09641",
+          "SYN-PUB-09639"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-09638 covers adaptive filtering and AF detection validated on volunteers performing activities including walking; whether the resulting algorithm fits within the hardware constraints of the company's deployed wearable patch is not confirmed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09643",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The embedded algorithm work covers QRS detection and integer arithmetic on microcontrollers; whether the adaptive filtering method fits within the patch's existing hardware constraints is not confirmed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09643",
+            "SYN-PUB-09639",
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "chosen": [
+    "C999-CH1:R0906"
+  ],
+  "noMatches": [],
+  "proposals": [
+    {
+      "id": "C999-CH1-R0906",
+      "pairId": "C999-CH1:R0906",
+      "kind": "joint-project",
+      "title": "Adaptive Accelerometer-Fused ECG Filtering to Restore AF Detection During Walking",
+      "markdown": "## Adaptive Accelerometer-Fused ECG Filtering to Restore AF Detection During Walking\n\n**Company:** Described problem works in medical devices. [C999] Challenge C999-CH1.  \n**Researcher:** Maja Popović is an Associate Professor in the Department of Biomedical Engineering, Faculty of Technical Sciences. [R0906]  \n**Format:** joint project, one page.\n\n### The problem\nThe company's wearable ECG patch uses fixed band-pass filtering, and arrhythmia detection sensitivity drops below 80% when the patient walks. [C999-CH1] The company holds 1,200 hours of cardiologist-annotated ECG recordings from 90 patients. [C999-CH1] The company has a wearable ECG patch in use. [C999-CH1]\n\n### Prior work\n- A 2021 study reports that normalised least mean square adaptive filtering driven by per-electrode inertial measurement units reduces motion contamination from ECG signals in chest-movement scenarios. [W3129854657]\n\n### Research questions\n1. Can adaptive filtering fused with simultaneous accelerometer data raise AF detection sensitivity above 80% during walking, measured against cardiologist annotations on the company's 1,200-hour dataset?\n2. Does a signal quality index applied before rhythm analysis further increase AF detection specificity during movement, measured as reduction in false-positive AF episodes on the same annotated dataset?\n\n### Approach\n- Apply the adaptive filtering method fused with accelerometer data from the researcher's prior work to the company's ECG recordings, tuning the filter against the fixed band-pass baseline on cardiologist-annotated segments.\n- Use the signal quality assessment method from the researcher's prior work to flag low-quality segments before RR-interval analysis, preventing corrupt beats from entering the AF detector.\n- Apply the RR-interval irregularity and rhythm analysis method from the researcher's prior work to the cleaned signal, measuring sensitivity and specificity against cardiologist AF annotations on walking segments.\n- Assess whether the adaptive filtering and QRS detection steps can be expressed in integer arithmetic suitable for the patch's microcontroller, using the ultra-low-power algorithm design principles from the researcher's prior work.\n\n### Plan\n\n| Period | Work | Result |\n| --- | --- | --- |\n| Months 1–3 | A master's student in the researcher's group, with the company's engineer for one day per week, audits the annotated dataset, labels walking versus rest segments, and measures the baseline sensitivity of the current fixed band-pass filter plus existing AF detector on those segments. | A characterised baseline: sensitivity by activity level, a labelled subset of walking segments, and a shared data pipeline. |\n| Months 4–6 | The master's student implements the adaptive accelerometer-fused filter and signal quality index, tunes them on a training split of the walking segments, and evaluates on the held-out split. The company's engineer validates that AF annotations are applied consistently. | A validated algorithm showing whether sensitivity exceeds 80% on walking segments; an interim technical report. |\n| Months 7–9 | The team assesses integer-arithmetic feasibility on the patch's microcontroller and produces a final algorithm specification. The researcher and company engineer review findings for a joint publication. | A final report with the algorithm specification, an embedded feasibility assessment, and a draft paper submitted for publication. |\n\n### First six months\n- Week 1–2: The company transfers a de-identified subset of the annotated ECG recordings to the researcher's group under a signed data-sharing agreement; the researcher's group sets up a processing environment.\n- Month 1: The master's student and the company's engineer jointly define the labelling protocol for walking versus rest segments and apply it to the full dataset.\n- Month 2: The master's student runs the current fixed band-pass filter pipeline on walking segments and records the baseline sensitivity figure, producing a reference benchmark both sides agree on.\n- Month 3: The researcher and the company's engineer review the benchmark, confirm the target (sensitivity above 80% on walking segments), and finalise the algorithm design plan for months 4–6.\n\n### What each side brings\n- **Company:** 1,200 hours of cardiologist-annotated ECG recordings from 90 patients. [C999-CH1] The company's wearable ECG patch with its fixed band-pass filter hardware. [C999-CH1]\n- **Faculty:** Maja Popović co-authored work on motion-artifact suppression in wearable ECG using adaptive filtering fused with simultaneous accelerometer data. [SYN-PUB-09638, SYN-PUB-09641] Maja Popović co-authored work on AF detection from single-lead ECG using RR-interval irregularity and rhythm analysis. [SYN-PUB-09638, SYN-PUB-09642, SYN-PUB-09639] Maja Popović co-authored work on signal quality assessment for single-lead wearable ECG using spectral and learned features. [SYN-PUB-09645] Maja Popović co-authored work on ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches on microcontrollers. [SYN-PUB-09643]\n\n### Why this pair\nThe company brings a well-defined signal-processing failure on cardiologist-annotated real-world data; the researcher brings adaptive filtering and AF detection methods validated on wearable ECG. Maja Popović brings the specific combination the problem requires — adaptive accelerometer-fused filtering and AF detection validated on walking subjects — plus prior work on embedded algorithm design that the deployment constraint demands. Neither side could do this alone: the company provides the annotated patient data and the deployed hardware target that give the research its clinical validity; the researcher brings the adaptive filtering methods and AF detection pipeline that the company does not have.\n\n- The company's sensitivity drops below 80% during walking, and Maja Popović co-authored work on adaptive filtering fused with accelerometer data for motion-artefact suppression in wearable ECG, validated on volunteers performing activities including walking. [C999-CH1, SYN-PUB-09638, SYN-PUB-09641]\n- Maja Popović co-authored work on ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches on microcontrollers. [SYN-PUB-09643]\n- Maja Popović led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term atrial fibrillation screening. [SYN-PRJ-0014]\n\n### Risks and constraints\n- SYN-PUB-09638 covers adaptive filtering and AF detection validated on volunteers performing activities including walking; whether the resulting algorithm fits within the hardware constraints of the company's deployed wearable patch is not confirmed by the records. [SYN-PUB-09638, SYN-PUB-09643, C999-CH1]\n- The embedded algorithm work covers QRS detection and integer arithmetic on microcontrollers; whether the adaptive filtering method fits within the patch's existing hardware constraints is not confirmed by the records. [SYN-PUB-09643, SYN-PUB-09639, C999-CH1]\n\n### Agreed up front (proposed)\n- Publication: results may be submitted for publication after a 30-day review period by the company; the company may request a further 30-day delay to file a patent if patentable results arise.\n- Ownership: the company owns the trained models, filter configurations, and any algorithm specification produced; the University of Novi Sad retains the underlying methods and may use them in further research.\n- Data access: the company transfers de-identified ECG recordings to the researcher's group under a signed data-sharing agreement compliant with GDPR and the Serbian Personal Data Protection Act; data is used only for this project and deleted at its end.\n- Preconditions: the project starts only after the data-sharing agreement is signed and ethics approval is obtained for secondary use of patient recordings.\n\n### Sources\n- C999: Described problem\n- C999-CH1: Our wearable ECG patch misses atrial fibrillation episodes when patients walk or move during the day.\n- R0906: Maja Popović\n- SYN-PRJ-0014: HEARTWATCH: remote cardiac monitoring (2022)\n- SYN-PUB-09638: Cutting false atrial fibrillation alarms in patch ECG with motion-aware filtering (2024)\n- SYN-PUB-09639: Single-lead ECG arrhythmia classification on a microcontroller (2022)\n- SYN-PUB-09641: Benchmark dataset for motion-corrupted patch ECG and simultaneous accelerometry in free-living adults (2023)\n- SYN-PUB-09642: Federated learning for atrial fibrillation detection across heterogeneous wearable ECG devices (2024)\n- SYN-PUB-09643: Energy-efficient QRS detection on ultra-low-power microcontrollers for long-term cardiac patches (2022)\n- SYN-PUB-09645: Signal quality assessment for single-lead wearable ECG: a survey and comparative study (2021)\n- W3129854657: Motion artefact removal in electroencephalography and electrocardiography by using multichannel inertial measurement... (2021) https://openalex.org/W3129854657\n",
+      "claims": [
+        {
+          "text": "Described problem works in medical devices.",
+          "sourceIds": [
+            "C999"
+          ]
+        },
+        {
+          "text": "Maja Popović is an Associate Professor in the Department of Biomedical Engineering, Faculty of Technical Sciences.",
+          "sourceIds": [
+            "R0906"
+          ]
+        },
+        {
+          "text": "The company's wearable ECG patch uses fixed band-pass filtering, and arrhythmia detection sensitivity drops below 80% when the patient walks.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The company holds 1,200 hours of cardiologist-annotated ECG recordings from 90 patients.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The company has a wearable ECG patch in use.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "A 2021 study reports that normalised least mean square adaptive filtering driven by per-electrode inertial measurement units reduces motion contamination from ECG signals in chest-movement scenarios.",
+          "sourceIds": [
+            "W3129854657"
+          ]
+        },
+        {
+          "text": "1,200 hours of cardiologist-annotated ECG recordings from 90 patients.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The company's wearable ECG patch with its fixed band-pass filter hardware.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Maja Popović co-authored work on motion-artifact suppression in wearable ECG using adaptive filtering fused with simultaneous accelerometer data.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09641"
+          ]
+        },
+        {
+          "text": "Maja Popović co-authored work on AF detection from single-lead ECG using RR-interval irregularity and rhythm analysis.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09642",
+            "SYN-PUB-09639"
+          ]
+        },
+        {
+          "text": "Maja Popović co-authored work on signal quality assessment for single-lead wearable ECG using spectral and learned features.",
+          "sourceIds": [
+            "SYN-PUB-09645"
+          ]
+        },
+        {
+          "text": "Maja Popović co-authored work on ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches on microcontrollers.",
+          "sourceIds": [
+            "SYN-PUB-09643"
+          ]
+        },
+        {
+          "text": "The company's sensitivity drops below 80% during walking, and Maja Popović co-authored work on adaptive filtering fused with accelerometer data for motion-artefact suppression in wearable ECG, validated on volunteers performing activities including walking.",
+          "sourceIds": [
+            "C999-CH1",
+            "SYN-PUB-09638",
+            "SYN-PUB-09641"
+          ]
+        },
+        {
+          "text": "Maja Popović co-authored work on ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches on microcontrollers.",
+          "sourceIds": [
+            "SYN-PUB-09643"
+          ]
+        },
+        {
+          "text": "Maja Popović led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term atrial fibrillation screening.",
+          "sourceIds": [
+            "SYN-PRJ-0014"
+          ]
+        },
+        {
+          "text": "SYN-PUB-09638 covers adaptive filtering and AF detection validated on volunteers performing activities including walking; whether the resulting algorithm fits within the hardware constraints of the company's deployed wearable patch is not confirmed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09638",
+            "SYN-PUB-09643",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The embedded algorithm work covers QRS detection and integer arithmetic on microcontrollers; whether the adaptive filtering method fits within the patch's existing hardware constraints is not confirmed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09643",
+            "SYN-PUB-09639",
+            "C999-CH1"
+          ]
+        }
+      ],
+      "revision": 2
+    }
+  ],
+  "needsHuman": [],
+  "verdicts": [
+    {
+      "proposalId": "C999-CH1",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Sensitivity must reach at least 80% during patient movement and walking.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "C999-CH1 states sensitivity drops below 80% while the patient walks, but it does not state that sensitivity 'must reach at least 80%' as a target requirement — it describes the current failure, not a stated target threshold.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "need",
+      "taskId": "critique-2",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "need",
+      "taskId": "critique-12",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0721",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Designs prospective clinical validation studies in partnership with device manufacturers to support regulatory pathways.",
+            "sourceIds": [
+              "R0721"
+            ]
+          },
+          "reason": "R0721 states he 'actively seeks collaboration with medical device manufacturers and health-technology companies to co-fund and co-design prospective clinical validation studies,' but does not mention regulatory pathways; the claim adds a fact ('to support regulatory pathways') not stated in the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-8",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0179",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Wearable respiratory sound monitoring including wheeze, cough, and apnoea detection from tracheal contact microphones with sub-milliwatt power consumption.",
+            "sourceIds": [
+              "SYN-PUB-02317",
+              "SYN-PUB-02308",
+              "SYN-PUB-02313",
+              "SYN-PRJ-0215"
+            ]
+          },
+          "reason": "SYN-PUB-02317 covers apnoea detection from tracheal contact microphones with sub-mW power (0.42 mW); SYN-PUB-02308 covers wheeze detection from a contact microphone; SYN-PRJ-0215 covers a wearable tracheal sound monitor targeting wheeze, cough, and apnoea; however, none of the cited sources specifically covers cough detection from tracheal contact microphones — SYN-PUB-02313 has no abstract and does not confirm cough detection — so 'cough' from a tracheal contact microphone is not directly stated in any cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Quantisation schemes for convolutional neural networks on ARM Cortex microcontrollers for acoustic classification with memory and latency constraints.",
+            "sourceIds": [
+              "SYN-PUB-02312"
+            ]
+          },
+          "reason": "SYN-PUB-02312 evaluates quantisation schemes for CNNs on an ARM Cortex-M7 (not Cortex microcontrollers generally) for acoustic classification under memory (512 KB SRAM, 1 MB flash) and latency constraints, but the claim says 'ARM Cortex microcontrollers' (plural/general) whereas the paper targets specifically the Cortex-M7; this is a widening of scope beyond what the cited text states.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Led a cross-border healthcare project (ACROS-IPA) deploying low-power acoustic sensor networks in rural primary health care centres with pilot installations in four health centres.",
+            "sourceIds": [
+              "SYN-PRJ-0216"
+            ]
+          },
+          "reason": "SYN-PRJ-0216 shows R0179 as 'work package leader', not project leader, so the claim that she 'led' the project overstates her role; additionally, the project is described as a cross-border collaboration but the record does not say she led the overall project.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Not available for new commitments during the first half of 2027 due to a planned research visit to Delft.",
+            "sourceIds": [
+              "R0179"
+            ]
+          },
+          "reason": "R0179 states Đukić is not available for new commitments during the first half of 2027 due to a planned research visit to Delft, but the instructions state that private reasons for availability (such as a planned visit) may not be cited — only the availability fact itself may be stated; the claim adds the reason ('due to a planned research visit to Delft'), which the rules prohibit.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-10",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0906",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Federated learning for privacy-preserving arrhythmia detection across heterogeneous ECG devices with domain adaptation.",
+            "sourceIds": [
+              "SYN-PUB-09642"
+            ]
+          },
+          "reason": "SYN-PUB-09642 is specifically about atrial fibrillation detection, not arrhythmia detection broadly, so the claim widens the scope beyond what the cited text states.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Ultra-low-power QRS detection algorithms using integer arithmetic for long-term cardiac patches on microcontrollers.",
+            "sourceIds": [
+              "SYN-PUB-09643",
+              "SYN-PUB-09639"
+            ]
+          },
+          "reason": "SYN-PUB-09643 explicitly covers ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches on microcontrollers, but SYN-PUB-09639 covers arrhythmia classification on a microcontroller and does not mention ultra-low-power QRS detection or integer arithmetic, so citing it for that claim adds a fact not in that record.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-9",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0721",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-15",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0721",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "The researcher designs prospective clinical validation studies in partnership with device manufacturers to support regulatory pathways.",
+            "sourceIds": [
+              "R0721"
+            ]
+          },
+          "reason": "R0721 states the researcher 'actively seeks collaboration with medical device manufacturers and health-technology companies to co-fund and co-design prospective clinical validation studies,' but says nothing about regulatory pathways, which is a fact the claim adds that is not in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Goran Tomić would design and oversee a prospective clinical validation study using the company's annotated ECG dataset (C999-CH1) to establish that any improved artefact-suppression algorithm meets the ≥80% AF sensitivity threshold under movement conditions, supporting a regulatory pathway for the wearable patch.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-08046",
+              "SYN-PUB-08041"
+            ]
+          },
+          "reason": "This is a proposal claim; C999-CH1 provides the company's annotated ECG dataset and the ≥80% sensitivity threshold under movement conditions, and SYN-PUB-08046/SYN-PUB-08041 establish the researcher's relevant background, but neither the cited records nor R0721 (not cited here) mention a regulatory pathway, and the claim adds 'regulatory pathway' as a fact about a side (the researcher) without it appearing in any cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-18",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0906",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Using the company's 1,200 hours of annotated ECG recordings (C999-CH1), Maja Popović would develop and evaluate adaptive filtering methods fused with accelerometer data to suppress motion artefacts, then validate that the cleaned signal restores AF detection sensitivity to at least 80% during patient movement.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-09638",
+              "SYN-PUB-09641",
+              "SYN-PUB-09639"
+            ]
+          },
+          "reason": "This claim proposes future work ('would develop and evaluate') including a specific validation target of restoring AF detection sensitivity to at least 80% during patient movement; while the company's dataset and researcher's methods are in the cited records, the planned pipeline and the specific 80% sensitivity target during movement are not stated in any cited record — the 80% figure in C999-CH1 describes the current drop in sensitivity, not a restoration target, and no cited record proposes or commits to this combined end-to-end future work.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The published work covers adaptive filtering and AF detection as separate studies; the records do not confirm a single end-to-end validated pipeline combining both on the same device.",
+            "sourceIds": [
+              "SYN-PUB-09638",
+              "SYN-PUB-09641",
+              "SYN-PUB-09639"
+            ]
+          },
+          "reason": "SYN-PUB-09638 presents a single paper that already combines adaptive filtering with an AF detector applied to the cleaned signal as one end-to-end system, so the claim that the records show only 'separate studies' without a combined pipeline is contradicted by SYN-PUB-09638.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-17",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0906",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-20",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0179",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Wearable tracheal acoustic monitoring including wheeze, cough, and apnoea detection with sub-milliwatt power consumption.",
+            "sourceIds": [
+              "SYN-PRJ-0215"
+            ]
+          },
+          "reason": "SYN-PRJ-0215 confirms wearable tracheal monitoring targeting wheeze, cough, and apnoea, but states only that it operates for seven days on a single battery charge — it never mentions sub-milliwatt power consumption.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-19",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0179",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-26",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0906",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Using the company's annotated ECG recordings (C999-CH1), Maja Popović would apply adaptive filtering fused with accelerometer data to suppress motion artefacts and then apply AF detection methods to the cleaned signal, addressing the sensitivity drop the company observes during patient walking.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-09638",
+              "SYN-PUB-09641",
+              "SYN-PUB-09639"
+            ]
+          },
+          "reason": "SYN-PUB-09638 and C999-CH1 support the adaptive filtering, accelerometer fusion, AF detection on cleaned signal, and sensitivity drop during walking facts, but the claim adds a cross-side judgment ('addressing the sensitivity drop the company observes') that is not stated in any cited record about the researcher.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "SYN-PUB-09638 covers an end-to-end pipeline combining adaptive filtering and AF detection; whether that pipeline was validated under ambulatory walking conditions matching the company's deployed patch environment is not confirmed by the records.",
+            "sourceIds": [
+              "SYN-PUB-09638",
+              "C999-CH1"
+            ]
+          },
+          "reason": "SYN-PUB-09638 explicitly states the system was evaluated on recordings from volunteers performing activities 'including walking,' directly confirming ambulatory walking validation, so the claim's assertion that this is 'not confirmed by the records' contradicts SYN-PUB-09638.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-25",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0721",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Goran Tomić would design and oversee a prospective clinical validation study using the company's annotated ECG dataset (C999-CH1) to establish that any improved artefact-suppression algorithm meets the ≥80% AF sensitivity threshold under movement conditions.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-08046",
+              "SYN-PUB-08041"
+            ]
+          },
+          "reason": "The cited publications SYN-PUB-08046 and SYN-PUB-08041 show Tomić as an author on feasibility/screening studies but do not state that he designs or oversees clinical validation studies; that fact comes only from R0721, which is not cited in this claim.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-24",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0721",
+      "revision": 2,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Goran Tomić leads multi-centre randomised clinical trials for clinical validation of digital health interventions and actively seeks to co-design prospective clinical validation studies with medical device manufacturers; together with the company, Tomić would apply that study-design capability to validate whether an improved artefact-suppression algorithm meets the ≥80% AF sensitivity threshold on the company's annotated ECG dataset (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1",
+              "R0721",
+              "SYN-PRJ-0015"
+            ]
+          },
+          "reason": "\"AF\" is not in C999-CH1, R0721 or SYN-PRJ-0015 but is in SYN-PUB-08041, SYN-PUB-08046 and SYN-PUB-08045, which the claim does not cite.",
+          "check": "uncited-detail"
+        }
+      ],
+      "kind": "pair",
+      "action": "drop"
+    },
+    {
+      "proposalId": "C999-CH1:R0906",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-29",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1-R0906",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "The company's wearable ECG patch uses fixed band-pass filtering, and AF detection sensitivity drops below 80% when the patient walks.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "\"AF\" is not in C999-CH1 but is in SYN-PUB-09638, SYN-PUB-09641, SYN-PUB-09642 and SYN-PUB-09645, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "Maja Popović led HEARTWATCH, a three-year project on remote cardiac monitoring for long-term AF screening.",
+            "sourceIds": [
+              "SYN-PRJ-0014"
+            ]
+          },
+          "reason": "\"AF\" is not in SYN-PRJ-0014 but is in SYN-PUB-09638, SYN-PUB-09641, SYN-PUB-09642 and SYN-PUB-09645, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "The wearable ECG patch is already deployed and in use.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 says 'Our wearable ECG patch' but does not state it is 'already deployed and in use'; 'deployed' is not a word used in the challenge text.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "A deployed wearable ECG patch with known hardware constraints.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 mentions a wearable ECG patch and hardware constraints implicitly (fixed band-pass filter), but does not use the word 'deployed' to describe the patch. critic-2: 48% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "An engineer's time for joint labelling, validation and embedded feasibility review.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 does not mention 'an engineer's time', 'joint labelling', 'validation', or 'embedded feasibility review'; none of these facts appear in the cited text. critic-2: 1% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The solution must run on a deployed patch microcontroller, and Maja Popović co-authored work on ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches.",
+            "sourceIds": [
+              "SYN-PUB-09643",
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 does not state that 'the solution must run on a deployed patch microcontroller'; it describes a wearable ECG patch with a fixed band-pass filter but does not use the word 'deployed' or specify a microcontroller constraint, making 'deployed patch microcontroller' unsupported by the cited text.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Apply the adaptive filtering method fused with accelerometer data from the researcher's prior work to the company's ECG recordings, using the movement segments already annotated in the dataset to tune the filter against the fixed band-pass baseline.",
+            "sourceIds": []
+          },
+          "reason": "C999-CH1 states only that the recordings are 'cardiologist-annotated'; it does not say the dataset contains movement-segment annotations or activity labels, so the claim that walking/movement segments are already annotated in the dataset is not supported.",
+          "check": "free-text"
+        },
+        {
+          "claim": {
+            "text": "The company has a well-defined signal-processing failure on annotated real-world data but no method to replace the fixed filter it has already ruled out.",
+            "sourceIds": []
+          },
+          "reason": "C999-CH1 describes the problem with the fixed band-pass filter but does not state that the company has ruled it out or lacks a replacement method; this adds a fact not present in any source.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-33",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-33",
+          "rejected": 4
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-34",
+          "rejected": 2
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0906",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Any replacement algorithm must run on the wearable patch hardware, and Maja Popović co-authored work on ultra-low-power QRS detection using integer arithmetic for long-term cardiac patches on microcontrollers.",
+            "sourceIds": [
+              "SYN-PUB-09643",
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 describes the patch's problem but does not state any constraint that a replacement algorithm must run on the wearable patch hardware; that requirement is an inference not found in the cited text.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The company brings a well-defined signal-processing failure on cardiologist-annotated real-world data; the researcher brings adaptive filtering and AF detection methods the company has not applied.",
+            "sourceIds": []
+          },
+          "reason": "The phrase 'the company has not applied' asserts a fact about the company's history that no source states; C999-CH1 says the company uses a fixed band-pass filter but does not say the company has never applied adaptive filtering or the researcher's AF detection methods.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-37",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-37",
+          "rejected": 1
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-38",
+          "rejected": 0
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0906",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "proposal",
+      "taskId": "critique-41",
+      "action": "accept"
+    }
+  ],
+  "approvals": {},
+  "funding": [
+    {
+      "pairId": "C999-CH1:R0906",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0906",
+      "queries": [
+        "ecg artefact suppression method",
+        "wearable cardiac monitoring tool",
+        "atrial fibrillation detection algorithm",
+        "adaptive signal filtering medical devices",
+        "motion artefact removal",
+        "ecg signal processing",
+        "adaptive filtering",
+        "atrial fibrillation detection",
+        "medical devices"
+      ],
+      "considered": 24,
+      "taskId": "scout-32",
+      "calls": [
+        {
+          "call": {
+            "id": "CALL:HORIZON-HLTH-2027-03-TOOL-04",
+            "identifier": "HORIZON-HLTH-2027-03-TOOL-04",
+            "title": "Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-HLTH-2027-03",
+            "action": "Research and Innovation Actions",
+            "status": "forthcoming",
+            "deadline": "2027-09-16",
+            "opens": "2027-06-03",
+            "grant": {
+              "min": 2900000,
+              "max": 2900000,
+              "expected": 1
+            },
+            "keywords": [
+              "Artificial intelligence, intelligent systems, multi agent systems",
+              "Basic medicine",
+              "Big data",
+              "Clinical medicine",
+              "Computational biology",
+              "Computational modelling",
+              "Machine learning, statistical data processing and applications using signal processing (e.g. speech, image, video)",
+              "Medical engineering, biomedical engineering and technology"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-03-TOOL-04"
+          },
+          "reason": "Virtual Human Twins for clinical decision support in prevention and diagnosis aligns with the pair's work on improving AF detection using signal processing, machine learning, and multimodal data fusion from wearable ECG patches.",
+          "check": "Whether the call accepts research teams led by academics partnering with a medical device company."
+        },
+        {
+          "call": {
+            "id": "CALL:HORIZON-HLTH-2027-02-IND-02-two-stage",
+            "identifier": "HORIZON-HLTH-2027-02-IND-02-two-stage",
+            "title": "Portable and versatile Point-of-care diagnostics",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-HLTH-2027-02-two-stage",
+            "action": "Innovation Actions",
+            "status": "open",
+            "deadline": "2027-02-17",
+            "grant": {
+              "min": 6000000,
+              "max": 8000000,
+              "expected": 6
+            },
+            "keywords": [
+              "Clinical management",
+              "Clinical trials",
+              "Diagnostics",
+              "Integrated care",
+              "Pathology"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-02-IND-02-two-stage"
+          },
+          "reason": "Portable and versatile point-of-care diagnostics covers wearable devices for clinical detection, matching the pair's goal to improve ECG-based AF detection on a wearable patch during patient movement.",
+          "check": "Whether the action type and grant size suit a two-partner project to advance an existing device prototype."
+        },
+        {
+          "call": {
+            "id": "CALL:HORIZON-HLTH-2027-03-TOOL-08",
+            "identifier": "HORIZON-HLTH-2027-03-TOOL-08",
+            "title": "Towards the next generation of frontier Artificial Intelligence models for healthcare",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-HLTH-2027-03",
+            "action": "Coordination and Support Actions",
+            "status": "forthcoming",
+            "deadline": "2027-09-16",
+            "opens": "2027-06-03",
+            "grant": {
+              "min": 2900000,
+              "max": 2900000,
+              "expected": 1
+            },
+            "keywords": [
+              "Artificial Intelligence & Decision support",
+              "Artificial intelligence, intelligent systems, multi agent systems",
+              "Basic medicine",
+              "Big data",
+              "Clinical medicine",
+              "Data protection and privacy",
+              "Health sciences",
+              "Machine learning, statistical data processing and applications using signal processing (e.g. speech, image, video)"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-03-TOOL-08"
+          },
+          "reason": "Frontier AI models for healthcare includes machine learning applied to signal processing and clinical decision support, which covers the pair's adaptive filtering and AF detection methods.",
+          "check": "Whether this coordination action funds applied research or only strategic roadmapping."
+        }
+      ],
+      "projects": [
+        {
+          "project": {
+            "id": "CORDIS:101154104",
+            "projectId": "101154104",
+            "acronym": "DESCRIBE",
+            "title": "MultimoDal tEnsor fuSion and Completion foR patient-taIlored catheter aBlation of persistEnt atrial fibrillation",
+            "summary": "Tensor analysis plays a central role in signal processing and machine learning for the representation, analysis, fusion, and classification of data. Responsible for up to 25% of brain strokes, atrial fibrillation (AF) is the most prevalent sustained cardiac arrhythmia and...",
+            "status": "ongoing",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-MSCA-2023-PF-01-01",
+            "coordinator": {
+              "name": "CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE CNRS",
+              "country": "FR"
+            },
+            "organisations": 1,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101154104"
+          },
+          "reason": "DESCRIBE applies tensor analysis and data fusion to atrial fibrillation detection and catheter ablation planning, directly overlapping with the pair's signal fusion and AF detection work."
+        },
+        {
+          "project": {
+            "id": "CORDIS:101029808",
+            "projectId": "101029808",
+            "acronym": "EarlyCare",
+            "title": "Unobtrusive Health Monitoring System for the Early Detection of Heart- and Micturition-Related Diseases",
+            "summary": "EarlyCare project aims at developing and implementing cutting-edge sensing technologies and advanced Artificial Intelligence (AI) techniques to create a Health Monitoring System enabling early prediction of Diabetes Mellitus (DM) and Congestive Heart Failure (CHF), through the...",
+            "status": "closed",
+            "start": "2021-04-01",
+            "end": "2023-09-18",
+            "programme": "Horizon 2020",
+            "topic": "MSCA-IF-2020",
+            "coordinator": {
+              "name": "N-VISION SYSTEMS AND TECHNOLOGIES SL",
+              "country": "ES"
+            },
+            "organisations": 1,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101029808"
+          },
+          "reason": "EarlyCare develops AI and sensing for early detection of heart diseases through wearable health monitoring systems, sharing the pair's focus on unobtrusive cardiac signal processing from wearables."
+        },
+        {
+          "project": {
+            "id": "CORDIS:847770",
+            "projectId": "847770",
+            "acronym": "AFFECT-EU",
+            "title": "DIGITAL, RISK-BASED SCREENING FOR ATRIAL FIBRILLATION IN THE EUROPEAN COMMUNITY",
+            "summary": "Atrial fibrillation (AF) is an increasingly common arrhythmia in the aging European population. Its prevalence will more than double by the year 2050 affecting 5% of EU women and men aged ≥65 years. AF carries a high risk of stroke, heart failure, and dementia, which result...",
+            "status": "closed",
+            "start": "2020-01-01",
+            "end": "2024-03-31",
+            "programme": "Horizon 2020",
+            "topic": "SC1-BHC-30-2019",
+            "coordinator": {
+              "name": "UNIVERSITAETSKLINIKUM HAMBURG-EPPENDORF",
+              "country": "DE"
+            },
+            "organisations": 26,
+            "serbian": [
+              "FACULTY OF MEDICINE, UNIVERSITY OF BELGRADE"
+            ],
+            "url": "https://cordis.europa.eu/project/id/847770"
+          },
+          "reason": "AFFECT-EU conducted digital risk-based AF screening in European populations, providing relevant epidemiological context and detection methodology for the pair's AF sensitivity improvement work."
+        }
+      ]
+    }
+  ]
+}

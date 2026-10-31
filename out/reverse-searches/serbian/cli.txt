@@ -1,0 +1,26 @@
+run 2026-10-31T15-05-01 · local Claude Code · critic-2 on subq-snap-1.1 · shortlist filter on subq-snap-1.1 · prior work from OpenAlex · reverse search on C999-CH1
+  55s  2 task(s) running · 1 done · 0 failed · $0.01
+  55s  C999  read · 1 need(s)
+  85s  7 task(s) running · 7 done · 0 failed · $0.07
+ 116s  8 task(s) running · 11 done · 0 failed · $0.14
+ 146s  6 task(s) running · 19 done · 0 failed · $0.39
+ 177s  5 task(s) running · 28 done · 0 failed · $0.62
+ 207s  2 task(s) running · 38 done · 0 failed · $0.88
+ 238s  1 task(s) running · 44 done · 0 failed · $1.05
+ 243s  C999  1 pair(s) accepted · writing C999-CH1-R0548 (writer-1)
+ 268s  1 task(s) running · 47 done · 0 failed · $1.08
+ 298s  1 task(s) running · 47 done · 0 failed · $1.08
+ 329s  1 task(s) running · 51 done · 0 failed · $1.23
+ 360s  1 task(s) running · 54 done · 0 failed · $1.30
+ 390s  C999-CH1-R0548  accepted after 2 fix(es)
+ 390s  0 task(s) running · 59 done · 0 failed · $1.45
+
+done in 6 min 30 s · 427,060 tokens · $1.45 at API prices
+1 companies · 1 needs · 6 profiles · 1 pairs · 1 proposals accepted · 0 need human review · 0 no match
+critic: 26 reviews · 15 sent back · 2 dropped · 0 escalated · 3 splits · 45 claims rejected · 1 kept after cutting a claim
+out: out/2026-10-31T15-05-01
+
+reverse search · C999-CH1 · triage: research
+  R0548  fit 0.88  Nikola Stojanović, Associate Professor, Faculty of Technical Sciences · proposal
+         Stojanović co-authored work on few-shot learning for surface defect detection on reflective metal parts using prototypical networks (SYN-PUB-06388) and on anomaly detection in multi-product assembly lines using one-class contrastive learning (SYN-PUB-06391).
+  Pairs, not people: each fit is for this problem only. A coordinator approves a pair before anyone is contacted.

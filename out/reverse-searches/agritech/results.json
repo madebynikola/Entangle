@@ -1,0 +1,1712 @@
+{
+  "needs": [
+    {
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "companyName": "Described problem",
+      "sector": "Agriculture",
+      "triage": "research",
+      "triageReason": "The core problem is a sensor lag in a feedback loop; a researcher can develop methods to predict soil moisture or compensate for sensor dynamics using the available historical data.",
+      "restatement": {
+        "text": "Irrigation controllers in apple orchards apply water after rain because soil moisture probes respond too slowly; a fixed pause after rainfall was tried but young trees show root stress and water consumption remains high. The company has three seasons of probe readings, weather station data and yield records from 60 hectares (C999-CH1).",
+        "sourceIds": [
+          "C999-CH1"
+        ]
+      },
+      "searchTerms": [
+        "soil moisture sensor lag",
+        "sensor response time compensation",
+        "volumetric water content dynamics",
+        "irrigation control feedback",
+        "rainfall detection and prediction",
+        "root stress physiology apples",
+        "soil water retention curve",
+        "sensor fusion weather data"
+      ],
+      "assets": [
+        {
+          "text": "Three seasons of soil moisture probe readings, weather station data and yield records from 60 hectares of apple orchards (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "text": "A fixed pause after rainfall did not solve the overwatering problem; young trees show root stress as a symptom (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "researcherId": "R0662",
+      "aliases": [],
+      "name": "Nenad Ilić",
+      "title": "Associate Professor",
+      "faculty": "Faculty of Agriculture",
+      "department": "Department of Field and Vegetable Crops",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Evapotranspiration-based irrigation scheduling using Penman–Monteith models for sugar beet and vegetables.",
+          "sourceIds": [
+            "SYN-PUB-07490",
+            "SYN-PUB-07493",
+            "SYN-PUB-07497"
+          ]
+        },
+        {
+          "text": "Capacitive soil moisture sensor design, calibration across soil types, and field stability assessment under chernozem and irrigated conditions.",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495",
+            "SYN-PAT-001"
+          ]
+        },
+        {
+          "text": "Decision support systems for irrigation scheduling, including smartphone applications and IoT cloud-based architectures with wireless sensor networks and MQTT messaging.",
+          "sourceIds": [
+            "SYN-PUB-07493",
+            "SYN-PUB-07496"
+          ]
+        },
+        {
+          "text": "Drip irrigation system design and comparative field evaluation including subsurface drip, surface drip, and furrow irrigation with soil water distribution mapping.",
+          "sourceIds": [
+            "SYN-PUB-07494"
+          ]
+        },
+        {
+          "text": "Regulated deficit irrigation strategies for vegetables and sunflower at critical growth stages to optimise water use efficiency.",
+          "sourceIds": [
+            "SYN-PUB-07492",
+            "SYN-PUB-07498"
+          ]
+        },
+        {
+          "text": "Sensor-based feedback systems and decision frameworks for precision irrigation applicable to Pannonian Plain agro-ecological conditions.",
+          "sourceIds": [
+            "SYN-PUB-07499"
+          ]
+        },
+        {
+          "text": "Crop coefficient determination for sugar beet and other crops under local climate and cultivar conditions using continuous soil moisture monitoring.",
+          "sourceIds": [
+            "SYN-PUB-07497"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to supervising industrial PhDs and joint research projects with technology-oriented companies.",
+          "sourceIds": [
+            "R0662"
+          ]
+        },
+        {
+          "text": "Led WATERWISE, a provincial-funded applied research project delivering a mobile decision support application for irrigation advice to smallholder farmers across 20 farms.",
+          "sourceIds": [
+            "SYN-PRJ-0003"
+          ]
+        },
+        {
+          "text": "Holds a granted patent for a multi-depth capacitive soil moisture probe array.",
+          "sourceIds": [
+            "SYN-PAT-001"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0608",
+      "aliases": [],
+      "name": "Momčilo Pekez",
+      "title": "Associate Professor",
+      "faculty": "Faculty of Agriculture",
+      "department": "Department of Water Management",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Non-stationary flood frequency analysis using time-varying GEV parameters and covariate-driven models.",
+          "sourceIds": [
+            "SYN-PUB-06974",
+            "SYN-PUB-06976",
+            "SYN-PUB-06978"
+          ]
+        },
+        {
+          "text": "Regional flood frequency estimation with L-moments and homogeneous grouping for ungauged catchments.",
+          "sourceIds": [
+            "SYN-PUB-06971",
+            "SYN-PUB-06980",
+            "SYN-PUB-06981"
+          ]
+        },
+        {
+          "text": "Stochastic simulation of synthetic flood event series with Gaussian copulas for infrastructure stress-testing.",
+          "sourceIds": [
+            "SYN-PUB-06979"
+          ]
+        },
+        {
+          "text": "Climate change projections for flood frequencies using ensemble downscaling from EURO-CORDEX and quantile delta mapping.",
+          "sourceIds": [
+            "SYN-PUB-06978"
+          ]
+        },
+        {
+          "text": "Probabilistic risk quantification for agricultural drainage failures under changing flood regimes, including expected annual damage and value-at-risk metrics.",
+          "sourceIds": [
+            "SYN-PUB-06982"
+          ]
+        },
+        {
+          "text": "Catchment delineation sensitivity analysis and DEM uncertainty assessment for flat-terrain drainage basins.",
+          "sourceIds": [
+            "SYN-PUB-06977"
+          ]
+        },
+        {
+          "text": "Soil moisture sensor evaluation and irrigation scheduling design for agricultural applications.",
+          "sourceIds": [
+            "SYN-PUB-06984",
+            "SYN-PUB-06983"
+          ]
+        },
+        {
+          "text": "Nutrient loading quantification and long-term phosphorus dynamics in drainage systems and constructed wetlands.",
+          "sourceIds": [
+            "SYN-PUB-03057",
+            "SYN-PUB-06985"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to contract research on design flood estimation and drainage capacity assessment; has provided consulting services to the Provincial Directorate for Water Management of Vojvodina on drainage capacity studies (2016, 2020).",
+          "sourceIds": [
+            "R0608"
+          ]
+        },
+        {
+          "text": "Open to industrial PhD supervision for candidates working on water infrastructure risk or hydroclimatic data analysis.",
+          "sourceIds": [
+            "R0608"
+          ]
+        },
+        {
+          "text": "Open to consulting on flood frequency analysis for infrastructure planning and environmental permitting.",
+          "sourceIds": [
+            "R0608"
+          ]
+        },
+        {
+          "text": "Leads Work Package 3 of DRAINPAN, an Interreg IPA cross-border project on flood and drainage risk assessment with the Provincial Directorate for Water Management and Hungarian water authorities.",
+          "sourceIds": [
+            "SYN-PRJ-1274"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0765",
+      "aliases": [],
+      "name": "Milica Stanković",
+      "title": "Research Professor",
+      "faculty": "BioSense Institute",
+      "department": "Remote Sensing and GIS Group",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Early-season maize yield prediction from Sentinel-2 time-series data using gradient-boosted tree ensembles and phenological curve fitting.",
+          "sourceIds": [
+            "SYN-PUB-08409"
+          ]
+        },
+        {
+          "text": "Semi-supervised contrastive learning and temporal transformer models for crop stress detection from satellite image time series.",
+          "sourceIds": [
+            "SYN-PUB-08417"
+          ]
+        },
+        {
+          "text": "Hyperspectral imaging analysis for nitrogen stress detection in winter wheat and water stress detection in soybean using airborne and UAV-borne spectroscopy.",
+          "sourceIds": [
+            "SYN-PUB-08410",
+            "SYN-PUB-08415"
+          ]
+        },
+        {
+          "text": "Multi-temporal fusion of Sentinel-1 SAR and Sentinel-2 imagery for automated agricultural parcel boundary delineation using graph-cut segmentation.",
+          "sourceIds": [
+            "SYN-PUB-08414"
+          ]
+        },
+        {
+          "text": "Data assimilation of satellite-derived leaf area index into crop simulation models via ensemble Kalman filtering for yield gap assessment.",
+          "sourceIds": [
+            "SYN-PUB-08419"
+          ]
+        },
+        {
+          "text": "Transfer learning with convolutional neural networks for crop type classification when labelled training data is scarce.",
+          "sourceIds": [
+            "SYN-PUB-08412"
+          ]
+        },
+        {
+          "text": "Cloud-native serverless architectures for continental-scale agricultural remote sensing processing across multi-country domains.",
+          "sourceIds": [
+            "SYN-PUB-08420"
+          ]
+        },
+        {
+          "text": "Benchmark comparison of above-ground biomass retrieval methods across multiple sensor types including radiative transfer models and machine learning approaches.",
+          "sourceIds": [
+            "SYN-PUB-08418"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to supervision of industrial PhD students and joint projects with companies.",
+          "sourceIds": [
+            "R0765"
+          ]
+        },
+        {
+          "text": "Has advised agri-tech startups on design and deployment of satellite data pipelines.",
+          "sourceIds": [
+            "R0765"
+          ]
+        },
+        {
+          "text": "Leads AGROSAT, a national project that develops a satellite analytics platform designed for integration with agricultural advisory infrastructure and digital farming platforms of agri-tech partners.",
+          "sourceIds": [
+            "SYN-PRJ-0001"
+          ]
+        },
+        {
+          "text": "Leads the work package for soil health indicator mapping in SOILSCAN, a Horizon Europe project that produces spatially continuous maps of soil health indicators across the Pannonian lowlands and two additional European regions.",
+          "sourceIds": [
+            "SYN-PRJ-0002"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R1047",
+      "aliases": [],
+      "name": "Milena Pantelić",
+      "title": "Research Associate",
+      "faculty": "Faculty of Agriculture",
+      "department": "Department of Water Management",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Estimation of reference evapotranspiration using FAO Penman-Monteith method, including sensitivity to input data uncertainty and regional spatial interpolation.",
+          "sourceIds": [
+            "SYN-PUB-10778",
+            "SYN-PUB-10775",
+            "SYN-PUB-10777"
+          ]
+        },
+        {
+          "text": "Soil water balance modelling at field scale using CROPWAT and AquaCrop models with field verification via soil moisture sensors (FDR probes).",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983",
+            "SYN-PUB-06984"
+          ]
+        },
+        {
+          "text": "Irrigation scheduling under full and deficit conditions, including mulch effects on soil evaporation and water requirements for vegetable and field crops.",
+          "sourceIds": [
+            "SYN-PUB-10779",
+            "SYN-PUB-06983"
+          ]
+        },
+        {
+          "text": "Long-term crop water stress assessment through climate data-driven simulations; demonstrated with 30-year maize rainfed yield variability analysis.",
+          "sourceIds": [
+            "SYN-PUB-06717"
+          ]
+        },
+        {
+          "text": "Evaluation and comparison of commercial low-cost capacitance soil moisture sensor systems for irrigation support, including accuracy against reference methods.",
+          "sourceIds": [
+            "SYN-PUB-06984"
+          ]
+        },
+        {
+          "text": "Soil physical property monitoring and long-term trajectory analysis of reclaimed alkaline soils following amendment treatments.",
+          "sourceIds": [
+            "SYN-PUB-06709"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to contract research on irrigation scheduling and field water balance assessment, consulting on CROPWAT and AquaCrop model setup and calibration.",
+          "sourceIds": [
+            "R1047"
+          ]
+        },
+        {
+          "text": "Consults on equipment access: laboratory has automatic weather stations, FDR soil moisture probes, and software licenses for CROPWAT and AquaCrop.",
+          "sourceIds": [
+            "R1047"
+          ]
+        },
+        {
+          "text": "Open to joint projects with agri-tech companies developing sensor-based irrigation management tools.",
+          "sourceIds": [
+            "R1047"
+          ]
+        }
+      ],
+      "availability": {
+        "text": "Leads work package on SORBWATER project until 2026; open to smaller industrial contracts and consulting aligned with ongoing research.",
+        "sourceIds": [
+          "R1047"
+        ]
+      }
+    },
+    {
+      "researcherId": "R0218",
+      "aliases": [],
+      "name": "Spasoje Orlović",
+      "title": "Senior Research Associate",
+      "faculty": "BioSense Institute",
+      "department": "Data Science and Bioinformatics Group",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Time-series feature extraction from environmental sensor data using statistical, wavelet, and autocorrelation-based descriptors for agronomic classification.",
+          "sourceIds": [
+            "SYN-PUB-02775",
+            "SYN-PUB-02778",
+            "SYN-PUB-02783"
+          ]
+        },
+        {
+          "text": "Gradient boosting and random forest classifiers for crop phenology, drought stress, and agronomic event detection on multi-year sensor archives.",
+          "sourceIds": [
+            "SYN-PUB-02777",
+            "SYN-PUB-02780",
+            "SYN-PUB-02157"
+          ]
+        },
+        {
+          "text": "Sensor fusion combining satellite thermal data and ground microclimate networks using Gaussian process regression to estimate crop water stress index.",
+          "sourceIds": [
+            "SYN-PUB-02782"
+          ]
+        },
+        {
+          "text": "Transfer learning and domain adaptation for phenological classifiers across geographically dispersed sensor networks with scarce target-domain labels.",
+          "sourceIds": [
+            "SYN-PUB-02784"
+          ]
+        },
+        {
+          "text": "Conformal prediction for uncertainty quantification on temporally autocorrelated environmental sensor data with block-holdout calibration.",
+          "sourceIds": [
+            "SYN-PUB-02783"
+          ]
+        },
+        {
+          "text": "Hyperspectral reflectance time-series analysis for disease detection in crops using dimensionality reduction and support vector machines.",
+          "sourceIds": [
+            "SYN-PUB-02781"
+          ]
+        },
+        {
+          "text": "Missing data imputation and temporal alignment in multi-site environmental and clinical datasets via statistical and learning-based methods.",
+          "sourceIds": [
+            "SYN-PUB-02778",
+            "SYN-PUB-02785"
+          ]
+        },
+        {
+          "text": "Analysis of machine learning model stability and feature importance across multiple growing seasons using Shapley value profiles.",
+          "sourceIds": [
+            "SYN-PUB-02779"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to joint projects on agricultural data analytics, contract research on sensor data processing and predictive modelling, and consulting on deployment and retraining of operational agronomic ML systems.",
+          "sourceIds": [
+            "R0218"
+          ]
+        },
+        {
+          "text": "Open to industrial PhD supervision for candidates with machine learning or data engineering background and student internships on time-series and Python-based ML pipelines.",
+          "sourceIds": [
+            "R0218"
+          ]
+        },
+        {
+          "text": "Collaborated with two commercial farming operations in Vojvodina during CROPWATCH to pilot an early warning dashboard, providing technical advice on sensor placement and alert interpretation.",
+          "sourceIds": [
+            "R0218"
+          ]
+        },
+        {
+          "text": "Provides equipment access to hyperspectral radiometry and microclimate sensor infrastructure, and operates local HPC cluster for data processing.",
+          "sourceIds": [
+            "R0218"
+          ]
+        }
+      ],
+      "availability": null
+    },
+    {
+      "researcherId": "R0553",
+      "aliases": [],
+      "name": "Branka Grujić",
+      "title": "Research Associate",
+      "faculty": "Faculty of Agriculture",
+      "department": "Department of Field and Vegetable Crops",
+      "canLead": true,
+      "expertise": [
+        {
+          "text": "Soil compaction assessment and cone penetrometer profiling for conservation and conventional tillage systems in Chernozem soils.",
+          "sourceIds": [
+            "SYN-PUB-06437",
+            "SYN-PUB-06441",
+            "SYN-PRJ-1816"
+          ]
+        },
+        {
+          "text": "Soil water retention characteristics including pore size distribution measurement with pressure plate apparatus and van Genuchten parameter fitting.",
+          "sourceIds": [
+            "SYN-PUB-06435",
+            "SYN-PUB-06436",
+            "SYN-PUB-06440"
+          ]
+        },
+        {
+          "text": "Saturated and unsaturated hydraulic conductivity determination using tension infiltrometry and identification of macropore flow contributions from biopores.",
+          "sourceIds": [
+            "SYN-PUB-06438"
+          ]
+        },
+        {
+          "text": "Shrink-swell behavior and desiccation crack formation monitoring in clay loam soils using TDR moisture measurement and photographic crack mapping.",
+          "sourceIds": [
+            "SYN-PUB-06439"
+          ]
+        },
+        {
+          "text": "Soil physical quality indices (S-index, LLWR, air capacity) evaluation on long-term tillage experiments and analysis of soil structural degradation.",
+          "sourceIds": [
+            "SYN-PUB-06440"
+          ]
+        },
+        {
+          "text": "Spatial compaction risk modelling using digital elevation models, soil survey texture data, machinery load inventories, and terrain attributes.",
+          "sourceIds": [
+            "SYN-PUB-06442"
+          ]
+        },
+        {
+          "text": "Field measurement campaign design and execution for soil physical monitoring across multiple sites, including experimental plot instrumentation and time-series data collection.",
+          "sourceIds": [
+            "SYN-PRJ-1816",
+            "SYN-PRJ-1817",
+            "SYN-PUB-06441"
+          ]
+        }
+      ],
+      "industryFit": [
+        {
+          "text": "Open to contract research on field compaction assessment and soil hydraulic characterization, and consulting for agricultural machinery companies on compaction impact evaluation.",
+          "sourceIds": [
+            "R0553"
+          ]
+        },
+        {
+          "text": "Provided paid advisory services to two Vojvodina-based agricultural production companies on compaction diagnostic surveys and penetrometer profile interpretation in 2021 and 2023.",
+          "sourceIds": [
+            "R0553"
+          ]
+        },
+        {
+          "text": "Provides access to soil physics laboratory equipment including pressure plate apparatus, TDR soil moisture system, and portable cone penetrometer.",
+          "sourceIds": [
+            "R0553"
+          ]
+        },
+        {
+          "text": "Open to joint projects on soil physical monitoring for precision agriculture and student internships in soil physics laboratory and field campaigns.",
+          "sourceIds": [
+            "R0553"
+          ]
+        }
+      ],
+      "availability": null
+    }
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0662",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0662",
+      "fit": 0.87,
+      "why": [
+        {
+          "text": "The challenge requires compensating for soil moisture probe dynamics in an irrigation feedback loop; the company has three seasons of probe and weather data and has already tried a fixed pause without success (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Nenad Ilić has published on capacitive soil moisture sensor calibration across soil types (SYN-PUB-07491) and long-term field stability assessment of a multi-depth capacitive probe array (SYN-PUB-07495), and holds a granted patent for a multi-depth capacitive soil moisture probe array (SYN-PAT-001).",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495",
+            "SYN-PAT-001"
+          ]
+        },
+        {
+          "text": "The researcher has published on sensor-based feedback systems and decision frameworks for precision irrigation (SYN-PUB-07499) and on IoT cloud-based architectures with wireless sensor networks for irrigation scheduling (SYN-PUB-07493, SYN-PUB-07496).",
+          "sourceIds": [
+            "SYN-PUB-07499",
+            "SYN-PUB-07493",
+            "SYN-PUB-07496"
+          ]
+        },
+        {
+          "text": "The researcher led WATERWISE, a provincial-funded applied research project delivering a mobile decision support application for irrigation advice across 20 farms (SYN-PRJ-0003).",
+          "sourceIds": [
+            "SYN-PRJ-0003"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the three-season probe and weather archive from C999-CH1, develop a sensor-based feedback decision framework that corrects for probe lag after rainfall, drawing on capacitive sensor calibration methods (SYN-PUB-07491, SYN-PUB-07495, SYN-PAT-001) and sensor-driven irrigation decision logic (SYN-PUB-07499, SYN-PUB-07493) to suppress false irrigation events in the apple orchard controller.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-07491",
+          "SYN-PUB-07495",
+          "SYN-PAT-001",
+          "SYN-PUB-07499",
+          "SYN-PUB-07493"
+        ]
+      },
+      "risks": [
+        {
+          "text": "SYN-PUB-07491 covers sensor calibration across five Vojvodina soil types in irrigated maize and sunflower plots; SYN-PUB-07495 covers long-term stability in a chernozem profile under irrigated sugar beet and winter wheat; neither record covers orchard conditions, so the company's apple orchard soil may require separate recalibration.",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495"
+          ]
+        },
+        {
+          "text": "The decision framework record covers field crops in Vojvodina (SYN-PUB-07499), and other irrigation records cover vegetables and sunflower (SYN-PUB-07492, SYN-PUB-07498); none of these records covers perennial tree crops or apple-specific root stress physiology.",
+          "sourceIds": [
+            "SYN-PUB-07499",
+            "SYN-PUB-07492",
+            "SYN-PUB-07498"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R0218",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0218",
+      "fit": 0.81,
+      "why": [
+        {
+          "text": "The challenge requires building a predictive model from a multi-year sensor archive; the company has three seasons of probe readings and weather data from 60 hectares (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Spasoje Orlović has published on time-series feature extraction from environmental sensor data using statistical, wavelet, and autocorrelation-based descriptors (SYN-PUB-02775) and on gradient boosting and random forest classifiers for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780).",
+          "sourceIds": [
+            "SYN-PUB-02775",
+            "SYN-PUB-02777",
+            "SYN-PUB-02780"
+          ]
+        },
+        {
+          "text": "The researcher has published on sensor fusion combining satellite thermal data and ground microclimate networks using Gaussian process regression to estimate crop water stress index (SYN-PUB-02782).",
+          "sourceIds": [
+            "SYN-PUB-02782"
+          ]
+        },
+        {
+          "text": "The researcher has published on conformal prediction for uncertainty quantification on temporally autocorrelated environmental sensor data with block-holdout calibration (SYN-PUB-02783).",
+          "sourceIds": [
+            "SYN-PUB-02783"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the three-season soil moisture probe and weather station archive from C999-CH1, build a predictive model of post-rainfall soil moisture trajectories to detect when the root zone has absorbed sufficient water before the probe equilibrates, drawing on time-series feature extraction from environmental sensor data (SYN-PUB-02775), gradient boosting for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780), and sensor fusion with Gaussian process regression (SYN-PUB-02782), so the irrigation controller can suppress unneeded events.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-02775",
+          "SYN-PUB-02777",
+          "SYN-PUB-02780",
+          "SYN-PUB-02782"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The published sensor fusion and agronomic event detection records cover field crops and phenological classification; there is no evidence of work on soil moisture probe lag compensation or irrigation control logic for orchards.",
+          "sourceIds": [
+            "SYN-PUB-02777",
+            "SYN-PUB-02780",
+            "SYN-PUB-02782"
+          ]
+        },
+        {
+          "text": "The predictive model alone would need to be integrated into the existing irrigation controller; the records cover data analytics pipelines and dashboards (SYN-PRJ-0139), not embedded or real-time irrigation control systems.",
+          "sourceIds": [
+            "SYN-PRJ-0139"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R1047",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R1047",
+      "fit": 0.62,
+      "why": [
+        {
+          "text": "The challenge requires understanding soil water dynamics after rainfall events; the company has three seasons of field probe and weather data (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Milena Pantelić has published on soil water balance modelling at field scale using CROPWAT with FDR probe verification for soy (SYN-PUB-10776) and AquaCrop calibration and validation with FDR probes for sunflower (SYN-PUB-06983).",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983"
+          ]
+        },
+        {
+          "text": "The researcher has published on evaluation and comparison of commercial low-cost capacitance soil moisture sensor systems, including accuracy against reference methods (SYN-PUB-06984).",
+          "sourceIds": [
+            "SYN-PUB-06984"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the three-season probe and weather archive from C999-CH1, calibrate and validate a soil water balance model (CROPWAT or AquaCrop) with FDR probe readings (SYN-PUB-10776, SYN-PUB-06983, SYN-PUB-06984) to characterise post-rainfall soil water redistribution dynamics and define thresholds for a revised irrigation hold signal that avoids root stress in young apple trees.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-10776",
+          "SYN-PUB-06983",
+          "SYN-PUB-06984"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The researcher leads a work package on the SORBWATER project until 2026 and is open only to smaller industrial contracts and consulting aligned with ongoing research (R1047).",
+          "sourceIds": [
+            "R1047"
+          ]
+        },
+        {
+          "text": "The published soil water balance modelling records cover vegetable and field crops; there is no evidence of work on apple orchards or perennial tree root stress physiology.",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983",
+            "SYN-PUB-06984"
+          ]
+        },
+        {
+          "text": "The published water balance modelling records cover seasonal irrigation scheduling for soy and sunflower; there is no evidence of work on post-rainfall sensor response dynamics or feedback control for irrigation systems.",
+          "sourceIds": [
+            "SYN-PUB-10776",
+            "SYN-PUB-06983"
+          ]
+        }
+      ]
+    }
+  ],
+  "chosen": [
+    "C999-CH1:R0662"
+  ],
+  "noMatches": [],
+  "proposals": [
+    {
+      "id": "C999-CH1-R0662",
+      "pairId": "C999-CH1:R0662",
+      "kind": "joint-project",
+      "title": "Soil-Moisture Probe Lag Compensation for Apple Orchard Irrigation Control",
+      "markdown": "## Soil-Moisture Probe Lag Compensation for Apple Orchard Irrigation Control\n\n**Company:** Described problem works in agriculture. [C999] Challenge C999-CH1.  \n**Researcher:** Nenad Ilić is an Associate Professor in the Department of Field and Vegetable Crops, Faculty of Agriculture. [R0662]  \n**Format:** joint project, one page.\n\n### The problem\nAfter rainfall the apple orchard irrigation controllers overwater because soil moisture probes react slowly, and a fixed pause after rainfall did not solve the problem (C999-CH1). [C999-CH1] A fixed pause inserted after rainfall did not solve the overwatering problem and young trees now show root stress (C999-CH1). [C999-CH1] The orchard covers 60 hectares and the company holds three seasons of probe readings, weather station data and yield records (C999-CH1). [C999-CH1]\n\n### Prior work\n- A 2018 study reports a dynamic neural network trained on past soil moisture, precipitation, and climatic measurements that predicts volumetric water content one day ahead with an R 2 value above 0.94 across three field sites, and achieves water savings of 20–46% compared with a rule-based threshold irrigation system. [W2896715775]\n- A 2019 study reports an irrigation scheduling approach using capacitance probes for real-time soil water monitoring in a nectarine orchard, deriving irrigation factors from measured soil water deficits across the full growing season. [W2924508481]\n\n### Research questions\n1. Can a data-driven model trained on the three-season probe and weather archive predict post-rainfall volumetric water content at the probe depth accurately enough to replace the raw probe reading in the irrigation decision logic? Measured as RMSE and R² of predicted versus measured soil moisture on a held-out season, with a target R² above 0.90.\n2. Does replacing the raw probe signal with the model's predicted moisture value reduce false irrigation events after rainfall compared with the current controller, without increasing root-stress indicators? Measured as the count of irrigation triggers within 24 hours of a rainfall event ≥5 mm, and soil moisture exceedance above field capacity, across the validation season.\n\n### Approach\n- Characterise the probe lag: use the three-season archive to quantify the time and magnitude of the gap between the probe reading and the weather-station-derived estimate of post-rain soil water content at each depth, applying the capacitive sensor calibration methods from the researcher's published work on multi-depth probe arrays.\n- Build a predictive moisture model: train a dynamic model (feeding past probe readings, rainfall, temperature and ET₀ computed via Penman–Monteith) on two seasons of archive data to predict actual volumetric water content one step ahead, bypassing the lag period after rain.\n- Develop a lag-aware decision rule: embed the model output into the irrigation feedback logic following the sensor-based decision framework the researcher published for precision irrigation, replacing the fixed-pause heuristic with a model-gated trigger that withholds irrigation when predicted moisture exceeds the target threshold.\n- Validate in the field: run the new controller logic in parallel with the existing system during one growing season, logging both decisions and comparing false-trigger rates and soil moisture exceedance against the baseline.\n\n### Plan\n\n| Period | Work | Result |\n| --- | --- | --- |\n| Months 1–3 | Propose that a master's student be recruited to the project to transfer and clean the three-season archive, document probe placement and soil type at each monitoring point, and run the sensor calibration procedure for the orchard soil, supervised by Nenad Ilić and a nominated company contact. The researcher provides calibration protocols from published work on multi-depth probe arrays. | A labelled, calibrated dataset covering three seasons; a characterisation report quantifying probe lag by rainfall intensity band and soil depth. |\n| Months 4–6 | The master's student trains and cross-validates a dynamic predictive model on two seasons of the archive, testing both the lag profile and the model's post-rain prediction on the held-out season. The researcher reviews model outputs against the decision-framework logic. A revised controller rule set is drafted and reviewed with the company engineer. | A validated predictive model (R² target ≥ 0.90 on the held-out season); a draft lag-aware decision rule; a project paper submitted to a peer-reviewed journal. |\n| Months 7–9 | The lag-aware controller rule is deployed in a shadow mode alongside the live system during the irrigation season. The company engineer logs both the old and new trigger decisions daily; the master's student compares false-trigger counts and soil moisture exceedance against the three-season baseline. | A field-trial report comparing false irrigation event rates and soil moisture exceedance; a go/no-go recommendation for full deployment. |\n| Months 10–12 | If the trial is positive, the researcher and the company engineer integrate the model into the production controller and document the updated system. Remaining calibration edge cases (heavy rainfall, irrigation overlap) are resolved. Final reporting to the EINSTEIN programme. | A production-ready lag-compensation module for the orchard controller; final project report; journal paper revision submitted. |\n\n### First six months\n- Month 1 — Data transfer and audit: the company exports all three seasons of probe readings, weather station logs and yield records to the researcher's group; the master's student documents sensor placement, depths and soil type at each of the 60-ha monitoring points.\n- Month 2 — Calibration: applying the researcher's multi-depth capacitive probe calibration protocol to the orchard soil type; the master's student and the company engineer take reference soil samples at representative orchard blocks to anchor the calibration.\n- Month 3 — Lag characterisation: the master's student quantifies the post-rainfall probe lag (time to equilibration, magnitude by rainfall intensity band and depth) across the three-season archive; Nenad Ilić reviews outputs.\n- Months 4–6 — Model development: the master's student trains the dynamic predictive moisture model on two seasons, validates it on the third, and drafts the lag-aware decision rule; the researcher and the company engineer review the rule against operational constraints before the irrigation season begins.\n\n### What each side brings\n- **Company:** Three seasons of soil moisture probe readings, weather station data and yield records from 60 hectares of apple orchards. [C999-CH1]\n- **Faculty:** Nenad Ilić co-authored published work on capacitive soil moisture sensor calibration across soil types and long-term field stability of a multi-depth probe array. [SYN-PUB-07491, SYN-PUB-07495] Nenad Ilić holds a granted patent for a capacitive soil moisture probe with a multi-depth sensing array. [SYN-PAT-001] Nenad Ilić co-authored a sensor-based feedback decision framework for precision irrigation applicable to Pannonian Plain agro-ecological conditions. [SYN-PUB-07499] Nenad Ilić co-authored work on IoT cloud-based architectures with wireless sensor networks and MQTT messaging for irrigation scheduling, and led WATERWISE delivering mobile irrigation decision support across 20 farms. [SYN-PUB-07493, SYN-PUB-07496, SYN-PRJ-0003]\n\n### Why this pair\nThe company has a well-defined sensor-lag problem and three seasons of data to solve it, but needs the calibration and decision-framework methods to turn that data into a working controller fix. Nenad Ilić brings exactly those methods: published capacitive probe calibration, a multi-depth probe patent, and a sensor-based irrigation decision framework. Neither side could do this alone: the company holds the orchard data and the live controller, while the researcher brings the calibration protocols and the decision logic that the model output must plug into.\n\n- The company's orchard controllers overwater after rain because soil moisture probes react slowly, and the company holds three seasons of probe readings, weather station data and yield records from 60 hectares. [C999-CH1]\n- Nenad Ilić co-authored work on capacitive soil moisture sensor calibration across soil types and on a sensor-based feedback decision framework for precision irrigation. [SYN-PUB-07491, SYN-PUB-07499]\n- Nenad Ilić led WATERWISE as principal investigator, an applied project delivering irrigation decision support piloted across 20 farms. [SYN-PRJ-0003]\n\n### Risks and constraints\n- The published calibration work covers five Vojvodina soil types in irrigated maize and sunflower plots, and long-term stability in a chernozem profile under irrigated sugar beet and winter wheat. [SYN-PUB-07491, SYN-PUB-07495]\n- The decision framework record covers field crops in Vojvodina (SYN-PUB-07499), and other irrigation records cover vegetables and sunflower (SYN-PUB-07492, SYN-PUB-07498); none of these records covers perennial tree crops or apple-specific root stress physiology. [SYN-PUB-07499, SYN-PUB-07492, SYN-PUB-07498]\n\n### Agreed up front (proposed)\n- Publication: the company reviews any manuscript for 45 days before submission; results describing proprietary field layouts or yield data may be anonymised at the company's request.\n- Ownership: the lag-compensation model and any adapted decision rules belong to the company for use in its own orchards; the Faculty retains the underlying calibration methods and may reuse them in future research.\n- Data access: the company transfers the three-season archive to the researcher's group under a signed data-sharing agreement before Month 1 begins; data is used only for this project and deleted from the Faculty's servers at project close.\n- Preconditions: the data-sharing agreement and a joint project contract defining cost sharing and the company engineer's time commitment (minimum one day per week) are signed before work starts.\n\n### Sources\n- C999: Described problem\n- C999-CH1: Our irrigation controllers in apple orchards overwater after rain because the soil moisture probes react slowly.\n- R0662: Nenad Ilić\n- SYN-PAT-001: Capacitive soil moisture probe with a multi-depth sensing array (2021)\n- SYN-PRJ-0003: WATERWISE: irrigation advice for smallholders (2021)\n- SYN-PUB-07491: Low-cost capacitive soil moisture probes: calibration across soil types (2021)\n- SYN-PUB-07492: Deficit irrigation of vegetables in a changing climate (2020)\n- SYN-PUB-07493: A smartphone-based decision support application for real-time irrigation scheduling in smallholder vegetable production (2022)\n- SYN-PUB-07495: Calibration and long-term stability of a multi-depth capacitive soil moisture probe array under field conditions (2023)\n- SYN-PUB-07496: Towards IoT-enabled irrigation management: integration of wireless soil moisture sensor networks with cloud-based dec... (2024)\n- SYN-PUB-07498: Effects of regulated deficit irrigation at critical growth stages on sunflower yield and oil content in semi-arid con... (2020)\n- SYN-PUB-07499: Precision irrigation in field crops: a review of sensor-based feedback systems and decision support frameworks applic... (2023)\n- W2896715775: Dynamic Neural Network Modelling of Soil Moisture Content for Predictive Irrigation Scheduling (2018) https://openalex.org/W2896715775\n- W2924508481: Irrigation Factor Approach Based on Soil Water Content: A Nectarine Orchard Case Study (2019) https://openalex.org/W2924508481\n",
+      "claims": [
+        {
+          "text": "Described problem works in agriculture.",
+          "sourceIds": [
+            "C999"
+          ]
+        },
+        {
+          "text": "Nenad Ilić is an Associate Professor in the Department of Field and Vegetable Crops, Faculty of Agriculture.",
+          "sourceIds": [
+            "R0662"
+          ]
+        },
+        {
+          "text": "After rainfall the apple orchard irrigation controllers overwater because soil moisture probes react slowly, and a fixed pause after rainfall did not solve the problem (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "A fixed pause inserted after rainfall did not solve the overwatering problem and young trees now show root stress (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The orchard covers 60 hectares and the company holds three seasons of probe readings, weather station data and yield records (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "A 2018 study reports a dynamic neural network trained on past soil moisture, precipitation, and climatic measurements that predicts volumetric water content one day ahead with an R 2 value above 0.94 across three field sites, and achieves water savings of 20–46% compared with a rule-based threshold irrigation system.",
+          "sourceIds": [
+            "W2896715775"
+          ]
+        },
+        {
+          "text": "A 2019 study reports an irrigation scheduling approach using capacitance probes for real-time soil water monitoring in a nectarine orchard, deriving irrigation factors from measured soil water deficits across the full growing season.",
+          "sourceIds": [
+            "W2924508481"
+          ]
+        },
+        {
+          "text": "Three seasons of soil moisture probe readings, weather station data and yield records from 60 hectares of apple orchards.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Nenad Ilić co-authored published work on capacitive soil moisture sensor calibration across soil types and long-term field stability of a multi-depth probe array.",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495"
+          ]
+        },
+        {
+          "text": "Nenad Ilić holds a granted patent for a capacitive soil moisture probe with a multi-depth sensing array.",
+          "sourceIds": [
+            "SYN-PAT-001"
+          ]
+        },
+        {
+          "text": "Nenad Ilić co-authored a sensor-based feedback decision framework for precision irrigation applicable to Pannonian Plain agro-ecological conditions.",
+          "sourceIds": [
+            "SYN-PUB-07499"
+          ]
+        },
+        {
+          "text": "Nenad Ilić co-authored work on IoT cloud-based architectures with wireless sensor networks and MQTT messaging for irrigation scheduling, and led WATERWISE delivering mobile irrigation decision support across 20 farms.",
+          "sourceIds": [
+            "SYN-PUB-07493",
+            "SYN-PUB-07496",
+            "SYN-PRJ-0003"
+          ]
+        },
+        {
+          "text": "The company's orchard controllers overwater after rain because soil moisture probes react slowly, and the company holds three seasons of probe readings, weather station data and yield records from 60 hectares.",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Nenad Ilić co-authored work on capacitive soil moisture sensor calibration across soil types and on a sensor-based feedback decision framework for precision irrigation.",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07499"
+          ]
+        },
+        {
+          "text": "Nenad Ilić led WATERWISE as principal investigator, an applied project delivering irrigation decision support piloted across 20 farms.",
+          "sourceIds": [
+            "SYN-PRJ-0003"
+          ]
+        },
+        {
+          "text": "The published calibration work covers five Vojvodina soil types in irrigated maize and sunflower plots, and long-term stability in a chernozem profile under irrigated sugar beet and winter wheat.",
+          "sourceIds": [
+            "SYN-PUB-07491",
+            "SYN-PUB-07495"
+          ]
+        },
+        {
+          "text": "The decision framework record covers field crops in Vojvodina (SYN-PUB-07499), and other irrigation records cover vegetables and sunflower (SYN-PUB-07492, SYN-PUB-07498); none of these records covers perennial tree crops or apple-specific root stress physiology.",
+          "sourceIds": [
+            "SYN-PUB-07499",
+            "SYN-PUB-07492",
+            "SYN-PUB-07498"
+          ]
+        }
+      ],
+      "revision": 2
+    }
+  ],
+  "needsHuman": [],
+  "verdicts": [
+    {
+      "proposalId": "C999-CH1",
+      "revision": 0,
+      "ok": true,
+      "rejected": [],
+      "kind": "need",
+      "taskId": "critique-2",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0662",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Evapotranspiration-based irrigation scheduling using Penman–Monteith models for sugar beet and other field crops.",
+            "sourceIds": [
+              "SYN-PUB-07490",
+              "SYN-PUB-07493",
+              "SYN-PUB-07497"
+            ]
+          },
+          "reason": "SYN-PUB-07490 covers ET-based irrigation scheduling for sugar beet using Penman–Monteith models, SYN-PUB-07493 uses Penman–Monteith for scheduling, and SYN-PUB-07497 covers crop coefficient determination for sugar beet under drip irrigation using ET/FAO-56; however, none of the three cited records explicitly mention 'other field crops' in the context of ET-based scheduling — SYN-PUB-07493 is about smallholder vegetable production, not field crops broadly, and SYN-PUB-07497 focuses on sugar beet specifically, so the phrase 'other field crops' is not supported by the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Regulated deficit irrigation strategies for vegetables, sunflower, and other field crops at critical growth stages to optimise water use efficiency.",
+            "sourceIds": [
+              "SYN-PUB-07492",
+              "SYN-PUB-07498"
+            ]
+          },
+          "reason": "SYN-PUB-07492 covers regulated deficit irrigation for vegetables (pepper, tomato, courgette) at critical growth stages, and SYN-PUB-07498 covers regulated deficit irrigation for sunflower at critical growth stages to optimise water use efficiency; however, neither record mentions 'other field crops' beyond vegetables and sunflower, but the claim only lists 'vegetables, sunflower, and other field crops' — the 'other field crops' phrase is not supported by the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-10",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R1047",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Co-authored industrial consulting project in 2022 with AgroSens d.o.o. (Novi Sad) on wireless soil moisture sensor system testing and sensor performance analysis on commercial farms.",
+            "sourceIds": [
+              "R1047"
+            ]
+          },
+          "reason": "R1047 states Pantelić participated as a consultant in 2022 in a project by AgroSens d.o.o. (Novi Sad) involving testing of a wireless soil moisture sensor system on commercial farms in Bačka, and that the collaboration included field measurements and statistical analysis of sensor performance — however, the claim says 'co-authored industrial consulting project' and R1047 describes her as a consultant (not a co-author), and the claim says 'sensor performance analysis' while R1047 says 'statistička analiza performansi senzora' (statistical analysis of sensor performance); the word 'co-authored' is not supported by R1047 which only says she participated as a consultant.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-13",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0765",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Crop phenological metrics extraction from Sentinel-2 multispectral imagery and their use in predicting agronomic outcomes such as oil content.",
+            "sourceIds": [
+              "SYN-PUB-08413",
+              "SYN-PUB-08416"
+            ]
+          },
+          "reason": "\"2 multispectral\" is not in SYN-PUB-08413 or SYN-PUB-08416 but is in SYN-PUB-08418 and SYN-PRJ-0002, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "Hyperspectral imaging analysis for nitrogen and water stress detection in wheat, including indices computed from airborne spectroscopy.",
+            "sourceIds": [
+              "SYN-PUB-08410",
+              "SYN-PUB-08415"
+            ]
+          },
+          "reason": "SYN-PUB-08410 covers hyperspectral indices from airborne imaging spectroscopy for nitrogen stress detection in winter wheat under variable irrigation, and SYN-PUB-08415 covers drought (water) stress detection in soybean using UAV-borne hyperspectral imaging; however, the claim states 'nitrogen and water stress detection in wheat' but SYN-PUB-08415 concerns soybean, not wheat, making the merged scope unsupported.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Multi-temporal fusion of Sentinel-1 SAR and Sentinel-2 imagery for automated agricultural parcel boundary delineation using graph-cut segmentation.",
+            "sourceIds": [
+              "SYN-PUB-08414",
+              "SYN-PUB-08411"
+            ]
+          },
+          "reason": "SYN-PUB-08414 explicitly covers multi-temporal fusion of Sentinel-1 SAR and Sentinel-2 imagery for automated agricultural parcel boundary delineation using graph-cut segmentation; SYN-PUB-08411 concerns soil moisture mapping via radar-optical fusion and does not involve parcel boundary delineation or graph-cut segmentation, so citing it for this claim adds a record that does not support it.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Co-leads SOILSCAN, a Horizon Europe project that produces spatially continuous maps of soil health indicators for agricultural application across multiple European regions.",
+            "sourceIds": [
+              "SYN-PRJ-0002"
+            ]
+          },
+          "reason": "SYN-PRJ-0002 shows R0765 is a work package leader, not a co-lead of SOILSCAN; the claim states she 'co-leads' the project, which is a stronger role than what the cited text supports.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-12",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0608",
+      "revision": 0,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-11",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0553",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Provides access to soil physics laboratory equipment including pressure plate apparatus, TDR soil moisture system, and portable electronic cone penetrometer.",
+            "sourceIds": [
+              "R0553"
+            ]
+          },
+          "reason": "R0553 states the group maintains a soil physics laboratory equipped with a pressure plate apparatus, a TDR moisture measurement system, and a portable cone penetrometer — the claim calls it an 'electronic cone penetrometer' but R0553 says 'portable cone penetrometer', and does not describe it as electronic; however, SYN-PUB-06437 refers to a 'hand-pushed electronic cone penetrometer' but that is not cited for this claim, so the word 'electronic' is not in the cited text R0553.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-15",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0218",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Piloted an early warning dashboard with two commercial farming operations in Vojvodina during CROPWATCH, providing technical advice on sensor placement and alert interpretation.",
+            "sourceIds": [
+              "SYN-PRJ-0139"
+            ]
+          },
+          "reason": "SYN-PRJ-0139 states the prototype dashboard was tested with agronomic advisors from two regional agricultural extension services (not 'two commercial farming operations'), whereas R0218 specifies that during CROPWATCH Orlović collaborated with two commercial farming operations — the claim attributes this fact to SYN-PRJ-0139 alone, but SYN-PRJ-0139 does not mention commercial farming operations; it mentions extension services, so the claim's fact about 'two commercial farming operations' is not supported by the cited source SYN-PRJ-0139.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-14",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R1047",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Participated as a consultant in 2022 in a project by AgroSens d.o.o. (Novi Sad) involving testing of a wireless soil moisture sensor system on commercial farms in Bačka, with field measurements and statistical analysis of sensor performance.",
+            "sourceIds": [
+              "R1047"
+            ]
+          },
+          "reason": "\"Bačka\" is not in R1047 but is in SYN-PUB-06984, which the claim does not cite.",
+          "check": "uncited-detail"
+        }
+      ],
+      "kind": "profile",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0662",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-22",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R1047",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "action": "accept",
+      "trimmed": [
+        {
+          "claim": {
+            "text": "Consulted for AgroSens d.o.o. (Novi Sad) in 2022 on testing of a wireless soil moisture sensor system on commercial farms, including field measurements and statistical analysis of sensor performance.",
+            "sourceIds": [
+              "R1047"
+            ]
+          },
+          "reason": "\"2022 on\" is not in R1047 but is in SYN-PUB-06984, which the claim does not cite.",
+          "check": "uncited-detail"
+        }
+      ]
+    },
+    {
+      "proposalId": "R0218",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-26",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0553",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "taskId": "critique-25",
+      "action": "accept"
+    },
+    {
+      "proposalId": "R0765",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Crop phenological metrics extraction from Sentinel-2 imagery and their use in predicting agronomic outcomes such as oil content.",
+            "sourceIds": [
+              "SYN-PUB-08413",
+              "SYN-PUB-08416"
+            ]
+          },
+          "reason": "\"2 imagery\" is not in SYN-PUB-08413 or SYN-PUB-08416 but is in SYN-PUB-08414, SYN-PUB-08412 and SYN-PRJ-0001, which the claim does not cite.",
+          "check": "uncited-detail"
+        }
+      ],
+      "kind": "profile",
+      "taskId": "critique-24",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "R0765",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "profile",
+      "action": "accept",
+      "trimmed": [
+        {
+          "claim": {
+            "text": "Crop phenological metrics extraction from Sentinel-2 imagery for predicting oil content in sunflower.",
+            "sourceIds": [
+              "SYN-PUB-08413"
+            ]
+          },
+          "reason": "\"2 imagery\" is not in SYN-PUB-08413 but is in SYN-PUB-08414, SYN-PUB-08412 and SYN-PRJ-0001, which the claim does not cite.",
+          "check": "uncited-detail"
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1:R1047",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Milena Pantelić has published on soil water balance modelling at field scale using CROPWAT and AquaCrop with field verification via FDR soil moisture probes (SYN-PUB-10776, SYN-PUB-06983, SYN-PUB-06984).",
+            "sourceIds": [
+              "SYN-PUB-10776",
+              "SYN-PUB-06983",
+              "SYN-PUB-06984"
+            ]
+          },
+          "reason": "SYN-PUB-10776 covers CROPWAT with FDR probe verification for soy; SYN-PUB-06983 covers AquaCrop calibration/validation with FDR probes for sunflower; SYN-PUB-06984 covers sensor comparison for sugar beet but does not mention soil water balance modelling with CROPWAT or AquaCrop — the claim groups all three records under 'soil water balance modelling at field scale using CROPWAT and AquaCrop with field verification via FDR soil moisture probes', but SYN-PUB-06984 is a sensor comparison study that does not use CROPWAT or AquaCrop.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The CROPWAT and AquaCrop models used in the published work are simulation tools; they do not directly address the real-time sensor lag compensation that the irrigation controller requires.",
+            "sourceIds": [
+              "SYN-PUB-10776",
+              "SYN-PUB-06983"
+            ]
+          },
+          "reason": "SYN-PUB-10776 and SYN-PUB-06983 describe CROPWAT and AquaCrop as simulation tools for seasonal water balance and irrigation scheduling, but neither record mentions 'real-time sensor lag compensation' or anything about an irrigation controller — the claim adds a judgement about what the tools 'do not directly address' relative to the company's requirement, which is not stated in the cited records.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-30",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0218",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Spasoje Orlović has published on time-series feature extraction from environmental sensor data using statistical, wavelet, and autocorrelation-based descriptors (SYN-PUB-02775, SYN-PUB-02778, SYN-PUB-02783) and on gradient boosting and random forest classifiers for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780).",
+            "sourceIds": [
+              "SYN-PUB-02775",
+              "SYN-PUB-02778",
+              "SYN-PUB-02783",
+              "SYN-PUB-02777",
+              "SYN-PUB-02780"
+            ]
+          },
+          "reason": "SYN-PUB-02775 covers time-series feature extraction (autocorrelation, wavelet, statistical descriptors) from environmental sensor data and random forest classification; SYN-PUB-02778 covers imputation strategies on sensor archives but does not cover feature extraction methods (statistical, wavelet, autocorrelation-based descriptors) — it covers missing data imputation; SYN-PUB-02783 covers conformal prediction, not feature extraction; SYN-PUB-02777 covers gradient boosting (XGBoost) for phenological stage detection (agronomic event detection) on temperature/photoperiod records; SYN-PUB-02780 covers gradient boosting and ensemble regression for drought stress onset prediction on multi-year soil moisture data. The claim attributes 'time-series feature extraction using statistical, wavelet, and autocorrelation-based descriptors' to SYN-PUB-02778 and SYN-PUB-02783, but SYN-PUB-02778 is about imputation strategies and SYN-PUB-02783 is about conformal prediction — neither covers those feature extraction methods.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The researcher has published on conformal prediction for uncertainty quantification on temporally autocorrelated environmental sensor data with block-holdout calibration (SYN-PUB-02783), which is relevant to ensuring the model does not under-irrigate young trees.",
+            "sourceIds": [
+              "SYN-PUB-02783"
+            ]
+          },
+          "reason": "SYN-PUB-02783 does cover conformal prediction for uncertainty quantification on temporally autocorrelated environmental sensor data with a block-holdout calibration scheme, but the claim adds the judgement that this 'is relevant to ensuring the model does not under-irrigate young trees,' which is an added evaluative tie to the company's challenge that is not stated in SYN-PUB-02783.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Using the three-season soil moisture probe and weather station archive from C999-CH1, build a predictive model of post-rainfall soil moisture trajectories to detect when the root zone has absorbed sufficient water before the probe equilibrates, drawing on time-series feature extraction from environmental sensor data (SYN-PUB-02775, SYN-PUB-02778), gradient boosting for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780), and sensor fusion with Gaussian process regression (SYN-PUB-02782), so the irrigation controller can suppress unneeded events.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-02775",
+              "SYN-PUB-02778",
+              "SYN-PUB-02777",
+              "SYN-PUB-02780",
+              "SYN-PUB-02782"
+            ]
+          },
+          "reason": "This is a proposal claim; the planned work (building a predictive model of post-rainfall soil moisture trajectories to detect root-zone absorption before probe equilibration) is assessed by whether the company's need and the researcher's cited methods are in the sources. C999-CH1 provides the three-season archive and the irrigation controller problem; SYN-PUB-02775 and SYN-PUB-02778 are cited for 'time-series feature extraction from environmental sensor data,' but SYN-PUB-02778 is about imputation strategies, not feature extraction methods, so that citation does not support the stated method.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-29",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R0662",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "Nenad Ilić has published on capacitive soil moisture sensor design, calibration across soil types, and field stability assessment (SYN-PUB-07491, SYN-PUB-07495) and holds a granted patent for a multi-depth capacitive soil moisture probe array (SYN-PAT-001).",
+            "sourceIds": [
+              "SYN-PUB-07491",
+              "SYN-PUB-07495",
+              "SYN-PAT-001"
+            ]
+          },
+          "reason": "SYN-PUB-07491 covers calibration across soil types, SYN-PUB-07495 covers long-term field stability assessment of a multi-depth capacitive probe array, and SYN-PAT-001 is a granted patent for a capacitive soil moisture probe with a multi-depth sensing array — all attributed to R0662 (Nenad Ilić); however, SYN-PUB-07491 and SYN-PUB-07495 do not cover 'sensor design' as a topic, only calibration and stability, making 'capacitive soil moisture sensor design' an addition not supported by those records.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "Using the three-season probe and weather archive from C999-CH1, develop a sensor-based feedback decision framework that corrects for probe lag after rainfall by fusing soil moisture sensor readings with weather data, drawing on capacitive sensor calibration methods (SYN-PUB-07491, SYN-PUB-07495, SYN-PAT-001) and sensor-driven irrigation decision logic (SYN-PUB-07499, SYN-PUB-07493) to suppress false irrigation events in the apple orchard controller.",
+            "sourceIds": [
+              "C999-CH1",
+              "SYN-PUB-07491",
+              "SYN-PUB-07495",
+              "SYN-PAT-001",
+              "SYN-PUB-07499",
+              "SYN-PUB-07493"
+            ]
+          },
+          "reason": "The claim is a proposal for what the pair could do together using the company's archive and the researcher's methods; as a proposal, it must be checked that the company's need and every factual assertion about either side are in the cited text — C999-CH1 confirms the three-season probe and weather archive and the false-irrigation/overwatring problem; SYN-PUB-07491 and SYN-PUB-07495 confirm capacitive sensor calibration methods; SYN-PAT-001 confirms the multi-depth probe array; SYN-PUB-07499 and SYN-PUB-07493 confirm sensor-driven irrigation decision logic; however, the claim adds 'fusing soil moisture sensor readings with weather data' as a described method of the researcher — neither SYN-PUB-07499 nor SYN-PUB-07493 describes a sensor–weather data fusion approach for correcting probe lag after rainfall, so this specific method is not in the cited text.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The published sensor calibration records cover chernozem and irrigated field-crop conditions; the company's apple orchard soil type may differ and would require recalibration.",
+            "sourceIds": [
+              "SYN-PUB-07491",
+              "SYN-PUB-07495"
+            ]
+          },
+          "reason": "SYN-PUB-07491 lists five Vojvodina soil types including chernozem and validates in irrigated maize and sunflower plots; SYN-PUB-07495 specifies a chernozem profile under irrigated sugar beet and winter wheat — neither record mentions irrigated 'field-crop conditions' as a named category, but both are explicitly conducted in field-crop (not orchard) contexts; however, the claim states the records 'cover chernozem and irrigated field-crop conditions', which is a characterisation not explicitly stated in those records (SYN-PUB-07491 covers five soil types, not just chernozem), making this a narrowing/mischaracterisation of the scope.",
+          "check": "unsupported"
+        },
+        {
+          "claim": {
+            "text": "The published decision frameworks cover sugar beet and field crops; there is no evidence of work on perennial tree crops or apple-specific root stress physiology.",
+            "sourceIds": [
+              "SYN-PUB-07499",
+              "SYN-PUB-07492",
+              "SYN-PUB-07498"
+            ]
+          },
+          "reason": "SYN-PUB-07499 covers field crops in Vojvodina; SYN-PUB-07492 covers deficit irrigation of vegetables (pepper, tomato, courgette); SYN-PUB-07498 covers sunflower — none of the three cited records mentions perennial tree crops or apple-specific root stress physiology, so the claim that there is no evidence of such work in those records is supported, but the claim that decision frameworks 'cover sugar beet' is attributed to SYN-PUB-07499, which does not specifically name sugar beet as a covered crop (it is a review of field crops generally); SYN-PUB-07499 does not mention sugar beet, making that specific fact unsupported by the cited text.",
+          "check": "unsupported"
+        }
+      ],
+      "kind": "pair",
+      "taskId": "critique-28",
+      "action": "send-back"
+    },
+    {
+      "proposalId": "C999-CH1:R1047",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-34",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0218",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-35",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1:R0662",
+      "revision": 1,
+      "ok": true,
+      "rejected": [],
+      "kind": "pair",
+      "taskId": "critique-36",
+      "action": "accept"
+    },
+    {
+      "proposalId": "C999-CH1-R0662",
+      "revision": 0,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "A 2018 study reports that a dynamic neural network trained on past soil moisture and weather data predicts volumetric water content one day ahead with R²>0.94 and achieves 20–46% water savings compared with a threshold rule-based irrigation system.",
+            "sourceIds": [
+              "W2896715775"
+            ]
+          },
+          "reason": "\"R²\" is not in W2896715775 but is in SYN-PUB-07491, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "After rainfall the apple orchard irrigation controller fires false irrigation events because capacitive soil moisture probes respond too slowly to reflect the actual post-rain soil water content (C999-CH1).",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 states the irrigation controllers overwater after rain because 'soil moisture probes react slowly', which matches the claim; however, the record does not use the word 'capacitive' or 'fires false irrigation events' — it says the probes react slowly and overwatering results, but the claim's specific framing of 'capacitive' probes and 'false irrigation events' adds terminology not present in C999-CH1. critic-2: 16% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Access to the live orchard irrigation controller and the field infrastructure needed for a parallel shadow-mode trial during the validation season.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 does not mention access to a live orchard irrigation controller, field infrastructure, a parallel shadow-mode trial, or a validation season; these details are not in the cited text. critic-2: 3% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "A field engineer available to co-supervise data collection, calibration sampling and trial logging throughout the project.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: C999-CH1 does not mention a field engineer, co-supervision, calibration sampling, or trial logging; these details are not in the cited text. critic-2: 0% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Nenad Ilić holds a granted patent for a multi-depth capacitive soil moisture probe array, providing calibration and deployment protocols.",
+            "sourceIds": [
+              "SYN-PAT-001"
+            ]
+          },
+          "reason": "critic: SYN-PAT-001 records a granted patent for a 'Capacitive soil moisture probe with a multi-depth sensing array' with inventor Nenad Ilić (R0662), but the record contains no abstract and does not mention calibration or deployment protocols; those details are added by the claim but are not in the cited patent record. critic-2: 46% likely that the cited text supports it.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic",
+            "critic-2"
+          ]
+        },
+        {
+          "claim": {
+            "text": "The company's overwatering problem stems directly from probe lag in a feedback loop, and the three-season archive is the dataset needed to characterise and model that lag.",
+            "sourceIds": [
+              "C999-CH1"
+            ]
+          },
+          "reason": "critic: This claim adds editorial judgements ('the company's overwatering problem stems directly from probe lag in a feedback loop' and 'the dataset needed to characterise and model that lag') that go beyond what C999-CH1 states; the record describes the problem and the data but does not characterise the archive as the dataset needed to model probe lag.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "Nenad Ilić led WATERWISE, an applied project delivering irrigation decision support across 20 farms, showing the capacity to move from research methods to a field-deployable tool.",
+            "sourceIds": [
+              "SYN-PRJ-0003"
+            ]
+          },
+          "reason": "critic: SYN-PRJ-0003 records that Nenad Ilić (R0662) led WATERWISE as principal investigator, that it was an applied project, and that it was piloted on 20 farms delivering irrigation decision support; the claim's added characterisation of 'showing the capacity to move from research methods to a field-deployable tool' is an editorial judgement not stated in the cited record.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "SYN-PUB-07491 covers sensor calibration across five Vojvodina soil types in irrigated maize and sunflower plots; SYN-PUB-07495 covers long-term stability in a chernozem profile under irrigated sugar beet and winter wheat; neither record covers orchard conditions, so the company's apple orchard soil may require separate recalibration.",
+            "sourceIds": [
+              "SYN-PUB-07491",
+              "SYN-PUB-07495"
+            ]
+          },
+          "reason": "critic: SYN-PUB-07491 covers calibration across five Vojvodina soil types in irrigated maize and sunflower plots, and SYN-PUB-07495 covers long-term stability in a chernozem profile under irrigated sugar beet and winter wheat; neither record mentions orchard conditions, so the inference that neither covers orchards follows directly from the text; however, the claim's conclusion that 'the apple orchard soil may require separate recalibration' is an editorial inference not stated in either record.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        },
+        {
+          "claim": {
+            "text": "A master's student from the researcher's group, supervised by Nenad Ilić and the company's field engineer (one day per week), transfers and cleans the three-season archive, documents probe placement and soil type at each monitoring point, and runs the capacitive sensor calibration procedure for the orchard soil.",
+            "sourceIds": []
+          },
+          "reason": "The proposal treats a master's student from the researcher's group as an already-available resource, but R0662 and no other cited source mentions any master's student or a research group that includes one.",
+          "check": "free-text"
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-40",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-40",
+          "rejected": 7
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-41",
+          "rejected": 4
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0662",
+      "revision": 1,
+      "ok": false,
+      "rejected": [
+        {
+          "claim": {
+            "text": "A 2018 study reports a dynamic neural network trained on past soil moisture, precipitation, and climatic measurements that predicts volumetric water content one day ahead with R² above 0.94 across three field sites, and achieves 20–46% water savings compared with a rule-based threshold irrigation system.",
+            "sourceIds": [
+              "W2896715775"
+            ]
+          },
+          "reason": "\"R²\" is not in W2896715775 but is in SYN-PUB-07491, which the claim does not cite.",
+          "check": "uncited-detail"
+        },
+        {
+          "claim": {
+            "text": "The published calibration work covers five Vojvodina soil types in irrigated maize and sunflower plots, and long-term stability in a chernozem profile under irrigated sugar beet and winter wheat; neither record covers orchard conditions.",
+            "sourceIds": [
+              "SYN-PUB-07491",
+              "SYN-PUB-07495"
+            ]
+          },
+          "reason": "critic: SYN-PUB-07491 covers calibration across five Vojvodina soil types in irrigated maize and sunflower plots, and SYN-PUB-07495 covers long-term stability in a chernozem profile under irrigated sugar beet and winter wheat, but the claim adds the evaluative conclusion that 'neither record covers orchard conditions,' which is a judgment not stated in either cited record.",
+          "check": "unsupported",
+          "reviewers": [
+            "critic"
+          ]
+        }
+      ],
+      "kind": "proposal",
+      "taskId": "critique-44",
+      "action": "send-back",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-44",
+          "rejected": 1
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-45",
+          "rejected": 0
+        }
+      ]
+    },
+    {
+      "proposalId": "C999-CH1-R0662",
+      "revision": 2,
+      "ok": true,
+      "rejected": [],
+      "kind": "proposal",
+      "taskId": "critique-48",
+      "action": "accept",
+      "reviewers": [
+        {
+          "reviewer": "critic",
+          "model": "claude-sonnet-4-6",
+          "taskId": "critique-48",
+          "rejected": 0
+        },
+        {
+          "reviewer": "critic-2",
+          "model": "subq-snap-1.1",
+          "taskId": "critique-49",
+          "rejected": 0
+        }
+      ]
+    }
+  ],
+  "approvals": {},
+  "funding": [
+    {
+      "pairId": "C999-CH1:R0662",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0662",
+      "queries": [
+        "soil moisture sensor irrigation",
+        "decision support agricultural water",
+        "sensor feedback crop management",
+        "precision irrigation rainfall response",
+        "soil moisture sensor lag",
+        "sensor response time compensation",
+        "volumetric water content dynamics",
+        "irrigation control feedback",
+        "agriculture"
+      ],
+      "considered": 24,
+      "taskId": "scout-39",
+      "calls": [
+        {
+          "call": {
+            "id": "CALL:HORIZON-CL6-2027-02-FARM2FORK-01",
+            "identifier": "HORIZON-CL6-2027-02-FARM2FORK-01",
+            "title": "Increasing the resilience of agriculture in water and nutrient-scarce environments through digital innovations",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-CL6-2027-02",
+            "action": "Research and Innovation Actions",
+            "status": "forthcoming",
+            "deadline": "2027-09-23",
+            "opens": "2027-04-20",
+            "grant": {
+              "min": 6000000,
+              "max": 6000000,
+              "expected": 2
+            },
+            "keywords": [
+              "Area 3 from Work Programme",
+              "Artificial intelligence, intelligent systems, multi agent systems",
+              "Big data",
+              "Biophysics",
+              "Cell biology, Microbiology",
+              "Computer and information sciences",
+              "Environmental biology",
+              "Farm economics"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-FARM2FORK-01"
+          },
+          "reason": "Addresses digital innovations for water-scarce agriculture with keywords on AI decision support systems and water management, which fits the sensor-driven irrigation decision framework for water efficiency.",
+          "check": "Verify whether this Research and Innovation Action accepts consortia with a single private company and a university research partner."
+        },
+        {
+          "call": {
+            "id": "CALL:HORIZON-CL6-2027-03-GOVERNANCE-04",
+            "identifier": "HORIZON-CL6-2027-03-GOVERNANCE-04",
+            "title": "AI supporting informed advice for farmers and foresters to improve competitiveness and sustainability",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-CL6-2027-03",
+            "action": "Innovation Actions",
+            "status": "forthcoming",
+            "deadline": "2027-05-11",
+            "opens": "2027-02-04",
+            "grant": {
+              "min": 4500000,
+              "max": 4500000,
+              "expected": 1
+            },
+            "keywords": [
+              "Agriculture related to crop production, soil biology and cultivation, applied plant biology",
+              "Agriculture, Rural Development, Fisheries",
+              "Artificial Intelligence & Decision support",
+              "Artificial intelligence, intelligent systems, multi agent systems",
+              "Digital data",
+              "Digital skills",
+              "Forestry",
+              "Interaction, Multimodal, Brain-Computer-Interfaces, Assistive Technologies"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-03-GOVERNANCE-04"
+          },
+          "reason": "Focuses on AI-supported advice for farmers on competitiveness and sustainability, matching the sensor-based decision framework and capacitive sensor calibration for irrigation control.",
+          "check": "Check the expected grant scope and consortium size for an Innovation Action with a small company and academic partner."
+        },
+        {
+          "call": {
+            "id": "CALL:HORIZON-CL6-2027-02-CLIMATE-01-two-stage",
+            "identifier": "HORIZON-CL6-2027-02-CLIMATE-01-two-stage",
+            "title": "Open topic: Innovative solutions for the European Water Resilience Strategy",
+            "programme": "Horizon Europe",
+            "call": "HORIZON-CL6-2027-02-two-stage",
+            "action": "Innovation Actions",
+            "status": "forthcoming",
+            "deadline": "2027-04-08",
+            "opens": "2027-02-04",
+            "grant": {
+              "min": 6000000,
+              "max": 6000000,
+              "expected": 2
+            },
+            "keywords": [
+              "Disaster resilience and crisis management",
+              "Fresh water ecosystems",
+              "Hydrology (Water science)",
+              "Integrated management of water",
+              "Plant water relations",
+              "Resilience aspects",
+              "Urban water management",
+              "Utilities (water, electricity, waste)"
+            ],
+            "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL6-2027-02-CLIMATE-01-two-stage"
+          },
+          "reason": "Targets innovative water resilience solutions with keywords on integrated water management and plant water relations, relevant to correcting probe lag and optimizing irrigation timing.",
+          "check": "Confirm whether this two-stage call's first stage requires a full application or only a concept note, and the consortium size expectations."
+        }
+      ],
+      "projects": [
+        {
+          "project": {
+            "id": "CORDIS:101135533",
+            "projectId": "101135533",
+            "acronym": "FARMWISE",
+            "title": "Future Agricultural Resource Management and Water Innovations for a Sustainable Europe",
+            "summary": "FARMWISE transforms the EU agricultural sector by empowering farmers and decision-makers with a state-of-the-art decision support system, combining precision agriculture, Artificial Intelligence, and remote sensing. FARMWISE provides new insights into water quality, quantity...",
+            "status": "ongoing",
+            "start": "2024-01-01",
+            "end": "2026-12-31",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-CL6-2023-ZEROPOLLUTION-01-1",
+            "coordinator": {
+              "name": "LUNDS UNIVERSITET",
+              "country": "SE"
+            },
+            "organisations": 20,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/101135533"
+          },
+          "reason": "FARMWISE develops a decision support system combining precision agriculture, AI and sensing for water management, directly aligned with the sensor-driven irrigation framework and soil moisture monitoring."
+        },
+        {
+          "project": {
+            "id": "CORDIS:101181572",
+            "projectId": "101181572",
+            "acronym": "GEORGIA",
+            "title": "Green dEal cOmpliant iRriGation Increasing Europe’s Agriculture resilience to drought",
+            "summary": "GEORGIA (Green dEal cOmpliant iRriGation Increasing Europe’s Agriculture resilience to drought) consortium, consisting of 16 partners from 9 European countries and led by Synelixis SA (the provider of SynField smart agriculture platform), has joined forces to increasing the...",
+            "status": "ongoing",
+            "start": "2025-02-01",
+            "end": "2028-01-31",
+            "programme": "Horizon Europe",
+            "topic": "HORIZON-CL6-2024-CLIMATE-01-1",
+            "coordinator": {
+              "name": "SYNELIXIS LYSEIS PLIROFORIKIS AUTOMATISMOU & TILEPIKOINONION ANONIMI ETAIRIA",
+              "country": "EL"
+            },
+            "organisations": 17,
+            "serbian": [
+              "TERRA LITTERA DOO"
+            ],
+            "url": "https://cordis.europa.eu/project/id/101181572"
+          },
+          "reason": "GEORGIA addresses drought-resilient irrigation across Europe with smart agriculture technology, sharing the focus on optimizing water use and irrigation scheduling in agriculture."
+        },
+        {
+          "project": {
+            "id": "CORDIS:848361",
+            "projectId": "848361",
+            "acronym": "StemSense",
+            "title": "A precise irrigation monitoring system to provide an accurate measurement of water status in crops",
+            "summary": "There is an increasing global pressure on water resources and ensuring there is a sufficient supply in the face of climate change. This is of particular prevalence within the agriculture industry where irrigation is becoming increasingly important. Farmers typically overwater...",
+            "status": "closed",
+            "start": "2019-05-01",
+            "end": "2021-04-30",
+            "programme": "Horizon 2020",
+            "topic": "EIC-SMEInst-2018-2020",
+            "coordinator": {
+              "name": "SATURAS LTD",
+              "country": "IL"
+            },
+            "organisations": 1,
+            "serbian": [],
+            "url": "https://cordis.europa.eu/project/id/848361"
+          },
+          "reason": "StemSense provides precise irrigation monitoring by measuring water status in crops, matching the probe-based feedback system and water efficiency goals for overwatering prevention."
+        }
+      ]
+    }
+  ]
+}

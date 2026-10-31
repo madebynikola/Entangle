@@ -1,0 +1,29 @@
+run 2026-10-31T15-04-55 · local Claude Code · critic-2 on subq-snap-1.1 · shortlist filter on subq-snap-1.1 · prior work from OpenAlex · reverse search on C999-CH1
+  25s  C999  read · 1 need(s)
+  30s  7 task(s) running · 2 done · 0 failed · $0.00
+  61s  7 task(s) running · 9 done · 0 failed · $0.09
+  92s  6 task(s) running · 16 done · 0 failed · $0.35
+ 123s  5 task(s) running · 21 done · 0 failed · $0.41
+ 153s  3 task(s) running · 27 done · 0 failed · $0.57
+ 184s  2 task(s) running · 34 done · 0 failed · $0.77
+ 201s  C999  3 pair(s) accepted · writing C999-CH1-R0662 (writer-1)
+ 214s  2 task(s) running · 37 done · 0 failed · $0.84
+ 245s  1 task(s) running · 38 done · 0 failed · $0.85
+ 275s  2 task(s) running · 40 done · 0 failed · $0.93
+ 306s  1 task(s) running · 42 done · 0 failed · $1.02
+ 336s  1 task(s) running · 46 done · 0 failed · $1.13
+ 358s  C999-CH1-R0662  accepted after 2 fix(es)
+
+done in 5 min 58 s · 358,598 tokens · $1.19 at API prices
+1 companies · 1 needs · 6 profiles · 3 pairs · 1 proposals accepted · 0 need human review · 0 no match
+critic: 23 reviews · 12 sent back · 0 dropped · 0 escalated · 2 splits · 31 claims rejected · 2 kept after cutting a claim
+out: out/2026-10-31T15-04-55
+
+reverse search · C999-CH1 · triage: research
+  R0662  fit 0.87  Nenad Ilić, Associate Professor, Faculty of Agriculture · proposal
+         Nenad Ilić has published on capacitive soil moisture sensor calibration across soil types (SYN-PUB-07491) and long-term field stability assessment of a multi-depth capacitive probe array (SYN-PUB-07495), and holds a granted patent for a multi-depth capacitive soil moisture probe array (SYN-PAT-001).
+  R0218  fit 0.81  Spasoje Orlović, Senior Research Associate, BioSense Institute
+         Spasoje Orlović has published on time-series feature extraction from environmental sensor data using statistical, wavelet, and autocorrelation-based descriptors (SYN-PUB-02775) and on gradient boosting and random forest classifiers for agronomic event detection on multi-year sensor archives (SYN-PUB-02777, SYN-PUB-02780).
+  R1047  fit 0.62  Milena Pantelić, Research Associate, Faculty of Agriculture
+         Milena Pantelić has published on soil water balance modelling at field scale using CROPWAT with FDR probe verification for soy (SYN-PUB-10776) and AquaCrop calibration and validation with FDR probes for sunflower (SYN-PUB-06983).
+  Pairs, not people: each fit is for this problem only. A coordinator approves a pair before anyone is contacted.

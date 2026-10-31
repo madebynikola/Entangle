@@ -1,0 +1,120 @@
+{
+  "chosen": [
+    "C999-CH1:R0696"
+  ],
+  "pairs": [
+    {
+      "id": "C999-CH1:R0696",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0696",
+      "fit": 0.93,
+      "why": [
+        {
+          "text": "The challenge is rooftop solar inverters disconnecting due to grid voltage rising too high on hot summer afternoons; the company's attempted fix of lowering the export limit loses about 8% of yearly yield (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Jeremić's work covers hosting capacity assessment and probabilistic mapping for photovoltaic integration in low-voltage distribution networks using stochastic simulation (SYN-PUB-07801, SYN-PUB-07799, SYN-PUB-07796).",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "SYN-PUB-07796"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored work on smart inverter Volt-Var control design and hardware-in-the-loop testing with a real-time digital simulator for distributed voltage regulation (SYN-PUB-07797).",
+          "sourceIds": [
+            "SYN-PUB-07797"
+          ]
+        },
+        {
+          "text": "Jeremić co-authored work on reactive power coordination using a two-stage optimisation framework combining day-ahead scheduling with real-time rule-based droop correction (SYN-PUB-03969).",
+          "sourceIds": [
+            "SYN-PUB-03969"
+          ]
+        },
+        {
+          "text": "Jeremić performed six-month consultancy with Elektrovojvodina d.o.o. supporting development of internal procedures for distributed generation connection evaluation (R0696).",
+          "sourceIds": [
+            "R0696"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the five years of inverter logs and grid voltage readings from 300 sites (C999-CH1), Jeremić would apply hosting capacity assessment and Volt-Var smart inverter control methods (SYN-PUB-07801, SYN-PUB-07799, SYN-PUB-07797, SYN-PUB-03969) to diagnose the overvoltage mechanism on the affected feeders and design a reactive power control strategy that prevents disconnections without curtailing active power export.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-07801",
+          "SYN-PUB-07799",
+          "SYN-PUB-07797",
+          "SYN-PUB-03969"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The records cover feeder-level simulation and hosting capacity methodology; whether the five-year multi-site log dataset from 300 sites requires additional data-engineering work not covered by the existing publications is not stated.",
+          "sourceIds": [
+            "SYN-PUB-07801",
+            "SYN-PUB-07799",
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "The steady-state power flow and Volt-Var work covers LV feeder analysis, but the records do not describe experience with proprietary inverter log formats or data integration pipelines at the scale of 300 sites (SYN-PUB-07794, SYN-PUB-07797).",
+          "sourceIds": [
+            "SYN-PUB-07794",
+            "SYN-PUB-07797"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C999-CH1:R0904",
+      "challengeId": "C999-CH1",
+      "companyId": "C999",
+      "researcherId": "R0904",
+      "fit": 0.61,
+      "why": [
+        {
+          "text": "The challenge is that rooftop solar inverters disconnect from the grid on hot summer afternoons when local grid voltage rises too high, and the company has five years of inverter logs and grid voltage readings from 300 sites available (C999-CH1).",
+          "sourceIds": [
+            "C999-CH1"
+          ]
+        },
+        {
+          "text": "Simić co-authored work on day-ahead photovoltaic power forecasting for distribution networks using satellite cloud imagery and hybrid neural network architectures (SYN-PUB-09619).",
+          "sourceIds": [
+            "SYN-PUB-09619"
+          ]
+        },
+        {
+          "text": "Simić co-authored work on local flexibility market design and congestion management in active distribution networks through optimal power flow algorithms (SYN-PUB-09625).",
+          "sourceIds": [
+            "SYN-PUB-09625"
+          ]
+        }
+      ],
+      "problem": {
+        "text": "Using the inverter logs and grid voltage readings from 300 sites (C999-CH1), Simić would apply day-ahead PV power forecasting methods (SYN-PUB-09619) and optimal power flow and congestion management methods from active distribution network research (SYN-PUB-09625) to the company's dataset.",
+        "sourceIds": [
+          "C999-CH1",
+          "SYN-PUB-09619",
+          "SYN-PUB-09625"
+        ]
+      },
+      "risks": [
+        {
+          "text": "The congestion management work covers flexibility market mechanisms (SYN-PUB-09625); whether this translates to a deployable voltage regulation strategy within the inverter hardware already installed at the 300 sites is not addressed by the records.",
+          "sourceIds": [
+            "SYN-PUB-09625",
+            "C999-CH1"
+          ]
+        }
+      ]
+    }
+  ],
+  "noMatches": []
+}

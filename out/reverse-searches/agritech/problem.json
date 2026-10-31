@@ -1,0 +1,7 @@
+{
+  "companyId": "C999",
+  "challengeId": "C999-CH1",
+  "company": "Described problem",
+  "sector": "Agriculture",
+  "text": "Our irrigation controllers in apple orchards overwater after rain because the soil moisture probes react slowly. We tried a fixed pause after each rainfall, but young trees still show root stress and the water bill keeps growing. We have three seasons of probe readings, weather station data and yield records from 60 hectares."
+}
