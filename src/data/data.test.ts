@@ -19,6 +19,7 @@ import {
 	shardCompanies,
 	shardResearchers,
 } from "./index"
+import { availabilityOf } from "./normalize"
 import { analyze } from "./text"
 
 describe("fixture", () => {
@@ -134,6 +135,39 @@ describe("text", () => {
 	})
 })
 
+describe("availability", () => {
+	it("catches soft capacity limits in researcher notes", () => {
+		assert.match(availabilityOf("She has limited capacity for new large commitments until mid-2026.") ?? "", /mid-2026/)
+		assert.match(availabilityOf("She is currently at full teaching load and cannot take on projects requiring more than 30% of her time.") ?? "", /full teaching load/)
+		assert.match(availabilityOf("He is on sabbatical during the spring semester of 2026.") ?? "", /sabbatical/)
+		assert.match(availabilityOf("Supervising two students, which limits capacity for new commitments before 2026.") ?? "", /limits capacity/)
+	})
+
+	it("ignores negated sabbaticals and leave", () => {
+		for (const s of [
+			"No planned sabbatical.",
+			"He is not currently on sabbatical and has a moderate teaching load.",
+			"She has no current sabbatical plans.",
+			"He is not on sabbatical and has no planned leave through 2027.",
+		])
+			assert.equal(availabilityOf(s), null, s)
+	})
+
+	it("ignores equipment, data and capabilities that are not available", () => {
+		for (const s of [
+			"She wants access to an industrial press, a capability not available at the faculty.",
+			"He wants datasets that are otherwise unavailable for research.",
+			"The lab has limited availability of the evaluation kits.",
+			"His laboratory capacity for contract testing is limited.",
+		])
+			assert.equal(availabilityOf(s), null, s)
+	})
+
+	it("keeps a real limit in a sentence that also has a negated sabbatical", () => {
+		assert.match(availabilityOf("He is not on sabbatical but has limited capacity until 2027.") ?? "", /limited capacity/)
+	})
+})
+
 describe("full dataset", { skip: !existsSync(resolve(DATA_DIR, "researchers.json")) && "data/raw/ not present" }, () => {
 	it("loads and searches in under 5 s", () => {
 		const start = performance.now()
@@ -143,6 +177,17 @@ describe("full dataset", { skip: !existsSync(resolve(DATA_DIR, "researchers.json
 		assert.equal(data.researchers.size, 1043)
 		assert.equal(data.challenges.size, 489)
 		assert.equal(data.pages.size, 917)
+	})
+
+	it("has an availability claim for soft capacity limits and none for negated or non-person ones", () => {
+		const data = loadDataset(DATA_DIR)
+		const claim = (id: string) => data.researcher(id)!.availability
+		assert.match(claim("R0030") ?? "", /limited capacity/)
+		assert.match(claim("R0031") ?? "", /full teaching load/)
+		assert.match(claim("R0042") ?? "", /limited capacity/)
+		assert.equal(claim("R0005")?.includes("sabbatical") ?? false, false)
+		assert.match(claim("R0005") ?? "", /limited until mid-2026/)
+		assert.equal(claim("R0140"), null)
 	})
 
 	it("sees no personal reason for leave anywhere agents read", () => {
