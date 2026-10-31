@@ -105,10 +105,11 @@ Pokretali smo i veće: dva puta po 20 kompanija (30. oktobra, oko 35 minuta i 33
 3. **Više kompanija ne pokazuje ništa novo.** Svaka potreba već pretražuje svih 1.047 istraživača. Kompanije su nezavisne,
    pa vreme i cena rastu linearno.
 
-Sporo je zbog provere, ne zbog modela. Golden ima 696 poziva, a 367 su pregledi Critic-a (19 napisanih predloga). Svaki poziv
-traje 1 do 1,5 minuta, a lokalno ih ide najviše 6 odjednom. Sa strožim Critic-om, SubQ-om i filterom golden traje oko 8 minuta
-po kompaniji. Ranija verzija, bez njih, trajala je oko 2 minuta. Za svih 153 kompanije to je oko 4,5 sata na ranijoj verziji,
-a oko 20 sati na sadašnjoj sa 6 sesija (procena, nije mereno). Na API ključu, sa većim `MAX_IN_FLIGHT`, može brže.
+Golden traje 66 minuta, ali pravi posao je gotov za 27. Sedam kompanija ima napisan predlog između 7. i 27. minuta. Posle toga su
+lokalne Claude Code sesije stale: pozivi su visili po 5 minuta (`claude -p ran longer than 300000 ms`, 11 ponovnih pokušaja),
+pa je limit od 60 minuta zaustavio C008 pre uparivanja. Sam poziv modela traje oko 11 sekundi (medijana). Sporo je zbog
+broja poziva: 696, od toga 367 pregleda Critic-a za 19 predloga, i najviše 6 lokalnih sesija odjednom. Za svih 153
+kompanije procena je nekoliko sati i oko 300 dolara po pokretanju (nije mereno), a na lokalnoj prijavi zastoj kao ovaj je verovatan.
 
 **"Da li je ovo pravi paralelizam ili samo asinhroni pozivi?"**
 Pravi: do 5 uloga zove model u istom trenutku, dve ili više 48% vremena. Na Timeline-u se trake preklapaju.
