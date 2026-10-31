@@ -47,6 +47,73 @@ No claim was invented outright: the Critic catches those. What it missed falls i
 The larger gap was the free text. The Critic read only claims, so the research questions, approach, plan and the reasoning under
 "Why this pair" were never checked. That is where all 20 invented facts and the 250 Hz breach were.
 
+### After: the claims of the k 2 default
+
+The same check on the current default, after all the fixes below: the 8 accepted proposals of the two k 2 runs `10-38-09` and
+`11-55-14` (see "A shortlist of 2 with the SubQ screen"). Each run accepted C001, C005, C012 and C018 and sent C009 to a person, so
+C009 is not in the check. We read every claim and every free-text sentence against the full text of the records each one cites.
+The Critic had passed all of them. Run 2 is the hand-check in "After: the same five companies again" below.
+
+| | Before (`13-37-34`) | Run 2 (`15-09-14`) | k 2 default (`10-38-09`, `11-55-14`) |
+| --- | --- | --- | --- |
+| Proposals checked | 3 | 3 | 8 |
+| Claims (per proposal) | 76 (25) | 53 (18) | 143 (18) |
+| Wrong, missed by the Critic | 15 (20%) | 8 (15%) | **13 (9%)** |
+| Judgement / uncited detail / widened | 7 / 4 / 4 | 2 / 3 / 3 | 3 / **0** / 10 |
+| Borderline | 6 | 2 | 13 |
+| Free-text sentences with an invented or contradicted fact | 20 | 6 | **7** (4 facts) |
+| Plans that break a company limit | 1 | 0 | 0 |
+
+| Proposal | Run | Claims | Wrong | Borderline | Free-text sentences |
+| --- | --- | --- | --- | --- | --- |
+| C001-CH1 × R1008 | `10-38-09` | 19 | 1 | 0 | 0 |
+| C001-CH1 × R1008 | `11-55-14` | 20 | 3 | 2 | 0 |
+| C005-CH2 × R0057 | `10-38-09` | 19 | 3 | 2 | 2 |
+| C005-CH1 × R0905 | `11-55-14` | 16 | 1 | 2 | 1 |
+| C012-CH1 × R0564 | `10-38-09` | 19 | 1 | 1 | 3 |
+| C012-CH1 × R0564 | `11-55-14` | 18 | 1 | 1 | 0 |
+| C018-CH1 × R0948 | `10-38-09` | 16 | 3 | 2 | 0 |
+| C018-CH1 × R0948 | `11-55-14` | 16 | 0 | 3 | 1 |
+
+The proposals are not the same ones. C001-CH1 × R1008 and C012-CH1 × R0564 are the pairs of the before check, and C005-CH2 × R0057
+is the pair of run 2. C018 was not checked before. On the three companies of the earlier checks (C001, C005, C012) alone, the miss
+rate is the same: 10 of 111 claims (9%).
+
+- **No detail from an uncited record got through.** There were 4 before and 3 in run 2. The names-and-numbers code check rejects
+  them, and the claims now cite the record that holds the detail: "paid pilot assessments" and "NTP Novi Sad" cite R0564 as well
+  as GRAPHSEC, "data partners" cites R1008, and "72 hours" and "modified SZ algorithm" cite C005.
+- **Judgements went from 7 to 3.** One is close to the before example, on the same paper: "Kiss co-authored threshold calibration
+  methods using beta mixture models …, *addressing the false-positive problem* without needing attack labels" (`11-55-14`). The
+  other two: a purpose clause on data that no record says the company keeps ("which provide concrete inputs for building and
+  testing the pipeline", C018), and a prior work "showing that ADC duty cycling need not degrade biopotential signal quality".
+  That paper shows low noise at 0.001–1 Hz only.
+- **10 of the 13 misses are widened claims, and 5 of these join two records into one requirement.** In C001 (3 claims): "The anomaly
+  detector must run inside embedded Linux firmware on ARM Cortex-A SoCs without affecting packet forwarding latency" (`11-55-14`),
+  and "The ProtoSense appliance must run inference on-device … without affecting packet forwarding latency" (`10-38-09`). C001
+  gives this as a plan for a fifth hardware variant "with a dedicated security processor". In C005-CH2 (2 claims): costs
+  "unsustainable against 2022 benchmarks" at 6,000 patches a month. This joins C005's two-year plan with CH2's 4,000 devices next year.
+  The other 5: "must" for C012's "we want to"; a DSL for "AUTOSAR configuration tasks including communication matrix
+  specification" (it covers communication matrices only); "led industry-linked AUTOSAR toolchain projects" for one project; field
+  recordings "covering real ambulatory motion-artefact conditions", which no record says; and the before check's "requesting
+  continuous monitoring" for C012's three named clients, again once (`10-38-09`).
+- **Most of the 13 borderline claims are purpose clauses** on what the company brings: "documentation needed to implement the
+  generation pipeline", "the baseline against which the new codec is measured". Each fact is in the record. The clause is reasoning.
+- **The free text has 7 sentences with an invented fact (4 facts), in 4 of the 8 proposals.** There were 20 sentences in 3 proposals before.
+  - C012 (`10-38-09`) still plans on old scan files, in 3 sentences: "exports anonymised scan outputs (Nmap XML, Nessus .nessus files)
+    from at least five past engagements". No record says the company keeps them. In `11-55-14` the same pair gets its baseline by
+    timing three recent engagements, with no archive.
+  - C005-CH2 × R0057 gives "an embedded deployment constraint" and asks for a codec that fits "the device upload window". CH2 says only
+    "a lossless compression step before upload".
+  - C005-CH1 × R0905: "Mijatović brings … deadline-aware BLE duty-cycle scheduling". The paper schedules IEEE 802.15.4 slots for
+    implantable nodes, not BLE.
+  - C018 (`11-55-14`) measures a research question with "DaVinci's own consistency checker". No record says that DaVinci has one.
+- **One pair is weaker than its text.** All the Šarić papers that C005-CH2 × R0057 cites are lossy: PRD 0.5–8%, and 12.7:1 at
+  PRD 1.4%. The company needs lossless. The proposal says Šarić "brings the precise combination of methods the problem requires".
+  Its risk says only that the records do not confirm that the GRU models "remain strictly lossless". This is a match problem, not a
+  claim error, but a company reader would see it first.
+- **No plan breaks a company limit.** C005-CH1 keeps 250 Hz in every row. C005-CH2 tests for bit-exact losslessness on the whole
+  benchmark. C012 fits its 3,000–5,000 euros with a master's student for six months.
+
 ## What we changed
 
 **Matchmaker** (`src/agents/matchmaker/prompt.ts`, `matchmaker.ts`)
