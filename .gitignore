@@ -4,6 +4,11 @@ node_modules/
 !.env.example
 data/raw/
 data/uploads/
+out/*
+!out/.gitkeep
+!out/golden/
+!out/reverse-search/
+!out/reverse-searches/
 out/tmp/
 docs/design/
 __pycache__/
