@@ -10,6 +10,10 @@
 **See it with no install:** [madebynikola.github.io/Entangle](https://madebynikola.github.io/Entangle/#/runs/golden/stage) opens the web app on the
 committed reference run (`out/golden/`): the agents' Stage and Timeline, the pairs and the proposals with every source.
 
+**What the reference run covers.** 8 of the 153 companies (C001–C008, 29 needs), against the whole researcher side: each need
+searches all 1,047 researchers and their 10,779 publications, projects and patents. A run on every company (`--companies all`)
+works the same way, but costs about 69M tokens and $250 on the models below, so the committed run is one anyone can rerun.
+
 A team of Mozaik agents splits the EINSTEIN dataset (1,047 researchers, 153 companies, about 7 million tokens) and works on it
 in parallel. It finds researcher–challenge pairs that fit a company's stated problem, says so when a challenge has no good match, and writes
 an industrial PhD topic or a one-page joint project for each chosen pair. A Critic checks every claim against the record it cites,
