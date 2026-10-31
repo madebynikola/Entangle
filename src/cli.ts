@@ -1,12 +1,13 @@
-import { existsSync } from "node:fs"
+import { existsSync, writeFileSync } from "node:fs"
+import { join as joinPath } from "node:path"
 import { parseArgs } from "node:util"
-import { createOrchestrator, writeRun, type RunSummary } from "./agents/orchestrator"
-import { DATA_DIR, FIXTURE_DIR, loadDataset, type Dataset } from "./data"
+import { createOrchestrator, writeRun, type RunOutcome, type RunSummary } from "./agents/orchestrator"
+import { DATA_DIR, FIXTURE_DIR, addProblem, loadDataset, problemError, type Dataset, type DescribedProblem } from "./data"
 import { createOpenAlex } from "./data/openalex"
 import { decisionEndpoint, join, localClaude, screen, screenSettings, startRuntime, subq, subqSettings } from "./runtime"
 import { createTraceObserver } from "./trace"
 
-const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [--companies N | all] [--ids C006,C054] [options]
+const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [--companies N | all | --ids C006,C054 | --problem TEXT] [options]
 
   --mock          Run on the mock model: fake latency, no API keys, no cost.
   --local         Run every model call as a local Claude Code session on your own login, no API key
@@ -17,10 +18,13 @@ const USAGE = `Usage: npm run match -- [--mock | --local] [--subq] [--screen] [-
                   most likely (same as SCREEN=1 in .env). Needs the same key as --subq.
   --companies N   How many companies to work on, from the first; \`all\` for every one (default 5).
   --ids LIST      Exactly these companies, comma-separated.
+  --problem TEXT  Reverse search: a company describes one problem in its own words, and the run finds researchers
+                  for it instead of reading dataset companies. Say what is wrong, what you tried and what you have.
+  --sector TEXT   With --problem: the company's sector, if you want the Funding Scout to search it too.
   --analysts N    Industry Analysts (default 4).
   --profilers N   Research Profilers (default 6).
   --writers N     Proposal Writers (default 3).
-  --k N           Researchers shortlisted per challenge (default 4).
+  --k N           Researchers shortlisted per challenge (default 4, 6 with --problem).
   --proposals N   Most proposals in the run (default: one per company).
 
 Models per role are in config/models.ts; MODEL_<ROLE> in .env pins one, e.g. MODEL_CRITIC=claude-haiku-4-5.
@@ -44,10 +48,12 @@ async function main(): Promise<void> {
 			screen: { type: "boolean", default: false },
 			companies: { type: "string", default: "5" },
 			ids: { type: "string" },
+			problem: { type: "string" },
+			sector: { type: "string" },
 			analysts: { type: "string", default: "4" },
 			profilers: { type: "string", default: "6" },
 			writers: { type: "string", default: "3" },
-			k: { type: "string", default: "4" },
+			k: { type: "string" },
 			proposals: { type: "string" },
 			help: { type: "boolean", short: "h", default: false },
 		},
@@ -68,12 +74,15 @@ async function main(): Promise<void> {
 	// A fresh clone has no data/raw/: the run then uses the test fixtures (5 companies).
 	const dataDir = process.env.EINSTEIN_DATA_DIR || (existsSync(DATA_DIR) ? DATA_DIR : FIXTURE_DIR)
 	const data = loadDataset(dataDir)
-	const companyIds = pickCompanies(data, values.companies, values.ids)
+	const problem = values.problem !== undefined ? describe(data, values.problem, values.sector, values.ids) : undefined
+	const companyIds = problem ? [problem.companyId] : pickCompanies(data, values.companies, values.ids)
 
 	const runId = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19) + (values.mock ? "-mock" : "")
 	const state = startRuntime({ runId, mock: values.mock })
 	const trace = createTraceObserver("out")
 	join(trace.participant)
+	// The server and the web app read it to show the run as a reverse search, while it runs and after.
+	if (problem) writeFileSync(joinPath(trace.dir, "problem.json"), JSON.stringify(problem, null, 2) + "\n")
 
 	// A failed model call fails its task; this only catches loops that have no task.
 	process.on("unhandledRejection", (error) => console.error("[loop error]", error))
@@ -87,7 +96,7 @@ async function main(): Promise<void> {
 		analysts: count("--analysts", values.analysts),
 		profilers: count("--profilers", values.profilers),
 		writers: count("--writers", values.writers),
-		k: count("--k", values.k),
+		k: count("--k", values.k ?? (problem ? "6" : "4")),
 		maxProposals: values.proposals ? count("--proposals", values.proposals) : undefined,
 		mockPlantFakeClaims: state.mock,
 		openAlex,
@@ -99,12 +108,45 @@ async function main(): Promise<void> {
 		(subq() ? ` · critic-2 on ${subqSettings().model}` : "") +
 		(screen() ? ` · shortlist filter on ${screenSettings().model}` : "") +
 		(openAlex ? " · prior work from OpenAlex" : "")
-	console.log(`run ${runId} · ${backend} · ${companyIds.length} companies`)
+	console.log(`run ${runId} · ${backend} · ${problem ? `reverse search on ${problem.challengeId}` : `${companyIds.length} companies`}`)
 	if (dataDir === FIXTURE_DIR) console.log(`  no data/raw/: using the test fixtures`)
 	const outcome = await orchestrator.run(companyIds)
 	const summary = writeRun(trace.dir, outcome, orchestrator.critic.stats(), orchestrator.sources)
 	await trace.close()
 	report(summary, trace.dir)
+	if (problem) reportProblem(problem, outcome)
+}
+
+/** Add the described problem to the dataset as company C999. It needs no dataset company, so --ids cannot join it. */
+function describe(data: Dataset, text: string, sector: string | undefined, ids: string | undefined): DescribedProblem {
+	if (ids) throw new Error("Use --problem or --ids, not both: a reverse search works on the described problem alone.")
+	const error = problemError(text)
+	if (error) throw new Error(error)
+	return addProblem(data, { text, sector })
+}
+
+/** The answer to a reverse search: who fits the problem, best fit first, with the first reason for each. */
+function reportProblem(problem: DescribedProblem, outcome: RunOutcome): void {
+	const need = outcome.needs.find((n) => n.challengeId === problem.challengeId)
+	const noMatch = outcome.noMatches.find((n) => n.challengeId === problem.challengeId)
+	const pairs = outcome.pairs.filter((pair) => pair.challengeId === problem.challengeId).sort((a, b) => b.fit - a.fit)
+	const profiles = new Map(outcome.profiles.map((profile) => [profile.researcherId, profile]))
+	console.log(`\nreverse search · ${problem.challengeId}${need ? ` · triage: ${need.triage}` : ""}`)
+	if (need?.triage && need.triage !== "research" && need.triageReason) console.log(`  ${need.triageReason}`)
+	if (!pairs.length) {
+		console.log(`  no researcher passed the Critic${noMatch ? `: ${noMatch.reason}` : ""}`)
+		return
+	}
+	for (const pair of pairs) {
+		const profile = profiles.get(pair.researcherId)
+		const who = profile ? `${profile.name}, ${profile.title}, ${profile.faculty}` : pair.researcherId
+		const chosen = outcome.chosen.includes(pair.id) ? " · proposal" : ""
+		console.log(`  ${pair.researcherId}  fit ${pair.fit.toFixed(2)}  ${who}${chosen}`)
+		// The researcher's side of the evidence says most about why them; the problem's side is the same for every pair.
+		const why = pair.why.find((claim) => claim.sourceIds.some((id) => !id.startsWith(problem.companyId))) ?? pair.why[0]
+		if (why) console.log(`         ${why.text}`)
+	}
+	console.log(`  Pairs, not people: each fit is for this problem only. A coordinator approves a pair before anyone is contacted.`)
 }
 
 /** A switch that puts a role on a decision model needs that model's key. */
