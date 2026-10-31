@@ -6,13 +6,17 @@ import type { RunRegistry } from "./runs"
  * Start `npm run match` as a child process and resolve with its run id, read from the CLI's
  * first line (`run <id> · ...`). The trace it writes is what the web app streams.
  */
-export function startRun(root: string, registry: RunRegistry, body: StartRunBody): Promise<string> {
+export function startRun(root: string, registry: RunRegistry, body: StartRunBody, dataDir?: string): Promise<string> {
 	const args = ["--import", "tsx", "src/cli.ts"]
 	if (body.mock) args.push("--mock")
 	// `--flag=value`: a value that starts with "-" would otherwise read as another flag.
+	if (dataDir) args.push(`--data=${dataDir}`)
 	if (body.problem) args.push(`--problem=${body.problem.trim()}`)
+	else if (body.ids?.length) args.push(`--ids=${body.ids.join(",")}`)
 	else if (body.companies) args.push("--companies", String(body.companies))
 	if (body.problem && body.sector?.trim()) args.push(`--sector=${body.sector.trim()}`)
+	if (body.k) args.push(`--k=${body.k}`)
+	if (body.proposals) args.push(`--proposals=${body.proposals}`)
 
 	const child = spawn(process.execPath, args, { cwd: root, env: process.env, stdio: ["ignore", "pipe", "pipe"] })
 	let output = ""

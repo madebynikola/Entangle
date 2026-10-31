@@ -1,5 +1,6 @@
 import { existsSync, writeFileSync } from "node:fs"
-import { join } from "node:path"
+import { join, resolve } from "node:path"
+import { loadDataset } from "../data/dataset"
 import type { SourceRecord, SourceStore } from "../types"
 import { note } from "./log"
 import { citedIds, readJson, readResults } from "./runs"
@@ -28,11 +29,32 @@ export function datasetSources(): Promise<SourceStore | null> {
 	return store
 }
 
-/** Look up one id: the run's sources.json first, then the dataset. */
+const ROOT = resolve(import.meta.dirname, "../..")
+
+/**
+ * The data a run read when it was not the EINSTEIN dataset (its `dataset.json`): the fixture or your own upload.
+ * Null when that folder is gone. Undefined for runs on the EINSTEIN dataset.
+ */
+function runDataSources(runDir: string): SourceStore | null | undefined {
+	const label = readJson<{ dir?: string }>(join(runDir, "dataset.json"))
+	if (!label?.dir) return undefined
+	const dir = resolve(ROOT, label.dir)
+	if (!existsSync(join(dir, "researchers.json"))) return null
+	try {
+		return loadDataset(dir).sources
+	} catch {
+		return null
+	}
+}
+
+/** Look up one id: the run's sources.json first, then the data the run read (the EINSTEIN dataset unless it says otherwise). */
 export async function findSource(id: string, runDir?: string): Promise<SourceRecord | undefined> {
 	if (runDir) {
 		const own = runSources(runDir)?.[id]
 		if (own) return own
+		// Ids repeat across datasets (R0001 is someone else in your data): never answer from the EINSTEIN set here.
+		const other = runDataSources(runDir)
+		if (other !== undefined) return other?.get(id)
 	}
 	return (await datasetSources())?.get(id)
 }
@@ -48,7 +70,8 @@ export function runSources(runDir: string): Record<string, SourceRecord> | undef
 export async function collectRunSources(runDir: string): Promise<Record<string, SourceRecord>> {
 	const own = runSources(runDir)
 	if (own) return own
-	const dataset = await datasetSources()
+	const other = runDataSources(runDir)
+	const dataset = other === undefined ? await datasetSources() : other
 	if (!dataset) return {}
 	const sources: Record<string, SourceRecord> = {}
 	for (const id of citedIds(readResults(runDir))) {

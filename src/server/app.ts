@@ -6,6 +6,8 @@ import { streamSSE } from "hono/streaming"
 import { problemError } from "../data/problem"
 import type { TraceRecord } from "../types"
 import type { ApprovalBody, Health, StartRunBody } from "./api"
+import type { ImportFile } from "../data/import"
+import { datasetDir, deleteUpload, listCompanies, listDatasets, saveUpload } from "./datasets"
 import { LineReader, readApprovals, readResults, writeApproval, type RunRegistry } from "./runs"
 import { collectRunSources, datasetSources, findSource } from "./sources"
 import { startRun } from "./spawn"
@@ -18,6 +20,8 @@ export interface AppOptions {
 const KEY_VARS = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GEMINI_API_KEY"]
 /** Records per SSE message while catching up on a long trace. */
 const BATCH = 500
+/** An upload of your own data, all files together. The full EINSTEIN dataset is about 32 MB. */
+const MAX_UPLOAD_BYTES = 100 * 1024 * 1024
 
 /** The REST + SSE API under /api. */
 export function createApi({ root, registry }: AppOptions): Hono {
@@ -50,8 +54,52 @@ export function createApi({ root, registry }: AppOptions): Hono {
 			if (error) return c.json({ error }, 400)
 			if (body.sector != null && (typeof body.sector !== "string" || body.sector.length > 100)) return c.json({ error: "sector must be text under 100 characters." }, 400)
 		}
-		const runId = await startRun(root, registry, body)
+		const whole = (value: unknown, max: number) => value == null || (Number.isInteger(value) && (value as number) >= 1 && (value as number) <= max)
+		if (!whole(body.k, 20)) return c.json({ error: "k must be a whole number from 1 to 20." }, 400)
+		if (!whole(body.proposals, 50)) return c.json({ error: "proposals must be a whole number from 1 to 50." }, 400)
+		let dataDir: string | undefined
+		if (body.dataset != null) {
+			dataDir = typeof body.dataset === "string" ? datasetDir(body.dataset) : undefined
+			if (!dataDir) return c.json({ error: `No dataset ${String(body.dataset)} on this machine.` }, 400)
+		}
+		if (body.ids != null) {
+			if (body.problem != null) return c.json({ error: "Send problem or ids, not both: a reverse search works on the described problem alone." }, 400)
+			if (!Array.isArray(body.ids) || !body.ids.length || body.ids.length > 200 || body.ids.some((id) => typeof id !== "string")) {
+				return c.json({ error: "ids must be a list of 1 to 200 company ids." }, 400)
+			}
+			const known = new Set(listCompanies(body.dataset ?? listDatasets().find((d) => d.default)!.id)?.map((company) => company.id))
+			const unknown = body.ids.filter((id) => !known.has(id))
+			if (unknown.length) return c.json({ error: `Not in this dataset: ${unknown.slice(0, 5).join(", ")}.` }, 400)
+		}
+		const runId = await startRun(root, registry, body, dataDir)
 		return c.json({ runId }, 201)
+	})
+
+	api.get("/datasets", (c) => c.json(listDatasets()))
+
+	api.post("/datasets", async (c) => {
+		const size = Number(c.req.header("Content-Length") ?? 0)
+		if (size > MAX_UPLOAD_BYTES) return c.json({ error: `Keep an upload under ${MAX_UPLOAD_BYTES / 1024 / 1024} MB.` }, 413)
+		const form = await c.req.formData().catch(() => null)
+		if (!form) return c.json({ error: "Send the files as multipart form data: `name` and one `files` entry per file." }, 400)
+		const files: ImportFile[] = []
+		for (const entry of form.getAll("files")) {
+			if (typeof entry === "string") continue
+			files.push({ name: entry.name, text: await entry.text() })
+		}
+		if (!files.length) return c.json({ error: "Add at least researchers.json or researchers.csv." }, 400)
+		try {
+			return c.json(saveUpload(String(form.get("name") ?? ""), files), 201)
+		} catch (error) {
+			return c.json({ error: error instanceof Error ? error.message : String(error) }, 400)
+		}
+	})
+
+	api.delete("/datasets/:id", (c) => (deleteUpload(c.req.param("id")) ? c.body(null, 204) : notFound(c, "upload")))
+
+	api.get("/datasets/:id/companies", (c) => {
+		const companies = listCompanies(c.req.param("id"))
+		return companies ? c.json(companies) : notFound(c, "dataset")
 	})
 
 	api.get("/runs/:id", (c) => {

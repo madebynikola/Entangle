@@ -17,6 +17,10 @@
  *   POST /api/runs/:id/approvals ApprovalBody → Approvals     writes out/<run>/approvals.json
  *   GET  /api/runs/:id/sources               → Record<id, SourceRecord> for every id the run cites
  *   GET  /api/sources/:id?run=<runId>        → SourceRecord (the run's sources.json first, then the dataset)
+ *   GET  /api/datasets                       → DatasetInfo[]  the data a run can read: EINSTEIN, the fixture, uploads
+ *   POST /api/datasets        multipart      → DatasetInfo    `name` and `files`: your own data, kept in data/uploads/
+ *   DELETE /api/datasets/:id                 → 204            uploads only
+ *   GET  /api/datasets/:id/companies         → CompanyInfo[]  the companies a run can pick, with their challenges
  *
  * A static build (`npm run build`) serves the same data as files: `runs/index.json` (RunInfo[]) and
  * `runs/<id>/{trace.jsonl,results.json,sources.json}`. The web app falls back to them when /api is missing.
@@ -65,15 +69,60 @@ export interface RunInfo {
 	sample?: boolean
 	/** A reverse search: the problem a company described, from `problem.json`. Absent for runs on dataset companies. */
 	problem?: string
+	/** The data the run read, from `dataset.json`, when it was not the EINSTEIN dataset: the fixture or an upload. */
+	dataset?: { kind: DatasetKind; name: string }
 }
 
 export interface StartRunBody {
 	mock?: boolean
 	companies?: number
+	/** Exactly these companies of the dataset, instead of the first `companies`. */
+	ids?: string[]
 	/** Reverse search: find researchers for this described problem instead of reading dataset companies. */
 	problem?: string
 	/** With `problem`: the company's sector, if given. */
 	sector?: string
+	/** A DatasetInfo id: the data the run reads. Default: the EINSTEIN dataset when it is here, else the fixture. */
+	dataset?: string
+	/** Researchers shortlisted per challenge. */
+	k?: number
+	/** Most proposals in the run. */
+	proposals?: number
+}
+
+/** einstein: data/raw/ (or EINSTEIN_DATA_DIR). fixture: test/fixtures/data. upload: your own files, in data/uploads/. */
+export type DatasetKind = "einstein" | "fixture" | "upload"
+
+export interface DatasetCounts {
+	researchers: number
+	publications: number
+	projects: number
+	patents: number
+	companies: number
+	challenges: number
+}
+
+export interface DatasetInfo {
+	/** `einstein`, `fixture`, or the upload's folder name. */
+	id: string
+	name: string
+	kind: DatasetKind
+	counts: DatasetCounts
+	/** The data a run reads when it names none. */
+	default: boolean
+	/** Uploads: ISO time of the upload. */
+	createdAt?: string
+	/** Uploads: ids that got the dataset's shape, original → new. */
+	renamed?: Record<string, string>
+	/** Uploads: records skipped and files not used. */
+	warnings?: string[]
+}
+
+export interface CompanyInfo {
+	id: string
+	name: string
+	sector: string
+	challenges: { id: string; text: string }[]
 }
 
 export type ApprovalDecision = "approved" | "rejected"
