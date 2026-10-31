@@ -68,11 +68,14 @@ const TASK_KIND: Record<StageKey, string> = { need: "analyze", profile: "profile
 /**
  * The run as five steps, from the trace (`artifact.posted`, `critic.*`) and, when present, the results files.
  * Works while a run is live: counts grow and the busy step shows as working.
+ * A finished run counts what it kept (the results files, as summary.json and the README do), not every artifact posted:
+ * the Critic drops some, and some are still waiting for a verdict when the time limit ends the run.
  */
 export function pipeline(records: TraceRecord[], view: RunView, results: RunResults | null, live: boolean): Stage[] {
 	const posted: Record<string, Set<string>> = { need: new Set(), profile: new Set(), pair: new Set(), proposal: new Set() }
 	let reviews = 0
 	let sentBack = 0
+	let dropped = 0
 	let rejectedClaims = 0
 	for (const record of records) {
 		const data = record.data as { kind?: string; id?: string; rejected?: unknown[] } | undefined
@@ -81,6 +84,7 @@ export function pipeline(records: TraceRecord[], view: RunView, results: RunResu
 			reviews++
 			rejectedClaims += data?.rejected?.length ?? 0
 		} else if (record.kind === "critic.sent_back") sentBack++
+		else if (record.kind === "critic.dropped") dropped++
 	}
 	const running = new Set<string>()
 	for (const task of view.tasks.values()) if (task.status === "running" && !task.stopped) running.add(String(task.kind))
@@ -94,11 +98,17 @@ export function pipeline(records: TraceRecord[], view: RunView, results: RunResu
 		state: running.has(TASK_KIND[key]) ? "working" : count > 0 ? "done" : live ? "waiting" : "skipped",
 	})
 	const noMatch = results?.noMatches.length ?? 0
+	const kept = !live && results ? results : null
+	const count = (kind: keyof typeof posted, final?: unknown[]) => (kept && final ? final.length : posted[kind].size)
+	// The rejected claims stay in the detail only while nothing was dropped: the three do not fit on one line.
+	const review = dropped
+		? [`${sentBack} sent back`, `${dropped} dropped`]
+		: [`${format.plural(rejectedClaims, "claim")} rejected`, `${sentBack} sent back`]
 	return [
-		stage("need", "Read companies", "challenges", Math.max(posted.need.size, results?.needs.length ?? 0)),
-		stage("profile", "Profile researchers", "profiles", Math.max(posted.profile.size, results?.profiles.length ?? 0)),
-		stage("pair", "Find pairs", "pairs", Math.max(posted.pair.size, results?.pairs.length ?? 0), noMatch ? `${noMatch} with no good match` : undefined),
-		stage("proposal", "Write proposals", "proposals", Math.max(posted.proposal.size, results?.proposals.length ?? 0)),
-		stage("review", "Check claims", "reviews", reviews, reviews ? `${format.plural(rejectedClaims, "claim")} rejected, ${sentBack} sent back` : undefined),
+		stage("need", "Read companies", "challenges", count("need", kept?.needs)),
+		stage("profile", "Profile researchers", "profiles", count("profile", kept?.profiles)),
+		stage("pair", "Find pairs", "pairs", count("pair", kept?.pairs), noMatch ? `${noMatch} with no good match` : undefined),
+		stage("proposal", "Write proposals", "proposals", count("proposal", kept?.proposals)),
+		stage("review", "Check claims", "reviews", reviews, reviews ? review.join(", ") : undefined),
 	]
 }
