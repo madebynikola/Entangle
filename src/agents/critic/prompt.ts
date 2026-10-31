@@ -3,6 +3,7 @@ import type { Decision, DecisionQuestion } from "../../runtime"
 import type { ArtifactKind, Claim, RejectedClaim, SourceRecord } from "../../types"
 import type { Subject } from "./checks"
 import { clip } from "./text"
+import { translationBlock, type Translations } from "./translate"
 
 export const CRITIC_INSTRUCTION = `You are the Critic in a team of agents that pairs university researchers with company challenges.
 Other agents write claims. You check each claim against the dataset records it cites. You never add facts.
@@ -20,10 +21,12 @@ A claim is not supported when:
   says nothing about the company, so such words are not in it;
 - it takes a word from a record it does not cite. Judge only the cited text, even when you know the fact is true elsewhere;
 - it translates a Serbian record into words of another meaning. A Serbian word can have several English meanings, and the
-  thing it is about decides which one: "ležaj" of a machine is a bearing, of a hotel a bed. When the cited text is in
-  Serbian, first translate yourself the Serbian words the claim rests on, for the thing they are about (a fruit, a
-  machine, a person). Then compare the claim's English with your translation, not with the claim's own choice of word.
-  A term in brackets is the claim's quote of the original: check that the English before it means the same;
+  thing it is about decides which one: "ležaj" of a machine is a bearing, of a hotel a bed. A record with Serbian lines
+  comes with an English translation of them, made apart from the claims. Take the meaning from that translation: when
+  the claim's English word for a thing differs in meaning from the translation's word for it, the claim is not
+  supported. Without a translation, translate yourself the Serbian words the claim rests on, for the thing they are about.
+  Never compare the claim with its own choice of word. A term in brackets is the claim's quote of the original: check
+  that the English before it means the same;
 - it turns a number into another measure: "an error of 5%" is not "95% accuracy", "half of the units" is not "50 units";
 - it gives a record to a person the record does not link. Go by ids, never by names;
 - it says that two researchers worked together and no cited record links both;
@@ -133,6 +136,8 @@ export function reviewMessage(
 	claims: Claim[],
 	sources: Map<string, SourceRecord>,
 	totalChars = TOTAL_CHARS,
+	/** English for the Serbian lines of the sources, by record id. */
+	translations?: Translations,
 ): string {
 	const claimLines = claims.map((claim, i) => `${i + 1}. ${claim.text} [${claim.sourceIds.join(", ")}]`)
 	return [
@@ -143,7 +148,7 @@ export function reviewMessage(
 		...claimLines,
 		"",
 		"Sources:",
-		sourceBlocks(sources, totalChars),
+		sourceBlocks(sources, totalChars, translations),
 	].join("\n")
 }
 
@@ -160,6 +165,7 @@ export function textReviewMessage(
 	/** On a re-check: the sentences that are new or changed since the last one. Only these are checked. */
 	changed?: string[],
 	totalChars = TOTAL_CHARS,
+	translations?: Translations,
 ): string {
 	const recheck = changed
 		? ["", "The other sentences passed an earlier check. Check only these new or changed ones:", ...changed.map((s) => `- ${s}`)]
@@ -178,23 +184,27 @@ export function textReviewMessage(
 		...recheck,
 		"",
 		"Sources:",
-		sourceBlocks(sources, totalChars),
+		sourceBlocks(sources, totalChars, translations),
 	].join("\n")
 }
 
-function sourceBlocks(sources: Map<string, SourceRecord>, totalChars: number): string {
-	const records = [...sources]
+/** Each record with its header line, its text and, under the text, the English of its Serbian lines. */
+function sourceBlocks(sources: Map<string, SourceRecord>, totalChars: number, translations?: Translations): string {
+	const records = [...sources].map(([cited, record]): [string, SourceRecord, string] => {
+		const english = translationBlock(translations?.get(record.id) ?? [])
+		return [cited, record, english ? `${record.text}\n\n${english}` : record.text]
+	})
 	const room = shares(
-		records.map(([, record]) => record.text.length),
+		records.map(([, , text]) => text.length),
 		totalChars,
 	)
 	return records
-		.map(([cited, record], i) => {
+		.map(([cited, record, text], i) => {
 			const alias = cited === record.id ? "" : ` (cited as ${cited})`
 			const linked = record.researcherIds.length ? ` · researchers ${record.researcherIds.join(", ")}` : ""
 			const company = record.companyId ? ` · company ${record.companyId}` : ""
 			const year = record.year ? ` · ${record.year}` : ""
-			return `[${record.id}]${alias} ${record.kind} · ${record.title}${year}${linked}${company}\n${clip(record.text, room[i])}`
+			return `[${record.id}]${alias} ${record.kind} · ${record.title}${year}${linked}${company}\n${clip(text, room[i])}`
 		})
 		.join("\n\n")
 }
@@ -249,7 +259,7 @@ const SUPPORTED =
 	"directly from, the text of the records it cites. Leaving out details of the text is fine."
 const NOT_SUPPORTED =
 	"The claim adds or changes a fact the cited text does not state (a paper, number, tie, stronger result, wider scope, " +
-	"other year or role), translates a Serbian word into one of another meaning, turns a number into another measure (an error rate into an accuracy), widens a list or a count, merges two separate points of a record, takes a word from a record it " +
+	"other year or role), translates a Serbian word into one of another meaning than the record's English translation gives, turns a number into another measure (an error rate into an accuracy), widens a list or a count, merges two separate points of a record, takes a word from a record it " +
 	"does not cite, adds a judgement on how a record fits the other side (\"directly addresses the company's problem\", " +
 	"\"the core method the project needs\"), gives a record to a person it does not link, says two researchers worked " +
 	"together with no record linking both, gives a private reason for availability, or names someone who cannot lead as " +

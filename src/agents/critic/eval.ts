@@ -10,7 +10,7 @@ export interface LabelReview {
 	claims: ReviewedClaim[]
 	/** Each reviewer that ran, with its model. */
 	reviewers: Array<{ name: string; model: string }>
-	/** Of the critique tasks, at API prices. */
+	/** Of the critique and translate tasks, at API prices. */
 	costUsd: number
 	ms: number
 }
@@ -87,7 +87,9 @@ export async function reviewLabels(labels: CriticLabels, options: Omit<CriticOpt
 		const model = agent && tasks.find((task) => task.assignee === agent.getId())?.model
 		return agent && model ? [{ name: agent.getManifest().name, model }] : []
 	})
-	return { claims, reviewers, costUsd: tasks.reduce((sum, task) => sum + task.costUsd, 0), ms: Date.now() - started }
+	// The cost counts the translations of Serbian records too: the Critic makes them for its reviews.
+	const spent = [...s.tasks.values()].filter((task) => task.kind === "critique" || task.kind === "translate")
+	return { claims, reviewers, costUsd: spent.reduce((sum, task) => sum + task.costUsd, 0), ms: Date.now() - started }
 }
 
 function rejectedBy(rejected: RejectedClaim, primary: string): string[] {
