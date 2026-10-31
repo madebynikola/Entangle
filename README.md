@@ -10,7 +10,7 @@
 **See it with no install:** [madebynikola.github.io/Entangle](https://madebynikola.github.io/Entangle/#/runs/golden/stage) opens the web app on the
 committed reference run (`out/golden/`): the agents' Stage and Timeline, the pairs and the proposals with every source.
 
-**What the reference run covers.** 8 of the 153 companies (C001–C008, 29 needs), against the whole researcher side: each need
+**What the reference run covers.** 8 of the 153 companies (C001–C008, 28 needs), against the whole researcher side: each need
 searches all 1,047 researchers and their 10,779 publications, projects and patents. A run on every company (`--companies all`)
 works the same way, but costs about 69M tokens and $250 on the models below, so the committed run is one anyone can rerun.
 
@@ -32,7 +32,7 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
 
 ![The Timeline of a real run: one row per agent, one bar per model call. Overlapping bars are agents working at the same time.](docs/screenshots/timeline.png)
 
-<sub>The Timeline of the reference run (8 companies, `out/golden/`), zoomed to its first 27 minutes. One row per agent, one bar per model call. Bars that overlap are agents working at the same time. Drag across the lanes to zoom.</sub>
+<sub>The Timeline of the reference run (8 companies, `out/golden/`), all 25 minutes of it. One row per agent, one bar per model call. Bars that overlap are agents working at the same time. Drag across the lanes to zoom.</sub>
 
 **Contents:** [Try it](#try-it-no-keys-needed) · [Run it](#run-it-on-real-models) · [Architecture](#architecture) ·
 [Why not one model](#why-a-team-of-agents-not-one-big-model) ·
@@ -152,10 +152,10 @@ Everything lands in `out/<run-id>/`:
 | `--mock`, `--local` | | Mock model, or local Claude Code sessions |
 | `--subq`, `--screen` | | The second Critic, or the shortlist filter, on a decision model |
 
-**Time and cost.** The reference run (`out/golden/`, `--companies 8`) on Sonnet 4.6 and Haiku 4.5 took 66 minutes on local
-Claude Code and used 5.0M tokens, about $17 at API prices. It ran with `BUDGET_USD=40 BUDGET_MINUTES=60 BUDGET_TOKENS=12000000`;
-the defaults ($20, 45 minutes, 6M tokens) fit about 5 companies, which take 15 minutes and about $9. Its 60-minute limit
-stopped the last company, C008, before matching. `npm run match -- --help` lists every option and setting.
+**Time and cost.** The reference run (`out/golden/`, `--companies 8`) on Sonnet 4.6 and Haiku 4.5 took 25 minutes on local
+Claude Code and used 4.3M tokens, about $15 at API prices. It ran with `BUDGET_USD=40 BUDGET_MINUTES=60 BUDGET_TOKENS=12000000`,
+but it also stayed inside the defaults ($20, 45 minutes, 6M tokens). Every company finished and no task failed.
+`npm run match -- --help` lists every option and setting.
 
 ## Architecture
 
@@ -208,7 +208,7 @@ The Orchestrator hands out work as events arrive. It makes no model calls.
    calls that fit and the projects that worked on the same problem.
 5. The Critic reviews every need, profile, pair and proposal as it lands, beside all of this.
 
-![Data flow in the reference run: 8 companies become 29 needs, up to 4 candidates per need, 66 profiles, 32 pairs and 7 no-match outcomes, 7 chosen pairs, and 6 accepted proposals plus 1 for a person, written to out/golden](docs/brand/data-flow.svg)
+![Data flow in the reference run: 8 companies become 28 needs, up to 2 candidates per need, 41 profiles, 28 pairs and 7 no-match outcomes, 8 chosen pairs, and 6 accepted proposals plus 2 for a person, written to out/golden](docs/brand/data-flow.svg)
 
 <sub>The same steps in the reference run, with its counts from <code>out/golden/summary.json</code>.</sub>
 
@@ -244,7 +244,7 @@ Every artifact goes through the same three steps (`src/agents/critic/`):
 
 Only accepted artifacts reach the result. A Writer never starts on a pair whose need, profile or pair is still in doubt.
 
-![The Critic loop in the reference run: of 337 reviews, 133 accepted, 194 sent back to the producer and 10 dropped; 6 more reviews ended in an error](docs/brand/critic-loop.svg)
+![The Critic loop in the reference run: of 260 reviews, 103 accepted, 151 sent back to the producer, 4 dropped and 2 sent to a person](docs/brand/critic-loop.svg)
 
 <sub>The three steps and their outcomes in the reference run, counted from <code>out/golden/trace.jsonl</code>.</sub>
 
@@ -272,16 +272,16 @@ filter (`SCREEN=1`) use one.
 ## Why a team of agents, not one big model
 
 - **The data does not fit in one call.** The dataset is about 7 million tokens. Here each call reads one company, one
-  researcher or one pair: in the reference run the median call read 6,285 input tokens and the largest 19,447. The whole run
-  used 5.0M tokens, not 7M per question.
+  researcher or one pair: in the reference run the median call read 6,193 input tokens and the largest 23,713. The whole run
+  used 4.3M tokens, not 7M per question.
 - **A model does not check itself.** The Critic is its own agent, in its own context. It sees the claim and the records it cites,
   not the Writer's reasoning. Code checks ids first, and a second reviewer on another model reads each proposal. In the reference
-  run it rejected 483 claims that would otherwise have reached a company.
+  run it rejected 401 claims that would otherwise have reached a company.
 - **The right model for each job.** Haiku 4.5 for the many parallel reads, Sonnet 4.6 for the calls that decide quality. A Haiku
   Critic caught 11 of 23 wrong claims where Sonnet caught 15 to 21 ([docs/quality.md](docs/quality.md)), so it stays on Sonnet.
 - **Code where no model is needed.** The Orchestrator, the BM25 shortlist, the id checks and "not a research problem" make no model call.
 - **Every step is visible and fails alone.** Each event is in `trace.jsonl` with its agent, task, time, tokens and cost. A task that
-  fails takes nothing else with it: the time limit stopped C008, and the other six proposals stayed.
+  fails takes nothing else with it: in an earlier 8-company run the time limit stopped C008, and the other six proposals stayed.
 
 We did not run one big model as a baseline: the dataset does not fit in one call, and with retrieval added it is already a pipeline.
 The answers to other teams' questions on this, in Serbian, are in [docs/qa.md](docs/qa.md).
@@ -294,26 +294,26 @@ The answers to other teams' questions on this, in Serbian, are in [docs/qa.md](d
   `critic.sent_back`), so analysis, profiling, matching, writing and review overlap.
 - **Only the limits slow it down:** the runner's 16 slots, the provider rate limits, or the 6 local Claude Code sessions.
 
-**Numbers from the reference run:** 8 companies on 30 October, Sonnet 4.6 and Haiku 4.5 on the local Claude Code backend
-(6 sessions at once), 696 model calls by 20 agents. The last call finished at 49:25, so the measures below cover those
-49 minutes. After that, 11 `claude -p` calls hung for 5 minutes each, and the 60-minute budget ended the run at 66:05.
+**Numbers from the reference run:** 8 companies on 31 October, Sonnet 4.6 and Haiku 4.5 on the local Claude Code backend
+(6 sessions at once), 597 model calls by 20 agents. The last call finished at 25:15, when the run ended, so the measures
+below cover the whole run.
 
 | Measure | Value |
 | --- | --- |
-| Model calls open at once (running, or waiting for a slot) | 14 on average, 45 at the peak |
-| Model calls the runner let out at once | 3.4 on average, 6 (the session cap) at the peak |
-| Claude Code sessions busy | all 6 for 55% of the time |
-| Model time against wall time | 2 h 47 min of model calls in 49 min, so 3.4 calls at once on average |
-| Roles calling a model at the same moment | up to 5; two or more for 48% of the time |
+| Model calls open at once (running, or waiting for a slot) | 16 on average, 41 at the peak |
+| Model calls the runner let out at once | 5.5 on average, 6 (the session cap) at the peak |
+| Claude Code sessions busy | all 6 for 84% of the time |
+| Model time against wall time | 2 h 19 min of model calls in 25 min, so 5.5 calls at once on average |
+| Roles calling a model at the same moment | up to 5; two or more for 79% of the time |
 
 | Role | First call | Last call | Overlaps with |
 | --- | --- | --- | --- |
-| Industry Analysts | 0:00 | 26:27 | everyone: after their first pass they fix needs the Critic sent back |
-| Research Profilers | 2:21 | 49:25 | Analysts still reading, the Matchmaker, the Writers, the Critic |
-| Critic | 0:21 | 49:19 | the whole run, starting 21 seconds in |
-| Matchmaker | 2:38 | 25:23 | Profilers still profiling, Writers already writing |
-| Proposal Writers | 5:56 | 26:44 | Analysts, Profilers, the Matchmaker and the Critic: the first proposal started before most companies were matched |
-| Funding Scout | 5:53 | 26:01 | the Writer of each pair it works on |
+| Industry Analysts | 0:00 | 18:21 | everyone: after their first pass they fix needs the Critic sent back |
+| Research Profilers | 2:47 | 21:48 | Analysts still reading, the Matchmaker, the Writers, the Critic |
+| Critic | 0:36 | 25:15 | the whole run, starting 36 seconds in |
+| Matchmaker | 3:04 | 20:59 | Profilers still profiling, Writers already writing |
+| Proposal Writers | 5:06 | 25:00 | Analysts, Profilers, the Matchmaker and the Critic: the first proposal started before most companies were matched |
+| Funding Scout | 5:04 | 22:09 | the Writer of each pair it works on |
 
 On the API, the same runner lets 16 calls run at once instead of 6.
 
@@ -338,36 +338,35 @@ console.log({ calls: edges.length / 2, peakInFlight: peak, averageInFlight: +(ar
 Each line of `trace.jsonl` has `ms` (since the start), `kind`, `agent`, `taskId`, `loopId` and `model`. `inference.dispatched`
 is when the runner let a call out past the rate limits; the time before it is a wait.
 
-![One company's path in the reference run: ArmaturaSec's first challenge from its need at 0:24 to an accepted proposal at 14:36, with the need sent back once and the pair and the proposal twice each, while the other roles work beside it](docs/brand/company-path.svg)
+![One company's path in the reference run: Kardiolink's first challenge from its need at 0:33 to an accepted proposal at 8:53, with the profile and the pair sent back once each and the proposal twice, while the other roles work beside it](docs/brand/company-path.svg)
 
 <sub>One company through the reference run, with times from <code>out/golden/trace.jsonl</code>: each role works on it as soon as its input exists.</sub>
 
 ## Where the Critic stepped in
 
-One case from the reference run. At 18:16, `writer-1` posted proposal `C003-CH1-R0365`: AutomVoj (C003), whose conveyor frames
+One case from the reference run. At 15:25, `writer-1` posted proposal `C003-CH1-R0365`: AutomVoj (C003), whose conveyor frames
 crack at the welds after 18 months in cold stores, with Bojan Erić (R0365), who works on low-temperature fatigue of welded steel.
 Three checks ran on it at the same time: the Critic (Sonnet 4.6) and the second reviewer (subq-snap-1.1) on its 20 claims,
-and the Critic's free-text check on the rest. At 19:00 the Critic sent 9 claims and sentences back to `writer-1`, among them:
+and the Critic's free-text check on the rest. At 16:10 the Critic sent 9 claims and sentences back to `writer-1`, among them:
 
 | Claim | Cites | Why it was rejected | After the fix |
 | --- | --- | --- | --- |
-| "Two failed frame sections with weld cracks, photographs, and measurements from site visits, available for laboratory inspection." | C003-CH1 | The challenge says "we still have two of the failed sections in storage". It does not say they are available for laboratory inspection. | "Two failed frame sections are held in storage, and the company has photographs and measurements of the cracked joints from site visits." |
-| "In-house fabrication shop with welding capability to produce reference and candidate weld-joint specimens to any revised procedure." | C003 | The company has a fabrication shop and MIG/MAG welding, but nothing says it can make specimens "to any revised procedure". | "In-house fabrication shop with mild steel and stainless steel MIG/MAG welding capability." |
-| "Historical design records, welding procedure, filler material specification, and corrosion-protection specification for the affected frames." | C003-CH1 | Both reviewers: the challenge mentions none of these records (the second reviewer: 8% likely that the text supports it). | Removed |
-| "…the company's engineer is available for one day per week to answer questions about fabrication history." | (free text) | `free-text`: no claim or source gives the engineer's time. | Removed |
+| "An engineering team of 212 engineers, electricians, and technicians, including a company engineer to provide technical input and review throughout the project." | C003 | The company record gives the team of 212. It says nothing of an engineer who gives input and review throughout the project. | "An engineering team of 212 engineers, electricians, and technicians available to support the project." |
+| "In-house testing floor under one roof with fabrication, allowing the company engineer to produce additional fresh weld specimens to the exact production procedure." | C003 | Both reviewers: the record puts the shop and the testing floor under one roof, but does not say the engineer can make specimens to the production procedure (the second reviewer: 47% likely that the text supports it). | "Fabrication shop, electrical assembly area, and in-house testing floor all under one roof on the Zrenjanin site." |
+| "…using the XFEM approach co-authored for surface cracks at weld toes." | (free text) | `free-text`: no claim or source gives Erić an XFEM approach; the cited FE papers use other models. | "…using the sequentially coupled thermal–structural and Chaboche cyclic-plasticity modelling approaches" |
 
-`writer-1` posted the proposal again at 19:18. Only its 5 changed claims were checked again; the other 13 had already passed.
-One was still rejected: "access to customer cold-store installations" is in neither source. The second fix turned it into
-"photographs and measurements of cracked joints collected during site visits to cold-store installations operating at 2–6 °C".
-Both reviewers accepted the proposal at 20:07.
+`writer-1` posted the proposal again at 16:30. Only its 7 changed claims were checked again; the other 12 had already passed.
+Two were still rejected. One was "hollow-section frame fabrication": neither source says hollow sections. After the second fix
+at 17:04, that claim still said "structural design" where the record says "structural drawings". So at 17:16 the Critic cut
+that one claim (`critic.trimmed`), kept the other 18, which had passed, and accepted the proposal.
 
-Across the run the Critic made 337 reviews, sent artifacts back 194 times with 483 rejected claims, cut a failed claim and kept
-the rest 20 times (`critic.trimmed`), dropped 10, and logged 15 splits where the two reviewers disagreed. In the Timeline
-each send-back or drop is an orange mark on the producer's lane.
+Across the run the Critic made 260 reviews, sent artifacts back 151 times with 401 rejected claims, cut a failed claim and kept
+the rest 11 times (`critic.trimmed`), dropped 4, sent 2 proposals to a person, and logged 18 splits where the two reviewers
+disagreed. In the Timeline each send-back or drop is an orange mark on the producer's lane.
 
 The counts in this README and in `summary.json` are what the run kept. The Blackboard also shows what was posted:
-"Profiles 66 / 75" means 66 profiles passed of 75 posted, and "Pairs 32 / 42" means 32 passed of 42 posted. The other 9 profiles
-were still waiting for a verdict, or for a fix, when the time limit ended the run. The other 10 pairs are the 10 the Critic dropped.
+"Needs 28 / 29" means 28 needs passed of 29 posted, and "Pairs 28 / 31" means 28 passed of 31 posted. The other need and the
+other 3 pairs are the 4 the Critic dropped. Every profile posted passed: "Profiles 41 / 41".
 
 Find every send-back in a trace with `grep '"critic.sent_back"' out/golden/trace.jsonl`, or in the Blackboard panel next to the Timeline.
 
