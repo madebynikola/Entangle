@@ -28,7 +28,7 @@ Hackathon track 02 (EINSTEIN: Science-to-Business Matchmaker), JigJoy × NTP Nov
 
 ![The Timeline of a real run: one row per agent, one bar per model call. Overlapping bars are agents working at the same time.](docs/screenshots/timeline.png)
 
-<sub>The Timeline of the reference run (8 companies, `out/golden/`). One row per agent, one bar per model call. Bars that overlap are agents working at the same time.</sub>
+<sub>The Timeline of the reference run (8 companies, `out/golden/`), zoomed to its first 27 minutes. One row per agent, one bar per model call. Bars that overlap are agents working at the same time. Drag across the lanes to zoom.</sub>
 
 **Contents:** [Try it](#try-it-no-keys-needed) · [Run it](#run-it-on-real-models) · [Architecture](#architecture) ·
 [Concurrency](#how-the-agents-run-concurrently) · [The Critic](#where-the-critic-stepped-in) · [EINSTEIN](#how-this-plugs-into-einstein) ·
