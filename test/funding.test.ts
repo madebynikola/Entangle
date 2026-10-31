@@ -1,6 +1,7 @@
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
 import { describe, test } from "node:test"
+import { Request as UndiciRequest, type RequestInit as UndiciRequestInit } from "undici"
 import { areaOf, fits, queryList } from "../src/agents/scout/scout"
 import { fundingMarkdown } from "../src/agents/scout/render"
 import { SAVED_PROJECTS, cordisQuery, createCordis, projectRecord, toProject } from "../src/data/cordis"
@@ -100,6 +101,20 @@ describe("EU calls from the Funding & Tenders portal", () => {
 		const eu = createEuCalls({ fetch })
 		await Promise.all([eu.search(["a", "b", "c", "d", "e"]), eu.search(["f", "g", "h"], "area")])
 		assert.equal(peak, 4)
+	})
+
+	test("the form reaches the portal as multipart through undici's fetch, filters included", async () => {
+		let body = ""
+		const fetch = (async (_url: string | URL | Request, init?: RequestInit) => {
+			// undici serialises the body as it would on the wire; Node's global FormData would come out as "[object FormData]".
+			const request = new UndiciRequest("https://portal.test", { method: "POST", body: init?.body as UndiciRequestInit["body"] })
+			body = await request.text()
+			return new Response(JSON.stringify({ results: [] }))
+		}) as typeof globalThis.fetch
+		await createEuCalls({ fetch }).search(["photonics"])
+		assert.match(body, /name="query"/)
+		assert.match(body, /31094502/, "the open-status filter is sent")
+		assert.match(body, /name="languages"/)
 	})
 
 	test("a failed request never throws: it says why", async () => {
