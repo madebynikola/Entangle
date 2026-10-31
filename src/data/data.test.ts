@@ -165,6 +165,7 @@ describe("availability", () => {
 			"She is not seeking large consortium leadership roles in the next two years.",
 			"She prefers projects that do not require more than 20 percent time allocation.",
 			"Commitments that would require more than two days per week are not possible.",
+			"She has limited capacity for new full-time project commitments before mid-2025 but is available for smaller consulting engagements and equipment-sharing arrangements.",
 			"Trenutno vodi jedan projekat, pa je kapacitet za nove veće projekte ograničen do 2026.",
 			"Predaje na dva predmeta, što ograničava dostupnost za konsultacije.",
 			"Nije dostupan za nove angažmane u prvom kvartalu 2026.",

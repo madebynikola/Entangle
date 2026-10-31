@@ -154,7 +154,9 @@ const NEGATED = /\b(?:no|not|without)\s+(?:\w+\s+){0,3}(?:sabbatical|leave)\b/gi
 function limitsPerson(sentence: string): boolean {
 	if (/\bnot limiting\b/i.test(sentence)) return false
 	const text = sentence.replace(NEGATED, "")
-	return (AVAILABILITY.test(text) || AVAILABILITY_SR.test(text)) && !NOT_THE_PERSON.test(sentence)
+	// "available for consulting and equipment-sharing arrangements" offers equipment; it does not say equipment is short.
+	const rest = sentence.replace(/\bequipment[- ](?:sharing|access)\b/gi, "")
+	return (AVAILABILITY.test(text) || AVAILABILITY_SR.test(text)) && !NOT_THE_PERSON.test(rest)
 }
 
 /** The sentences of (redacted) notes that limit availability, or null. */
